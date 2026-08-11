@@ -2,7 +2,7 @@
 
 # RESTRICT AND GO TO PHASE 2
 
-Generated 2026-08-11 23:18 UTC. Phase 1 of MURU ConjectureLab v1.
+Generated 2026-08-11 23:19 UTC. Phase 1 of MURU ConjectureLab v1.
 
 ---
 
@@ -66,7 +66,9 @@ All three Phase 1 kill criteria are cleared and the corpus is cleaner than the m
 
 **1. What dataset do we actually have?**
 
-MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef73674716a60ef`: **5,582 records**, 25,501,603 bytes, corpus digest `27f6499ec4672191039e91df78115e3d...`. Energy-resolved HCD MS/MS of ENTACT mixture compounds on one Q Exactive Orbitrap at resolution 17500, six nominal collision energies, two adducts ([M+H]+ 3,411, [M-H]- 2,171), one confidence class, 781 unique compounds. Counts reconcile with the publication to within 0.34% (see `DATA_CENSUS.md`). Plus **3 raw mzML mixes** in positive mode from MassIVE MSV000091754, campaign 20200303.
+MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef73674716a60ef`: **5,582 records**, 25,501,603 bytes, corpus digest `27f6499ec4672191039e91df78115e3d...`. Energy-resolved HCD MS/MS of ENTACT mixture compounds on one Q Exactive Orbitrap at resolution 17500, six nominal collision energies, two adducts ([M+H]+ 3,411, [M-H]- 2,171), one confidence class, 781 unique compounds. Counts reconcile with the publication to within 0.34% (see `DATA_CENSUS.md`).
+
+Plus **13 raw mzML files** in positive mode from MassIVE MSV000091754, campaign `20200303_ENTACT_RP_mzML`, mixes [499, 503, 505] -- see question 5 for the per-energy coverage, which is uneven.
 
 **2. How many usable positive-mode trajectories remain?**
 
@@ -82,7 +84,20 @@ MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef7
 
 **5. What is the measured repeatability?**
 
-Inter-mixture SD, positive mode, raw mzML branch, mixes [499, 503, 505]: **mu 0.0295**, survival yield 0.0337, fragment depth 0.0410, spectral entropy 0.1427. This is an **upper bound** on technical repeatability because the three mixes differ in matrix complexity (95 / 185 / 365 substances). Negative-mode repeatability is **UNKNOWN**.
+Inter-mixture SD, positive mode, raw mzML branch: **mu 0.0295**, survival yield 0.0337, fragment depth 0.0410, spectral entropy 0.1427.
+
+Replicate depth is **not uniform across energies**, because MassIVE rate-limiting prevented four mix-505 files from being acquired within this session and one (`mix505_pos_CE90`) does not exist in the repository at all:
+
+| NCE | mixes contributing | structure |
+|---|---|---|
+| 15 | [499, 503, 505] | triplicate |
+| 30 | [499, 503] | duplicate |
+| 45 | [499, 503] | duplicate |
+| 60 | [499, 503] | duplicate |
+| 75 | [499, 503] | duplicate |
+| 90 | [499, 503] | duplicate |
+
+So the pooled figures above rest on a duplicate structure at five of six energies and a triplicate at NCE 15. This is an **upper bound** on technical repeatability, because the mixes differ in matrix complexity (95 / 185 / 365 substances) -- though the NCE 15 triplicate shows that inflation is small (see `REPEATABILITY.md`). Negative-mode repeatability is **UNKNOWN**: no negative-mode mzML was acquired.
 
 **6. How large is the RMassBank versus raw-processing disagreement?**
 

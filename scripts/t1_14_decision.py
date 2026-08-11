@@ -194,9 +194,12 @@ def main() -> None:
              f"confidence class, "
              f"{base.inchikey_first_block.nunique()} unique compounds. Counts "
              f"reconcile with the publication to within 0.34% "
-             f"(see `DATA_CENSUS.md`). Plus **{len(raw.mix.unique())} raw mzML "
-             f"mixes** in positive mode from MassIVE MSV000091754, campaign "
-             f"20200303.\n")
+             f"(see `DATA_CENSUS.md`).\n")
+    nmz = len(list((ROOT / "data" / "massive" / "mzml").glob("*.mzML")))
+    L.append(f"Plus **{nmz} raw mzML files** in positive mode from MassIVE "
+             f"MSV000091754, campaign `20200303_ENTACT_RP_mzML`, mixes "
+             f"{mixes} -- see question 5 for the per-energy coverage, which is "
+             f"uneven.\n")
 
     L.append("**2. How many usable positive-mode trajectories remain?**\n")
     L.append(f"**{k1}** with >= 5 of 6 energies; **{int((cnt==6).sum())}** "
@@ -224,13 +227,27 @@ def main() -> None:
              "resolving it. **A1: SUPPORTED, not VERIFIED.**\n")
 
     L.append("**5. What is the measured repeatability?**\n")
-    L.append(f"Inter-mixture SD, positive mode, raw mzML branch, mixes {mixes}: "
+    L.append(f"Inter-mixture SD, positive mode, raw mzML branch: "
              f"**mu {sds['mu']:.4f}**, survival yield {sds['survival_yield']:.4f}, "
              f"fragment depth {sds['fragment_depth']:.4f}, spectral entropy "
-             f"{sds['spectral_entropy']:.4f}. This is an **upper bound** on "
-             f"technical repeatability because the three mixes differ in matrix "
-             f"complexity (95 / 185 / 365 substances). Negative-mode "
-             f"repeatability is **UNKNOWN**.\n")
+             f"{sds['spectral_entropy']:.4f}.\n")
+    cov = raw.groupby("ce_numeric").mix.apply(lambda s: sorted(int(x) for x in set(s)))
+    L.append("Replicate depth is **not uniform across energies**, because "
+             "MassIVE rate-limiting prevented four mix-505 files from being "
+             "acquired within this session and one "
+             "(`mix505_pos_CE90`) does not exist in the repository at all:\n")
+    L.append("| NCE | mixes contributing | structure |\n|---|---|---|")
+    for e in ENERGIES:
+        ms = cov.get(e, [])
+        L.append(f"| {e} | {ms} | "
+                 f"{'triplicate' if len(ms)>=3 else 'duplicate' if len(ms)==2 else 'single'} |")
+    L.append(f"\nSo the pooled figures above rest on a duplicate structure at "
+             f"five of six energies and a triplicate at NCE 15. This is an "
+             f"**upper bound** on technical repeatability, because the mixes "
+             f"differ in matrix complexity (95 / 185 / 365 substances) -- though "
+             f"the NCE 15 triplicate shows that inflation is small "
+             f"(see `REPEATABILITY.md`). Negative-mode repeatability is "
+             f"**UNKNOWN**: no negative-mode mzML was acquired.\n")
 
     L.append("**6. How large is the RMassBank versus raw-processing "
              "disagreement?**\n")
