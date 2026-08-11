@@ -1,6 +1,6 @@
 # CONFOUNDERS.md
 
-Generated 2026-08-11 23:08 UTC.
+Generated 2026-08-11 23:20 UTC.
 
 Spearman rank correlations between each endpoint and each acquisition covariate, **stratified by collision energy**. Pooling across energies would manufacture correlation from both variables moving with energy. Basis: 517 complete positive-mode trajectories, base cell.
 

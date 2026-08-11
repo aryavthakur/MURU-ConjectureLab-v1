@@ -1,6 +1,6 @@
 # DATA_CENSUS.md
 
-Generated 2026-08-11 23:08 UTC. Source of every number: `artifacts/trajectories.parquet`, built in this run.
+Generated 2026-08-11 23:20 UTC. Source of every number: `artifacts/trajectories.parquet`, built in this run.
 
 ## Provenance
 

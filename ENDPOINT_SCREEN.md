@@ -1,6 +1,6 @@
 # ENDPOINT_SCREEN.md
 
-Generated 2026-08-11 23:08 UTC.
+Generated 2026-08-11 23:20 UTC.
 
 Basis: **517 positive-mode compound trajectories with all six collision energies**, base preprocessing cell (no cutoff, precursor included, raw intensities). The master plan's endpoint recommendation rests on 56 trajectories; this is that comparison re-run at 517.
 
