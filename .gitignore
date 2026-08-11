@@ -31,10 +31,15 @@ data/massbank/
 # ---------------------------------------------------------------------------
 # Generated artifacts — regenerable by re-running Phase 1.
 # ---------------------------------------------------------------------------
-artifacts/
+artifacts/*
 data/interim/
 data/processed/
 outputs/
+
+# ...but provenance manifests are evidence, not artifacts. Always tracked.
+!artifacts/MANIFEST*.json
+!artifacts/*SHA256*
+!artifacts/replicate_compound_keys.json
 *.parquet
 *.feather
 *.h5
