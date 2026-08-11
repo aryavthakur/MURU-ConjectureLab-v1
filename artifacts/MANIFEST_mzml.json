@@ -1,0 +1,101 @@
+{
+  "source": "MassIVE MSV000091754",
+  "pin": {
+    "accession": "MSV000091754",
+    "campaign": "20200303_ENTACT_RP_mzML",
+    "mixes": [
+      "499",
+      "503",
+      "505"
+    ],
+    "modes": [
+      "pos"
+    ],
+    "note": "20200303_ENTACT_RP_mix505_pos_CE90.mzML does not exist in the repository"
+  },
+  "root": "data/massive/mzml",
+  "files": [
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE15.mzML",
+      "sha256": "2fe02f97dc1f6f68b6430a3a7ad1a491b237d5efcba8bbb6d0ea17f92fccfc4d",
+      "size_bytes": 92622945,
+      "retrieved_utc": "2026-08-11T22:57:54.901908+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE30.mzML",
+      "sha256": "0613399f3c78648ff417954a94db8c1eecbb5a61e161aa81334f60f91ab5cb06",
+      "size_bytes": 91070759,
+      "retrieved_utc": "2026-08-11T22:58:09.126361+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE45.mzML",
+      "sha256": "8d72968cecfb09ff4bab171323e007b5e31d3495b7d6024dcab3542417e3558b",
+      "size_bytes": 91038978,
+      "retrieved_utc": "2026-08-11T22:58:39.500426+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE60.mzML",
+      "sha256": "6c38877297a7f9ac5b027e4fd33760e92585deb53c5c735977c6a1ccacf1f4c2",
+      "size_bytes": 90806049,
+      "retrieved_utc": "2026-08-11T22:58:50.958855+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE75.mzML",
+      "sha256": "51b3c38552dde80995cf72355ca4caa1802ca84e499883aa07442f56837e4664",
+      "size_bytes": 90556713,
+      "retrieved_utc": "2026-08-11T22:59:15.443561+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix499_pos_CE90.mzML",
+      "sha256": "5f0d065d7f1f5af62b696bde3d47b5d1d89d0a1f4f56c813fdc4f6d320c23813",
+      "size_bytes": 90129921,
+      "retrieved_utc": "2026-08-11T22:59:29.179310+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE15.mzML",
+      "sha256": "626d9031d1bc41d7c949214013379eb7f966e6f8cc6239c33192ae9350412ec2",
+      "size_bytes": 91202176,
+      "retrieved_utc": "2026-08-11T22:59:54.975606+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE30.mzML",
+      "sha256": "0ee4056a3ef1054642579b9b8cd21e63d856e8b49726855d25a2961869f6bbef",
+      "size_bytes": 91068775,
+      "retrieved_utc": "2026-08-11T23:00:10.814369+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE45.mzML",
+      "sha256": "275173d8ab14f1c5c3e81d1872639cd3e82f33ecc7dec8f6b9bdd7f80797f618",
+      "size_bytes": 90981372,
+      "retrieved_utc": "2026-08-11T23:00:20.146461+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE60.mzML",
+      "sha256": "d882448014e0d82a24d2a6debd35c99bceacda91ea0eb41c052034fc865bec63",
+      "size_bytes": 90707397,
+      "retrieved_utc": "2026-08-11T23:00:30.513494+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE75.mzML",
+      "sha256": "263ea09b87bebec2fbc2c34b4517a045b86afe58875e90e84ce4ebc78b3d72db",
+      "size_bytes": 90840321,
+      "retrieved_utc": "2026-08-11T23:00:43.430417+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix503_pos_CE90.mzML",
+      "sha256": "656a244cece233e12812ba713cc19c6cd64a4e06cddc4529714f950b3da1931b",
+      "size_bytes": 90489080,
+      "retrieved_utc": "2026-08-11T23:05:44.557577+00:00"
+    },
+    {
+      "path": "20200303_ENTACT_RP_mix505_pos_CE15.mzML",
+      "sha256": "613db929235cabc5d36b4bbe1894bf1aa3136e28a2b99a9f132350813bac2368",
+      "size_bytes": 91707867,
+      "retrieved_utc": "2026-08-11T23:14:38.112794+00:00"
+    }
+  ],
+  "created_utc": "2026-08-11T23:17:35.142040+00:00",
+  "n_files": 13,
+  "total_bytes": 1183222353,
+  "corpus_digest": "eaeaa17664f8c8ea5e861267344a39474e61980f6c7ec216fb5429f63a3cd30e"
+}

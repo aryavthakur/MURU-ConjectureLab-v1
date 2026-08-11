@@ -2,7 +2,7 @@
 
 # RESTRICT AND GO TO PHASE 2
 
-Generated 2026-08-11 23:14 UTC. Phase 1 of MURU ConjectureLab v1.
+Generated 2026-08-11 23:17 UTC. Phase 1 of MURU ConjectureLab v1.
 
 ---
 
@@ -18,8 +18,8 @@ All three Phase 1 kill criteria are cleared and the corpus is cleaner than the m
 |---|---|---|---|
 | 1 | >= 400 compound-by-mode groups with >= 5 of 6 energies, positive mode | **PASS** | 549 groups |
 | 2 | CE semantics documented; zero ambiguous or out-of-set values silently retained | **PASS** | 0 of 5,582 records outside {15,30,45,60,75,90}; every record carries `energy_type=NCE_ASSUMED_FROM_PUBLICATION` with a provenance string; `CE_AUDIT.md` |
-| 3 | Repeatability estimate delivered, or documented impossibility with the consequence for H-MAIN stated | **PASS (restricted)** | inter-mixture SD for mu = 0.0292 from mixes [499, 503], positive mode only; negative mode UNKNOWN; `REPEATABILITY.md` |
-| 4 | At least one endpoint monotone in >= 70% of trajectories with within-compound range exceeding replicate SD by >= 3x | **PASS** | mu: 84.5% monotone, range/SD = 15.4x |
+| 3 | Repeatability estimate delivered, or documented impossibility with the consequence for H-MAIN stated | **PASS (restricted)** | inter-mixture SD for mu = 0.0295 from mixes [499, 503, 505], positive mode only; negative mode UNKNOWN; `REPEATABILITY.md` |
+| 4 | At least one endpoint monotone in >= 70% of trajectories with within-compound range exceeding replicate SD by >= 3x | **PASS** | mu: 84.5% monotone, range/SD = 15.2x |
 | 5 | Preprocessing-branch disagreement quantified for every candidate endpoint | **PASS** | 12-cell grid + curated-vs-raw comparison; `ENDPOINT_SCREEN.md`, `REPEATABILITY.md` |
 | 6 | `PHASE1_DECISION.md` states GO or STOP with numbered evidence | **PASS** | this document |
 
@@ -49,12 +49,12 @@ All three Phase 1 kill criteria are cleared and the corpus is cleaner than the m
 
 | Endpoint | median within-compound range (raw branch) | inter-mixture SD | ratio | clears 3x |
 |---|---|---|---|---|
-| mu | 0.4505 | 0.0292 | **15.4x** | yes |
-| survival_yield | 0.5767 | 0.0293 | **19.7x** | yes |
-| fragment_depth | 0.2857 | 0.0385 | **7.4x** | yes |
-| spectral_entropy | 1.5238 | 0.1260 | **12.1x** | yes |
+| mu | 0.4489 | 0.0295 | **15.2x** | yes |
+| survival_yield | 0.6174 | 0.0337 | **18.3x** | yes |
+| fragment_depth | 0.2995 | 0.0410 | **7.3x** | yes |
+| spectral_entropy | 1.5238 | 0.1427 | **10.7x** | yes |
 
-4 of 4 endpoints clear the bar; the criterion requires failure for all of them. Best: **survival_yield** at **19.7x**.
+4 of 4 endpoints clear the bar; the criterion requires failure for all of them. Best: **survival_yield** at **18.3x**.
 
 **Caveat carried forward:** the noise estimate is an *upper bound* (inter-mixture, not injection-replicate), so these ratios are conservative -- the true margin over technical noise is larger, not smaller. See `PROPOSED_DEVIATION_FROM_MASTER_PLAN.md` D6.
 
@@ -64,7 +64,7 @@ All three Phase 1 kill criteria are cleared and the corpus is cleaner than the m
 
 **1. What dataset do we actually have?**
 
-MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef73674716a60ef`: **5,582 records**, 25,501,603 bytes, corpus digest `27f6499ec4672191039e91df78115e3d...`. Energy-resolved HCD MS/MS of ENTACT mixture compounds on one Q Exactive Orbitrap at resolution 17500, six nominal collision energies, two adducts ([M+H]+ 3,411, [M-H]- 2,171), one confidence class, 781 unique compounds. Counts reconcile with the publication to within 0.34% (see `DATA_CENSUS.md`). Plus **2 raw mzML mixes** in positive mode from MassIVE MSV000091754, campaign 20200303.
+MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef73674716a60ef`: **5,582 records**, 25,501,603 bytes, corpus digest `27f6499ec4672191039e91df78115e3d...`. Energy-resolved HCD MS/MS of ENTACT mixture compounds on one Q Exactive Orbitrap at resolution 17500, six nominal collision energies, two adducts ([M+H]+ 3,411, [M-H]- 2,171), one confidence class, 781 unique compounds. Counts reconcile with the publication to within 0.34% (see `DATA_CENSUS.md`). Plus **3 raw mzML mixes** in positive mode from MassIVE MSV000091754, campaign 20200303.
 
 **2. How many usable positive-mode trajectories remain?**
 
@@ -80,28 +80,28 @@ MassBank LCSB records at release `2026.03`, commit `705afb7bccc3b2c42410a744eef7
 
 **5. What is the measured repeatability?**
 
-Inter-mixture SD, positive mode, raw mzML branch, mixes [499, 503]: **mu 0.0292**, survival yield 0.0293, fragment depth 0.0385, spectral entropy 0.1260. This is an **upper bound** on technical repeatability because the three mixes differ in matrix complexity (95 / 185 / 365 substances). Negative-mode repeatability is **UNKNOWN**.
+Inter-mixture SD, positive mode, raw mzML branch, mixes [499, 503, 505]: **mu 0.0295**, survival yield 0.0337, fragment depth 0.0410, spectral entropy 0.1427. This is an **upper bound** on technical repeatability because the three mixes differ in matrix complexity (95 / 185 / 365 substances). Negative-mode repeatability is **UNKNOWN**.
 
 **6. How large is the RMassBank versus raw-processing disagreement?**
 
-Large, and very unequal across endpoints. Median peak count is 62 raw against 24 curated. Mean absolute difference: **mu 0.0190** (0.65x its replicate SD -- *smaller* than the measurement's own noise) versus **spectral entropy 0.3110** (2.5x its replicate SD). The formula filter substantially determines entropy and barely touches mu. This is risk R1 measured, and it is the strongest single argument for mu.
+Large, and very unequal across endpoints. Median peak count is 62 raw against 24 curated. Mean absolute difference: **mu 0.0194** (0.66x its replicate SD -- *smaller* than the measurement's own noise) versus **spectral entropy 0.3105** (2.2x its replicate SD). The formula filter substantially determines entropy and barely touches mu. This is risk R1 measured, and it is the strongest single argument for mu.
 
 **7. Which endpoint is now primary, and why?**
 
-**mu**, the intensity-weighted normalized spectrum mass. On 517 complete positive-mode trajectories it is strictly monotone in **84.5%** (vs 27.9% for entropy), has the largest within-compound range relative to inter-mixture noise (**15.4x**), has 0% missingness, keeps resolving power across the whole grid where survival yield dies by NCE 45, survives the formula-filter branch change within its own noise, shows no significant mixture-identity effect at any energy, and decomposes exactly into survival and fragment depth. The choice follows the measured evidence; the master plan's recommendation was treated as hypothesis A13 and independently re-tested at 517 trajectories rather than 56.
+**mu**, the intensity-weighted normalized spectrum mass. On 517 complete positive-mode trajectories it is strictly monotone in **84.5%** (vs 27.9% for entropy), has the largest within-compound range relative to inter-mixture noise (**15.2x**), has 0% missingness, keeps resolving power across the whole grid where survival yield dies by NCE 45, survives the formula-filter branch change within its own noise, shows no significant mixture-identity effect at any energy, and decomposes exactly into survival and fragment depth. The choice follows the measured evidence; the master plan's recommendation was treated as hypothesis A13 and independently re-tested at 517 trajectories rather than 56.
 
 **8. Which endpoints were rejected, and why?**
 
-- **spectral entropy** -- rejected as primary. Monotone in only 27.9%; Spearman rho against peak count rises to **+0.89**, and peak count here is set by RMassBank's annotator, not the detector; branch disagreement is 2.5x its own replicate SD; shows significant mixture-identity effects at 4 of 6 energies. Retained as a robustness endpoint only.
+- **spectral entropy** -- rejected as primary. Monotone in only 27.9%; Spearman rho against peak count rises to **+0.89**, and peak count here is set by RMassBank's annotator, not the detector; branch disagreement is 2.2x its own replicate SD; shows significant mixture-identity effects at 4 of 6 energies. Retained as a robustness endpoint only.
 - **survival yield** -- retained but demoted to censored secondary. Weakly monotone in 95.4% but strictly monotone in 20.1% because it ties at exactly zero. 85.3% of NCE 90 records are at zero.
-- **fragment depth** -- retained as secondary; monotone 67.1%, ratio 7.4x, undefined for precursor-only spectra.
+- **fragment depth** -- retained as secondary; monotone 67.1%, ratio 7.3x, undefined for precursor-only spectra.
 - **normalized entropy** -- diagnostic only.
 - **base-peak fraction** -- rejected; monotone in ~9%.
 - **peak count** -- covariate only; range/SD below 1.
 
 **9. Does the collision-energy response exceed measurement noise?**
 
-**Yes, by a wide margin, for mu.** Median within-compound range is 15.4x the inter-mixture SD, against a 3x bar, using a noise estimate that is deliberately inflated. Three further endpoints also clear it.
+**Yes, by a wide margin, for mu.** Median within-compound range is 15.2x the inter-mixture SD, against a 3x bar, using a noise estimate that is deliberately inflated. Three further endpoints also clear it.
 
 **10. What important confounders were found?**
 
@@ -143,7 +143,7 @@ Four, in descending order of consequence:
 **13. Which remain unknown?**
 
 - **Negative-mode repeatability.** Only positive-mode mzML was acquired. UNKNOWN.
-- **True technical (injection) repeatability.** Bounded above by the inter-mixture estimate (0.0292 for mu) and below by within-run scan variability. Not separated.
+- **True technical (injection) repeatability.** Bounded above by the inter-mixture estimate (0.0295 for mu) and below by within-run scan variability. Not separated.
 - **Whether the NCE unit is 'nominal' or 'normalized'.** Immaterial to Phase 1; matters for any cross-instrument work.
 - **Whether formula-annotation success depends on collision energy** in a way that biases trajectory shape. Peak counts rise with energy in both branches, but the branch-difference-versus-energy interaction was not modelled.
 - **Whether the mass association in mu is chemistry or artifact.** Requires the Phase 2 descriptor ablation (F8).
