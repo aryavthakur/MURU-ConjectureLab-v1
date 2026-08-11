@@ -1,0 +1,20 @@
+# Preprocessing grid -- master plan section 7.3.
+# A finite sensitivity experiment, not a feature architecture. 3 x 2 x 2 = 12
+# cells per source branch. Cell "base" is the reference against which all
+# other cells are compared.
+
+precursor_match_ppm: 10.0
+
+grid:
+  relative_cutoff: [0.0, 0.001, 0.01]     # 0, 0.1%, 1% of base peak
+  include_precursor: [true, false]
+  intensity_transform: ["raw", "sqrt"]
+
+base_cell:
+  relative_cutoff: 0.0
+  include_precursor: true
+  intensity_transform: "raw"
+
+source_branches:
+  - massbank_curated     # RMassBank formula-filtered records
+  - raw_mzml             # independent branch, Phase 1 subset only

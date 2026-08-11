@@ -1,0 +1,357 @@
+"ID","Name","SMILES","CAS","RT"
+44,"Pirimicarb","CN(C)C(=O)OC1=C(C)C(C)=NC(=N1)N(C)C","23103-98-2",NA
+48,"Linuron","CON(C)C(=O)NC1=CC=C(Cl)C(Cl)=C1","330-55-2",NA
+55,"Cybutryne","CSC1=NC(NC(C)(C)C)=NC(NC2CC2)=N1","28159-98-0",NA
+60,"Imidacloprid","[O-][N+](=O)\N=C1/NCCN1CC1=CN=C(Cl)C=C1","138261-41-3",NA
+210,"Phenformin","NC(=N)NC(=N)NCCC1=CC=CC=C1","",NA
+211,"Zearalenone","C[C@H]1CCCC(=O)CCC\C=C\C2=C(C(O)=CC(O)=C2)C(=O)O1","",NA
+212,"Fenpropathrin","CC1(C)C(C(=O)OC(C#N)C2=CC=CC(OC3=CC=CC=C3)=C2)C1(C)C","",NA
+213,"N-(1-Methylheptyl)-N'-phenyl-1,4-benzenediamine","CCCCCCC(C)NC1=CC=C(NC2=CC=CC=C2)C=C1","",NA
+214,"4-Hydroxyacetophenone","CC(=O)C1=CC=C(O)C=C1","",NA
+215,"Fluazifop-P-butyl","CCCCOC(=O)[C@@H](C)OC1=CC=C(OC2=CC=C(C=N2)C(F)(F)F)C=C1","",NA
+216,"Dialifor","CCOP(=S)(OCC)SC(CCl)N1C(=O)C2=C(C=CC=C2)C1=O","",NA
+217,"Aldicarb","CNC(=O)ON=CC(C)(C)SC","",NA
+218,"4-tert-Butylbenzoic acid","CC(C)(C)C1=CC=C(C=C1)C(O)=O","",NA
+219,"(9Z,12R)-12-Hydroxyoctadec-9-enoic acid","CCCCCC[C@@H](O)C\C=C/CCCCCCCC(O)=O","",NA
+220,"Labetalol","CC(CCC1=CC=CC=C1)NCC(O)C1=CC=C(O)C(=C1)C(N)=O","",NA
+221,"1H-Benzo[de]isoquinoline-1,3(2H)-dione","O=C1NC(=O)C2=CC=CC3=C2C1=CC=C3","",NA
+222,"Zenarestat","OC(=O)CN1C(=O)N(CC2=CC=C(Br)C=C2F)C(=O)C2=C1C=C(Cl)C=C2","",NA
+223,"SSR126768","CCN(Cc1cccnc1)C(=O)c1cccc(Cl)c1[C@]1(C)C(=O)N(Cc2ccc(OC)cc2OC)c2ccc(Cl)cc21","",NA
+225,"PharmaGSID_48507","CN1C(=O)C=C(OC2=C(F)C=C(F)C=C2)C2=C1N=C(NCC(C)(C)O)N=C2","",NA
+226,"2-Mercaptobenzothiazole","SC1=NC2=C(S1)C=CC=C2","",NA
+227,"Picloram","NC1=C(Cl)C(Cl)=NC(C(O)=O)=C1Cl","",NA
+228,"Rhodamine 6G","CCNC1=CC2=[O+]C3=C(C=C(C)C(NCC)=C3)C(=C2C=C1C)C1=C(C=CC=C1)C(=O)OCC","",NA
+229,"C.I. Basic Red 9","NC1=CC=C(C=C1)C(C1=CC=C(N)C=C1)=C1C=CC(=N)C=C1","",NA
+230,"2-Methyl-4,6-dinitrophenol","CC1=C(O)C(=CC(=C1)[N+]([O-])=O)[N+]([O-])=O","",NA
+231,"Ametryn","CCNC1=NC(SC)=NC(NC(C)C)=N1","",NA
+232,"Dodecyltrimethylammonium","CCCCCCCCCCCC[N+](C)(C)C","",NA
+233,"2-Isopropyl-6-methyl-4-pyrimidone","CC(C)C1=NC(=O)C=C(C)N1","",NA
+234,"6-hydroxynaphthalene-2-sulfonate","OC1=CC2=C(C=C1)C=C(C=C2)S(O)(=O)=O","",NA
+235,"Pyriproxyfen","CC(COC1=CC=C(OC2=CC=CC=C2)C=C1)OC1=NC=CC=C1","",NA
+236,"Raloxifene","OC1=CC=C(C=C1)C1=C(C(=O)C2=CC=C(OCCN3CCCCC3)C=C2)C2=CC=C(O)C=C2S1","",NA
+237,"Crufomate","CNP(=O)(OC)OC1=CC=C(C=C1Cl)C(C)(C)C","",NA
+238,"Epoxiconazole","FC1=CC=C(C=C1)C1(CN2C=NC=N2)OC1C1=C(Cl)C=CC=C1","",NA
+239,"Triamcinolone","C[C@]12C[C@H](O)[C@@]3(F)[C@@H](CCC4=CC(=O)C=C[C@]34C)[C@@H]1C[C@@H](O)[C@]2(O)C(=O)CO","",NA
+240,"Quinmerac","CC1=CC2=C(N=C1)C(C(O)=O)=C(Cl)C=C2","",NA
+241,"4-Ethoxy-4-oxobut-2-enoic acid","CCOC(=O)C=CC(O)=O","",NA
+242,"5HPP-33","CC(C)C1=CC=CC(C(C)C)=C1N1C(=O)C2=C(C=C(O)C=C2)C1=O","",NA
+243,"SR58611","CCOC(=O)COC1=CC2=C(CCC(C2)NCC(O)C2=CC(Cl)=CC=C2)C=C1","",NA
+244,"2-Phenylethyl 3-phenylprop-2-enoate","O=C(OCCC1=CC=CC=C1)C=CC1=CC=CC=C1","",NA
+245,"FR167356","CC1=C(C2=C(O1)C(NC(=O)C1=C(Cl)C=CC=C1Cl)=CC=C2)C(C)(C)O","",NA
+246,"Chloramben","NC1=C(Cl)C(=CC(Cl)=C1)C(O)=O","",NA
+247,"Chlorendic acid","OC(=O)C1C(C(O)=O)C2(Cl)C(Cl)=C(Cl)C1(Cl)C2(Cl)Cl","",NA
+248,"Coumaphos","CCOP(=S)(OCC)OC1=CC2=C(C=C1)C(C)=C(Cl)C(=O)O2","",NA
+249,"5,5-Dimethylbarbituric acid","CC1(C)C(=O)NC(=O)NC1=O","",NA
+250,"Michler's ketone","CN(C)C1=CC=C(C=C1)C(=O)C1=CC=C(C=C1)N(C)C","",NA
+251,"Niacinamide","NC(=O)C1=CC=CN=C1","",NA
+252,"N-Nitrosobis(2-oxopropyl)amine","CC(=O)CN(CC(C)=O)N=O","",NA
+253,"Danazol","C[C@]12CC[C@H]3[C@@H](CCC4=CC5=C(C[C@]34C)C=NO5)[C@@H]1CC[C@@]2(O)C#C","",NA
+254,"Fenpyroximate (Z,E)","CN1N=C(C)C(C=NOCC2=CC=C(C=C2)C(=O)OC(C)(C)C)=C1OC1=CC=CC=C1","",NA
+255,"Flufenacet","CC(C)N(C(=O)COC1=NN=C(S1)C(F)(F)F)C1=CC=C(F)C=C1","",NA
+256,"Flumiclorac-pentyl","CCCCCOC(=O)COC1=C(Cl)C=C(F)C(=C1)N1C(=O)C2=C(CCCC2)C1=O","",NA
+257,"Pymetrozine","CC1=NNC(=O)N(C1)\N=C\C1=CC=CN=C1","",NA
+258,"4,4',4""-Ethane-1,1,1-triyltriphenol","CC(C1=CC=C(O)C=C1)(C1=CC=C(O)C=C1)C1=CC=C(O)C=C1","",NA
+259,"6-Chloro-2,3-dihydrobenzoxazol-2-one","ClC1=CC2=C(NC(=O)O2)C=C1","",NA
+260,"Sulisobenzone","COC1=C(C=C(C(=O)C2=CC=CC=C2)C(O)=C1)S(O)(=O)=O","",NA
+261,"Dimethylglyoxime","CC(=NO)C(C)=NO","",NA
+262,"Profluralin","CCCN(CC1CC1)C1=C(C=C(C=C1[N+]([O-])=O)C(F)(F)F)[N+]([O-])=O","",NA
+263,"2-Chlorobenzenesulfonamide","NS(=O)(=O)C1=CC=CC=C1Cl","",NA
+264,"Besonprodil","FC1=CC=C(CC2CCN(CCS(=O)C3=CC=C4NC(=O)OC4=C3)CC2)C=C1","",NA
+265,"CP-114271","CC(CC1=CC=C(OCC(O)=O)C=C1)NCC(O)C1=CSC(=N1)C(F)(F)F","",NA
+266,"PD-0333941","CC1=C(CCOC2=CC=CC3=C2C=CN3CCC(O)=O)N=C(O1)C1=CC=CC=C1","",NA
+267,"SSR 240612","COc1ccc2cc(S(=O)(=O)N[C@H](CC(=O)N[C@H](Cc3ccc(CN4[C@@H](C)CCC[C@H]4C)cc3)C(=O)N(C)C(C)C)c3ccc4c(c3)OCO4)ccc2c1","",NA
+268,"Surinabant","CCC1=C(N(N=C1C(=O)NN1CCCCC1)C1=CC=C(Cl)C=C1Cl)C1=CC=C(Br)C=C1","",NA
+269,"Flurandrenolide","CC1(C)O[C@@H]2C[C@H]3[C@@H]4C[C@H](F)C5=CC(=O)CC[C@]5(C)[C@H]4[C@@H](O)C[C@]3(C)[C@@]2(O1)C(=O)CO","",NA
+270,"Quinine","C=C[C@H]1CN2CC[C@H]1C[C@H]2[C@H](O)c1ccnc2ccc(OC)cc12","",NA
+271,"Citric acid","OC(=O)CC(O)(CC(O)=O)C(O)=O","",NA
+272,"Tolazamide","CC1=CC=C(C=C1)S(=O)(=O)NC(=O)NN1CCCCCC1","",NA
+273,"Tolcapone","CC1=CC=C(C=C1)C(=O)C1=CC(O)=C(O)C(=C1)[N+]([O-])=O","",NA
+274,"Imazethapyr","CCC1=CN=C(C2=NC(C)(C(C)C)C(=O)N2)C(=C1)C(O)=O","",NA
+275,"Dodecanedioic acid","OC(=O)CCCCCCCCCCC(O)=O","",NA
+276,"Benoxacor","CC1COC2=C(C=CC=C2)N1C(=O)C(Cl)Cl","",NA
+277,"Butralin","CCC(C)NC1=C(C=C(C=C1[N+]([O-])=O)C(C)(C)C)[N+]([O-])=O","",NA
+278,"Methoxyfenozide","COC1=CC=CC(C(=O)NN(C(=O)C2=CC(C)=CC(C)=C2)C(C)(C)C)=C1C","",NA
+279,"Nilutamide","CC1(C)NC(=O)N(C1=O)C1=CC(=C(C=C1)[N+]([O-])=O)C(F)(F)F","",NA
+280,"Imazamox","COCC1=CN=C(C2=NC(C)(C(C)C)C(=O)N2)C(=C1)C(O)=O","",NA
+281,"Chloridazon","NC1=C(Cl)C(=O)N(N=C1)C1=CC=CC=C1","",NA
+282,"Norgestrel","CC[C@]12CC[C@H]3[C@@H](CCC4=CC(=O)CC[C@H]34)[C@@H]1CC[C@@]2(O)C#C","",NA
+283,"2,4,5-T-butotyl","CCCCOCCOC(=O)COC1=C(Cl)C=C(Cl)C(Cl)=C1","",NA
+284,"2-Chloro-4-nitrobenzamide","NC(=O)C1=C(Cl)C=C(C=C1)[N+]([O-])=O","",NA
+285,"2-Hydroxybenzonitrile","OC1=C(C=CC=C1)C#N","",NA
+286,"Cloquintocet-mexyl","CCCCCC(C)OC(=O)COC1=CC=C(Cl)C2=CC=CN=C12","",NA
+287,"Dimethametryn","CCNC1=NC(SC)=NC(NC(C)C(C)C)=N1","",NA
+289,"Pioglitazone hydrochloride","CCC1=CN=C(CCOC2=CC=C(CC3SC(=O)NC3=O)C=C2)C=C1","",NA
+290,"Octylphosphonic acid","CCCCCCCCP(O)(O)=O","",NA
+291,"Propane-1,3-diyl bis(4-aminobenzoate)","NC1=CC=C(C=C1)C(=O)OCCCOC(=O)C1=CC=C(N)C=C1","",NA
+292,"CP-642931","C[C@@H](O)C1=NC(=CC=N1)N1[C@@H](C)CN(C[C@H]1C)C1=NC(C)=NC(C)=N1","",NA
+293,"Pirinixic acid","CC1=C(C)C(NC2=NC(SCC(O)=O)=NC(Cl)=C2)=CC=C1","",NA
+294,"4-Chloroaniline","NC1=CC=C(Cl)C=C1","",NA
+296,"Ethylphenylacetylurea","CCC(C(=O)NC(N)=O)C1=CC=CC=C1","",NA
+297,"C.I. Solvent Yellow 14","OC1=CC=C2C=CC=CC2=C1N=NC1=CC=CC=C1","",NA
+298,"Quercetin","OC1=CC2=C(C(O)=C1)C(=O)C(O)=C(O2)C1=CC(O)=C(O)C=C1","",NA
+299,"2,6-Di-tert-butyl-4-nitrophenol","CC(C)(C)C1=CC(=CC(=C1O)C(C)(C)C)[N+]([O-])=O","",NA
+300,"Diphenylamine","N(C1=CC=CC=C1)C1=CC=CC=C1","",NA
+301,"Formononetin","COC1=CC=C(C=C1)C1=COC2=C(C=CC(O)=C2)C1=O","",NA
+302,"Tribromsalan","OC1=C(Br)C=C(Br)C=C1C(=O)NC1=CC=C(Br)C=C1","",NA
+303,"2-[4-(Diethylamino)-2-hydroxybenzoyl]benzoic acid","CCN(CC)C1=CC(O)=C(C=C1)C(=O)C1=C(C=CC=C1)C(O)=O","",NA
+304,"Flumetsulam","CC1=NC2=NC(=NN2C=C1)S(=O)(=O)NC1=C(F)C=CC=C1F","",NA
+305,"Esfenvalerate","CC(C)[C@H](C(=O)O[C@H](C#N)C1=CC=CC(OC2=CC=CC=C2)=C1)C1=CC=C(Cl)C=C1","",NA
+306,"2-Methyl-4-amino-6-methoxy-s-triazine","COC1=NC(C)=NC(N)=N1","",NA
+307,"2,4-Dichlorophenylacetic acid","OC(=O)CC1=C(Cl)C=C(Cl)C=C1","",NA
+308,"Lauryldiethanolamine","CCCCCCCCCCCCN(CCO)CCO","",NA
+309,"3-chloro-2-hydroxypropane-1-sulfonate","OC(CCl)CS(O)(=O)=O","",NA
+310,"Ingliforib","O[C@H]([C@H](CC1=CC=CC=C1)NC(=O)C1=CC2=CC(Cl)=CC=C2N1)C(=O)N1C[C@H](O)[C@H](O)C1","",NA
+311,"MK-547","CCCCc1ccc2c(n1)[C@@H](c1ccc(OC)cc1C[C@H](C)C(O)=O)[C@H](C(O)=O)[C@H]2c1ccc2c(c1)OCO2","",NA
+314,"Flubendiamide","CC1=CC(=CC=C1NC(=O)C1=CC=CC(I)=C1C(=O)NC(C)(C)CS(C)(=O)=O)C(F)(C(F)(F)F)C(F)(F)F","",NA
+315,"4,4'-Methylenebis(2,6-diethylaniline)","CCC1=CC(CC2=CC(CC)=C(N)C(CC)=C2)=CC(CC)=C1N","",NA
+316,"4-Butyloxyaniline","CCCCOC1=CC=C(N)C=C1","",NA
+317,"PharmaGSID_48511","COC1=C(NC2=NC3=C(C=N2)N(C)C(=O)C(F)(F)CN3C2CCCC2)C=CC(=C1)C(=O)NC1CCN(C)CC1","",NA
+318,"Cyproterone acetate","CC(=O)O[C@@]1(CC[C@H]2[C@@H]3C=C(Cl)C4=CC(=O)[C@@H]5C[C@@H]5[C@]4(C)[C@H]3CC[C@]12C)C(C)=O","",NA
+319,"Cytembena","COc1ccc(C(=O)/C(Br)=C\C(O)=O)cc1","",NA
+320,"alpha-(2,5-Dichlorophenoxy)propionic acid","CC(OC1=C(Cl)C=CC(Cl)=C1)C(O)=O","",NA
+321,"Gentian Violet","CN(C)C1=CC=C(C=C1)C(C1=CC=C(C=C1)N(C)C)=C1C=CC(C=C1)=[N+](C)C","",NA
+322,"4,4'-Methylenebis(2-methylaniline)","CC1=C(N)C=CC(CC2=CC(C)=C(N)C=C2)=C1","",NA
+323,"Propyl gallate","CCCOC(=O)C1=CC(O)=C(O)C(O)=C1","",NA
+324,"6-Propyl-2-thiouracil","CCCC1=CC(=O)NC(=S)N1","",NA
+325,"2,4,5-Trichlorophenoxyacetic acid","OC(=O)COC1=C(Cl)C=C(Cl)C(Cl)=C1","",NA
+326,"Etoposide","COC1=CC(=CC(OC)=C1O)[C@H]1[C@@H]2C(COC2=O)C(O[C@@H]2O[C@@H]3CO[C@@H](C)O[C@H]3[C@H](O)[C@H]2O)C2=CC3=C(OCO3)C=C12","",NA
+327,"Mefenamic acid","CC1=C(C)C(NC2=C(C=CC=C2)C(O)=O)=CC=C1","",NA
+328,"Colchicine","COC1=CC2=C(C(OC)=C1OC)C1=CC=C(OC)C(=O)C=C1[C@H](CC2)NC(C)=O","",NA
+329,"N-Methylphthalimide","CN1C(=O)C2=C(C=CC=C2)C1=O","",NA
+330,"1,2-Benzisothiazolin-3-one","O=C1NSC2=C1C=CC=C2","",NA
+331,"Pyridaben","CC(C)(C)N1N=CC(SCC2=CC=C(C=C2)C(C)(C)C)=C(Cl)C1=O","",NA
+332,"Novaluron","FC(OC(F)(F)F)C(F)(F)OC1=C(Cl)C=C(NC(=O)NC(=O)C2=C(F)C=CC=C2F)C=C1","",NA
+333,"AM580","CC1(C)CCC(C)(C)C2=C1C=CC(=C2)C(=O)NC1=CC=C(C=C1)C(O)=O","",NA
+334,"2,4-DB","OC(=O)CCCOC1=CC=C(Cl)C=C1Cl","",NA
+335,"Dichlofluanid","CN(C)S(=O)(=O)N(SC(F)(Cl)Cl)C1=CC=CC=C1","",NA
+336,"Oleyl sarcosine","CCCCCCCC\C=C/CCCCCCCC(=O)N(C)CC(O)=O","",NA
+337,"4-Methylbenzenesulfonic acid","CC1=CC=C(C=C1)S(O)(=O)=O","",NA
+338,"3-carboxy-5-sulfobenzoate","OC(=O)C1=CC(=CC(=C1)C(O)=O)S(O)(=O)=O","",NA
+339,"Tembotrione","CS(=O)(=O)C1=C(COCC(F)(F)F)C(Cl)=C(C=C1)C(=O)C1C(=O)CCCC1=O","",NA
+341,"SB281832","OCC(CO)N1C=NC(=C1C1=CC=NC(OC2=CC=CC=C2)=N1)C1=CC=C(F)C=C1","",NA
+342,"MK-274","NC(=O)C1=NC(=NN1)C1=CC=CC(=C1)C1=CC(F)=CC=C1OCC(F)(F)C(F)(F)F","",NA
+343,"Melengestrol acetate","CC(=O)O[C@]1(C(C)=O)C(=C)C[C@H]2[C@@H]3C=C(C)C4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C","",NA
+344,"Benzoic acid","OC(=O)C1=CC=CC=C1","",NA
+345,"Hexamethylphosphoramide","CN(C)P(=O)(N(C)C)N(C)C","",NA
+346,"Nitrilotriacetic acid","OC(=O)CN(CC(O)=O)CC(O)=O","",NA
+347,"Phenazone","CN1N(C(=O)C=C1C)C1=CC=CC=C1","",NA
+348,"Fensulfothion","CCOP(=S)(OCC)OC1=CC=C(C=C1)S(C)=O","",NA
+349,"Iopanoic acid","CCC(CC1=C(I)C=C(I)C(N)=C1I)C(O)=O","",NA
+350,"Hydramethylnon","CC1(C)CNC(NC1)=NN=C(\C=C\C1=CC=C(C=C1)C(F)(F)F)/C=C/C1=CC=C(C=C1)C(F)(F)F","",NA
+351,"2-(Thiocyanomethylthio)benzothiazole","N#CSCSC1=NC2=CC=CC=C2S1","",NA
+352,"Fenaminosulf","CN(C)C1=CC=C(C=C1)N=NS(O)(=O)=O","",NA
+353,"4-[3-(4-Acetyl-3-hydroxy-2-propylphenoxy)propoxy]phenoxy-acetic acid","CCCC1=C(OCCCOC2=CC=C(OCC(O)=O)C=C2)C=CC(C(C)=O)=C1O","",NA
+354,"2,4-D-methyl","COC(=O)COC1=C(Cl)C=C(Cl)C=C1","",NA
+355,"Bupirimate","CCCCC1=C(OS(=O)(=O)N(C)C)N=C(NCC)N=C1C","",NA
+356,"Ethirimol","CCCCC1=C(O)N=C(NCC)N=C1C","",NA
+357,"Flamprop-isopropyl","CC(C)OC(=O)C(C)N(C(=O)C1=CC=CC=C1)C1=CC(Cl)=C(F)C=C1","",NA
+358,"Atorvastatin","CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(O)=O","",NA
+359,"Dibenzylamine","C(NCC1=CC=CC=C1)C1=CC=CC=C1","",NA
+360,"1,3-Dipropan-2-ylurea","CC(C)NC(=O)NC(C)C","",NA
+361,"CP-671305","C[C@@H](OC1=CC=C(CNC(=O)C2=CC=CN=C2OC2=CC=C3OCOC3=C2)C(F)=C1)C(O)=O","",NA
+362,"2,4,6-Trimethylbenzoic acid","CC1=CC(C)=C(C(O)=O)C(C)=C1","",NA
+364,"Pentachlorophenol","OC1=C(Cl)C(Cl)=C(Cl)C(Cl)=C1Cl","",NA
+365,"Propoxur","CNC(=O)OC1=CC=CC=C1OC(C)C","",NA
+366,"Acetazolamide","CC(=O)NC1=NN=C(S1)S(N)(=O)=O","",NA
+367,"Flufenamic acid","OC(=O)C1=C(NC2=CC(=CC=C2)C(F)(F)F)C=CC=C1","",NA
+368,"Endothal","OC(=O)C1C2CCC(O2)C1C(O)=O","",NA
+369,"Pendimethalin","CCC(CC)NC1=C(C(C)=C(C)C=C1[N+]([O-])=O)[N+]([O-])=O","",NA
+370,"6-Hydroxy-2-naphthyl disulfide","OC1=CC2=CC=C(SSC3=CC4=CC=C(O)C=C4C=C3)C=C2C=C1","",NA
+371,"Triethylene glycol dibenzoate","O=C(OCCOCCOCCOC(=O)C1=CC=CC=C1)C1=CC=CC=C1","",NA
+372,"Clotrimazole","ClC1=C(C=CC=C1)C(N1C=CN=C1)(C1=CC=CC=C1)C1=CC=CC=C1","",NA
+373,"Ketoconazole","CC(=O)N1CCN(CC1)C1=CC=C(OC[C@H]2CO[C@@](CN3C=CN=C3)(O2)C2=CC=C(Cl)C=C2Cl)C=C1","",NA
+374,"Flumioxazin","FC1=CC2=C(C=C1N1C(=O)C3=C(CCCC3)C1=O)N(CC#C)C(=O)CO2","",NA
+375,"Pyraclostrobin","CON(C(=O)OC)C1=C(COC2=NN(C=C2)C2=CC=C(Cl)C=C2)C=CC=C1","",NA
+376,"Chlorfenvinphos","CCOP(=O)(OCC)OC(=CCl)C1=C(Cl)C=C(Cl)C=C1","",NA
+377,"Warfarin","CC(=O)CC(C1=CC=CC=C1)C1=C(O)C2=CC=CC=C2OC1=O","",NA
+378,"Amiodarone hydrochloride","CCCCC1=C(C(=O)C2=CC(I)=C(OCCN(CC)CC)C(I)=C2)C2=CC=CC=C2O1","",NA
+379,"tau-Fluvalinate","CC(C)[C@@H](NC1=C(Cl)C=C(C=C1)C(F)(F)F)C(=O)OC(C#N)C1=CC(OC2=CC=CC=C2)=CC=C1","",NA
+380,"Bisphenol AF","OC1=CC=C(C=C1)C(C1=CC=C(O)C=C1)(C(F)(F)F)C(F)(F)F","",NA
+381,"Benazolin-ethyl","CCOC(=O)CN1C(=O)SC2=CC=CC(Cl)=C12","",NA
+382,"Benzadox","OC(=O)CONC(=O)C1=CC=CC=C1","",NA
+383,"Carbetamide","CCNC(=O)C(C)OC(=O)NC1=CC=CC=C1","",NA
+384,"Haloxyfop","CC(OC1=CC=C(OC2=NC=C(C=C2Cl)C(F)(F)F)C=C1)C(O)=O","",NA
+385,"Isocarbophos","COP(N)(=S)OC1=C(C=CC=C1)C(=O)OC(C)C","",NA
+386,"Florasulam","COC1=NC=C(F)C2=NC(=NN12)S(=O)(=O)NC1=C(F)C=CC=C1F","",NA
+387,"3-Oxo-N-(2-oxo-2,3-dihydro-1H-benzimidazol-5-yl)butanamide","CC(=O)CC(=O)NC1=CC2=C(NC(=O)N2)C=C1","",NA
+388,"N-(4-Methoxyphenyl)-3-oxobutanamide","COC1=CC=C(NC(=O)CC(C)=O)C=C1","",NA
+389,"N2-(4-Nitrophenyl)-L-glutamine","NC(=O)CC[C@H](NC1=CC=C(C=C1)[N+]([O-])=O)C(O)=O","",NA
+391,"Nelivaptan","COC1=CC(OC)=C(C=C1)S(=O)(=O)N1C(=O)[C@@](N2C[C@H](O)C[C@H]2C(=O)N(C)C)(C2=CC(Cl)=CC=C12)C1=CC=CC=C1OC","",NA
+392,"trans-2-Ethoxy-5-(1-propenyl)phenol","CCOC1=C(O)C=C(\C=C\C)C=C1","",NA
+393,"Fabesetron","Cc1[nH]cnc1C[C@H]1CCc2c(C)c3ccccc3n2C1=O","",NA
+394,"4-Nitroanthranilic acid","NC1=C(C=CC(=C1)[N+]([O-])=O)C(O)=O","",NA
+395,"Topiramate","CC1(C)O[C@@H]2CO[C@@]3(COS(N)(=O)=O)OC(C)(C)O[C@H]3[C@@H]2O1","",NA
+396,"4-Androstene-3,17-dione","[H][C@@]12CCC(=O)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C","",NA
+397,"Di(2-methoxyethyl) phthalate","COCCOC(=O)C1=C(C=CC=C1)C(=O)OCCOC","",NA
+398,"12-Hydroxyoctadecanoic acid","CCCCCCC(O)CCCCCCCCCCC(O)=O","",NA
+399,"4-Nitro-N-phenylaniline","[O-][N+](=O)C1=CC=C(NC2=CC=CC=C2)C=C1","",NA
+400,"Pyrithiobac","COC1=CC(OC)=NC(SC2=C(C(O)=O)C(Cl)=CC=C2)=N1","",NA
+401,"Hydroxyflutamide","CC(C)(O)C(=O)NC1=CC(=C(C=C1)[N+]([O-])=O)C(F)(F)F","",NA
+402,"Buprofezin","CC(C)N1C(SCN(C1=O)C1=CC=CC=C1)=NC(C)(C)C","",NA
+403,"Famoxadone","CC1(OC(=O)N(NC2=CC=CC=C2)C1=O)C1=CC=C(OC2=CC=CC=C2)C=C1","",NA
+404,"Pyraflufen-ethyl","CCOC(=O)COC1=C(Cl)C=C(F)C(=C1)C1=NN(C)C(OC(F)F)=C1Cl","",NA
+405,"Pyrimethanil","CC1=CC(C)=NC(NC2=CC=CC=C2)=N1","",NA
+406,"(4-Aminophenyl)arsonic acid","NC1=CC=C(C=C1)[As](O)(O)=O","",NA
+407,"2,4,6-Tris(allyloxy)-1,3,5-triazine","C=CCOC1=NC(OCC=C)=NC(OCC=C)=N1","",NA
+408,"Forskolin","CC(=O)O[C@H]1[C@@H](O)[C@H]2C(C)(C)CC[C@H](O)[C@]2(C)[C@@]2(O)C(=O)C[C@@](C)(O[C@]12C)C=C","",NA
+409,"Roxithromycin","CC[C@H]1OC(=O)[C@H](C)[C@@H](O[C@H]2C[C@@](C)(OC)[C@@H](O)[C@H](C)O2)[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@@H]([C@H]2O)N(C)C)[C@](C)(O)C[C@@H](C)C(=NOCOCCOC)[C@H](C)[C@@H](O)[C@]1(C)O","",NA
+410,"N-(3-Chloro-4-methylphenyl)acetamide","CC(=O)NC1=CC(Cl)=C(C)C=C1","",NA
+411,"Penconazole","CCCC(CN1C=NC=N1)C1=C(Cl)C=C(Cl)C=C1","",NA
+412,"Sulfaquinoxaline","NC1=CC=C(C=C1)S(=O)(=O)NC1=CN=C2C=CC=CC2=N1","",NA
+413,"Bis(2-carboxyethyl) sulfide","OC(=O)CCSCCC(O)=O","",NA
+414,"Ranitidine","CNC(NCCSCC1=CC=C(CN(C)C)O1)=C[N+]([O-])=O","",NA
+415,"CI-1029","CC(C)[C@]1(CCC2=CC=C(N)C=C2)CC(O)=C(SC2=CC(C)=C(CO)C=C2C(C)(C)C)C(=O)O1","",NA
+416,"CP-544439","ONC(=O)C1(CCOCC1)NS(=O)(=O)C1=CC=C(OC2=CC=C(F)C=C2)C=C1","",NA
+417,"Venlafaxine","COC1=CC=C(C=C1)C(CN(C)C)C1(O)CCCCC1","",NA
+418,"PharmaGSID_48521","CCCC[C@H]1CN(CC2CCOCC2)C(=O)OC11CCN(CC1)C1(C)CCN(CC1)C(=O)C1=C(C)N=CN=C1C","",NA
+419,"Captan","ClC(Cl)(Cl)SN1C(=O)C2CC=CCC2C1=O","",NA
+420,"Chlorpropamide","CCCNC(=O)NS(=O)(=O)C1=CC=C(Cl)C=C1","",NA
+421,"Ethoxyquin","CCOC1=CC2=C(NC(C)(C)C=C2C)C=C1","",NA
+422,"4-Hydroxy-3-nitrophenylarsonic acid","OC1=C(C=C(C=C1)[As](O)(O)=O)[N+]([O-])=O","",NA
+423,"4-Nitro-1,2-phenylenediamine","NC1=C(N)C=C(C=C1)[N+]([O-])=O","",NA
+424,"Pyrazinamide","NC(=O)C1=NC=CN=C1","",NA
+425,"2,7-Acetylaminofluorene","CC(=O)NC1=CC=C2C(CC3=C2C=CC(NC(C)=O)=C3)=C1","",NA
+426,"Tridecanedioic acid","OC(=O)CCCCCCCCCCCC(O)=O","",NA
+427,"Thalidomide","O=C1N(C2CCC(=O)NC2=O)C(=O)C2=CC=CC=C12","",NA
+428,"Felbamate","NC(=O)OCC(COC(N)=O)C1=CC=CC=C1","",NA
+429,"Norethindrone","C[C@]12CC[C@H]3[C@@H](CCC4=CC(=O)CC[C@H]34)[C@@H]1CC[C@@]2(O)C#C","",NA
+430,"Quizalofop-ethyl","CCOC(=O)C(C)OC1=CC=C(OC2=CN=C3C=C(Cl)C=CC3=N2)C=C1","",NA
+431,"4-Chlorobenzoic acid","OC(=O)C1=CC=C(Cl)C=C1","",NA
+432,"7-Diethylamino-4-methylcoumarin","CCN(CC)C1=CC=C2C(C)=CC(=O)OC2=C1","",NA
+433,"1,3-Dinitronaphthalene","[O-][N+](=O)C1=CC2=CC=CC=C2C(=C1)[N+]([O-])=O","",NA
+434,"Octabenzone","CCCCCCCCOC1=CC(O)=C(C=C1)C(=O)C1=CC=CC=C1","",NA
+435,"(Ethylenedinitrilo)tetraacetonitrile","N#CCN(CCN(CC#N)CC#N)CC#N","",NA
+436,"Dithiopyr","CSC(=O)C1=C(N=C(C(C(=O)SC)=C1CC(C)C)C(F)(F)F)C(F)F","",NA
+437,"Monomethyl phthalate","COC(=O)C1=C(C=CC=C1)C(O)=O","",NA
+438,"Oxfendazole","COC(=O)NC1=NC2=C(N1)C=CC(=C2)S(=O)C1=CC=CC=C1","",NA
+439,"2,2'-(Oxydimethanediyl)bis(2-ethylpropane-1,3-diol)","CCC(CO)(CO)COCC(CC)(CO)CO","",NA
+440,"Exifone","OC1=CC=C(C(=O)C2=CC(O)=C(O)C(O)=C2)C(O)=C1O","",NA
+441,"Nitarsone","O[As](O)(=O)C1=CC=C(C=C1)[N+]([O-])=O","",NA
+442,"Nicardipine","COC(=O)C1=C(C)NC(C)=C(C1C1=CC(=CC=C1)[N+]([O-])=O)C(=O)OCCN(C)CC1=CC=CC=C1","",NA
+443,"CP-122721","COC1=C(CN[C@H]2CCCN[C@H]2C2=CC=CC=C2)C=C(OC(F)(F)F)C=C1","",NA
+444,"PharmaGSID_47330","CC(C)(O)C1=NC2=NC=C(N2N=C1)C1=CC(=C(F)C=C1)C1=C(C=CC=C1F)C#N","",NA
+648,"Propamocarb","CCCOC(=O)NCCCN(C)C","",NA
+740,"3-Nitrobenzoic acid","OC(=O)C1=CC=CC(=C1)[N+]([O-])=O","",NA
+742,"Flurbiprofen","CC(C(O)=O)C1=CC=C(C(F)=C1)C1=CC=CC=C1","",NA
+746,"2,4,5-Trimethoxybenzaldehyde","COC1=CC(OC)=C(C=O)C=C1OC","",NA
+752,"Dimetilan","CN(C)C(=O)OC1=NN(C(=O)N(C)C)C(C)=C1","",NA
+755,"1-naphthalenesulfonate","OS(=O)(=O)C1=CC=CC2=C1C=CC=C2","",NA
+773,"1-Amino-2-methylanthraquinone","CC1=CC=C2C(=O)C3=C(C=CC=C3)C(=O)C2=C1N","",NA
+774,"Chlorpromazine","CN(C)CCCN1C2=C(SC3=C1C=C(Cl)C=C3)C=CC=C2","",NA
+778,"2,4,4'-Trihydroxybenzophenone","OC1=CC=C(C=C1)C(=O)C1=CC=C(O)C=C1O","",NA
+786,"4-Amino-6-tert-butyl-3-thioxo-3,4-dihydro-1,2,4-triazin-5(2H)-one","CC(C)(C)C1=NNC(=S)N(N)C1=O","",NA
+789,"Butoxycarboxim","CNC(=O)O\N=C(/C)C(C)S(C)(=O)=O","",NA
+791,"5-Amino-2-methylbenzenesulfonic acid","CC1=CC=C(N)C=C1S(O)(=O)=O","",NA
+794,"Piperonyl acetone","CC(=O)CCC1=CC2=C(OCO2)C=C1","",NA
+795,"6-Pentyl-2H-pyran-2-one","CCCCCC1=CC=CC(=O)O1","",NA
+796,"Apomorphine","CN1CCc2cccc3c2[C@H]1Cc1ccc(O)c(O)c1-3","",NA
+797,"2,4-Dichlorophenol","OC1=C(Cl)C=C(Cl)C=C1","",NA
+801,"Phenazopyridine","NC1=CC=C(N=NC2=CC=CC=C2)C(N)=N1","",NA
+805,"Thiophanate-methyl","COC(=O)NC(=S)NC1=C(NC(=S)NC(=O)OC)C=CC=C1","",NA
+806,"2-Nitroaniline","NC1=CC=CC=C1[N+]([O-])=O","",NA
+807,"Azacyclotridecan-2-one","O=C1CCCCCCCCCCCN1","",NA
+808,"(-)-Epigallocatechin gallate","OC1=CC(O)=C2C[C@@H](OC(=O)C3=CC(O)=C(O)C(O)=C3)[C@H](OC2=C1)C1=CC(O)=C(O)C(O)=C1","",NA
+810,"Cyprodinil","CC1=NC(NC2=CC=CC=C2)=NC(=C1)C1CC1","",NA
+815,"Pyrinuron","[O-][N+](=O)C1=CC=C(NC(=O)NCC2=CC=CN=C2)C=C1","",NA
+820,"Acetaminophen","CC(=O)NC1=CC=C(O)C=C1","",NA
+821,"2-tert-Butyl-4-methylphenol","CC1=CC(=C(O)C=C1)C(C)(C)C","",NA
+822,"Hexadecanoic acid","CCCCCCCCCCCCCCCC(O)=O","",NA
+825,"Triphenylphosphine oxide","O=P(C1=CC=CC=C1)(C1=CC=CC=C1)C1=CC=CC=C1","",NA
+828,"4-Methyl-2-nitroaniline","CC1=CC(=C(N)C=C1)[N+]([O-])=O","",NA
+832,"Diisopropyl phthalate","CC(C)OC(=O)C1=CC=CC=C1C(=O)OC(C)C","",NA
+833,"6-Chlorothymol","CC(C)C1=CC(Cl)=C(C)C=C1O","",NA
+834,"Methyl 1-naphthaleneacetate","COC(=O)CC1=C2C=CC=CC2=CC=C1","",NA
+837,"Benzyl butyl phthalate","CCCCOC(=O)C1=C(C=CC=C1)C(=O)OCC1=CC=CC=C1","",NA
+843,"1,3-Benzenedicarboxylic acid","OC(=O)C1=CC(=CC=C1)C(O)=O","",NA
+845,"1,3-Diphenylguanidine","N=C(NC1=CC=CC=C1)NC1=CC=CC=C1","",NA
+851,"Panthenol","CC(C)(CO)C(O)C(=O)NCCCO","",NA
+852,"1H-Benzotriazol-1-ol","ON1N=NC2=C1C=CC=C2","",NA
+854,"PharmaGSID_47263","CCN1N=C(C)C2=C1C(=O)NCC(=N2)C1=CC=C(O)C=C1","",NA
+859,"Estrone","C[C@]12CC[C@H]3[C@@H](CCC4=C3C=CC(O)=C4)[C@@H]1CCC2=O","",NA
+863,"Halofenozide","CC(C)(C)N(NC(=O)C1=CC=C(Cl)C=C1)C(=O)C1=CC=CC=C1","",NA
+871,"Phenylparaben","OC1=CC=C(C=C1)C(=O)OC1=CC=CC=C1","",NA
+873,"4-Dimethylaminobenzaldehyde","CN(C)C1=CC=C(C=O)C=C1","",NA
+880,"4-Nonylphenol","CCCCCCCCCC1=CC=C(O)C=C1","",NA
+886,"1,1,3-Trimethyl-2-thiourea","CNC(=S)N(C)C","",NA
+895,"Ifosfamide","ClCCNP1(=O)OCCCN1CCCl","",NA
+899,"o-Toluenesulfonamide","CC1=C(C=CC=C1)S(N)(=O)=O","",NA
+902,"Amoxapine","ClC1=CC=C2OC3=C(C=CC=C3)N=C(N3CCNCC3)C2=C1","",NA
+909,"Salicylic acid","OC(=O)C1=C(O)C=CC=C1","",NA
+911,"Ipconazole","CC(C)C1CCC(CC2=CC=C(Cl)C=C2)C1(O)CN1C=NC=N1","",NA
+913,"Chloroxuron","CN(C)C(=O)NC1=CC=C(OC2=CC=C(Cl)C=C2)C=C1","",NA
+916,"Methiuron","CN(C)C(=S)NC1=CC(C)=CC=C1","",NA
+919,"Metamitron","CC1=NN=C(C(=O)N1N)C1=CC=CC=C1","",NA
+920,"5,5-Diphenylhydantoin","O=C1NC(=O)C(N1)(C1=CC=CC=C1)C1=CC=CC=C1","",NA
+936,"4,4'-Thiodianiline","NC1=CC=C(SC2=CC=C(N)C=C2)C=C1","",NA
+946,"5-Ethyl-5-methylhydantoin","CCC1(C)NC(=O)NC1=O","",NA
+948,"Selegiline","C#CCN(C)[C@H](C)Cc1ccccc1","",NA
+951,"Picoxystrobin","CO\C=C(\C(=O)OC)C1=C(COC2=NC(=CC=C2)C(F)(F)F)C=CC=C1","",NA
+989,"Propylparaben","CCCOC(=O)C1=CC=C(O)C=C1","",NA
+998,"Dicyclohexyl phthalate","O=C(OC1CCCCC1)C1=C(C=CC=C1)C(=O)OC1CCCCC1","",NA
+1014,"Diethyl phthalate","CCOC(=O)C1=CC=CC=C1C(=O)OCC","",NA
+1032,"Carbaryl","CNC(=O)OC1=C2C=CC=CC2=CC=C1","",NA
+1036,"Tris(1,3-dichloro-2-propyl) phosphate","ClCC(CCl)OP(=O)(OC(CCl)CCl)OC(CCl)CCl","",NA
+1044,"4-Chloro-2-methylaniline","CC1=C(N)C=CC(Cl)=C1","",NA
+1045,"Ethionamide","CCC1=NC=CC(=C1)C(N)=S","",NA
+1046,"Phenobarbital","CCC1(C(=O)NC(O)=NC1=O)c1ccccc1","",NA
+1047,"Sulfasalazine","OC(=O)C1=CC(=CC=C1O)\N=N\C1=CC=C(C=C1)S(=O)(=O)NC1=NC=CC=C1","",NA
+1048,"2-Chloro-4-phenylphenol","OC1=CC(Cl)=C(C=C1)C1=CC=CC=C1","",NA
+1049,"Olivetol","CCCCCC1=CC(O)=CC(O)=C1","",NA
+1053,"cis-1,2,3,6-Tetrahydrophthalimide","O=C1NC(=O)[C@@H]2CC=CC[C@H]12","",NA
+1055,"Phthalic acid","OC(=O)C1=CC=CC=C1C(O)=O","",NA
+1060,"Octylparaben","CCCCCCCCOC(=O)C1=CC=C(O)C=C1","",NA
+1062,"2-Amino-5-nitrophenol","NC1=C(O)C=C(C=C1)[N+]([O-])=O","",NA
+1064,"4-Chlorophenol","OC1=CC=C(Cl)C=C1","",NA
+1066,"Stavudine","CC1=CN([C@@H]2O[C@H](CO)C=C2)C(=O)NC1=O","",NA
+1072,"17-Methyltestosterone","C[C@]1(O)CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C","",NA
+1073,"Tamoxifen","CC\C(=C(/C1=CC=CC=C1)C1=CC=C(OCCN(C)C)C=C1)C1=CC=CC=C1","",NA
+1074,"Phenyl 1-hydroxy-2-naphthoate","OC1=C(C=CC2=C1C=CC=C2)C(=O)OC1=CC=CC=C1","",NA
+1076,"Clofibric acid","CC(C)(OC1=CC=C(Cl)C=C1)C(O)=O","",NA
+1077,"5,7-Dimethoxy-2H-chromen-2-one","COC1=CC2=C(C=CC(=O)O2)C(OC)=C1","",NA
+1080,"1,3-Cyclohexanedione","O=C1CCCC(=O)C1","",NA
+1082,"4-[(3-oxobutanoyl)amino]benzenesulfonate","CC(=O)CC(=O)NC1=CC=C(C=C1)S(O)(=O)=O","",NA
+1084,"4-Methoxy-2-methylaniline","COC1=CC(C)=C(N)C=C1","",NA
+1085,"Amiloride","NC(=N)NC(=O)C1=NC(Cl)=C(N)N=C1N","",NA
+1087,"Fenarimol","OC(C1=CC=C(Cl)C=C1)(C1=CN=CN=C1)C1=CC=CC=C1Cl","",NA
+1088,"Triflumizole","CCCOC\C(=N/C1=C(C=C(Cl)C=C1)C(F)(F)F)N1C=CN=C1","",NA
+1093,"CP-457677","CC(C)(O)C1=CC=C(CNC(=O)C2=CC=CN=C2OC2=CC=C(F)C=C2)C=C1","",NA
+1096,"Piperine","O=C(\C=C\C=C\C1=CC=C2OCOC2=C1)N1CCCCC1","",NA
+1098,"2-Amino-6-nitrobenzothiazole","NC1=NC2=CC=C(C=C2S1)[N+]([O-])=O","",NA
+1099,"4-Methoxy-2-methyl-N-phenylaniline","COC1=CC=C(NC2=CC=CC=C2)C(C)=C1","",NA
+1101,"4-Hydroxyandrostenedione","C[C@]12CC[C@H]3[C@@H](CCC4=C(O)C(=O)CC[C@]34C)[C@@H]1CCC2=O","",NA
+1104,"Carbazole","N1C2=CC=CC=C2C2=C1C=CC=C2","",NA
+1113,"Monobutyl phthalate","CCCCOC(=O)C1=C(C=CC=C1)C(O)=O","",NA
+1114,"Mepanipyrim","CC#CC1=CC(C)=NC(NC2=CC=CC=C2)=N1","",NA
+1118,"Theophylline","CN1C2=C(NC=N2)C(=O)N(C)C1=O","",NA
+1121,"Famotidine","NC(N)=NC1=NC(CSCCC(N)=NS(N)(=O)=O)=CS1","",NA
+1123,"2-(Ethyl(3-methylphenyl)amino)acetonitrile","CCN(CC#N)C1=CC(C)=CC=C1","",NA
+1127,"Nitrothal-isopropyl","CC(C)OC(=O)C1=CC(=CC(=C1)C(=O)OC(C)C)[N+]([O-])=O","",NA
+1128,"2-Methylanthraquinone","CC1=CC2=C(C=C1)C(=O)C1=CC=CC=C1C2=O","",NA
+1129,"sec-Butylparaben","CCC(C)OC(=O)C1=CC=C(O)C=C1","",NA
+1134,"2-Hydroxybenzophenone","OC1=CC=CC=C1C(=O)C1=CC=CC=C1","",NA
+1136,"1-Naphthol","OC1=CC=CC2=CC=CC=C12","",NA
+1139,"4-Aminobenzoic acid","NC1=CC=C(C=C1)C(O)=O","",NA
+1142,"2H-3,1-Benzoxazine-2,4(1H)-dione","O=C1NC2=C(C=CC=C2)C(=O)O1","",NA
+1144,"17alpha-Hydroxyprogesterone","CC(=O)[C@@]1(O)CC[C@H]2[C@@H]3CCC4=CC(=O)CC[C@]4(C)[C@H]3CC[C@]12C","",NA
+1145,"7-(Dimethylamino)-4-methylcoumarin","CN(C)C1=CC2=C(C=C1)C(C)=CC(=O)O2","",NA
+1147,"Isoprocarb","CNC(=O)OC1=C(C=CC=C1)C(C)C","",NA
+1152,"Carabersat","CC(=O)C1=CC2=C(OC(C)(C)[C@H](O)[C@H]2NC(=O)C2=CC=C(F)C=C2)C=C1","",NA
+1153,"Tomelukast","CCCC1=C(OCCCCC2=NN=NN2)C=CC(C(C)=O)=C1O","",NA
+1156,"3-Trifluoromethyl-4-nitrophenol","OC1=CC(=C(C=C1)[N+]([O-])=O)C(F)(F)F","",NA
+1159,"Primidone","CCC1(C(=O)NCNC1=O)C1=CC=CC=C1","",NA
+1170,"Tegafur","FC1=CN(C2CCCO2)C(=O)NC1=O","",NA
+1172,"17alpha-Estradiol","C[C@]12CC[C@H]3[C@@H](CCC4=C3C=CC(O)=C4)[C@@H]1CC[C@H]2O","",NA
+1174,"Acetochlor","CCOCN(C(=O)CCl)C1=C(CC)C=CC=C1C","",NA
+1175,"Flutolanil","CC(C)OC1=CC(NC(=O)C2=C(C=CC=C2)C(F)(F)F)=CC=C1","",NA
+1178,"4,4'-(4-Methylpentane-2,2-diyl)diphenol","CC(C)CC(C)(C1=CC=C(O)C=C1)C1=CC=C(O)C=C1","",NA
+1181,"Secbumeton","CCNC1=NC(OC)=NC(NC(C)CC)=N1","",NA
+1184,"2-(1-Methylbutyl)phenol","CCCC(C)C1=C(O)C=CC=C1","",NA
+1186,"3-Methyl-3,4-dihydro-2H-1,4-benzoxazine","CC1COC2=C(N1)C=CC=C2","",NA
+1188,"N,N'-Dicyclohexylthiourea","S=C(NC1CCCCC1)NC1CCCCC1","",NA
+1189,"Diisobutyl phthalate","CC(C)COC(=O)C1=C(C=CC=C1)C(=O)OCC(C)C","",NA
+1190,"Tebuconazole","CC(C)(C)C(O)(CCC1=CC=C(Cl)C=C1)CN1C=NC=N1","",NA
+1191,"4-Chlorophenoxyacetic acid","OC(=O)COC1=CC=C(Cl)C=C1","",NA
+1194,"Methyl 2,4-dihydroxy-3,6-dimethylbenzoate","COC(=O)C1=C(O)C(C)=C(O)C=C1C","",NA
+1195,"Dodecylamine","CCCCCCCCCCCCN","",NA
+1380,"Dulcin","CCOC1=CC=C(NC(N)=O)C=C1","",NA
+1382,"(Z)-Hexadec-9-enoic acid","CCCCCC\C=C/CCCCCCCC(O)=O","",NA

@@ -1,0 +1,73 @@
+# MURU v1 — dataset pinning (Phase 1, T1.2)
+#
+# Every input MURU reads is pinned here. Nothing in the pipeline may fetch from
+# an unversioned moving target. Changing any value in this file invalidates
+# every artifact downstream of it.
+
+massbank:
+  source_repository: "https://github.com/MassBank/MassBank-data"
+  release_tag: "2026.03"
+  # Tag 2026.03 dereferences to this commit. Verified via
+  # GET /repos/MassBank/MassBank-data/git/ref/tags/2026.03
+  commit: "705afb7bccc3b2c42410a744eef73674716a60ef"
+  release_published: "2026-04-15T08:37:50Z"
+  contributor_directory: "LCSB"
+  # Accession pattern for the corpus. VERIFIED corpus-wide: all 5582 blobs in
+  # LCSB/ at this commit match, with exactly 12 distinct slot values.
+  accession_pattern: '^MSBNK-LCSB-LU(?P<internal_id>\d{4})(?P<slot>\d{2})\.txt$'
+  # Slot -> (ion mode, nominal collision energy). Master plan section 4.2.
+  # This mapping is ASSERTED against record contents in T1.6, not trusted.
+  slot_map:
+    "01": {mode: "POSITIVE", ce: 15}
+    "02": {mode: "POSITIVE", ce: 30}
+    "03": {mode: "POSITIVE", ce: 45}
+    "04": {mode: "POSITIVE", ce: 60}
+    "05": {mode: "POSITIVE", ce: 75}
+    "06": {mode: "POSITIVE", ce: 90}
+    "51": {mode: "NEGATIVE", ce: 15}
+    "52": {mode: "NEGATIVE", ce: 30}
+    "53": {mode: "NEGATIVE", ce: 45}
+    "54": {mode: "NEGATIVE", ce: 60}
+    "55": {mode: "NEGATIVE", ce: 75}
+    "56": {mode: "NEGATIVE", ce: 90}
+  # Published corpus totals (Elapavalore et al. 2023, results section).
+  # T1.5 reconciles observed counts against these. >5% drift needs explanation.
+  published_totals:
+    positive_records: 3411
+    negative_records: 2171
+    total_records: 5582
+    unique_compounds: 783
+    positive_compounds: 590
+    negative_compounds: 379
+
+massive:
+  accession: "MSV000091754"
+  file_index_source: "https://datasetcache.gnps2.org/datasette/database/filename.csv"
+  download_host: "https://massive.ucsd.edu/ProteoSAFe/DownloadResultFile"
+  # CRITICAL: MSV000091754 contains TWO acquisition campaigns.
+  #   20190812_ENTACT_RP_*  (earlier campaign)
+  #   20200303_ENTACT_RP_*  (the campaign the MassBank records cite)
+  # MassBank records carry COMMENT: DATASET 20200303_ENTACT_RP_MIX{499..508}.
+  # The raw branch MUST use 20200303 or it compares different injections.
+  campaign: "20200303_ENTACT_RP_mzML"
+  filename_pattern: '^20200303_ENTACT_RP_mix(?P<mix>\d{3})_(?P<mode>pos|neg)_CE(?P<ce>\d+)\.mzML$'
+  # Phase 1 raw subset. Master plan W1.5: mixes 499, 503, 505 only.
+  # Positive mode only -- positive is the primary experiment (section 10.3) and
+  # K3 needs one endpoint to clear one gate. Extend to negative only if the
+  # positive-mode repeatability estimate is ambiguous.
+  replicate_mixes: [499, 503, 505]
+  replicate_modes: ["pos"]
+  collision_energies: [15, 30, 45, 60, 75, 90]
+
+energy:
+  # Master plan section 4.4 / 6.2. The record field carries a bare integer with
+  # NO unit and NO convention marker. Only the publication identifies it as NCE.
+  expected_values: [15, 30, 45, 60, 75, 90]
+  energy_type: "NCE_ASSUMED_FROM_PUBLICATION"
+  provenance: "Elapavalore et al. 2023, ES&PI 25:1788-1801, DOI 10.1039/D3EM00181D, methods section"
+  # Thermo NCE -> E_lab charge factor f(z). Applied per record after the charge
+  # state is VERIFIED, never assumed.
+  charge_factor: {1: 1.00, 2: 0.90, 3: 0.85, 4: 0.80, 5: 0.75}
+  nce_reference_mass: 500.0   # Da, Thermo normalization reference
+  collision_gas: "N2"
+  collision_gas_mass: 28.0    # Da
