@@ -164,8 +164,19 @@ def main() -> None:
         L.append(f"### K3: **DOES NOT FIRE**\n")
         L.append(f"{len(passing)} of {len(EPS)} candidate endpoints clear the "
                  f"3x bar ({', '.join(passing)}). The criterion requires "
-                 f"failure for *every* endpoint. Best performer: **{best}** at "
-                 f"**{verdicts[best]:.1f}x**.\n")
+                 f"failure for *every* endpoint.\n")
+        L.append(f"The highest ratio is **{best}** at **{verdicts[best]:.1f}x**, "
+                 f"with mu at **{verdicts['mu']:.1f}x**. **This ranking does not "
+                 f"select the primary endpoint and must not be read as doing "
+                 f"so.** Survival yield earns a large range by collapsing from "
+                 f"~0.62 to exactly zero, which is a wide excursion but a poor "
+                 f"measurement: it is strictly monotone in only "
+                 f"{100*trajectory_stats(cur[cur.group_key.isin(set(cur.group_key))], 'survival_yield').monotone_strict.mean():.0f}% "
+                 f"of trajectories, is dead above NCE 45, and is left-censored "
+                 f"at the detection floor. The range/SD ratio answers exactly "
+                 f"one question -- is there signal above noise -- and K3 asks "
+                 f"only that. Endpoint selection is decided on the full "
+                 f"criterion set in `ENDPOINT_SCREEN.md`, where mu wins.\n")
     else:
         L.append("### K3: **FIRES**\n")
         L.append("No candidate endpoint clears the 3x bar.\n")

@@ -166,7 +166,13 @@ def main() -> None:
                  f"**{ratios[ep]:.1f}x** | {'yes' if ratios[ep]>=3 else 'no'} |")
     L.append(f"\n{sum(1 for v in ratios.values() if v>=3)} of {len(EPS)} "
              f"endpoints clear the bar; the criterion requires failure for all "
-             f"of them. Best: **{best}** at **{ratios[best]:.1f}x**.\n")
+             f"of them. Highest ratio: **{best}** at **{ratios[best]:.1f}x**; "
+             f"mu at **{ratios['mu']:.1f}x**.\n")
+    L.append("**This ratio does not choose the endpoint.** Survival yield "
+             "scores highly because it collapses from ~0.62 to exactly zero -- "
+             "a wide excursion produced by censoring, not by resolving power. "
+             "K3 asks only whether signal exceeds noise; endpoint selection is "
+             "made on the full criterion set in `ENDPOINT_SCREEN.md`.\n")
     L.append("**Caveat carried forward:** the noise estimate is an *upper "
              "bound* (inter-mixture, not injection-replicate), so these ratios "
              "are conservative -- the true margin over technical noise is "

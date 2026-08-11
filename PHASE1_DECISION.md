@@ -2,7 +2,7 @@
 
 # RESTRICT AND GO TO PHASE 2
 
-Generated 2026-08-11 23:17 UTC. Phase 1 of MURU ConjectureLab v1.
+Generated 2026-08-11 23:18 UTC. Phase 1 of MURU ConjectureLab v1.
 
 ---
 
@@ -54,7 +54,9 @@ All three Phase 1 kill criteria are cleared and the corpus is cleaner than the m
 | fragment_depth | 0.2995 | 0.0410 | **7.3x** | yes |
 | spectral_entropy | 1.5238 | 0.1427 | **10.7x** | yes |
 
-4 of 4 endpoints clear the bar; the criterion requires failure for all of them. Best: **survival_yield** at **18.3x**.
+4 of 4 endpoints clear the bar; the criterion requires failure for all of them. Highest ratio: **survival_yield** at **18.3x**; mu at **15.2x**.
+
+**This ratio does not choose the endpoint.** Survival yield scores highly because it collapses from ~0.62 to exactly zero -- a wide excursion produced by censoring, not by resolving power. K3 asks only whether signal exceeds noise; endpoint selection is made on the full criterion set in `ENDPOINT_SCREEN.md`.
 
 **Caveat carried forward:** the noise estimate is an *upper bound* (inter-mixture, not injection-replicate), so these ratios are conservative -- the true margin over technical noise is larger, not smaller. See `PROPOSED_DEVIATION_FROM_MASTER_PLAN.md` D6.
 

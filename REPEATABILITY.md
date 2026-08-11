@@ -1,6 +1,6 @@
 # REPEATABILITY.md
 
-Generated 2026-08-11 23:17 UTC.
+Generated 2026-08-11 23:18 UTC.
 
 ## What was measured, precisely
 
@@ -61,7 +61,9 @@ The comparison is made **within the raw branch** so that signal and noise are me
 
 ### K3: **DOES NOT FIRE**
 
-4 of 4 candidate endpoints clear the 3x bar (mu, survival_yield, fragment_depth, spectral_entropy). The criterion requires failure for *every* endpoint. Best performer: **survival_yield** at **18.3x**.
+4 of 4 candidate endpoints clear the 3x bar (mu, survival_yield, fragment_depth, spectral_entropy). The criterion requires failure for *every* endpoint.
+
+The highest ratio is **survival_yield** at **18.3x**, with mu at **15.2x**. **This ranking does not select the primary endpoint and must not be read as doing so.** Survival yield earns a large range by collapsing from ~0.62 to exactly zero, which is a wide excursion but a poor measurement: it is strictly monotone in only 20% of trajectories, is dead above NCE 45, and is left-censored at the detection floor. The range/SD ratio answers exactly one question -- is there signal above noise -- and K3 asks only that. Endpoint selection is decided on the full criterion set in `ENDPOINT_SCREEN.md`, where mu wins.
 
 ## Does matrix complexity inflate the estimate? (deviation D6)
 
