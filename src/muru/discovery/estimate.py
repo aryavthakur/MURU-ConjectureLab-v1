@@ -89,9 +89,14 @@ def _best_log_g(E: np.ndarray, Y: np.ndarray, knots: np.ndarray,
     return out
 
 
-def fit_collapse(long: pd.DataFrame, n_alternations: int = N_ALTERNATIONS
-                 ) -> CollapseFit:
-    """Alternating (Phi, g) fit. Two to three alternations, per master plan 13.2."""
+def fit_collapse(long: pd.DataFrame, n_alternations: int = N_ALTERNATIONS,
+                 n_knots: int = 60, with_hmain: bool = True) -> CollapseFit:
+    """Alternating (Phi, g) fit. Two to three alternations, per master plan 13.2.
+
+    `n_knots` controls the resolution of the shared shape and is the knob F2
+    varies to test that a conclusion does not depend on an arbitrary choice in
+    the estimation pipeline.
+    """
     comps, E, Y = _wide(long)
     Es = E / ENERGY_SCALE
     obs = np.isfinite(Y)
@@ -99,12 +104,12 @@ def fit_collapse(long: pd.DataFrame, n_alternations: int = N_ALTERNATIONS
 
     for _ in range(n_alternations):
         u = Es[None, :] / np.exp(log_g)[:, None]
-        knots, vals = _fit_phi(u[obs], Y[obs])
+        knots, vals = _fit_phi(u[obs], Y[obs], n_knots=n_knots)
         log_g = _best_log_g(E, Y, knots, vals)
         log_g -= log_g.mean()  # unit geometric mean; g is scale-identified only
 
     u = Es[None, :] / np.exp(log_g)[:, None]
-    knots, vals = _fit_phi(u[obs], Y[obs])
+    knots, vals = _fit_phi(u[obs], Y[obs], n_knots=n_knots)
     pred = _phi_eval(knots, vals, u)
     resid = np.where(obs, Y - pred, np.nan)
     n_obs = obs.sum()
@@ -124,7 +129,7 @@ def fit_collapse(long: pd.DataFrame, n_alternations: int = N_ALTERNATIONS
         compounds=comps, g_hat=g, g_var=g_var, weights=w,
         phi_u=knots, phi_v=vals, resid_sd=float(np.sqrt(sigma2)),
         n_energies=obs.sum(1),
-        hmain=hmain_adequacy(long, n_boot=400))
+        hmain=hmain_adequacy(long, n_boot=400) if with_hmain else {})
 
 
 # --------------------------------------------------------------------------

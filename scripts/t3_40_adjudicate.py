@@ -192,6 +192,12 @@ def main() -> int:
 
     ok = [r for r in recs if r.get("status") == "ok"]
     g4 = [r for r in ok if r["block"] == "G4"]
+    if not g4:
+        # a filtered partial run has nothing to adjudicate K6 on; that is not a
+        # result and must not be written as one
+        print(f"[t3_40] {len(ok)}/{len(recs)} worlds adjudicated; no G4 worlds "
+              "in this selection, so K6 was not computed", flush=True)
+        return 0
     n_acc = sum(1 for r in g4 if r["acceptance"]["accepted"])
     fp = nulls.false_positive_rate(n_acc, len(g4))
     k6 = nulls.adjudicate_k6(fp)

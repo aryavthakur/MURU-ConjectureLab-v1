@@ -153,6 +153,16 @@ def test_all_twelve_rungs_are_present(world):
     assert set(h["rungs"]) == {f"F{i}" for i in range(1, 13)}
 
 
+def test_f2_actually_varies_the_estimation_pipeline(world):
+    """F2 is worthless if every setting is the same setting."""
+    h = run(world, "sqrt(precursor_mz)*(1 + 0.35*heteroatom_fraction)")
+    f2 = h["rungs"]["F2"]
+    assert len({(s["n_knots"], s["n_alternations"]) for s in f2["settings"]}) == 3
+    assert len(f2["r2_by_setting"]) == 3
+    assert f2["r2_range"] < 0.15, (
+        "a genuine relationship should not swing with the knot count")
+
+
 def test_energy_subsets_are_the_master_plan_subsets(world):
     h = run(world, "sqrt(precursor_mz)")
     assert set(h["rungs"]["F9"]["subsets"]) == {

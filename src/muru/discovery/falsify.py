@@ -105,13 +105,23 @@ def run_harness(wd: WorldData, expr: sp.Expr, complexity: int,
     # No 7.3 preprocessing grid exists for synthetic response, so the analogue
     # is invariance to a defensible change in the ESTIMATION pipeline: the
     # number of knots used for the shared shape Phi.
+    # The knot count of the shared shape Phi, and the number of alternations,
+    # are choices with no uniquely correct value. A conclusion that flips when
+    # they change is a pipeline artifact, exactly as a conclusion that flips
+    # when the intensity cutoff moves from 0.1% to 1% would be.
+    settings = [(30, 2), (60, 3), (120, 4)]
     r2s = []
-    for nk in (40, 80):
-        fit = fit_collapse(wd.long, n_alternations=3)
+    for nk, na in settings:
+        fit = fit_collapse(wd.long, n_alternations=na, n_knots=nk,
+                           with_hmain=False)
         r2s.append(_refit_against(fit, wd, expr, V))
     f2_ok = all(np.isfinite(r) and r > thr for r in r2s)
     rungs["F2"] = {"name": "preprocessing invariance", "pass": bool(f2_ok),
+                   "settings": [{"n_knots": nk, "n_alternations": na}
+                                for nk, na in settings],
                    "r2_by_setting": [float(r) for r in r2s], "threshold": thr,
+                   "r2_range": float(np.nanmax(r2s) - np.nanmin(r2s))
+                   if np.isfinite(r2s).any() else float("nan"),
                    "detail": "estimation-pipeline invariance stands in for the "
                              "7.3 grid, which has no synthetic analogue"}
 
@@ -315,7 +325,7 @@ def _energy_subsets(wd: WorldData, expr: sp.Expr, V: list[str],
     for name, keep in subsets.items():
         sub = wd.long[wd.long.ce_numeric.isin(keep)]
         try:
-            fit = fit_collapse(sub, n_alternations=3)
+            fit = fit_collapse(sub, n_alternations=3, with_hmain=False)
         except Exception:
             out[name] = {"pass": False, "r2": float("nan"),
                          "note": "collapse fit failed on this subset"}

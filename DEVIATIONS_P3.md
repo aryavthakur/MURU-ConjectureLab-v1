@@ -187,3 +187,33 @@ discarded.
 
 **Consequence.** None for the science. Every world in the reported results is
 scored by one metric.
+
+---
+
+## D8 — F2 was vacuous and now varies what it claims to vary (IMPLEMENTATION ONLY)
+
+**Not a change of specification.** §16 of the pre-registration defines F2 as
+"invariance to a defensible change in the estimation pipeline (the synthetic
+analogue of the §7.3 preprocessing grid)". This records a bug fix that makes the
+rung do that.
+
+**The defect.** F2 looped over two knot settings but never passed the loop
+variable to the fit, so it estimated the collapse twice with identical
+parameters and compared a number to itself. The rung still checked that the
+candidate cleared the null threshold on a re-estimated target — so it was not
+free to pass anything — but it tested no invariance at all.
+
+**The fix.** `fit_collapse` now accepts `n_knots`, and F2 evaluates three
+genuinely different settings of the estimation pipeline: (30 knots, 2
+alternations), (60, 3) and (120, 4). The rung passes only if the candidate
+clears the threshold under **all three**, and the spread across settings is
+reported. `tests/test_p3_falsify.py` now asserts that the three settings are
+distinct and that a genuine relationship does not swing across them.
+
+**When, and what had been seen.** Found by code review while the governed search
+was still running, before any adjudication result existed. F2 runs in the
+adjudication stage, not the search stage, so **no checkpoint or search result
+was affected and nothing had to be recomputed.**
+
+**Consequence.** F2 is strictly harder than it was. No result was produced under
+the vacuous version.
