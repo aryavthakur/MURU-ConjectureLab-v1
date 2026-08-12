@@ -80,7 +80,7 @@ def synthetic_generators(worlds) -> str:
 
 {prereg_header()}
 Generator version **`{G.GENERATOR_VERSION}`**, truth version
-**`{plan.WorldSpec.__module__ and ''}`**`p3-truth-1.0.0`.
+**`{worlds[0]['generator']['truth_version']}`**.
 
 Planted equations live in `src/muru/synth/truth.py`, which **cannot appear in
 the import closure of `muru.discovery`** — the code path the search runs

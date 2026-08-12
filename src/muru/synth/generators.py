@@ -367,14 +367,23 @@ def build_null_world(index: int, construction: str, cov: pd.DataFrame,
 
 def _analytic_covariates(rng: np.random.Generator, n: int = 439
                          ) -> tuple[pd.DataFrame, dict[str, np.ndarray]]:
-    """GA: descriptors independent of real chemistry, law transparent."""
+    """GA: descriptors independent of real chemistry, law transparent.
+
+    The stored columns are pre-multiplied by `SCALE` so that the discovery
+    side's dimensionless division recovers exactly the values the law is
+    planted on. Without that, the law would be planted in one frame and
+    searched for in another, and GA would be unrecoverable by construction
+    rather than by any property of the engine.
+    """
     v = rng.uniform(0.2, 1.8, size=(n, len(FEATURES)))
-    cov = pd.DataFrame(v, columns=list(FEATURES))
+    cov = pd.DataFrame({c: v[:, i] * SCALE[c] for i, c in enumerate(FEATURES)})
     cov.insert(0, "group_key", [f"GA{i:04d}" for i in range(n)])
     cov["scaffold_group"] = [f"GAS{i % 60:03d}" for i in range(n)]
     cov["cluster_group"] = cov["scaffold_group"]
     cov["mix"] = 0
-    z = {c: cov[c].to_numpy(float) for c in FEATURES}
+    # the law is planted on the DIMENSIONLESS values, which is what the search
+    # will see after `protocol.build_world_data` divides by SCALE
+    z = {c: v[:, i] for i, c in enumerate(FEATURES)}
     z["v0"], z["v1"] = z["precursor_mz"], z["heteroatom_fraction"]
     return cov, z
 

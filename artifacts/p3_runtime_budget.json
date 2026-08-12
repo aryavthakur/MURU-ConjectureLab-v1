@@ -80,5 +80,13 @@
   "worst_case_lost_units": 4,
   "worst_case_lost_sec": 12.4
  },
- "seed_manifest_sha256": "eff5a1bb17eb482844ac217248935925f3a094c7602667045d2e48b11de951e9"
+ "seed_manifest_sha256": "eff5a1bb17eb482844ac217248935925f3a094c7602667045d2e48b11de951e9",
+ "as_executed": {
+  "pysr_search_wall_min": 161.5,
+  "gplearn_wall_min": 17.4,
+  "total_wall_min": 178.9,
+  "projected_wall_min": 101.65249999999999,
+  "ratio_actual_over_projected": 1.759917365534542,
+  "shards": 4
+ }
 }

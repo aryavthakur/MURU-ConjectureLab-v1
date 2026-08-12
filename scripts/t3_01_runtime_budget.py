@@ -36,6 +36,61 @@ HARNESS_SEC_PER_WORLD = 2.0
 BUILD_SEC_PER_WORLD = 0.15
 
 
+def _actuals(projected_sec: float):
+    """Measured wall time, read from the shard logs. Reported against the
+    projection whether or not the projection held."""
+    import re
+    pysr, gp = [], []
+    for p in sorted(ART.glob("p3_search_s*.log")):
+        m = re.search(r"done: \d+ units run, \d+ already present, ([\d.]+) min",
+                      p.read_text())
+        if m:
+            pysr.append(float(m.group(1)))
+    for p in sorted(ART.glob("p3_gplearn_s*.log")):
+        m = re.search(r"done: \d+ units run, \d+ already present, ([\d.]+) min",
+                      p.read_text())
+        if m:
+            gp.append(float(m.group(1)))
+    if not pysr:
+        return None
+    search_min = max(pysr)
+    gp_min = max(gp) if gp else 0.0
+    total_min = search_min + gp_min
+    obj = {"pysr_search_wall_min": search_min,
+           "gplearn_wall_min": gp_min,
+           "total_wall_min": total_min,
+           "projected_wall_min": projected_sec / 60,
+           "ratio_actual_over_projected": total_min / (projected_sec / 60),
+           "shards": len(pysr)}
+    md = f"""## As executed — measured, against the projection
+
+| Component | Projected | **Actual** |
+|---|---|---|
+| PySR search | {projected_sec / 60:.0f} min (whole run) | **{search_min:.0f} min** |
+| gplearn comparison arm | — | **{gp_min:.0f} min** |
+| **Total wall time** | **{projected_sec / 3600:.2f} h** | **{total_min / 60:.2f} h** |
+
+The run took **{total_min / (projected_sec / 60):.1f}×** the projection. Two
+causes, both measured rather than guessed:
+
+1. **Structured worlds cost more than null worlds.** Per-world time was a steady
+   2.1–2.2 min across the 100 G4 null worlds and rose to 2.5–2.7 min once blocks
+   with real descriptor structure began, because PySR's inner constant optimizer
+   does more work when candidates survive to be optimized. The benchmark that
+   set the projection was run on a single structured world and then applied
+   uniformly, which understated the mixed workload.
+2. **Self-inflicted contention.** Adjudication and test runs were executed while
+   the search was still going, and briefly pushed per-world time to 7.3 min.
+   That is an execution-planning error of the same family as the one Phase 2
+   recorded, and it is recorded here rather than smoothed away.
+
+The projection error did not cost any work: every unit is checkpointed, the run
+was interrupted and resumed twice during the phase, and resume recomputed
+nothing.
+"""
+    return md, obj
+
+
 def main() -> int:
     c = plan.run_counts()
     worlds = plan.all_worlds()
@@ -94,6 +149,12 @@ def main() -> int:
         f"| `{b}` | {n} | {plan.N_SEEDS} | **{n * plan.N_SEEDS}** | "
         f"{n * plan.N_SEEDS * SEC_PER_PYSR_RUN_WALL / 60:.1f} |"
         for b, n in c["worlds_by_block"].items())
+
+    actuals = _actuals(total)
+    if actuals:
+        budget["as_executed"] = actuals[1]
+        (ART / "p3_runtime_budget.json").write_text(json.dumps(budget, indent=1))
+    actuals = actuals[0] if actuals else ""
 
     md = f"""# RUNTIME_BUDGET_P3.md
 
@@ -182,6 +243,8 @@ without a separate approval round.
 No single non-checkpointable computation approaches 45 minutes: the largest
 indivisible unit is one 2.3-second symbolic run. Progress is printed per world,
 unbuffered, so execution state is visible while the job runs.
+
+{actuals}
 
 ## Seed manifest
 

@@ -5,7 +5,8 @@ fixed before a phase closes and therefore do not appear here. IMPORTANT items
 are documented with reproduction and scientific impact. MINOR items are recorded
 and carried.
 
-Phase 1 items are I1–I3 and M1–M7. Phase 2 items are I4–I6 and M8–M10.
+Phase 1 items are I1–I3 and M1–M7. Phase 2 items are I4–I6 and M8–M10. Phase 3
+items are I7–I8 and M11–M12.
 
 ## BLOCKERs — all resolved, none open
 
@@ -180,10 +181,75 @@ lipophilicity measurement, neither of which this corpus provides.
 
 ---
 
+### I7. The candidate-selection rule discards the planted law on near-degenerate Pareto fronts
+
+**This is the finding that stopped Phase 3**, recorded here because it is the
+one thing a future attempt must solve.
+
+**Reproduction.** `scripts/t3_45_recovery_diagnosis.py`, block `G1`. In every
+one of the 30 G1B worlds at the low and moderate noise regimes, a candidate
+functionally equivalent to the planted law appears somewhere on the 30 seeds'
+Pareto fronts (best relative RMSE 0.0025 against a tolerance of 0.02, at
+complexity 13). The frozen elbow rule selects a complexity-6 expression,
+`sqrt(precursor_mz · (heteroatom_fraction + c))`, whose held-out R² is within
+0.004 of it. Search capability 100%; system report rate 0–10%.
+
+**Scientific impact.** The system can be trusted to report *which* descriptors
+matter and the mass scaling exponent — recovered at a median of exactly 0.500
+against a planted 0.5 — but not the functional form of the law. A Phase 4 run
+under this rule would return a compressed approximation and could present it as
+the conjecture. `GA` (100% reported) and `G3` (62%) show the defect is confined
+to laws whose true form sits above a near-equivalent approximation, which is
+precisely the situation a real search would face.
+
+**Not fixed, deliberately.** Changing the selection rule after seeing that the
+planted recovery failed is the move Phase 3 exists to prevent, and the
+pre-registration's repair allowance is scoped to K6, which did not fire. Any fix
+requires recalibrating the null thresholds, since they are conditioned on the
+complexity the rule selects.
+
+### I8. The null threshold is a point estimate with wide uncertainty
+
+**Reproduction.** `artifacts/p3_null_calibration.json`. At complexity 20 the
+frozen threshold is +0.4889 with a 2000-resample bootstrap interval of
+[+0.2603, +0.6859], because a 95th percentile estimated from 40 null worlds
+rests on its top two or three.
+
+**Scientific impact.** The gate is usable — every G4 null was rejected by a wide
+margin and the accepted G1 candidates cleared it by a wide margin — but a future
+candidate whose R² lands inside that interval is not distinguishable from chance
+at the current calibration size. Enlarging the calibration set is the remedy;
+it costs roughly 30 seconds of compute per additional null world.
+
+### I9. The comparison engine does not corroborate PySR's selected expressions
+
+**Reproduction.** `scripts/t3_46_engine_comparison.py`,
+`artifacts/p3_engine_comparison.json`. On the pre-registered subset the two
+engines select functionally equivalent expressions in 3% of `G1` worlds and 0%
+of `G3` worlds. gplearn never recovers a planted law, including in `G3`, a
+single power law PySR recovers 62% of the time. The 60% agreement on `G4` nulls
+is agreement about noise.
+
+**Scientific impact.** Master plan 13.3 makes convergence between two engines
+with different search dynamics the evidence that an expression is not a search
+artifact. That evidence is absent. This did not decide Phase 3 — no
+engine-agreement gate was pre-registered and the verdict was already
+`STOP BEFORE PHASE 4` — but it points the same way and should be resolved
+before any real search.
+
+**Open question this leaves.** Whether the disagreement reflects a genuine
+non-identifiability of the functional form, or merely that the pre-registered
+gplearn configuration is too weak to be an informative comparator. The two have
+different remedies and the current evidence does not separate them.
+
+---
+
 ## MINOR — recorded, no action
 
 | # | Issue | Note |
 |---|---|---|
+| M11 | Phase 3 wall time was 1.8× its projection | 2.98 h against 1.69 h. Structured worlds cost more per PySR run than null worlds (2.5–2.7 min vs 2.1–2.2 min per world) because the inner constant optimizer does more work, and the benchmark that set the projection used a single structured world applied uniformly. Compounded by running adjudication and tests while the search was live. No work was lost: every unit is checkpointed. See `RUNTIME_BUDGET_P3.md`. |
+| M12 | `juliacall` does not survive `multiprocessing.Pool` teardown | Pool workers died with `BrokenPipeError` on the result queue and left orphaned processes consuming CPU, which silently halved throughput before it was noticed. Phase 3 replaced the pool with four independent single-process shards; per-seed checkpointing already made the work safe to split. Recorded so a future phase does not reintroduce a pool around a Julia-backed engine. |
 | M1 | Master plan's "zero duplicate InChIKeys in the curated layer" is false at full corpus | 6 of 967 compound-by-mode keys map to two internal IDs. Too few for repeatability; conclusion unaffected. Deviation D3. |
 | M2 | Master plan's "E_com spread under 13%" does not survive the full corpus mass range | The qualitative claim it supports is unaffected. Deviation D2. |
 | M3 | `file(1)` reports Li_2021 PDF as 23 pages, `pypdf` counts 19 | Object-count vs page-tree difference. Document parses and yields text normally. No corruption. |

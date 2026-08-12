@@ -1,0 +1,4422 @@
+[
+ {
+  "world_id": "G1B|r000|adverse",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.79925174) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.6909122418497782,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r000|low",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7864598))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9890655680996921,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r000|moderate",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7900285))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9076282423959797,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r001|adverse",
+  "block": "G1",
+  "expr": "(heteroatom_fraction * 0.40459442) + precursor_mz",
+  "complexity": 5,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.7392149565532855,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r001|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.789389) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9880185436647743,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r001|moderate",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.8101831) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8896520376065917,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r002|adverse",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7803908))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.6446827653123901,
+  "selection_fraction": 0.9,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r002|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.7865326) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9849756354900931,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r002|moderate",
+  "block": "G1",
+  "expr": "sqrt((0.7993645 + heteroatom_fraction) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9255105203352028,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r003|adverse",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.89697576) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.7298924912618894,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r003|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.79478043) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9898315584381687,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r003|moderate",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.79394037) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9307756217229354,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r004|adverse",
+  "block": "G1",
+  "expr": "sqrt(heteroatom_fraction * total_atom_count)",
+  "complexity": 4,
+  "support": [
+   "total_atom_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.709503084334457,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r004|low",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79295903))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9867985365300993,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r004|moderate",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.79145926))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9117128425232349,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r005|adverse",
+  "block": "G1",
+  "expr": "sqrt((0.89869833 + heteroatom_fraction) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.598093131020075,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r005|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.79278415) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9910250830716877,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r005|moderate",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79592544))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9394505871813448,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r006|adverse",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.7828572) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.7054021858678245,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r006|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.790107) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9900880674048215,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r006|moderate",
+  "block": "G1",
+  "expr": "((heteroatom_fraction / 2.9769027) + 0.99565834) * sqrt(precursor_mz)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8711909179798678,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r007|adverse",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.82193154) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.6716435162388223,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r007|low",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.79312176))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9875655088569986,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r007|moderate",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.81464416))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8956713689233765,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r008|adverse",
+  "block": "G1",
+  "expr": "sqrt((0.8588894 + heteroatom_fraction) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.7557780369008078,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r008|low",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.7845562) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9847815367487979,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r008|moderate",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79485005))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9251548043762867,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r009|adverse",
+  "block": "G1",
+  "expr": "(heteroatom_fraction + 3.3096838) * sqrt(precursor_mz * 0.096293874)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.6983613462549199,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r009|low",
+  "block": "G1",
+  "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7891291))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9888216829643282,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G1B|r009|moderate",
+  "block": "G1",
+  "expr": "sqrt((heteroatom_fraction + 0.8029791) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9217341187147157,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r000|moderate",
+  "block": "G2",
+  "expr": "(((precursor_mz - 0.49089578) * aromatic_ring_count) + 0.60557747) * 1.4480321",
+  "complexity": 9,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count"
+  ],
+  "valid_r2": 0.8650363354511249,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r001|moderate",
+  "block": "G2",
+  "expr": "sqrt((precursor_mz * (heteroatom_fraction + square(aromatic_ring_count * precursor_mz))) - -0.24862497)",
+  "complexity": 12,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8620476024826259,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r002|moderate",
+  "block": "G2",
+  "expr": "sqrt(((square(aromatic_ring_count * precursor_mz) + heteroatom_fraction) * precursor_mz) + 0.19904743)",
+  "complexity": 12,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8330055903171594,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r003|moderate",
+  "block": "G2",
+  "expr": "sqrt((square(precursor_mz * aromatic_ring_count) + 1.4124423) * precursor_mz)",
+  "complexity": 10,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count"
+  ],
+  "valid_r2": 0.9197096513327171,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r004|moderate",
+  "block": "G2",
+  "expr": "((aromatic_ring_count * 1.2644535) * (precursor_mz + -0.49724805)) + 0.88205594",
+  "complexity": 9,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count"
+  ],
+  "valid_r2": 0.8550026782219418,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r005|moderate",
+  "block": "G2",
+  "expr": "log(((precursor_mz * heteroatom_fraction) + 1.7819993) + (square(precursor_mz * aromatic_ring_count) * rotatable_bonds))",
+  "complexity": 14,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "aromatic_ring_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.8815125207940722,
+  "selection_fraction": 0.1,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r006|moderate",
+  "block": "G2",
+  "expr": "((aromatic_ring_count * (precursor_mz - 0.4770131)) + 0.6523476) * 1.3437406",
+  "complexity": 9,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count"
+  ],
+  "valid_r2": 0.902477761596791,
+  "selection_fraction": 0.43333333333333335,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G2|r007|moderate",
+  "block": "G2",
+  "expr": "((precursor_mz + -0.49606466) * (aromatic_ring_count / 0.7665466)) - -0.8795592",
+  "complexity": 9,
+  "support": [
+   "precursor_mz",
+   "aromatic_ring_count"
+  ],
+  "valid_r2": 0.7813320688011072,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G3|r000|moderate",
+  "block": "G3",
+  "expr": "sqrt(precursor_mz * 2.6730897) + -0.21823399",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.9394526715427761,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r001|moderate",
+  "block": "G3",
+  "expr": "sqrt(precursor_mz * 2.6106117) + -0.20576125",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.9374890519755315,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r002|moderate",
+  "block": "G3",
+  "expr": "sqrt(precursor_mz * 2.5231774) + -0.1897982",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.943593392541146,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r003|moderate",
+  "block": "G3",
+  "expr": "log(precursor_mz + 1.1463261) * 1.8686233",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.8535252902865214,
+  "selection_fraction": 0.43333333333333335,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r004|moderate",
+  "block": "G3",
+  "expr": "precursor_mz + 0.42496383",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.9196456528686417,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r005|moderate",
+  "block": "G3",
+  "expr": "precursor_mz + 0.42784214",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.8978800461200238,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r006|moderate",
+  "block": "G3",
+  "expr": "sqrt(precursor_mz * 2.5952044) + -0.20366277",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.9164099317416489,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G3|r007|moderate",
+  "block": "G3",
+  "expr": "precursor_mz + 0.43002695",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.8975926636289067,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r000|moderate",
+  "block": "G4M",
+  "expr": "(cube(n_halogen) / 762.7586) + (sqrt(precursor_mz) + 0.2535444)",
+  "complexity": 9,
+  "support": [
+   "precursor_mz",
+   "n_halogen"
+  ],
+  "valid_r2": 0.31151548337525226,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4M|r001|moderate",
+  "block": "G4M",
+  "expr": "(precursor_mz * 0.82783526) + 0.5364725",
+  "complexity": 5,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4672801497337322,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r002|moderate",
+  "block": "G4M",
+  "expr": "sqrt(1.9772934 / inv(precursor_mz))",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.45454194005990445,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r003|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.5390617)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4751040607583651,
+  "selection_fraction": 0.9,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r004|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.51221406)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3710025765399869,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r005|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.53178704)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.36479269292164473,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r006|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz + -0.18424098) - -0.4233415",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3177453237519827,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r007|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.4407154",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.5176347647403351,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r008|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz * 1.8708522)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.36581000891464655,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r009|moderate",
+  "block": "G4M",
+  "expr": "0.4973738 - (precursor_mz * -0.932021)",
+  "complexity": 5,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.11162730574754698,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r010|moderate",
+  "block": "G4M",
+  "expr": "sqrt(2.5159082 * precursor_mz) - 0.14275339",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3298321672284261,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r011|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz) * 1.3516017",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4758684589601915,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r012|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.44732857",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.5175724791073877,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r013|moderate",
+  "block": "G4M",
+  "expr": "(precursor_mz - 718465.9) + 718466.3",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.345934516099234,
+  "selection_fraction": 0.5666666666666667,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r014|moderate",
+  "block": "G4M",
+  "expr": "(precursor_mz - (n_O * 0.03395445)) + 0.47264257",
+  "complexity": 7,
+  "support": [
+   "precursor_mz",
+   "n_O"
+  ],
+  "valid_r2": 0.3317315355989362,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4M|r015|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz + (total_atom_count * 0.48325053))",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "total_atom_count"
+  ],
+  "valid_r2": 0.30393670133590145,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r016|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.45488387",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4202433659089131,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r017|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz) * 1.3655581",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.38614802538910453,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r018|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.53980565)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.27852044444170676,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r019|moderate",
+  "block": "G4M",
+  "expr": "(-0.73866636 / sqrt(precursor_mz)) - -2.04041",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4388838532614894,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r020|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.45647657",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.5213341419705322,
+  "selection_fraction": 1.0,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r021|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz * 1.8606762)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.2316822514353183,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r022|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.4486104",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.576202166596018,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r023|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.54020834)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3304801506539322,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r024|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz * 1.8596015)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4268051061577519,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r025|moderate",
+  "block": "G4M",
+  "expr": "precursor_mz + 0.44483346",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.44266176610630414,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r026|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz) * 1.3611548",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4769771533464082,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r027|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz / 0.5453008)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.47227340527909134,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r028|moderate",
+  "block": "G4M",
+  "expr": "(precursor_mz * 0.8965955) + 0.49128887",
+  "complexity": 5,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3352113278664427,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4M|r029|moderate",
+  "block": "G4M",
+  "expr": "sqrt(precursor_mz) * 1.3854219",
+  "complexity": 4,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.22991853354054792,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r000|moderate",
+  "block": "G4",
+  "expr": "(0.08893737 / total_atom_count) + 0.9370504",
+  "complexity": 6,
+  "support": [
+   "total_atom_count"
+  ],
+  "valid_r2": 0.03829862252108496,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r001|moderate",
+  "block": "G4",
+  "expr": "1.1701051 - (rdbe * 0.14023115)",
+  "complexity": 5,
+  "support": [
+   "rdbe"
+  ],
+  "valid_r2": 0.02058364660791623,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r002|moderate",
+  "block": "G4",
+  "expr": "((n_S * 0.07232761) * n_halogen) + 1.0259442",
+  "complexity": 7,
+  "support": [
+   "n_S",
+   "n_halogen"
+  ],
+  "valid_r2": 0.026922482406342763,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r003|moderate",
+  "block": "G4",
+  "expr": "1.0063462",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.01511192317669896,
+  "selection_fraction": 0.8,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r004|moderate",
+  "block": "G4",
+  "expr": "1.0473567",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.04043243770376215,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r005|moderate",
+  "block": "G4",
+  "expr": "1.0255525",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -4.932000208013321e-06,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r006|moderate",
+  "block": "G4",
+  "expr": "0.9977543",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0017414138530804646,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r007|moderate",
+  "block": "G4",
+  "expr": "1.0280035",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.005287185111659598,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r008|moderate",
+  "block": "G4",
+  "expr": "(sqrt(n_N + rotatable_bonds) * -0.12083845) - -1.2001919",
+  "complexity": 8,
+  "support": [
+   "rotatable_bonds",
+   "n_N"
+  ],
+  "valid_r2": -0.07385622643426282,
+  "selection_fraction": 0.1,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r009|moderate",
+  "block": "G4",
+  "expr": "1.025975",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.007784708143793839,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r010|moderate",
+  "block": "G4",
+  "expr": "cube(rotatable_bonds * -0.1411001) + 1.031617",
+  "complexity": 6,
+  "support": [
+   "rotatable_bonds"
+  ],
+  "valid_r2": 0.014629427490528979,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r011|moderate",
+  "block": "G4",
+  "expr": "1.0633633",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.08364123408066781,
+  "selection_fraction": 0.5666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r012|moderate",
+  "block": "G4",
+  "expr": "1.0282452",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0016850147276707972,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r013|moderate",
+  "block": "G4",
+  "expr": "1.0364583",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.02509846831153051,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r014|moderate",
+  "block": "G4",
+  "expr": "1.0566087 - (ring_count / 19.188126)",
+  "complexity": 5,
+  "support": [
+   "ring_count"
+  ],
+  "valid_r2": 0.019838322892192672,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r015|moderate",
+  "block": "G4",
+  "expr": "1.0253867",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.006184641452820827,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r016|moderate",
+  "block": "G4",
+  "expr": "1.024048",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0034817539684917076,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r017|moderate",
+  "block": "G4",
+  "expr": "1.0189955",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.05107127335067907,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r018|moderate",
+  "block": "G4",
+  "expr": "1.0023456 + square((n_N * aromatic_ring_count) * 0.09419174)",
+  "complexity": 9,
+  "support": [
+   "aromatic_ring_count",
+   "n_N"
+  ],
+  "valid_r2": 0.0008313752067763414,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r019|moderate",
+  "block": "G4",
+  "expr": "((aromatic_ring_count / tpsa) / 26.830763) + 0.96459883",
+  "complexity": 8,
+  "support": [
+   "aromatic_ring_count",
+   "tpsa"
+  ],
+  "valid_r2": 0.03963417505460043,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r020|moderate",
+  "block": "G4",
+  "expr": "1.0060548",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0009751558472765876,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r021|moderate",
+  "block": "G4",
+  "expr": "1.0221843",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0013199585774981148,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r022|moderate",
+  "block": "G4",
+  "expr": "1.0479804",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.07865442176956128,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r023|moderate",
+  "block": "G4",
+  "expr": "1.0084972",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.029352563187216463,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r024|moderate",
+  "block": "G4",
+  "expr": "(-0.035997696 * (n_O - n_halogen)) + 1.0472206",
+  "complexity": 9,
+  "support": [
+   "n_O",
+   "n_halogen"
+  ],
+  "valid_r2": 0.01602811871103571,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r025|moderate",
+  "block": "G4",
+  "expr": "1.0151446",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.023432514497864876,
+  "selection_fraction": 0.5666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r026|moderate",
+  "block": "G4",
+  "expr": "1.0205929",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -1.826720287767536e-05,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r027|moderate",
+  "block": "G4",
+  "expr": "1.0083965",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0033536638635995875,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r028|moderate",
+  "block": "G4",
+  "expr": "(rdbe * -0.13563858) + 1.168148",
+  "complexity": 5,
+  "support": [
+   "rdbe"
+  ],
+  "valid_r2": -0.11295719863075382,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r029|moderate",
+  "block": "G4",
+  "expr": "(heteroatom_fraction * 0.036965903) + 1.012461",
+  "complexity": 5,
+  "support": [
+   "heteroatom_fraction"
+  ],
+  "valid_r2": -0.04314207096932532,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r030|moderate",
+  "block": "G4",
+  "expr": "1.046413",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0052894085063255325,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r031|moderate",
+  "block": "G4",
+  "expr": "1.0429335",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.03331706011303681,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r032|moderate",
+  "block": "G4",
+  "expr": "((ring_count / total_atom_count) * 0.09730589) + 0.9189713",
+  "complexity": 8,
+  "support": [
+   "total_atom_count",
+   "ring_count"
+  ],
+  "valid_r2": 0.009963365776331945,
+  "selection_fraction": 0.5666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r033|moderate",
+  "block": "G4",
+  "expr": "1.0531195",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.05163144020772492,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r034|moderate",
+  "block": "G4",
+  "expr": "1.0250678",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.015432229418773202,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r035|moderate",
+  "block": "G4",
+  "expr": "1.0173321",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.004368794297704648,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r036|moderate",
+  "block": "G4",
+  "expr": "1.0374525",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.059752439252997336,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r037|moderate",
+  "block": "G4",
+  "expr": "1.0297114",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.000596757636182943,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r038|moderate",
+  "block": "G4",
+  "expr": "1.059237",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.02452101261773376,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r039|moderate",
+  "block": "G4",
+  "expr": "1.022246",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.08528075478657682,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r040|moderate",
+  "block": "G4",
+  "expr": "1.049787",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0259189936728057,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r041|moderate",
+  "block": "G4",
+  "expr": "1.0312065",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.021964456123243492,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r042|moderate",
+  "block": "G4",
+  "expr": "(total_atom_count * 0.09312148) + 0.944135",
+  "complexity": 5,
+  "support": [
+   "total_atom_count"
+  ],
+  "valid_r2": 0.02336510169025663,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r043|moderate",
+  "block": "G4",
+  "expr": "1.0510501",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.05314831928758368,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r044|moderate",
+  "block": "G4",
+  "expr": "1.0160937",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.005046201749470791,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r045|moderate",
+  "block": "G4",
+  "expr": "1.0021031",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0012785984481438195,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r046|moderate",
+  "block": "G4",
+  "expr": "1.0070918",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.03554933174779351,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r047|moderate",
+  "block": "G4",
+  "expr": "1.1073401 + (tpsa * -0.07933137)",
+  "complexity": 5,
+  "support": [
+   "tpsa"
+  ],
+  "valid_r2": 0.05526821043306418,
+  "selection_fraction": 0.7,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r048|moderate",
+  "block": "G4",
+  "expr": "(rdbe * 0.08719613) + 0.9524293",
+  "complexity": 5,
+  "support": [
+   "rdbe"
+  ],
+  "valid_r2": 0.022180827159011818,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r049|moderate",
+  "block": "G4",
+  "expr": "1.0163226",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.018698152098968857,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r050|moderate",
+  "block": "G4",
+  "expr": "1.0121231",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.017866649643888843,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r051|moderate",
+  "block": "G4",
+  "expr": "1.0273964",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.02141355677728285,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r052|moderate",
+  "block": "G4",
+  "expr": "1.0244813",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.039882150091728796,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r053|moderate",
+  "block": "G4",
+  "expr": "(sqrt(n_halogen) * -0.07059577) + 1.0403789",
+  "complexity": 6,
+  "support": [
+   "n_halogen"
+  ],
+  "valid_r2": 0.008177787829082517,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r054|moderate",
+  "block": "G4",
+  "expr": "(n_O * 0.03652077) + 0.9952324",
+  "complexity": 5,
+  "support": [
+   "n_O"
+  ],
+  "valid_r2": 0.07080419569207219,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r055|moderate",
+  "block": "G4",
+  "expr": "1.0057158",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0022573362161355526,
+  "selection_fraction": 0.5666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r056|moderate",
+  "block": "G4",
+  "expr": "(total_atom_count * 0.06805445) + 0.96434724",
+  "complexity": 5,
+  "support": [
+   "total_atom_count"
+  ],
+  "valid_r2": -0.0032763584869095475,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r057|moderate",
+  "block": "G4",
+  "expr": "(precursor_mz + 4.7251625) / 5.2130685",
+  "complexity": 5,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.044420942401453556,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r058|moderate",
+  "block": "G4",
+  "expr": "(n_S / -30.406548) - -1.0220822",
+  "complexity": 5,
+  "support": [
+   "n_S"
+  ],
+  "valid_r2": -0.08279645917556056,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r059|moderate",
+  "block": "G4",
+  "expr": "1.0142637",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.010994837256844914,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r060|moderate",
+  "block": "G4",
+  "expr": "1.0067893",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0006870482006131606,
+  "selection_fraction": 0.8,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r061|moderate",
+  "block": "G4",
+  "expr": "1.0640897",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0688528467709213,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r062|moderate",
+  "block": "G4",
+  "expr": "(rotatable_bonds * 0.037696302) + 0.97345996",
+  "complexity": 5,
+  "support": [
+   "rotatable_bonds"
+  ],
+  "valid_r2": 0.006490680633480905,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r063|moderate",
+  "block": "G4",
+  "expr": "1.0152893",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0711985786747702,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r064|moderate",
+  "block": "G4",
+  "expr": "1.0222244",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0037028713282261094,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r065|moderate",
+  "block": "G4",
+  "expr": "1.0028048",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.010081678137613626,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r066|moderate",
+  "block": "G4",
+  "expr": "(0.015187357 * cube(n_S)) - -1.0284456",
+  "complexity": 6,
+  "support": [
+   "n_S"
+  ],
+  "valid_r2": 0.12077070457373729,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r067|moderate",
+  "block": "G4",
+  "expr": "1.0057912",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0014420644456665244,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r068|moderate",
+  "block": "G4",
+  "expr": "(0.018545859 / tpsa) + 0.9986186",
+  "complexity": 6,
+  "support": [
+   "tpsa"
+  ],
+  "valid_r2": 0.004965446008344698,
+  "selection_fraction": 0.8,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r069|moderate",
+  "block": "G4",
+  "expr": "1.0128481",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.00033185864842089075,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r070|moderate",
+  "block": "G4",
+  "expr": "1.0142301",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.07498944770389149,
+  "selection_fraction": 0.9,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r071|moderate",
+  "block": "G4",
+  "expr": "1.0004586",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.026693149990824505,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r072|moderate",
+  "block": "G4",
+  "expr": "1.0208312",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0012752370889672626,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r073|moderate",
+  "block": "G4",
+  "expr": "1.0309544 - (cube(n_O) * 0.0026300128)",
+  "complexity": 6,
+  "support": [
+   "n_O"
+  ],
+  "valid_r2": -0.010907520046386399,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r074|moderate",
+  "block": "G4",
+  "expr": "1.041572",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.00020600839371631707,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r075|moderate",
+  "block": "G4",
+  "expr": "1.004854",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0034342157336653134,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r076|moderate",
+  "block": "G4",
+  "expr": "1.0475084",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.00026134235011521234,
+  "selection_fraction": 0.6666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r077|moderate",
+  "block": "G4",
+  "expr": "1.036703",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.03125635873984378,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r078|moderate",
+  "block": "G4",
+  "expr": "1.0242462",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0036523136020338853,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r079|moderate",
+  "block": "G4",
+  "expr": "(-0.026530622 * n_N) - -1.0342908",
+  "complexity": 5,
+  "support": [
+   "n_N"
+  ],
+  "valid_r2": 0.013014128758322752,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r080|moderate",
+  "block": "G4",
+  "expr": "1.02444",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.003615184530483262,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r081|moderate",
+  "block": "G4",
+  "expr": "1.0184981",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.021004244929480276,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r082|moderate",
+  "block": "G4",
+  "expr": "1.0103264",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.043804653267826676,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r083|moderate",
+  "block": "G4",
+  "expr": "1.0287935",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.010917669925412321,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r084|moderate",
+  "block": "G4",
+  "expr": "1.0383956",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0022594647317388805,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r085|moderate",
+  "block": "G4",
+  "expr": "1.0184817",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.014414881497372356,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r086|moderate",
+  "block": "G4",
+  "expr": "1.051262",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0021335069703909415,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r087|moderate",
+  "block": "G4",
+  "expr": "1.0282693",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.00032369144506527725,
+  "selection_fraction": 0.43333333333333335,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r088|moderate",
+  "block": "G4",
+  "expr": "1.0126554",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.005564628277016759,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r089|moderate",
+  "block": "G4",
+  "expr": "0.99944866",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.03476984836334118,
+  "selection_fraction": 0.43333333333333335,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r090|moderate",
+  "block": "G4",
+  "expr": "(n_halogen * -0.029232642) + 1.0629346",
+  "complexity": 5,
+  "support": [
+   "n_halogen"
+  ],
+  "valid_r2": -0.16839929527760344,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r091|moderate",
+  "block": "G4",
+  "expr": "1.0064827",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.005747756941692828,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r092|moderate",
+  "block": "G4",
+  "expr": "1.0286044",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0025591899389540984,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r093|moderate",
+  "block": "G4",
+  "expr": "1.0341544",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -2.429454298402689e-06,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r094|moderate",
+  "block": "G4",
+  "expr": "1.0289558",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.01664125677491035,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r095|moderate",
+  "block": "G4",
+  "expr": "(total_atom_count * -0.042490937) + 1.0510406",
+  "complexity": 5,
+  "support": [
+   "total_atom_count"
+  ],
+  "valid_r2": -0.032487736868829,
+  "selection_fraction": 0.7,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r096|moderate",
+  "block": "G4",
+  "expr": "(0.06291804 / precursor_mz) - -0.9330162",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": -0.015112863743940386,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r097|moderate",
+  "block": "G4",
+  "expr": "1.0137907",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.00020926559742684425,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G4|r098|moderate",
+  "block": "G4",
+  "expr": "(aromatic_ring_count * -0.05441508) + 1.0730189",
+  "complexity": 5,
+  "support": [
+   "aromatic_ring_count"
+  ],
+  "valid_r2": -0.04068314141297136,
+  "selection_fraction": 0.43333333333333335,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G4|r099|moderate",
+  "block": "G4",
+  "expr": "1.0503793",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.014920379850795307,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "G5|r000|moderate",
+  "block": "G5",
+  "expr": "sqrt(((tpsa + heteroatom_fraction) + 0.45232183) * precursor_mz)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.4916706648964332,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F6"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r001|moderate",
+  "block": "G5",
+  "expr": "sqrt((heteroatom_fraction + tpsa) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.4034951414375111,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r002|moderate",
+  "block": "G5",
+  "expr": "sqrt((heteroatom_fraction + ((tpsa * 0.32609165) * rotatable_bonds)) * total_atom_count)",
+  "complexity": 10,
+  "support": [
+   "total_atom_count",
+   "rotatable_bonds",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.36261187131899464,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r003|moderate",
+  "block": "G5",
+  "expr": "sqrt(precursor_mz * (square(rotatable_bonds * 0.39566755) + (heteroatom_fraction + tpsa)))",
+  "complexity": 11,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.4612791641574635,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r004|moderate",
+  "block": "G5",
+  "expr": "(tpsa * 0.5270963) + precursor_mz",
+  "complexity": 5,
+  "support": [
+   "precursor_mz",
+   "tpsa"
+  ],
+  "valid_r2": 0.5009745118845227,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r005|moderate",
+  "block": "G5",
+  "expr": "sqrt((tpsa + (heteroatom_fraction - (rotatable_bonds * -0.19459753))) * precursor_mz)",
+  "complexity": 10,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5827467301344296,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r006|moderate",
+  "block": "G5",
+  "expr": "sqrt(((((rotatable_bonds + tpsa) * heteroatom_fraction) * 0.5820237) + 0.9813913) * precursor_mz)",
+  "complexity": 12,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5500449189273391,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "G5|r007|moderate",
+  "block": "G5",
+  "expr": "sqrt((heteroatom_fraction * ((rotatable_bonds + ((tpsa * ring_count) * 0.50786614)) * precursor_mz)) + 0.34995785)",
+  "complexity": 14,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "ring_count",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5345180513663599,
+  "selection_fraction": 0.13333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GA|r000|moderate",
+  "block": "GA",
+  "expr": "(heteroatom_fraction * (heteroatom_fraction * 0.25902408)) - (precursor_mz * -0.76762205)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9767460913381615,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GA|r001|moderate",
+  "block": "GA",
+  "expr": "(square(heteroatom_fraction * -0.5771622) + precursor_mz) * 0.7906046",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9707156911303106,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GA|r002|moderate",
+  "block": "GA",
+  "expr": "((heteroatom_fraction * heteroatom_fraction) * 0.2631742) - (precursor_mz / -1.2549258)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.9754333028584613,
+  "selection_fraction": 0.9333333333333333,
+  "accepted": true,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GC|r000|moderate|cut30",
+  "block": "GC",
+  "expr": "0.7394525 - inv(precursor_mz / -0.1343807)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.09368825421787985,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r000|moderate|cut50",
+  "block": "GC",
+  "expr": "(inv(precursor_mz) / 4.8421173) + 0.61825806",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.20500364052289022,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r000|moderate|cut80",
+  "block": "GC",
+  "expr": "inv(log(precursor_mz) + 1.8888966) - -0.23242179",
+  "complexity": 7,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.5792016754651114,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r001|moderate|cut30",
+  "block": "GC",
+  "expr": "((inv(precursor_mz) - -1.7757256) / 8.090448) + 0.5653598",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.12217631090708703,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r001|moderate|cut50",
+  "block": "GC",
+  "expr": "inv(precursor_mz * 5.056095) + 0.61822736",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.21125426518020696,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r001|moderate|cut80",
+  "block": "GC",
+  "expr": "inv(precursor_mz * 2.5568774) + 0.2833987",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.4351576878183575,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r002|moderate|cut30",
+  "block": "GC",
+  "expr": "(0.1731997 / precursor_mz) + 0.6614327",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.01793186220549836,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r002|moderate|cut50",
+  "block": "GC",
+  "expr": "square(0.24373198 / precursor_mz) + 0.79161793",
+  "complexity": 6,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.3059171095390616,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GC|r002|moderate|cut80",
+  "block": "GC",
+  "expr": "inv(cube(sqrt((-2.5301635 / (precursor_mz * 10.66204)) + 1.4669896)))",
+  "complexity": 7,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.6218584121423358,
+  "selection_fraction": 0.36666666666666664,
+  "accepted": false,
+  "failed_rungs": [
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "GRT|r000|moderate",
+  "block": "GRT",
+  "expr": "sqrt((tpsa + 0.92810875) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "tpsa"
+  ],
+  "valid_r2": 0.5861259372595451,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GRT|r001|moderate",
+  "block": "GRT",
+  "expr": "((heteroatom_fraction + (tpsa + sqrt(rotatable_bonds))) * 0.16323867) + precursor_mz",
+  "complexity": 14,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "tpsa",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5685609495704858,
+  "selection_fraction": 0.06666666666666667,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GRT|r002|moderate",
+  "block": "GRT",
+  "expr": "sqrt((heteroatom_fraction + total_atom_count) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "total_atom_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.46134373792317795,
+  "selection_fraction": 0.6333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "GRT|r003|moderate",
+  "block": "GRT",
+  "expr": "sqrt((heteroatom_fraction + total_atom_count) * precursor_mz)",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "total_atom_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5911705161721277,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r002",
+  "block": "NCAL",
+  "expr": "0.97462094",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.4079023522075278,
+  "selection_fraction": 0.7333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r006",
+  "block": "NCAL",
+  "expr": "(n_halogen * -0.012221847) + 0.984871",
+  "complexity": 5,
+  "support": [
+   "n_halogen"
+  ],
+  "valid_r2": -0.1946748212646252,
+  "selection_fraction": 0.1,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r010",
+  "block": "NCAL",
+  "expr": "0.9877553",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.07738340159685086,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r014",
+  "block": "NCAL",
+  "expr": "1.001416",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.15807762823886162,
+  "selection_fraction": 0.8,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r018",
+  "block": "NCAL",
+  "expr": "0.9794313",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.23638662192169946,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r022",
+  "block": "NCAL",
+  "expr": "0.9862056",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.11516049978083864,
+  "selection_fraction": 0.9666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r026",
+  "block": "NCAL",
+  "expr": "0.98104674",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.09725479784785507,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r030",
+  "block": "NCAL",
+  "expr": "0.97815394",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.06556368139149082,
+  "selection_fraction": 0.3,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r034",
+  "block": "NCAL",
+  "expr": "(0.013085907 / tpsa) + 0.9675036",
+  "complexity": 6,
+  "support": [
+   "tpsa"
+  ],
+  "valid_r2": -0.4240147252512081,
+  "selection_fraction": 0.7666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|descriptors_permuted_across_compounds|r038",
+  "block": "NCAL",
+  "expr": "0.97255296",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.1764116494306025,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r003",
+  "block": "NCAL",
+  "expr": "1.0333512",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.04580152142655236,
+  "selection_fraction": 0.6666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r007",
+  "block": "NCAL",
+  "expr": "((aromatic_ring_count * 0.04408185) * sqrt(n_S)) + 1.0056944",
+  "complexity": 8,
+  "support": [
+   "aromatic_ring_count",
+   "n_S"
+  ],
+  "valid_r2": -0.004433739828409333,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r011",
+  "block": "NCAL",
+  "expr": "1.0133607",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -1.37636686226017e-06,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r015",
+  "block": "NCAL",
+  "expr": "1.0144048 - (n_halogen * -0.012685214)",
+  "complexity": 5,
+  "support": [
+   "n_halogen"
+  ],
+  "valid_r2": 0.007790211663823876,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r019",
+  "block": "NCAL",
+  "expr": "0.9980362",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.06816184530209624,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r023",
+  "block": "NCAL",
+  "expr": "1.0327954",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0020105771672951356,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r027",
+  "block": "NCAL",
+  "expr": "0.9808592",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.001999255969782565,
+  "selection_fraction": 0.4666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r031",
+  "block": "NCAL",
+  "expr": "1.0175912",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.014742857445996238,
+  "selection_fraction": 0.8333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r035",
+  "block": "NCAL",
+  "expr": "1.0188456",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.02674903258904182,
+  "selection_fraction": 0.5,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|gaussian_targets_with_observed_variance|r039",
+  "block": "NCAL",
+  "expr": "1.0276468",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.06120256588655937,
+  "selection_fraction": 0.7,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r000",
+  "block": "NCAL",
+  "expr": "1.0312239",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.09046749442216728,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r004",
+  "block": "NCAL",
+  "expr": "0.98576784",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0030377579084113204,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r008",
+  "block": "NCAL",
+  "expr": "1.0255358",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -6.936251711220365e-06,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r012",
+  "block": "NCAL",
+  "expr": "0.9958967",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.048121647785750454,
+  "selection_fraction": 0.4,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r016",
+  "block": "NCAL",
+  "expr": "1.0270944",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.03487795293584228,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r020",
+  "block": "NCAL",
+  "expr": "1.0477377",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.07523207144572952,
+  "selection_fraction": 0.5333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r024",
+  "block": "NCAL",
+  "expr": "1.0112988",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.010415947697552275,
+  "selection_fraction": 0.26666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r028",
+  "block": "NCAL",
+  "expr": "1.0178114",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.008531925803555218,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r032",
+  "block": "NCAL",
+  "expr": "((0.68113816 - n_S) * 0.08493991) + 0.993721",
+  "complexity": 5,
+  "support": [
+   "n_S"
+  ],
+  "valid_r2": 0.026741865658610697,
+  "selection_fraction": 0.8666666666666667,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_compounds|r036",
+  "block": "NCAL",
+  "expr": "1.0176563",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -0.0016762305634325791,
+  "selection_fraction": 0.6666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r001",
+  "block": "NCAL",
+  "expr": "log(precursor_mz * ((heteroatom_fraction * 10.389134) + rotatable_bonds))",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "rotatable_bonds",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.32219228296277236,
+  "selection_fraction": 0.3333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r005",
+  "block": "NCAL",
+  "expr": "(square(heteroatom_fraction) + total_atom_count) * precursor_mz",
+  "complexity": 6,
+  "support": [
+   "precursor_mz",
+   "total_atom_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.2811731786112416,
+  "selection_fraction": 0.13333333333333333,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F6",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r009",
+  "block": "NCAL",
+  "expr": "precursor_mz + ((log(total_atom_count) * 0.7898907) + heteroatom_fraction)",
+  "complexity": 8,
+  "support": [
+   "precursor_mz",
+   "total_atom_count",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.4246567196108705,
+  "selection_fraction": 0.6,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r013",
+  "block": "NCAL",
+  "expr": "1.0",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -3.0,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r017",
+  "block": "NCAL",
+  "expr": "precursor_mz + square(heteroatom_fraction * precursor_mz)",
+  "complexity": 7,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.5545776885168083,
+  "selection_fraction": 0.2,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r021",
+  "block": "NCAL",
+  "expr": "precursor_mz + sqrt(tpsa)",
+  "complexity": 4,
+  "support": [
+   "precursor_mz",
+   "tpsa"
+  ],
+  "valid_r2": 0.4151319731086952,
+  "selection_fraction": 0.16666666666666666,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r025",
+  "block": "NCAL",
+  "expr": "square((heteroatom_fraction + 0.7957736) * precursor_mz)",
+  "complexity": 7,
+  "support": [
+   "precursor_mz",
+   "heteroatom_fraction"
+  ],
+  "valid_r2": 0.39098113594835004,
+  "selection_fraction": 0.23333333333333334,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": true
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r029",
+  "block": "NCAL",
+  "expr": "precursor_mz + 1.0415509",
+  "complexity": 3,
+  "support": [
+   "precursor_mz"
+  ],
+  "valid_r2": 0.22602049026767268,
+  "selection_fraction": 0.8,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r033",
+  "block": "NCAL",
+  "expr": "1.0",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -3.0,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ },
+ {
+  "world_id": "NULL|target_permuted_across_energy_within_compound|r037",
+  "block": "NCAL",
+  "expr": "1.0",
+  "complexity": 1,
+  "support": [],
+  "valid_r2": -3.0,
+  "selection_fraction": 1.0,
+  "accepted": false,
+  "failed_rungs": [
+   "F2",
+   "F4",
+   "F5",
+   "F6",
+   "F7",
+   "F9"
+  ],
+  "claims_non_mass_structure": false
+ }
+]

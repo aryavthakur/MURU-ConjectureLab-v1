@@ -1,0 +1,47 @@
+{
+ "G4_pure_null": {
+  "n_accepted": 0,
+  "n_valid_replicates": 100,
+  "rate": 0.0,
+  "ci_method": "Clopper-Pearson exact",
+  "ci": [
+   0.0,
+   0.03621669264517641
+  ],
+  "confidence_level": 0.95,
+  "note": "a point estimate of 0/N does not license the claim that the population rate is zero; the interval is the claim",
+  "accepted_world_ids": []
+ },
+ "K6": {
+  "gate": "K6",
+  "criterion": "G4 null false-positive rate <= 5% (nominal point criterion)",
+  "observed_rate": 0.0,
+  "n_accepted": 0,
+  "n_valid_replicates": 100,
+  "ci": [
+   0.0,
+   0.03621669264517641
+  ],
+  "fires": false,
+  "verdict": "K6 does not fire",
+  "uncertainty_note": "the point criterion is adjudicated on the observed rate; the interval is reported so the population rate is not overstated in either direction"
+ },
+ "G4M_mass_conditional_null": {
+  "n_worlds": 30,
+  "n_accepted_any": 4,
+  "n_accepted_claiming_structure_beyond_mass": 0,
+  "rate_structure_beyond_mass": {
+   "n_accepted": 0,
+   "n_valid_replicates": 30,
+   "rate": 0.0,
+   "ci_method": "Clopper-Pearson exact",
+   "ci": [
+    0.0,
+    0.11570330822202779
+   ],
+   "confidence_level": 0.95,
+   "note": "a point estimate of 0/N does not license the claim that the population rate is zero; the interval is the claim"
+  },
+  "note": "supplementary to the master plan's G4; this is the null matched to the Phase 2 question, structure beyond energy and mass"
+ }
+}

@@ -1,0 +1,2051 @@
+{
+ "role": "gplearn is a comparison arm on T2, not a tournament entrant. It cannot rescue a failing PySR calibration; switching engines after seeing a result would require an explicit deviation and independent recalibration.",
+ "scope": "pre-registered limited subset (DEVIATIONS_P3 D5)",
+ "summary": {
+  "G1": {
+   "n_worlds": 30,
+   "engines_agree_rate": 0.03333333333333333,
+   "support_match_rate": 0.03333333333333333,
+   "pysr_median_complexity": 6.0,
+   "gplearn_median_complexity": 4.0,
+   "pysr_median_valid_r2": 0.9167234806189752,
+   "gplearn_median_valid_r2": 0.5984192002624122,
+   "pysr_matches_planted_rate": 0.03333333333333333,
+   "gplearn_matches_planted_rate": 0.0
+  },
+  "G3": {
+   "n_worlds": 8,
+   "engines_agree_rate": 0.0,
+   "support_match_rate": 0.0,
+   "pysr_median_complexity": 6.0,
+   "gplearn_median_complexity": 2.0,
+   "pysr_median_valid_r2": 0.9180277923051453,
+   "gplearn_median_valid_r2": 0.6610340345772175,
+   "pysr_matches_planted_rate": 0.625,
+   "gplearn_matches_planted_rate": 0.0
+  },
+  "G4": {
+   "n_worlds": 30,
+   "engines_agree_rate": 0.6,
+   "support_match_rate": 0.6333333333333333,
+   "pysr_median_complexity": 1.0,
+   "gplearn_median_complexity": 1.0,
+   "pysr_median_valid_r2": -0.0034177089160456475,
+   "gplearn_median_valid_r2": -0.010120119875665634
+  }
+ },
+ "worlds": [
+  {
+   "world_id": "G1B|r000|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.79925174) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.6909122418497782,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013502291911020434
+   },
+   "gplearn": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.5111222379524683,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.33971607774203627
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.33885331391568485,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r000|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7864598))",
+    "complexity": 6,
+    "valid_r2": 0.9890655680996921,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013618410650287498
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7659353858339999,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.35350934459877914,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r000|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7900285))",
+    "complexity": 6,
+    "valid_r2": 0.9076282423959797,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.9666666666666667,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013577820415453893
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(total_atom_count))",
+    "complexity": 2,
+    "valid_r2": 0.1611873529622202,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.3,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.31332548216030476
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.31344417827462523,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r001|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "(heteroatom_fraction * 0.40459442) + precursor_mz",
+    "complexity": 5,
+    "valid_r2": 0.7392149565532855,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.05919406004260027
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7158937450401466,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.3333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3638696235721252,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r001|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.789389) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9880185436647743,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.01358462635836931
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.4070374036008313,
+    "support": [
+     "tpsa"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3360042129109166
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.33614955397731977,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r001|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.8101831) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.8896520376065917,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.01346703334577149
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.6967834779389042,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.5555555555555556,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3540343142100906,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r002|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7803908))",
+    "complexity": 6,
+    "valid_r2": 0.6446827653123901,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.9,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013702058796352341
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": -0.05163601364298409,
+    "support": [
+     "tpsa"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3360042129109166
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.33648934791930335,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r002|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.7865326) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9849756354900931,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013617519051918707
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.699470061958791,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.3333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3535109621093591,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r002|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((0.7993645 + heteroatom_fraction) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9255105203352028,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013501629399612183
+   },
+   "gplearn": {
+    "expr": "sqrt((precursor_mz + precursor_mz))",
+    "complexity": 5,
+    "valid_r2": 0.6602101399836826,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.16965078936543856
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.16893732753907645,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r003|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.89697576) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.7298924912618894,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.014997645346516415
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.31960838498012445,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.5,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3737365318682597
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3706420622948076,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r003|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.79478043) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9898315584381687,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013533631296040929
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.8317674539014993,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.3,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3536939588071957,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r003|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.79394037) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9307756217229354,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013540625482892693
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.3422221632128011,
+    "support": [
+     "tpsa"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3360042129109166
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3359792344650273,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r004|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(heteroatom_fraction * total_atom_count)",
+    "complexity": 4,
+    "valid_r2": 0.709503084334457,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.709503084334457,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.0,
+   "support_match": true
+  },
+  {
+   "world_id": "G1B|r004|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79295903))",
+    "complexity": 6,
+    "valid_r2": 0.9867985365300993,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013549240255696132
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7618969872030585,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.8,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.35365359112831446,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r004|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.79145926))",
+    "complexity": 6,
+    "valid_r2": 0.9117128425232349,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013563332174494616
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.5834206671264146,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3536203328807888,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r005|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((0.89869833 + heteroatom_fraction) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.598093131020075,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.26666666666666666,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.015054129810172494
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.35827909157470883,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3559534844904406,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r005|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.79278415) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9910250830716877,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013550825753057561
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7601207586101897,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.5,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3536497139414807,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r005|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79592544))",
+    "complexity": 6,
+    "valid_r2": 0.9394505871813448,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013524662500983598
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(heteroatom_fraction))",
+    "complexity": 2,
+    "valid_r2": 0.1784508039885785,
+    "support": [
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.5,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.23433825088465057
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.23287442062619312,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r006|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.7828572) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.7054021858678245,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.01366584286701226
+   },
+   "gplearn": {
+    "expr": "sqrt((precursor_mz/0.5467644474401283))",
+    "complexity": 4,
+    "valid_r2": 0.5762754569007551,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.3,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.16965078936543854
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.17025634269462192,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r006|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.790107) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9900880674048215,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.0135769990335256
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7970624827902202,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6666666666666666,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3535903311901955,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r006|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "((heteroatom_fraction / 2.9769027) + 0.99565834) * sqrt(precursor_mz)",
+    "complexity": 8,
+    "valid_r2": 0.8711909179798678,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.004026445564919088
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(total_atom_count))",
+    "complexity": 2,
+    "valid_r2": 0.20023709189456806,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.31332548216030476
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.31134273380551913,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r007|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.82193154) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.6716435162388223,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013493155764708829
+   },
+   "gplearn": {
+    "expr": "sqrt(((total_atom_count*sqrt(heteroatom_fraction))*sqrt(heteroatom_fraction)))",
+    "complexity": 4,
+    "valid_r2": 0.4517381438697956,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.7,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3542926851033094,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r007|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.79312176))",
+    "complexity": 6,
+    "valid_r2": 0.9875655088569986,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013547778583239006
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7911941737669836,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.375,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3536571987349882,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r007|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.81464416))",
+    "complexity": 6,
+    "valid_r2": 0.8956713689233765,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.7666666666666667,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013469261096559862
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.3180216576716818,
+    "support": [
+     "tpsa"
+    ],
+    "selection_fraction": 0.3,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3360042129109166
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3352173476518617,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r008|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((0.8588894 + heteroatom_fraction) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.7557780369008078,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013974195066236256
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(precursor_mz))",
+    "complexity": 2,
+    "valid_r2": -0.052866841971697554,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.4444444444444444,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.2013502598862076
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.1969985883507122,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r008|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.7845562) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9847815367487979,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013642664963066719
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7130047920224152,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.35346703529170875,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r008|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.79485005))",
+    "complexity": 6,
+    "valid_r2": 0.9251548043762867,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013533067384283025
+   },
+   "gplearn": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7141228215855193,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3536955012957041,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r009|adverse",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "status": "ok",
+   "pysr": {
+    "expr": "(heteroatom_fraction + 3.3096838) * sqrt(precursor_mz * 0.096293874)",
+    "complexity": 8,
+    "valid_r2": 0.6983613462549199,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.3333333333333333,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.015853627302512354
+   },
+   "gplearn": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.5781781843773975,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.33971607774203627
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3391572258306132,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r009|low",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "low",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7891291))",
+    "complexity": 6,
+    "valid_r2": 0.9888216829643282,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013587450703135173
+   },
+   "gplearn": {
+    "expr": "sqrt((total_atom_count*heteroatom_fraction))",
+    "complexity": 4,
+    "valid_r2": 0.7681247998188427,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.4444444444444444,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3544196614922819
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3535686265901082,
+   "support_match": false
+  },
+  {
+   "world_id": "G1B|r009|moderate",
+   "block": "G1",
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt((heteroatom_fraction + 0.8029791) * precursor_mz)",
+    "complexity": 6,
+    "valid_r2": 0.9217341187147157,
+    "support": [
+     "precursor_mz",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.013483708693959987
+   },
+   "gplearn": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.6134177333984099,
+    "support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.33971607774203627
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3388399771919474,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r000|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * 2.6730897) + -0.21823399",
+    "complexity": 6,
+    "valid_r2": 0.9394526715427761,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.007272353787303429
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6747232820346432,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.361291964549587,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r001|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * 2.6106117) + -0.20576125",
+    "complexity": 6,
+    "valid_r2": 0.9374890519755315,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.9666666666666667,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.008345829830671133
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6583881120371025,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.5,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3600121235517277,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r002|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * 2.5231774) + -0.1897982",
+    "complexity": 6,
+    "valid_r2": 0.943593392541146,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.01006224419672564
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.8060961616191029,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.4444444444444444,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.35840208005335666,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r003|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "log(precursor_mz + 1.1463261) * 1.8686233",
+    "complexity": 6,
+    "valid_r2": 0.8535252902865214,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.43333333333333335,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.0031444774775039506
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.43208038083292477,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.9,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.36507678378358893,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r004|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "precursor_mz + 0.42496383",
+    "complexity": 3,
+    "valid_r2": 0.9196456528686417,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.03214445875176189
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.7147798994358592,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.8,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3773442561263706,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r005|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "precursor_mz + 0.42784214",
+    "complexity": 3,
+    "valid_r2": 0.8978800461200238,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.03177289844123435
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6636799571173326,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.6,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.37694664040227777,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r006|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "sqrt(precursor_mz * 2.5952044) + -0.20366277",
+    "complexity": 6,
+    "valid_r2": 0.9164099317416489,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 0.7666666666666667,
+    "matches_planted": true,
+    "rel_rmse_vs_planted": 0.008531791743564948
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.5556265507144029,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.8,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3598208683400361,
+   "support_match": false
+  },
+  {
+   "world_id": "G3|r007|moderate",
+   "block": "G3",
+   "family": "G3",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "precursor_mz + 0.43002695",
+    "complexity": 3,
+    "valid_r2": 0.8975926636289067,
+    "support": [
+     "precursor_mz"
+    ],
+    "selection_fraction": 1.0,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.031495872476657166
+   },
+   "gplearn": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6430741896894809,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.8,
+    "matches_planted": false,
+    "rel_rmse_vs_planted": 0.3636764560080228
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3766460144900449,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r000|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "(0.08893737 / total_atom_count) + 0.9370504",
+    "complexity": 6,
+    "valid_r2": 0.03829862252108496,
+    "support": [
+     "total_atom_count"
+    ],
+    "selection_fraction": 0.4666666666666667
+   },
+   "gplearn": {
+    "expr": "(n_N/n_N)",
+    "complexity": 1,
+    "valid_r2": -0.030708656888935204,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.04400669503235453,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r001|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.1701051 - (rdbe * 0.14023115)",
+    "complexity": 5,
+    "valid_r2": 0.02058364660791623,
+    "support": [
+     "rdbe"
+    ],
+    "selection_fraction": 0.7333333333333333
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.02166820784738288,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.10285326086403769,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r002|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "((n_S * 0.07232761) * n_halogen) + 1.0259442",
+    "complexity": 7,
+    "valid_r2": 0.026922482406342763,
+    "support": [
+     "n_S",
+     "n_halogen"
+    ],
+    "selection_fraction": 0.5333333333333333
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.0021797660204556646,
+    "support": [],
+    "selection_fraction": 0.2
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.39820425334774123,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r003|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0063462",
+    "complexity": 1,
+    "valid_r2": -0.01511192317669896,
+    "support": [],
+    "selection_fraction": 0.8
+   },
+   "gplearn": {
+    "expr": "(n_O/n_O)",
+    "complexity": 1,
+    "valid_r2": -0.0222809423553596,
+    "support": [],
+    "selection_fraction": 0.4
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.006306179722246757,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r004|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0473567",
+    "complexity": 1,
+    "valid_r2": -0.04043243770376215,
+    "support": [],
+    "selection_fraction": 0.26666666666666666
+   },
+   "gplearn": {
+    "expr": "(n_N/n_N)",
+    "complexity": 1,
+    "valid_r2": -2.356910114009736e-05,
+    "support": [],
+    "selection_fraction": 0.4
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.045215445702500336,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r005|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0255525",
+    "complexity": 1,
+    "valid_r2": -4.932000208013321e-06,
+    "support": [],
+    "selection_fraction": 0.9333333333333333
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.012979774801477495,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.024915838048271622,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r006|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "0.9977543",
+    "complexity": 1,
+    "valid_r2": -0.0017414138530804646,
+    "support": [],
+    "selection_fraction": 0.4
+   },
+   "gplearn": {
+    "expr": "(n_S/n_S)",
+    "complexity": 1,
+    "valid_r2": -0.002688657416471063,
+    "support": [],
+    "selection_fraction": 0.2
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.002250754519424288,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r007|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0280035",
+    "complexity": 1,
+    "valid_r2": -0.005287185111659598,
+    "support": [],
+    "selection_fraction": 0.36666666666666664
+   },
+   "gplearn": {
+    "expr": "(precursor_mz/precursor_mz)",
+    "complexity": 1,
+    "valid_r2": -0.03552370292093787,
+    "support": [],
+    "selection_fraction": 0.2
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.027240666009405678,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r008|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "(sqrt(n_N + rotatable_bonds) * -0.12083845) - -1.2001919",
+    "complexity": 8,
+    "valid_r2": -0.07385622643426282,
+    "support": [
+     "rotatable_bonds",
+     "n_N"
+    ],
+    "selection_fraction": 0.1
+   },
+   "gplearn": {
+    "expr": "0.9870437205464635",
+    "complexity": 1,
+    "valid_r2": -0.005980909272649049,
+    "support": [],
+    "selection_fraction": 0.16666666666666666
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.07530726203569649,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r009|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.025975",
+    "complexity": 1,
+    "valid_r2": -0.007784708143793839,
+    "support": [],
+    "selection_fraction": 0.4
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.04013240402022045,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.0253173810278029,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r010|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "cube(rotatable_bonds * -0.1411001) + 1.031617",
+    "complexity": 6,
+    "valid_r2": 0.014629427490528979,
+    "support": [
+     "rotatable_bonds"
+    ],
+    "selection_fraction": 0.3
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.0013146067754639112,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.20036545267359093,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r011|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0633633",
+    "complexity": 1,
+    "valid_r2": -0.08364123408066781,
+    "support": [],
+    "selection_fraction": 0.5666666666666667
+   },
+   "gplearn": {
+    "expr": "inv(0.9523013430702869)",
+    "complexity": 1,
+    "valid_r2": -0.04736873053419255,
+    "support": [],
+    "selection_fraction": 0.125
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.012484466407449882,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r012|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0282452",
+    "complexity": 1,
+    "valid_r2": -0.0016850147276707972,
+    "support": [],
+    "selection_fraction": 0.8666666666666667
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.006364516180434654,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.027469323464870028,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r013|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0364583",
+    "complexity": 1,
+    "valid_r2": -0.02509846831153051,
+    "support": [],
+    "selection_fraction": 0.23333333333333334
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0003222214219709141,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.03517584836746453,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r014|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0566087 - (ring_count / 19.188126)",
+    "complexity": 5,
+    "valid_r2": 0.019838322892192672,
+    "support": [
+     "ring_count"
+    ],
+    "selection_fraction": 0.8666666666666667
+   },
+   "gplearn": {
+    "expr": "sqrt(0.8497745307515097)",
+    "complexity": 1,
+    "valid_r2": -0.15884313237903158,
+    "support": [],
+    "selection_fraction": 0.1
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.07069126741252817,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r015|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0253867",
+    "complexity": 1,
+    "valid_r2": -0.006184641452820827,
+    "support": [],
+    "selection_fraction": 0.7666666666666667
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0006866834623371343,
+    "support": [],
+    "selection_fraction": 0.6
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.024758171721946547,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r016|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.024048",
+    "complexity": 1,
+    "valid_r2": -0.0034817539684917076,
+    "support": [],
+    "selection_fraction": 0.36666666666666664
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0023302054640719216,
+    "support": [],
+    "selection_fraction": 0.2
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.02348327422152093,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r017|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0189955",
+    "complexity": 1,
+    "valid_r2": -0.05107127335067907,
+    "support": [],
+    "selection_fraction": 0.16666666666666666
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(sqrt(0.8493988316534948)))",
+    "complexity": 1,
+    "valid_r2": -0.0021853397150932707,
+    "support": [],
+    "selection_fraction": 0.125
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.03846147072919401,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r018|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0023456 + square((n_N * aromatic_ring_count) * 0.09419174)",
+    "complexity": 9,
+    "valid_r2": 0.0008313752067763414,
+    "support": [
+     "aromatic_ring_count",
+     "n_N"
+    ],
+    "selection_fraction": 0.16666666666666666
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.08853005740194875,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.12572486496798388,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r019|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "((aromatic_ring_count / tpsa) / 26.830763) + 0.96459883",
+    "complexity": 8,
+    "valid_r2": 0.03963417505460043,
+    "support": [
+     "aromatic_ring_count",
+     "tpsa"
+    ],
+    "selection_fraction": 0.23333333333333334
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.00013678843538711405,
+    "support": [],
+    "selection_fraction": 0.3333333333333333
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.09688977556803102,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r020|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0060548",
+    "complexity": 1,
+    "valid_r2": -0.0009751558472765876,
+    "support": [],
+    "selection_fraction": 0.8333333333333334
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.002950941806878049,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.006018360033668172,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r021|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0221843",
+    "complexity": 1,
+    "valid_r2": -0.0013199585774981148,
+    "support": [],
+    "selection_fraction": 0.9333333333333333
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.01739834681004826,
+    "support": [],
+    "selection_fraction": 0.5
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.021702837736795547,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r022|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0479804",
+    "complexity": 1,
+    "valid_r2": -0.07865442176956128,
+    "support": [],
+    "selection_fraction": 0.23333333333333334
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0028658308301132696,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.04578368068715782,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r023|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0084972",
+    "complexity": 1,
+    "valid_r2": -0.029352563187216463,
+    "support": [],
+    "selection_fraction": 0.16666666666666666
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(-0.8398921747694474))",
+    "complexity": 4,
+    "valid_r2": -2.4784014223768227,
+    "support": [],
+    "selection_fraction": 0.1111111111111111
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.3287779897473589,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r024|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "(-0.035997696 * (n_O - n_halogen)) + 1.0472206",
+    "complexity": 9,
+    "valid_r2": 0.01602811871103571,
+    "support": [
+     "n_O",
+     "n_halogen"
+    ],
+    "selection_fraction": 0.26666666666666666
+   },
+   "gplearn": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -7.77529847297842e-05,
+    "support": [],
+    "selection_fraction": 0.25
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.09960246893989602,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r025|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0151446",
+    "complexity": 1,
+    "valid_r2": -0.023432514497864876,
+    "support": [],
+    "selection_fraction": 0.5666666666666667
+   },
+   "gplearn": {
+    "expr": "(n_halogen/n_halogen)",
+    "complexity": 1,
+    "valid_r2": -0.04520022114429789,
+    "support": [],
+    "selection_fraction": 0.6
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.014918662819070264,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r026|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0205929",
+    "complexity": 1,
+    "valid_r2": -1.826720287767536e-05,
+    "support": [],
+    "selection_fraction": 0.7666666666666667
+   },
+   "gplearn": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.01135791514626261,
+    "support": [],
+    "selection_fraction": 0.3
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.020177389045132516,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r027|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "1.0083965",
+    "complexity": 1,
+    "valid_r2": -0.0033536638635995875,
+    "support": [],
+    "selection_fraction": 1.0
+   },
+   "gplearn": {
+    "expr": "(n_S/n_S)",
+    "complexity": 1,
+    "valid_r2": -0.008882324605068659,
+    "support": [],
+    "selection_fraction": 0.2
+   },
+   "engines_agree": true,
+   "agreement_rel_rmse": 0.008326585822144286,
+   "support_match": true
+  },
+  {
+   "world_id": "G4|r028|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "(rdbe * -0.13563858) + 1.168148",
+    "complexity": 5,
+    "valid_r2": -0.11295719863075382,
+    "support": [
+     "rdbe"
+    ],
+    "selection_fraction": 0.3333333333333333
+   },
+   "gplearn": {
+    "expr": "(rdbe/rdbe)",
+    "complexity": 1,
+    "valid_r2": -0.036817729115675935,
+    "support": [],
+    "selection_fraction": 0.4
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.09894853901408417,
+   "support_match": false
+  },
+  {
+   "world_id": "G4|r029|moderate",
+   "block": "G4",
+   "family": "G4",
+   "noise_regime": "moderate",
+   "status": "ok",
+   "pysr": {
+    "expr": "(heteroatom_fraction * 0.036965903) + 1.012461",
+    "complexity": 5,
+    "valid_r2": -0.04314207096932532,
+    "support": [
+     "heteroatom_fraction"
+    ],
+    "selection_fraction": 0.23333333333333334
+   },
+   "gplearn": {
+    "expr": "sqrt(sqrt(inv(0.8975958087121296)))",
+    "complexity": 1,
+    "valid_r2": -0.014883042930358803,
+    "support": [],
+    "selection_fraction": 0.14285714285714285
+   },
+   "engines_agree": false,
+   "agreement_rel_rmse": 0.04525026999995675,
+   "support_match": false
+  }
+ ]
+}

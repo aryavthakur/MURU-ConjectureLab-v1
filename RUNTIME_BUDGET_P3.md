@@ -95,6 +95,33 @@ No single non-checkpointable computation approaches 45 minutes: the largest
 indivisible unit is one 2.3-second symbolic run. Progress is printed per world,
 unbuffered, so execution state is visible while the job runs.
 
+## As executed — measured, against the projection
+
+| Component | Projected | **Actual** |
+|---|---|---|
+| PySR search | 102 min (whole run) | **162 min** |
+| gplearn comparison arm | — | **17 min** |
+| **Total wall time** | **1.69 h** | **2.98 h** |
+
+The run took **1.8×** the projection. Two
+causes, both measured rather than guessed:
+
+1. **Structured worlds cost more than null worlds.** Per-world time was a steady
+   2.1–2.2 min across the 100 G4 null worlds and rose to 2.5–2.7 min once blocks
+   with real descriptor structure began, because PySR's inner constant optimizer
+   does more work when candidates survive to be optimized. The benchmark that
+   set the projection was run on a single structured world and then applied
+   uniformly, which understated the mixed workload.
+2. **Self-inflicted contention.** Adjudication and test runs were executed while
+   the search was still going, and briefly pushed per-world time to 7.3 min.
+   That is an execution-planning error of the same family as the one Phase 2
+   recorded, and it is recorded here rather than smoothed away.
+
+The projection error did not cost any work: every unit is checkpointed, the run
+was interrupted and resumed twice during the phase, and resume recomputed
+nothing.
+
+
 ## Seed manifest
 
 `artifacts/p3_seed_manifest.json`, sha256 of the schedule

@@ -259,6 +259,71 @@ def render(d, worlds, B, cal, fp, env, budget, g1) -> str:
             hmain[name] = sum(1 for w in ws
                               if w["collapse"]["hmain"]["h_main_rejected"])
 
+    # the two readings of the G1 criterion, both reported
+    modw = [w for w in B.get("G1", []) if w["noise_regime"] == "moderate"]
+    mp_rate = (sum(1 for w in modw if w["acceptance"]["accepted"]
+                   and (w.get("recovery") or {}).get("exponent_within_0.15"))
+               / len(modw)) if modw else float("nan")
+    pr_rate = g1.get("moderate", {}).get("functional_recovery_rate", float("nan"))
+
+    diag = load("p3_recovery_diagnosis.json")
+    diag_rows = "\n".join(
+        f"| `{k}` | {v['search_capability_rate']:.0%} | "
+        f"{v['system_report_rate']:.0%} | "
+        f"{'+' + str(int(v['median_complexity_gap'])) if v['median_complexity_gap'] is not None else '—'} |"
+        for k, v in (diag or {}).get("summary", {}).items())
+    elbow = protocol.ELBOW_TOL
+
+    comp = load("p3_engine_comparison.json") or {"summary": {}}
+    gp_rows = "\n".join(
+        f"| `{b}` | {s['n_worlds']} | {s['engines_agree_rate']:.0%} | "
+        f"{s['support_match_rate']:.0%} | "
+        + (f"{s['pysr_matches_planted_rate']:.0%} | "
+           f"{s['gplearn_matches_planted_rate']:.0%} |"
+           if "pysr_matches_planted_rate" in s else "— | — |")
+        for b, s in comp["summary"].items()) or "| — | | | | | |"
+
+    if d["verdict"] == "STOP BEFORE PHASE 4":
+        stop_section = f"""## What must change before Phase 4 can be reconsidered
+
+Phase 3 stopped on **candidate selection**, not on false positives, not on
+search capability, and not on the falsification harness — all of which passed.
+The specific, reproducible defect and its evidence:
+
+**The elbow rule resolves near-degenerate Pareto fronts in favour of the wrong
+expression.** With a tolerance of {elbow} absolute R², a complexity-6
+approximation that sits 0.004 R² below the complexity-13 planted form is
+preferred to it, in 30 of 30 seeds, at every noise level tested.
+
+A future attempt would need to change the candidate-selection rule and then
+**recalibrate the null thresholds under the changed rule**, because the
+threshold is conditioned on the complexity the rule selects. Candidate
+directions, recorded so the reasoning is not lost, and **deliberately not
+applied here**:
+
+1. tighten the elbow tolerance, or make it relative to the front's own R² spread
+   rather than absolute;
+2. carry the whole Pareto front forward and adjudicate every knee against the
+   null, rather than committing to one candidate per seed;
+3. report the recovered **variable support and scaling exponents** as the
+   claim, and treat the functional form as unidentified — which is what this
+   evidence actually supports.
+
+**None of these was applied.** Changing the selection rule after seeing that the
+planted recovery failed is exactly the move Phase 3 exists to prevent, and the
+pre-registration's repair allowance is scoped to K6 alone, which did not fire.
+
+## Restrictions that would have applied, recorded for a future attempt
+
+These were computed by the decision rule and are preserved because they remain
+true of the evidence, not because Phase 4 is authorized. **It is not.**
+
+{chr(10).join(f'{i}. {r}' for i, r in enumerate(d['restrictions'], 1))}"""
+    else:
+        stop_section = ("## Restrictions on Phase 4\n\n"
+                        + "\n".join(f"{i}. {r}"
+                                    for i, r in enumerate(d["restrictions"], 1)))
+
     return f"""# PHASE3_DECISION.md
 
 # {d['verdict']}
@@ -362,6 +427,45 @@ counts; a high-complexity interpolant does not.
 
 Planted mass exponent **0.5**. The master plan §18.3 criterion is recovery
 within ±0.15.
+
+### Two different criteria give two different answers, and both are reported
+
+| Criterion | Source | Result at the moderate regime |
+|---|---|---|
+| exponent within ±0.15 **and** the recovered form is in the planted shape family | master plan §18.3, the weaker reading | **{mp_rate:.0%}** |
+| the above **and** functional equivalence to the complete planted law | `PHASE3_PREREGISTRATION.md` §19, the reading frozen in advance | **{pr_rate:.0%}** |
+
+The pre-registered reading is the binding one. It was chosen before any
+performance was observed, precisely so that this choice could not be made
+afterwards, and it is the one the decision rule uses.
+
+### Why they diverge — the search finds the law and the ranking rule discards it
+
+`scripts/t3_45_recovery_diagnosis.py` separates two questions that a single
+recovery rate conflates. **Does any candidate anywhere on the 30 seeds' Pareto
+fronts match the planted law, and does the frozen ranking rule select it?**
+
+| World | Search **finds** the law | System **reports** it | Median complexity gap |
+|---|---|---|---|
+{diag_rows}
+
+The mechanism is specific. In `G1B` the planted law needs complexity **13**;
+a complexity-**6** expression, `sqrt(precursor_mz · (heteroatom_fraction + c))`,
+approximates it to within about 2.5% relative RMSE over the descriptor domain
+and reaches a held-out R² within **0.004** of it. The frozen elbow rule takes
+the smallest complexity whose validation R² is within {elbow} of the best on the
+front, so it takes the approximation — every time, in every seed, at every noise
+level.
+
+This is not a search failure. It is a **candidate-selection failure**: the
+system finds the truth and then reports something simpler that is
+statistically indistinguishable from it on held-out data.
+
+`GA` is the control that pins this down. Its law is representable at low
+complexity, and there the same pipeline reports it in **100%** of worlds. `G3`,
+a single power law, is reported in **62%**. The failure is confined to laws
+whose true form sits above a near-equivalent approximation on the Pareto front —
+and that is exactly the situation a real conjecture search would face.
 
 ## H-MAIN adequacy
 
@@ -484,15 +588,52 @@ Checkpointing was exercised for real: the run was interrupted and resumed, and
 resume recomputed nothing (`tests/test_p3_checkpoint.py` pins the four
 properties).
 
+## Comparison engine — gplearn
+
+Master plan 13.3: "If two engines with different search dynamics converge on
+equivalent expressions, that is evidence. If they do not, the expression is a
+search artifact."
+
+| Block | Worlds | Engines agree | Support match | PySR matches planted | gplearn matches planted |
+|---|---|---|---|---|---|
+{gp_rows}
+
+**The comparison arm did not corroborate PySR.** On the structured worlds the
+two engines converge on functionally equivalent expressions almost never, and
+gplearn never recovers the planted law — including in `G3`, a single power law
+that PySR recovers 62% of the time. On the `G4` nulls the engines agree 60% of
+the time, which is agreement about noise and is not evidence of anything.
+
+This is reported as measured. It does not change the verdict, which is already
+`STOP BEFORE PHASE 4` on the pre-registered rule, and no engine-agreement gate
+was pre-registered. It is recorded because it points the same way: **PySR's
+selected expressions are not independently corroborated**, and under the master
+plan's own reading that is a reason to treat them as search artifacts rather
+than as recovered laws.
+
+gplearn was run at its pre-registered configuration on the pre-registered subset
+(`DEVIATIONS_P3.md` D5). It is a comparison arm, not a tournament entrant, and
+**nothing here would license switching the project to it** — that would require
+an explicit deviation and an independent recalibration.
+
+## GA — analytic sanity case
+
+{d['GA_accepted']} of {len(B.get('GA', []))} fully synthetic worlds recovered the
+transparent planted law `1.5·v₀ + 0.5·v₁²`, found by the search and selected by
+the ranking rule. This world uses no real chemistry, so it isolates the
+machinery from any property of the real descriptor matrix.
+
+Its first construction planted the law in the raw frame while the search saw the
+dimensionless frame, making it unrecoverable by construction; that was found by
+the sanity case doing its job and is recorded in `DEVIATIONS_P3.md` D9.
+
 ## Stop conditions, evaluated explicitly
 
 | Condition | Fired |
 |---|---|
 {stoprows}
 
-## Restrictions on Phase 4
-
-{chr(10).join(f'{i}. {r}' for i, r in enumerate(d['restrictions'], 1))}
+{stop_section}
 
 ## Unresolved issues
 

@@ -217,3 +217,40 @@ was affected and nothing had to be recomputed.**
 
 **Consequence.** F2 is strictly harder than it was. No result was produced under
 the vacuous version.
+
+---
+
+## D9 — The GA sanity world planted its law in the wrong frame (IMPLEMENTATION ONLY)
+
+**The defect.** `GA` is the fully synthetic sanity case: descriptors drawn
+i.i.d., law `1.5·v₀ + 0.5·v₁²`. Its covariates were generated directly in the
+0.2–1.8 range and the law was planted on those values — but every world's
+descriptors are divided by the dimensionless `SCALE` constants before the search
+sees them. `precursor_mz` was therefore divided by 500, so the law was planted
+in one frame and searched for in another. GA was unrecoverable **by
+construction**, not by any property of the engine.
+
+The symptom was visible in the recovered expressions, which carried a spurious
+factor of ~384 absorbing the 500× rescaling.
+
+**The fix.** `_analytic_covariates` now stores columns pre-multiplied by
+`SCALE`, so the discovery side's division recovers exactly the values the law is
+planted on. Verified directly: the dimensionless range is now [0.21, 1.80] and
+the correlation between the planted `g` and the estimated `ĝ` is 0.985.
+
+**When, and what had been seen.** Found by `scripts/t3_45_recovery_diagnosis.py`
+after the main run, when GA reported that the search found the planted law in
+**0%** of worlds — an implausible result for an analytically transparent case,
+which is precisely the job a sanity case exists to do. The G1, G3, G4 and all
+other blocks were unaffected: they use the real covariate matrix, where planting
+and searching already share one frame.
+
+**Action taken.** Only the 3 GA worlds were regenerated and re-searched
+(90 units, 2 minutes). No other block was touched, and no threshold changed.
+After the fix GA recovers the planted law in **100%** of worlds, both found by
+the search and selected by the ranking rule.
+
+**Consequence.** The sanity case now does its job. Its post-fix result is what
+isolates the G1 finding: GA shows the pipeline reports a planted law correctly
+when that law is representable at low complexity, so G1's failure is specific to
+near-degenerate Pareto fronts rather than general.
