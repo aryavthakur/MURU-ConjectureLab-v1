@@ -1,0 +1,164 @@
+{
+  "n_compounds": 549,
+  "scaffold": {
+    "n_unique_murcko_nonempty": 336,
+    "n_acyclic_empty_murcko": 32,
+    "frac_acyclic": 0.0583,
+    "n_scaffold_groups_after_policy": 368,
+    "n_singleton_groups": 322,
+    "frac_compounds_in_singletons": 0.5865,
+    "largest_groups": [
+      {
+        "scaffold": "c1ccccc1",
+        "n": 80
+      },
+      {
+        "scaffold": "c1ncncn1",
+        "n": 16
+      },
+      {
+        "scaffold": "c1ccc2ccccc2c1",
+        "n": 7
+      },
+      {
+        "scaffold": "c1ccc(Cc2ccccc2)cc1",
+        "n": 7
+      },
+      {
+        "scaffold": "c1cncnc1",
+        "n": 5
+      },
+      {
+        "scaffold": "O=C1C=C2CC[C@H]3[C@@H]4CCCC4CC[C@@H]3C2CC1",
+        "n": 5
+      },
+      {
+        "scaffold": "c1ccncc1",
+        "n": 4
+      },
+      {
+        "scaffold": "O=c1ccc2ccccc2o1",
+        "n": 4
+      },
+      {
+        "scaffold": "c1ccc(Nc2ccccc2)cc1",
+        "n": 4
+      },
+      {
+        "scaffold": "O=C1C=CC2C(=C1)CC[C@@H]1C2CCC2CCC[C@H]21",
+        "n": 4
+      }
+    ],
+    "group_size_distribution": {
+      "1": 322,
+      "2": 20,
+      "3": 13,
+      "4": 7,
+      "5": 2,
+      "7": 2,
+      "16": 1,
+      "80": 1
+    },
+    "max_group_frac_of_corpus": 0.1457,
+    "ringless_policy": "each acyclic compound is its own scaffold group, keyed by connectivity block; see MASTER_PLAN_CLARIFICATIONS C5"
+  },
+  "cluster": {
+    "similarity_threshold": 0.6,
+    "distance_cutoff_used": 0.4,
+    "n_clusters": 491,
+    "n_singleton_clusters": 455,
+    "frac_compounds_in_singletons": 0.8288,
+    "largest_clusters": [
+      7,
+      6,
+      5,
+      4,
+      4,
+      4,
+      3,
+      3,
+      3,
+      3
+    ],
+    "cluster_size_distribution": {
+      "1": 455,
+      "2": 26,
+      "3": 4,
+      "4": 3,
+      "5": 1,
+      "6": 1,
+      "7": 1
+    },
+    "max_cluster_frac_of_corpus": 0.0128
+  },
+  "s2_verdict": {
+    "pathological": false,
+    "reason": "368 scaffold groups over 549 compounds; largest group holds 80 (14.6%). Neither degenerate nor dominated, so S2 is meaningful for this corpus and is pre-registered as the primary split."
+  },
+  "confirmation": {
+    "n_compounds": 110,
+    "n_scaffold_groups": 82,
+    "frac": 0.2004,
+    "sha256": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
+    "development_n_compounds": 439
+  },
+  "splits": {
+    "n_folds": 5,
+    "development_rows": 2610,
+    "development_compounds": 439,
+    "fold_sizes": {
+      "S1": {
+        "0": 523,
+        "1": 523,
+        "2": 523,
+        "3": 523,
+        "4": 518
+      },
+      "S2": {
+        "0": 524,
+        "1": 524,
+        "2": 524,
+        "3": 519,
+        "4": 519
+      },
+      "S3": {
+        "0": 522,
+        "1": 519,
+        "2": 523,
+        "3": 523,
+        "4": 523
+      },
+      "S0": {
+        "0": 502,
+        "1": 512,
+        "2": 557,
+        "3": 518,
+        "4": 521
+      }
+    },
+    "fold_compound_counts": {
+      "S1": {
+        "0": 88,
+        "1": 88,
+        "2": 88,
+        "3": 88,
+        "4": 87
+      },
+      "S2": {
+        "0": 89,
+        "1": 88,
+        "2": 88,
+        "3": 87,
+        "4": 87
+      },
+      "S3": {
+        "0": 88,
+        "1": 87,
+        "2": 88,
+        "3": 88,
+        "4": 88
+      }
+    },
+    "S0_frac_compounds_split_across_folds": 1.0
+  }
+}

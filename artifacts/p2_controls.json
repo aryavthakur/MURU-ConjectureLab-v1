@@ -1,0 +1,121 @@
+{
+  "n_permutations": 200,
+  "primary_split": "S2",
+  "null_rule": "observed statistic vs the 95th percentile of its own matched permutation null; family of six controlled by Benjamini-Hochberg at q=0.10",
+  "frozen_hyperparameters": {
+    "TIER_A": {
+      "alpha": 1.0
+    },
+    "FLEX_BENCHMARK": {
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "max_iter": 500,
+      "min_samples_leaf": 20,
+      "l2_regularization": 0.0
+    }
+  },
+  "reference": {
+    "B1_mae": 0.15495,
+    "TIER_A_mae": 0.11238
+  },
+  "controls": {
+    "NC1_energy_shuffle_within_compound": {
+      "family": "destruction",
+      "statistic": "MAE improvement over B1",
+      "observed": 0.04257,
+      "null_mean": -0.016247,
+      "null_p95": -0.015274,
+      "null_max": -0.0143,
+      "frac_null_replicates_beating_B1": 0.0,
+      "real_effect_for_reference": 0.04257,
+      "null_p95_as_share_of_real_effect": -0.3588,
+      "limit": 0.1,
+      "p_value": 0.0,
+      "fires": false,
+      "reads": "permutation destroys the effect; the real-data statistic exceeding this null is the DESIRED outcome, not a failure"
+    },
+    "NC2_descriptor_shuffle": {
+      "family": "destruction",
+      "statistic": "MAE improvement over B1",
+      "observed": 0.04257,
+      "null_mean": -0.002382,
+      "null_p95": -0.000229,
+      "null_max": 0.001446,
+      "frac_null_replicates_beating_B1": 0.035,
+      "real_effect_for_reference": 0.04257,
+      "null_p95_as_share_of_real_effect": -0.0054,
+      "limit": 0.1,
+      "p_value": 0.0,
+      "fires": false,
+      "reads": "permutation destroys the effect; the real-data statistic exceeding this null is the DESIRED outcome, not a failure"
+    },
+    "NC3_trajectory_shuffle": {
+      "family": "destruction",
+      "statistic": "MAE improvement over B1",
+      "observed": 0.04257,
+      "null_mean": -0.001506,
+      "null_p95": 0.000953,
+      "null_max": 0.002817,
+      "frac_null_replicates_beating_B1": 0.13,
+      "real_effect_for_reference": 0.04257,
+      "null_p95_as_share_of_real_effect": 0.0224,
+      "limit": 0.1,
+      "p_value": 0.0,
+      "fires": false,
+      "reads": "permutation destroys the effect; the real-data statistic exceeding this null is the DESIRED outcome, not a failure"
+    },
+    "NC4_sham_descriptors": {
+      "family": "nuisance",
+      "statistic": "MAE improvement over B1 using ONLY sham descriptors",
+      "observed": -0.00078,
+      "null_mean": -0.000374,
+      "null_p95": 0.000507,
+      "null_max": 0.001658,
+      "frac_null_replicates_beating_B1": 0.15,
+      "p_value": 0.905,
+      "exceeds_null_p95": false,
+      "fires": false,
+      "note": "here the observed statistic IS a sham fit, so it should itself sit inside the null; the control fires only if shams systematically beat B1",
+      "bh_significant_at_q0.10": false
+    },
+    "NC6_mixture_identity": {
+      "family": "nuisance",
+      "statistic": "MAE improvement over B1 using mixture identity alone",
+      "observed": -0.00038,
+      "null_mean": -0.000297,
+      "null_p95": 0.000444,
+      "null_max": 0.001295,
+      "frac_null_replicates_beating_B1": 0.165,
+      "p_value": 0.59,
+      "exceeds_null_p95": false,
+      "fires": false,
+      "bh_significant_at_q0.10": false
+    },
+    "NC7_retention_time": {
+      "family": "nuisance",
+      "statistic": "MAE improvement over B1 using retention time alone",
+      "observed": 0.01006,
+      "null_mean": -0.000282,
+      "null_p95": 0.00021,
+      "null_max": 0.000888,
+      "frac_null_replicates_beating_B1": 0.13,
+      "p_value": 0.0,
+      "exceeds_null_p95": true,
+      "fires": true,
+      "bh_significant_at_q0.10": true
+    }
+  },
+  "controls_fired": [
+    "NC7_retention_time"
+  ],
+  "any_control_fires": true,
+  "verdict": "CONTROL FIRES: NC7_retention_time -- BLOCKER until explained",
+  "nc7_followup": {
+    "question": "does retention time carry predictive information INDEPENDENT of Tier A structure, or is it a structure surrogate",
+    "improvement_rt_alone": 0.01006,
+    "improvement_tier_a_alone": 0.04257,
+    "improvement_tier_a_plus_rt": 0.04354,
+    "rt_share_of_structural_effect": 0.2362,
+    "incremental_gain_from_adding_rt": 0.00097
+  }
+}

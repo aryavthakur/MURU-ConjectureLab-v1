@@ -1,0 +1,1278 @@
+{
+  "setup": {
+    "development_rows": 2610,
+    "development_compounds": 439,
+    "tier_a_n": 12,
+    "tier_b_n": 718,
+    "tier_b_fp_bits_kept": 692,
+    "tier_b_min_bit_count": 5,
+    "primary_split": "S2",
+    "n_boot": 2000
+  },
+  "performance": {
+    "S1": {
+      "resampling_unit": "compound",
+      "B0_global_mean": {
+        "mae": 0.2028,
+        "mae_unit": 0.2028,
+        "mae_ci_compound": [
+          0.19645,
+          0.20905
+        ],
+        "mae_ci_unit": [
+          0.19645,
+          0.20905
+        ],
+        "rmse": 0.23618,
+        "grouped_r2": -0.0035,
+        "n_units": 439,
+        "hp_modal": "{}"
+      },
+      "B1_per_energy_mean": {
+        "mae": 0.1542,
+        "mae_unit": 0.1542,
+        "mae_ci_compound": [
+          0.14674,
+          0.16163
+        ],
+        "mae_ci_unit": [
+          0.14674,
+          0.16163
+        ],
+        "rmse": 0.18638,
+        "grouped_r2": 0.3747,
+        "n_units": 439,
+        "hp_modal": "{}"
+      },
+      "B2_MASS_SIMPLE": {
+        "mae": 0.1291,
+        "mae_unit": 0.1291,
+        "mae_ci_compound": [
+          0.12314,
+          0.135
+        ],
+        "mae_ci_unit": [
+          0.12314,
+          0.135
+        ],
+        "rmse": 0.1606,
+        "grouped_r2": 0.536,
+        "n_units": 439,
+        "hp_modal": "{}"
+      },
+      "MASS_FLEX": {
+        "mae": 0.12402,
+        "mae_unit": 0.12402,
+        "mae_ci_compound": [
+          0.11788,
+          0.1302
+        ],
+        "mae_ci_unit": [
+          0.11788,
+          0.1302
+        ],
+        "rmse": 0.15503,
+        "grouped_r2": 0.5677,
+        "n_units": 439,
+        "hp_modal": "{'alpha': 0.1}"
+      },
+      "TIER_A": {
+        "mae": 0.11141,
+        "mae_unit": 0.11141,
+        "mae_ci_compound": [
+          0.10608,
+          0.11666
+        ],
+        "mae_ci_unit": [
+          0.10608,
+          0.11666
+        ],
+        "rmse": 0.13945,
+        "grouped_r2": 0.6501,
+        "n_units": 439,
+        "hp_modal": "{'alpha': 0.01}"
+      },
+      "TIER_A_no_mass": {
+        "mae": 0.11638,
+        "mae_unit": 0.11638,
+        "mae_ci_compound": [
+          0.11067,
+          0.12221
+        ],
+        "mae_ci_unit": [
+          0.11067,
+          0.12221
+        ],
+        "rmse": 0.14513,
+        "grouped_r2": 0.6208,
+        "n_units": 439,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "TIER_A_mass_only": {
+        "mae": 0.11769,
+        "mae_unit": 0.11769,
+        "mae_ci_compound": [
+          0.11226,
+          0.12333
+        ],
+        "mae_ci_unit": [
+          0.11226,
+          0.12333
+        ],
+        "rmse": 0.14617,
+        "grouped_r2": 0.6159,
+        "n_units": 439,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "FLEX_BENCHMARK": {
+        "mae": 0.09612,
+        "mae_unit": 0.09612,
+        "mae_ci_compound": [
+          0.09083,
+          0.10127
+        ],
+        "mae_ci_unit": [
+          0.09083,
+          0.10127
+        ],
+        "rmse": 0.12571,
+        "grouped_r2": 0.7159,
+        "n_units": 439,
+        "hp_modal": "{'max_depth': 6, 'learning_rate': 0.1, 'max_iter': 500, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      },
+      "FLEX_BENCHMARK_no_mass": {
+        "mae": 0.09739,
+        "mae_unit": 0.09739,
+        "mae_ci_compound": [
+          0.09195,
+          0.10287
+        ],
+        "mae_ci_unit": [
+          0.09195,
+          0.10287
+        ],
+        "rmse": 0.12836,
+        "grouped_r2": 0.7036,
+        "n_units": 439,
+        "hp_modal": "{'max_depth': None, 'learning_rate': 0.1, 'max_iter': 200, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      }
+    },
+    "S2": {
+      "resampling_unit": "scaffold",
+      "B0_global_mean": {
+        "mae": 0.20269,
+        "mae_unit": 0.21122,
+        "mae_ci_compound": [
+          0.19639,
+          0.20898
+        ],
+        "mae_ci_unit": [
+          0.20421,
+          0.21821
+        ],
+        "rmse": 0.23608,
+        "grouped_r2": -0.0027,
+        "n_units": 286,
+        "hp_modal": "{}"
+      },
+      "B1_per_energy_mean": {
+        "mae": 0.15468,
+        "mae_unit": 0.15482,
+        "mae_ci_compound": [
+          0.14721,
+          0.16216
+        ],
+        "mae_ci_unit": [
+          0.14651,
+          0.1631
+        ],
+        "rmse": 0.18689,
+        "grouped_r2": 0.3713,
+        "n_units": 286,
+        "hp_modal": "{}"
+      },
+      "B2_MASS_SIMPLE": {
+        "mae": 0.12959,
+        "mae_unit": 0.13153,
+        "mae_ci_compound": [
+          0.12344,
+          0.13549
+        ],
+        "mae_ci_unit": [
+          0.12416,
+          0.13954
+        ],
+        "rmse": 0.16138,
+        "grouped_r2": 0.5316,
+        "n_units": 286,
+        "hp_modal": "{}"
+      },
+      "MASS_FLEX": {
+        "mae": 0.12548,
+        "mae_unit": 0.12823,
+        "mae_ci_compound": [
+          0.11926,
+          0.13179
+        ],
+        "mae_ci_unit": [
+          0.1203,
+          0.13641
+        ],
+        "rmse": 0.15683,
+        "grouped_r2": 0.5578,
+        "n_units": 286,
+        "hp_modal": "{'alpha': 0.1}"
+      },
+      "TIER_A": {
+        "mae": 0.11227,
+        "mae_unit": 0.11448,
+        "mae_ci_compound": [
+          0.10691,
+          0.11746
+        ],
+        "mae_ci_unit": [
+          0.10791,
+          0.12174
+        ],
+        "rmse": 0.1397,
+        "grouped_r2": 0.6489,
+        "n_units": 286,
+        "hp_modal": "{'alpha': 1.0}"
+      },
+      "TIER_A_no_mass": {
+        "mae": 0.11781,
+        "mae_unit": 0.11665,
+        "mae_ci_compound": [
+          0.11211,
+          0.12381
+        ],
+        "mae_ci_unit": [
+          0.11004,
+          0.12348
+        ],
+        "rmse": 0.14668,
+        "grouped_r2": 0.6127,
+        "n_units": 286,
+        "hp_modal": "{'alpha': 0.001}"
+      },
+      "TIER_A_mass_only": {
+        "mae": 0.11831,
+        "mae_unit": 0.11986,
+        "mae_ci_compound": [
+          0.1128,
+          0.12404
+        ],
+        "mae_ci_unit": [
+          0.11297,
+          0.12691
+        ],
+        "rmse": 0.14693,
+        "grouped_r2": 0.6119,
+        "n_units": 286,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "FLEX_BENCHMARK": {
+        "mae": 0.10036,
+        "mae_unit": 0.10036,
+        "mae_ci_compound": [
+          0.09512,
+          0.10548
+        ],
+        "mae_ci_unit": [
+          0.09385,
+          0.10727
+        ],
+        "rmse": 0.13132,
+        "grouped_r2": 0.6899,
+        "n_units": 286,
+        "hp_modal": "{'max_depth': 6, 'learning_rate': 0.05, 'max_iter': 500, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      },
+      "FLEX_BENCHMARK_no_mass": {
+        "mae": 0.10322,
+        "mae_unit": 0.10256,
+        "mae_ci_compound": [
+          0.09718,
+          0.10914
+        ],
+        "mae_ci_unit": [
+          0.09545,
+          0.10978
+        ],
+        "rmse": 0.13676,
+        "grouped_r2": 0.6637,
+        "n_units": 286,
+        "hp_modal": "{'max_depth': None, 'learning_rate': 0.1, 'max_iter': 200, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      }
+    },
+    "S3": {
+      "resampling_unit": "cluster",
+      "B0_global_mean": {
+        "mae": 0.20256,
+        "mae_unit": 0.2037,
+        "mae_ci_compound": [
+          0.19627,
+          0.20882
+        ],
+        "mae_ci_unit": [
+          0.19694,
+          0.2103
+        ],
+        "rmse": 0.23596,
+        "grouped_r2": -0.0017,
+        "n_units": 401,
+        "hp_modal": "{}"
+      },
+      "B1_per_energy_mean": {
+        "mae": 0.15387,
+        "mae_unit": 0.15408,
+        "mae_ci_compound": [
+          0.1464,
+          0.16127
+        ],
+        "mae_ci_unit": [
+          0.14629,
+          0.16222
+        ],
+        "rmse": 0.18614,
+        "grouped_r2": 0.3764,
+        "n_units": 401,
+        "hp_modal": "{}"
+      },
+      "B2_MASS_SIMPLE": {
+        "mae": 0.12825,
+        "mae_unit": 0.12648,
+        "mae_ci_compound": [
+          0.12219,
+          0.13418
+        ],
+        "mae_ci_unit": [
+          0.12044,
+          0.13297
+        ],
+        "rmse": 0.15987,
+        "grouped_r2": 0.5403,
+        "n_units": 401,
+        "hp_modal": "{}"
+      },
+      "MASS_FLEX": {
+        "mae": 0.12343,
+        "mae_unit": 0.12144,
+        "mae_ci_compound": [
+          0.11733,
+          0.12955
+        ],
+        "mae_ci_unit": [
+          0.11514,
+          0.12812
+        ],
+        "rmse": 0.15435,
+        "grouped_r2": 0.5717,
+        "n_units": 401,
+        "hp_modal": "{'alpha': 0.01}"
+      },
+      "TIER_A": {
+        "mae": 0.11183,
+        "mae_unit": 0.11158,
+        "mae_ci_compound": [
+          0.10646,
+          0.11729
+        ],
+        "mae_ci_unit": [
+          0.10614,
+          0.11741
+        ],
+        "rmse": 0.14034,
+        "grouped_r2": 0.6455,
+        "n_units": 401,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "TIER_A_no_mass": {
+        "mae": 0.11683,
+        "mae_unit": 0.11566,
+        "mae_ci_compound": [
+          0.11108,
+          0.12262
+        ],
+        "mae_ci_unit": [
+          0.11021,
+          0.12166
+        ],
+        "rmse": 0.1462,
+        "grouped_r2": 0.615,
+        "n_units": 401,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "TIER_A_mass_only": {
+        "mae": 0.11748,
+        "mae_unit": 0.11645,
+        "mae_ci_compound": [
+          0.11197,
+          0.12326
+        ],
+        "mae_ci_unit": [
+          0.11106,
+          0.12225
+        ],
+        "rmse": 0.14635,
+        "grouped_r2": 0.6149,
+        "n_units": 401,
+        "hp_modal": "{'alpha': 0.0001}"
+      },
+      "FLEX_BENCHMARK": {
+        "mae": 0.09717,
+        "mae_unit": 0.09682,
+        "mae_ci_compound": [
+          0.09217,
+          0.10206
+        ],
+        "mae_ci_unit": [
+          0.09172,
+          0.10208
+        ],
+        "rmse": 0.12665,
+        "grouped_r2": 0.7115,
+        "n_units": 401,
+        "hp_modal": "{'max_depth': 6, 'learning_rate': 0.1, 'max_iter': 500, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      },
+      "FLEX_BENCHMARK_no_mass": {
+        "mae": 0.10086,
+        "mae_unit": 0.10012,
+        "mae_ci_compound": [
+          0.0953,
+          0.10653
+        ],
+        "mae_ci_unit": [
+          0.09458,
+          0.106
+        ],
+        "rmse": 0.13189,
+        "grouped_r2": 0.6868,
+        "n_units": 401,
+        "hp_modal": "{'max_depth': 6, 'learning_rate': 0.1, 'max_iter': 500, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      }
+    },
+    "S0_LEAKED": {
+      "resampling_unit": "compound",
+      "B1_per_energy_mean": {
+        "mae": 0.15389,
+        "mae_unit": 0.15389,
+        "mae_ci_compound": [
+          0.14629,
+          0.16126
+        ],
+        "mae_ci_unit": [
+          0.14629,
+          0.16126
+        ],
+        "rmse": 0.18611,
+        "grouped_r2": 0.3766,
+        "n_units": 439,
+        "hp_modal": "{}"
+      },
+      "MASS_FLEX": {
+        "mae": 0.12313,
+        "mae_unit": 0.12313,
+        "mae_ci_compound": [
+          0.11701,
+          0.12927
+        ],
+        "mae_ci_unit": [
+          0.11701,
+          0.12927
+        ],
+        "rmse": 0.15404,
+        "grouped_r2": 0.5733,
+        "n_units": 439,
+        "hp_modal": "{'alpha': 0.1}"
+      },
+      "FLEX_BENCHMARK": {
+        "mae": 0.04339,
+        "mae_unit": 0.04339,
+        "mae_ci_compound": [
+          0.041,
+          0.04596
+        ],
+        "mae_ci_unit": [
+          0.041,
+          0.04596
+        ],
+        "rmse": 0.0682,
+        "grouped_r2": 0.9164,
+        "n_units": 439,
+        "hp_modal": "{'max_depth': None, 'learning_rate': 0.1, 'max_iter': 500, 'min_samples_leaf': 20, 'l2_regularization': 0.0}"
+      }
+    }
+  },
+  "paired": {
+    "S1": {
+      "FLEX_BENCHMARK_vs_B1_per_energy_mean": {
+        "mae_diff": -0.05808,
+        "ci_unit": [
+          -0.06679,
+          -0.04995
+        ],
+        "ci_compound": [
+          -0.06679,
+          -0.04995
+        ],
+        "rel_reduction_pct": 37.66,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.03298,
+        "ci_unit": [
+          -0.03928,
+          -0.02696
+        ],
+        "ci_compound": [
+          -0.03928,
+          -0.02696
+        ],
+        "rel_reduction_pct": 25.54,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_MASS_FLEX": {
+        "mae_diff": -0.0279,
+        "ci_unit": [
+          -0.03424,
+          -0.02192
+        ],
+        "ci_compound": [
+          -0.03424,
+          -0.02192
+        ],
+        "rel_reduction_pct": 22.49,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B1_per_energy_mean": {
+        "mae_diff": -0.04279,
+        "ci_unit": [
+          -0.05027,
+          -0.03533
+        ],
+        "ci_compound": [
+          -0.05027,
+          -0.03533
+        ],
+        "rel_reduction_pct": 27.75,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.01769,
+        "ci_unit": [
+          -0.02214,
+          -0.01266
+        ],
+        "ci_compound": [
+          -0.02214,
+          -0.01266
+        ],
+        "rel_reduction_pct": 13.7,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_MASS_FLEX": {
+        "mae_diff": -0.01261,
+        "ci_unit": [
+          -0.01762,
+          -0.00731
+        ],
+        "ci_compound": [
+          -0.01762,
+          -0.00731
+        ],
+        "rel_reduction_pct": 10.17,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B1_per_energy_mean": {
+        "mae_diff": -0.03018,
+        "ci_unit": [
+          -0.0378,
+          -0.02296
+        ],
+        "ci_compound": [
+          -0.0378,
+          -0.02296
+        ],
+        "rel_reduction_pct": 19.57,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.00508,
+        "ci_unit": [
+          -0.00762,
+          -0.00264
+        ],
+        "ci_compound": [
+          -0.00762,
+          -0.00264
+        ],
+        "rel_reduction_pct": 3.94,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.03782,
+        "ci_unit": [
+          -0.04488,
+          -0.03048
+        ],
+        "ci_compound": [
+          -0.04488,
+          -0.03048
+        ],
+        "rel_reduction_pct": 24.53,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.00764,
+        "ci_unit": [
+          -0.01291,
+          -0.00229
+        ],
+        "ci_compound": [
+          -0.01291,
+          -0.00229
+        ],
+        "rel_reduction_pct": 6.16,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.05681,
+        "ci_unit": [
+          -0.06537,
+          -0.04851
+        ],
+        "ci_compound": [
+          -0.06537,
+          -0.04851
+        ],
+        "rel_reduction_pct": 36.84,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.02663,
+        "ci_unit": [
+          -0.03325,
+          -0.02009
+        ],
+        "ci_compound": [
+          -0.03325,
+          -0.02009
+        ],
+        "rel_reduction_pct": 21.47,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_TIER_A_mass_only": {
+        "mae_diff": -0.00627,
+        "ci_unit": [
+          -0.00946,
+          -0.0032
+        ],
+        "ci_compound": [
+          -0.00946,
+          -0.0032
+        ],
+        "rel_reduction_pct": 5.33,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_TIER_A": {
+        "mae_diff": -0.01529,
+        "ci_unit": [
+          -0.02023,
+          -0.01058
+        ],
+        "ci_compound": [
+          -0.02023,
+          -0.01058
+        ],
+        "rel_reduction_pct": 13.72,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      }
+    },
+    "S2": {
+      "FLEX_BENCHMARK_vs_B1_per_energy_mean": {
+        "mae_diff": -0.05432,
+        "ci_unit": [
+          -0.06349,
+          -0.04515
+        ],
+        "ci_compound": [
+          -0.06296,
+          -0.04568
+        ],
+        "rel_reduction_pct": 35.12,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.02923,
+        "ci_unit": [
+          -0.03812,
+          -0.0238
+        ],
+        "ci_compound": [
+          -0.03551,
+          -0.02318
+        ],
+        "rel_reduction_pct": 22.56,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_MASS_FLEX": {
+        "mae_diff": -0.02513,
+        "ci_unit": [
+          -0.035,
+          -0.02003
+        ],
+        "ci_compound": [
+          -0.03181,
+          -0.01911
+        ],
+        "rel_reduction_pct": 20.02,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B1_per_energy_mean": {
+        "mae_diff": -0.04241,
+        "ci_unit": [
+          -0.04917,
+          -0.03116
+        ],
+        "ci_compound": [
+          -0.04994,
+          -0.0348
+        ],
+        "rel_reduction_pct": 27.42,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.01732,
+        "ci_unit": [
+          -0.02317,
+          -0.01073
+        ],
+        "ci_compound": [
+          -0.02181,
+          -0.01232
+        ],
+        "rel_reduction_pct": 13.37,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_MASS_FLEX": {
+        "mae_diff": -0.01322,
+        "ci_unit": [
+          -0.02056,
+          -0.00685
+        ],
+        "ci_compound": [
+          -0.01828,
+          -0.00782
+        ],
+        "rel_reduction_pct": 10.53,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B1_per_energy_mean": {
+        "mae_diff": -0.02919,
+        "ci_unit": [
+          -0.03563,
+          -0.018
+        ],
+        "ci_compound": [
+          -0.03689,
+          -0.02192
+        ],
+        "rel_reduction_pct": 18.87,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.00411,
+        "ci_unit": [
+          -0.00613,
+          -0.00051
+        ],
+        "ci_compound": [
+          -0.0065,
+          -0.00176
+        ],
+        "rel_reduction_pct": 3.17,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.03686,
+        "ci_unit": [
+          -0.04693,
+          -0.02948
+        ],
+        "ci_compound": [
+          -0.04401,
+          -0.02919
+        ],
+        "rel_reduction_pct": 23.83,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.00767,
+        "ci_unit": [
+          -0.01864,
+          -0.00421
+        ],
+        "ci_compound": [
+          -0.01304,
+          -0.00234
+        ],
+        "rel_reduction_pct": 6.11,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.05146,
+        "ci_unit": [
+          -0.06175,
+          -0.04296
+        ],
+        "ci_compound": [
+          -0.06065,
+          -0.04238
+        ],
+        "rel_reduction_pct": 33.27,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.02227,
+        "ci_unit": [
+          -0.03345,
+          -0.01788
+        ],
+        "ci_compound": [
+          -0.02879,
+          -0.01599
+        ],
+        "rel_reduction_pct": 17.75,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_TIER_A_mass_only": {
+        "mae_diff": -0.00604,
+        "ci_unit": [
+          -0.00891,
+          -0.00145
+        ],
+        "ci_compound": [
+          -0.00914,
+          -0.00299
+        ],
+        "rel_reduction_pct": 5.1,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_TIER_A": {
+        "mae_diff": -0.01191,
+        "ci_unit": [
+          -0.0203,
+          -0.00837
+        ],
+        "ci_compound": [
+          -0.01708,
+          -0.00713
+        ],
+        "rel_reduction_pct": 10.61,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      }
+    },
+    "S3": {
+      "FLEX_BENCHMARK_vs_B1_per_energy_mean": {
+        "mae_diff": -0.0567,
+        "ci_unit": [
+          -0.06642,
+          -0.04866
+        ],
+        "ci_compound": [
+          -0.06523,
+          -0.04825
+        ],
+        "rel_reduction_pct": 36.85,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.03107,
+        "ci_unit": [
+          -0.03619,
+          -0.02346
+        ],
+        "ci_compound": [
+          -0.03737,
+          -0.02531
+        ],
+        "rel_reduction_pct": 24.23,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_MASS_FLEX": {
+        "mae_diff": -0.02625,
+        "ci_unit": [
+          -0.03089,
+          -0.01837
+        ],
+        "ci_compound": [
+          -0.03245,
+          -0.02046
+        ],
+        "rel_reduction_pct": 21.27,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B1_per_energy_mean": {
+        "mae_diff": -0.04204,
+        "ci_unit": [
+          -0.0504,
+          -0.03456
+        ],
+        "ci_compound": [
+          -0.04943,
+          -0.03467
+        ],
+        "rel_reduction_pct": 27.32,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.01642,
+        "ci_unit": [
+          -0.01998,
+          -0.00982
+        ],
+        "ci_compound": [
+          -0.02086,
+          -0.01153
+        ],
+        "rel_reduction_pct": 12.8,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_MASS_FLEX": {
+        "mae_diff": -0.0116,
+        "ci_unit": [
+          -0.0153,
+          -0.00431
+        ],
+        "ci_compound": [
+          -0.01648,
+          -0.00646
+        ],
+        "rel_reduction_pct": 9.4,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B1_per_energy_mean": {
+        "mae_diff": -0.03044,
+        "ci_unit": [
+          -0.03999,
+          -0.02502
+        ],
+        "ci_compound": [
+          -0.03774,
+          -0.02339
+        ],
+        "rel_reduction_pct": 19.79,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "MASS_FLEX_vs_B2_MASS_SIMPLE": {
+        "mae_diff": -0.00482,
+        "ci_unit": [
+          -0.00763,
+          -0.00266
+        ],
+        "ci_compound": [
+          -0.00715,
+          -0.00256
+        ],
+        "rel_reduction_pct": 3.76,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.03704,
+        "ci_unit": [
+          -0.04575,
+          -0.031
+        ],
+        "ci_compound": [
+          -0.04415,
+          -0.02956
+        ],
+        "rel_reduction_pct": 24.07,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.00659,
+        "ci_unit": [
+          -0.01105,
+          -0.0007
+        ],
+        "ci_compound": [
+          -0.01178,
+          -0.00132
+        ],
+        "rel_reduction_pct": 5.34,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_B1_per_energy_mean": {
+        "mae_diff": -0.05301,
+        "ci_unit": [
+          -0.06278,
+          -0.04538
+        ],
+        "ci_compound": [
+          -0.06134,
+          -0.04467
+        ],
+        "rel_reduction_pct": 34.45,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_no_mass_vs_MASS_FLEX": {
+        "mae_diff": -0.02257,
+        "ci_unit": [
+          -0.02811,
+          -0.01471
+        ],
+        "ci_compound": [
+          -0.0292,
+          -0.01621
+        ],
+        "rel_reduction_pct": 18.28,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "TIER_A_vs_TIER_A_mass_only": {
+        "mae_diff": -0.00565,
+        "ci_unit": [
+          -0.00814,
+          -0.00154
+        ],
+        "ci_compound": [
+          -0.00888,
+          -0.00261
+        ],
+        "rel_reduction_pct": 4.81,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      },
+      "FLEX_BENCHMARK_vs_TIER_A": {
+        "mae_diff": -0.01466,
+        "ci_unit": [
+          -0.01961,
+          -0.00973
+        ],
+        "ci_compound": [
+          -0.01957,
+          -0.00988
+        ],
+        "rel_reduction_pct": 13.11,
+        "a_better": true,
+        "ci_excludes_zero_unit": true
+      }
+    }
+  },
+  "K4_primary_split": "S2",
+  "K4_flexible": {
+    "K4A": {
+      "pass": true,
+      "mae_diff_vs_B1": -0.05432,
+      "ci_unit": [
+        -0.06349,
+        -0.04515
+      ],
+      "ci_compound": [
+        -0.06296,
+        -0.04568
+      ],
+      "rel_reduction_pct": 35.12,
+      "rule": "mean MAE reduction vs B1 > 0 and upper bound of the 95% scaffold-level paired interval < 0"
+    },
+    "K4B": {
+      "pass": true,
+      "mae_diff_vs_MASS_FLEX": -0.02513,
+      "ci_unit": [
+        -0.035,
+        -0.02003
+      ],
+      "ci_compound": [
+        -0.03181,
+        -0.01911
+      ],
+      "rel_reduction_pct": 20.02,
+      "min_required_rel_reduction_pct": 5.0,
+      "rule": "paired interval upper bound < 0 AND relative MAE reduction >= 5%"
+    }
+  },
+  "K4_tier_a": {
+    "K4A": {
+      "pass": true,
+      "mae_diff_vs_B1": -0.04241,
+      "ci_unit": [
+        -0.04917,
+        -0.03116
+      ],
+      "ci_compound": [
+        -0.04994,
+        -0.0348
+      ],
+      "rel_reduction_pct": 27.42,
+      "rule": "mean MAE reduction vs B1 > 0 and upper bound of the 95% scaffold-level paired interval < 0"
+    },
+    "K4B": {
+      "pass": true,
+      "mae_diff_vs_MASS_FLEX": -0.01322,
+      "ci_unit": [
+        -0.02056,
+        -0.00685
+      ],
+      "ci_compound": [
+        -0.01828,
+        -0.00782
+      ],
+      "rel_reduction_pct": 10.53,
+      "min_required_rel_reduction_pct": 5.0,
+      "rule": "paired interval upper bound < 0 AND relative MAE reduction >= 5%"
+    }
+  },
+  "K5_inputs": {
+    "mass_block_removed": [
+      "precursor_mz",
+      "total_atom_count",
+      "rdbe"
+    ],
+    "rdkit_mass_like_removed": [
+      "rdk_MolWt",
+      "rdk_MolMR",
+      "rdk_LabuteASA",
+      "rdk_HeavyAtomCount",
+      "rdk_Chi0v",
+      "rdk_Chi1v",
+      "rdk_Chi2v",
+      "rdk_Chi3v",
+      "rdk_Chi4v",
+      "rdk_Kappa1",
+      "rdk_Kappa2",
+      "rdk_Kappa3",
+      "rdk_BertzCT"
+    ],
+    "tier_a_no_mass_vs_B1": {
+      "mae_diff": -0.03686,
+      "ci_unit": [
+        -0.04693,
+        -0.02948
+      ],
+      "ci_compound": [
+        -0.04401,
+        -0.02919
+      ],
+      "rel_reduction_pct": 23.83,
+      "a_better": true,
+      "ci_excludes_zero_unit": true
+    },
+    "flex_no_mass_vs_B1": {
+      "mae_diff": -0.05146,
+      "ci_unit": [
+        -0.06175,
+        -0.04296
+      ],
+      "ci_compound": [
+        -0.06065,
+        -0.04238
+      ],
+      "rel_reduction_pct": 33.27,
+      "a_better": true,
+      "ci_excludes_zero_unit": true
+    },
+    "tier_a_no_mass_vs_MASS_FLEX": {
+      "mae_diff": -0.00767,
+      "ci_unit": [
+        -0.01864,
+        -0.00421
+      ],
+      "ci_compound": [
+        -0.01304,
+        -0.00234
+      ],
+      "rel_reduction_pct": 6.11,
+      "a_better": true,
+      "ci_excludes_zero_unit": true
+    },
+    "flex_no_mass_vs_MASS_FLEX": {
+      "mae_diff": -0.02227,
+      "ci_unit": [
+        -0.03345,
+        -0.01788
+      ],
+      "ci_compound": [
+        -0.02879,
+        -0.01599
+      ],
+      "rel_reduction_pct": 17.75,
+      "a_better": true,
+      "ci_excludes_zero_unit": true
+    },
+    "tier_a_vs_mass_only": {
+      "mae_diff": -0.00604,
+      "ci_unit": [
+        -0.00891,
+        -0.00145
+      ],
+      "ci_compound": [
+        -0.00914,
+        -0.00299
+      ],
+      "rel_reduction_pct": 5.1,
+      "a_better": true,
+      "ci_excludes_zero_unit": true
+    }
+  },
+  "leakage_canary": {
+    "purpose": "S0 splits ROWS, so the six energies of a molecule land on both sides of the wall. Diagnostic only; never scientific performance.",
+    "comparison": {
+      "B1_per_energy_mean": {
+        "S0_leaked_mae": 0.15389,
+        "S2_honest_mae": 0.15468,
+        "inflation_pct": 0.51
+      },
+      "MASS_FLEX": {
+        "S0_leaked_mae": 0.12313,
+        "S2_honest_mae": 0.12548,
+        "inflation_pct": 1.87
+      },
+      "FLEX_BENCHMARK": {
+        "S0_leaked_mae": 0.04339,
+        "S2_honest_mae": 0.10036,
+        "inflation_pct": 56.77
+      }
+    },
+    "fires": true
+  }
+}

@@ -40,6 +40,16 @@ outputs/
 !artifacts/MANIFEST*.json
 !artifacts/*SHA256*
 !artifacts/replicate_compound_keys.json
+
+# The sealed confirmation set is the seal itself: its SHA-256 is quoted in
+# PREREGISTRATION.md, so the file has to be in the repository for that hash to
+# be checkable. Tracked, and never opened during Phase 2.
+!artifacts/confirmation_set_sealed.json
+
+# Machine-readable Phase 2 results. Every number in every Phase 2 markdown
+# report is generated from these, so they are the reproducibility record rather
+# than regenerable scratch (Phase 2 instruction 28). All are small JSON.
+!artifacts/p2_*.json
 *.parquet
 *.feather
 *.h5
