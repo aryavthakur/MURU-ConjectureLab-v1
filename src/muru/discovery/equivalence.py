@@ -82,6 +82,13 @@ def algebraically_equivalent(a: sp.Expr, b: sp.Expr) -> bool | None:
     try:
         if sp.count_ops(a) + sp.count_ops(b) > SIMPLIFY_TIMEOUT_TERMS:
             return None
+        # Positivity is asserted here only, as a proof aid: every descriptor in
+        # the dimensionless frame is non-negative, and it lets powsimp combine
+        # radicals. It is not applied at parse time, where it would change the
+        # tree the complexity metric counts.
+        sub = {s: sp.Symbol(s.name, positive=True)
+               for s in (a.free_symbols | b.free_symbols)}
+        a, b = a.subs(sub), b.subs(sub)
         ratio = sp.simplify(sp.cancel(sp.powsimp(a / b, force=True)))
         if ratio.is_number:
             return bool(ratio.is_positive is not False and ratio != 0)

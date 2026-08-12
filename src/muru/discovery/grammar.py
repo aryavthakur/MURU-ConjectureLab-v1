@@ -92,9 +92,18 @@ _SYMPY_LOCALS = {
 
 
 def parse(expr: str, variables: list[str]) -> sp.Expr:
-    """Parse an engine-emitted expression string into a sympy expression."""
+    """Parse an engine-emitted expression string into a sympy expression.
+
+    Symbols carry NO positivity assumption. Assuming positivity makes sympy
+    restructure expressions on sight — `sqrt(a*b)` becomes `sqrt(a)*sqrt(b)` —
+    which would inflate the node count relative to the tree the engine actually
+    searched and break the stated goal of keeping PySR and gplearn on one
+    complexity scale. Positivity is asserted only inside
+    `equivalence.algebraically_equivalent`, where it is a proof aid rather than
+    a representation change.
+    """
     loc = dict(_SYMPY_LOCALS)
-    loc.update({v: sp.Symbol(v, positive=True) for v in variables})
+    loc.update({v: sp.Symbol(v) for v in variables})
     return sp.sympify(expr, locals=loc)
 
 
@@ -106,10 +115,13 @@ def evaluate(expr: sp.Expr, variables: list[str],
     square root outside the domain, overflow, or produce NaN are marked invalid
     and their values are not trusted.
     """
-    syms = [sp.Symbol(v, positive=True) for v in variables]
-    fn = sp.lambdify(syms, expr, modules=["numpy"])
+    syms = [sp.Symbol(v) for v in variables]
     with np.errstate(all="ignore"):
         try:
+            # lambdify itself raises on degenerate expressions such as the
+            # ComplexInfinity that `1/(a-a)` collapses to. That is invalidity,
+            # not an error to propagate — and it must never become a good score.
+            fn = sp.lambdify(syms, expr, modules=["numpy"])
             out = np.asarray(fn(*[X[:, i] for i in range(X.shape[1])]), float)
         except Exception:
             return np.zeros(len(X)), np.zeros(len(X), dtype=bool)

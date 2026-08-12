@@ -92,8 +92,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--blocks", default="")
     ap.add_argument("--engine", default="pysr", choices=("pysr", "gplearn"))
-    ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--shard", type=int, default=0)
+    ap.add_argument("--nshards", type=int, default=1)
     a = ap.parse_args()
 
     specs = gplearn_worlds() if a.engine == "gplearn" else all_worlds()
@@ -104,32 +105,34 @@ def main() -> int:
     if a.limit:
         specs = specs[:a.limit]
 
-    if a.workers > 4:
-        print(f"WARNING: {a.workers} workers exceeds the documented cap of 4; "
-              "see RUNTIME_BUDGET_P3.md", flush=True)
+    # Parallelism is N INDEPENDENT single-process shards, not a worker pool.
+    # juliacall does not survive multiprocessing teardown: pool workers die with
+    # BrokenPipeError on the result queue and the run stalls. Independent
+    # processes share nothing, and per-seed checkpointing already makes the work
+    # safe to split and resume, so the pool bought nothing it could not lose.
+    # Deterministic sharding by index keeps resume reproducible.
+    if a.nshards > 1:
+        specs = [s for i, s in enumerate(specs) if i % a.nshards == a.shard]
 
     total = len(specs) * n_seeds
-    print(f"[t3_20] engine={a.engine} worlds={len(specs)} seeds={n_seeds} "
-          f"units={total} workers={a.workers}", flush=True)
+    print(f"[t3_20] engine={a.engine} shard={a.shard}/{a.nshards} "
+          f"worlds={len(specs)} seeds={n_seeds} units={total}", flush=True)
 
-    import multiprocessing as mp
-    ctx = mp.get_context("spawn")
     t0 = time.time()
     ran = skipped = 0
-    with ctx.Pool(a.workers) as pool:
-        jobs = [(s, a.engine, n_seeds) for s in specs]
-        for i, r in enumerate(pool.imap_unordered(run_world, jobs), 1):
-            ran += r["ran"]
-            skipped += r["skipped"]
-            el = time.time() - t0
-            rate = ran / el if el > 0 and ran else 0.0
-            left = (total - ran - skipped) / rate if rate > 0 else float("nan")
-            print(f"[{i:4d}/{len(specs)}] {r['world']:38s} ran={r['ran']:3d} "
-                  f"skip={r['skipped']:3d} elapsed={el/60:6.1f}m "
-                  f"eta={left/60:6.1f}m", flush=True)
+    for i, spec in enumerate(specs, 1):
+        r = run_world((spec, a.engine, n_seeds))
+        ran += r["ran"]
+        skipped += r["skipped"]
+        el = time.time() - t0
+        rate = ran / el if el > 0 and ran else 0.0
+        left = (total - ran - skipped) / rate if rate > 0 else float("nan")
+        print(f"[s{a.shard} {i:4d}/{len(specs)}] {r['world']:44s} "
+              f"ran={r['ran']:3d} skip={r['skipped']:3d} "
+              f"elapsed={el/60:6.1f}m eta={left/60:6.1f}m", flush=True)
 
-    print(f"[t3_20] done: {ran} units run, {skipped} already present, "
-          f"{(time.time()-t0)/60:.1f} min", flush=True)
+    print(f"[t3_20] shard {a.shard} done: {ran} units run, {skipped} already "
+          f"present, {(time.time()-t0)/60:.1f} min", flush=True)
     return 0
 
 

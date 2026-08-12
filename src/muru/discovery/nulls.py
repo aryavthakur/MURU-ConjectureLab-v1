@@ -52,12 +52,32 @@ def threshold_table(curves: list[np.ndarray],
     # A threshold must not fall as complexity rises: a larger hypothesis space
     # cannot make chance fitting harder.
     thr = np.maximum.accumulate(thr)
+    # The 95th percentile of N worlds rests on the top ~N/20 of them, so the
+    # threshold carries real sampling uncertainty of its own. Reporting it keeps
+    # the table from being read as more precise than it is.
+    rng = np.random.default_rng(20260812)
+    boot_lo, boot_hi = [], []
+    for c in range(M.shape[1]):
+        col = M[:, c][np.isfinite(M[:, c])]
+        if len(col) < 5:
+            boot_lo.append(None), boot_hi.append(None)
+            continue
+        draws = [np.percentile(rng.choice(col, len(col), replace=True), quantile)
+                 for _ in range(2000)]
+        lo, hi = np.percentile(draws, [2.5, 97.5])
+        boot_lo.append(float(lo)), boot_hi.append(float(hi))
+
     return {
         "null_version": NULL_VERSION,
         "quantile": quantile,
         "n_worlds": int(M.shape[0]),
         "max_complexity": int(M.shape[1] - 1),
         "threshold_by_complexity": [float(x) for x in thr],
+        "threshold_ci_lo": boot_lo,
+        "threshold_ci_hi": boot_hi,
+        "threshold_ci_note": ("2000-resample bootstrap of the quantile itself; "
+                              "the 95th percentile of a finite set of null "
+                              "worlds is not a precisely known number"),
         "median_by_complexity": [
             float(np.median(M[:, c][np.isfinite(M[:, c])]))
             if np.isfinite(M[:, c]).any() else float("-inf")

@@ -144,3 +144,46 @@ claim in any case.
 pass. F2's re-scoping is stated in `FALSIFICATION_HARNESS.md` and both are
 carried into the Phase 4 protocol, where F2 and F3 become evaluable again on
 real data and are required there.
+
+---
+
+## D7 — Expression parsing drops the positivity assumption (IMPLEMENTATION ONLY)
+
+**Not a change of specification.** §9 of the pre-registration already states the
+complexity metric's intent: an integer or half-integer power costs one unary
+operation over its base "so `x**2` costs 2 exactly as PySR's `square(x)` does;
+this keeps the two engines on the same scale." This entry records a bug fix that
+makes the implementation match that frozen text.
+
+**The defect.** Candidate strings were first parsed with symbols declared
+`positive=True`. SymPy restructures expressions on sight under that assumption:
+`sqrt(a*b)` is rewritten as `sqrt(a)*sqrt(b)`, raising the node count from 4 to
+5. The metric was therefore counting a tree the engine never searched, and the
+inflation applied unevenly — only to expressions containing a restructurable
+form. A second defect in the same area: `sympy.lambdify` raises on degenerate
+expressions such as the `ComplexInfinity` that `1/(a-a)` collapses to, and the
+raise happened outside the guard, so a pathological candidate produced an
+exception instead of being marked invalid.
+
+**The fix.** Parsing and evaluation use plain symbols, preserving the engine's
+tree. Positivity is asserted only inside
+`equivalence.algebraically_equivalent`, where it is a proof aid for `powsimp`
+rather than a change of representation. `lambdify` moved inside the protected
+block, so a degenerate expression is now invalid — never an error, and never a
+favourable score.
+
+**When, and what had been seen.** Found by `tests/test_p3_grammar.py` while the
+first governed run was in progress. **No result had been examined**: no
+threshold, no candidate, no recovery rate and no false-positive count had been
+computed or looked at — only unit tests on hand-constructed expressions. The
+run in progress had written 528 checkpoint units under the old parser.
+
+**Action taken.** The run was stopped and **all checkpoints were deleted**,
+because mixing two complexity metrics across worlds would have corrupted the
+null calibration: thresholds are conditioned on complexity, so worlds scored on
+different scales are not comparable. The full 7,200-unit search was restarted
+from zero under the corrected code. Approximately 13 minutes of compute was
+discarded.
+
+**Consequence.** None for the science. Every world in the reported results is
+scored by one metric.
