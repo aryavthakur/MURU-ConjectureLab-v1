@@ -1,7 +1,7 @@
 {
  "purpose": "freeze record for the objective-alignment validation study",
  "sha256": "9ce046294940464343cd74978931fa3fc9ed7bb79541484a9fba7b8c142ee9e7",
- "commit": "recorded_at_freeze_commit",
+ "commit": "307e4e083256b04ee7c4452282f06c06812785b8",
  "phase3_commit": "211b500999a6ea0a098cfb87f1a9f4958060f81e",
  "phase3_prereg_sha256": "064ce1fb9939b10d3b22be1f74aa3da28f487ec3917449db0794cf6431af5a63",
  "confirmation_seal_sha256_before_study": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
