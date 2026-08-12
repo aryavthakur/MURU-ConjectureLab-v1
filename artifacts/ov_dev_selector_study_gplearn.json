@@ -1,0 +1,2617 @@
+{
+ "purpose": "DEVELOPMENT ONLY \u2014 not evidence for the Type 2 verdict",
+ "source": "Phase 3 checkpoint store (already-seen worlds)",
+ "band_tol": 0.01,
+ "lattice_n": 2000,
+ "rows": [
+  {
+   "block": "G1",
+   "world": "G1B~r000~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.5111222379524683,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000022,
+     "heteroatom_fraction": 0.25000005468751485
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000022,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.25000005468751674,
+      "min": 0.25000005468751485,
+      "max": 0.25000005468751674,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r000~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7659353858339999,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 6
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r000~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "sqrt(sqrt(total_atom_count))",
+    "complexity": 2,
+    "valid_r2": 0.1611873529622202,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.250000054687516
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.250000054687516,
+      "min": 0.250000054687516,
+      "max": 0.250000054687516,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r001~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7158937450401466,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 3
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r001~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.4070374036008313,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "tpsa"
+    ],
+    "symbolic_support": [
+     "tpsa"
+    ],
+    "exponents": {
+     "tpsa": 0.2500000546875124
+    },
+    "signs": {
+     "tpsa": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "tpsa": {
+      "median": 0.2500000546875124,
+      "min": 0.2500000546875124,
+      "max": 0.2500000546875124,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r001~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.6967834779389042,
+    "selection_fraction": 0.5,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 5
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 5
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r002~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": -0.05163601364298409,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "tpsa"
+    ],
+    "symbolic_support": [
+     "tpsa"
+    ],
+    "exponents": {
+     "tpsa": 0.2500000546875124
+    },
+    "signs": {
+     "tpsa": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "tpsa": {
+      "median": 0.2500000546875124,
+      "min": 0.2500000546875124,
+      "max": 0.2500000546875124,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r002~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.699470061958791,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 3
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r002~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((precursor_mz + precursor_mz))",
+    "complexity": 5,
+    "valid_r2": 0.6602101399836826,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "precursor_mz"
+    ],
+    "symbolic_support": [
+     "precursor_mz"
+    ],
+    "exponents": {
+     "precursor_mz": 0.5000000625000018
+    },
+    "signs": {
+     "precursor_mz": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000018,
+      "min": 0.5000000625000018,
+      "max": 0.5000000625000018,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r003~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.31960838498012445,
+    "selection_fraction": 0.5,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 5
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r003~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.8317674539014993,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 3
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r003~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.3422221632128011,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "tpsa"
+    ],
+    "symbolic_support": [
+     "tpsa"
+    ],
+    "exponents": {
+     "tpsa": 0.2500000546875124
+    },
+    "signs": {
+     "tpsa": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "tpsa": {
+      "median": 0.2500000546875124,
+      "min": 0.2500000546875124,
+      "max": 0.2500000546875124,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r004~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.709503084334457,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r004~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7618969872030585,
+    "selection_fraction": 0.8,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 8
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 8
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r004~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.5834206671264146,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 6
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r005~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.35827909157470883,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r005~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7601207586101897,
+    "selection_fraction": 0.5,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 5
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 5
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r005~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(sqrt(heteroatom_fraction))",
+    "complexity": 2,
+    "valid_r2": 0.1784508039885785,
+    "selection_fraction": 0.5,
+    "effective_support": [
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "heteroatom_fraction": 0.2500000546875154
+    },
+    "signs": {
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "heteroatom_fraction": {
+      "median": 0.2500000546875154,
+      "min": 0.2500000546875154,
+      "max": 0.2500000546875154,
+      "n": 5
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r006~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((precursor_mz/0.5467644474401283))",
+    "complexity": 4,
+    "valid_r2": 0.5762754569007551,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "precursor_mz"
+    ],
+    "symbolic_support": [
+     "precursor_mz"
+    ],
+    "exponents": {
+     "precursor_mz": 0.5000000625000027
+    },
+    "signs": {
+     "precursor_mz": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000018,
+      "min": 0.5000000625000007,
+      "max": 0.5000000625000027,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r006~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7970624827902202,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 6
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r006~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(sqrt(total_atom_count))",
+    "complexity": 2,
+    "valid_r2": 0.20023709189456806,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.250000054687516
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.250000054687516,
+      "min": 0.250000054687516,
+      "max": 0.250000054687516,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r007~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt(((total_atom_count*sqrt(heteroatom_fraction))*sqrt(heteroatom_fraction)))",
+    "complexity": 4,
+    "valid_r2": 0.4517381438697956,
+    "selection_fraction": 0.7,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     5,
+     6
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000001,
+      "max": 0.5000000625000017,
+      "n": 7
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 7
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r007~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7911941737669836,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 3
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r007~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt(sqrt(tpsa))",
+    "complexity": 2,
+    "valid_r2": 0.3180216576716818,
+    "selection_fraction": 0.3,
+    "effective_support": [
+     "tpsa"
+    ],
+    "symbolic_support": [
+     "tpsa"
+    ],
+    "exponents": {
+     "tpsa": 0.2500000546875124
+    },
+    "signs": {
+     "tpsa": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "tpsa": {
+      "median": 0.2500000546875124,
+      "min": 0.2500000546875124,
+      "max": 0.2500000546875124,
+      "n": 3
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r008~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt(sqrt(precursor_mz))",
+    "complexity": 2,
+    "valid_r2": -0.052866841971697554,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "precursor_mz"
+    ],
+    "symbolic_support": [
+     "precursor_mz"
+    ],
+    "exponents": {
+     "precursor_mz": 0.25000005468751607
+    },
+    "signs": {
+     "precursor_mz": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.25000005468751607,
+      "min": 0.25000005468751607,
+      "max": 0.25000005468751607,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r008~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7130047920224152,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 6
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r008~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((heteroatom_fraction*total_atom_count))",
+    "complexity": 4,
+    "valid_r2": 0.7141228215855193,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     4
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000012,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.500000062500002,
+      "max": 0.500000062500002,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r009~adverse",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.5781781843773975,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000022,
+     "heteroatom_fraction": 0.25000005468751485
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     5,
+     5,
+     5,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000022,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000022,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.25000005468751485,
+      "min": 0.25000005468751485,
+      "max": 0.25000005468751674,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r009~low",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 4,
+   "reported": {
+    "expr": "sqrt((total_atom_count*heteroatom_fraction))",
+    "complexity": 4,
+    "valid_r2": 0.7681247998188427,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000012,
+     "heteroatom_fraction": 0.500000062500002
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     4,
+     4,
+     4,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000012,
+      "min": 0.5000000625000012,
+      "max": 0.5000000625000017,
+      "n": 4
+     },
+     "heteroatom_fraction": {
+      "median": 0.500000062500002,
+      "min": 0.5000000624999994,
+      "max": 0.500000062500002,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G1",
+   "world": "G1B~r009~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 2,
+   "reported": {
+    "expr": "sqrt((sqrt(heteroatom_fraction)*total_atom_count))",
+    "complexity": 5,
+    "valid_r2": 0.6134177333984099,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "symbolic_support": [
+     "total_atom_count",
+     "heteroatom_fraction"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000625000022,
+     "heteroatom_fraction": 0.25000005468751485
+    },
+    "signs": {
+     "total_atom_count": 1,
+     "heteroatom_fraction": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     5,
+     5,
+     5,
+     5,
+     5,
+     5
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000625000022,
+      "min": 0.5000000625000022,
+      "max": 0.5000000625000022,
+      "n": 6
+     },
+     "heteroatom_fraction": {
+      "median": 0.25000005468751485,
+      "min": 0.25000005468751485,
+      "max": 0.25000005468751485,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G3",
+   "world": "G3~r000~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6747232820346432,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G3",
+   "world": "G3~r001~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6583881120371025,
+    "selection_fraction": 0.5,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 5
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G3",
+   "world": "G3~r002~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.8060961616191029,
+    "selection_fraction": 0.4,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 4
+     }
+    }
+   },
+   "runner_up_fraction": 0.4
+  },
+  {
+   "block": "G3",
+   "world": "G3~r003~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 2,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.43208038083292477,
+    "selection_fraction": 0.9,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 9
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G3",
+   "world": "G3~r004~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.7147798994358592,
+    "selection_fraction": 0.8,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 8
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G3",
+   "world": "G3~r005~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6636799571173326,
+    "selection_fraction": 0.6,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 6
+     }
+    }
+   },
+   "runner_up_fraction": 0.3
+  },
+  {
+   "block": "G3",
+   "world": "G3~r006~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 2,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.5556265507144029,
+    "selection_fraction": 0.8,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 8
+     }
+    }
+   },
+   "runner_up_fraction": 0.2
+  },
+  {
+   "block": "G3",
+   "world": "G3~r007~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 3,
+   "reported": {
+    "expr": "sqrt(total_atom_count)",
+    "complexity": 2,
+    "valid_r2": 0.6430741896894809,
+    "selection_fraction": 0.8,
+    "effective_support": [
+     "total_atom_count"
+    ],
+    "symbolic_support": [
+     "total_atom_count"
+    ],
+    "exponents": {
+     "total_atom_count": 0.5000000624999994
+    },
+    "signs": {
+     "total_atom_count": 1
+    },
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "exponent_spread": {
+     "MASS": {
+      "median": 0.5000000624999994,
+      "min": 0.5000000624999994,
+      "max": 0.5000000624999994,
+      "n": 8
+     }
+    }
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r000~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(n_N/n_N)",
+    "complexity": 1,
+    "valid_r2": -0.030708656888935204,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r001~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.02166820784738288,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r002~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.0021797660204556646,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r003~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(n_O/n_O)",
+    "complexity": 1,
+    "valid_r2": -0.0222809423553596,
+    "selection_fraction": 0.4,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r004~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(n_N/n_N)",
+    "complexity": 1,
+    "valid_r2": -2.356910114009736e-05,
+    "selection_fraction": 0.4,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r005~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.012979774801477495,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r006~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "(n_S/n_S)",
+    "complexity": 1,
+    "valid_r2": -0.002688657416471063,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r007~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "(precursor_mz/precursor_mz)",
+    "complexity": 1,
+    "valid_r2": -0.03552370292093787,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r008~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(rotatable_bonds/rotatable_bonds)",
+    "complexity": 1,
+    "valid_r2": -0.018654519383623613,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r009~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.04013240402022045,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r010~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.0013146067754639112,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r011~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0027420475126724853,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r012~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.006364516180434654,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r013~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0003222214219709141,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r014~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 10,
+   "reported": {
+    "expr": "0.9029479447861775",
+    "complexity": 1,
+    "valid_r2": -0.2341442865383161,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r015~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0006866834623371343,
+    "selection_fraction": 0.6,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r016~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0023302054640719216,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r017~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "0.9183004792069795",
+    "complexity": 1,
+    "valid_r2": -0.055005006441886106,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r018~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.08853005740194875,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r019~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -0.00013678843538711405,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r020~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.002950941806878049,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r021~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 6,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.01739834681004826,
+    "selection_fraction": 0.5,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r022~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 8,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.0028658308301132696,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r023~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "0.9267283496758552",
+    "complexity": 1,
+    "valid_r2": -0.2676113628899941,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r024~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(aromatic_ring_count/aromatic_ring_count)",
+    "complexity": 1,
+    "valid_r2": -7.77529847297842e-05,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r025~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 5,
+   "reported": {
+    "expr": "(n_halogen/n_halogen)",
+    "complexity": 1,
+    "valid_r2": -0.04520022114429789,
+    "selection_fraction": 0.6,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r026~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(heteroatom_fraction/heteroatom_fraction)",
+    "complexity": 1,
+    "valid_r2": -0.01135791514626261,
+    "selection_fraction": 0.3,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r027~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 9,
+   "reported": {
+    "expr": "(n_S/n_S)",
+    "complexity": 1,
+    "valid_r2": -0.008882324605068659,
+    "selection_fraction": 0.2,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r028~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(rdbe/rdbe)",
+    "complexity": 1,
+    "valid_r2": -0.036817729115675935,
+    "selection_fraction": 0.4,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  },
+  {
+   "block": "G4",
+   "world": "G4~r029~moderate",
+   "n_seeds": 10,
+   "median_band_size": 1.0,
+   "max_band_size": 1,
+   "n_families": 7,
+   "reported": {
+    "expr": "(0.2434136562657796 + 0.7704724626723576)",
+    "complexity": 1,
+    "valid_r2": -0.003924983871325116,
+    "selection_fraction": 0.1,
+    "effective_support": [],
+    "symbolic_support": [],
+    "exponents": {},
+    "signs": {},
+    "n_distinct_algebraic_forms": 1,
+    "member_complexities": [
+     1
+    ],
+    "exponent_spread": {}
+   },
+   "runner_up_fraction": 0.1
+  }
+ ]
+}

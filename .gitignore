@@ -132,3 +132,11 @@ Icon?
 *.swp
 *.swo
 *~
+
+# Objective-alignment validation study (ov-*): machine-readable evidence is
+# tracked; the per-seed checkpoint store and the selection/adjudication stores
+# are regenerable by re-running the study and are not.
+!artifacts/ov_*.json
+artifacts/ov_ckpt/
+artifacts/ov_sel/
+artifacts/ov_adj/
