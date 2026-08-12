@@ -1,0 +1,84 @@
+{
+ "hardware": {
+  "machine": "2024 MacBook Air",
+  "cores": 8,
+  "memory_gb": 16,
+  "workers": 4,
+  "thread_caps": [
+   "OMP_NUM_THREADS=1",
+   "OPENBLAS_NUM_THREADS=1",
+   "MKL_NUM_THREADS=1",
+   "VECLIB_MAXIMUM_THREADS=1",
+   "NUMEXPR_NUM_THREADS=1"
+  ],
+  "pysr_parallelism": "serial per run"
+ },
+ "benchmark": {
+  "pysr_serial_sec_per_run": 2.3,
+  "pysr_4worker_sec_per_run": 3.1,
+  "pysr_4worker_speedup": 2.97,
+  "pysr_6worker_sec_per_run": 4.2,
+  "pysr_6worker_speedup": 3.29,
+  "rss_gb_per_worker": 1.16
+ },
+ "counts": {
+  "worlds_by_block": {
+   "NCAL": 40,
+   "G4": 100,
+   "G4M": 30,
+   "G1": 30,
+   "G2": 8,
+   "G3": 8,
+   "G5": 8,
+   "GC": 9,
+   "GRT": 4,
+   "GA": 3
+  },
+  "n_worlds": 240,
+  "n_seeds_per_world": 30,
+  "pysr_runs_by_block": {
+   "NCAL": 1200,
+   "G4": 3000,
+   "G4M": 900,
+   "G1": 900,
+   "G2": 240,
+   "G3": 240,
+   "G5": 240,
+   "GC": 270,
+   "GRT": 120,
+   "GA": 90
+  },
+  "pysr_runs_total": 7200,
+  "gplearn_worlds": 68,
+  "gplearn_seeds_per_world": 10,
+  "gplearn_runs_total": 680,
+  "expansion": {
+   "NCAL": "40 worlds x 30 seeds = 1200 runs",
+   "G4": "100 worlds x 30 seeds = 3000 runs",
+   "G4M": "30 worlds x 30 seeds = 900 runs",
+   "G1": "30 worlds x 30 seeds = 900 runs",
+   "G2": "8 worlds x 30 seeds = 240 runs",
+   "G3": "8 worlds x 30 seeds = 240 runs",
+   "G5": "8 worlds x 30 seeds = 240 runs",
+   "GC": "9 worlds x 30 seeds = 270 runs",
+   "GRT": "4 worlds x 30 seeds = 120 runs",
+   "GA": "3 worlds x 30 seeds = 90 runs"
+  }
+ },
+ "projection_sec": {
+  "pysr": 5580.0,
+  "gplearn": 390.15,
+  "estimation_and_harness": 129.0,
+  "total": 6099.15
+ },
+ "projection_hours": 1.69,
+ "peak_memory_gb": 4.64,
+ "checkpointing": {
+  "unit": "(block, world, seed)",
+  "resumable": true,
+  "atomic_write": "tmp file then os.replace",
+  "worst_case_lost_units": 4,
+  "worst_case_lost_sec": 12.4
+ },
+ "seed_manifest_sha256": "eff5a1bb17eb482844ac217248935925f3a094c7602667045d2e48b11de951e9"
+}

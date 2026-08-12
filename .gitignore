@@ -50,6 +50,12 @@ outputs/
 # report is generated from these, so they are the reproducibility record rather
 # than regenerable scratch (Phase 2 instruction 28). All are small JSON.
 !artifacts/p2_*.json
+
+# Machine-readable Phase 3 results, on the same principle: every number in every
+# Phase 3 report is generated from these. The checkpoint store underneath is
+# regenerable scratch — thousands of per-seed files — and stays ignored.
+!artifacts/p3_*.json
+artifacts/p3_ckpt/
 *.parquet
 *.feather
 *.h5
