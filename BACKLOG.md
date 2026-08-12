@@ -150,19 +150,26 @@ repeatability estimate that issue I2 already requires.
 
 ### I6. NC7 fired: retention time predicts trajectory shape
 
-**Observation.** Retention time alone improves on B1 by **+0.01006**, far above
-its permutation null (95th percentile +0.00021, p = 0). Phase 1 anticipated this
-(`CONFOUNDERS.md` finding 4, |rho| up to 0.36).
+**Observation.** Retention time alone improves on B1 by **+0.01006**, above its
+permutation null (95th percentile +0.00021). **0 of 200** permutation replicates
+reached the observed value, giving a finite-sample corrected empirical
+p = **0.00498** = (b+1)/(B+1) — the smallest value attainable with 200
+resamples. Phase 1 anticipated this (`CONFOUNDERS.md` finding 4, |rho| up to
+0.36).
 
 **Explanation, and its limit.** Adding RT to Tier A gains only **+0.00097**,
-2.3% of the Tier A effect, so structure already contains what RT knows. RT is a
-**structure surrogate** — it tracks lipophilicity, itself a structural property
-— rather than an independent confounder, and it does not carry the structural
-result. The control therefore does not block.
+2.3% of the Tier A effect. RT therefore carries predictive signal by itself but
+adds little incremental predictive information beyond Tier A descriptors, which
+is consistent with it acting **primarily as a structure-associated surrogate in
+this dataset** — it tracks lipophilicity, itself a structural property. The
+control does not block.
 
-What the explanation does **not** do is separate real lipophilicity-driven
-chemistry from co-elution and matrix effects. Those two mechanisms are
-confounded in this dataset and no Phase 2 evidence distinguishes them.
+This is an observational association, not an identification result.
+**Independent confounding cannot be completely excluded**: a confounder whose
+effect is largely collinear with the descriptors would produce the same small
+increment. Nor does the explanation separate real lipophilicity-driven chemistry
+from co-elution and matrix effects; those mechanisms are confounded in this
+dataset and no Phase 2 evidence distinguishes them.
 
 **Scientific impact.** No mechanistic reading of the structural effect may lean
 on RT-correlated descriptors.

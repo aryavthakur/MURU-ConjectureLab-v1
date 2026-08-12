@@ -88,14 +88,31 @@ def test_retention_time_control_fires_and_is_recorded():
     assert "BLOCKER" in c["verdict"]
 
 
-def test_nc7_followup_shows_rt_is_a_structure_surrogate():
+def test_nc7_followup_shows_rt_adds_little_beyond_structure():
     f = _load()["nc7_followup"]
     incremental = f["incremental_gain_from_adding_rt"]
     tier_a = f["improvement_tier_a_alone"]
     assert f["improvement_rt_alone"] > 0, "RT does predict on its own"
     assert incremental / tier_a < 0.10, (
-        "RT must add little beyond Tier A for the structure-surrogate "
-        "explanation to hold")
+        "RT must add little beyond Tier A for the structure-associated "
+        "surrogate reading to hold")
+
+
+def test_nc7_interpretation_does_not_exclude_independent_confounding():
+    """The claim is observational; it must not be stated causally."""
+    text = _load()["nc7_followup"]["interpretation"].lower()
+    assert "cannot be completely excluded" in text
+    assert "primarily" in text
+
+
+def test_empirical_p_values_are_finite_sample_corrected():
+    """A permutation p-value is never exactly zero."""
+    for n, v in _load()["controls"].items():
+        b, B = v["n_exceedances"], v["n_permutations"]
+        assert v["p_value"] > 0, f"{n} reports p = 0, which 200 permutations cannot support"
+        assert v["p_value"] == pytest.approx((b + 1) / (B + 1), abs=1e-5)
+        assert v["p_value"] >= 1 / (B + 1)
+        assert v["p_value_formula"] == "(b + 1) / (B + 1)"
 
 
 def test_bh_correction_applies_only_to_the_comparable_family():

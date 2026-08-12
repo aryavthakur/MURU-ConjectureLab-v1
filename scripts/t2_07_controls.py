@@ -254,6 +254,18 @@ FAMILY = {
 RESIDUAL_SHARE_LIMIT = 0.10
 REAL_EFFECT = tierA_mae and (b1_mae - tierA_mae)
 
+def empirical_p(null: np.ndarray, threshold: float) -> tuple[int, float]:
+    """Finite-sample corrected empirical p-value, (b + 1) / (B + 1).
+
+    A permutation p-value is never exactly zero: with B resamples the smallest
+    attainable value is 1 / (B + 1). Reporting p = 0 would claim more resolution
+    than 200 permutations can provide. The exceedance count b is returned
+    alongside so the reader can see what the p-value rests on.
+    """
+    b = int((null >= threshold).sum())
+    return b, (b + 1) / (len(null) + 1)
+
+
 summary = {}
 for name, c in CONTROLS.items():
     null = np.asarray(c["null"], dtype=float)
@@ -263,6 +275,7 @@ for name, c in CONTROLS.items():
         "family": fam,
         "statistic": c["statistic"],
         "observed": c["observed_real_data"],
+        "n_permutations": int(len(null)),
         "null_mean": round(float(null.mean()), 6),
         "null_p95": round(p95, 6),
         "null_max": round(float(null.max()), 6),
@@ -270,19 +283,25 @@ for name, c in CONTROLS.items():
     }
     if fam == "destruction":
         share = p95 / REAL_EFFECT if REAL_EFFECT else float("inf")
+        b, p = empirical_p(null, REAL_EFFECT)
         entry.update({
             "real_effect_for_reference": round(REAL_EFFECT, 5),
             "null_p95_as_share_of_real_effect": round(share, 4),
             "limit": RESIDUAL_SHARE_LIMIT,
-            "p_value": round(float((null >= REAL_EFFECT).mean()), 4),
+            "n_exceedances": b,
+            "p_value": round(p, 5),
+            "p_value_formula": "(b + 1) / (B + 1)",
             "fires": bool(share > RESIDUAL_SHARE_LIMIT),
             "reads": ("permutation destroys the effect; the real-data statistic "
                       "exceeding this null is the DESIRED outcome, not a failure"),
         })
     else:
         obs = float(c["observed_real_data"])
+        b, p = empirical_p(null, obs)
         entry.update({
-            "p_value": round(float((null >= obs).mean()), 4),
+            "n_exceedances": b,
+            "p_value": round(p, 5),
+            "p_value_formula": "(b + 1) / (B + 1)",
             "exceeds_null_p95": bool(obs > p95),
             "fires": bool(obs > p95),
         })
@@ -324,13 +343,22 @@ tier_a_plus_rt = Spec("TIER_A_RT", TierAModel,
                       grid=[hp_tierA], needs_feats=True)
 combined = b1_mae - oof_mae(rtdf, tier_a_plus_rt)
 R["nc7_followup"] = {
-    "question": ("does retention time carry predictive information INDEPENDENT "
-                 "of Tier A structure, or is it a structure surrogate"),
+    "question": ("how much predictive information does retention time add "
+                 "BEYOND Tier A structure"),
     "improvement_rt_alone": round(rt_only, 5),
     "improvement_tier_a_alone": round(REAL_EFFECT, 5),
     "improvement_tier_a_plus_rt": round(combined, 5),
     "rt_share_of_structural_effect": round(rt_only / REAL_EFFECT, 4),
     "incremental_gain_from_adding_rt": round(combined - REAL_EFFECT, 5),
+    "interpretation": (
+        "RT carries predictive signal on its own but adds little incremental "
+        "predictive information beyond Tier A descriptors. That is consistent "
+        "with RT acting PRIMARILY as a structure-associated surrogate in this "
+        "dataset. It is an observational association, not an identification "
+        "result: independent confounding by co-elution or matrix effects "
+        "cannot be completely excluded, because a small incremental gain is "
+        "also compatible with a confounder whose effect is largely collinear "
+        "with the descriptors."),
 }
 
 (ART / "p2_controls.json").write_text(json.dumps(R, indent=2, default=str))

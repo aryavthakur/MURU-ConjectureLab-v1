@@ -56,12 +56,16 @@ K5_FIRES = bool((not share_ok) or (not survives_ablation))
 
 # A firing control is "a BLOCKER until explained" (PREREGISTRATION section 15).
 # NC7 fires: retention time predicts trajectory shape above its permutation
-# null. The pre-specified discriminating question is whether RT carries
-# information INDEPENDENT of structure, or is a structure surrogate -- RT tracks
-# lipophilicity, which is itself a structural property. The test is the
-# incremental gain from adding RT to the Tier A model, judged against the same
-# 10% magnitude limit already used for the destruction controls, so no new
-# threshold is invented here.
+# null. The pre-specified question is how much predictive information RT adds
+# BEYOND Tier A structure, measured as the incremental gain from adding RT to
+# the Tier A model and judged against the same 10% magnitude limit already used
+# for the destruction controls, so no new threshold is invented here.
+#
+# A small incremental gain is consistent with RT acting primarily as a
+# structure-associated surrogate in this dataset. It does NOT exclude
+# independent confounding: a confounder largely collinear with the descriptors
+# would produce the same small increment. The wording throughout reflects that
+# limit.
 EXPLAINED_LIMIT = 0.10
 nc7 = ctrl.get("nc7_followup", {})
 nc7_incremental_share = (nc7.get("incremental_gain_from_adding_rt", 1.0)
@@ -246,8 +250,11 @@ if fired:
     L += ["### NC7 fired, and this is its explanation", "",
           "Retention time predicts trajectory shape above its permutation null",
           f"(observed {ctrl['controls']['NC7_retention_time']['observed']:+.5f} against a null 95th "
-          f"percentile of {ctrl['controls']['NC7_retention_time']['null_p95']:+.6f}, p = "
-          f"{ctrl['controls']['NC7_retention_time']['p_value']}). Phase 1 anticipated this: "
+          f"percentile of {ctrl['controls']['NC7_retention_time']['null_p95']:+.6f}; "
+          f"{ctrl['controls']['NC7_retention_time']['n_exceedances']} of "
+          f"{ctrl['controls']['NC7_retention_time']['n_permutations']} permutation replicates reached "
+          f"the observed value, giving a finite-sample corrected empirical "
+          f"p = {ctrl['controls']['NC7_retention_time']['p_value']} = (b+1)/(B+1)). Phase 1 anticipated this: "
           "`CONFOUNDERS.md` finding 4 recorded |rho| up to 0.36 between RT and",
           "mu and left the resolution to NC7.", "",
           "The discriminating question is whether RT carries information",
@@ -259,14 +266,18 @@ if fired:
           f"| Tier A + retention time | {nc7['improvement_tier_a_plus_rt']:+.5f} |", "",
           f"RT alone recovers {100*nc7['rt_share_of_structural_effect']:.1f}% of the structural effect, but adding",
           f"it to Tier A gains only **{nc7['incremental_gain_from_adding_rt']:+.5f}** — "
-          f"{100*nc7_incremental_share:.1f}% of the Tier A effect, against the {100*EXPLAINED_LIMIT:.0f}% limit.",
-          "Structure already contains what RT knows. RT is therefore a",
-          "**structure surrogate, not an independent confounder**, and it does",
-          "not carry the structural result.", "",
-          "**Status: explained.** The control does not block, but it does",
-          "restrict: co-elution and matrix effects cannot be separated from",
-          "lipophilicity with these data, so no mechanistic reading of the",
-          "structural effect may lean on RT-correlated descriptors.", ""]
+          f"{100*nc7_incremental_share:.1f}% of the Tier A effect, against the {100*EXPLAINED_LIMIT:.0f}% limit.", "",
+          "RT therefore carries predictive signal by itself but adds little",
+          "incremental predictive information beyond Tier A descriptors, which is",
+          "consistent with it acting **primarily as a structure-associated",
+          "surrogate in this dataset**. This is an observational association, not",
+          "an identification result: **independent confounding cannot be",
+          "completely excluded**, since a small incremental gain is also",
+          "compatible with a confounder largely collinear with the descriptors.", "",
+          "**Status: explained sufficiently not to block, but restricting.**",
+          "Co-elution and matrix effects cannot be separated from lipophilicity",
+          "with these data, so no mechanistic reading of the structural effect",
+          "may lean on RT-correlated descriptors.", ""]
 L += [
       "## Preprocessing sensitivity", "",
       f"Matched raw subset: **{rob['preprocessing_robustness']['n_matched_compounds']} compounds** "
@@ -335,10 +346,12 @@ elif VERDICT == "RESTRICT AND GO TO PHASE 3":
               "Retention time predicts trajectory shape above its permutation "
               f"null, though it adds only {nc7['incremental_gain_from_adding_rt']:+.5f} "
               f"({100*nc7_incremental_share:.1f}% of the Tier A effect) on top of "
-              "structure, so it is a structure surrogate rather than an "
-              "independent confounder. Co-elution and matrix effects cannot be "
-              "separated from lipophilicity with these data, so no mechanistic "
-              "reading may lean on RT-correlated descriptors.", ""]
+              "structure — consistent with RT acting primarily as a "
+              "structure-associated surrogate in this dataset. Independent "
+              "confounding cannot be completely excluded: co-elution and matrix "
+              "effects cannot be separated from lipophilicity with these data, "
+              "so no mechanistic reading may lean on RT-correlated "
+              "descriptors.", ""]
         n += 1
     L += [f"{n}. **Raw-branch evidence covers "
           f"{rob['preprocessing_robustness']['n_matched_compounds']} compounds only.** No "

@@ -546,6 +546,13 @@ L = ["# NEGATIVE_CONTROLS_P2.md", "", HDR,
      "  nuisance predictor's own performance and must sit inside its own null.",
      "  Fires if it exceeds the null 95th percentile, with BH at q = 0.10 across",
      "  the three.", "",
+     "**Empirical p-values are finite-sample corrected as `(b + 1) / (B + 1)`,**",
+     "where `b` is the number of permutation replicates reaching or exceeding",
+     "the observed statistic and `B = 200`. A permutation p-value is never",
+     "exactly zero: with 200 resamples the smallest attainable value is",
+     "**0.00498**, and reporting `p = 0` would claim more resolution than the",
+     "design provides. Exceedance counts are shown so the reader can see what",
+     "each p-value rests on.", "",
      f"Real structural effect used as the destruction reference: "
      f"**{ctrl['controls']['NC1_energy_shuffle_within_compound']['real_effect_for_reference']:+.5f}** "
      f"(B1 MAE {ctrl['reference']['B1_mae']:.5f} − Tier A MAE {ctrl['reference']['TIER_A_mae']:.5f}).", "",
@@ -562,13 +569,14 @@ L += ["", "All three nulls sit at or below zero: permuting energy labels,",
       "descriptors, or whole trajectories destroys the effect rather than",
       "preserving it. This is what a working pipeline looks like.", "",
       "## Nuisance controls", "",
-      "| Control | Observed | Null mean | Null p95 | p | Exceeds p95 | BH q=0.10 | Fires |",
-      "|---|---|---|---|---|---|---|---|"]
+      "| Control | Observed | Null mean | Null p95 | Exceedances | p | Exceeds p95 | BH q=0.10 | Fires |",
+      "|---|---|---|---|---|---|---|---|---|"]
 for n, v in ctrl["controls"].items():
     if v["family"] != "nuisance":
         continue
     L.append(f"| `{n}` | {v['observed']:+.5f} | {v['null_mean']:+.6f} | "
-             f"{v['null_p95']:+.6f} | {v['p_value']} | {v['exceeds_null_p95']} | "
+             f"{v['null_p95']:+.6f} | {v['n_exceedances']}/{v['n_permutations']} | "
+             f"{v['p_value']} | {v['exceeds_null_p95']} | "
              f"{v.get('bh_significant_at_q0.10')} | **{v['fires']}** |")
 L += ["", "## What each control tests", "",
       "| Control | What it tests |", "|---|---|",
@@ -595,13 +603,19 @@ if ctrl["any_control_fires"]:
           "genuinely predicts. But adding it to Tier A gains only",
           f"**{f7['incremental_gain_from_adding_rt']:+.5f}**, i.e. "
           f"{100*f7['incremental_gain_from_adding_rt']/f7['improvement_tier_a_alone']:.1f}% of the Tier A effect.", "",
-          "**Structure already contains what retention time knows.** RT tracks",
-          "lipophilicity, which is itself a structural property, so RT is a",
-          "**structure surrogate rather than an independent confounder**, and it",
-          "does not carry the structural result.", "",
-          "**Status: explained.** It does not block, but it restricts: co-elution",
-          "and matrix effects cannot be separated from lipophilicity with these",
-          "data, so no mechanistic reading may lean on RT-correlated descriptors.", ""]
+          "**What this supports.** RT carries predictive signal by itself but adds",
+          "little incremental predictive information beyond Tier A descriptors.",
+          "That is consistent with RT acting **primarily as a",
+          "structure-associated surrogate in this dataset** — it tracks",
+          "lipophilicity, which is itself a structural property.", "",
+          "**What this does not support.** It is an observational association,",
+          "not an identification result. **Independent confounding cannot be",
+          "completely excluded**: a small incremental gain is also compatible",
+          "with a confounder whose effect is largely collinear with the",
+          "descriptors, and co-elution and matrix effects cannot be separated",
+          "from lipophilicity with these data.", "",
+          "**Status: explained sufficiently not to block, but restricting.** No",
+          "mechanistic reading may lean on RT-correlated descriptors.", ""]
 w("NEGATIVE_CONTROLS_P2.md", L)
 
 # ===========================================================================

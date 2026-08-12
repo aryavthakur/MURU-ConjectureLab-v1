@@ -232,7 +232,12 @@ inversion hid the one control that genuinely does fire.
 - Nuisance controls fire if the observed statistic exceeds its own null 95th
   percentile, with BH at q = 0.10 across that family of three. Measured: NC4 and
   NC6 pass; **NC7 (retention time) fires**, observed +0.01006 against a null p95
-  of +0.00021, p = 0.
+  of +0.00021, with 0 of 200 replicates reaching the observed value.
+
+Empirical p-values are reported as **(b + 1) / (B + 1)**, so the smallest
+attainable value at B = 200 is 0.00498 rather than 0. A permutation p-value is
+never exactly zero, and exceedance counts are reported alongside so each
+p-value's basis is visible.
 
 **Direction.** The correction is conservative in both directions at once: it
 stops three passing controls from being misreported as blockers, and it surfaces

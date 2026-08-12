@@ -45,6 +45,14 @@ opposite questions:
   Fires if it exceeds the null 95th percentile, with BH at q = 0.10 across
   the three.
 
+**Empirical p-values are finite-sample corrected as `(b + 1) / (B + 1)`,**
+where `b` is the number of permutation replicates reaching or exceeding
+the observed statistic and `B = 200`. A permutation p-value is never
+exactly zero: with 200 resamples the smallest attainable value is
+**0.00498**, and reporting `p = 0` would claim more resolution than the
+design provides. Exceedance counts are shown so the reader can see what
+each p-value rests on.
+
 Real structural effect used as the destruction reference: **+0.04257** (B1 MAE 0.15495 − Tier A MAE 0.11238).
 
 ## Destruction controls
@@ -61,11 +69,11 @@ preserving it. This is what a working pipeline looks like.
 
 ## Nuisance controls
 
-| Control | Observed | Null mean | Null p95 | p | Exceeds p95 | BH q=0.10 | Fires |
-|---|---|---|---|---|---|---|---|
-| `NC4_sham_descriptors` | -0.00078 | -0.000374 | +0.000507 | 0.905 | False | False | **False** |
-| `NC6_mixture_identity` | -0.00038 | -0.000297 | +0.000444 | 0.59 | False | False | **False** |
-| `NC7_retention_time` | +0.01006 | -0.000282 | +0.000210 | 0.0 | True | True | **True** |
+| Control | Observed | Null mean | Null p95 | Exceedances | p | Exceeds p95 | BH q=0.10 | Fires |
+|---|---|---|---|---|---|---|---|---|
+| `NC4_sham_descriptors` | -0.00078 | -0.000374 | +0.000507 | 181/200 | 0.90547 | False | False | **False** |
+| `NC6_mixture_identity` | -0.00038 | -0.000297 | +0.000444 | 118/200 | 0.59204 | False | False | **False** |
+| `NC7_retention_time` | +0.01006 | -0.000282 | +0.000210 | 0/200 | 0.00498 | True | True | **True** |
 
 ## What each control tests
 
@@ -88,7 +96,7 @@ A firing control is a **BLOCKER until explained**. Phase 1 anticipated
 this one: `CONFOUNDERS.md` finding 4 recorded |rho| up to 0.36 between
 retention time and mu, and left the resolution to NC7.
 
-*does retention time carry predictive information INDEPENDENT of Tier A structure, or is it a structure surrogate?*
+*how much predictive information does retention time add BEYOND Tier A structure?*
 
 | Model | Improvement over B1 |
 |---|---|
@@ -100,12 +108,19 @@ RT alone recovers **23.6%** of the structural effect — it
 genuinely predicts. But adding it to Tier A gains only
 **+0.00097**, i.e. 2.3% of the Tier A effect.
 
-**Structure already contains what retention time knows.** RT tracks
-lipophilicity, which is itself a structural property, so RT is a
-**structure surrogate rather than an independent confounder**, and it
-does not carry the structural result.
+**What this supports.** RT carries predictive signal by itself but adds
+little incremental predictive information beyond Tier A descriptors.
+That is consistent with RT acting **primarily as a
+structure-associated surrogate in this dataset** — it tracks
+lipophilicity, which is itself a structural property.
 
-**Status: explained.** It does not block, but it restricts: co-elution
-and matrix effects cannot be separated from lipophilicity with these
-data, so no mechanistic reading may lean on RT-correlated descriptors.
+**What this does not support.** It is an observational association,
+not an identification result. **Independent confounding cannot be
+completely excluded**: a small incremental gain is also compatible
+with a confounder whose effect is largely collinear with the
+descriptors, and co-elution and matrix effects cannot be separated
+from lipophilicity with these data.
+
+**Status: explained sufficiently not to block, but restricting.** No
+mechanistic reading may lean on RT-correlated descriptors.
 
