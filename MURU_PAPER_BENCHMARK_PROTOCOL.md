@@ -16,6 +16,14 @@ The primary claim is: under controlled, prospectively frozen synthetic
 conditions, MURU can recover meaningful family-level mathematical structure
 while rejecting specified null and adversarial worlds.
 
+## Amendments
+
+[`MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md`](MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md)
+binds the M0/M1/M2/M3 adequacy decision rule prospectively, before any
+Development or Held-out scientific execution. It completes a specification gap
+in content freeze V1 and alters no case generator, truth, seed, coefficient,
+partition, family population, endpoint denominator, or gate threshold.
+
 ## Execution boundary
 
 The scalar protocol fits all shared objects from training trajectories only. It

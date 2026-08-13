@@ -5,11 +5,22 @@ from dataclasses import dataclass
 from math import sqrt
 from typing import Sequence
 
+from .adequacy import CaseAdequacyStatus, adequacy_satisfies_g1
 from .registry import endpoint_case_count, resolve_case_id
 
 
 def endpoint_denominator(endpoint_name: str) -> int:
     return endpoint_case_count(endpoint_name)
+
+
+def m0_accepted_from_adequacy(status: CaseAdequacyStatus | str) -> bool:
+    """Amendment A1: the only admissible source of ``CaseOutcome.m0_accepted``.
+
+    A case may contribute M0 acceptance to G1 only when its Amendment A1
+    adequacy status is ``M0_NOT_REJECTED``.  Indeterminate and failure states
+    leave the adequacy component of G1 unsatisfied.
+    """
+    return adequacy_satisfies_g1(status)
 
 
 def endpoint_applies(endpoint_name: str, case_id: str) -> bool:
