@@ -20,7 +20,18 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 ORIGINAL_CONTENT_FREEZE = "d94d2c9"
+
+#: Amendment A2 repaired F16 on top of A1, so paths that differ from `d94d2c9`
+#: are now the union of the two declared sets.  A2's sets are imported rather
+#: than restated so the two integrity scripts cannot drift apart, and each
+#: changed path is attributed to the amendment that owns it.
+from pb_31_amendment_a2_integrity import (  # noqa: E402
+    ALLOWED_ADDED_PATHS as A2_ALLOWED_ADDED_PATHS,
+    ALLOWED_CHANGED_PATHS as A2_ALLOWED_CHANGED_PATHS,
+)
 
 ALLOWED_CHANGED_PATHS = frozenset({
     "MURU_PAPER_BENCHMARK_FREEZE.md",
@@ -84,7 +95,7 @@ def build_manifest() -> dict[str, object]:
 
     frozen = set(_frozen_paths())
     added: dict[str, str] = {}
-    for path in sorted(ALLOWED_ADDED_PATHS):
+    for path in sorted(ALLOWED_ADDED_PATHS | A2_ALLOWED_ADDED_PATHS):
         if path in frozen:
             continue
         candidate = ROOT / path
@@ -92,15 +103,25 @@ def build_manifest() -> dict[str, object]:
             continue
         added[path] = "self" if path == SELF_EXCLUDED else _digest(candidate.read_bytes())
 
-    unexpected_changed = sorted(set(changed) - ALLOWED_CHANGED_PATHS)
-    declared_missing = sorted(ALLOWED_CHANGED_PATHS - set(changed))
+    allowed_changed = ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS
+    unexpected_changed = sorted(set(changed) - allowed_changed)
+    declared_missing = sorted(allowed_changed - set(changed))
     breach = bool(unexpected_changed or removed)
     return {
+        "changed_by_amendment": {
+            "A1": sorted(set(changed) & ALLOWED_CHANGED_PATHS),
+            "A2": sorted(set(changed) & A2_ALLOWED_CHANGED_PATHS),
+        },
+        "added_by_amendment": {
+            "A1": sorted(path for path in added if path in ALLOWED_ADDED_PATHS),
+            "A2": sorted(path for path in added if path in A2_ALLOWED_ADDED_PATHS),
+        },
         "version": "paper-benchmark-amendment-a1-integrity-1.0.0",
         "amendment": "A1",
         "original_content_freeze": ORIGINAL_CONTENT_FREEZE,
         "original_freeze_designation": "BENCHMARK CONTENT FREEZE V1",
-        "effective_content_freeze": "the Amendment A1 commit, tagged benchmark-content-freeze-a1",
+        "effective_content_freeze": "the Amendment A2 commit, tagged benchmark-content-freeze-a2",
+        "amendments_applied": ["A1", "A2"],
         "frozen_path_count": len(frozen),
         "protected_unchanged_count": len(unchanged),
         "protected_unchanged_paths": sorted(unchanged),

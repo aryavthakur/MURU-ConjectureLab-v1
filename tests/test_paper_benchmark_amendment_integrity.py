@@ -43,53 +43,102 @@ def _run(tmp_path: Path) -> tuple[subprocess.CompletedProcess, dict]:
     return process, payload
 
 
+A1_CHANGED = [
+    "MURU_PAPER_BENCHMARK_FREEZE.md",
+    "MURU_PAPER_BENCHMARK_METRICS.md",
+    "MURU_PAPER_BENCHMARK_PROTOCOL.md",
+    "src/muru/paper_benchmark/analysis.py",
+    "tests/test_paper_benchmark_docs.py",
+]
+A1_ADDED = [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md",
+    "artifacts/paper_benchmark_amendment_a1.json",
+    "scripts/pb_30_amendment_a1_integrity.py",
+    "src/muru/paper_benchmark/adequacy.py",
+    "tests/test_paper_benchmark_adequacy.py",
+    "tests/test_paper_benchmark_amendment_integrity.py",
+]
+#: Amendment A2 repaired F16.  These are the V1-resident paths it changed: the
+#: generator itself and the four artifacts whose bytes follow the 19 F16 cases.
+#: No registry, truth schema, protocol, governance, partition manifest, or A1
+#: decision path appears here.
+#:
+#: A2 also edits three paths that A1 introduced (`paper_benchmark_amendment_a1
+#: .json`, `pb_30_amendment_a1_integrity.py`, and this test module) so that the
+#: V1-relative report attributes each change to its owning amendment.  Those do
+#: not appear below: relative to `d94d2c9` they are additions, not changes, and
+#: this manifest reports them under `added_by_amendment["A1"]`.
+A2_CHANGED = [
+    "artifacts/paper_benchmark_case_manifest.json",
+    "artifacts/paper_benchmark_content_freeze.json",
+    "artifacts/paper_benchmark_hash_inventory.json",
+    "artifacts/paper_benchmark_preflight.json",
+    "src/muru/paper_benchmark/generator.py",
+]
+A2_ADDED = [
+    "MURU_PAPER_BENCHMARK_A2_F16_GOVERNANCE_REVIEW.md",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md",
+    "artifacts/paper_benchmark_amendment_a2.json",
+    "scripts/pb_31_amendment_a2_integrity.py",
+    "tests/test_paper_benchmark_amendment_a2_integrity.py",
+    "tests/test_paper_benchmark_f16_combined.py",
+]
+
+
 def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze(tmp_path):
     process, manifest = _run(tmp_path)
 
     assert process.returncode == 0, process.stdout + process.stderr
     assert manifest["original_content_freeze"] == ORIGINAL_FREEZE
-    assert manifest["protected_unchanged_count"] == 242
+    assert manifest["amendments_applied"] == ["A1", "A2"]
+    # d94d2c9 froze 247 tracked paths.  A1 changed 5, leaving 242; A2 changed 5
+    # more, leaving 237 still byte-identical to the original content freeze.
+    assert manifest["frozen_path_count"] == 247
+    assert manifest["protected_unchanged_count"] == 237
     assert manifest["unexpected_changed_paths"] == []
     assert manifest["removed_paths"] == []
 
 
-def test_the_changed_and_added_paths_are_exactly_the_declared_adequacy_set(tmp_path):
+def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp_path):
     _, manifest = _run(tmp_path)
 
-    assert sorted(manifest["changed_paths"]) == [
-        "MURU_PAPER_BENCHMARK_FREEZE.md",
-        "MURU_PAPER_BENCHMARK_METRICS.md",
-        "MURU_PAPER_BENCHMARK_PROTOCOL.md",
-        "src/muru/paper_benchmark/analysis.py",
-        "tests/test_paper_benchmark_docs.py",
-    ]
-    assert sorted(manifest["added_paths"]) == [
-        "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md",
-        "artifacts/paper_benchmark_amendment_a1.json",
-        "scripts/pb_30_amendment_a1_integrity.py",
-        "src/muru/paper_benchmark/adequacy.py",
-        "tests/test_paper_benchmark_adequacy.py",
-        "tests/test_paper_benchmark_amendment_integrity.py",
-    ]
+    assert sorted(manifest["changed_paths"]) == sorted(set(A1_CHANGED) | set(A2_CHANGED))
+    assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED))
 
 
-def test_no_generator_truth_registry_or_partition_artifact_is_touched(tmp_path):
+def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):
+    _, manifest = _run(tmp_path)
+
+    assert manifest["changed_by_amendment"]["A1"] == sorted(A1_CHANGED)
+    assert manifest["changed_by_amendment"]["A2"] == sorted(A2_CHANGED)
+    assert manifest["added_by_amendment"]["A1"] == sorted(A1_ADDED)
+    assert manifest["added_by_amendment"]["A2"] == sorted(A2_ADDED)
+
+
+def test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendment(tmp_path):
     _, manifest = _run(tmp_path)
 
     protected = set(manifest["protected_unchanged_paths"])
     for path in (
-        "src/muru/paper_benchmark/generator.py",
         "src/muru/paper_benchmark/registry.py",
         "src/muru/paper_benchmark/truth.py",
         "src/muru/paper_benchmark/protocol.py",
         "src/muru/paper_benchmark/governance.py",
-        "artifacts/paper_benchmark_hash_inventory.json",
         "artifacts/paper_benchmark_truth_manifest.json",
-        "artifacts/paper_benchmark_case_manifest.json",
         "artifacts/paper_benchmark_partition_manifest.json",
         "MURU_PAPER_BENCHMARK_CASE_FAMILIES.md",
     ):
-        assert path in protected
+        assert path in protected, path
+
+
+def test_the_generator_change_is_owned_by_a2_and_nothing_else(tmp_path):
+    """The generator may differ from V1 only because A2 repaired F16."""
+    _, manifest = _run(tmp_path)
+
+    generator = "src/muru/paper_benchmark/generator.py"
+    assert generator not in set(manifest["protected_unchanged_paths"])
+    assert generator in manifest["changed_by_amendment"]["A2"]
+    assert generator not in manifest["changed_by_amendment"]["A1"]
 
 
 def test_held_out_row_bytes_are_never_opened_by_the_integrity_check(tmp_path):

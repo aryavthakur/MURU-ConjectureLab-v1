@@ -16,9 +16,49 @@ import pandas as pd
 from .registry import ENERGY_GRID, iter_case_ids, resolve_case_id
 from .truth import TruthRecord
 
+#: Deliberately unchanged by Amendment A2.  The version string is part of every
+#: case's hashed payload, so bumping it would alter all 380 content hashes and
+#: destroy the non-F16 byte immutability that A2 is required to preserve.  The
+#: A2 commit is the discriminator between the two generator states.
 GENERATOR_VERSION = "paper-benchmark-generator-1.0.0"
 N_COMPOUNDS = 180
 N_SCAFFOLDS = 30
+
+# --------------------------------------------------------------------------
+# Adequacy-violation amplitudes
+#
+# The standalone single-violation families F13/F14/F15 carry the reference
+# amplitude for each deviation.  F16 is the frozen "combined mild non-scalar
+# violation" family whose declared truth is M1+M2+M3; its components are
+# attenuated forms of the standalone amplitudes.
+#
+# The numeric values of the standalone amplitudes and of F16's M1/M2 amplitudes
+# are frozen V1 content, named here without alteration.
+# --------------------------------------------------------------------------
+M1_HORIZONTAL_AMPLITUDE = 0.45      # F13 standalone horizontal-shape amplitude
+M2_HIGH_ENERGY_AMPLITUDE = 0.18     # F14 standalone high-energy floor amplitude
+M3_LOW_ENERGY_AMPLITUDE = 0.22      # F15 standalone low-energy ceiling amplitude
+M3_CEILING_CLIP = (0.6, 0.99)       # F15 ceiling clip window, reused unchanged by F16
+
+COMBINED_M1_AMPLITUDE = 0.15        # frozen V1; attenuation 0.15 / 0.45 = 1/3
+COMBINED_M2_AMPLITUDE = 0.05        # frozen V1; attenuation 0.05 / 0.18 = 5/18
+
+#: Amendment A2, prospective governance declaration.  F16's M3 component reuses
+#: F15's mechanism exactly -- same driving covariate (`descriptor`), same
+#: functional form, same downward direction, same clip window -- with only the
+#: amplitude attenuated.  The attenuation factor is the *smaller* of the two
+#: ratios already frozen for F16's own components (1/3 for M1, 5/18 for M2), so
+#: the repaired component cannot be relatively stronger than either pre-existing
+#: one.
+#:
+#:     M3_LOW_ENERGY_AMPLITUDE * 5/18  =  11/50 * 5/18  =  11/180
+#:
+#: Bound as the binary64 nearest the exact rational 11/180.  Evaluating the
+#: product left to right instead yields 0x1.f49f49f49f4a0p-5, one ulp above
+#: 11/180; the rational-derived constant is used, per the A2 declaration.
+COMBINED_M3_ATTENUATION_NUMERATOR = 5
+COMBINED_M3_ATTENUATION_DENOMINATOR = 18
+COMBINED_M3_AMPLITUDE = 11 / 180
 
 
 @dataclass(frozen=True)
@@ -77,6 +117,31 @@ def _synthetic_compounds(case_id: str) -> tuple[pd.DataFrame, dict[str, int]]:
     return frame, {"compounds": seed}
 
 
+def combined_response(
+    u: np.ndarray,
+    phi_p: float,
+    shape: np.ndarray,
+    floor: np.ndarray,
+    ceiling: np.ndarray,
+) -> np.ndarray:
+    """The Amendment A2 simultaneous M1/M2/M3 response.
+
+    Written in the normalised coordinate ``u = (E / E_REF) / g`` this is
+
+        mu_i(E) = a_i + (b_i - a_i) * S(E_REF * (E / (E_REF * g_i)) ** s_i)
+
+    with ``S(t) = exp(-(t ** phi_p))`` the frozen M0 profile shape, ``s_i`` the
+    M1 horizontal-shape deviation (``shape``), ``a_i`` the M2 high-energy floor
+    (``floor``), and ``b_i`` the M3 low-energy ceiling (``ceiling``).
+
+    At the neutral settings ``shape = 1``, ``floor = mu_inf``, ``ceiling = 1``
+    this reduces exactly to M0, and holding any two neutral reproduces the
+    corresponding standalone ``m1_horizontal`` / ``m2_high_energy`` /
+    ``m3_low_energy`` branch exactly.
+    """
+    return floor[:, None] + (ceiling[:, None] - floor[:, None]) * np.exp(-(u**(phi_p * shape[:, None])))
+
+
 def _law(kind: str, compounds: pd.DataFrame, rng: np.random.Generator) -> tuple[np.ndarray | None, str | None, list[str], str | None, dict[str, float], dict[str, float]]:
     mass = compounds.mass.to_numpy()
     descriptor = compounds.descriptor.to_numpy()
@@ -110,21 +175,28 @@ def _response_matrix(kind: str, g: np.ndarray | None, compounds: pd.DataFrame, r
     mu = mu_inf + (1 - mu_inf) * np.exp(-(u**phi_p))
     adequacy = "M0"
     if kind in {"no_scalar", "m1_horizontal"}:
-        shape = 1 + 0.45 * np.tanh(compounds.descriptor.to_numpy())
+        shape = 1 + M1_HORIZONTAL_AMPLITUDE * np.tanh(compounds.descriptor.to_numpy())
         mu = mu_inf + (1 - mu_inf) * np.exp(-(u**(phi_p * shape[:, None])))
         adequacy = "M1"
     elif kind == "m2_high_energy":
-        floor = np.clip(mu_inf + 0.18 * (compounds.descriptor.to_numpy() - 0.5), 0.03, 0.55)
+        floor = np.clip(mu_inf + M2_HIGH_ENERGY_AMPLITUDE * (compounds.descriptor.to_numpy() - 0.5), 0.03, 0.55)
         mu = floor[:, None] + (1 - floor[:, None]) * np.exp(-(u**phi_p))
         adequacy = "M2"
     elif kind == "m3_low_energy":
-        ceiling = np.clip(1 - 0.22 * compounds.descriptor.to_numpy(), 0.6, 0.99)
+        ceiling = np.clip(1 - M3_LOW_ENERGY_AMPLITUDE * compounds.descriptor.to_numpy(), *M3_CEILING_CLIP)
         mu = mu_inf + (ceiling[:, None] - mu_inf) * np.exp(-(u**phi_p))
         adequacy = "M3"
     elif kind == "combined_violation":
-        shape = 1 + 0.15 * np.tanh(compounds.descriptor.to_numpy())
-        floor = np.clip(mu_inf + 0.05 * (compounds.descriptor2.to_numpy() - 0.5), 0.03, 0.55)
-        mu = floor[:, None] + (1 - floor[:, None]) * np.exp(-(u**(phi_p * shape[:, None])))
+        # Amendment A2: all three declared deviations act simultaneously, in the
+        # form mu = a + (b - a) * S(E_REF * (E / (E_REF * g))**s).  Setting
+        # s = 1, a = mu_inf and b = 1 recovers M0 exactly; setting any single
+        # deviation away from neutral recovers the corresponding standalone
+        # M1/M2/M3 branch above exactly.  Before A2 the ceiling was pinned at
+        # the M3-neutral value 1, so the family carried no M3 component.
+        shape = 1 + COMBINED_M1_AMPLITUDE * np.tanh(compounds.descriptor.to_numpy())
+        floor = np.clip(mu_inf + COMBINED_M2_AMPLITUDE * (compounds.descriptor2.to_numpy() - 0.5), 0.03, 0.55)
+        ceiling = np.clip(1 - COMBINED_M3_AMPLITUDE * compounds.descriptor.to_numpy(), *M3_CEILING_CLIP)
+        mu = combined_response(u, phi_p, shape, floor, ceiling)
         adequacy = "M1+M2+M3"
     elif kind == "response_cell_resampling":
         mu = rng.uniform(0.08, 0.95, mu.shape)

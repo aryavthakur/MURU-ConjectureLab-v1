@@ -1,8 +1,8 @@
 {
   "blocker": "evaluated MURU implementation lock and complete engine runtime preflight are pending",
   "final_executable_freeze": false,
-  "hash_inventory_sha256": "522cb696ab398618430159f2eebe5b670dfc3e36d5054f63da414e18f8c848c7",
+  "hash_inventory_sha256": "ad500b6f712d3bac28be37735eb8afbd479736990f9f05843d4e08f4d73614fb",
   "hashes_verified": true,
-  "preflight_sha256": "d48eb5ebb0574f9f384fc10cf5e93ad05264bc0c9333ff21f6ba75bad6956158",
+  "preflight_sha256": "0414ea83314f7b7e532172f1652adf0f9a16a1605e95ea5442459ad767fdea66",
   "status": "WAITING_FOR_LOCKED_IMPLEMENTATION"
 }

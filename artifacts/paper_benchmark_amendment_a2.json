@@ -1,138 +1,173 @@
 {
-  "added_by_amendment": {
-    "A1": [
-      "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md",
-      "artifacts/paper_benchmark_amendment_a1.json",
-      "scripts/pb_30_amendment_a1_integrity.py",
-      "src/muru/paper_benchmark/adequacy.py",
-      "tests/test_paper_benchmark_adequacy.py",
-      "tests/test_paper_benchmark_amendment_integrity.py"
-    ],
-    "A2": [
-      "MURU_PAPER_BENCHMARK_A2_F16_GOVERNANCE_REVIEW.md",
-      "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md",
-      "artifacts/paper_benchmark_amendment_a2.json",
-      "scripts/pb_31_amendment_a2_integrity.py",
-      "tests/test_paper_benchmark_amendment_a2_integrity.py",
-      "tests/test_paper_benchmark_f16_combined.py"
-    ]
-  },
   "added_paths": [
     "MURU_PAPER_BENCHMARK_A2_F16_GOVERNANCE_REVIEW.md",
-    "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md",
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md",
-    "artifacts/paper_benchmark_amendment_a1.json",
     "artifacts/paper_benchmark_amendment_a2.json",
-    "scripts/pb_30_amendment_a1_integrity.py",
     "scripts/pb_31_amendment_a2_integrity.py",
-    "src/muru/paper_benchmark/adequacy.py",
-    "tests/test_paper_benchmark_adequacy.py",
     "tests/test_paper_benchmark_amendment_a2_integrity.py",
-    "tests/test_paper_benchmark_amendment_integrity.py",
     "tests/test_paper_benchmark_f16_combined.py"
   ],
   "added_sha256": {
     "MURU_PAPER_BENCHMARK_A2_F16_GOVERNANCE_REVIEW.md": "bcba5015e65f13b284e4000467f275755f99e4f4dae4c6232bb46fb1e3724f9d",
-    "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md": "2ae2022c8344088be0e64f11bd11c9d021e59b4f9fe08ee9e2d95719e39987dd",
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md": "65598aa80b9d03f5c4e276e109917eae06690fe4a2b86c6ec3d2150ff8e296b7",
-    "artifacts/paper_benchmark_amendment_a1.json": "self",
-    "artifacts/paper_benchmark_amendment_a2.json": "33812a54cdef91caf94beb3b9471ee602cd5a86461179cdbbfdd143b63038497",
-    "scripts/pb_30_amendment_a1_integrity.py": "540b541d66349e2a9dc7c2a1214e16cf7b6d6fa4584b72bb95ea104b83b46d4a",
+    "artifacts/paper_benchmark_amendment_a2.json": "self",
     "scripts/pb_31_amendment_a2_integrity.py": "3c30781254ac0658c638be07a545f6a9ac8b219091983cd299eb667a73e2096e",
-    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
-    "tests/test_paper_benchmark_adequacy.py": "e646c689c10de75548a09b1ab3fa17a1831ccdc69437b3bc6f279e3337aadcc1",
     "tests/test_paper_benchmark_amendment_a2_integrity.py": "8160a0bea66a95072d3a42a45759e33542db2dfedf977d85c6860a54897992b9",
-    "tests/test_paper_benchmark_amendment_integrity.py": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
     "tests/test_paper_benchmark_f16_combined.py": "f34f63d5016532cb25e3120581bc33488f8e28bdb1f56fb671ddd75c7801084e"
   },
-  "amendment": "A1",
-  "amendments_applied": [
-    "A1",
-    "A2"
-  ],
-  "changed_by_amendment": {
-    "A1": [
-      "MURU_PAPER_BENCHMARK_FREEZE.md",
-      "MURU_PAPER_BENCHMARK_METRICS.md",
-      "MURU_PAPER_BENCHMARK_PROTOCOL.md",
-      "src/muru/paper_benchmark/analysis.py",
-      "tests/test_paper_benchmark_docs.py"
-    ],
-    "A2": [
-      "artifacts/paper_benchmark_case_manifest.json",
-      "artifacts/paper_benchmark_content_freeze.json",
-      "artifacts/paper_benchmark_hash_inventory.json",
-      "artifacts/paper_benchmark_preflight.json",
-      "src/muru/paper_benchmark/generator.py"
-    ]
-  },
+  "amendment": "A2",
+  "amendment_a1_freeze": "2ac86c5",
   "changed_paths": [
-    "MURU_PAPER_BENCHMARK_FREEZE.md",
-    "MURU_PAPER_BENCHMARK_METRICS.md",
-    "MURU_PAPER_BENCHMARK_PROTOCOL.md",
+    "artifacts/paper_benchmark_amendment_a1.json",
     "artifacts/paper_benchmark_case_manifest.json",
     "artifacts/paper_benchmark_content_freeze.json",
     "artifacts/paper_benchmark_hash_inventory.json",
     "artifacts/paper_benchmark_preflight.json",
-    "src/muru/paper_benchmark/analysis.py",
-    "src/muru/paper_benchmark/generator.py",
-    "tests/test_paper_benchmark_docs.py"
-  ],
-  "changed_sha256": {
-    "MURU_PAPER_BENCHMARK_FREEZE.md": {
-      "amended_sha256": "a77d619ff969abba3ab74e8bdda9f5d257578a3711cb28b220da2af0ef9b8135",
-      "original_sha256": "9004bc569bbef74484351e83339932cabd0108d8ab3e42ba19d212dba2b60b4a"
-    },
-    "MURU_PAPER_BENCHMARK_METRICS.md": {
-      "amended_sha256": "4b8f40d9cc7f8d182370d1a54cb050856746f68634ff4f2977e20b98fc4910db",
-      "original_sha256": "23c17a5adb1fafadd430722493661b46f3484edb51441925087a9b871ae8cd71"
-    },
-    "MURU_PAPER_BENCHMARK_PROTOCOL.md": {
-      "amended_sha256": "104f4a7ae95b1f3a698c9778b776235ff99295a52b8144945d2665eb77a9d5c5",
-      "original_sha256": "21704223a72b4bd69664160b3c9d8dacc5d7bc48fef9cafaa0ebe72c6c9ad8e6"
-    },
-    "artifacts/paper_benchmark_case_manifest.json": {
-      "amended_sha256": "e58dcbe0ce7639ade4116f0cf63039ae32130b0cfb8a8344478d327075770677",
-      "original_sha256": "f5f838ac24ce1f1949d7e182181b7a46ebec4f4708a6c330a750beb524c8d0d3"
-    },
-    "artifacts/paper_benchmark_content_freeze.json": {
-      "amended_sha256": "33e101e639a2b6b6787cabfae7cecbf470247e10cd7e5e1c9ce0da320d276db0",
-      "original_sha256": "fc8acfdf924e18ca32a4a88830707e490de903aaa09645e3f479de07c1067dfc"
-    },
-    "artifacts/paper_benchmark_hash_inventory.json": {
-      "amended_sha256": "ad500b6f712d3bac28be37735eb8afbd479736990f9f05843d4e08f4d73614fb",
-      "original_sha256": "522cb696ab398618430159f2eebe5b670dfc3e36d5054f63da414e18f8c848c7"
-    },
-    "artifacts/paper_benchmark_preflight.json": {
-      "amended_sha256": "0414ea83314f7b7e532172f1652adf0f9a16a1605e95ea5442459ad767fdea66",
-      "original_sha256": "d48eb5ebb0574f9f384fc10cf5e93ad05264bc0c9333ff21f6ba75bad6956158"
-    },
-    "src/muru/paper_benchmark/analysis.py": {
-      "amended_sha256": "22243eeab1233459e1575b83c69dea781b995fabe1029573af759088d86248d1",
-      "original_sha256": "b2fad8777ce4e5bb0c30d3d3fcbb0751c24fcb1653496d7ee9b36566f96eded7"
-    },
-    "src/muru/paper_benchmark/generator.py": {
-      "amended_sha256": "d306bd9c575ada4d888db3bf202aedc46cfb25855265d00c2dd273d0172434f9",
-      "original_sha256": "be026dc88f3f8c0a1eea042a34e7b49d907b499de55280d95621add22823ea48"
-    },
-    "tests/test_paper_benchmark_docs.py": {
-      "amended_sha256": "48198e116143a08bf1d7e9d7f9e14da62574e7cc32bfed9e38220462eadbbe0a",
-      "original_sha256": "f2acd5ae7675913a8dcd314712c88c3b466b6b9b052916c0ef251f08e305bb68"
-    }
-  },
-  "declared_changed_paths_not_actually_changed": [
-    "artifacts/paper_benchmark_amendment_a1.json",
     "scripts/pb_30_amendment_a1_integrity.py",
+    "src/muru/paper_benchmark/generator.py",
     "tests/test_paper_benchmark_amendment_integrity.py"
   ],
+  "changed_sha256": {
+    "artifacts/paper_benchmark_amendment_a1.json": {
+      "a1_sha256": "95290bf7bd723d237197dbaf772b41faee443a587729d7dde3cb232b3bead079",
+      "a2_sha256": "cross-referenced",
+      "justification": "bookkeeping: the V1-relative report now attributes each change to A1 or A2"
+    },
+    "artifacts/paper_benchmark_case_manifest.json": {
+      "a1_sha256": "f5f838ac24ce1f1949d7e182181b7a46ebec4f4708a6c330a750beb524c8d0d3",
+      "a2_sha256": "e58dcbe0ce7639ade4116f0cf63039ae32130b0cfb8a8344478d327075770677",
+      "justification": "per-case content hashes for the 19 F16 cases"
+    },
+    "artifacts/paper_benchmark_content_freeze.json": {
+      "a1_sha256": "fc8acfdf924e18ca32a4a88830707e490de903aaa09645e3f479de07c1067dfc",
+      "a2_sha256": "33e101e639a2b6b6787cabfae7cecbf470247e10cd7e5e1c9ce0da320d276db0",
+      "justification": "records the new hash_inventory and preflight digests"
+    },
+    "artifacts/paper_benchmark_hash_inventory.json": {
+      "a1_sha256": "522cb696ab398618430159f2eebe5b670dfc3e36d5054f63da414e18f8c848c7",
+      "a2_sha256": "ad500b6f712d3bac28be37735eb8afbd479736990f9f05843d4e08f4d73614fb",
+      "justification": "SHA-256 of the six regenerated inputs/truth row files"
+    },
+    "artifacts/paper_benchmark_preflight.json": {
+      "a1_sha256": "d48eb5ebb0574f9f384fc10cf5e93ad05264bc0c9333ff21f6ba75bad6956158",
+      "a2_sha256": "0414ea83314f7b7e532172f1652adf0f9a16a1605e95ea5442459ad767fdea66",
+      "justification": "artifact_bytes follows the F16 rows; wall/cpu/rss are environment re-measurements"
+    },
+    "scripts/pb_30_amendment_a1_integrity.py": {
+      "a1_sha256": "752ca3aa9b39d12e2641ea4cbd857ce935196a5bfcfc56da3392110cde14b61a",
+      "a2_sha256": "540b541d66349e2a9dc7c2a1214e16cf7b6d6fa4584b72bb95ea104b83b46d4a",
+      "justification": "bookkeeping: attributes V1-relative changes to the amendment that owns them"
+    },
+    "src/muru/paper_benchmark/generator.py": {
+      "a1_sha256": "be026dc88f3f8c0a1eea042a34e7b49d907b499de55280d95621add22823ea48",
+      "a2_sha256": "d306bd9c575ada4d888db3bf202aedc46cfb25855265d00c2dd273d0172434f9",
+      "justification": "the F16 combined_violation branch gains its declared M3 low-energy ceiling"
+    },
+    "tests/test_paper_benchmark_amendment_integrity.py": {
+      "a1_sha256": "d7d4ef62befc27ea533d52cea26228c5e18b5c86f371f51424f110274bdada54",
+      "a2_sha256": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
+      "justification": "bookkeeping: asserts the A1/A2 attribution split"
+    }
+  },
+  "declared_changed_paths_not_actually_changed": [],
+  "development_outcomes_executed": false,
   "effective_content_freeze": "the Amendment A2 commit, tagged benchmark-content-freeze-a2",
-  "frozen_path_count": 247,
-  "held_out_integrity_note": "inputs/*.jsonl and truth/*.jsonl are untracked regenerable bytes absent from the tree; their SHA-256 values live in the unchanged paper_benchmark_hash_inventory.json",
+  "frozen_path_count": 253,
+  "generated_row_comparison": {
+    "case_record_families_changed": [
+      "F16"
+    ],
+    "case_records_changed": 19,
+    "case_records_total": 380,
+    "changed_case_ids": [
+      "PB|challenge|F16|r000",
+      "PB|challenge|F16|r001",
+      "PB|challenge|F16|r002",
+      "PB|development|F16|r000",
+      "PB|development|F16|r001",
+      "PB|development|F16|r002",
+      "PB|development|F16|r003",
+      "PB|held_out|F16|r000",
+      "PB|held_out|F16|r001",
+      "PB|held_out|F16|r002",
+      "PB|held_out|F16|r003",
+      "PB|held_out|F16|r004",
+      "PB|held_out|F16|r005",
+      "PB|held_out|F16|r006",
+      "PB|held_out|F16|r007",
+      "PB|held_out|F16|r008",
+      "PB|held_out|F16|r009",
+      "PB|held_out|F16|r010",
+      "PB|held_out|F16|r011"
+    ],
+    "non_f16_case_records_changed": 0,
+    "row_integrity_verified": true,
+    "row_streams": {
+      "inputs/challenge.jsonl": {
+        "f16_changed": 3,
+        "lines": 60,
+        "non_f16_changed": 0
+      },
+      "inputs/development.jsonl": {
+        "f16_changed": 4,
+        "lines": 80,
+        "non_f16_changed": 0
+      },
+      "inputs/held_out.jsonl": {
+        "f16_changed": 12,
+        "lines": 240,
+        "non_f16_changed": 0
+      },
+      "truth/challenge.jsonl": {
+        "f16_changed": 3,
+        "lines": 60,
+        "non_f16_changed": 0
+      },
+      "truth/development.jsonl": {
+        "f16_changed": 4,
+        "lines": 80,
+        "non_f16_changed": 0
+      },
+      "truth/held_out.jsonl": {
+        "f16_changed": 12,
+        "lines": 240,
+        "non_f16_changed": 0
+      }
+    }
+  },
+  "held_out_outcomes_executed": false,
   "held_out_rows_opened": false,
   "integrity_verified": true,
   "original_content_freeze": "d94d2c9",
   "original_freeze_designation": "BENCHMARK CONTENT FREEZE V1",
-  "protected_unchanged_count": 237,
+  "population_invariants": {
+    "endpoint_denominators": {
+      "family_recovery": 144,
+      "m0_specificity": 164,
+      "m1_sensitivity": 36,
+      "m2_sensitivity": 24,
+      "m3_sensitivity": 24,
+      "principal_structural_safety": 36,
+      "scalar_competence": 164
+    },
+    "energy_grid": [
+      15,
+      30,
+      45,
+      60,
+      75,
+      90
+    ],
+    "family_count": 20,
+    "partition_case_counts": {
+      "challenge": 3,
+      "development": 4,
+      "held_out": 12
+    },
+    "root_seed": 20260813
+  },
+  "population_invariants_hold": true,
+  "protected_unchanged_count": 245,
   "protected_unchanged_paths": [
     ".gitignore",
     "BACKLOG.md",
@@ -151,7 +186,11 @@
     "MASS_COUPLING_AUDIT.md",
     "MASTER_PLAN_CLARIFICATIONS.md",
     "MURU_ConjectureLab_v1_Master_Plan.md",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md",
     "MURU_PAPER_BENCHMARK_CASE_FAMILIES.md",
+    "MURU_PAPER_BENCHMARK_FREEZE.md",
+    "MURU_PAPER_BENCHMARK_METRICS.md",
+    "MURU_PAPER_BENCHMARK_PROTOCOL.md",
     "MURU_Reference_Pack/DATASET_SOURCE.md",
     "MURU_Reference_Pack/README.md",
     "MURU_Reference_Pack/SHA256SUMS.txt",
@@ -322,6 +361,8 @@
     "src/muru/objval/signature.py",
     "src/muru/objval/truth2.py",
     "src/muru/paper_benchmark/__init__.py",
+    "src/muru/paper_benchmark/adequacy.py",
+    "src/muru/paper_benchmark/analysis.py",
     "src/muru/paper_benchmark/artifacts.py",
     "src/muru/paper_benchmark/contract.py",
     "src/muru/paper_benchmark/freeze.py",
@@ -358,10 +399,12 @@
     "tests/test_p3_phase_boundary.py",
     "tests/test_p3_protocol.py",
     "tests/test_p3_seal.py",
+    "tests/test_paper_benchmark_adequacy.py",
     "tests/test_paper_benchmark_artifacts.py",
     "tests/test_paper_benchmark_contract.py",
     "tests/test_paper_benchmark_decision.py",
     "tests/test_paper_benchmark_denominators.py",
+    "tests/test_paper_benchmark_docs.py",
     "tests/test_paper_benchmark_freeze.py",
     "tests/test_paper_benchmark_generator.py",
     "tests/test_paper_benchmark_governance.py",
@@ -390,7 +433,11 @@
     "MASS_COUPLING_AUDIT.md": "09e71512248343eccc9c537735cf7a8f18a1731b503be318c92c3abbeb31cad6",
     "MASTER_PLAN_CLARIFICATIONS.md": "83b8c9b7cd5d0d8f28d500b3d8e6e5073672afa3d831e4b356b0e6bf4f4d542b",
     "MURU_ConjectureLab_v1_Master_Plan.md": "fe060045876f6c1c4b7e8d5fd59cb097dee6ec98d48e9c85518ffce2ac11b979",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md": "2ae2022c8344088be0e64f11bd11c9d021e59b4f9fe08ee9e2d95719e39987dd",
     "MURU_PAPER_BENCHMARK_CASE_FAMILIES.md": "fa60dcdb462f8a29d936406c60e8390626b07a5659f858840c0d8cd314580430",
+    "MURU_PAPER_BENCHMARK_FREEZE.md": "a77d619ff969abba3ab74e8bdda9f5d257578a3711cb28b220da2af0ef9b8135",
+    "MURU_PAPER_BENCHMARK_METRICS.md": "4b8f40d9cc7f8d182370d1a54cb050856746f68634ff4f2977e20b98fc4910db",
+    "MURU_PAPER_BENCHMARK_PROTOCOL.md": "104f4a7ae95b1f3a698c9778b776235ff99295a52b8144945d2665eb77a9d5c5",
     "MURU_Reference_Pack/DATASET_SOURCE.md": "fb8dbb91e256d50baa825a542171f04f5c170bca432e4250f2b297ebc7979898",
     "MURU_Reference_Pack/README.md": "10ebcc179eef008bf957ef5645d5bcbcd8513241ebeca81874c72938fb8ced22",
     "MURU_Reference_Pack/SHA256SUMS.txt": "db10186064fee12f4143fb8c8a1a8cdab26cec0cde261b3a17c0166b8e92a162",
@@ -561,6 +608,8 @@
     "src/muru/objval/signature.py": "8d414250d72d2284b4d2bd3fb71f4ec771ace2f94105331152b89e7c80f1301d",
     "src/muru/objval/truth2.py": "45a2581a8a758ff340538755efc15a4633663200957e23bb026e654668411246",
     "src/muru/paper_benchmark/__init__.py": "3f66fd0d2b50ad12d1208a354e29df6c63f80196c41a199ebf4eae005d33a9b8",
+    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+    "src/muru/paper_benchmark/analysis.py": "22243eeab1233459e1575b83c69dea781b995fabe1029573af759088d86248d1",
     "src/muru/paper_benchmark/artifacts.py": "24b7f8adce26f2371aa85c3ee7692a1b4c2f69391242f09b9b9d483b08389a0d",
     "src/muru/paper_benchmark/contract.py": "2f1262407c63c07d3ddfe0eec9e5f83f55e8325053224e81377864f47ad6d59b",
     "src/muru/paper_benchmark/freeze.py": "d18c807a359d1fb2c458bccae495d61c8b268f4cc6e34bdd27bc3af9a70efb9a",
@@ -597,10 +646,12 @@
     "tests/test_p3_phase_boundary.py": "6897f49c2c21e21327703847f61c1f85fe481c4291fba2fb63d27b1dee9b915c",
     "tests/test_p3_protocol.py": "cbe761c38e59631d6e0fcdd87faf0f030c49a593a8052e5e9a95ce780f018ba5",
     "tests/test_p3_seal.py": "d6a26aead12643be0ad89d7f7ac005e0e4c3d6a188fc353ed6d303e0fe5575b5",
+    "tests/test_paper_benchmark_adequacy.py": "e646c689c10de75548a09b1ab3fa17a1831ccdc69437b3bc6f279e3337aadcc1",
     "tests/test_paper_benchmark_artifacts.py": "9386438ee9999569a6d6a1d9e68a9be45540b0867a1db6de167e98e9ba2143f1",
     "tests/test_paper_benchmark_contract.py": "e51d055b1fcefc1c97de14d3ed7cb8a16d7991f09cb5f6cee31c03db7b7e74c4",
     "tests/test_paper_benchmark_decision.py": "0795eb33802ed1a62cdbc1dfcf17a4375db83f6f3c90c32331e2b0e1635e176a",
     "tests/test_paper_benchmark_denominators.py": "bedd8d32d85e58c18b7eeb790aa1ef182ef60905750dcad14bc80a59a238b44c",
+    "tests/test_paper_benchmark_docs.py": "48198e116143a08bf1d7e9d7f9e14da62574e7cc32bfed9e38220462eadbbe0a",
     "tests/test_paper_benchmark_freeze.py": "14170cf28dbbd08a43af1b631a4f763e2703cdeafe677ae878fa8c1a2e513340",
     "tests/test_paper_benchmark_generator.py": "411bc3d42ffd85e9c4e8806dd056957835fa884d77d6dd63b7b2adcfff95d538",
     "tests/test_paper_benchmark_governance.py": "a0a278b59a295fc0bcbcaf831241a4aa05ecf348c0062160ec4f79618dc839e2",
@@ -612,6 +663,8 @@
     "tests/test_splits.py": "906bf4f34675dfd5b33620d73698ca77a1676028bf65b7fd4ef408a1fa24cb96"
   },
   "removed_paths": [],
+  "repaired_family": "F16",
+  "scientific_inspection_note": "row files are compared as opaque whole lines and artifacts by SHA-256; no response value is decoded, no case is scored, no outcome is summarised",
   "unexpected_changed_paths": [],
-  "version": "paper-benchmark-amendment-a1-integrity-1.0.0"
+  "version": "paper-benchmark-amendment-a2-integrity-1.0.0"
 }
