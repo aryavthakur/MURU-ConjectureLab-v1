@@ -107,14 +107,20 @@ manifest, metric, and evaluator-contract versions are each explicit constants.
 | F16 | Combined mild non-scalar violation | Are jointly mild violations flagged rather than accepted as M0? | M1+M2+M3 | diagnostic only | no |
 | F17 | Equivalent symbolic forms | Do algebraically equivalent representations receive one family-level score? | M0 | yes | yes |
 | F18 | Algebraically difficult, predictively simple | Is predictive equivalence kept distinct from exact recovery? | M0 | yes | yes, exact secondary |
-| F19 | Null worlds | Does a target-specific null produce no structural acceptance? | M0 | yes | no |
+| F19 | Null worlds | Does each target-specific null prevent the structural claim it was designed to test? | variant-specific | variant-specific | variant-specific |
 | F20 | Adversarial worlds | Are latent-driver, artefact, and out-of-grammar traps rejected or labelled? | mixed | no | no |
 
-F19 is balanced across three predeclared null mechanisms: independent scalar
-targets, mass-preserving/non-mass-destroying targets, and response-cell
-resampling that explicitly reports its trajectory degeneration. The historical
-within-compound energy permutation is never an F19 scalar-target null; a test
-must demonstrate the information destroyed by every selected null. F20 is
+F19 has 12 held-out cases: four cases in each of the three variants below. The
+truth manifest records this variant-level applicability for every case.
+
+| F19 variant | Scalar truth defined | Adequacy truth | Symbolic truth defined | Applicable endpoints | Expected null behavior |
+|---|---|---|---|---|---|
+| F19A: descriptor-link permutation | yes | M0 | no | scalar yield, `g` recovery, trajectory prediction, M0 specificity, F19 null rejection | Preserve valid scalar trajectories while destroying the descriptor-to-`g` association. Any accepted descriptor family is false-null structure. |
+| F19B: mass-preserving target null | yes | M0 | yes, mass-only allowance | scalar yield, `g` recovery, trajectory prediction, M0 specificity, F19 null rejection | Preserve scalar trajectories and the permitted mass-only component while destroying non-mass signal. Any unsupported non-mass or richer family is false-null structure. |
+| F19C: response-cell resampling | no | not applicable | no | response-structure diagnostic and F19 null rejection only | Destroy trajectory structure. The analysis must flag it non-evaluable for scalar/M0/symbolic recovery rather than accept an M0 or symbolic claim. |
+
+The historical within-compound energy permutation is never an F19 scalar-target
+null. Tests must measure the information each selected null destroys. F20 is
 balanced across unobserved-driver, measurement-coupling, and out-of-grammar
 adversaries.
 
@@ -167,21 +173,23 @@ are excluded from every endpoint below.
 
 | Endpoint | Role | Held-out applicable families | Denominator |
 |---|---|---|---:|
-| Valid scalar-target yield | Primary scalar | F01–F05, F07–F12, F17–F19 | 168 cases; compound-level count also reported |
-| Held-out `g` rank recovery and log-scale error | Primary scalar | F01–F05, F07–F12, F17–F19 | 168 cases |
-| Held-out energy prediction and profile stability | Primary scalar | F01–F05, F07–F12, F17–F19 | 168 cases |
+| Valid scalar-target yield | Primary scalar | F01–F05, F07–F12, F17–F18, F19A–F19B | 164 cases; compound-level count also reported |
+| Held-out `g` rank recovery and log-scale error | Primary scalar | F01–F05, F07–F12, F17–F18, F19A–F19B | 164 cases |
+| Held-out energy prediction and profile stability | Primary scalar | F01–F05, F07–F12, F17–F18, F19A–F19B | 164 cases |
 | Boundary-hit rate | Primary scalar safety | F05 | 12 cases; applicable-compound count reported |
 | Family-level recovery | Primary symbolic | F01–F05, F08–F12, F17–F18 | 144 cases |
 | Variable support recovery | Secondary symbolic | F01–F05, F08–F12, F17–F18 | 144 cases |
 | Parameter/exponent recovery | Secondary symbolic | F01–F05, F07–F12, F17 | 144 cases |
 | Predictive equivalence | Secondary symbolic | F01–F05, F08–F12, F17–F18 | 144 cases |
 | Exact algebra recovery | Secondary only | F01, F08–F10, F17 | 60 cases |
-| M0 specificity | Primary adequacy | F01–F05, F07–F12, F17–F19 | 168 cases |
+| M0 specificity | Primary adequacy | F01–F05, F07–F12, F17–F18, F19A–F19B | 164 cases |
 | M1 sensitivity | Primary adequacy | F06, F13, F16 | 36 cases |
 | M2 sensitivity | Primary adequacy | F14, F16 | 24 cases |
 | M3 sensitivity | Primary adequacy | F15, F16 | 24 cases |
-| Null rejection | Primary safety | F19 | 12 cases, balanced by null mechanism |
-| Adversarial rejection/flagging | Primary safety | F20 | 12 cases, balanced by adversary mechanism |
+| False extra-structure acceptance | Primary safety component | F07 | 12 cases; mass-only is permitted, unsupported non-mass/richer family is an error |
+| False null-structure acceptance | Primary safety component | F19A–F19C | 12 cases; error definition follows the F19 variant table |
+| False adversarial-structure acceptance | Primary safety component | F20 | 12 cases; accepting the trap or failing to flag/reject it as specified is an error |
+| Principal structural safety | Primary safety gate | F07, F19A–F19C, F20 | 36 equally weighted case-level error opportunities; component numerators and denominators remain separate |
 
 Family-level recovery requires correct active block support and mathematical
 family, with directionality and exponents/parameters assessed separately. A
@@ -189,13 +197,48 @@ function can be predictively equivalent without being family-equivalent; a
 family can be correct without exact algebra. Exact algebra is never substituted
 for the primary claim.
 
-The primary paper claim is supported only if the locked evaluation completes
-without governance failure, reports all primary denominators, has a lower 95%
-Wilson bound of at least 0.50 for family-level recovery, and an upper 95%
-Wilson bound no greater than 0.25 for false structural acceptance across the
-predeclared mass-only, null, and adversarial negative controls. Otherwise the
-paper reports conditional endpoint estimates without the positive umbrella
-claim. This rule is not an authorization for Phase 4.
+### Primary claim decision rule
+
+The paper can make the approved positive umbrella claim only after the locked
+evaluation satisfies the governance preconditions and all three gates below.
+Failure of any gate blocks the positive umbrella claim. The report still gives
+all endpoint estimates and uncertainty intervals. This rule does not authorize
+Phase 4.
+
+**Preconditions.** The evaluated implementation lock is complete, every frozen
+hash verifies, the tracked tree is clean, the development-only runtime preflight
+is feasible, every primary denominator reconstructs exactly, and the held-out
+access guard reports no breach.
+
+**G1, scalar target competence.** A scalar-applicable held-out case is competent
+only when all three conditions hold: its fold-local `g` estimate has Spearman
+correlation at least 0.80 with true log-`g` across the test compounds; its frozen
+training-only `Phi` predicts test trajectories with MAE no greater than 0.80 of
+the training-only per-energy-mean baseline MAE; and the M0 adequacy ladder does
+not reject M0. The G1 rate uses the 164-case scalar denominator and passes only
+when its lower 95% Wilson bound is at least 0.70. The rank threshold requires a
+strong monotone recovery of the unobserved multiplicative scale. The 20% MAE
+improvement requires that the scale supports out-of-sample trajectory prediction
+instead of merely fitting the scalar truth. The adequacy condition prevents an
+interpretable `g` claim when the shared horizontal-scalar model is contradicted.
+
+**G2, symbolic family recovery.** The 144-case family-recovery rate passes only
+when its lower 95% Wilson bound is at least 0.70. A success requires the correct
+active block support and mathematical family under the frozen canonicalization
+rule. Parameter recovery, predictive equivalence, and exact algebra remain
+secondary endpoints.
+
+**G3, null/adversarial safety.** Compute one specified safety error for each of
+the 36 F07, F19, and F20 cases. F07 errors are false extra-structure acceptance:
+the system accepts an unsupported non-mass variable or richer family despite a
+mass-only law. F19 errors are false null-structure acceptance as defined for
+F19A, F19B, or F19C above. F20 errors are false adversarial-structure acceptance:
+the system accepts the specified adversarial structure or fails to issue the
+required rejection/flag. The principal safety rate combines these 36 equally
+weighted opportunities and passes only when its upper 95% Wilson bound is no
+greater than 0.15. The report also retains the three separate component
+numerators, denominators, rates, and intervals; the aggregate never substitutes
+for them.
 
 ## Development-only preflight and freeze gate
 
@@ -243,9 +286,10 @@ Required tests cover deterministic re-generation; seed separation; partition
 sizes; family coverage; scaffold and fold disjointness; held-out leakage
 canaries; truth schema/serialization; hash reconstruction; strict evaluator
 semantics; equivalent-expression canonicalization; target-specific null
-information destruction; M0/M1/M2/M3 obvious-truth behavior; endpoint
-denominator reconstruction; held-out access refusal; and development-only
-preflight quarantine.
+information destruction; F19 variant applicability; negative-control error
+classification; M0/M1/M2/M3 obvious-truth behavior; endpoint denominator
+reconstruction; three-gate umbrella decision logic; held-out access refusal;
+and development-only preflight quarantine.
 
 ## Non-goals
 
