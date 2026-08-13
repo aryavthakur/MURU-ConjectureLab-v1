@@ -11,9 +11,9 @@
     "MURU_PAPER_BENCHMARK_A2_F16_GOVERNANCE_REVIEW.md": "bcba5015e65f13b284e4000467f275755f99e4f4dae4c6232bb46fb1e3724f9d",
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md": "65598aa80b9d03f5c4e276e109917eae06690fe4a2b86c6ec3d2150ff8e296b7",
     "artifacts/paper_benchmark_amendment_a2.json": "self",
-    "scripts/pb_31_amendment_a2_integrity.py": "3c30781254ac0658c638be07a545f6a9ac8b219091983cd299eb667a73e2096e",
-    "tests/test_paper_benchmark_amendment_a2_integrity.py": "8160a0bea66a95072d3a42a45759e33542db2dfedf977d85c6860a54897992b9",
-    "tests/test_paper_benchmark_f16_combined.py": "f34f63d5016532cb25e3120581bc33488f8e28bdb1f56fb671ddd75c7801084e"
+    "scripts/pb_31_amendment_a2_integrity.py": "94dd8f1a1c7695a67594597f0974076074c3bb1170e6dde8b7b13b770bde8c69",
+    "tests/test_paper_benchmark_amendment_a2_integrity.py": "4936283f6802c303e5b180bdac8011e6481a83a79ecfcda87d4c3d18687ac5c5",
+    "tests/test_paper_benchmark_f16_combined.py": "ce814ffa1bf6fea9f4fcee87b54e1559d4429c45c8d8bc19b368c051b11043c7"
   },
   "amendment": "A2",
   "amendment_a1_freeze": "2ac86c5",
@@ -35,37 +35,37 @@
     },
     "artifacts/paper_benchmark_case_manifest.json": {
       "a1_sha256": "f5f838ac24ce1f1949d7e182181b7a46ebec4f4708a6c330a750beb524c8d0d3",
-      "a2_sha256": "e58dcbe0ce7639ade4116f0cf63039ae32130b0cfb8a8344478d327075770677",
+      "a2_sha256": "c98b426ade1085abd4c87ab2195e358f83cf9ad1e1a77710f9493f5710b5bdba",
       "justification": "per-case content hashes for the 19 F16 cases"
     },
     "artifacts/paper_benchmark_content_freeze.json": {
       "a1_sha256": "fc8acfdf924e18ca32a4a88830707e490de903aaa09645e3f479de07c1067dfc",
-      "a2_sha256": "33e101e639a2b6b6787cabfae7cecbf470247e10cd7e5e1c9ce0da320d276db0",
+      "a2_sha256": "986ce8ef771fa971b8cf41f67718b98c6099d02d6a433d4081c1d464883d116f",
       "justification": "records the new hash_inventory and preflight digests"
     },
     "artifacts/paper_benchmark_hash_inventory.json": {
       "a1_sha256": "522cb696ab398618430159f2eebe5b670dfc3e36d5054f63da414e18f8c848c7",
-      "a2_sha256": "ad500b6f712d3bac28be37735eb8afbd479736990f9f05843d4e08f4d73614fb",
+      "a2_sha256": "3747e56335d49387870e176cb958fa0687d372c932166afc2450f1468f26b0da",
       "justification": "SHA-256 of the six regenerated inputs/truth row files"
     },
     "artifacts/paper_benchmark_preflight.json": {
       "a1_sha256": "d48eb5ebb0574f9f384fc10cf5e93ad05264bc0c9333ff21f6ba75bad6956158",
-      "a2_sha256": "0414ea83314f7b7e532172f1652adf0f9a16a1605e95ea5442459ad767fdea66",
+      "a2_sha256": "fb83d19d3070acd43d562f7d9e76deb57769de4b0341ea6bde03f934130b239a",
       "justification": "artifact_bytes follows the F16 rows; wall/cpu/rss are environment re-measurements"
     },
     "scripts/pb_30_amendment_a1_integrity.py": {
       "a1_sha256": "752ca3aa9b39d12e2641ea4cbd857ce935196a5bfcfc56da3392110cde14b61a",
-      "a2_sha256": "540b541d66349e2a9dc7c2a1214e16cf7b6d6fa4584b72bb95ea104b83b46d4a",
+      "a2_sha256": "c8648d0fc03697971af7d2e16ad285388a52d052b890406bce03a7be06f1cddc",
       "justification": "bookkeeping: attributes V1-relative changes to the amendment that owns them"
     },
     "src/muru/paper_benchmark/generator.py": {
       "a1_sha256": "be026dc88f3f8c0a1eea042a34e7b49d907b499de55280d95621add22823ea48",
-      "a2_sha256": "d306bd9c575ada4d888db3bf202aedc46cfb25855265d00c2dd273d0172434f9",
+      "a2_sha256": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
       "justification": "the F16 combined_violation branch gains its declared M3 low-energy ceiling"
     },
     "tests/test_paper_benchmark_amendment_integrity.py": {
       "a1_sha256": "d7d4ef62befc27ea533d52cea26228c5e18b5c86f371f51424f110274bdada54",
-      "a2_sha256": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
+      "a2_sha256": "54c48e18519f49c478ae1a1434c9bce5704aa9025c18c39c7fd5463ed4f29c77",
       "justification": "bookkeeping: asserts the A1/A2 attribution split"
     }
   },
@@ -119,17 +119,17 @@
         "non_f16_changed": 0
       },
       "truth/challenge.jsonl": {
-        "f16_changed": 3,
+        "f16_changed": 0,
         "lines": 60,
         "non_f16_changed": 0
       },
       "truth/development.jsonl": {
-        "f16_changed": 4,
+        "f16_changed": 0,
         "lines": 80,
         "non_f16_changed": 0
       },
       "truth/held_out.jsonl": {
-        "f16_changed": 12,
+        "f16_changed": 0,
         "lines": 240,
         "non_f16_changed": 0
       }

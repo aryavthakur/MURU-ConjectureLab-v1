@@ -146,8 +146,22 @@ def _build_state(ref: str | None, destination: Path) -> None:
         )
 
 
+def _strip_hash(record: dict) -> dict:
+    """Amendment A2.1 note: comparisons here are payload-level (content_hash
+    stripped), not raw-byte-level. Amendment A2.1 legitimately changes
+    content_hash for every case via a GENERATOR_VERSION bump, which is
+    scientifically inert; a raw-byte comparison would misreport that as a
+    breach of "only F16 changed relative to A1". Stripping content_hash keeps
+    this script's actual claim -- F16's science changed and nothing else's did
+    -- accurate independent of any later version-metadata-only amendment.
+    """
+    stripped = dict(record)
+    stripped.pop("content_hash", None)
+    return stripped
+
+
 def _row_comparison() -> dict[str, object]:
-    """Rebuild A1 and A2 row files and compare them line by line."""
+    """Rebuild A1 and A2 row files and compare their scientific payload line by line."""
     with tempfile.TemporaryDirectory() as workspace:
         a1_dir, a2_dir = Path(workspace) / "a1", Path(workspace) / "a2"
         _build_state(AMENDMENT_A1_FREEZE, a1_dir)
@@ -155,6 +169,7 @@ def _row_comparison() -> dict[str, object]:
 
         streams: dict[str, dict[str, int]] = {}
         breach = False
+        payload_changed_ids: set[str] = set()
         for partition in ("development", "held_out", "challenge"):
             for stream in ("inputs", "truth"):
                 relative = f"{stream}/{partition}.jsonl"
@@ -164,12 +179,14 @@ def _row_comparison() -> dict[str, object]:
                     breach = True
                 changed_family = changed_other = 0
                 for left, right in zip(a1_lines, a2_lines):
-                    case_id = json.loads(left)["case_id"]
-                    if case_id != json.loads(right)["case_id"]:
+                    lr, rr = json.loads(left), json.loads(right)
+                    case_id = lr["case_id"]
+                    if case_id != rr["case_id"]:
                         breach = True
                         break
-                    if left == right:
+                    if _strip_hash(lr) == _strip_hash(rr):
                         continue
+                    payload_changed_ids.add(case_id)
                     if case_id.split("|")[2] == REPAIRED_FAMILY:
                         changed_family += 1
                     else:
@@ -182,9 +199,15 @@ def _row_comparison() -> dict[str, object]:
                     "non_f16_changed": changed_other,
                 }
 
-        a1_cases = json.loads((a1_dir / "paper_benchmark_case_manifest.json").read_text())["cases"]
+        # The case manifest's own record carries no inputs/truth -- content_hash
+        # is its only payload fingerprint, so it cannot be used with
+        # `_strip_hash` the way the row records above are: stripping the one
+        # field that reflects the payload would make every manifest row look
+        # identical.  `payload_changed_ids`, collected from the row-level
+        # comparison above (which does carry the full payload), is the correct
+        # source for which cases actually changed.
         a2_cases = json.loads((a2_dir / "paper_benchmark_case_manifest.json").read_text())["cases"]
-        changed_ids = [x["case_id"] for x, y in zip(a1_cases, a2_cases) if x != y]
+        changed_ids = sorted(payload_changed_ids)
         families = sorted({case_id.split("|")[2] for case_id in changed_ids})
         if families not in ([], [REPAIRED_FAMILY]) or len(changed_ids) != EXPECTED_F16_CASES:
             breach = True

@@ -16,11 +16,17 @@ import pandas as pd
 from .registry import ENERGY_GRID, iter_case_ids, resolve_case_id
 from .truth import TruthRecord
 
-#: Deliberately unchanged by Amendment A2.  The version string is part of every
-#: case's hashed payload, so bumping it would alter all 380 content hashes and
-#: destroy the non-F16 byte immutability that A2 is required to preserve.  The
-#: A2 commit is the discriminator between the two generator states.
-GENERATOR_VERSION = "paper-benchmark-generator-1.0.0"
+#: Amendment A2.1.  Bumped from `1.0.0` because Amendment A2 changed the
+#: generator's scientific behavior for F16 (it now emits a non-neutral M3
+#: component) while leaving every other family's behavior and the payload
+#: schema untouched -- a minor-version bump under this repository's
+#: `paper-benchmark-<component>-X.Y.Z` convention (see `ADEQUACY_CONTRACT_VERSION`,
+#: `TruthRecord.truth_version`).  The version string is part of every case's
+#: hashed payload, so this bump mechanically changes all 380 `content_hash`
+#: values even though only 19 cases' scientific payload actually changed; see
+#: `MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md` for the
+#: version-metadata-only vs. scientific-payload distinction and its proof.
+GENERATOR_VERSION = "paper-benchmark-generator-1.1.0"
 N_COMPOUNDS = 180
 N_SCAFFOLDS = 30
 
@@ -258,9 +264,25 @@ def generate_case(case_id: str) -> GeneratedCase:
         expected_behavior=variant.expected_behavior,
     )
     inputs = CaseInputs(compounds=compounds, trajectories=trajectories)
-    payload = {"inputs": inputs.canonical_dict(), "truth": truth.to_dict(), "generator_version": GENERATOR_VERSION}
-    content_hash = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+    content_hash = scientific_payload_hash(inputs, truth, GENERATOR_VERSION)
     return GeneratedCase(case_id=case_id, inputs=inputs, truth=truth, content_hash=content_hash)
+
+
+def scientific_payload_hash(inputs: CaseInputs, truth: TruthRecord, generator_version: str | None = GENERATOR_VERSION) -> str:
+    """SHA-256 of a case's canonical inputs/truth payload.
+
+    ``generator_version=None`` hashes the covariates, scaffolds, partitions,
+    seeds, energies, generated responses and truth values alone -- the
+    "scientific payload" -- excluding the generator version string. That value
+    is stable across a version-metadata-only bump (Amendment A2.1) and changes
+    only when the actual generative mechanism changes (Amendment A2's F16
+    repair). Passing the default reproduces `GeneratedCase.content_hash`
+    exactly, version string included.
+    """
+    payload: dict[str, object] = {"inputs": inputs.canonical_dict(), "truth": truth.to_dict()}
+    if generator_version is not None:
+        payload["generator_version"] = generator_version
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
 def generate_partition(partition: str) -> Iterator[GeneratedCase]:

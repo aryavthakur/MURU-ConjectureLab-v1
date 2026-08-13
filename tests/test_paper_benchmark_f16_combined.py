@@ -234,6 +234,9 @@ def test_f16_case_counts_are_unchanged():
     assert len(CASE_FAMILIES) == 20
 
 
-def test_generator_version_constant_is_deliberately_unchanged():
-    """Bumping it would rehash all 380 cases and break non-F16 immutability."""
-    assert GENERATOR_VERSION == "paper-benchmark-generator-1.0.0"
+def test_generator_version_reflects_the_a2_repair():
+    """A2 shipped with this constant unchanged at `1.0.0` despite changing F16's
+    scientific behavior; Amendment A2.1 corrected that provenance defect. See
+    `tests/test_paper_benchmark_amendment_a2_1_integrity.py` for the proof that
+    the bump changed no case's scientific payload."""
+    assert GENERATOR_VERSION == "paper-benchmark-generator-1.1.0"

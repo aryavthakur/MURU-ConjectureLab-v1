@@ -24,13 +24,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 ORIGINAL_CONTENT_FREEZE = "d94d2c9"
 
-#: Amendment A2 repaired F16 on top of A1, so paths that differ from `d94d2c9`
-#: are now the union of the two declared sets.  A2's sets are imported rather
-#: than restated so the two integrity scripts cannot drift apart, and each
-#: changed path is attributed to the amendment that owns it.
+#: Amendment A2 repaired F16 and Amendment A2.1 bumped the generator version on
+#: top of that, so paths that differ from `d94d2c9` are now the union of all
+#: three declared sets.  Each amendment's sets are imported rather than
+#: restated so the integrity scripts cannot drift apart, and every changed path
+#: is attributed to the amendment that owns it.
 from pb_31_amendment_a2_integrity import (  # noqa: E402
     ALLOWED_ADDED_PATHS as A2_ALLOWED_ADDED_PATHS,
     ALLOWED_CHANGED_PATHS as A2_ALLOWED_CHANGED_PATHS,
+)
+from pb_32_amendment_a2_1_integrity import (  # noqa: E402
+    ALLOWED_ADDED_PATHS as A2_1_ALLOWED_ADDED_PATHS,
+    ALLOWED_CHANGED_PATHS as A2_1_ALLOWED_CHANGED_PATHS,
 )
 
 ALLOWED_CHANGED_PATHS = frozenset({
@@ -95,7 +100,7 @@ def build_manifest() -> dict[str, object]:
 
     frozen = set(_frozen_paths())
     added: dict[str, str] = {}
-    for path in sorted(ALLOWED_ADDED_PATHS | A2_ALLOWED_ADDED_PATHS):
+    for path in sorted(ALLOWED_ADDED_PATHS | A2_ALLOWED_ADDED_PATHS | A2_1_ALLOWED_ADDED_PATHS):
         if path in frozen:
             continue
         candidate = ROOT / path
@@ -103,7 +108,7 @@ def build_manifest() -> dict[str, object]:
             continue
         added[path] = "self" if path == SELF_EXCLUDED else _digest(candidate.read_bytes())
 
-    allowed_changed = ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS
+    allowed_changed = ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS | A2_1_ALLOWED_CHANGED_PATHS
     unexpected_changed = sorted(set(changed) - allowed_changed)
     declared_missing = sorted(allowed_changed - set(changed))
     breach = bool(unexpected_changed or removed)
@@ -111,17 +116,19 @@ def build_manifest() -> dict[str, object]:
         "changed_by_amendment": {
             "A1": sorted(set(changed) & ALLOWED_CHANGED_PATHS),
             "A2": sorted(set(changed) & A2_ALLOWED_CHANGED_PATHS),
+            "A2.1": sorted(set(changed) & A2_1_ALLOWED_CHANGED_PATHS),
         },
         "added_by_amendment": {
             "A1": sorted(path for path in added if path in ALLOWED_ADDED_PATHS),
             "A2": sorted(path for path in added if path in A2_ALLOWED_ADDED_PATHS),
+            "A2.1": sorted(path for path in added if path in A2_1_ALLOWED_ADDED_PATHS),
         },
         "version": "paper-benchmark-amendment-a1-integrity-1.0.0",
         "amendment": "A1",
         "original_content_freeze": ORIGINAL_CONTENT_FREEZE,
         "original_freeze_designation": "BENCHMARK CONTENT FREEZE V1",
-        "effective_content_freeze": "the Amendment A2 commit, tagged benchmark-content-freeze-a2",
-        "amendments_applied": ["A1", "A2"],
+        "effective_content_freeze": "the Amendment A2.1 commit, tagged benchmark-content-freeze-a2-1",
+        "amendments_applied": ["A1", "A2", "A2.1"],
         "frozen_path_count": len(frozen),
         "protected_unchanged_count": len(unchanged),
         "protected_unchanged_paths": sorted(unchanged),

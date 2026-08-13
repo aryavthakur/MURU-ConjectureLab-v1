@@ -83,6 +83,25 @@ A2_ADDED = [
     "tests/test_paper_benchmark_amendment_a2_integrity.py",
     "tests/test_paper_benchmark_f16_combined.py",
 ]
+#: Amendment A2.1 bumped GENERATOR_VERSION for provenance reasons (no science
+#: changed).  It touches the same five V1-resident paths A2 did -- generator.py
+#: and the four artifacts whose bytes follow every case's content_hash -- so
+#: relative to V1 those five paths are legitimately attributed to *both*
+#: amendments (each made an independent, cumulative change to them), which is
+#: why `A2_CHANGED` and `A2_1_CHANGED` are set-equal below.
+A2_1_CHANGED = [
+    "artifacts/paper_benchmark_case_manifest.json",
+    "artifacts/paper_benchmark_content_freeze.json",
+    "artifacts/paper_benchmark_hash_inventory.json",
+    "artifacts/paper_benchmark_preflight.json",
+    "src/muru/paper_benchmark/generator.py",
+]
+A2_1_ADDED = [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md",
+    "artifacts/paper_benchmark_amendment_a2_1.json",
+    "scripts/pb_32_amendment_a2_1_integrity.py",
+    "tests/test_paper_benchmark_amendment_a2_1_integrity.py",
+]
 
 
 def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze(tmp_path):
@@ -90,9 +109,10 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
 
     assert process.returncode == 0, process.stdout + process.stderr
     assert manifest["original_content_freeze"] == ORIGINAL_FREEZE
-    assert manifest["amendments_applied"] == ["A1", "A2"]
+    assert manifest["amendments_applied"] == ["A1", "A2", "A2.1"]
     # d94d2c9 froze 247 tracked paths.  A1 changed 5, leaving 242; A2 changed 5
     # more, leaving 237 still byte-identical to the original content freeze.
+    # A2.1 changed no path A2 had not already changed, so 237 is unchanged.
     assert manifest["frozen_path_count"] == 247
     assert manifest["protected_unchanged_count"] == 237
     assert manifest["unexpected_changed_paths"] == []
@@ -102,8 +122,8 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
 def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp_path):
     _, manifest = _run(tmp_path)
 
-    assert sorted(manifest["changed_paths"]) == sorted(set(A1_CHANGED) | set(A2_CHANGED))
-    assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED))
+    assert sorted(manifest["changed_paths"]) == sorted(set(A1_CHANGED) | set(A2_CHANGED) | set(A2_1_CHANGED))
+    assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED) | set(A2_1_ADDED))
 
 
 def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):
@@ -111,8 +131,10 @@ def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):
 
     assert manifest["changed_by_amendment"]["A1"] == sorted(A1_CHANGED)
     assert manifest["changed_by_amendment"]["A2"] == sorted(A2_CHANGED)
+    assert manifest["changed_by_amendment"]["A2.1"] == sorted(A2_1_CHANGED)
     assert manifest["added_by_amendment"]["A1"] == sorted(A1_ADDED)
     assert manifest["added_by_amendment"]["A2"] == sorted(A2_ADDED)
+    assert manifest["added_by_amendment"]["A2.1"] == sorted(A2_1_ADDED)
 
 
 def test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendment(tmp_path):
@@ -131,13 +153,15 @@ def test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendm
         assert path in protected, path
 
 
-def test_the_generator_change_is_owned_by_a2_and_nothing_else(tmp_path):
-    """The generator may differ from V1 only because A2 repaired F16."""
+def test_the_generator_change_is_owned_by_a2_and_a2_1_only(tmp_path):
+    """The generator differs from V1 because A2 repaired F16 and A2.1 then
+    corrected its version provenance; A1 never touched it."""
     _, manifest = _run(tmp_path)
 
     generator = "src/muru/paper_benchmark/generator.py"
     assert generator not in set(manifest["protected_unchanged_paths"])
     assert generator in manifest["changed_by_amendment"]["A2"]
+    assert generator in manifest["changed_by_amendment"]["A2.1"]
     assert generator not in manifest["changed_by_amendment"]["A1"]
 
 
