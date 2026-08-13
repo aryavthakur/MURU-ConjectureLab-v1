@@ -7,3 +7,4 @@ def test_content_freeze_preparation_waits_for_locked_implementation(tmp_path):
 
     assert prepared.status == "WAITING_FOR_LOCKED_IMPLEMENTATION"
     assert prepared.final_executable_freeze is False
+    assert prepared.preflight_sha256 == ""
