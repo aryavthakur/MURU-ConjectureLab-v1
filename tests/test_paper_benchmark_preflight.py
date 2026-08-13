@@ -12,3 +12,4 @@ def test_preflight_records_development_only_and_pending_engine(tmp_path):
     assert report.engine_status == "not_run_pending_lock"
     assert report.complete is False
     assert report.held_out_accessed is False
+    assert report.peak_rss_bytes > 0

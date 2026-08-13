@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import platform
 import resource
 import time
 from dataclasses import asdict, dataclass
@@ -16,7 +17,7 @@ class PreflightReport:
     case_count: int
     wall_seconds: float
     cpu_seconds: float
-    peak_rss_kb: int
+    peak_rss_bytes: int
     artifact_bytes: int
     engine_status: str
     engine_failures: int
@@ -44,13 +45,16 @@ def run_preflight(artifact_dir: Path, lock: ImplementationLock) -> PreflightRepo
         if "case_id" not in json.loads(line):
             raise ValueError("development input record is malformed")
     usage = resource.getrusage(resource.RUSAGE_SELF)
+    peak_rss_bytes = int(usage.ru_maxrss)
+    if platform.system() != "Darwin":
+        peak_rss_bytes *= 1024
     pending = lock.status == "PENDING_LOCK"
     return PreflightReport(
         partition="development",
         case_count=case_count,
         wall_seconds=time.perf_counter() - start_wall,
         cpu_seconds=time.process_time() - start_cpu,
-        peak_rss_kb=int(usage.ru_maxrss),
+        peak_rss_bytes=peak_rss_bytes,
         artifact_bytes=input_path.stat().st_size,
         engine_status="not_run_pending_lock" if pending else "ready_for_locked_engine_preflight",
         engine_failures=0,
