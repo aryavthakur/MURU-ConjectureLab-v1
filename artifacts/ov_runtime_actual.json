@@ -1,0 +1,68 @@
+{
+ "stages": {
+  "pysr": {
+   "shards": [
+    {
+     "shard": 0,
+     "ran": 2430,
+     "present": 0,
+     "minutes": 202.4
+    },
+    {
+     "shard": 1,
+     "ran": 2430,
+     "present": 0,
+     "minutes": 211.4
+    },
+    {
+     "shard": 2,
+     "ran": 2430,
+     "present": 0,
+     "minutes": 202.3
+    },
+    {
+     "shard": 3,
+     "ran": 2400,
+     "present": 0,
+     "minutes": 196.1
+    }
+   ],
+   "wall_minutes": 211.4,
+   "units": 9690
+  },
+  "gplearn": {
+   "shards": [
+    {
+     "shard": 0,
+     "ran": 220,
+     "present": 0,
+     "minutes": 22.2
+    },
+    {
+     "shard": 1,
+     "ran": 220,
+     "present": 0,
+     "minutes": 22.2
+    },
+    {
+     "shard": 2,
+     "ran": 220,
+     "present": 0,
+     "minutes": 22.2
+    },
+    {
+     "shard": 3,
+     "ran": 220,
+     "present": 0,
+     "minutes": 22.1
+    }
+   ],
+   "wall_minutes": 22.2,
+   "units": 880
+  }
+ },
+ "projected_hours": 2.6228422150212447,
+ "projected_pysr_s_per_run": 0.8742456715553999,
+ "actual_pysr_s_per_run": 1.3089783281733747,
+ "actual_total_hours": 3.893333333333333
+}

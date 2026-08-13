@@ -27,7 +27,7 @@ import numpy as np
 import sympy as sp
 
 from muru.objval import equiv, signature
-from muru.objval.truth2 import PlantedLaw2, phi, planted2
+from muru.objval.truth2 import REGISTRY2, PlantedLaw2, phi, planted2
 
 RECOVERY_VERSION = "ov-recovery-1.0.0"
 
@@ -44,6 +44,25 @@ SHAPE_REL_RMSE_TOL = 0.05
 _LOG_A_GRID = np.linspace(-2.0, 2.0, 401)
 
 
+def freeze_constants(family: str, params: dict, variables: list[str],
+                     Z: np.ndarray) -> dict:
+    """Pin any constant the planted law derives from the descriptor frame.
+
+    Only `G1C` has one — the centering `X̄` in `exp(a1·(X − X̄))`. It is a
+    constant of the world, but if the evaluator recomputes it from whatever
+    matrix it receives, then perturbing the carrier column moves `X̄` with it,
+    the two shifts cancel, and the measured elasticity collapses to zero.
+    Freezing it once, here, makes the truth-side derivative the derivative of
+    the law that was actually planted. The generated data is untouched: world
+    construction passes no frozen constant and takes the same fallback it
+    always did.
+    """
+    if family != "G1C" or "carrier" not in params:
+        return params
+    j = variables.index(params["carrier"])
+    return {**params, "carrier_center": float(np.mean(Z[:, j]))}
+
+
 def planted_evaluator(family: str, params: dict, variables: list[str],
                       latent_name: str | None = None):
     """An evaluator for the planted `g` on a dimensionless descriptor matrix.
@@ -53,6 +72,11 @@ def planted_evaluator(family: str, params: dict, variables: list[str],
     descriptor law exists at all (`G4`, `GC`, `NULL`). In those worlds there is
     nothing to recover and the recovery fields are recorded as not applicable.
     """
+    if family not in REGISTRY2:
+        # `NULL` calibration worlds carry no planted law at all: a realistic
+        # world is built and then the descriptor-response link is destroyed.
+        # There is nothing to recover, and nothing to score.
+        return None, ()
     law: PlantedLaw2 = planted2(family)
     support = law.support_of(params)
     if not support or any(s.startswith("__") for s in support):
@@ -116,6 +140,7 @@ def score_world(family: str, params: dict, variables: list[str], Z: np.ndarray,
                 reported: dict | None, rep_expr: sp.Expr | None,
                 band_exprs: list[sp.Expr], phi_u=None, phi_v=None) -> dict:
     """Everything truth-based, for one world, after selection is frozen."""
+    params = freeze_constants(family, params, variables, Z)
     out: dict = {"family": family, "recovery_version": RECOVERY_VERSION}
 
     if phi_u is not None and phi_v is not None and family not in ("G4", "GC", "NULL"):

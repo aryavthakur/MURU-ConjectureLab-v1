@@ -1,0 +1,2850 @@
+{
+ "n": 88,
+ "by_block": {
+  "G1B": {
+   "n": 40,
+   "block_support_match": 0.25,
+   "variable_support_match": 0.0,
+   "mass_exponent_agree": 0.325,
+   "sign_agreement": 0.85,
+   "same_type2_family": 0.0,
+   "functionally_equivalent_expressions": 0.0
+  },
+  "G1C": {
+   "n": 10,
+   "block_support_match": 0.2,
+   "variable_support_match": 0.0,
+   "mass_exponent_agree": 0.2,
+   "sign_agreement": 0.8,
+   "same_type2_family": 0.0,
+   "functionally_equivalent_expressions": 0.0
+  },
+  "G3": {
+   "n": 8,
+   "block_support_match": 1.0,
+   "variable_support_match": 0.0,
+   "mass_exponent_agree": 0.375,
+   "sign_agreement": 1.0,
+   "same_type2_family": 0.0,
+   "functionally_equivalent_expressions": 0.0
+  },
+  "G4": {
+   "n": 30,
+   "block_support_match": 0.8,
+   "variable_support_match": 0.8,
+   "mass_exponent_agree": 0.0,
+   "sign_agreement": 0.0,
+   "same_type2_family": 0.0,
+   "functionally_equivalent_expressions": 0.0
+  }
+ },
+ "gate": {
+  "standard": "on G1B moderate worlds: block-level effective support agrees in >= 50% of worlds AND the mass-block exponent agrees within +/-0.15 in >= 50%",
+  "n_worlds": 20,
+  "block_support_agreement": 0.15,
+  "mass_exponent_agreement": 0.25,
+  "satisfied": false
+ },
+ "rows": [
+  {
+   "world_id": "OV|G1B|r000|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000024,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.4689, rel_rmse=0.3460"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((heteroatom_fraction + 2.0606322) * 0.4348162)",
+   "gplearn_expr": "sqrt((total_atom_count*heteroatom_fraction))"
+  },
+  {
+   "world_id": "OV|G1B|r001|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000005,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0029, rel_rmse=0.5148"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((rotatable_bonds + 0.8282834) * precursor_mz)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r002|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000025,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "effective support differs: ['MASS', 'n_O'] vs []",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((n_O / 2.430691) + 0.8812385)",
+   "gplearn_expr": "sqrt((sqrt((total_atom_count/inv(sqrt(n_O))))/inv(sqrt(n_O))))"
+  },
+  {
+   "world_id": "OV|G1B|r003|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000024,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.4755, rel_rmse=0.3452"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(((heteroatom_fraction + 0.70935166) * 0.44816646) + 0.56449974) * sqrt(precursor_mz)",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r004|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5394501260728704,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.461",
+    "predictions disagree: r=-0.0008, rel_rmse=0.4969"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(precursor_mz + (rotatable_bonds * 0.20405787)) + 0.23092763",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r005|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "n_O"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000054,
+   "gplearn_mass_exponent": 0.500000062500002,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.6390, rel_rmse=0.3401"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(n_O + 2.1771681) / (2.4561794 / sqrt(precursor_mz))",
+   "gplearn_expr": "sqrt((total_atom_count*n_O))"
+  },
+  {
+   "world_id": "OV|G1B|r006|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000042,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['heteroatom_fraction']",
+    "exponent in heteroatom_fraction differs by 0.187",
+    "predictions disagree: r=0.6583, rel_rmse=0.2431"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((heteroatom_fraction / 2.1818542) + 0.87253433)",
+   "gplearn_expr": "sqrt(sqrt(heteroatom_fraction))"
+  },
+  {
+   "world_id": "OV|G1B|r007|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000014,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0072, rel_rmse=0.5399"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((rotatable_bonds + 47670.254) + ((rotatable_bonds * -0.5945953) - 47669.324))",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r008|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000021,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS']",
+    "predictions disagree: r=0.0034, rel_rmse=0.4201"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((n_O * 0.26197207) - -1.0370941)",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G1B|r009|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000032,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.4812, rel_rmse=0.3445"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((heteroatom_fraction + 1.8915344) * sqrt(precursor_mz)) / 2.1762216",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r000|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000003,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs []",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.8213031))",
+   "gplearn_expr": "sqrt((heteroatom_fraction/inv(total_atom_count)))"
+  },
+  {
+   "world_id": "OV|G1B|r001|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.44775589679649347,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.552",
+    "predictions disagree: r=0.0014, rel_rmse=0.5271"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "precursor_mz + (rotatable_bonds / 2.4208434)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r002|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "n_O"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "n_O"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000034,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['n_O']",
+    "predictions disagree: r=0.8081, rel_rmse=0.2393"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz / 5.83448) * (n_O + 2.1387076)",
+   "gplearn_expr": "(n_O/sqrt(n_O))"
+  },
+  {
+   "world_id": "OV|G1B|r003|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000018,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['heteroatom_fraction']",
+    "predictions disagree: r=0.5782, rel_rmse=0.2328"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.7979101))",
+   "gplearn_expr": "sqrt(sqrt(heteroatom_fraction))"
+  },
+  {
+   "world_id": "OV|G1B|r004|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5403986964143552,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.460",
+    "predictions disagree: r=-0.0008, rel_rmse=0.4963"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "precursor_mz + ((rotatable_bonds - -1.1820095) * 0.20057824)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r005|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "precursor_mz"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000032,
+   "gplearn_mass_exponent": 0.9999999999999463,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.5555, rel_rmse=0.3643"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(0.87203616 + ((n_O * 0.35942155) + 0.082384855)) * sqrt(precursor_mz)",
+   "gplearn_expr": "(precursor_mz + precursor_mz)"
+  },
+  {
+   "world_id": "OV|G1B|r006|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000003,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['tpsa']",
+    "predictions disagree: r=-0.0159, rel_rmse=0.3365"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction - -0.8158358))",
+   "gplearn_expr": "sqrt(sqrt(tpsa))"
+  },
+  {
+   "world_id": "OV|G1B|r007|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000027,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0072, rel_rmse=0.5436"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((rotatable_bonds / 2.345776) + 0.9122108) * sqrt(precursor_mz)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r008|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999995,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS']",
+    "predictions disagree: r=0.0044, rel_rmse=0.4141"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (n_O + 0.7476555))",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G1B|r009|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000001,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['tpsa']",
+    "predictions disagree: r=-0.0160, rel_rmse=0.3374"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((heteroatom_fraction + 0.7928091) * precursor_mz)",
+   "gplearn_expr": "sqrt(sqrt(tpsa))"
+  },
+  {
+   "world_id": "OV|G1B|r010|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000047,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0067, rel_rmse=0.5234"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(rotatable_bonds + 3.1643534) / (3.1316266 / sqrt(precursor_mz))",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r011|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.500000062500001,
+   "gplearn_mass_exponent": 0.750000039062475,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'tpsa']",
+    "exponent in MASS differs by 0.250",
+    "predictions disagree: r=0.0072, rel_rmse=0.5306"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(sqrt(precursor_mz) * 0.3794366) * (n_O + 2.4174623)",
+   "gplearn_expr": "sqrt((sqrt((tpsa*total_atom_count))*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r012|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000031,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.4473, rel_rmse=0.3490"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz) * ((heteroatom_fraction + 2.369736) * 0.3949402)",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r013|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000007,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0029, rel_rmse=0.5138"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((0.8648359 + rotatable_bonds) * precursor_mz)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r014|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000024,
+   "gplearn_mass_exponent": 0.9999999999999449,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'heteroatom_fraction']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0099, rel_rmse=0.5720"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (n_O + 0.77268535))",
+   "gplearn_expr": "(sqrt(heteroatom_fraction)*total_atom_count)"
+  },
+  {
+   "world_id": "OV|G1B|r015|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000001,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in heteroatom_fraction differs by 0.177",
+    "predictions disagree: r=0.4167, rel_rmse=0.3533"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((heteroatom_fraction + 0.8076981) * precursor_mz)",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r016|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000043,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0071, rel_rmse=0.5392"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((rotatable_bonds * (0.4127489 / 1.0270619)) + 0.9345399) * sqrt(precursor_mz)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r017|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000026,
+   "gplearn_mass_exponent": 0.5000000625,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'tpsa']",
+    "predictions disagree: r=0.0058, rel_rmse=0.4673"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((n_O / 3.1992648) + 0.9825674) * sqrt(precursor_mz)",
+   "gplearn_expr": "sqrt((sqrt(tpsa)*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r018|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999996,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in heteroatom_fraction differs by 0.177",
+    "predictions disagree: r=0.4163, rel_rmse=0.3534"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.81059676))",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r019|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "rotatable_bonds"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "rotatable_bonds"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999988,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['rotatable_bonds']",
+    "predictions disagree: r=0.6972, rel_rmse=0.2536"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((rotatable_bonds - -0.83379495) * precursor_mz)",
+   "gplearn_expr": "sqrt(rotatable_bonds)"
+  },
+  {
+   "world_id": "OV|G1B|r000|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999993,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['tpsa']",
+    "predictions disagree: r=-0.0160, rel_rmse=0.3369"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (0.80395526 + heteroatom_fraction))",
+   "gplearn_expr": "sqrt(sqrt(tpsa))"
+  },
+  {
+   "world_id": "OV|G1B|r001|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "rotatable_bonds"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "rotatable_bonds"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000017,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['rotatable_bonds']",
+    "predictions disagree: r=0.7798, rel_rmse=0.2400"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((rotatable_bonds + 2.0996258) * sqrt(precursor_mz)) / 2.2909267",
+   "gplearn_expr": "sqrt(rotatable_bonds)"
+  },
+  {
+   "world_id": "OV|G1B|r002|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000025,
+   "gplearn_mass_exponent": 0.9999999999999449,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'heteroatom_fraction']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0090, rel_rmse=0.6062"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(sqrt(precursor_mz) * 0.41842934) * (n_O - -2.0234978)",
+   "gplearn_expr": "(total_atom_count*sqrt(heteroatom_fraction))"
+  },
+  {
+   "world_id": "OV|G1B|r003|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999995,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in heteroatom_fraction differs by 0.169",
+    "predictions disagree: r=0.4238, rel_rmse=0.3522"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((heteroatom_fraction + 0.75384027) * precursor_mz)",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r004|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.4910352583410384,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.509",
+    "predictions disagree: r=0.0004, rel_rmse=0.5088"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "((rotatable_bonds / 3.3303554) + precursor_mz) - -0.13765073",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r005|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "tpsa"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999993,
+   "gplearn_mass_exponent": 0.5000000625,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'tpsa']",
+    "predictions disagree: r=0.0072, rel_rmse=0.4431"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((n_O + 0.84571946) * precursor_mz)",
+   "gplearn_expr": "sqrt((sqrt(tpsa)*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r006|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000025,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in heteroatom_fraction differs by 0.178",
+    "predictions disagree: r=0.4158, rel_rmse=0.3535"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.81481904))",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1B|r007|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [
+    "rotatable_bonds"
+   ],
+   "pysr_variables": [],
+   "gplearn_variables": [
+    "rotatable_bonds"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "effective support differs: [] vs ['rotatable_bonds']",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "cube(0.97655416 + (0.11969397 * rotatable_bonds)) * sqrt(precursor_mz)",
+   "gplearn_expr": "sqrt(rotatable_bonds)"
+  },
+  {
+   "world_id": "OV|G1B|r008|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000011,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0052, rel_rmse=0.5223"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (n_O - -0.7894893))",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1B|r009|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.6946321402883826,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.195",
+    "exponent in heteroatom_fraction differs by 0.153",
+    "predictions disagree: r=0.3817, rel_rmse=0.3952"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(sqrt(heteroatom_fraction) * precursor_mz) + 0.44679534",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1C|r000|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000013,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['heteroatom_fraction']",
+    "exponent in heteroatom_fraction differs by 0.243",
+    "predictions disagree: r=0.7880, rel_rmse=0.2472"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (square(heteroatom_fraction) + 0.7535356))",
+   "gplearn_expr": "sqrt(heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G1C|r001|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "pysr_variables": [],
+   "gplearn_variables": [
+    "total_atom_count",
+    "rotatable_bonds"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": 0.2500000546875132,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "effective support differs: [] vs ['MASS', 'rotatable_bonds']",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(cube(sqrt(rotatable_bonds)) * 0.4091724) + precursor_mz",
+   "gplearn_expr": "sqrt((rotatable_bonds*sqrt((rotatable_bonds*total_atom_count))))"
+  },
+  {
+   "world_id": "OV|G1C|r002|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [
+    "MASS",
+    "tpsa"
+   ],
+   "pysr_variables": [],
+   "gplearn_variables": [
+    "total_atom_count",
+    "tpsa"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": 0.5000000625,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "effective support differs: [] vs ['MASS', 'tpsa']",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(n_O + 2.3625858) / inv(sqrt(precursor_mz / 6.8734536))",
+   "gplearn_expr": "sqrt((sqrt(tpsa)*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1C|r003|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000016,
+   "gplearn_mass_exponent": 0.5000000625000012,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in heteroatom_fraction differs by 0.175",
+    "predictions disagree: r=0.4180, rel_rmse=0.3531"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * (heteroatom_fraction + 0.7977415))",
+   "gplearn_expr": "sqrt((heteroatom_fraction*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1C|r004|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.4517291535464666,
+   "gplearn_mass_exponent": 0.9999999999999456,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['MASS']",
+    "exponent in MASS differs by 0.548",
+    "predictions disagree: r=0.0106, rel_rmse=0.5572"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(precursor_mz + 0.29067764) + square(rotatable_bonds / 3.2474966)",
+   "gplearn_expr": "total_atom_count"
+  },
+  {
+   "world_id": "OV|G1C|r005|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "n_O"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000015,
+   "gplearn_mass_exponent": 0.500000062500002,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in n_O differs by 0.546",
+    "predictions disagree: r=0.6696, rel_rmse=0.3850"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(0.9317156 - ((n_O * -0.29522952) * sqrt(n_O))) * sqrt(precursor_mz)",
+   "gplearn_expr": "sqrt((n_O*total_atom_count))"
+  },
+  {
+   "world_id": "OV|G1C|r006|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000017,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['heteroatom_fraction']",
+    "exponent in heteroatom_fraction differs by 0.250",
+    "predictions disagree: r=0.7908, rel_rmse=0.2479"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt((square(heteroatom_fraction) + 0.72472864) * precursor_mz)",
+   "gplearn_expr": "sqrt(heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G1C|r007|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [
+    "rotatable_bonds"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [
+    "rotatable_bonds"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.3122289049708221,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'rotatable_bonds'] vs ['rotatable_bonds']",
+    "exponent in rotatable_bonds differs by 0.449",
+    "predictions disagree: r=0.9213, rel_rmse=0.2091"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "square((precursor_mz + rotatable_bonds) + 2.2553043) * 0.066914596",
+   "gplearn_expr": "sqrt(rotatable_bonds)"
+  },
+  {
+   "world_id": "OV|G1C|r008|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "gplearn_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "gplearn_variables": [
+    "total_atom_count",
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000624999997,
+   "gplearn_mass_exponent": 0.9999999999999449,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'n_O'] vs ['MASS', 'heteroatom_fraction']",
+    "exponent in MASS differs by 0.500",
+    "predictions disagree: r=0.0076, rel_rmse=0.6305"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(((square(n_O) * 0.42025194) + 1.0764647) * precursor_mz)",
+   "gplearn_expr": "(total_atom_count*sqrt(heteroatom_fraction))"
+  },
+  {
+   "world_id": "OV|G1C|r009|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [
+    "heteroatom_fraction"
+   ],
+   "pysr_variables": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [
+    "heteroatom_fraction"
+   ],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000003,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs ['heteroatom_fraction']",
+    "predictions disagree: r=0.7394, rel_rmse=0.2346"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(heteroatom_fraction + 1.2323817) * sqrt(precursor_mz / 2.7826204)",
+   "gplearn_expr": "sqrt(heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G3|r000|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.7959779232608761,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.296",
+    "predictions disagree: r=-0.0069, rel_rmse=0.4103"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "square(sqrt(precursor_mz) + 0.2504467)",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r001|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.46761994987563926,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=-0.0032, rel_rmse=0.3296"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "log((precursor_mz * 2.350755) - -1.4061335)",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r002|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.6905116929752636,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.191",
+    "predictions disagree: r=-0.0078, rel_rmse=0.3767"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "precursor_mz + 0.42790902",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r003|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5578382974370871,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=-0.0035, rel_rmse=0.3540"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz * 2.4075963) + -0.15719461",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r004|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.5000000625000012,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": true,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=-0.0035, rel_rmse=0.3368"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "sqrt(precursor_mz / 0.56480885)",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r005|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.691089953026344,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.191",
+    "predictions disagree: r=-0.0078, rel_rmse=0.3769"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "precursor_mz + 0.42675212",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r006|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.7936237781924891,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.294",
+    "predictions disagree: r=-0.0078, rel_rmse=0.4054"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(precursor_mz + 0.24826941) / 0.8193211",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G3|r007|moderate",
+   "block": "G3",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [
+    "MASS"
+   ],
+   "pysr_variables": [
+    "precursor_mz"
+   ],
+   "gplearn_variables": [
+    "total_atom_count"
+   ],
+   "block_support_match": true,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.7964649063810589,
+   "gplearn_mass_exponent": 0.5000000624999994,
+   "mass_exponent_agree": false,
+   "sign_agreement": true,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "exponent in MASS differs by 0.296",
+    "predictions disagree: r=-0.0069, rel_rmse=0.4105"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "square(sqrt(precursor_mz) + 0.24969614)",
+   "gplearn_expr": "sqrt(total_atom_count)"
+  },
+  {
+   "world_id": "OV|G4|r000|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "total_atom_count"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": 0.10554226030514002,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.0767"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(0.056068808 * total_atom_count) + 0.9503647",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r001|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "rdbe",
+    "heteroatom_fraction"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": -0.09216318184349098,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['MASS', 'heteroatom_fraction'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.1095"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0806934 - ((heteroatom_fraction * 0.06397641) * rdbe)",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r002|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "ring_count"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "ring_count"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['ring_count'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.0273"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(40.42175 - ring_count) / 38.36217",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r003|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0345"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0357124",
+   "gplearn_expr": "(n_halogen/n_halogen)"
+  },
+  {
+   "world_id": "OV|G4|r004|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0581"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0616922",
+   "gplearn_expr": "(precursor_mz/precursor_mz)"
+  },
+  {
+   "world_id": "OV|G4|r005|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "candidate is not a usable positive scale over the domain",
+    "predictions disagree: r=nan, rel_rmse=inf"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0689354 + (cube(precursor_mz) * -0.084786594)",
+   "gplearn_expr": "(n_halogen/n_halogen)"
+  },
+  {
+   "world_id": "OV|G4|r006|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0484"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0508978",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r007|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0140"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0142398",
+   "gplearn_expr": "(n_O/n_O)"
+  },
+  {
+   "world_id": "OV|G4|r008|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "rotatable_bonds"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "rotatable_bonds"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['rotatable_bonds'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.0341"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(rotatable_bonds * -0.0201262) + 1.0517756",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r009|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0185"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0188982",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r010|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0428"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0447047",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r011|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0517"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0545315",
+   "gplearn_expr": "(n_N/n_N)"
+  },
+  {
+   "world_id": "OV|G4|r012|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0260"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0266981",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r013|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0188"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.019194",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r014|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0881"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "0.99020314",
+   "gplearn_expr": "0.9029870074782105"
+  },
+  {
+   "world_id": "OV|G4|r015|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0421"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0439221",
+   "gplearn_expr": "(precursor_mz/precursor_mz)"
+  },
+  {
+   "world_id": "OV|G4|r016|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0336"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0348006",
+   "gplearn_expr": "(n_N/n_N)"
+  },
+  {
+   "world_id": "OV|G4|r017|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0270"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0277816",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r018|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0229"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0233866",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r019|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0325"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0022483 + (0.015532506 / tpsa)",
+   "gplearn_expr": "(n_S/n_S)"
+  },
+  {
+   "world_id": "OV|G4|r020|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0131"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0132943",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r021|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "n_halogen"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "n_halogen"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['n_halogen'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.0886"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0623176 - (n_halogen / 26.206924)",
+   "gplearn_expr": "(n_S/n_S)"
+  },
+  {
+   "world_id": "OV|G4|r022|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [
+    "n_halogen"
+   ],
+   "gplearn_blocks": [],
+   "pysr_variables": [
+    "n_halogen"
+   ],
+   "gplearn_variables": [],
+   "block_support_match": false,
+   "variable_support_match": false,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "effective support differs: ['n_halogen'] vs []",
+    "predictions disagree: r=0.0000, rel_rmse=0.1123"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "(n_halogen * 0.03279279) + 1.0129863",
+   "gplearn_expr": "(precursor_mz/precursor_mz)"
+  },
+  {
+   "world_id": "OV|G4|r023|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0477"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0500733",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r024|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0218"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0223294",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r025|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0450"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "tpsa / (tpsa + -0.01853916)",
+   "gplearn_expr": "(total_atom_count/total_atom_count)"
+  },
+  {
+   "world_id": "OV|G4|r026|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0338"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0088577 - (-0.0015623672 / square(tpsa))",
+   "gplearn_expr": "(ring_count/ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r027|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0058"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "0.9942529",
+   "gplearn_expr": "(aromatic_ring_count/aromatic_ring_count)"
+  },
+  {
+   "world_id": "OV|G4|r028|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0363"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0376761",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  },
+  {
+   "world_id": "OV|G4|r029|moderate",
+   "block": "G4",
+   "noise_regime": "moderate",
+   "pysr_reported": true,
+   "gplearn_reported": true,
+   "pysr_blocks": [],
+   "gplearn_blocks": [],
+   "pysr_variables": [],
+   "gplearn_variables": [],
+   "block_support_match": true,
+   "variable_support_match": true,
+   "pysr_mass_exponent": NaN,
+   "gplearn_mass_exponent": NaN,
+   "mass_exponent_agree": false,
+   "sign_agreement": false,
+   "same_type2_family": false,
+   "family_disagreement_reasons": [
+    "predictions disagree: r=0.0000, rel_rmse=0.0371"
+   ],
+   "functionally_equivalent_expressions": false,
+   "pysr_expr": "1.0385698",
+   "gplearn_expr": "(heteroatom_fraction/heteroatom_fraction)"
+  }
+ ]
+}

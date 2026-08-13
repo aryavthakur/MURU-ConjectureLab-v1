@@ -136,10 +136,15 @@ def calibrate() -> dict:
                    for x in r["r2_by_complexity_max"]] for r in rows])
     tab = threshold_table(M)
 
+    # Per-construction reporting uses the same floor `threshold_table` applies,
+    # so a world where the search produced nothing usable at some complexity is
+    # kept in the sample rather than turning the quantile into -inf.
+    from muru.objval.calibration import NEG_INF_FILL
     by_constr: dict[str, list] = {}
     for r in rows:
         by_constr.setdefault(r["null_construction"] or "unknown", []).append(
-            [(-np.inf if x is None else x) for x in r["r2_by_complexity_max"]])
+            [(NEG_INF_FILL if (x is None or not np.isfinite(x)) else x)
+             for x in r["r2_by_complexity_max"]])
 
     out = {
         "statistic": ("max over the 30 seeds of the best validation R^2 "

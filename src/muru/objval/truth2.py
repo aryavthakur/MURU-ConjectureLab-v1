@@ -181,11 +181,21 @@ G1B = PlantedLaw2(
 #
 # The degeneracy is created by placing the truth outside the hypothesis space,
 # NOT by tuning constants to reproduce Phase 3's observed failure numerically.
+#
+# `carrier_center` is the centering constant `X̄`. It is a CONSTANT of the world,
+# fixed when the world is generated. Generation passes no `carrier_center`, so
+# the fallback reproduces the world exactly as built. Truth-side scoring passes
+# the frozen value, because a constant that is recomputed from whatever matrix
+# it is handed stops being a constant under differentiation: perturbing the
+# carrier column moves the mean with it, the two shifts cancel, and the
+# elasticity collapses to zero. See DEVIATIONS_OBJECTIVE_VALIDATION.md D2.
 G1C = PlantedLaw2(
     name="G1C", role="positive control — near-degenerate family challenge",
     g_of=lambda z, p: (p["g_scale"] * np.sqrt(z["precursor_mz"])
                        * np.exp(p["struct_coef"]
-                                * (z[p["carrier"]] - float(np.mean(z[p["carrier"]]))))),
+                                * (z[p["carrier"]]
+                                   - float(p.get("carrier_center",
+                                                 np.mean(z[p["carrier"]])))))),
     expr_of=lambda p: (f"{p['g_scale']:.6f}*sqrt(precursor_mz)"
                        f"*exp({p['struct_coef']:.6f}*({p['carrier']} - cbar))"),
     support_of=lambda p: ("precursor_mz", p["carrier"]),

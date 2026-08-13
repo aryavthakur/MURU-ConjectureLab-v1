@@ -1,0 +1,122 @@
+{
+ "G1A/adverse": {
+  "n": 2,
+  "search_found_the_law": 0.5,
+  "system_reported_the_law": 0.5,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 17.5,
+  "worlds_claiming_form_identified": 0
+ },
+ "G1A/low": {
+  "n": 2,
+  "search_found_the_law": 1.0,
+  "system_reported_the_law": 1.0,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 4.0,
+  "worlds_claiming_form_identified": 0
+ },
+ "G1A/moderate": {
+  "n": 2,
+  "search_found_the_law": 1.0,
+  "system_reported_the_law": 1.0,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 4.5,
+  "worlds_claiming_form_identified": 0
+ },
+ "G1B/adverse": {
+  "n": 10,
+  "search_found_the_law": 0.6,
+  "system_reported_the_law": 0.2,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 4.5,
+  "worlds_claiming_form_identified": 1
+ },
+ "G1B/low": {
+  "n": 10,
+  "search_found_the_law": 1.0,
+  "system_reported_the_law": 0.8,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 9.0,
+  "worlds_claiming_form_identified": 0
+ },
+ "G1B/moderate": {
+  "n": 20,
+  "search_found_the_law": 0.9,
+  "system_reported_the_law": 0.4,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 8.5,
+  "worlds_claiming_form_identified": 0
+ },
+ "G1C": {
+  "n": 10,
+  "search_found_the_law": 0.5,
+  "system_reported_the_law": 0.0,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 10.0,
+  "worlds_claiming_form_identified": 0
+ },
+ "G2": {
+  "n": 8,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 3.5,
+  "worlds_claiming_form_identified": 3
+ },
+ "G3": {
+  "n": 8,
+  "search_found_the_law": 1.0,
+  "system_reported_the_law": 0.625,
+  "symbolically_equivalent": 0.0,
+  "median_distinct_algebraic_forms": 7.5,
+  "worlds_claiming_form_identified": 0
+ },
+ "G4": {
+  "n": 100,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 1.0,
+  "worlds_claiming_form_identified": 77
+ },
+ "G4M": {
+  "n": 30,
+  "search_found_the_law": 0.5333333333333333,
+  "system_reported_the_law": 0.43333333333333335,
+  "symbolically_equivalent": 0.43333333333333335,
+  "median_distinct_algebraic_forms": 1.0,
+  "worlds_claiming_form_identified": 17
+ },
+ "G5": {
+  "n": 8,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 2.0,
+  "worlds_claiming_form_identified": 2
+ },
+ "GC": {
+  "n": 9,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 3,
+  "worlds_claiming_form_identified": 1
+ },
+ "GRT": {
+  "n": 4,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 4.0,
+  "worlds_claiming_form_identified": 1
+ },
+ "NCAL": {
+  "n": 100,
+  "search_found_the_law": NaN,
+  "system_reported_the_law": NaN,
+  "symbolically_equivalent": NaN,
+  "median_distinct_algebraic_forms": 1.0,
+  "worlds_claiming_form_identified": 67
+ }
+}

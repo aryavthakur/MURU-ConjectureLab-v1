@@ -258,3 +258,51 @@ def test_a_latent_driver_world_is_not_scored_for_support_recovery(Z):
                                       "carrier": "heteroatom_fraction"},
                                V, Z, None, None, [])
     assert out["family_recovery"]["applicable"] is False
+
+
+# --- regressions for DEVIATIONS_OBJECTIVE_VALIDATION.md ----------------------
+def test_null_calibration_worlds_score_as_not_applicable(Z):
+    """D1: `NULL` is a family label with no planted law, not a missing key."""
+    out = recovery.score_world("NULL", {"construction": "x"}, V, Z, None, None, [])
+    assert out["support_recovery"]["applicable"] is False
+    assert out["exact_form"]["applicable"] is False
+    assert recovery.planted_evaluator("NULL", {}, V) == (None, ())
+
+
+def test_a_centered_planted_law_keeps_its_carrier_in_support(Z):
+    """D2: `X̄` in `exp(a1·(X − X̄))` is a constant of the world.
+
+    Recomputed under perturbation it cancels against the perturbation itself and
+    the carrier's elasticity collapses to zero. Frozen, the measured elasticity
+    equals the closed-form `a1 · median(X)`.
+    """
+    carrier = "heteroatom_fraction"
+    params = {"g_scale": 1.7, "struct_coef": 0.494, "carrier": carrier,
+              "mu_inf": 0.24, "phi_p": 1.5}
+    frozen = recovery.freeze_constants("G1C", params, V, Z)
+    assert "carrier_center" in frozen
+
+    ev, _ = recovery.planted_evaluator("G1C", frozen, V)
+    sig = signature.signature_from(ev, V, Z, ("precursor_mz", carrier))
+    assert carrier in sig["effective_support"]
+    expected = params["struct_coef"] * float(np.median(Z[:, V.index(carrier)]))
+    assert sig["exponents"][carrier] == pytest.approx(expected, abs=1e-3)
+    assert signature.mass_exponent(sig) == pytest.approx(0.5, abs=1e-3)
+
+    # and the unfrozen form is the failure the deviation records
+    ev_bad, _ = recovery.planted_evaluator("G1C", params, V)
+    sig_bad = signature.signature_from(ev_bad, V, Z, ("precursor_mz", carrier))
+    assert carrier not in sig_bad["effective_support"]
+
+
+def test_freezing_the_centering_constant_leaves_generation_untouched():
+    """The fallback path is what world construction takes, and must not move."""
+    from muru.objval.truth2 import planted2
+    rng = np.random.default_rng(0)
+    z = {"precursor_mz": rng.uniform(0.3, 1.1, 400),
+         "heteroatom_fraction": rng.uniform(0.2, 2.4, 400)}
+    p = {"g_scale": 1.7, "struct_coef": 0.4, "carrier": "heteroatom_fraction"}
+    law = planted2("G1C")
+    expected = 1.7 * np.sqrt(z["precursor_mz"]) * np.exp(
+        0.4 * (z["heteroatom_fraction"] - np.mean(z["heteroatom_fraction"])))
+    assert np.allclose(law.g_of(z, p), expected, rtol=0, atol=0)

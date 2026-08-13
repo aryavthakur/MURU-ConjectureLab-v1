@@ -1,0 +1,24 @@
+{
+ "checkpoint_root": "artifacts/ov_ckpt",
+ "search_units": 10570,
+ "world_records": 411,
+ "by_block": {
+  "G1A_pysr": 180,
+  "G1B_gplearn": 400,
+  "G1B_pysr": 1200,
+  "G1C_gplearn": 100,
+  "G1C_pysr": 300,
+  "G2_pysr": 240,
+  "G3_gplearn": 80,
+  "G3_pysr": 240,
+  "G4M_pysr": 900,
+  "G4_gplearn": 300,
+  "G4_pysr": 3000,
+  "G5_pysr": 240,
+  "GC_pysr": 270,
+  "GRT_pysr": 120,
+  "NCAL_pysr": 3000
+ },
+ "selection_results": 323,
+ "adjudication_results": 323
+}

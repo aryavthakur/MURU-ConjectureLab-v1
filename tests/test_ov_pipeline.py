@@ -260,3 +260,26 @@ def test_generator_version_is_namespaced_for_this_study():
 def test_every_feature_is_supplied_to_the_search(cov):
     w = build_world2("G1B", 0, "moderate", cov=cov)
     assert set(FEATURES) <= set(w.cov.columns)
+
+
+def test_g1c_worlds_reproduce_their_frozen_hash_after_the_centering_fix(cov):
+    """D2 must not have moved a single generated value."""
+    p = ART / "ov_worlds.json"
+    if not p.exists():
+        pytest.skip("fresh world manifest not present")
+    man = {w["world_id"]: w for w in json.loads(p.read_text())["worlds"]}
+    for i in range(10):
+        w = build_world2("G1C", i, "moderate", cov=cov)
+        assert w.output_sha256 == man[w.world_id]["output_sha256"], w.world_id
+
+
+def test_every_frozen_world_hash_is_still_reproducible(cov):
+    """Spot-check across families that nothing in the study moved the data."""
+    p = ART / "ov_worlds.json"
+    if not p.exists():
+        pytest.skip("fresh world manifest not present")
+    man = {w["world_id"]: w for w in json.loads(p.read_text())["worlds"]}
+    for fam, n in (("G1B", 4), ("G3", 3), ("G4", 3), ("G4M", 2), ("G5", 2)):
+        for i in range(n):
+            w = build_world2(fam, i, "moderate", cov=cov)
+            assert w.output_sha256 == man[w.world_id]["output_sha256"], w.world_id

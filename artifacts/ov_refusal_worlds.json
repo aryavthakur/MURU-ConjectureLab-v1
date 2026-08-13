@@ -1,0 +1,69 @@
+{
+ "G2": {
+  "n": 8,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 8,
+  "accepted_worlds": []
+ },
+ "G3": {
+  "n": 8,
+  "accepted": 8,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 0,
+  "accepted_worlds": [
+   "OV|G3|r000|moderate",
+   "OV|G3|r001|moderate",
+   "OV|G3|r002|moderate",
+   "OV|G3|r003|moderate",
+   "OV|G3|r004|moderate",
+   "OV|G3|r005|moderate",
+   "OV|G3|r006|moderate",
+   "OV|G3|r007|moderate"
+  ]
+ },
+ "G4": {
+  "n": 100,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 0,
+  "accepted_worlds": []
+ },
+ "G4M": {
+  "n": 30,
+  "accepted": 1,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 0,
+  "accepted_worlds": [
+   "OV|G4M|r024|moderate"
+  ]
+ },
+ "G5": {
+  "n": 8,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 1,
+  "accepted_worlds": []
+ },
+ "GC": {
+  "n": 9,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 1,
+  "accepted_worlds": []
+ },
+ "GRT": {
+  "n": 4,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 0,
+  "accepted_worlds": []
+ },
+ "NCAL": {
+  "n": 100,
+  "accepted": 0,
+  "accepted_claiming_non_mass_structure": 0,
+  "h_main_rejected": 11,
+  "accepted_worlds": []
+ }
+}
