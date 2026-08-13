@@ -140,3 +140,8 @@ Icon?
 artifacts/ov_ckpt/
 artifacts/ov_sel/
 artifacts/ov_adj/
+
+# Prospective paper-benchmark manifests, preflight, and freeze status are the
+# reproducibility record. Generated row-level inputs/truths remain sealed
+# regenerable bytes whose SHA-256 values are committed in the inventory.
+!artifacts/paper_benchmark_*.json
