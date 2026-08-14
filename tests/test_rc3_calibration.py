@@ -42,9 +42,9 @@ from muru.paper_benchmark.rc3_calibration_runner import (
 )
 from muru.paper_benchmark.rc3_calibration_worlds import (
     ADMITTED_CONSTRUCTIONS,
-    BaseTargetUnresolved,
+    CALIBRATION_SCAFFOLD_COUNTS,
+    EXPECTED_SPLIT_COUNTS,
     ExcludedConstructionError,
-    build_all_worlds,
     build_world,
     iter_world_ids,
 )
@@ -398,26 +398,17 @@ def test_world_geometry_matches_the_contract():
     assert len(world.seeds) == N_SEEDS_PER_WORLD
 
 
-def test_split_proportion_deviates_from_the_amendment_and_is_declared():
-    """The frozen generator gives 66.7/16.7/16.7, the amendment says 60/20/20.
-
-    This asserts the deviation as an OPEN ITEM, not as the contract. The
-    generator is a protected path; RC3 neither edited it nor invented a
-    substitute split.
-    """
-    from muru.paper_benchmark.rc3_calibration_worlds import (
-        EXPECTED_SPLIT_COUNTS,
-        SPLIT_PROPORTION_OPEN_ITEM,
-    )
-
+def test_the_split_is_the_a3_2_sixty_twenty_twenty():
+    """A3.2 Decision 2: 18/6/6 scaffolds, 108/36/36 compounds."""
     world = build_world("target_permuted_across_compounds", 0)
     counts = world.compounds["split"].value_counts().to_dict()
     assert counts == EXPECTED_SPLIT_COUNTS == {
-        "train": 120, "validation": 30, "test": 30,
+        "train": 108, "validation": 36, "test": 36,
     }
-    # 120/180 is 66.7%, not the 60% the amendment specifies.
-    assert counts["train"] / 180 != pytest.approx(0.60, abs=1e-3)
-    assert "SPLIT_PROPORTION_DISCREPANCY" in SPLIT_PROPORTION_OPEN_ITEM
+    assert counts["train"] / 180 == pytest.approx(0.60)
+    assert counts["validation"] / 180 == pytest.approx(0.20)
+    assert counts["test"] / 180 == pytest.approx(0.20)
+    assert CALIBRATION_SCAFFOLD_COUNTS == {"train": 18, "validation": 6, "test": 6}
 
 
 def test_splits_are_scaffold_disjoint():
@@ -699,9 +690,13 @@ def test_build_world_rejects_an_index_outside_its_allocation():
     build_world("target_permuted_across_compounds", 33)  # last valid
 
 
-def test_build_all_worlds_refuses_the_unresolved_base_target():
-    with pytest.raises(BaseTargetUnresolved, match="BASE_TARGET_UNRESOLVED"):
-        build_all_worlds()
+def test_build_all_worlds_no_longer_needs_an_acknowledgement():
+    """A3.2 resolved the base target, so the RC3 gate is gone."""
+    from muru.paper_benchmark.rc3_calibration_worlds import build_all_worlds
+
+    worlds = build_all_worlds()
+    assert len(worlds) == N_CALIBRATION_WORLDS
+    assert len({w.world_id for w in worlds}) == N_CALIBRATION_WORLDS
 
 
 def test_a_minus_inf_quantile_produces_a_nan_table_and_is_refused(tmp_path):

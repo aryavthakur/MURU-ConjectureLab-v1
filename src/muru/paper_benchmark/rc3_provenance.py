@@ -55,6 +55,7 @@ __all__ = [
     "read_lock_pins",
     "verify_dependencies",
     "build_provenance_manifest",
+    "a3_2_world_construction",
 ]
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -285,6 +286,37 @@ def _srjl_from_juliapkg() -> str:
     return "UNKNOWN"
 
 
+def a3_2_world_construction() -> dict[str, object]:
+    """The A3.2 world-construction identity, for the provenance record.
+
+    Amendment A3.2 requires that settings/provenance records carry the
+    base-target algorithm identity and its seed namespace, so a threshold
+    table can never be read without knowing which null construction produced
+    it.  Imported from the implementing module rather than restated.
+    """
+    from .rc3_calibration_worlds import (
+        BASE_TARGET_ALGORITHM,
+        BASE_TARGET_SEED_NAMESPACE,
+        CALIBRATION_SCAFFOLD_COUNTS,
+        COMPOUNDS_PER_SCAFFOLD,
+        EXPECTED_SPLIT_COUNTS,
+        SPLIT_ALGORITHM,
+        SPLIT_SEED_NAMESPACE,
+    )
+
+    return {
+        "amendment": "A3.2",
+        "base_target_algorithm": BASE_TARGET_ALGORITHM,
+        "base_target_seed_namespace": f"PB|NCAL|<world_id>|{BASE_TARGET_SEED_NAMESPACE}",
+        "split_algorithm": SPLIT_ALGORITHM,
+        "split_seed_namespace": f"PB|NCAL|<world_id>|{SPLIT_SEED_NAMESPACE}",
+        "canonical_seed_api": "muru.paper_benchmark.generator.derive_seed",
+        "scaffold_counts": dict(sorted(CALIBRATION_SCAFFOLD_COUNTS.items())),
+        "compound_counts": dict(sorted(EXPECTED_SPLIT_COUNTS.items())),
+        "compounds_per_scaffold": COMPOUNDS_PER_SCAFFOLD,
+    }
+
+
 @dataclass(frozen=True)
 class ProvenanceManifest:
     commit: str
@@ -295,6 +327,7 @@ class ProvenanceManifest:
     python_packages: Mapping[str, str]
     julia: Mapping[str, str]
     seed_bands: Mapping[str, int]
+    world_construction: Mapping[str, object]
 
     def to_payload(self) -> dict:
         return {
@@ -306,6 +339,7 @@ class ProvenanceManifest:
             "python_packages": dict(sorted(self.python_packages.items())),
             "julia": dict(sorted(self.julia.items())),
             "seed_bands": dict(sorted(self.seed_bands.items())),
+            "world_construction": dict(sorted(self.world_construction.items())),
         }
 
 
@@ -334,4 +368,5 @@ def build_provenance_manifest(
         python_packages=packages,
         julia=_julia_versions(start_julia=start_julia),
         seed_bands=assert_seed_band_separation(),
+        world_construction=a3_2_world_construction(),
     )

@@ -150,7 +150,7 @@ def test_manifest_records_the_full_stack():
     payload = build_provenance_manifest(strict=True).to_payload()
     assert set(payload) == {
         "commit", "dirty", "lock_relpath", "lock_commit", "lock_sha256",
-        "python_packages", "julia", "seed_bands",
+        "python_packages", "julia", "seed_bands", "world_construction",
     }
     for dist in REQUIRED_PACKAGES:
         assert dist in payload["python_packages"]

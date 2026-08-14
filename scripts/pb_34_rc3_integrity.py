@@ -84,6 +84,13 @@ RC3_TEST_FILES = [
     "tests/test_rc3_ceiling.py",
     "tests/test_rc3_calibration.py",
     "tests/test_rc3_provenance.py",
+    "tests/test_a3_2_calibration_design.py",
+]
+
+#: Amendment A3.2 governance artifacts, merged in from the science lineage.
+A3_2_GOVERNANCE_FILES = [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md",
+    "artifacts/paper_benchmark_amendment_a3_2.json",
 ]
 
 RC3_SCRIPT_FILES = [
@@ -104,9 +111,13 @@ RC3_SCANNED_FILES = RC3_SOURCE_FILES + RC3_TEST_FILES + [
     rel for rel in RC3_SCRIPT_FILES if not rel.endswith("pb_34_rc3_integrity.py")
 ]
 
-RC3_ADDED_FILES = RC3_SCANNED_FILES + [
+RC3_ADDED_FILES = RC3_SCANNED_FILES + A3_2_GOVERNANCE_FILES + [
     "configs/rc3_requirements_lock_c7c2332.txt",
 ]
+
+#: The A3.2 science-amendment commit whose governance artifacts must be
+#: byte-identical in this engineering lineage.
+A3_2_COMMIT = "1194fcbc9d9edcb14583eedfdcb0e395028dd93a"
 
 SMOKE_DIR = "artifacts/rc3_engineering_smoke"
 SMOKE_MARKER = "ENGINEERING_SMOKE_NOT_SCIENTIFIC"
@@ -145,6 +156,80 @@ def check_protected_paths() -> tuple[list[str], int]:
     return errors, verified
 
 
+def check_a3_2_governance() -> list[str]:
+    """A3.2 artifacts must match the science lineage byte for byte.
+
+    The merge must have carried them across unchanged; an engineering branch
+    may not quietly edit a science contract.
+    """
+    errors: list[str] = []
+    for rel in A3_2_GOVERNANCE_FILES:
+        current = ROOT / rel
+        if not current.exists():
+            errors.append(f"MISSING_A3_2: {rel}")
+            continue
+        frozen = git_show_hash(A3_2_COMMIT, rel)
+        if frozen == "MISSING_AT_COMMIT":
+            errors.append(f"NOT_AT_A3_2: {rel}")
+        elif sha256_file(current) != frozen:
+            errors.append(f"MODIFIED_A3_2: {rel}")
+
+    # The amendment's own record of the 27 protected digests must still hold.
+    try:
+        import json
+        payload = json.loads(
+            (ROOT / "artifacts/paper_benchmark_amendment_a3_2.json").read_text()
+        )
+        if payload["protected_path_count"] != TOTAL_PROTECTED:
+            errors.append(
+                f"A3_2_PROTECTED_COUNT: {payload['protected_path_count']} != "
+                f"{TOTAL_PROTECTED}"
+            )
+        for rel, expected in payload["protected_sha256"].items():
+            actual = sha256_file(ROOT / rel)
+            if actual != expected:
+                errors.append(f"A3_2_PROTECTED_DRIFT: {rel}")
+        if payload["status"]["calibration"] != "NOT_EXECUTED":
+            errors.append("A3_2_STATUS: calibration is not NOT_EXECUTED")
+        for key, want in (("development", "NOT_OPENED"),
+                          ("held_out", "SEALED_NOT_OPENED"),
+                          ("confirmation", "SEALED_NOT_OPENED")):
+            if payload["status"][key] != want:
+                errors.append(f"A3_2_STATUS: {key} is not {want}")
+    except Exception as exc:
+        errors.append(f"A3_2_JSON_ERROR: {type(exc).__name__}: {exc}")
+    return errors
+
+
+def check_a3_2_implementation() -> list[str]:
+    """The implementation must match what the amendment binds."""
+    errors: list[str] = []
+    try:
+        import json
+        payload = json.loads(
+            (ROOT / "artifacts/paper_benchmark_amendment_a3_2.json").read_text()
+        )
+        from muru.paper_benchmark.rc3_calibration_worlds import (
+            BASE_TARGET_ALGORITHM, CALIBRATION_SCAFFOLD_COUNTS,
+            EXPECTED_SPLIT_COUNTS, SPLIT_ALGORITHM,
+        )
+        if BASE_TARGET_ALGORITHM != payload["base_target"]["algorithm_identity"]:
+            errors.append("A3_2_IMPL: base-target algorithm identity mismatch")
+        if SPLIT_ALGORITHM != payload["split"]["algorithm_identity"]:
+            errors.append("A3_2_IMPL: split algorithm identity mismatch")
+        if CALIBRATION_SCAFFOLD_COUNTS != payload["split"]["scaffold_counts"]:
+            errors.append("A3_2_IMPL: scaffold counts mismatch")
+        if EXPECTED_SPLIT_COUNTS != payload["split"]["expected_compound_counts"]:
+            errors.append("A3_2_IMPL: compound counts mismatch")
+
+        from muru.paper_benchmark.calibration_contract import CONSTRUCTION_ALLOCATION
+        if dict(CONSTRUCTION_ALLOCATION) != payload["unchanged_from_a3_1"]["null_family_allocation"]:
+            errors.append("A3_2_IMPL: null-family allocation drifted")
+    except Exception as exc:
+        errors.append(f"A3_2_IMPL_ERROR: {type(exc).__name__}: {exc}")
+    return errors
+
+
 def check_rc3_files() -> tuple[list[str], dict[str, str]]:
     errors: list[str] = []
     hashes: dict[str, str] = {}
@@ -155,6 +240,31 @@ def check_rc3_files() -> tuple[list[str], dict[str, str]]:
         else:
             hashes[rel] = sha256_file(path)
     return errors, hashes
+
+
+def executable_code(source: str) -> str:
+    """Strip comments and string literals, leaving executable code.
+
+    Contamination is a code-level reference to a sealed partition, not the
+    English word appearing in a docstring that promises not to touch it.
+    Scanning prose makes the audit unable to distinguish "loads Development"
+    from "never loads Development", which is the wrong way round.
+
+    Data-access *literals* are still caught: they are checked against the raw
+    text by the caller, precisely because they live inside strings.
+    """
+    import io
+    import tokenize
+
+    kept: list[str] = []
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(source).readline):
+            if token.type in (tokenize.COMMENT, tokenize.STRING):
+                continue
+            kept.append(token.string)
+    except (tokenize.TokenError, IndentationError):  # pragma: no cover
+        return source  # unparseable: fall back to scanning everything
+    return " ".join(kept)
 
 
 def check_no_development_contamination() -> list[str]:
@@ -170,13 +280,15 @@ def check_no_development_contamination() -> list[str]:
         if not path.exists():
             continue
         content = path.read_text()
-        lowered = content.lower()
+        # literals live inside strings, so these are checked against raw text
         for pattern in patterns_exact:
             if pattern in content:
                 errors.append(f"CONTAMINATION: {rel} contains '{pattern}'")
+        # identifiers are checked against code only, never against prose
+        code = executable_code(content).lower()
         for pattern in patterns_lower:
-            if pattern in lowered:
-                errors.append(f"CONTAMINATION: {rel} contains '{pattern}'")
+            if pattern in code:
+                errors.append(f"CONTAMINATION: {rel} references '{pattern}' in code")
     return errors
 
 
@@ -354,6 +466,20 @@ def main() -> int:
     errors, hashes = check_rc3_files()
     all_errors.extend(errors)
     print(f"   {len(RC3_ADDED_FILES) - len(errors)}/{len(RC3_ADDED_FILES)} present")
+    for e in errors:
+        print(f"   ERROR: {e}")
+
+    print("\n2b. A3.2 governance artifacts (vs science lineage)...")
+    errors = check_a3_2_governance()
+    all_errors.extend(errors)
+    print(f"   {'BYTE-IDENTICAL' if not errors else 'DRIFTED'}")
+    for e in errors:
+        print(f"   ERROR: {e}")
+
+    print("\n2c. A3.2 implementation matches the amendment...")
+    errors = check_a3_2_implementation()
+    all_errors.extend(errors)
+    print(f"   {'BOUND' if not errors else 'MISMATCH'}")
     for e in errors:
         print(f"   ERROR: {e}")
 

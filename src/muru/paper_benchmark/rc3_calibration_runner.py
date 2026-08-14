@@ -68,6 +68,7 @@ from .calibration_contract import (
     count_failed_worlds,
 )
 from .rc3_calibration_worlds import CalibrationWorld, build_world
+from .rc3_provenance import a3_2_world_construction
 
 __all__ = [
     "SearchOutcome",
@@ -515,6 +516,12 @@ class CalibrationRunResult:
     bootstrap: Mapping[int, tuple[float, float]] | None
     search_settings: Mapping[str, object] = field(
         default_factory=lambda: dict(SEARCH_SETTINGS)
+    )
+    #: A3.2 world-construction identity: which base target and which split
+    #: produced these worlds.  A threshold table must never be readable
+    #: without it.
+    world_construction: Mapping[str, object] = field(
+        default_factory=lambda: dict(a3_2_world_construction())
     )
 
     def threshold_table_active(self) -> bool:
