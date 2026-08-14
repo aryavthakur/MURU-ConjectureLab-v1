@@ -19,6 +19,9 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parent.parent
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent)
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
 
 A34_FREEZE_COMMIT = "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
 A34_CREATION_COMMIT = "d0ea5d4b0309e4e95dcab4035b9be66e166765b1"
@@ -392,18 +395,42 @@ def check_protected_science_paths(root: Path = ROOT) -> list[str]:
     protected science paths.  Adding its own amendment and artifact makes the
     complete engineering check independent of executing the RC3 verifier.
     """
+    errors, _ = check_protected_science_paths_with_delta(root)
+    return errors
+
+
+def check_protected_science_paths_with_delta(
+    root: Path = ROOT,
+) -> tuple[list[str], list[dict[str, str]]]:
+    """Like ``check_protected_science_paths``, and also reports the RC4.2 delta.
+
+    The two governance paths (the amendment document and its artifact) are
+    still required byte-identical with no exception -- RC4.2.1 never touched
+    either and this ledger has no entries for them.  The 31 protected science
+    paths are checked through the RC4.2 authorized-delta ledger
+    (``pb_rc4_2_authorized_delta``): bit-identical to the A3.4 freeze passes
+    as before; a difference is only accepted if it is *exactly* one of the
+    six ledgered RC4.2 repairs (old bytes and new bytes both match), and is
+    reported back rather than silently absorbed.  Any other difference --
+    including a further edit to one of the six ledgered files, or a change to
+    any of the other 25 protected paths -- still fails this check exactly as
+    it did before RC4.2 existed.
+    """
+    from pb_rc4_2_authorized_delta import check_byte_identity_lineage_aware
+
     artifact, errors = _load_frozen_a34_artifact(root)
     if artifact is None:
-        return errors
+        return errors, []
     protected_paths = _artifact_protected_paths(artifact)
     if protected_paths is None:
-        return errors + ["A3_4_ARTIFACT_PROTECTED_MANIFEST"]
-    return errors + check_byte_identity(
-        root,
-        A34_FREEZE_COMMIT,
-        (*A34_GOVERNANCE_PATHS, *protected_paths),
-        label="a3_4",
+        return errors + ["A3_4_ARTIFACT_PROTECTED_MANIFEST"], []
+    governance_errors = check_byte_identity(
+        root, A34_FREEZE_COMMIT, A34_GOVERNANCE_PATHS, label="a3_4",
     )
+    science_errors, authorized_delta = check_byte_identity_lineage_aware(
+        root, A34_FREEZE_COMMIT, protected_paths, label="a3_4",
+    )
+    return errors + governance_errors + science_errors, authorized_delta
 
 
 def _module_components(module: str | None) -> frozenset[str]:
@@ -828,8 +855,12 @@ def main() -> int:
     print("A3.4 science and sealed-boundary integrity verification")
     print("=" * 60)
 
-    protected_errors = check_protected_science_paths(ROOT)
+    protected_errors, rc4_2_delta = check_protected_science_paths_with_delta(ROOT)
     _report("1. Frozen A3.4 and inherited RC3/A3.2 science bytes...", protected_errors)
+    if rc4_2_delta:
+        print("   RC4.2 AUTHORIZED DELTA (engineering-rc4-2-core-defect-repair):")
+        for entry in rc4_2_delta:
+            print(f"     {entry['defect_id']}: {entry['path']}")
 
     artifact_errors = check_a34_artifact_linkage(ROOT)
     recorded_aggregate = frozen_recorded_protected_aggregate(ROOT)

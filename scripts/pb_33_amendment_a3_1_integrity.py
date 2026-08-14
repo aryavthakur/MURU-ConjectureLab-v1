@@ -21,7 +21,12 @@ ROOT = Path(__file__).resolve().parent.parent
 _src = str(ROOT / "src")
 if _src not in sys.path:
     sys.path.insert(0, _src)
+_scripts = str(Path(__file__).resolve().parent)
+if _scripts not in sys.path:
+    sys.path.insert(0, _scripts)
 SRC = ROOT / "src" / "muru" / "paper_benchmark"
+
+from pb_rc4_2_authorized_delta import AUTHORIZED_BY_PATH  # noqa: E402
 
 # A2.1 parent commit
 A2_1_COMMIT = "80a78032ac601466b35e9dce3fa56f6ae215605f"
@@ -78,8 +83,16 @@ def git_show_hash(commit: str, path: str) -> str:
     return hashlib.sha256(result.stdout).hexdigest()
 
 
-def check_protected_paths() -> list[str]:
+def check_protected_paths() -> tuple[list[str], list[str]]:
+    """Returns (errors, rc4_2_authorized_delta_paths).
+
+    RC4.2.1: a protected path may differ from A2.1 ONLY if it is exactly the
+    ledgered RC4.2 authorized-defect-repair delta (old and new bytes both
+    pinned; scripts/pb_rc4_2_authorized_delta.py). Any other drift is still
+    an error, exactly as before RC4.2 existed.
+    """
     errors = []
+    rc4_2_delta: list[str] = []
     for rel in PROTECTED_PATHS:
         current = ROOT / rel
         if not current.exists():
@@ -90,8 +103,12 @@ def check_protected_paths() -> list[str]:
         if parent_hash == "MISSING_AT_COMMIT":
             errors.append(f"NOT_IN_A2_1: {rel}")
         elif current_hash != parent_hash:
+            entry = AUTHORIZED_BY_PATH.get(rel)
+            if entry is not None and entry.old_sha256 == parent_hash and entry.new_sha256 == current_hash:
+                rc4_2_delta.append(rel)
+                continue
             errors.append(f"MODIFIED: {rel} (current={current_hash[:12]}, a2.1={parent_hash[:12]})")
-    return errors
+    return errors, rc4_2_delta
 
 
 def check_added_files() -> tuple[list[str], dict[str, str]]:
@@ -240,9 +257,12 @@ def main() -> int:
     all_errors: list[str] = []
 
     print("\n1. Protected paths (must match A2.1)...")
-    errors = check_protected_paths()
+    errors, rc4_2_delta = check_protected_paths()
     all_errors.extend(errors)
-    print(f"   {len(PROTECTED_PATHS) - len(errors)}/{len(PROTECTED_PATHS)} byte-identical")
+    unchanged_count = len(PROTECTED_PATHS) - len(errors) - len(rc4_2_delta)
+    print(f"   {unchanged_count}/{len(PROTECTED_PATHS)} byte-identical")
+    if rc4_2_delta:
+        print(f"   RC4.2 AUTHORIZED DELTA: {', '.join(rc4_2_delta)}")
     for e in errors:
         print(f"   ERROR: {e}")
 

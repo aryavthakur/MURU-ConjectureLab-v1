@@ -124,8 +124,24 @@ def test_the_tracked_environment_manifest_matches_this_tree():
         (ROOT / "configs" / "rc4_1_environment_manifest.json").read_text()
     )
     assert recorded["static_closure_verified"] is True
-    # Derived from git against the RC4 parent, not a self-declared flag.
-    assert recorded["paper_benchmark_paths_changed_vs_rc4_parent"] == []
+    # RC4.2.1: this field is now the raw, never-filtered diff against the RC4
+    # parent -- it is expected to be non-empty exactly for the six files the
+    # frozen RC4.2 delta ledger (pb_rc4_2_authorized_delta) repairs.  What
+    # gates closure is the *unauthorized* subset, checked next.
+    assert sorted(recorded["paper_benchmark_paths_changed_vs_rc4_parent"]) == [
+        "src/muru/paper_benchmark/g2_contract.py",
+        "src/muru/paper_benchmark/g3_contract.py",
+        "src/muru/paper_benchmark/protocol.py",
+    ]
+    assert recorded["paper_benchmark_paths_changed_vs_rc4_parent_unauthorized"] == []
+    assert {
+        entry["path"]
+        for entry in recorded["paper_benchmark_paths_changed_vs_rc4_parent_authorized_rc4_2_delta"]
+    } == {
+        "src/muru/paper_benchmark/g2_contract.py",
+        "src/muru/paper_benchmark/g3_contract.py",
+        "src/muru/paper_benchmark/protocol.py",
+    }
     assert recorded["pinned_distribution_count"] == 50
     assert recorded["tracked_lock_sha256"] == _sha256(ROOT / "requirements.lock.txt")
     assert recorded["pin_source_sha256"] == recorded["tracked_lock_sha256"]

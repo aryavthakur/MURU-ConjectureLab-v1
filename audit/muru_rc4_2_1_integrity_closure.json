@@ -1,0 +1,164 @@
+{
+  "document_id": "MURU-RC4-2-1-INTEGRITY-CLOSURE-01",
+  "classification": "ENGINEERING_INTEGRITY_CLOSURE",
+  "mode": "engineering only; RC4.2's R1-R4 repairs are not reopened scientifically",
+  "branch": "eng/muru-rc4-2-1-integrity-closure",
+  "tag": "engineering-rc4-2-1-integrity-closure",
+  "parent_tag": "engineering-rc4-2-core-defect-repair",
+  "parent_commit": "e8f0f4e9e80befc5a3180abd7c3996d443119a32",
+  "moved_the_rc4_2_tag": false,
+  "issue_1_integrity_architecture": {
+    "diagnosis": "seven tests red at RC4.2 as predicted by its own report, plus one more the report did not enumerate (test_a3_4_frozen_metadata_attestation_advisory.py), plus three integrity scripts (pb_31, pb_33, pb_34) that fail when run directly and have no pytest wrapper, so pytest alone never surfaced them",
+    "originally_red": [
+      "tests/test_a3_4_integrity.py::test_a34_integrity_script_accepts_clean_checkout",
+      "tests/test_eng_environment_closure.py::test_the_closure_verifier_passes_in_this_environment",
+      "tests/test_paper_benchmark_amendment_a2_1_integrity.py::test_the_repair_running_script_proves_zero_payload_changes_across_all_380_cases",
+      "tests/test_paper_benchmark_amendment_a2_1_integrity.py::test_only_declared_version_bump_paths_differ_from_amendment_a2",
+      "tests/test_paper_benchmark_amendment_integrity.py::test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze",
+      "tests/test_paper_benchmark_amendment_integrity.py::test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets",
+      "tests/test_paper_benchmark_amendment_integrity.py::test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendment"
+    ],
+    "found_by_this_closure_not_in_rc4_2_report": [
+      "tests/test_a3_4_frozen_metadata_attestation_advisory.py::test_advisory_attests_blob_identity_and_serialization_convention_without_rehashing",
+      "scripts/pb_31_amendment_a2_integrity.py (no pytest wrapper asserted on unexpected_changed_paths)",
+      "scripts/pb_33_amendment_a3_1_integrity.py (no pytest wrapper at all)",
+      "scripts/pb_34_rc3_integrity.py (delegates to pb_33; also independently flags the same 5 files plus its own A3.2 governance re-check)"
+    ],
+    "repair": {
+      "new_module": "scripts/pb_rc4_2_authorized_delta.py",
+      "mechanism": "closed tuple of (path, defect_id, old_sha256, new_sha256, semantic_scope) entries; a path's drift is accepted only when both old and new bytes match an entry exactly; any other divergence is still rejected",
+      "authorized_delta_ledger": [
+        {"path": "src/muru/paper_benchmark/protocol.py", "defect_id": "R1/DEFECT_A", "old_sha256": "63c77d5732f0c339b99c20f7d91953324d053d4bb970ec08f10fac4666d85cf5", "new_sha256": "cb35289f68767036b8c4e96ce4763ede75b3fa146e5d51a18da704712110ed36"},
+        {"path": "src/muru/paper_benchmark/g3_contract.py", "defect_id": "R2/DEFECT_B3", "old_sha256": "c09d849cf69bae0c183ba793a0ef117e27655defcdcc4145b12f457aee2f5a95", "new_sha256": "dcf5382ed5fac4236bd1c39755ac992436220d48ca50e8b314e0855e1eba866e"},
+        {"path": "src/muru/paper_benchmark/g2_contract.py", "defect_id": "R3/DEFECT_C + R4/DEFECT_D", "old_sha256": "502b1a65705d9c2d13c7680c3bbc4d307593185e8f60e5706150e6e092727fb5", "new_sha256": "29af866c5ff980de9149b137b6c9290b12e75092210772f37215a53f389d0817"},
+        {"path": "tests/test_paper_benchmark_protocol.py", "defect_id": "R1 tests", "old_sha256": "4ee7ccbdca755d17373f0bcb13d6e19684c3c3ec3f052b9b557edda450f3f644", "new_sha256": "0919378a3ec6566796dc4d94c44cb2c3d300461bab14a1ba0eb7e1d40bf7f730"},
+        {"path": "tests/test_a3_1_g3_contract.py", "defect_id": "R2 tests", "old_sha256": "bcbc51afeebd5db93865343fca043a04a7de2bbf62df361f3487b48cd95fc3eb", "new_sha256": "7fe99f8071599ea34725d4bb6cbc9e749d045e2dde76f0d45e56760339870dfc"},
+        {"path": "tests/test_a3_1_g2_contract.py", "defect_id": "R3 tests", "old_sha256": "a74c6fa08575baf53200501064b9bfac425a0aa62ca1b5f9d696886033b138ba", "new_sha256": "16c90fb4298fc69863f9498f27cc69af4d4004f516299fcfd7b585300f4dd15c"},
+        {"path": "tests/test_g3_f07_dispatcher_equivalence.py", "defect_id": "R2 tests (new file)", "old_sha256": null, "new_sha256": "6e6b05d5b7e5ed6da0650e4bf0f251053fe7727d8510054822e54c2deda63d05"},
+        {"path": "tests/test_r4_g2_truth_support.py", "defect_id": "R4 tests (new file)", "old_sha256": null, "new_sha256": "e22595073b9586fa05a39ef7d88361ba9efe0e18e2193598c6c8c94eb5cf2875"}
+      ],
+      "rc4_2_1_tooling_delta_ledger": [
+        {"path": "scripts/pb_33_amendment_a3_1_integrity.py", "defect_id": "RC4.2.1 Issue 1 (integrity tooling, not a science defect)", "old_sha256": "d9b40cb6d8fbcfd35cff43dca87190fa1984401508e2f646f2a14043038ebac3", "new_sha256": "a8355fd400c303d8677d96d64c4140af6fbdaf5c8296386be66a8861148d4074", "reason": "bootstrapping: A3.1 declared its own integrity script protected-forever, checked by pb_34/pb_35; teaching it about the ledger necessarily changed its own bytes"}
+      ],
+      "scripts_wired_to_the_ledger": [
+        "scripts/pb_30_amendment_a1_integrity.py",
+        "scripts/pb_31_amendment_a2_integrity.py",
+        "scripts/pb_32_amendment_a2_1_integrity.py",
+        "scripts/pb_33_amendment_a3_1_integrity.py",
+        "scripts/pb_34_rc3_integrity.py",
+        "scripts/pb_35_a3_4_integrity.py",
+        "scripts/pb_37_environment_closure.py"
+      ],
+      "test_files_updated_for_lineage_awareness": [
+        "tests/test_a3_4_frozen_metadata_attestation_advisory.py",
+        "tests/test_eng_environment_closure.py",
+        "tests/test_paper_benchmark_amendment_integrity.py"
+      ],
+      "regenerated_tracked_artifacts": [
+        "artifacts/paper_benchmark_amendment_a1.json",
+        "artifacts/paper_benchmark_amendment_a2.json",
+        "artifacts/paper_benchmark_amendment_a2_1.json",
+        "configs/rc4_1_environment_manifest.json"
+      ]
+    },
+    "not_done": [
+      "no test skipped or xfailed",
+      "no assertion weakened to always pass",
+      "no historical digest (RECORDED_PROTECTED_AGGREGATE, protected_sha256, content_hash) edited",
+      "no protected-path enforcement loosened for any file outside the ledger"
+    ]
+  },
+  "issue_2_canonical_environment": {
+    "fresh_env_build": "python3 -m venv + pip install -r requirements.lock.txt, strictly from the RC4.1-frozen 50-pin lock",
+    "pip_install_exit": 0,
+    "pip_check_exit": 0,
+    "pip_freeze_exact_closure": true,
+    "julia_live_version": "1.12.6",
+    "symbolicregression_jl_live_version": "1.11.3",
+    "matches_frozen_identity": true,
+    "sklearn_imports": true,
+    "rdkit_imports": true,
+    "conclusion": "sklearn/rdkit failures were execution-environment mismatch, not a repository defect; both import cleanly at the exact pinned versions in a venv built strictly from the tracked lock",
+    "fresh_env_full_suite": {
+      "collected": 1210,
+      "failed_or_errored": 17,
+      "all_traced_to_single_cause": "FileNotFoundError: artifacts/p2_compounds.parquet",
+      "affected_files": ["tests/test_ov_blinding.py", "tests/test_ov_pipeline.py"]
+    },
+    "p2_compounds_parquet_classification": "HISTORICAL_ONLY, out of scope for environment closure; gitignored, never tracked in git history, written by scripts/t2_02_splits.py (wet-lab Phase 2 pipeline, unrelated to RC4.x paper-benchmark)"
+  },
+  "issue_3_development_partition_materialization": {
+    "file_reviewed": "tests/test_r4_g2_truth_support.py",
+    "only_file_calling_generate_case": true,
+    "distinct_development_case_ids_materialized": 56,
+    "development_partition_size": 80,
+    "breakdown": "12 G2-applicable families x 4 development replicates each = 48, plus 8 G2-inapplicable families x 1 replicate (r000) = 8",
+    "generate_case_is_pure_deterministic_no_io": true,
+    "only_truth_field_read_never_inputs": true,
+    "no_numeric_truth_parameter_read": true,
+    "expected_support_table_hand_derived_from_source_not_from_output": true,
+    "held_out_or_challenge_case_ever_generated": false,
+    "preexisting_frozen_precedent": "tests/test_paper_benchmark_truth.py since commit 89a2d4e",
+    "classification": "DEVELOPMENT_ENGINEERING_FIXTURE_MATERIALIZATION_ONLY",
+    "replaced_with_hand_built_only_fixtures": false,
+    "replacement_rationale": "the generate_case-based tests are the only independent cross-check against the actual frozen generator's dispatch; replacing them would make those tests tautological and reduce verification rigor with no governance benefit, since the partition is fully synthetic, code-regenerable, and non-secret",
+    "governance_wording": {
+      "HISTORICAL_DEVELOPMENT_EXECUTED_UNDER_SUPERSEDED_A2_1_RC2_CONTRACT": true,
+      "CURRENT_CONTRACT_DEVELOPMENT_CASES_PARTIALLY_MATERIALIZED_FOR_ENGINEERING_TESTS": true,
+      "CURRENT_CONTRACT_SYMBOLIC_DEVELOPMENT_EXECUTION_NOT_RUN": true,
+      "HELD_OUT_AND_CONFIRMATION_SEALED_NOT_OPENED": true
+    }
+  },
+  "issue_4_unknown_function_fail_closed_gap": {
+    "reported_gap": "weird_op(mass) parses to support {mass} instead of failing closed",
+    "frozen_unary_operators": ["sqrt", "log", "square", "cube", "inv"],
+    "frozen_binary_operators": ["+", "-", "*", "/"],
+    "operator_set_source": "src/muru/paper_benchmark/calibration_contract.py::SEARCH_SETTINGS",
+    "pysr_configured_with_exactly_this_set": true,
+    "no_extra_sympy_mappings_or_custom_operator_injection": true,
+    "extract_effective_support_has_no_caller_in_src": true,
+    "reachable_under_frozen_grammar": false,
+    "classification": "NONBLOCKING_DEFENSE_IN_DEPTH_GAP",
+    "repaired": false,
+    "future_note": "revisit before g2_contract.py's support extraction is wired into any live prospective execution path (RC5+)"
+  },
+  "tests": {
+    "rc4_2_focused": {"result": "175 passed"},
+    "authorized_delta_integrity_suite_all_10_symptoms": {"result": "all pass"},
+    "all_7_integrity_scripts_run_directly": {"result": "all exit 0"},
+    "a3_x_and_paper_benchmark_broad_suite": {"result": "655 passed"},
+    "fresh_environment_full_suite": {"result": "1210 collected, 17 failed/errored (all p2_compounds.parquet, historical-only), rest passed"}
+  },
+  "independent_reviewers": {
+    "I1": {
+      "scope": "freeze/integrity lineage",
+      "verdict": "PASS",
+      "method": "independently enumerated the full uncommitted diff (438 tracked HEAD paths, blob-hash compared), re-hashed every ledger entry against git objects directly, traced the classifier logic, and adversarially edited an unledgered file (registry.py) and a ledgered file beyond its authorized new hash (protocol.py) to confirm both are still rejected, then reverted and reconfirmed a clean tree",
+      "key_findings": [
+        "no historical digest, RECORDED_PROTECTED_AGGREGATE, or content_hash edited anywhere",
+        "no test skipped, xfailed, or weakened; modified assertions got strictly stricter",
+        "all 8 RC4.2 ledger entries and the 1 RC4.2.1 tooling entry independently re-verified byte-exact",
+        "live adversarial test: an unledgered file and a ledgered file with wrong new bytes are both still correctly rejected",
+        "no other silently-broken frozen byte-comparison found beyond the 8 originally-red symptoms",
+        "pb_30, pb_31, pb_32, pb_33, pb_35, pb_37 exit 0; 6 pytest wrapper files, 110 tests, all pass"
+      ]
+    },
+    "I2": {
+      "scope": "Development-boundary + canonical-environment review",
+      "verdict": "PASS",
+      "method": "independently re-read generator.py and test_r4_g2_truth_support.py from source, independently built a second fresh venv at /tmp/i2_review_env from requirements.lock.txt, ran the full suite twice for determinism, and confirmed the sklearn/rdkit environment contrast against bare system python",
+      "key_findings": [
+        "generate_case is a pure, seeded, in-process function with zero I/O (grepped for open/read_csv/read_parquet/Path/requests: zero matches)",
+        "test file reads .truth 6 times, .inputs 0 times",
+        "no generate_case or generate_partition call anywhere in the 5 touched/added files ever passes partition=held_out or partition=challenge as an actual argument",
+        "the generate_case(\"PB|development|...\").truth pattern independently confirmed pre-existing in test_paper_benchmark_truth.py (commit 89a2d4e) and 3 other frozen test files, ancestor-verified",
+        "independently agrees with DEVELOPMENT_ENGINEERING_FIXTURE_MATERIALIZATION_ONLY and with not replacing the generate_case-based tests with hand-built-only fixtures",
+        "independent fresh-venv build: pip install/check/freeze clean, Julia 1.12.6 / SymbolicRegression.jl 1.11.3 / PythonCall.jl 0.9.26 all match frozen identity exactly",
+        "full suite run twice: identical 17 failures both times, all traced to the same p2_compounds.parquet FileNotFoundError, confirmed gitignored and never tracked",
+        "confirmed sklearn/rdkit fail under bare system python but import cleanly at exact pinned versions in the fresh venv, establishing the environment-mismatch contrast"
+      ]
+    }
+  },
+  "sealed_status": "SEALED_CLEAN_NO_BLOCKING_FINDING",
+  "final_status": "RC4.2.1 INTEGRITY CLOSED — READY AS RC5 ENGINEERING PARENT"
+}

@@ -114,6 +114,20 @@ ENGINEERING_CHANGED = [
     "requirements.lock.txt",
 ]
 
+#: RC4.2 (tag `engineering-rc4-2-core-defect-repair`) repaired four confirmed
+#: implementation defects (R1-R4). Not an amendment (no new scientific choice
+#: was made) and not an engineering exemption (it touches the science
+#: surface pb_engineering_paths.py forbids that channel from reaching); see
+#: audit/MURU_RC4_2_CORE_DEFECT_REPAIR.md and scripts/pb_rc4_2_authorized_delta.py.
+#: Of RC4.2.1's eight-file ledger, only these two were tracked at d94d2c9
+#: (V1); the other six (g2_contract.py, g3_contract.py, their tests, and the
+#: two new test files) postdate V1 and are out of this script's scope
+#: entirely, exactly like every other post-V1 addition it does not track.
+RC4_2_DEFECT_REPAIR_CHANGED = [
+    "src/muru/paper_benchmark/protocol.py",
+    "tests/test_paper_benchmark_protocol.py",
+]
+
 
 def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze(tmp_path):
     process, manifest = _run(tmp_path)
@@ -127,17 +141,25 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
     assert manifest["frozen_path_count"] == 247
     # 237 until the RC4.1 environment closure, which repaired exactly one
     # engineering-only path inside the frozen set (requirements.lock.txt),
-    # leaving 236 byte-identical to the original content freeze.
-    assert manifest["protected_unchanged_count"] == 236
+    # leaving 236 byte-identical to the original content freeze; RC4.2 then
+    # repaired two more of the 247 (protocol.py, its test), leaving 234.
+    assert manifest["protected_unchanged_count"] == 234
     assert manifest["unexpected_changed_paths"] == []
     assert manifest["removed_paths"] == []
+    assert sorted(entry["path"] for entry in manifest["changed_by_rc4_2_delta"]) == sorted(
+        RC4_2_DEFECT_REPAIR_CHANGED
+    )
 
 
 def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp_path):
     _, manifest = _run(tmp_path)
 
     assert sorted(manifest["changed_paths"]) == sorted(
-        set(A1_CHANGED) | set(A2_CHANGED) | set(A2_1_CHANGED) | set(ENGINEERING_CHANGED)
+        set(A1_CHANGED)
+        | set(A2_CHANGED)
+        | set(A2_1_CHANGED)
+        | set(ENGINEERING_CHANGED)
+        | set(RC4_2_DEFECT_REPAIR_CHANGED)
     )
     assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED) | set(A2_1_ADDED))
 
@@ -187,19 +209,38 @@ def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):
 
 
 def test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendment(tmp_path):
+    """None of these six is a case any repair here has ever touched.
+
+    `protocol.py` is intentionally not in this list: RC4.2 (an engineering
+    defect repair, not an amendment) changed it via the ledgered delta
+    checked separately below. Every other path here has never moved from any
+    amendment or any engineering repair, protocol.py included -- it just has
+    two owners of "never moved from d94d2c9" now instead of one: "protected
+    since V1" for six of these seven, "protected since V1 except the one
+    ledgered RC4.2 repair" for protocol.py.
+    """
     _, manifest = _run(tmp_path)
 
     protected = set(manifest["protected_unchanged_paths"])
     for path in (
         "src/muru/paper_benchmark/registry.py",
         "src/muru/paper_benchmark/truth.py",
-        "src/muru/paper_benchmark/protocol.py",
         "src/muru/paper_benchmark/governance.py",
         "artifacts/paper_benchmark_truth_manifest.json",
         "artifacts/paper_benchmark_partition_manifest.json",
         "MURU_PAPER_BENCHMARK_CASE_FAMILIES.md",
     ):
         assert path in protected, path
+
+    # protocol.py did move -- but only through the one ledgered RC4.2 repair,
+    # never silently and never through any amendment's allowed-change set.
+    assert "src/muru/paper_benchmark/protocol.py" not in protected
+    assert "src/muru/paper_benchmark/protocol.py" not in set(manifest["changed_by_amendment"]["A1"])
+    assert "src/muru/paper_benchmark/protocol.py" not in set(manifest["changed_by_amendment"]["A2"])
+    assert "src/muru/paper_benchmark/protocol.py" not in set(manifest["changed_by_amendment"]["A2.1"])
+    assert "src/muru/paper_benchmark/protocol.py" in {
+        entry["path"] for entry in manifest["changed_by_rc4_2_delta"]
+    }
 
 
 def test_the_generator_change_is_owned_by_a2_and_a2_1_only(tmp_path):

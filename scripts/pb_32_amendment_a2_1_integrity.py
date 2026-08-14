@@ -43,6 +43,15 @@ from pb_engineering_paths import (  # noqa: E402
     assert_engineering_paths_carry_no_science,
 )
 
+#: RC4.2's authorized, byte-pinned defect-repair delta (`engineering-rc4-2-
+#: core-defect-repair`). Not a science amendment and not declared through
+#: ENGINEERING_CHANGED_PATHS -- pb_engineering_paths.py's own guard forbids
+#: that channel from ever touching src/muru/paper_benchmark/ or tests/test_a3_
+#: /tests/test_paper_benchmark*.  RC4.2's six repaired files sit exactly on
+#: that surface, so they get their own hash-pinned ledger instead. See
+#: pb_rc4_2_authorized_delta.py.
+from pb_rc4_2_authorized_delta import split_unexpected_changed  # noqa: E402
+
 AMENDMENT_A2_FREEZE = "03cc4d3"
 
 #: Paths whose bytes logically depend on the GENERATOR_VERSION bump.
@@ -260,7 +269,10 @@ def build_manifest() -> dict[str, object]:
 
     changed = tracked["changed"]
     allowed_changed = ALLOWED_CHANGED_PATHS | ENGINEERING_CHANGED_PATHS
-    unexpected_changed = sorted(set(changed) - allowed_changed)
+    unexpected_changed_raw = sorted(set(changed) - allowed_changed)
+    unexpected_changed, rc4_2_delta = split_unexpected_changed(
+        unexpected_changed_raw, frozen_commit=AMENDMENT_A2_FREEZE, root=ROOT,
+    )
     declared_missing = sorted(allowed_changed - set(changed))
     expected_denominators = {
         "scalar_competence": 164, "family_recovery": 144, "principal_structural_safety": 36,
@@ -297,6 +309,7 @@ def build_manifest() -> dict[str, object]:
         "added_sha256": dict(sorted(tracked["added"].items())),
         "removed_paths": sorted(tracked["removed"]),
         "unexpected_changed_paths": unexpected_changed,
+        "rc4_2_authorized_delta": rc4_2_delta,
         "declared_changed_paths_not_actually_changed": declared_missing,
         "changed_by_engineering": {
             ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),

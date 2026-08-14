@@ -38,6 +38,11 @@ from pb_engineering_paths import (  # noqa: E402
     assert_engineering_paths_carry_no_science,
 )
 
+#: RC4.2's authorized, byte-pinned defect-repair delta. Not an amendment and
+#: not an engineering exemption (it touches the science surface); see
+#: pb_rc4_2_authorized_delta.py.
+from pb_rc4_2_authorized_delta import split_unexpected_changed  # noqa: E402
+
 ORIGINAL_CONTENT_FREEZE = "d94d2c9"
 AMENDMENT_A1_FREEZE = "2ac86c5"
 
@@ -266,7 +271,10 @@ def build_manifest() -> dict[str, object]:
 
     changed = tracked["changed"]
     allowed_changed = ALLOWED_CHANGED_PATHS | ENGINEERING_CHANGED_PATHS
-    unexpected_changed = sorted(set(changed) - allowed_changed)
+    unexpected_changed_raw = sorted(set(changed) - allowed_changed)
+    unexpected_changed, rc4_2_delta = split_unexpected_changed(
+        unexpected_changed_raw, frozen_commit=AMENDMENT_A1_FREEZE, root=ROOT,
+    )
     declared_missing = sorted(allowed_changed - set(changed))
     expected_denominators = {
         "scalar_competence": 164, "family_recovery": 144, "principal_structural_safety": 36,
@@ -298,6 +306,7 @@ def build_manifest() -> dict[str, object]:
         "added_sha256": dict(sorted(tracked["added"].items())),
         "removed_paths": sorted(tracked["removed"]),
         "unexpected_changed_paths": unexpected_changed,
+        "rc4_2_authorized_delta": rc4_2_delta,
         "declared_changed_paths_not_actually_changed": declared_missing,
         "changed_by_engineering": {
             ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),

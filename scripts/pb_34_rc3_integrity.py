@@ -26,6 +26,11 @@ ROOT = Path(__file__).resolve().parent.parent
 _src = str(ROOT / "src")
 if _src not in sys.path:
     sys.path.insert(0, _src)
+_scripts = str(Path(__file__).resolve().parent)
+if _scripts not in sys.path:
+    sys.path.insert(0, _scripts)
+
+from pb_rc4_2_authorized_delta import ALL_AUTHORIZED_BY_PATH as AUTHORIZED_BY_PATH  # noqa: E402
 
 # The A2.1 commit, as pb_33 declares it.
 A2_1_COMMIT = "80a78032ac601466b35e9dce3fa56f6ae215605f"
@@ -136,9 +141,17 @@ def git_show_hash(commit: str, path: str) -> str:
     return hashlib.sha256(result.stdout).hexdigest()
 
 
-def check_protected_paths() -> tuple[list[str], int]:
+def check_protected_paths() -> tuple[list[str], int, list[str]]:
+    """Returns (errors, verified_count, rc4_2_authorized_delta_paths).
+
+    RC4.2.1: a protected path may differ from its frozen commit ONLY if it
+    is exactly the ledgered RC4.2 authorized-defect-repair delta (old and
+    new bytes both pinned; scripts/pb_rc4_2_authorized_delta.py). Any other
+    drift is still an error, exactly as before RC4.2 existed.
+    """
     errors: list[str] = []
     verified = 0
+    rc4_2_delta: list[str] = []
     for commit, paths in ((A2_1_COMMIT, A2_1_PROTECTED_PATHS),
                           (A3_1_COMMIT, A3_1_PROTECTED_PATHS)):
         for rel in paths:
@@ -147,13 +160,19 @@ def check_protected_paths() -> tuple[list[str], int]:
                 errors.append(f"MISSING: {rel}")
                 continue
             frozen = git_show_hash(commit, rel)
+            current_hash = sha256_file(current)
             if frozen == "MISSING_AT_COMMIT":
                 errors.append(f"NOT_AT_{commit[:7]}: {rel}")
-            elif sha256_file(current) != frozen:
-                errors.append(f"MODIFIED: {rel} (drifted from {commit[:7]})")
+            elif current_hash != frozen:
+                entry = AUTHORIZED_BY_PATH.get(rel)
+                if entry is not None and entry.old_sha256 == frozen and entry.new_sha256 == current_hash:
+                    rc4_2_delta.append(rel)
+                    verified += 1
+                else:
+                    errors.append(f"MODIFIED: {rel} (drifted from {commit[:7]})")
             else:
                 verified += 1
-    return errors, verified
+    return errors, verified, rc4_2_delta
 
 
 def check_a3_2_governance() -> list[str]:
@@ -188,6 +207,9 @@ def check_a3_2_governance() -> list[str]:
         for rel, expected in payload["protected_sha256"].items():
             actual = sha256_file(ROOT / rel)
             if actual != expected:
+                entry = AUTHORIZED_BY_PATH.get(rel)
+                if entry is not None and entry.old_sha256 == expected and entry.new_sha256 == actual:
+                    continue  # RC4.2 authorized delta -- ledgered, not drift
                 errors.append(f"A3_2_PROTECTED_DRIFT: {rel}")
 
         # The aggregate digest and the amendment's own file digest were
@@ -588,9 +610,11 @@ def main() -> int:
     all_errors: list[str] = []
 
     print(f"\n1. Protected paths (16 vs A2.1 + 11 vs A3.1 = {TOTAL_PROTECTED})...")
-    errors, verified = check_protected_paths()
+    errors, verified, rc4_2_delta = check_protected_paths()
     all_errors.extend(errors)
-    print(f"   {verified}/{TOTAL_PROTECTED} byte-identical")
+    print(f"   {verified}/{TOTAL_PROTECTED} byte-identical (of which {len(rc4_2_delta)} via RC4.2 authorized delta)")
+    if rc4_2_delta:
+        print(f"   RC4.2 AUTHORIZED DELTA: {', '.join(rc4_2_delta)}")
     for e in errors:
         print(f"   ERROR: {e}")
 

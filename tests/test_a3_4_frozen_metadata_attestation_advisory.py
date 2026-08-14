@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -12,6 +13,9 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 ADVISORY_JSON = ROOT / "audit/muru_a3_4_frozen_metadata_attestation_advisory.json"
 ADVISORY_MARKDOWN = ROOT / "audit/MURU_A3_4_FROZEN_METADATA_ATTESTATION_ADVISORY.md"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from pb_rc4_2_authorized_delta import classify_blob_sha1  # noqa: E402
 
 A34_FREEZE_COMMIT = "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
 A34_CREATION_COMMIT = "d0ea5d4b0309e4e95dcab4035b9be66e166765b1"
@@ -229,7 +233,25 @@ def test_advisory_attests_blob_identity_and_serialization_convention_without_reh
     frozen_blob_metadata = git_blob_metadata(A34_FREEZE_COMMIT, protected_paths)
     tip_blob_metadata = git_blob_metadata("HEAD", protected_paths)
     assert set(frozen_blob_metadata) == set(protected_paths)
-    assert frozen_blob_metadata == tip_blob_metadata
+    # RC4.2.1: a path may differ from the frozen A3.4 blob ONLY if it is
+    # *exactly* the ledgered RC4.2 authorized-defect-repair delta (old blob
+    # and new blob both pinned; see scripts/pb_rc4_2_authorized_delta.py).
+    # Any other drift -- including any further edit to a ledgered path -- is
+    # still rejected, identically to before RC4.2 existed.
+    unauthorized = {}
+    for path, frozen_meta in frozen_blob_metadata.items():
+        tip_meta = tip_blob_metadata[path]
+        if frozen_meta == tip_meta:
+            continue
+        frozen_mode, frozen_type, frozen_blob = frozen_meta
+        tip_mode, tip_type, tip_blob = tip_meta
+        if frozen_mode != tip_mode or frozen_type != tip_type:
+            unauthorized[path] = (frozen_meta, tip_meta)
+            continue
+        classification = classify_blob_sha1(path, frozen_blob, tip_blob)
+        if classification != "AUTHORIZED_RC4_2_DELTA":
+            unauthorized[path] = (frozen_meta, tip_meta)
+    assert unauthorized == {}
 
     frozen_governance_metadata = git_blob_metadata(
         A34_FREEZE_COMMIT,

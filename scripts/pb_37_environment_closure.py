@@ -51,6 +51,9 @@ ROOT = Path(__file__).resolve().parent.parent
 _src = str(ROOT / "src")
 if _src not in sys.path:
     sys.path.insert(0, _src)
+_scripts = str(Path(__file__).resolve().parent)
+if _scripts not in sys.path:
+    sys.path.insert(0, _scripts)
 
 from muru.paper_benchmark.rc3_provenance import (  # noqa: E402
     RC2_LOCK_COMMIT,
@@ -265,7 +268,9 @@ def check_closure() -> tuple[list[str], dict[str, object]]:
         # Derived from the tree, not asserted: every path under
         # src/muru/paper_benchmark/ is compared byte-for-byte against the RC4
         # parent.  A self-declared "no science changed" flag would be worth
-        # nothing.
+        # nothing.  This is the raw diff (never filtered) so the true history
+        # is always visible; RC4.2.1 gates on the *unauthorized* subset below,
+        # not on this field being empty.
         "paper_benchmark_paths_changed_vs_rc4_parent": _paper_benchmark_drift(),
         # The Julia identity is NOT covered by this flag; it is verified only
         # under --start-julia and recorded separately.  See
@@ -277,8 +282,19 @@ def check_closure() -> tuple[list[str], dict[str, object]]:
     }
     drift = payload["paper_benchmark_paths_changed_vs_rc4_parent"]
     if drift and drift != ["UNKNOWN_GIT_UNAVAILABLE"]:
-        errors.append(f"SCIENCE_DRIFT_VS_RC4_PARENT: {drift}")
-        payload["static_closure_verified"] = False
+        from pb_rc4_2_authorized_delta import split_unexpected_changed
+
+        unauthorized, authorized = split_unexpected_changed(
+            drift, frozen_commit=RC4_PARENT_COMMIT, root=ROOT,
+        )
+        payload["paper_benchmark_paths_changed_vs_rc4_parent_authorized_rc4_2_delta"] = authorized
+        payload["paper_benchmark_paths_changed_vs_rc4_parent_unauthorized"] = unauthorized
+        if unauthorized:
+            errors.append(f"SCIENCE_DRIFT_VS_RC4_PARENT: {unauthorized}")
+            payload["static_closure_verified"] = False
+    else:
+        payload["paper_benchmark_paths_changed_vs_rc4_parent_authorized_rc4_2_delta"] = []
+        payload["paper_benchmark_paths_changed_vs_rc4_parent_unauthorized"] = []
     return errors, payload
 
 

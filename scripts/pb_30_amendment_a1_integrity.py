@@ -67,6 +67,11 @@ from pb_engineering_paths import (  # noqa: E402
     assert_engineering_paths_carry_no_science,
 )
 
+#: RC4.2's authorized, byte-pinned defect-repair delta. Not an amendment and
+#: not an engineering exemption (it touches the science surface); see
+#: pb_rc4_2_authorized_delta.py.
+from pb_rc4_2_authorized_delta import split_unexpected_changed  # noqa: E402
+
 #: The provenance record cannot contain its own hash; it is verified by the
 #: contract tests instead.
 SELF_EXCLUDED = "artifacts/paper_benchmark_amendment_a1.json"
@@ -125,7 +130,10 @@ def build_manifest() -> dict[str, object]:
         ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS | A2_1_ALLOWED_CHANGED_PATHS
     )
     allowed_changed = amendment_changed | ENGINEERING_CHANGED_PATHS
-    unexpected_changed = sorted(set(changed) - allowed_changed)
+    unexpected_changed_raw = sorted(set(changed) - allowed_changed)
+    unexpected_changed, rc4_2_delta = split_unexpected_changed(
+        unexpected_changed_raw, frozen_commit=ORIGINAL_CONTENT_FREEZE, root=ROOT,
+    )
     declared_missing = sorted(allowed_changed - set(changed))
     breach = bool(unexpected_changed or removed)
     return {
@@ -137,6 +145,7 @@ def build_manifest() -> dict[str, object]:
         "changed_by_engineering": {
             ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),
         },
+        "changed_by_rc4_2_delta": rc4_2_delta,
         "engineering_declared_paths": sorted(ENGINEERING_CHANGED_PATHS),
         "engineering_science_surface_violations": science_surface_violations(),
         "added_by_amendment": {
