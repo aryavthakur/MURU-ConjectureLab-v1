@@ -1,0 +1,107 @@
+[
+  {
+    "endpoint": "Parameter Recovery (Joint)",
+    "denominator": 156,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Mass Exponent Recovery (p_mass +/-0.15)",
+    "denominator": 156,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Descriptor Coupling Recovery (c_desc +/-0.10)",
+    "denominator": 84,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Predictive Equivalence (REL_RMSE <= 0.05, r >= 0.990)",
+    "denominator": 144,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Exact Algebra Recovery (Symbolic Equivalence)",
+    "denominator": 60,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Support Recovery (support_status == MATCH)",
+    "denominator": 144,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "M0 Specificity (M0_NOT_REJECTED in M0 truth)",
+    "denominator": 164,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "M1 Sensitivity (Horizontal violation detected)",
+    "denominator": 36,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "M2 Sensitivity (High-energy floor detected)",
+    "denominator": 24,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "M3 Sensitivity (Low-energy ceiling detected)",
+    "denominator": 24,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Trajectory Prediction (MAE <= 0.80 baseline)",
+    "denominator": 164,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Profile Stability (Bootstrap IQR)",
+    "denominator": 164,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Scalar Target Yield (Fit convergence)",
+    "denominator": 164,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Boundary Hit (F05 boundary detection)",
+    "denominator": 12,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "endpoint": "Response Structure Diagnostic (F19C cell resampling)",
+    "denominator": 4,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "package": "python",
+    "version": "3.13.12",
+    "purpose": "Runtime interpreter (plan recorded 3.12 target; full stack verified on 3.13)"
+  },
+  {
+    "package": "scikit-learn",
+    "version": "1.9.0",
+    "purpose": "HistGradientBoostingRegressor GBDT ceiling estimator"
+  },
+  {
+    "package": "pysr",
+    "version": "1.5.10",
+    "purpose": "Symbolic regression search engine under Julia backend"
+  },
+  {
+    "package": "sympy",
+    "version": "1.14.0",
+    "purpose": "Symbolic expression parsing, differentiation, and normalisation"
+  },
+  {
+    "package": "numpy",
+    "version": "1.26.4",
+    "purpose": "Numerical array operations and linear-method quantile estimation"
+  },
+  {
+    "package": "scipy",
+    "version": "1.17.1",
+    "purpose": "Statistical distributions, correlations, and optimization routines"
+  },
+  {
+    "package": "pandas",
+    "version": "2.2.2",
+    "purpose": "Structured dataset, manifest, and partition frame handling"
+  },
+  {
+    "package": "matplotlib",
+    "version": "3.11.1",
+    "purpose": "Vector figure generation (SVG / PDF) and 300-DPI PNG previews"
+  }
+]

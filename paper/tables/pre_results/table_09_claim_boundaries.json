@@ -1,0 +1,72 @@
+[
+  {
+    "claim": "C1: Molecule-specific horizontal scale",
+    "evidence": "G1 success on 164 cases",
+    "status": "PENDING (transductive historical only)",
+    "allowed": "Scale estimable on scaffold-disjoint synthetic compounds",
+    "forbidden": "That g is a real physical/chemical property or transfers across instruments"
+  },
+  {
+    "claim": "C2: Reject scalar adequacy violations",
+    "evidence": "M0 specificity (164) & M1/M2/M3 sensitivity (36/24/24)",
+    "status": "PENDING (decision rule bound by A1)",
+    "allowed": "Adequacy ladder rejected M0 in violation families at stated rates",
+    "forbidden": "That collapse model is adequate for real spectra; that non-rejection proves M0"
+  },
+  {
+    "claim": "C3: Recover relevant variable support",
+    "evidence": "support_status == MATCH on 144 cases",
+    "status": "PENDING (narrow Type 2 historical)",
+    "allowed": "Effective support matched planted support in n of 144 cases",
+    "forbidden": "That recovered variables are causal fragmentation drivers; that proxies are interchangeable"
+  },
+  {
+    "claim": "C4: Recover mathematical family structure",
+    "evidence": "G2 success (support & family MATCH) on 144 cases",
+    "status": "PENDING (narrow Type 2 historical)",
+    "allowed": "Recovered support and family in n of 144 cases, satisfying G2 gate",
+    "forbidden": "That family is the equation; calling expression a 'law' or 'universal mechanism'"
+  },
+  {
+    "claim": "C5: Recover exact generating algebra",
+    "evidence": "Symbolic equivalence on 60 cases",
+    "status": "PENDING (historically UNSUPPORTED: 0%)",
+    "allowed": "Symbolic equivalence observed in n of 60 cases (ungated secondary)",
+    "forbidden": "Presenting expression as true law; inferring algebra from family recovery"
+  },
+  {
+    "claim": "C6: Avoid false discoveries under nulls",
+    "evidence": "G3 unsafe rate <= 0.15 on 36 opportunities",
+    "status": "PENDING (0/100 historical on pure nulls)",
+    "allowed": "n unsafe acceptances on 36 frozen opportunities, satisfying gate",
+    "forbidden": "Quoting zero error as p=0; claiming safety against untested confounders"
+  },
+  {
+    "claim": "C7: Detect structure beyond mass",
+    "evidence": "G2 positive rate & F07/F20 negative rates",
+    "status": "PENDING (historically weak in positive)",
+    "allowed": "Both positive and negative rates reported together",
+    "forbidden": "Claiming non-mass structure exists in real data; quoting positive without negative"
+  },
+  {
+    "claim": "C8: Generalize to held-out compounds",
+    "evidence": "Trajectory MAE <= 0.80 & Pred Equiv on 144 cases",
+    "status": "PENDING (first fold-local design)",
+    "allowed": "On scaffold-disjoint test compounds, metrics satisfied at stated rates",
+    "forbidden": "Generalization to real compounds or instruments; calling historical results fold-local"
+  },
+  {
+    "claim": "C9: Identify a real collision energy law",
+    "evidence": "Authorized Phase 4 on sealed Confirmation set",
+    "status": "UNSUPPORTED (STOP BEFORE PHASE 4)",
+    "allowed": "None. Claim unavailable from this benchmark",
+    "forbidden": "Every form: 'universal law', 'physical equation of fragmentation'"
+  },
+  {
+    "claim": "C10: Establish fragmentation mechanism",
+    "evidence": "Interventional causal evidence (unproducible)",
+    "status": "UNSUPPORTED (Design cannot produce it)",
+    "allowed": "None. Claim unavailable from this benchmark",
+    "forbidden": "Every causal verb: 'explains', 'is driven by', 'RRKM-consistent'"
+  }
+]

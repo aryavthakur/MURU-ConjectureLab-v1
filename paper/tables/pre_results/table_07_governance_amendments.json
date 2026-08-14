@@ -1,0 +1,74 @@
+[
+  {
+    "amendment": "Content Freeze V1",
+    "creation_commit": "d94d2c9",
+    "binding_commit": "d94d2c9",
+    "tag": "benchmark-content-freeze-v1",
+    "date": "2026-08-13",
+    "description": "Base prospective paper benchmark design, 380 cases manifest, 20 families"
+  },
+  {
+    "amendment": "Amendment A1",
+    "creation_commit": "2ac86c5",
+    "binding_commit": "2ac86c5",
+    "tag": "benchmark-content-freeze-a1",
+    "date": "2026-08-13",
+    "description": "Binds M0/M1/M2/M3 adequacy decision rules, thresholds, and failure semantics"
+  },
+  {
+    "amendment": "Amendment A2",
+    "creation_commit": "03cc4d3",
+    "binding_commit": "03cc4d3",
+    "tag": "benchmark-content-freeze-a2",
+    "date": "2026-08-14",
+    "description": "Repairs F16 generator to honour declared M1+M2+M3 truth; restores M3 amplitude"
+  },
+  {
+    "amendment": "Amendment A2.1",
+    "creation_commit": "80a7803",
+    "binding_commit": "80a7803",
+    "tag": "benchmark-content-freeze-a2-1",
+    "date": "2026-08-14",
+    "description": "Bumps GENERATOR_VERSION to 1.1.0 to enforce A2 generator repair"
+  },
+  {
+    "amendment": "Amendment A3.1",
+    "creation_commit": "c8938e8",
+    "binding_commit": "c8938e8",
+    "tag": "benchmark-content-freeze-a3-1",
+    "date": "2026-08-14",
+    "description": "Binds G2/G3 structural endpoints, taxonomy, and null calibration contract"
+  },
+  {
+    "amendment": "Amendment A3.2",
+    "creation_commit": "1194fcb",
+    "binding_commit": "1194fcb",
+    "tag": "benchmark-content-freeze-a3-2",
+    "date": "2026-08-14",
+    "description": "Corrects null calibration base target (global permutation) and 18/6/6 scaffold split"
+  },
+  {
+    "amendment": "Amendment A3.3",
+    "creation_commit": "e91aae6",
+    "binding_commit": "71f5369",
+    "tag": "benchmark-content-freeze-a3-3",
+    "date": "2026-08-14",
+    "description": "Proposes initial secondary endpoint contracts for Parameter Recovery and Predictive Equivalence"
+  },
+  {
+    "amendment": "Amendment A3.4",
+    "creation_commit": "d0ea5d4",
+    "binding_commit": "be23b80",
+    "tag": "benchmark-content-freeze-a3-4",
+    "date": "2026-08-14",
+    "description": "Repairs predictive-equivalence domain to 12 generator frames (2,160 rows); clarifies parameter invariance"
+  },
+  {
+    "amendment": "A3.4 Provenance Erratum",
+    "creation_commit": "220c9cb",
+    "binding_commit": "220c9cb",
+    "tag": "a3-4-temporal-provenance-erratum",
+    "date": "2026-08-14",
+    "description": "Adjudicates calibration chronology metadata; confirms outcome-blind design"
+  }
+]

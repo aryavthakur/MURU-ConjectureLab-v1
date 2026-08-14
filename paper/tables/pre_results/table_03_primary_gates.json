@@ -1,0 +1,42 @@
+[
+  {
+    "gate": "G1 Scalar Competence",
+    "definition": "Spearman r_s >= 0.80 AND MAE <= 0.80 x baseline AND M0_NOT_REJECTED",
+    "denominator": 164,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]",
+    "criterion": "Wilson lower 95% >= 0.70",
+    "verdict": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "gate": "G2 Family Recovery",
+    "definition": "support_status == MATCH AND family_status == MATCH",
+    "denominator": 144,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]",
+    "criterion": "Wilson lower 95% >= 0.70",
+    "verdict": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "gate": "G3 Structural Safety",
+    "definition": "Unsafe structural acceptances in F07, F19, F20",
+    "denominator": 36,
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]",
+    "criterion": "Wilson upper 95% <= 0.15",
+    "verdict": "[PROSPECTIVE RESULT TO INSERT]"
+  },
+  {
+    "gate": "Umbrella Claim",
+    "definition": "Preconditions valid AND G1 PASS AND G2 PASS AND G3 PASS",
+    "denominator": "Full",
+    "numerator": "[PROSPECTIVE RESULT TO INSERT]",
+    "rate": "[PROSPECTIVE RESULT TO INSERT]",
+    "ci": "[PROSPECTIVE RESULT TO INSERT]",
+    "criterion": "All three gates pass simultaneously",
+    "verdict": "[PROSPECTIVE RESULT TO INSERT]"
+  }
+]
