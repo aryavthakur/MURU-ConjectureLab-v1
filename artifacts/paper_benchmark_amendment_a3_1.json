@@ -1,0 +1,142 @@
+{
+  "amendment": "A3.1",
+  "parent_amendment": "A2.1",
+  "parent_commit": "80a78032ac601466b35e9dce3fa56f6ae215605f",
+  "temporal_position": {
+    "post_development": true,
+    "pre_g2_g3_development_scoring": true,
+    "pre_calibration": true,
+    "pre_held_out": true
+  },
+  "scope": [
+    "G2 structural-family endpoint",
+    "structural acceptance with typed states",
+    "structural-null calibration contract",
+    "G3 structural-safety endpoint"
+  ],
+  "frozen_parameters": {
+    "g2_held_out_denominator": 144,
+    "g2_wilson_lower_gate": 0.7,
+    "g3_held_out_denominator": 36,
+    "g3_wilson_upper_gate": 0.15,
+    "n_calibration_worlds": 100,
+    "n_seeds_per_world": 30,
+    "pb_seed_base": 2110000000,
+    "pb_seed_spread": 370000,
+    "quantile_level": 0.95,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20260812,
+    "stability_gate": "20/30",
+    "max_complexity": 20,
+    "max_invalid_fraction": 0.005,
+    "ceiling_fraction_gate": 0.8,
+    "ceiling_waiver_threshold": 0.05
+  },
+  "truth_families": [
+    "mass_affine_descriptor",
+    "mass_power",
+    "mass_saturating_descriptor",
+    "mass_interaction",
+    "mass_exponential_descriptor"
+  ],
+  "calibration_allocation": {
+    "target_permuted_across_compounds": 34,
+    "descriptors_permuted_across_compounds": 33,
+    "gaussian_targets_with_observed_variance": 33
+  },
+  "excluded_constructions": [
+    "within_compound_energy_permutation"
+  ],
+  "ceiling_estimator": {
+    "class": "sklearn.ensemble.HistGradientBoostingRegressor",
+    "params": {
+      "max_iter": 150,
+      "max_depth": 3,
+      "min_samples_leaf": 20,
+      "random_state": 0
+    },
+    "dependency": "scikit-learn==1.9.0",
+    "provenance": "requirements.lock.txt at c7c23324d40cd432bdd14bf9d3292b5a2867ef9e"
+  },
+  "added_paths": [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md",
+    "src/muru/paper_benchmark/g2_contract.py",
+    "src/muru/paper_benchmark/structural_acceptance.py",
+    "src/muru/paper_benchmark/calibration_contract.py",
+    "src/muru/paper_benchmark/g3_contract.py",
+    "tests/test_a3_1_g2_contract.py",
+    "tests/test_a3_1_structural_acceptance.py",
+    "tests/test_a3_1_calibration_contract.py",
+    "tests/test_a3_1_g3_contract.py",
+    "scripts/pb_33_amendment_a3_1_integrity.py",
+    "artifacts/paper_benchmark_amendment_a3_1.json"
+  ],
+  "added_sha256": {
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md": "ae7cf8268f120bf23c4844ac97613edd43c785440b39dcae788d798d193fb7d7",
+    "src/muru/paper_benchmark/g2_contract.py": "502b1a65705d9c2d13c7680c3bbc4d307593185e8f60e5706150e6e092727fb5",
+    "src/muru/paper_benchmark/structural_acceptance.py": "ab4a54b11b1012d1f08f09a6fc1bdac4631fb9d486fc409121cc7640ea0c602a",
+    "src/muru/paper_benchmark/calibration_contract.py": "214d403ab0f819841f5003f0b6e8921339fab4246c56f2fddb2a6205e0b6c05a",
+    "src/muru/paper_benchmark/g3_contract.py": "c09d849cf69bae0c183ba793a0ef117e27655defcdcc4145b12f457aee2f5a95",
+    "tests/test_a3_1_g2_contract.py": "a74c6fa08575baf53200501064b9bfac425a0aa62ca1b5f9d696886033b138ba",
+    "tests/test_a3_1_structural_acceptance.py": "f9388034a0ab04b711f79b872bec065162cdd72e254605ca67e7caca2ec87855",
+    "tests/test_a3_1_calibration_contract.py": "23d859c197e423dff8640cd3c346dd7f47c703c02f11ad67c7e2e1c6eeff37ce",
+    "tests/test_a3_1_g3_contract.py": "bcbc51afeebd5db93865343fca043a04a7de2bbf62df361f3487b48cd95fc3eb",
+    "scripts/pb_33_amendment_a3_1_integrity.py": "d9b40cb6d8fbcfd35cff43dca87190fa1984401508e2f646f2a14043038ebac3",
+    "artifacts/paper_benchmark_amendment_a3_1.json": "self"
+  },
+  "protected_paths": [
+    "src/muru/paper_benchmark/registry.py",
+    "src/muru/paper_benchmark/generator.py",
+    "src/muru/paper_benchmark/truth.py",
+    "src/muru/paper_benchmark/adequacy.py",
+    "src/muru/paper_benchmark/governance.py",
+    "src/muru/paper_benchmark/contract.py",
+    "src/muru/paper_benchmark/freeze.py",
+    "src/muru/paper_benchmark/protocol.py",
+    "src/muru/paper_benchmark/preflight.py",
+    "src/muru/paper_benchmark/artifacts.py",
+    "src/muru/paper_benchmark/analysis.py",
+    "artifacts/paper_benchmark_case_manifest.json",
+    "artifacts/paper_benchmark_truth_manifest.json",
+    "artifacts/paper_benchmark_partition_manifest.json",
+    "artifacts/paper_benchmark_content_freeze.json",
+    "artifacts/paper_benchmark_hash_inventory.json"
+  ],
+  "protected_sha256": {
+    "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+    "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+    "src/muru/paper_benchmark/truth.py": "b773d458b86390bb63a8f95e54b5d299783acc777ea6134c894d8f227c5d4719",
+    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+    "src/muru/paper_benchmark/governance.py": "143c4558754044a6f03b0665589c7082987244c9f1298eeb2588f6eaab639972",
+    "src/muru/paper_benchmark/contract.py": "2f1262407c63c07d3ddfe0eec9e5f83f55e8325053224e81377864f47ad6d59b",
+    "src/muru/paper_benchmark/freeze.py": "d18c807a359d1fb2c458bccae495d61c8b268f4cc6e34bdd27bc3af9a70efb9a",
+    "src/muru/paper_benchmark/protocol.py": "63c77d5732f0c339b99c20f7d91953324d053d4bb970ec08f10fac4666d85cf5",
+    "src/muru/paper_benchmark/preflight.py": "4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb",
+    "src/muru/paper_benchmark/artifacts.py": "24b7f8adce26f2371aa85c3ee7692a1b4c2f69391242f09b9b9d483b08389a0d",
+    "src/muru/paper_benchmark/analysis.py": "22243eeab1233459e1575b83c69dea781b995fabe1029573af759088d86248d1",
+    "artifacts/paper_benchmark_case_manifest.json": "c98b426ade1085abd4c87ab2195e358f83cf9ad1e1a77710f9493f5710b5bdba",
+    "artifacts/paper_benchmark_truth_manifest.json": "c26595a1a34f59adac54b91a1f8c13cccd5ec0fd924d7af81dff2952027ce477",
+    "artifacts/paper_benchmark_partition_manifest.json": "8aaebb748af0645de95ef056b934396ff72870852c5d7ca25393dbb7bb3d5f10",
+    "artifacts/paper_benchmark_content_freeze.json": "986ce8ef771fa971b8cf41f67718b98c6099d02d6a433d4081c1d464883d116f",
+    "artifacts/paper_benchmark_hash_inventory.json": "3747e56335d49387870e176cb958fa0687d372c932166afc2450f1468f26b0da"
+  },
+  "immutable": {
+    "benchmark_case_rows": true,
+    "generator_payload": true,
+    "truth_payload": true,
+    "seeds": true,
+    "partitions": true,
+    "g1": true,
+    "a1_adequacy": true,
+    "m0_m1_m2_m3": true,
+    "f16": true
+  },
+  "calibration_executed": false,
+  "development_g2_g3_scored": false,
+  "held_out_sealed": true,
+  "test_accounting": {
+    "a3_1_tests_passed": 165,
+    "existing_paper_benchmark_tests_passed": 161,
+    "total_passed": 326
+  }
+}
