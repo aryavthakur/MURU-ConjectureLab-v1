@@ -107,7 +107,8 @@ is frozen and enforced instead:
 
 * `configs/julia/Project.toml` (sha256 `2549db49...9689a27c54d7`) and
   `configs/julia/Manifest.toml` (sha256 `75fc2d89...780c8a6b280705`) vendor
-  the exact resolved graph: 115 Julia packages, each with its version and
+  the exact resolved graph **of the environment that executed the audited
+  calibration**: 115 Julia packages, each with its version and
   `git-tree-sha1`.
 * `pb_37_environment_closure.assert_julia_identity()` boots Julia through
   PySR and **raises** when the live stack is not the frozen one. It fails
@@ -125,9 +126,50 @@ building a manifest must not boot a Julia runtime; that is a recording
 limitation of the manifest, not evidence that Julia was absent, and the
 calibration ran through `PySRBackend`, which imports `PySRRegressor`.
 
-The fresh environment independently resolved to the same Julia 1.12.6 and
-SymbolicRegression.jl 1.11.3, which corroborates the identity but does not
-replace the gate, since range resolution is time-dependent.
+### Range resolution really does drift
+
+The fresh environment resolved to the same Julia 1.12.6, SymbolicRegression.jl
+1.11.3 and PythonCall.jl 0.9.26, which corroborates the three gated versions.
+It did **not** reproduce the rest of the graph. Two days after the calibration
+environment was built, on the same machine, 3 of the 115 Julia packages
+resolved differently:
+
+| package | calibration environment | fresh resolution |
+|---|---|---|
+| ArrayInterface | 7.28.1 | 7.29.0 |
+| TestItems | 1.0.0 | 1.1.0 |
+| pixi_jll | 0.63.2+0 | 0.76.2+0 |
+
+So the identity gate covers three components, not the transitive Julia graph,
+and the drift is not hypothetical.
+
+### Restoring the exact graph
+
+The vendored files are a working pin, not decoration:
+
+```bash
+python scripts/pb_37_environment_closure.py --pin-julia .julia-frozen
+```
+
+This seeds a project from `configs/julia/`, runs `Pkg.instantiate()` against
+it, and prints the three environment variables that make `juliapkg` use it
+instead of re-resolving:
+
+```
+PYTHON_JULIAPKG_EXE=<the julia 1.12.6 binary>
+PYTHON_JULIAPKG_PROJECT=<the seeded directory>
+PYTHON_JULIAPKG_OFFLINE=yes
+```
+
+Verified end to end in the disposable environment: instantiating restores
+ArrayInterface **7.28.1** rather than the drifted 7.29.0, alongside
+SymbolicRegression.jl 1.11.3 on Julia 1.12.6, and leaves `Manifest.toml`
+byte-identical. Importing PySR under those three variables then reports the
+same versions, with `Base.active_project()` pointing at the pinned project.
+
+`pin_julia_project()` refuses to run from a drifted vendored graph: it
+re-checks both file digests first. It chooses no version; both files are the
+frozen bytes.
 
 ## 5. gplearn scope
 
@@ -170,21 +212,27 @@ The A3.4 protected set remains 31/31 byte-identical.
 Recorded from the two independent read-only reviews of this closure. None is
 a claim retraction; each bounds what the closure does and does not enforce.
 
-**L1. The Julia identity gate is not wired into any execution path.** The only
-caller of `assert_julia_identity()` is `pb_37_environment_closure.main()` under
-`--start-julia`. No prospective path calls it, because RC4 contains no
-prospective case execution path. Additionally, `configs/julia/*.toml` are
-verification inputs, not install inputs: nothing sets `JULIA_PROJECT` or runs
-`Pkg.instantiate()` against them, so a fresh clone still resolves from
-juliapkg's ranges. **Consequence:** a future Development or Held-out run built
-in a fresh environment could execute on a different `SymbolicRegression.jl`
-patch than the 1.11.3 that produced the calibrated thresholds, with nothing
-failing closed. **Required of the release that builds the case runner:** call
-`assert_julia_identity()` before the first search seed, and record its result
-in the execution manifest. `test_the_julia_identity_gate_has_no_prospective_caller_yet`
-pins this so it cannot be silently forgotten. Until then, running
-`python scripts/pb_37_environment_closure.py --start-julia` is a mandatory
-recorded preflight for any prospective execution.
+**L1. Neither the Julia identity gate nor the Julia pin is wired into any
+execution path.** The only caller of `assert_julia_identity()` is
+`pb_37_environment_closure.main()` under `--start-julia`, and `--pin-julia` is
+likewise operator-invoked. No prospective path calls either, because RC4
+contains no prospective case execution path at all. **Consequence:** a future
+Development or Held-out run built in a fresh environment could execute on a
+drifted Julia graph, and on a different `SymbolicRegression.jl` patch than the
+1.11.3 that produced the calibrated thresholds, with nothing failing closed.
+**Required of the release that builds the case runner:** call
+`assert_julia_identity()` before the first search seed and record its result in
+the execution manifest.
+`test_the_julia_identity_gate_has_no_prospective_caller_yet` pins this so it
+cannot be silently forgotten; it fails as soon as a caller appears. Until then,
+`--pin-julia` followed by `--start-julia` is a mandatory recorded preflight for
+any prospective execution.
+
+**L1b. The gate covers three components, not the graph.**
+`assert_julia_identity()` compares julia, `SymbolicRegression.jl` and
+`PythonCall.jl`. It would not notice the ArrayInterface / TestItems / pixi_jll
+drift documented in section 4. `--pin-julia` is what restores the full graph;
+the gate is only the tripwire.
 
 **L2. The engineering exemption's science guard covers a minority of the
 frozen tree.** `SCIENCE_SURFACE_PREFIXES` blocks nine prefixes, roughly a third
@@ -217,7 +265,34 @@ wins, so all results here are correct, but an ad-hoc `python -c "import muru"`
 in that venv reads foreign source. Prefer the scripts or pytest.
 
 **L6. `pip`, `setuptools` and `wheel` are unpinned**; a fresh virtual
-environment takes whatever ships with the interpreter.
+environment takes whatever ships with the interpreter. The resolver that
+produced the closure is therefore itself unfrozen.
+
+**L7. The closure proof is single-platform, and the proof environment shares a
+Julia depot.** Closure was demonstrated on macOS arm64 / CPython 3.13.12 only.
+The lock carries no environment markers, so a Linux resolution could
+legitimately pull platform-conditional dependencies absent from it. The
+disposable environment also shares `~/.julia` with the project `.venv`
+(`DEPOT_PATH[1]` is the user depot), so what was proved is fresh Python plus a
+freshly downloaded Julia binary plus a pre-existing shared depot, not a clean
+machine. Resolution did genuinely re-run, which is how the section 4 drift
+became visible.
+
+**L8. The frozen search-settings digest does not cover every knob that moves a
+search.** `FROZEN_SETTINGS_DIGEST` is computed from `SEARCH_SETTINGS`, so
+digest equality proves `niterations == 40` and that the settings dict is
+unchanged, but both sides move together if that dict is edited. It is anchored
+by `calibration_contract.py` being a byte-protected path in pb_33 and pb_34.
+Separately, `PySRBackend._make_regressor` hardcodes `parallelism="serial"`,
+`progress`, `verbosity` and `temp_equation_file` outside the digest. Whichever
+release builds the case runner should bring those under a recorded digest.
+
+**L9. Two tests are named for evidence they cannot produce.** They read tracked
+JSON and assert its fields, which would pass on a hand-written file. The
+missing evidence was supplied externally by review: regenerating the proof from
+a live Julia session in the disposable environment produced bytes identical to
+the tracked `configs/rc4_1_julia_identity_proof.json`. The test names now say
+what they check rather than what one might wish they checked.
 
 ## 9. Verification
 

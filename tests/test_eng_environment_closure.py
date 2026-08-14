@@ -94,7 +94,7 @@ def test_read_lock_pins_accepts_the_tracked_lock_unchanged():
     assert pins["gplearn"] == "0.4.3"
 
 
-def test_the_julia_side_identity_is_bound_and_hashed():
+def test_the_vendored_julia_graph_is_hash_pinned_and_names_the_frozen_versions():
     project = ROOT / closure.JULIA_PROJECT_RELPATH
     manifest = ROOT / closure.JULIA_MANIFEST_RELPATH
     assert project.exists() and manifest.exists()
@@ -176,11 +176,14 @@ def test_the_julia_identity_gate_has_no_prospective_caller_yet():
     )
 
 
-def test_the_julia_identity_proof_is_a_live_reading_not_a_declaration():
-    """`--start-julia` booted a real Julia and read the loaded module versions.
+def test_the_recorded_julia_proof_is_internally_consistent():
+    """This test reads tracked JSON; it cannot itself witness a Julia boot.
 
-    Kept in its own file so a later run without `--start-julia` cannot erase
-    the proof by replacing it with a run that never booted Julia.
+    What makes the proof live is that `pb_37 --start-julia` is its only writer
+    and it is written to its own file, so a later run that never boots Julia
+    cannot replace it.  Independent review regenerated it from a live session
+    in the disposable environment and obtained byte-identical output; see
+    limitation L9 in ENVIRONMENT_CLOSURE.md.
     """
     import json
 
@@ -257,3 +260,31 @@ def test_all_three_amendment_scripts_share_one_engineering_declaration():
         text = (ROOT / "scripts" / script).read_text(encoding="utf-8")
         assert "from pb_engineering_paths import" in text, script
         assert "assert_engineering_paths_carry_no_science()" in text, script
+
+
+def test_the_julia_pin_refuses_a_drifted_vendored_graph(tmp_path, monkeypatch):
+    """`pin_julia_project` must not seed a project from files that have moved.
+
+    The pin is only trustworthy because both vendored files are hash-checked
+    before anything is copied.  Booting Julia is deliberately not exercised
+    here: the refusal must happen before that point.
+    """
+    monkeypatch.setattr(closure, "JULIA_MANIFEST_SHA256", "0" * 64)
+    with pytest.raises(closure.JuliaIdentityMismatch) as raised:
+        closure.pin_julia_project(tmp_path / "pinned")
+    assert "JULIA_BINDING_DRIFT" in str(raised.value)
+    assert not (tmp_path / "pinned" / "Manifest.toml").exists()
+
+
+def test_the_documented_julia_pin_variables_are_the_ones_juliapkg_reads():
+    """Guards against documenting a recovery procedure that does nothing."""
+    import inspect
+
+    source = inspect.getsource(closure.pin_julia_project)
+    for name in (
+        "PYTHON_JULIAPKG_EXE",
+        "PYTHON_JULIAPKG_PROJECT",
+        "PYTHON_JULIAPKG_OFFLINE",
+    ):
+        assert name in source
+        assert name in (ROOT / "ENVIRONMENT_CLOSURE.md").read_text()

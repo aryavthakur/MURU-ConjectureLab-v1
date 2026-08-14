@@ -307,6 +307,56 @@ class JuliaIdentityMismatch(RuntimeError):
     """The live Julia stack is not the frozen one."""
 
 
+def pin_julia_project(target: Path) -> dict[str, str]:
+    """Materialise the frozen Julia graph into ``target`` and instantiate it.
+
+    juliapkg resolves from compatibility ranges, so a fresh install reproduces
+    the three gated versions but not necessarily the whole transitive graph.
+    Reviewed evidence: a fresh resolution two days after the calibration
+    environment matched on julia, SymbolicRegression.jl and PythonCall.jl but
+    drifted on 3 of 115 Julia packages (ArrayInterface 7.28.1 -> 7.29.0,
+    TestItems 1.0.0 -> 1.1.0, pixi_jll 0.63.2+0 -> 0.76.2+0).
+
+    Seeding a project from ``configs/julia`` and instantiating it restores the
+    exact graph.  Verified: instantiating reproduces ArrayInterface 7.28.1
+    alongside SymbolicRegression 1.11.3 on julia 1.12.6, and leaves
+    ``Manifest.toml`` byte-identical.
+
+    Returns the environment variables that make juliapkg use it instead of
+    re-resolving.  Nothing here is a version choice: both files are the frozen
+    vendored bytes, hash-checked before use.
+    """
+    import shutil
+    import subprocess
+
+    errors, _ = check_closure()
+    julia_errors = [e for e in errors if e.startswith("JULIA_BINDING_")]
+    if julia_errors:
+        raise JuliaIdentityMismatch(
+            "refusing to pin from a drifted vendored graph: " + "; ".join(julia_errors)
+        )
+
+    target = Path(target)
+    target.mkdir(parents=True, exist_ok=True)
+    for relpath in (JULIA_PROJECT_RELPATH, JULIA_MANIFEST_RELPATH):
+        shutil.copyfile(ROOT / relpath, target / Path(relpath).name)
+
+    import pysr  # noqa: F401  - must import before juliacall, or segfault
+    from pysr.julia_import import jl  # type: ignore
+
+    executable = str(jl.seval("string(Base.julia_cmd()[1])"))
+    subprocess.run(
+        [executable, f"--project={target}", "-e",
+         "using Pkg; Pkg.instantiate()"],
+        check=True,
+    )
+    return {
+        "PYTHON_JULIAPKG_EXE": executable,
+        "PYTHON_JULIAPKG_PROJECT": str(target),
+        "PYTHON_JULIAPKG_OFFLINE": "yes",
+    }
+
+
 def assert_julia_identity() -> dict[str, str]:
     """Boot Julia through PySR and refuse a stack that is not the frozen one.
 
@@ -366,6 +416,17 @@ def main() -> int:
         default=ROOT / "configs" / "rc4_1_julia_identity_proof.json",
         help="where --start-julia writes its live verification",
     )
+    parser.add_argument(
+        "--pin-julia",
+        type=Path,
+        default=None,
+        metavar="DIR",
+        help=(
+            "seed DIR from configs/julia and instantiate it, restoring the "
+            "exact frozen Julia graph, then print the environment variables "
+            "that make juliapkg use it instead of re-resolving from ranges"
+        ),
+    )
     arguments = parser.parse_args()
 
     errors, payload = check_closure()
@@ -407,6 +468,15 @@ def main() -> int:
     print(f"SymbolicRegression.jl:   {FROZEN_SYMBOLICREGRESSION_JL_VERSION}")
     if not arguments.start_julia:
         print("julia identity:          NOT CHECKED (pass --start-julia)")
+
+    if arguments.pin_julia is not None:
+        try:
+            environment = pin_julia_project(arguments.pin_julia)
+            print("frozen Julia graph pinned; export these:")
+            for key in sorted(environment):
+                print(f"  {key}={environment[key]}")
+        except Exception as exc:  # noqa: BLE001 - reported, not raised
+            errors.append(f"JULIA_PIN: {type(exc).__name__}: {exc}")
     if errors:
         print("ENVIRONMENT CLOSURE FAILED", file=sys.stderr)
         for error in errors:
