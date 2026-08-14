@@ -118,21 +118,16 @@ generator and truth manifest before submission, without opening any outcome.
 
 ## Table 2. Frozen endpoints and success criteria
 
-**Status: fully populated from frozen sources**, except two secondary success
-rules noted below.
+**Status: fully populated from frozen sources.**
 
 Caption: Prospectively frozen endpoints, their role, denominator, gate and
 failure handling. Roles were assigned before any prospective execution and are
-not conditioned on observed performance.
+not conditioned on observed performance. All secondary endpoint specifications
+(Parameter Recovery on 156 cases at canonical anchor $\mathbf{x}_0$ and
+Predictive Equivalence on 144 cases over 2,160 reference points across 12
+case-shaped frames) are frozen under Amendment A3.4.
 
 Reproduce Section 6 of `MURU_MANUSCRIPT_PRE_RESULTS.md` in full as Table 2.
-
-Two cells require a verified source before submission:
-
-| Endpoint | Missing detail |
-|---|---|
-| parameter recovery | the frozen coefficient/exponent tolerance rule and its failure semantics: `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` |
-| predictive equivalence | the frozen equivalence criterion (domain, metric, tolerance): `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` |
 
 ### Table 2a. Structural acceptance predicate
 
@@ -274,7 +269,9 @@ are frozen from case applicability; gates were fixed before execution.
 | Endpoint | Denominator | Numerator | Rate | 95% Wilson |
 |---|---:|---|---|---|
 | support recovery | 144 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
-| parameter recovery | 156 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
+| parameter recovery (joint) | 156 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
+| mass exponent ($p_{\text{mass}}$) | 156 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
+| descriptor coupling ($c_{\text{desc}}$) | 84 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
 | predictive equivalence | 144 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
 | exact algebra | 60 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
 | M0 specificity | 164 | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` | `[PROSPECTIVE RESULT TO INSERT]` |
@@ -423,8 +420,8 @@ defects that the prospective design closes.
 | C1 | FM-05 scalar-null information preservation | **closed** | construction excluded and made unconstructible | Calibration no longer dominated by a level-preserving null |
 | C2 | Scaffold-structured null base target | **closed** | A3.2 global permutation before any transformation or partition use | The mechanism by which a non-null family could bias the threshold permissively is removed. The effect on the threshold table was never measured, because no threshold table existed at either design |
 | C3 | Calibration split not matching the written 60/20/20 | **closed** | A3.2 dedicated helper at 18/6/6 scaffolds | Specification and implementation agree |
-| C4 | FM-06 transductive target construction | **closed by specification; production-path conformance verified at executable freeze** | frozen execution boundary: training-only shared objects, then independent per-compound estimation | The frozen boundary requires held-out target quantities to be fold-local. RC3.1 production-path conformance: `[PROSPECTIVE RESULT TO INSERT]` at executable freeze |
-| C5 | FM-07 complex-cast evaluator | **closed by specification and reference contract; production-path conformance verified at executable freeze** | strict evaluation, deterministic SymPy normalisation, typed unresolved state | The contract requires strict invalidity screening. RC3.1 production-path conformance: `[PROSPECTIVE RESULT TO INSERT]` at executable freeze |
+| C4 | FM-06 transductive target construction | **closed by specification; production-path conformance pending executable-freeze verification** | frozen execution boundary: training-only shared objects, then independent per-compound estimation | The frozen boundary requires held-out target quantities to be fold-local. Production-path conformance: `[PROSPECTIVE RESULT TO INSERT]` at executable freeze |
+| C5 | FM-07 complex-cast evaluator | **closed by specification and reference contract; production-path conformance pending executable-freeze verification** | strict evaluation, deterministic SymPy normalisation, typed unresolved state | The contract requires strict invalidity screening. Production-path conformance: `[PROSPECTIVE RESULT TO INSERT]` at executable freeze |
 | C6 | FM-08 boundary-scale invisibility | **closed** | F05 boundary-hit endpoint with a frozen denominator | Boundary prevalence measurable |
 | C7 | Unspecified adequacy decision rule | **closed** | Amendment A1 binds statistic, threshold, aggregation, failure semantics | G1's adequacy component is deterministic |
 | C8 | F16 generator not honouring its declared M1+M2+M3 truth | **closed** | Amendment A2 repair; A2.1 version bump | F16 detector endpoints are scorable |

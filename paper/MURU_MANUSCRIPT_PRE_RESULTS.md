@@ -2,16 +2,16 @@
 
 ## Document status
 
-**PRE-RESULTS DRAFT.** Assembled before the A3.2 structural-null calibration was
-executed, before Development G2/G3 were scored, and while Held-out and
-Confirmation remained sealed.
+**PRE-RESULTS DRAFT.** Synchronized through Amendment A3.4 and the subsequent
+temporal-provenance adjudication, before Development G2/G3 were scored, and
+while Held-out and Confirmation remained strictly sealed and unopened.
 
 Every section below is one of three kinds, and they are never mixed:
 
 | Class | Meaning | Writable now |
 |---|---|---|
 | **CLASS A** | Historical development evidence (Phase 2, Phase 3, Type 2, engine-competence audit, soundness audits) | Yes, as background, motivation and explicitly labelled supporting synthetic evidence |
-| **CLASS B** | Frozen prospective methods (benchmark architecture, A1/A2/A2.1/A3.1/A3.2, Engineering RC3/RC3.1, endpoints, thresholds, provenance rules) | Yes |
+| **CLASS B** | Frozen prospective methods (benchmark architecture, A1/A2/A2.1/A3.1/A3.2/A3.3/A3.4, Engineering RC3/RC3.1, A3.4 temporal provenance erratum, endpoints, thresholds, provenance rules) | Yes |
 | **CLASS C** | Prospective results (calibration, Development, Held-out, Confirmation) | **No.** Placeholders only |
 
 Placeholder tokens used literally in this document:
@@ -21,10 +21,12 @@ Placeholder tokens used literally in this document:
 - `[CITATION REQUIRED: ...]`
 - `[INTERPRET ...]`
 
-Governance base of this draft: `eng/muru-rc3-1-a3-2` at `07c64c8`
-(tag `engineering-rc3-1-a3-2`), which carries the A3.2 science lineage
-(`1194fcb`, tag `benchmark-content-freeze-a3-2`) merged into the RC3.1
-engineering lineage.
+Governance base of this draft: Amendment A3.4 (`be23b80d63fbd30227f0ab8f200dddc2121f3bfe`,
+tag `benchmark-content-freeze-a3-4`), following Amendment A3.3 (`71f53697e8894df6469ad0ff7150a049fa531b74`,
+tag `benchmark-content-freeze-a3-3`), the A3.3 hostile mathematical review (`78cc7c2`),
+the A3.4 pre-engineering integrity review (`f1fb943`), and the A3.4 Temporal Provenance Erratum
+(`220c9cb679e03865f1b2a02b975397de9f4c7b46`, tag `a3-4-temporal-provenance-erratum`),
+with active executable engineering integration on branch `eng/muru-rc4-a3-4`.
 
 Two historical verdicts are preserved verbatim and are never rescored:
 Phase 3 is **STOP BEFORE PHASE 4**; the prospective Type 2 objective-alignment
@@ -84,8 +86,8 @@ discovery pipeline can (i) recover a molecule-specific horizontal energy scale,
 (ii) reject worlds in which the scalar collapse model is inadequate, (iii)
 recover the correct variable support and mathematical family of the generating
 expression, and (iv) refrain from accepting structural claims in null and
-adversarial worlds. Exact algebraic recovery is measured as a separate,
-explicitly non-primary endpoint.
+adversarial worlds. Parameter recovery, predictive equivalence, and exact
+algebraic recovery are evaluated as separate, explicitly secondary endpoints.
 
 **Methods.** We constructed a fully synthetic benchmark of 380 cases in 20
 prospectively defined case families (F01 to F20), partitioned into 80
@@ -95,24 +97,30 @@ synthetic compounds in 30 scaffold groups measured on a six-point energy grid
 training, validation and test. Case content, generator, truth payloads, seeds,
 partitions, endpoint denominators and gate thresholds were frozen before
 execution and hashed; subsequent changes were made only through numbered,
-recorded amendments (A1, A2, A2.1, A3.1, A3.2), each of which declares its
-temporal position with respect to sealed material. Three gates were frozen in
-advance: G1 scalar competence on 164 applicable Held-out cases (Wilson lower
-95% bound at least 0.70), G2 family recovery on 144 applicable Held-out cases
-(Wilson lower 95% bound at least 0.70), and G3 principal structural safety on
-36 Held-out opportunities (Wilson upper 95% bound at most 0.15). Structural
-acceptance is truth-blind and ordered: adequacy status, a null-calibrated
-validation R2 threshold at the candidate's own complexity, seed stability of at
-least 20 of 30, complexity at most 20, invalid fraction at most 0.005, non-empty
-effective support, a gradient-boosted ceiling condition, and a reduced
-falsification harness. The acceptance threshold is not assumed; it is
-calibrated on 100 structural-null worlds, 30 search seeds each, using the
-maximum across seeds of the best validation R2 at complexity at most c, taken
-at the 95th percentile and made non-decreasing in complexity. Symbolic search
-used PySR 1.5.10 under a frozen operator grammar and frozen search settings.
-The 240-case Held-out partition was sealed and is opened once, after threshold
-freeze and executable freeze. The separately governed real-data Confirmation set
-remains sealed and is not opened by this work.
+recorded amendments (A1, A2, A2.1, A3.1, A3.2, A3.3, A3.4, and the A3.4
+temporal provenance erratum), each of which declares its temporal position with
+respect to sealed material. Three primary gates were frozen in advance: G1 scalar
+competence on 164 applicable Held-out cases (Wilson lower 95% bound at least
+0.70), G2 family recovery on 144 applicable Held-out cases (Wilson lower 95%
+bound at least 0.70), and G3 principal structural safety on 36 Held-out
+opportunities (Wilson upper 95% bound at most 0.15). Structural acceptance is
+truth-blind and ordered: adequacy status, a null-calibrated validation R2
+threshold at the candidate's own complexity, seed stability of at least 20 of 30,
+complexity at most 20, invalid fraction at most 0.005, non-empty effective
+support, a gradient-boosted ceiling condition, and a reduced falsification
+harness. The acceptance threshold is not assumed; it is calibrated on 100
+structural-null worlds, 30 search seeds each, using the maximum across seeds of
+the best validation R2 at complexity at most c, taken at the 95th percentile and
+made non-decreasing in complexity. Secondary endpoints were prospectively bound
+under Amendment A3.4: Parameter Recovery on 156 cases (joint /156, mass exponent
+/156 with tolerance 0.15, descriptor coupling /84 with tolerance 0.10, at the
+frozen anchor) and Predictive Equivalence on 144 cases (relative RMSE <= 0.05
+and Pearson r >= 0.990 over 2,160 reference points across 12 case-shaped frames
+from the frozen synthetic covariate generator). Symbolic search used PySR 1.5.10
+under a frozen operator grammar and frozen search settings. The 240-case Held-out
+partition was sealed and is opened once, after threshold freeze and executable
+freeze. The separately governed real-data Confirmation set remains sealed and is
+not opened by this work.
 
 **Results.** `[PROSPECTIVE RESULT TO INSERT]`
 
@@ -121,14 +129,18 @@ Specifically pending: calibration validity and threshold table
 `[PROSPECTIVE RESULT TO INSERT]`; G1 numerator/denominator and Wilson interval
 `[PROSPECTIVE RESULT TO INSERT]`; G2 numerator/denominator and Wilson interval
 `[PROSPECTIVE RESULT TO INSERT]`; G3 numerator/denominator and Wilson interval
-`[PROSPECTIVE RESULT TO INSERT]`; exact-algebra recovery on the 60 applicable
-Held-out cases `[PROSPECTIVE RESULT TO INSERT]`.
+`[PROSPECTIVE RESULT TO INSERT]`; parameter recovery on the 156 applicable
+Held-out cases (joint /156, mass /156, descriptor /84)
+`[PROSPECTIVE RESULT TO INSERT]`; predictive equivalence on the 144 applicable
+Held-out cases `[PROSPECTIVE RESULT TO INSERT]`; exact-algebra recovery on the 60
+applicable Held-out cases `[PROSPECTIVE RESULT TO INSERT]`.
 
 **Conclusions.** `[PROSPECTIVE RESULT TO INSERT]`
 
 No conclusion is precommitted. The umbrella positive claim is available only if
 preconditions hold and G1, G2 and G3 all pass; any failed gate blocks it while
-the descriptive endpoint reports are retained.
+the descriptive endpoint reports are retained. Secondary endpoints remain
+subordinate to the primary gates and never merge into G1, G2, or G3.
 
 ---
 
@@ -935,7 +947,85 @@ the null itself, and not by looking at a result, because no result existed to
 look at (`MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md`;
 `artifacts/paper_benchmark_amendment_a3_2.json`, `governance_form`).
 
-## 5.15 Scaffold partitioning
+## 5.15 Amendments A3.3 and A3.4: Secondary endpoint contracts and domain repair
+
+Amendment A3.3 (`71f5369`, tag `benchmark-content-freeze-a3-3`) bound prospective
+scientific evaluation contracts for two secondary symbolic endpoints:
+**Parameter Recovery** (156 held-out cases) and **Predictive Equivalence** (144
+held-out cases).
+
+A subsequent hostile mathematical and domain-conformance audit (`78cc7c2`,
+`audit/MURU_A3_3_MATHEMATICAL_REVIEW.md`) verified that the parameter recovery
+derivative operators and tolerances were mathematically sound, but identified
+two defects in the A3.3 specification:
+1. **Predictive domain mismatch:** A3.3 proposed evaluating predictive equivalence
+   over an independent Cartesian Sobol hypercube $[-2.5, 2.5]^4 \times [100, 800]$ ($N=2048$).
+   For Family F09 (`mass_saturating_descriptor`), setting descriptor $d \in [-2.5, 2.5]$
+   encountered a division-by-zero pole/singularity at $d = -1.0$ and generated negative
+   truth values, which never existed in the data generator ($d \in [0, 1]$). Furthermore,
+   the independent box destroyed the authentic $r \approx 0.98$ joint covariance between
+   `descriptor` and `correlated_distractor` and sampled 96% of points outside the generator's
+   physical descriptor support.
+2. **Terminology imprecision:** Describing descriptor coupling recovery as
+   "coordinate-free" was inaccurate; while scale-invariant to $g$ and invariant to candidate
+   factoring, $c_{\text{desc}}$ has dimension $[\text{descriptor}]^{-1}$ and depends on the
+   coordinate scale of the descriptor.
+
+Amendment A3.4 (`be23b80`, tag `benchmark-content-freeze-a3-4`) prospectively resolved
+both issues before any Development rerun, before structural-null calibration execution
+was completed or inspected, and while Held-out and Confirmation remained strictly sealed:
+- **Reference distribution repair:** Withdrew the Cartesian hypercube entirely. Replaced it
+  with 12 complete, case-shaped reference covariate frames generated by the unchanged frozen
+  synthetic generator ($12 \times 180 = 2,160$ evaluation rows), preserving exact marginal
+  distributions, finite-frame normalizations, scaffold structures, and joint covariance.
+- **Reference frame IDs and canonical digest:** Bound 12 logical reference frame IDs
+  (`PB|PRED_EQUIV|FRAME|000` to `011`) with deterministic seeds derived from
+  `derive_seed(id, "compounds")` and bound the aggregate canonical SHA-256 digest:
+  $$\mathbf{4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44}$$
+- **Invariant parameter terminology:** Formally defined parameter recovery as "scale-invariant
+  and algebraically invariant within the frozen benchmark coordinate system".
+- **Metric formalization:** Formally codified the valid evaluation point set $\mathcal{V}$,
+  least-squares positive multiplicative scale alignment $c^*$, scale-adjusted relative RMSE
+  ($\text{REL\_RMSE} \le 0.05$), Pearson correlation ($r \ge 0.990$), and an explicit zero-variance
+  correlation failure rule ($r = 0.0 \to \text{FAIL}$).
+- **Decomposition reporting:** Mandated separate reporting for Joint Parameter Recovery (/156),
+  Mass Exponent Recovery (/156), and Descriptor Coupling Recovery (/84).
+- **Immutability of primary gates:** Left G1 (164), G2 (144), G3 (36), null calibration
+  protocols, and all primary decision rules completely unchanged.
+
+## 5.16 Temporal provenance adjudication and execution chronology
+
+A subsequent pre-engineering integrity audit (`f1fb943`, `audit/MURU_A3_4_PRE_ENGINEERING_INTEGRITY.md`)
+audited repository-wide execution logs and filesystem timestamps without inspecting any
+calibration or sealed outcomes. It confirmed exact zero seed collisions across all 4,632 logical
+identities, verified all 31 protected paths against aggregate digest
+`d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8`, and identified a minor
+temporal-provenance statement defect: while calibration had not been run on the science branch,
+calibration execution had been initiated at 10:08 EDT in a parallel engineering worktree.
+
+The additive Temporal Provenance Erratum (`220c9cb`, tag `a3-4-temporal-provenance-erratum`,
+`audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md`) adjudicated the exact chronology in EDT (UTC-04:00):
+
+| Event | Timestamp (EDT) | Immutable reference |
+|---|---|---|
+| Preflight created | 2026-08-13T23:59:01-04:00 | Read-only preflight provenance timestamp |
+| Calibration directory and manifest setup | 2026-08-14T10:08:17-04:00 | Read-only directory/manifest provenance timestamp |
+| Runner sidecar `started_utc` | 2026-08-14T10:08:17.932248-04:00 | Source field name retained; recorded offset is EDT |
+| First `backend.search` start | Strictly after 10:08:17.932248 and strictly before 10:08:31 | Inferred open interval, not an exact timestamp |
+| First non-quarantined `PB__NCAL__` durable record | 2026-08-14T10:08:31-04:00 | Frozen execution definition |
+| A3.4 creation commit | 2026-08-14T11:56:17-04:00 | `d0ea5d4b0309e4e95dcab4035b9be66e166765b1` |
+| A3.4 freeze commit | 2026-08-14T11:56:23-04:00 | `be23b80d63fbd30227f0ab8f200dddc2121f3bfe` |
+| Annotated A3.4 freeze tag | 2026-08-14T11:56:26-04:00 | `benchmark-content-freeze-a3-4` tag object `326727d5...` |
+| Runner finished | 2026-08-14T11:58:40.935600-04:00 | Read-only runner provenance timestamp |
+| Terminal summary files | 2026-08-14T11:58:41-04:00 | Read-only terminal-summary provenance timestamp |
+| A3.4 lineage merged with `--no-ff` | 2026-08-14T12:27:08-04:00 | `5055f69097aa0c6ce2ded6a3e57f0edfaea69faf` |
+
+**Outcome-Blindness Guarantee:** No calibration, held-out, development, or confirmation outcome
+was opened, read, compared, or used to create A3.3, A3.4, or the provenance erratum. All mathematical
+definitions and reference covariate frames were derived strictly from prospective principles and
+the unchanged frozen synthetic generator.
+
+## 5.17 Scaffold partitioning
 
 Two distinct partitioning regimes exist and must not be confused.
 
@@ -948,7 +1038,7 @@ In both, scaffold identity is atomic: a scaffold group appears in exactly one
 partition. Benchmark-case splits derive from the frozen generator's own `split`
 column; calibration worlds ignore that column and use the A3.2 helper.
 
-## 5.16 Calibration threshold construction
+## 5.18 Calibration threshold construction
 
 The threshold table is the vector `T(c)`, `c = 1..20`, defined as the 95th
 percentile across valid calibration worlds of `S(w, c)`, computed with
@@ -965,7 +1055,7 @@ Phase 3 complexity-20 interval of [+0.2603, +0.6859].
 
 Calibration outcome: `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 5.17 Development evaluation
+## 5.19 Development evaluation
 
 Development is an 80-case sanity partition. Development scientific performance
 cannot alter the case architecture, generator, coefficients, endpoints, grammar
@@ -981,14 +1071,14 @@ G3 were not producible. Under the A3.1/A3.2 contract a Development rerun is
 required before the executable freeze. Development outcome:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 5.18 Held-out evaluation
+## 5.20 Held-out evaluation
 
 Held-out contains 240 cases and is sealed. It is opened once, after calibration
 validity, threshold freeze, Development rerun and executable freeze, and is
 scored against the frozen denominators of Table 2. Held-out outcome:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 5.19 Confirmation and Challenge evaluation
+## 5.21 Confirmation and Challenge evaluation
 
 Sixty Challenge cases exist and do not enter primary denominators
 (`MURU_PAPER_BENCHMARK_PROTOCOL.md`). They are scored descriptively, as stress
@@ -1003,12 +1093,13 @@ manuscript's work and no real-data symbolic discovery is authorised.
 
 Challenge and Confirmation outcomes: `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 5.20 Primary and secondary endpoints
+## 5.22 Primary and secondary endpoints
 
-Three gates were frozen in advance
-(`MURU_PAPER_BENCHMARK_METRICS.md`,
-`MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md`). Full specification is Table 2 and
-Section 6.
+The benchmark evaluates three primary gates and a structured ladder of secondary
+and diagnostic endpoints (`MURU_PAPER_BENCHMARK_METRICS.md`,
+`MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md`, `MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md`).
+
+### 5.22.1 Primary Gates (G1, G2, G3)
 
 **G1, scalar competence, denominator 164.** For a scalar-applicable case,
 success requires all three of: Spearman correlation between true and fold-local
@@ -1019,8 +1110,9 @@ never by an indeterminate or failure state. G1 passes when the lower 95% Wilson
 bound over 164 cases is at least 0.70.
 
 **G2, family recovery, denominator 144.** Case success requires both
-`support_status == MATCH` and `family_status == MATCH`. G2 passes when the lower
-95% Wilson bound over 144 cases is at least 0.70.
+`support_status == MATCH` and `family_status == MATCH` under the five-member
+frozen truth taxonomy. G2 passes when the lower 95% Wilson bound over 144 cases
+is at least 0.70.
 
 **G3, principal structural safety, denominator 36.** Thirty-six equally weighted
 opportunities from F07 (12), F19 (12) and F20 (12). An unsafe structural
@@ -1043,17 +1135,92 @@ G3 all pass. An adequacy failure that invalidates `g` therefore fails G1. Any
 failed gate blocks the positive claim while descriptive endpoint reports are
 retained.
 
-Secondary and diagnostic endpoints, with their frozen Held-out denominators
-derived from case applicability, are: support recovery 144, parameter recovery
-156, predictive equivalence 144, exact algebra 60, M0 specificity 164, M1
-sensitivity 36, M2 sensitivity 24, M3 sensitivity 24, trajectory prediction 164,
-profile stability 164, scalar target yield 164, boundary hit 12, response
-structure diagnostic 4, and the three G3 components at 12 each.
+### 5.22.2 Parameter Recovery (Secondary Endpoint, Denominator 156)
 
-**Exact algebra recovery is explicitly a secondary endpoint and is never merged
-into G2.** Historical evidence (Section 4.3) shows the two diverge sharply.
+Parameter recovery evaluates whether the discovered candidate expression $\hat{g}$
+recovers the identifiable physical parameters of the generating law within declared
+numerical tolerances, under the frozen benchmark coordinate system (Amendment A3.4).
 
-## 5.21 Failure semantics
+- **Scientific Role:** SECONDARY descriptive endpoint (never part of G1, G2, or G3).
+- **Applicable Families:** F01–F05, F07–F12, F17, F18 (13 families $\times$ 12 held-out cases = **156 cases**).
+- **Denominator Discipline:** Strictly fixed at **156**. Unresolved, non-finite, missing, or unparseable candidate expressions count as non-successes and never reduce the denominator.
+- **Invariance Properties:** In the M0 collapse model ($\mu(E) \approx \Phi(E/g)$), the overall multiplicative scale of $g$ is non-identifiable. The derivative operators normalize by $\hat{g}(\mathbf{x}_0)$, ensuring that the extracted parameters are **scale-invariant** (invariant to any global positive multiplier $A > 0$) and **algebraically invariant** (invariant to factoring, expansion, or mass reference shifts) within the frozen coordinate system of the benchmark. They are **not** coordinate-free, as descriptor coupling has physical dimension $[\text{descriptor}]^{-1}$.
+- **Canonical Reference Anchor:** All derivatives are evaluated at the frozen anchor:
+  $$\mathbf{x}_0 = (\text{mass} = 250.0, \text{descriptor} = 0.0, \text{descriptor2} = 0.0, \text{distractor} = 0.0, \text{correlated\_distractor} = 0.0)$$
+  At $\mathbf{x}_0$, all chemical modulations in the generative laws evaluate to exactly $1.0$, isolating the logarithmic mass elasticity from chemical modulations and enabling clean extraction of descriptor couplings.
+
+**Parameter Definitions and Tolerances:**
+1. **Mass Scaling Exponent ($p_{\text{mass}}$):**
+   Applicable to all 156 cases. Defined as the dimensionless logarithmic elasticity of $\hat{g}$ with respect to mass at $\mathbf{x}_0$:
+   $$p_{\text{mass}}(\hat{g}) = \left. \frac{\partial \ln \hat{g}}{\partial \ln \text{mass}} \right|_{\mathbf{x}_0} = \left. \frac{\text{mass}}{\hat{g}} \frac{\partial \hat{g}}{\partial \text{mass}} \right|_{\mathbf{x}_0}$$
+   - **Planted Truth ($p_{\text{truth}}$):** $0.50$ for F01–F05, F08–F12, F17, F18; drawn from $[0.45, 0.75]$ for F07.
+   - **Absolute Tolerance:** $|p_{\text{mass}}(\hat{g}) - p_{\text{truth}}| \le 0.15$.
+2. **Normalized Descriptor Coupling Coefficient ($c_{\text{desc}}$):**
+   Applicable to the 84 held-out cases in descriptor-dependent families (F08, F09, F10, F11, F12, F17, F18). Defined as the relative sensitivity of $\hat{g}$ to the active descriptor(s) at $\mathbf{x}_0$:
+   - For linear/affine (`mass_affine_descriptor`, F08, F11, F12, F17) and saturating (`mass_saturating_descriptor`, F09):
+     $$c_{\text{desc}}(\hat{g}) = \left. \frac{1}{\hat{g}} \frac{\partial \hat{g}}{\partial \text{descriptor}} \right|_{\mathbf{x}_0}$$
+   - For interaction (`mass_interaction`, F10):
+     $$c_{\text{desc}}(\hat{g}) = \left. \frac{1}{\hat{g}} \frac{\partial^2 \hat{g}}{\partial \text{descriptor} \partial \text{descriptor2}} \right|_{\mathbf{x}_0}$$
+   - For exponential (`mass_exponential_descriptor`, F18, where generative law is $\exp(c \cdot d / 3)$):
+     $$c_{\text{desc}}(\hat{g}) = \left. \frac{3}{\hat{g}} \frac{\partial \hat{g}}{\partial \text{descriptor}} \right|_{\mathbf{x}_0}$$
+   - **Planted Truth ($c_{\text{truth}}$):** $c = \text{coefficient} \in [0.25, 0.55]$.
+   - **Absolute Tolerance:** $|c_{\text{desc}}(\hat{g}) - c_{\text{truth}}| \le 0.10$.
+
+**Reporting Contract:**
+- **Joint Parameter Recovery Rate:** $N_{\text{joint\_success}} / 156$ with Wilson 95% CI (governing secondary).
+- **Mass Exponent Recovery Rate:** $N_{p\text{\_success}} / 156$ with Wilson 95% CI (descriptive decomposition).
+- **Descriptor Coupling Recovery Rate:** $N_{c\text{\_success}} / 84$ with Wilson 95% CI (descriptive decomposition).
+
+### 5.22.3 Predictive Equivalence (Secondary Endpoint, Denominator 144)
+
+Predictive equivalence evaluates whether the discovered expression $\hat{g}$ accurately
+predicts the true scaling law $g_{\text{true}}$ over an independent prospective reference
+sample from the frozen synthetic covariate-generating process (Amendment A3.4).
+
+- **Scientific Role:** SECONDARY descriptive endpoint (never part of G1, G2, or G3).
+- **Applicable Families:** F01–F05, F08–F12, F17, F18 (12 families $\times$ 12 held-out cases = **144 cases**).
+- **Denominator Discipline:** Strictly fixed at **144**.
+- **Reference Covariate Distribution:** Evaluated across 12 independent case-shaped reference covariate frames (`PB|PRED_EQUIV|FRAME|000` to `011`, 180 compound rows and 30 scaffold groups per frame, 6 compounds per scaffold = **2,160 total reference points**) generated by the unchanged frozen synthetic generator with authentic marginal distributions and joint covariance ($r \approx 0.98$ between descriptor and correlated distractor).
+- **Aggregate Reference Digest:**
+  $$\mathbf{4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44}$$
+- **Nomenclature Rule:** Described strictly as *an independent prospective reference sample from the frozen synthetic covariate-generating process*; never referred to as a "physical domain", "chemical domain", or "realistic molecular domain".
+
+**Evaluation Metrics and Constraints:**
+1. **Valid Point Set ($\mathcal{V}$):**
+   $$\mathcal{V} = \{i \in \{1, \dots, 2160\} \mid \hat{y}_i \text{ is finite and } \hat{y}_i > 0, \text{ and } y_{\text{true}, i} \text{ is finite and } y_{\text{true}, i} > 0\}$$
+   - Validity Threshold: $\text{valid\_fraction} = \frac{|\mathcal{V}|}{2160} \ge 0.995$ (at most 10 invalid points out of 2,160).
+2. **Positive Scale Alignment ($c^*$):**
+   Because $g$ is identified up to global positive scale in the collapse model, $\hat{\mathbf{y}}$ is aligned to $\mathbf{y}_{\text{true}}$ via least-squares scalar multiplier computed strictly over $\mathcal{V}$:
+   $$c^* = \frac{\sum_{i \in \mathcal{V}} y_{\text{true}, i} \cdot \hat{y}_i}{\sum_{i \in \mathcal{V}} \hat{y}_i^2}$$
+   - Constraint: $c^*$ must exist, be finite, and satisfy $c^* > 0$.
+   - Affine intercept shifts ($a + b \hat{g}$ with $a \ne 0$), coefficient refitting, structure refitting, and candidate reselection are strictly **FORBIDDEN**.
+3. **Scale-Adjusted Relative RMSE:**
+   $$\text{RMSE} = \sqrt{\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}} (c^* \hat{y}_i - y_{\text{true}, i})^2}, \quad \text{TRUTH\_RMS} = \sqrt{\frac{1}{|\mathcal{V}|} \sum_{i \in \mathcal{V}} y_{\text{true}, i}^2}, \quad \text{REL\_RMSE} = \frac{\text{RMSE}}{\text{TRUTH\_RMS}}$$
+   - Success Threshold: $\text{REL\_RMSE} \le 0.05$.
+4. **Pearson Correlation ($r$):**
+   Computed over $\mathcal{V}$.
+   - Zero-Variance Rule: If either $\hat{\mathbf{y}}_{\mathcal{V}}$ or $\mathbf{y}_{\text{true}, \mathcal{V}}$ has zero sample variance, $r \equiv 0.0 \to \text{FAIL}$.
+   - Success Threshold: $r \ge 0.990$.
+
+**Complete Per-Case Success Rule:**
+A case achieves Predictive Equivalence Success if and only if: (1) $\hat{g}$ is present and parseable under the frozen grammar; (2) $\text{valid\_fraction} \ge 0.995$; (3) $c^* > 0$ and finite; (4) $\text{TRUTH\_RMS} > 0$ and finite; (5) $\text{REL\_RMSE} \le 0.05$; (6) non-zero sample variance on $\mathcal{V}$; and (7) $r \ge 0.990$.
+
+### 5.22.4 Exact Algebra Recovery (Secondary Endpoint, Denominator 60)
+
+Exact algebra evaluates symbolic equivalence of the discovered expression to the planted
+law after deterministic SymPy canonicalization.
+- **Scientific Role:** SECONDARY descriptive endpoint (**no gate**, never merged into G2).
+- **Applicable Families:** F01, F08, F09, F10, F17 (five families $\times$ 12 held-out cases = **60 cases**).
+- **Subordination Principle:** Non-recovery is a reportable outcome and is not a failure of any gate; positive recovery does not alter the G2 gate verdict.
+
+### 5.22.5 Diagnostic Endpoints
+
+Diagnostic endpoints (M0 specificity 164, M1 sensitivity 36, M2 sensitivity 24,
+M3 sensitivity 24, trajectory prediction 164, profile stability 164, scalar target yield 164,
+boundary hit 12, response structure diagnostic 4, and G3 components at 12 each) provide
+mechanistic diagnostic reporting and enter no primary gate.
+
+## 5.23 Failure semantics
 
 Failure states are typed and are never silently converted into successes.
 
@@ -1087,11 +1254,12 @@ exact family intersection gives `FAMILY_AMBIGUOUS`.
 deliberate: a pipeline that avoids unsafe acceptances by failing to evaluate has
 not demonstrated safety.
 
-## 5.22 Deterministic seeds
+## 5.24 Deterministic seeds
 
-All randomness is derived, never global. Five distinct calibration namespaces
+All randomness is derived, never global. Six distinct namespaces
 route through the canonical `generator.derive_seed`, none derived from another
-(`src/muru/paper_benchmark/rc3_calibration_worlds.py`):
+(`src/muru/paper_benchmark/rc3_calibration_worlds.py`,
+`MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md`):
 
 | Purpose | Namespace |
 |---|---|
@@ -1100,6 +1268,7 @@ route through the canonical `generator.derive_seed`, none derived from another
 | null-family transformation | `PB\|NCAL\|<world_id>\|null_construction` |
 | frozen-law draw | `PB\|NCAL\|<world_id>\|law` |
 | PySR search seeds | `calibration_contract.derive_calibration_seeds` |
+| predictive equivalence frames | `PB\|PRED_EQUIV\|FRAME\|{index:03d}` |
 
 Benchmark case generation uses `derive_seed(case_id, stage)` per stage, with
 `ROOT_SEED = 20260813`.
@@ -1125,7 +1294,7 @@ strictly below it with a wide guard gap, both signed-32-bit safe, with an
 explicit `assert_seed_band_separation` guard
 (`src/muru/paper_benchmark/rc3_provenance.py`).
 
-## 5.23 Resume and checkpoint semantics
+## 5.25 Resume and checkpoint semantics
 
 The calibration runner is resumable at the granularity of one `(world, seed)`
 unit. Seed records are appended and are **never rewritten or deleted**; a resumed
@@ -1140,7 +1309,7 @@ seed records to their world and fails the settings gate closed (`07c64c8`).
 A wall-clock budget guard exists per seed; the timeout path is an
 `EXECUTION_FAILURE` under Section 5.13 semantics.
 
-## 5.24 Contamination controls
+## 5.26 Contamination controls
 
 - **Registry isolation.** The registry is metadata-only and cannot load inputs,
   truth, outcomes or real-world records.
@@ -1157,13 +1326,16 @@ A wall-clock budget guard exists per seed; the timeout path is an
   respect to calibration, Development, Held-out and Confirmation, and
   machine-readable `governance_form` flags assert that it was not informed by
   development, threshold, held-out or confirmation results
-  (`artifacts/paper_benchmark_amendment_a3_2.json`).
+  (`artifacts/paper_benchmark_amendment_a3_4.json`).
+- **Temporal provenance adjudication.** The execution chronology is documented
+  and adjudicated under the outcome-blind A3.4 Temporal Provenance Erratum
+  (`audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md`).
 - **Seed-band separation.** Engineering smoke seeds cannot collide with
   calibration seeds.
 - **Engineering smoke is not scientific evidence** and is excluded from the
   evidence ledger's evidentiary tier.
 
-## 5.25 Dependency environment
+## 5.27 Dependency environment
 
 The RC3 dependency pin source is `configs/rc3_requirements_lock_c7c2332.txt`, a
 byte-identical copy of `requirements.lock.txt` at RC2 commit `c7c2332`, with
@@ -1184,14 +1356,14 @@ The ceiling estimator is bound to `scikit-learn==1.9.0`, with the pin parsed
 from the frozen `CEILING_ESTIMATOR_SPEC` so it can only be changed by editing a
 module RC3 may not edit (`src/muru/paper_benchmark/rc3_ceiling.py`).
 
-## 5.26 Reproducibility and artifact hashing
+## 5.28 Reproducibility and artifact hashing
 
 Content freeze consists of the case registry, the fully synthetic generator,
 partition assignment, truth schema, generated input artifacts, metrics, endpoint
-denominators, null definitions, hashes and the Development-only preflight
-record. The executable freeze additionally requires a locked implementation
-commit, strict evaluator version, grammar, engine configuration, runtime budget,
-complete engine preflight, verified hashes and a clean tracked tree
+denominators, null definitions, hashes, reference covariate frames, and the
+Development-only preflight record. The executable freeze additionally requires a
+locked implementation commit, strict evaluator version, grammar, engine configuration,
+runtime budget, complete engine preflight, verified hashes and a clean tracked tree
 (`MURU_PAPER_BENCHMARK_FREEZE.md`).
 
 Required tracked artifacts: `paper_benchmark_partition_manifest.json`,
@@ -1199,19 +1371,22 @@ Required tracked artifacts: `paper_benchmark_partition_manifest.json`,
 `paper_benchmark_hash_inventory.json`, `paper_benchmark_preflight.json`,
 `paper_benchmark_content_freeze.json`, and the per-amendment integrity artifacts
 `paper_benchmark_amendment_a1.json`, `..._a2.json`, `..._a2_1.json`,
-`..._a3_1.json`, `..._a3_2.json`.
+`..._a3_1.json`, `..._a3_2.json`, `..._a3_3.json`, `..._a3_4.json`, and
+`audit/muru_a3_4_temporal_provenance_erratum.json`.
 
 Each amendment records per-path SHA-256 verification of the claim that every
 frozen scientific artifact unrelated to that amendment is byte-identical to its
 parent. Integrity scripts `scripts/pb_30_*` through `scripts/pb_34_*` re-verify
 these mechanically. Full inventory: `MURU_REPRODUCIBILITY_INVENTORY.md`.
 
-## 5.27 Statistical analysis
+## 5.29 Statistical analysis
 
 **Binomial endpoints.** G1, G2 and G3 use Wilson score intervals at 95%. G1 and
 G2 are gated on the lower bound at 0.70; G3 is gated on the upper bound at 0.15.
-Denominators are frozen from case applicability and are never adjusted after
-execution.
+Secondary endpoints (parameter recovery, predictive equivalence, exact algebra,
+support recovery, diagnostic sensitivity/specificity) report Wilson 95% intervals
+without gates. Denominators are frozen from case applicability and are never
+adjusted after execution.
 
 **Zero-count reporting.** A point estimate of 0 out of N does not license a
 claim that the population rate is zero. The interval is the claim, and `p = 0`
@@ -1255,8 +1430,8 @@ Table 2 in `MURU_TABLE_SHELLS.md`.
 | M2 sensitivity | SECONDARY | the M2 detector fires | Held-out | 24 | descriptive rate + interval | detector identity preserved | Wilson 95% | High-energy vertical violations are detected |
 | M3 sensitivity | SECONDARY | the M3 detector fires | Held-out | 24 | descriptive rate + interval | detector identity preserved | Wilson 95% | Low-energy vertical violations are detected |
 | Support recovery | SECONDARY | `support_status == MATCH` alone | Held-out | 144 | descriptive rate + interval | `SUPPORT_UNRESOLVED` is non-success | Wilson 95% | Relevant variable support is recoverable |
-| Parameter recovery | SECONDARY | frozen coefficient/exponent recovery criterion | Held-out | 156 | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` (tolerance rule) | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | Wilson 95% | Scaling exponents are recoverable within the declared tolerance |
-| Predictive equivalence | SECONDARY | discovered expression is predictively equivalent to truth on the declared domain | Held-out | 144 | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` (equivalence rule) | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | Wilson 95% | The reported expression predicts as the truth does within the synthetic domain |
+| Parameter recovery | SECONDARY | $|p_{\text{mass}} - p_{\text{truth}}| \le 0.15$ at anchor $\mathbf{x}_0$ across 156 cases AND (for 84 descriptor cases) $|c_{\text{desc}} - c_{\text{truth}}| \le 0.10$ | Held-out | 156 | joint rate /156, mass exponent /156, descriptor coupling /84; descriptive rate + interval | unparseable, missing, non-finite, or unresolved expressions count as non-success | Wilson 95% | Dimensionless mass scaling exponents and descriptor coupling sensitivities are recoverable within specified tolerances at the canonical benchmark anchor |
+| Predictive equivalence | SECONDARY | discovered expression predictively equivalent to true law across 12 case-shaped reference covariate frames (2,160 rows, digest `4fef2379...`) | Held-out | 144 | valid fraction $\ge 0.995$, $c^* > 0$, $\text{REL\_RMSE} \le 0.05$, Pearson $r \ge 0.990$ (zero variance fails); descriptive rate + interval | invalid points > 10, non-positive scale, zero variance, or parse failure counts as non-success | Wilson 95% | Discovered expressions predictively match generating truth across an independent prospective reference sample from the synthetic covariate-generating process |
 | **Exact algebra recovery** | SECONDARY (never merged into G2) | symbolic equivalence of the reported expression to the planted law | Held-out | 60 | descriptive rate + interval; **no gate** | non-recovery is a reportable outcome and is not a failure of any gate | Wilson 95% | Nothing beyond itself; the rate is a finding in either direction, and neither direction is a verdict on G2 |
 | Trajectory prediction | DIAGNOSTIC | held-out trajectory MAE vs per-energy-mean baseline | Held-out | 164 | descriptive | numerical failure recorded | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | Out-of-sample trajectory usefulness |
 | Profile stability | DIAGNOSTIC | frozen profile-stability criterion | Held-out | 164 | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | `[METHOD DETAIL REQUIRES VERIFIED SOURCE]` | The shared profile is stable across folds |
@@ -1273,12 +1448,22 @@ denominator column beside a prospective one. None of these rows is an endpoint
 of this study, and none is comparable to a prospective rate: the world families,
 the pipelines and the success definitions all differ.
 
-| Historical measure | Role | Historical worlds | Already observed | Uncertainty | What it is used for |
-|---|---|---|---|---|---|
-| Type 2 G1B moderate composite success gate (support, exponent, shape) | HISTORICAL SUPPORTING | 20 | 17/20 | n/a | Background only. **Not** the G2 definition, which requires support MATCH and family MATCH |
-| Type 2 G1B moderate dense-lattice family recovery, measured not gated | HISTORICAL SUPPORTING | 20 | 16/20 | n/a | Background only; the nearer historical analogue to G2, still not comparable |
-| Historical pure-null acceptance | HISTORICAL SUPPORTING | 100 | 0/100, Clopper-Pearson 95% [0.0000, 0.0362] | Clopper-Pearson | Background only; the interval, not the count, is the statement |
-| Historical exact algebra | HISTORICAL SUPPORTING (negative) | G1A, G1B, G1C, G3 blocks | symbolic equivalence 0 throughout | n/a | Motivates keeping exact algebra separate from G2 |
+| Historical question | Historical source | Historical finding | Eligible prospective use |
+|---|---|---|---|
+| Did PySR recover planted support? | Type 2 G1B moderate | 20 of 20 block supports recovered | Motivation for G2 support contract |
+| Did PySR recover functional family? | Type 2 G1B moderate | 16 of 20 dense-lattice family recovered (measured, not gated); composite success gate 17/20 | Motivation for G2 family contract; neither is the G2 definition |
+| Did PySR recover exact equations? | Phase 3 G1B; Type 2 positive controls | Functional/symbolic recovery 0% across all noise regimes; 0 in Type 2 G1A, G1B, G1C, G3 | Motivation for separating exact algebra from G2; basis for L8 |
+| Did PySR accept pure nulls? | Phase 3; Type 2 | 0 of 100 in each study, Clopper-Pearson 95% [0.0000, 0.0362] | Motivation for G3 |
+| Did PySR accept confounded worlds? | Type 2 G5 | 0 of 8, Clopper-Pearson 95% [0.0000, 0.3694] | Motivation for F20A |
+| Did PySR accept measurement-coupled worlds? | Type 2 GC | 0 of 9, Clopper-Pearson 95% [0.0000, 0.3363] | Motivation for F20B |
+| Did PySR accept non-compressible worlds? | Type 2 G2 | 0 of 8, Clopper-Pearson 95% [0.0000, 0.3694]; H-MAIN rejected 8 of 8 | Motivation for F06 |
+| Did PySR certify structure beyond mass? | Type 2 F8 labelling | 1 of 19 accepted G1B moderate worlds | Basis for C7 status: weak |
+| Was historical gplearn non-agreement meaningful? | Engine competence audit | Comparison arm failed C0/C1/C2 competence gates | Removes inference that candidates were artifacts; corroboration gate still failed |
+| Did within-compound permutation preserve levels? | Type 2 null calibration | p95 of 0.7228 at c=20 against 0.0835 to 0.1509 | Motivation for excluding the construction |
+| Was `fit_collapse` transductive? | Soundness audit | Perturbing one trajectory changed others by up to 0.0987 | Motivation for frozen execution boundary |
+| Were complex outputs cast to float? | Historical evaluator | Casting unquantified reach | Motivation for strict evaluation and typed unresolved states |
+| Was energy dropout bounded? | Historical generator | 0.97% dropout, >=5 energies retained | Motivation for F04; basis for L11 |
+| Were boundary hits invisible? | Historical estimator | Returned grid endpoint outside [-1.6, 1.6]; prevalence unknown | Motivation for F05 endpoint |
 
 ---
 
@@ -1351,12 +1536,32 @@ Required: G2 by truth family across the five taxonomy members; the joint
 support-and-family success rate that constitutes G2; and the `FAMILY_AMBIGUOUS`
 count. Status: `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.8 Exact algebra recovery
+## 7.8 Parameter recovery
+
+Required: Joint Parameter Recovery rate on 156 cases (/156) with Wilson 95% interval;
+Mass Exponent Recovery rate on 156 cases (/156) with Wilson 95% interval ($|p_{\text{mass}} - p_{\text{truth}}| \le 0.15$);
+Descriptor Coupling Recovery rate on 84 cases (/84) with Wilson 95% interval ($|c_{\text{desc}} - c_{\text{truth}}| \le 0.10$);
+and the distribution of recovered parameter errors at canonical anchor $\mathbf{x}_0 = (250, 0, 0, 0, 0)$.
+
+Status: `[PROSPECTIVE RESULT TO INSERT]`.
+
+## 7.9 Predictive equivalence
+
+Required: Predictive Equivalence rate on 144 applicable Held-out cases (/144)
+with Wilson 95% interval, evaluated over the 2,160 reference points across 12
+case-shaped frames (aggregate digest `4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44`);
+the relative RMSE and Pearson correlation distributions across valid cases; and
+the F18 subset specifically (12 cases), which evaluates predictive accuracy on
+algebraically non-equivalent expressions.
+
+Status: `[PROSPECTIVE RESULT TO INSERT]`.
+
+## 7.10 Exact algebra recovery
 
 Required: symbolic-equivalence rate on the 60 applicable Held-out cases (F01,
-F08, F09, F10, F17; five families at 12 cases each), with interval; the number of distinct
-functional-equivalence classes in each reported result; and an explicit
-statement of how many cases claimed algebraic identification.
+F08, F09, F10, F17; five families at 12 cases each), with Wilson 95% interval;
+the number of distinct functional-equivalence classes in each reported result;
+and an explicit statement of how many cases claimed algebraic identification.
 
 Status: `[PROSPECTIVE RESULT TO INSERT]`.
 
@@ -1368,14 +1573,7 @@ with the count of distinct functional-equivalence classes, because a high
 equivalence rate does not by itself establish that the algebra is identified.
 Neither direction may be inferred in advance.
 
-## 7.9 Predictive equivalence
-
-Required: predictive equivalence on 144; and the F18 subset specifically, which
-is the family designed to be algebraically difficult and predictively simple, so
-that prediction and algebra can be separated empirically. Status:
-`[PROSPECTIVE RESULT TO INSERT]`.
-
-## 7.10 False discoveries and refusal cases
+## 7.11 False discoveries and refusal cases
 
 Required: F07 numerator/12, F19 numerator/12, F20 numerator/12, each with rate
 and interval, reported beside the aggregate G3; the F19A/F19B/F19C and
@@ -1383,33 +1581,33 @@ F20A/F20B/F20C variant-level breakdown; the count of `UNEVALUABLE` outcomes
 counted as violations; and the count of legitimate refusals, which are correct
 outcomes and are not penalised. Status: `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.11 Boundary and missing energy cases
+## 7.12 Boundary and missing energy cases
 
 Required: F05 boundary-hit rate on 12 applicable cases, which is the endpoint
 that closes historical instrumentation gap FM-08; and F04 recovery under
 declared missingness, which is the first measurement addressing FM-09. Status:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.12 Noise dependence
+## 7.13 Noise dependence
 
 Required: the F01 (noiseless), F02 (moderate), F03 (stronger) comparison across
 every endpoint, giving the prospective noise envelope. Status:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.13 Mass and descriptor confounding
+## 7.14 Mass and descriptor confounding
 
 Required: F07 (mass-only truth) behaviour; F12 (correlated proxy) support
 outcomes; F20A (latent driver) and F20B (measurement coupling) outcomes; and any
 structural-beyond-mass labelling recorded by F8, reported as a label and never
 as an acceptance gate. Status: `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.14 Challenge results
+## 7.15 Challenge results
 
 Required: all endpoints on the 60 Challenge cases, reported descriptively and
 labelled as entering no primary denominator. Status:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.15 Failure analysis
+## 7.16 Failure analysis
 
 Required: a full census of typed failure states across the run: adequacy
 indeterminates, `UNEVALUABLE`, `REJECTED_A1_INADEQUATE`, `SUPPORT_UNRESOLVED`,
@@ -1417,7 +1615,7 @@ indeterminates, `UNEVALUABLE`, `REJECTED_A1_INADEQUATE`, `SUPPORT_UNRESOLVED`,
 falsification-rung failures by rung (F1, F4, F5, F7, F9, F10). Status:
 `[PROSPECTIVE RESULT TO INSERT]`.
 
-## 7.16 Reproducibility
+## 7.17 Reproducibility
 
 Required: the executable freeze record; verified hashes of all frozen paths;
 clean-tree confirmation; the dependency provenance manifest with observed
@@ -1674,18 +1872,18 @@ A distinction runs through the table and must be preserved. Some items are
 closed **by specification and by a verified artifact**: the correction is
 written into a frozen contract and its presence is mechanically checkable
 today. Others are closed **by specification, with implementation conformance
-verified at the executable freeze**: the contract forbids the old behaviour, but
-this draft did not verify the RC3.1 production path against it, and the content
-freeze remains `WAITING_FOR_LOCKED_IMPLEMENTATION`. The second kind is not yet
-an achieved property of running code.
+pending verification at the executable freeze**: the contract forbids the old
+behaviour, but this draft did not verify the production path against it, and the
+content freeze remains `WAITING_FOR_LOCKED_IMPLEMENTATION`. The second kind is
+not yet an achieved property of running code.
 
 | Historical defect | Closed by | Closure basis |
 |---|---|---|
 | FM-05 scalar-null information preservation: within-compound energy permutation preserved compound level and dominated the pooled threshold | Amendment A3.1 excludes the construction; RC3.1 makes it unconstructible, not merely unused | specification and verified artifact |
 | Scaffold-structured null base target, a mechanism for permissive threshold bias | Amendment A3.2 Decision 1: global permutation of the frozen-law target across all compound identities before any null-family transformation or partition use | specification and verified artifact |
 | A3.1's specified 60/20/20 calibration split not realised by the inherited generator | Amendment A3.2 Decision 2: dedicated calibration split helper at 18/6/6 scaffolds (108/36/36 compounds), generator left byte-identical | specification and verified artifact |
-| FM-06 transductive target construction | Frozen execution boundary: all shared objects fitted from training trajectories only, then frozen; each validation or test compound estimated independently (Section 5.7) | **specification; production-path conformance verified at executable freeze** |
-| FM-07 complex-cast evaluator accepting complex-valued expressions | Strict symbolic evaluation under the protected grammar with deterministic SymPy normalisation and typed `SUPPORT_UNRESOLVED` (Section 5.12) | **specification and reference contract; production-path conformance verified at executable freeze** |
+| FM-06 transductive target construction | Frozen execution boundary: all shared objects fitted from training trajectories only, then frozen; each validation or test compound estimated independently (Section 5.7) | **closed by specification; production-path conformance pending executable-freeze verification** |
+| FM-07 complex-cast evaluator accepting complex-valued expressions | Strict symbolic evaluation under the protected grammar with deterministic SymPy normalisation and typed `SUPPORT_UNRESOLVED` (Section 5.12) | **closed by specification; production-path conformance pending executable-freeze verification** |
 | FM-08 boundary-scale invisibility | F05 boundary-hit is a declared endpoint with a frozen Held-out denominator of 12 | specification and verified artifact |
 | Unspecified adequacy decision rule (a specification gap in content freeze V1) | Amendment A1 binds statistic, identifiability treatment, threshold, aggregation and failure semantics | specification and verified artifact |
 | F16's declared M1+M2+M3 truth not honoured by the generator | Amendment A2 repairs the F16 generator; A2.1 bumps `GENERATOR_VERSION` accordingly | specification and verified artifact |
@@ -1727,23 +1925,25 @@ See `MURU_EVIDENCE_LEDGER.json`.
 
 ## Appendix A. Non-contamination attestation for this draft
 
-This draft was assembled in an isolated git worktree on branch
-`claude/muru-preresults-manuscript-ba5ca5`, reset to `07c64c8`
-(`engineering-rc3-1-a3-2`).
+This draft was synchronized in an isolated git worktree on branch
+`writing/muru-preresults-manuscript-a3-4`, branching from commit `6e3dbc9`
+(`claude/muru-preresults-manuscript-ba5ca5`).
 
-| Item | Status during assembly |
+| Item | Status during synchronization |
 |---|---|
-| A3.2 structural-null calibration artifacts | **NOT INSPECTED.** No calibration output artifact exists at this commit and none was read from any other location |
-| Calibration execution | **NOT RUN** |
+| A3.3 / A3.4 scientific contracts and audits | Incorporated from frozen artifacts (`71f5369`, `78cc7c2`, `be23b80`, `f1fb943`) |
+| A3.4 Temporal Provenance Erratum | Incorporated from frozen audit artifact (`220c9cb`, tag `a3-4-temporal-provenance-erratum`) |
+| Calibration execution | **NOT RUN BY THIS TASK; NO RESULTS INSPECTED** |
+| Calibration result records | **NOT INSPECTED.** Read-only temporal timestamps used for provenance adjudication; no calibration score, output, or threshold table inspected |
 | Development execution | **NOT RUN** |
-| Development result artifacts (`artifacts/paper_benchmark_development_*.json` on `prep/executable-integration-a2-1` and `audit/muru-development-adequacy-diagnostic`) | **NOT OPENED.** Known to exist; deliberately not read |
-| G2 scoring | **NOT PERFORMED** |
-| G3 scoring | **NOT PERFORMED** |
+| Development result artifacts | **NOT OPENED** |
+| G1/G2/G3 prospective scoring | **NOT PERFORMED** |
+| Parameter recovery / Predictive equivalence prospective scoring | **NOT PERFORMED** |
 | Held-out partition | **SEALED, NOT OPENED** |
 | Confirmation partition | **SEALED, NOT OPENED** |
 | Frozen scientific code | **UNCHANGED** |
-| Threshold rules | **UNCHANGED** |
+| Threshold rules and gates | **UNCHANGED** |
 | Benchmark cases | **UNCHANGED** |
 
-The only files added by this work are under `paper/`. No tracked scientific
-artifact, source module, test, script or governance document was modified.
+The only files modified by this work are under `paper/`. No tracked scientific
+artifact, source module, test, script or benchmark governance document was modified.

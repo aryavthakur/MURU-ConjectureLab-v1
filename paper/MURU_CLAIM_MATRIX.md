@@ -54,7 +54,7 @@ Governance base: `07c64c8` (`engineering-rc3-1-a3-2`).
 | **Allowed wording if supported** | "Effective variable support, extracted deterministically under the frozen grammar with algebraic normalisation, matched the planted support in n of 144 held-out cases." |
 | **Forbidden overclaim** | That the recovered variables are the causal drivers of fragmentation; that support recovery implies the functional form is identified; that a proxy variable and its principal are interchangeable. |
 
-## C4. Recovering mathematical family structure
+### C4. Recovering mathematical family structure
 
 | Field | Content |
 |---|---|
@@ -64,7 +64,31 @@ Governance base: `07c64c8` (`engineering-rc3-1-a3-2`).
 | **Relevant partition** | Held-out, denominator 144; gate Wilson lower 95% at least 0.70. |
 | **Current status** | **PENDING.** Historically supported narrowly: Type 2 G1B moderate dense-lattice family recovery was 16 of 20, measured rather than gated; the study's composite success gate, which used support, exponent and shape rather than family identity, passed 17 of 20. Neither number is the G2 definition (support MATCH and family MATCH), both are CLASS A, and neither is eligible as, or comparable to, the prospective endpoint. |
 | **Allowed wording if supported** | "Under prospectively frozen synthetic truth, the pipeline recovered both the correct effective support and the correct mathematical family in n of 144 held-out cases (Wilson 95% [lo, hi]), satisfying the pre-specified G2 gate." |
-| **Forbidden overclaim** | That the family is the equation; that family recovery means the generating law was discovered; that the family generalises to real fragmentation; any use of "law", "universal", or "mechanistic". |
+| **Forbidden overclaim** | That the family is the equation; that family recovery means the generating law was discovered; that family recovery implies exact algebraic recovery; that the family generalises to real fragmentation; any use of "law", "universal", or "mechanistic". |
+
+## C4a. Recovering physical parameters and exponents
+
+| Field | Content |
+|---|---|
+| **Potential claim** | MURU can recover the dimensionless mass scaling exponent and descriptor coupling coefficient of the generating relationship. |
+| **Required evidence** | Discovered expression derivatives at canonical anchor $\mathbf{x}_0 = (250, 0, 0, 0, 0)$ satisfying $|p_{\text{mass}}(\hat{g}) - p_{\text{truth}}| \le 0.15$ on 156 held-out cases and $|c_{\text{desc}}(\hat{g}) - c_{\text{truth}}| \le 0.10$ on 84 descriptor-dependent cases under the frozen derivative operators (Amendment A3.4). |
+| **Relevant endpoint** | **Parameter recovery (SECONDARY, ungated).** Reported as Joint recovery (/156), Mass exponent recovery (/156), and Descriptor coupling recovery (/84), all with Wilson 95% intervals. |
+| **Relevant partition** | Held-out, denominator 156 (joint / mass), 84 (descriptor). |
+| **Current status** | **PENDING.** Historically supported narrowly: Type 2 mass exponent recovery was 18 of 20 within +/-0.15 at moderate noise (CLASS A). |
+| **Allowed wording if supported** | "At the frozen benchmark anchor, the discovered expressions recovered the planted mass exponent within 0.15 in n of 156 cases (Wilson 95% [lo, hi]) and the descriptor coupling coefficient within 0.10 in m of 84 cases (Wilson 95% [lo, hi])." |
+| **Forbidden overclaim** | That parameter recovery implies exact algebraic identification; that parameters are "coordinate-free" (descriptor coupling has dimension $[d]^{-1}$); that recovering synthetic exponents establishes physical mass scaling in real MS/MS. |
+
+## C4b. Achieving predictive equivalence on the reference distribution
+
+| Field | Content |
+|---|---|
+| **Potential claim** | MURU discovers expressions that are predictively equivalent to the planted law over an independent prospective reference sample from the synthetic covariate generator. |
+| **Required evidence** | Discovered expression $\hat{g}$ evaluated across 2,160 reference points (12 frames $\times$ 180 rows, digest `4fef2379...`), achieving $\text{valid\_fraction} \ge 0.995$, least-squares positive scale $c^* > 0$, relative RMSE $\le 0.05$, and Pearson $r \ge 0.990$ with zero-variance failure semantics (Amendment A3.4). |
+| **Relevant endpoint** | **Predictive equivalence (SECONDARY, ungated).** |
+| **Relevant partition** | Held-out, denominator 144. |
+| **Current status** | **PENDING.** This is the first design in which a generator-consistent prospective reference distribution is evaluated. |
+| **Allowed wording if supported** | "Across 2,160 reference points sampled from the frozen synthetic covariate generator, discovered expressions achieved relative RMSE <= 0.05 and Pearson r >= 0.990 in n of 144 held-out cases (Wilson 95% [lo, hi])." |
+| **Forbidden overclaim** | That predictive equivalence implies mathematical family recovery or exact algebra recovery; describing the reference distribution as a "physical domain", "chemical domain", or "realistic molecular domain"; claiming predictive equivalence on real molecules. |
 
 ## C5. Recovering exact generating algebra
 
@@ -76,7 +100,7 @@ Governance base: `07c64c8` (`engineering-rc3-1-a3-2`).
 | **Relevant partition** | Held-out, denominator 60 (F01, F08, F09, F10, F17). |
 | **Current status** | **PENDING, and historically UNSUPPORTED.** Phase 3 selected-form functional and symbolic recovery was 0% at every G1B noise regime. Type 2 symbolic equivalence was 0 across all positive-control blocks (G1A, G1B, G1C, G3), with a median of 8.5 distinct functional-equivalence classes inside a single reported family. No prospective success may be assumed from G2 success. |
 | **Allowed wording if supported** | "Symbolic equivalence to the planted law was observed in n of 60 held-out cases (Wilson 95% [lo, hi]) under the frozen grammar and normalisation." Any positive statement must also report the number of distinct functional-equivalence classes, because a single equivalent expression among many does not identify the algebra. |
-| **Forbidden overclaim** | "The equation was recovered"; "the law was discovered"; presenting a single expression as the generating relationship; inferring exact recovery from family recovery; treating a low rate as a G2 failure or repairing it by loosening the equivalence definition. |
+| **Forbidden overclaim** | "The equation was recovered"; "the law was discovered"; presenting a single expression as the generating relationship; inferring exact recovery from family recovery or predictive equivalence; treating a low rate as a G2 failure or repairing it by loosening the equivalence definition. |
 
 ## C6. Avoiding false discoveries under tested nulls
 
@@ -146,8 +170,12 @@ These apply to every claim above and to every section of the manuscript.
 
 1. **Never call a discovered expression a law.** Not universal, not physical,
    not mechanistic, not biological. This holds for every prospective outcome.
-2. **Never infer exact algebra from family recovery, or the reverse.** The two
-   endpoints are reported separately, with separate denominators (144 and 60).
+2. **Never infer exact algebra from family recovery, or family recovery from
+   predictive equivalence, or exact law identification from parameter recovery.**
+   The four endpoints represent distinct epistemic levels with separate
+   denominators (G2 family 144, exact algebra 60, parameter recovery 156,
+   predictive equivalence 144) and must be reported independently. Any positive
+   secondary result remains subordinate to the primary benchmark gates (G1, G2, G3).
 3. **Never quote a zero count as a zero rate.** Report the interval. `p = 0`
    language is not used for a finite simulation count.
 4. **Never present a historical result as prospective evidence.** CLASS A
@@ -168,7 +196,7 @@ These apply to every claim above and to every section of the manuscript.
 9. **Engineering smoke is not scientific evidence** and is never cited as such.
 10. **A failed gate blocks the positive claim.** It is not replaced by a weaker
     claim selected after the fact; the descriptive endpoint tables stand on
-    their own.
+    their own. Secondary endpoints never rescue a failed primary gate.
 
 ## Claim status summary
 
@@ -177,9 +205,11 @@ These apply to every claim above and to every section of the manuscript.
 | C1 molecule-specific horizontal scale | PENDING | narrow, transductive only | Yes |
 | C2 reject scalar adequacy violations | PENDING | rule bound prospectively by A1 | Yes |
 | C3 recover variable support | PENDING | supported narrowly | Yes |
-| C4 recover mathematical family | PENDING | supported narrowly (CLASS A) | Yes |
-| C5 recover exact generating algebra | PENDING | **unsupported** | Yes, as an ungated secondary endpoint |
-| C6 avoid false discoveries under tested nulls | PENDING | supported narrowly for tested constructions | Yes |
+| C4 recover mathematical family | PENDING | supported narrowly (CLASS A) | Yes (PRIMARY gate G2) |
+| C4a recover physical parameters and exponents | PENDING | supported narrowly (CLASS A) | Yes, as ungated secondary endpoint |
+| C4b achieve predictive equivalence | PENDING | unmeasured on generator distribution | Yes, as ungated secondary endpoint |
+| C5 recover exact generating algebra | PENDING | **unsupported** | Yes, as ungated secondary endpoint |
+| C6 avoid false discoveries under tested nulls | PENDING | supported narrowly for tested constructions | Yes (PRIMARY gate G3) |
 | C7 detect structure beyond mass | PENDING | **weak** | Yes, both directions required |
 | C8 generalize to held-out compounds | PENDING | not established fold-locally | Yes |
 | C9 identify a real collision energy law | **UNSUPPORTED** | unsupported | **No** |

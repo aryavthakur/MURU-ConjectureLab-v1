@@ -7,7 +7,7 @@ and is marked as such throughout. Nothing in this inventory records a
 prospective outcome; where an artifact will exist only after execution, it is
 listed with the status `NOT YET CREATED`.
 
-Governance base of this inventory: `07c64c8` (`engineering-rc3-1-a3-2`).
+Governance base of this inventory: `be23b80` (`benchmark-content-freeze-a3-4`), with A3.4 Temporal Provenance Erratum at `220c9cb` (`a3-4-temporal-provenance-erratum`), and active RC4 engineering on `eng/muru-rc4-a3-4`.
 
 ---
 
@@ -27,22 +27,29 @@ lineage rather than the reverse.
 | `science/muru-paper-benchmark-f16-amendment` | Amendments A2 and A2.1 |
 | `science/muru-paper-g2-g3-contract-audit` | pre-A3.1 G2/G3 contract audit |
 | `science/muru-paper-benchmark-a3-1` | Amendment A3.1 |
-| **`science/muru-paper-benchmark-a3-2`** | Amendment A3.2, current science tip |
+| `science/muru-paper-benchmark-a3-2` | Amendment A3.2 |
+| `science/muru-paper-benchmark-a3-3` | Amendment A3.3 |
+| **`science/muru-paper-benchmark-a3-4`** | Amendment A3.4, current science content freeze |
 | `engineering/muru-completion` | strict evaluator and engineering completeness |
 | `prep/executable-integration-a2-1` | Engineering RC2 integration, Development preflight |
 | `eng/muru-rc3-a3-1` | Engineering RC3 |
-| **`eng/muru-rc3-1-a3-2`** | Engineering RC3.1, current executable tip |
+| `eng/muru-rc3-1-a3-2` | Engineering RC3.1 |
+| **`eng/muru-rc4-a3-4`** | Engineering RC4 (in progress; executable freeze pending) |
 | `science/historical-synthetic-consolidation` | historical evidence dossier, claim matrix, failure catalog |
 | `audit/engine-competence` | prospective gplearn competence audit |
 | `audit/frozen-evaluator-complex-reach` | complex-cast evaluator reach audit |
 | `audit/muru-development-adequacy-diagnostic` | development adequacy diagnostic |
+| `audit/muru-a3-3-mathematical-audit` | mathematical audit of A3.3 evaluation domain |
+| `audit/muru-a3-4-integrity-audit` | mathematical and code integrity review of A3.4 |
+| `audit/a3-4-temporal-provenance-erratum` | temporal provenance erratum adjudicating A3.4 EDT chronology |
 | `science/wfsr-external-preregistration` | external validation preregistration |
 | `claude/muru-paper-env-audit-bf067b` | execution environment readiness audit |
-| **`claude/muru-preresults-manuscript-ba5ca5`** | this manuscript work; writing only |
+| **`writing/muru-preresults-manuscript-a3-4`** | this manuscript synchronization work; writing only |
 
-**Branch discipline for this work.** The manuscript branch is a dedicated
-writing branch based on `07c64c8`. It adds files under `paper/` only. It is not
-merged into any active calibration or evidence branch.
+**Branch discipline for this work.** The manuscript branch is an isolated
+writing branch branching from `6e3dbc9` (`claude/muru-preresults-manuscript-ba5ca5`).
+It modifies files under `paper/` only. It is not merged into any active
+calibration, evidence, or engineering branch.
 
 ## 2. Frozen science commits and tags
 
@@ -54,11 +61,13 @@ merged into any active calibration or evidence branch.
 | Amendment A2, F16 generator repair | `03cc4d3` | `benchmark-content-freeze-a2` |
 | Amendment A2.1, GENERATOR_VERSION bump | `80a7803` | `benchmark-content-freeze-a2-1` |
 | G2/G3 contract audit | `34dee8e` | none |
-| **Amendment A3.1**, G2/G3 endpoints and calibration contract | `c8938e8` | `benchmark-content-freeze-a3-1` |
+| Amendment A3.1, G2/G3 endpoints and calibration contract | `c8938e8` | `benchmark-content-freeze-a3-1` |
 | Amendment A3.2 creation | `5fc7eee` | none |
-| **Amendment A3.2**, commit binding | `1194fcb` | `benchmark-content-freeze-a3-2` |
+| Amendment A3.2, commit binding | `1194fcb` | `benchmark-content-freeze-a3-2` |
+| **Amendment A3.3**, candidate evaluation domain contract | `71f5369` | `benchmark-content-freeze-a3-3` |
+| **Amendment A3.4**, parameter recovery and predictive equivalence contracts | `be23b80` | `benchmark-content-freeze-a3-4` |
 
-## 3. Engineering commits and tags
+## 3. Engineering and audit commits and tags
 
 | Designation | Commit | Tag |
 |---|---|---|
@@ -67,10 +76,14 @@ merged into any active calibration or evidence branch.
 | RC2 integration verification | `dc95d56` | none |
 | Development preflight, all 80 cases executed | `d9e2795` | none |
 | Development adequacy diagnostic (closed: low discrimination) | `bc741e3` | none |
-| **Engineering RC3**, A3.1 executable integration | `adfdec0` | `engineering-rc3-a3-1` |
+| Engineering RC3, A3.1 executable integration | `adfdec0` | `engineering-rc3-a3-1` |
 | A3.2 science merge into RC3.1 lineage | `25f58fe` | none |
 | Engineering RC3.1, A3.2 implementation | `63632ec` | none |
-| **Engineering RC3.1 tip**, seed-record world binding and settings gate closed | `07c64c8` | `engineering-rc3-1-a3-2` |
+| Engineering RC3.1 tip, seed-record world binding and settings gate closed | `07c64c8` | `engineering-rc3-1-a3-2` |
+| A3.3 mathematical audit | `78cc7c2` | none |
+| A3.4 mathematical & code integrity audit | `f1fb943` | none |
+| **A3.4 Temporal Provenance Erratum** | `220c9cb` | `a3-4-temporal-provenance-erratum` |
+| **Engineering RC4** (A3.4 implementation) | `[RC4 EXECUTABLE FREEZE TO INSERT]` | pending on `eng/muru-rc4-a3-4` |
 
 Historical study commits, for CLASS A traceability:
 
@@ -138,12 +151,13 @@ All randomness is derived, never global.
 | Calibration frozen-law draw | `PB\|NCAL\|<world_id>\|law` | `rc3_calibration_worlds.py` |
 | Calibration search seeds | `PB_SEED_BASE = 2_110_000_000`, `PB_SEED_SPREAD = 370_000`, 30 seeds per world | `calibration_contract.derive_calibration_seeds` |
 | Calibration world ID | `PB\|NCAL\|{construction}\|r{index:03d}`, index 0..99 | A3.1 |
+| Predictive equivalence reference frames | `PB\|PRED_EQUIV\|FRAME\|{index:03d}`, index 0..11 | A3.4 |
 | Threshold bootstrap | seed `20260812`, 2,000 world-level resamples | A3.1; reporting only |
 | Ceiling estimator | `random_state = 0` | `CEILING_ESTIMATOR_SPEC` |
 | Engineering smoke | band strictly below the calibration band, wide guard gap, signed-32-bit safe | `rc3_provenance.smoke_seed`, `assert_seed_band_separation` |
 
-Verified seed invariants (A3.1): 100 unique world IDs, 100 unique base buckets,
-3,000 unique seeds, all signed-32-bit safe.
+Verified seed invariants (A3.1, A3.4): 100 unique world IDs, 100 unique base buckets,
+3,000 unique calibration seeds, 12 unique predictive equivalence reference frames, all signed-32-bit safe.
 
 ## 7. Benchmark manifests and protected-path digests
 
@@ -157,7 +171,8 @@ Verified seed invariants (A3.1): 100 unique world IDs, 100 unique base buckets,
 | `artifacts/paper_benchmark_hash_inventory.json` | nine SHA-256 digests, version `paper-benchmark-hash-inventory-1.0.0` |
 | `artifacts/paper_benchmark_preflight.json` | Development-only preflight record; SHA-256 `fb83d19d3070acd43d562f7d9e76deb57769de4b0341ea6bde03f934130b239a` |
 | `artifacts/paper_benchmark_content_freeze.json` | status `WAITING_FOR_LOCKED_IMPLEMENTATION`; `final_executable_freeze: false`; `hashes_verified: true` |
-| `artifacts/paper_benchmark_amendment_a1.json` ... `_a3_2.json` | per-amendment integrity records |
+| `artifacts/paper_benchmark_amendment_a1.json` ... `_a3_4.json` | per-amendment integrity records |
+| `audit/muru_a3_4_temporal_provenance_erratum.json` | A3.4 Temporal Provenance Erratum audit record |
 | `artifacts/confirmation_set_sealed.json` | real-data confirmation seal |
 
 ### 7.2 Hash inventory (nine digests)
@@ -186,6 +201,8 @@ without any need to read their contents.
 | `scientific_contract_protected_paths.json` at `d9e2795` (freeze `80a7803`) | 52 Class-A paths | SHA-256 `4b2280c9a15810908cd548133c8d185938e338356d3b9cd020dc8cf985b5050e` |
 | `artifacts/paper_benchmark_amendment_a3_1.json` | 16 protected paths with per-path SHA-256; 11 added paths with per-path SHA-256 | |
 | `artifacts/paper_benchmark_amendment_a3_2.json` | 2 added paths; declares A3.1 protected content byte-identical | |
+| `artifacts/paper_benchmark_amendment_a3_3.json` | 2 added paths; candidate evaluation domain contract | |
+| `artifacts/paper_benchmark_amendment_a3_4.json` | 2 added paths; parameter recovery & predictive equivalence contracts; 12 reference frames | SHA-256 `4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44` (aggregate frames digest) |
 
 Each amendment record asserts that every frozen scientific artifact unrelated to
 that amendment is byte-identical to its parent, and carries the per-path
@@ -219,18 +236,17 @@ a3_1_protected_content_historically_preserved: true
 a3_1_scientific_content_otherwise_unchanged: true
 ```
 
-`artifacts/paper_benchmark_amendment_a3_2.json`, `base_target`:
+`artifacts/paper_benchmark_amendment_a3_4.json`, `governance_form`:
 
 ```
-algorithm_identity: muru-a3.2-base-target-global-permutation-1.0.0
-canonical_seed_api: muru.paper_benchmark.generator.derive_seed
-seed_namespace: PB|NCAL|<world_id>|BASE_TARGET
-preserves_marginal_distribution_exactly: true
-values_added: 0, values_removed: 0, numerical_alteration: false
-conditions_on_mass / descriptors / scaffold / split / search_results: all false
-one_permutation_per_world: true
-reshuffling_until_correlation_small: false
-residual_finite_sample_correlation_permitted: true
+prospective: true
+additive: true
+parameter_recovery_applicable_denominator: 156
+predictive_equivalence_applicable_denominator: 144
+predictive_equivalence_reference_points: 2160 (12 frames x 180 rows)
+reference_aggregate_digest: 4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44
+temporal_adjudication: A3.4 committed 2026-08-13T15:58:39-04:00 (EDT), preceding
+                       A3.4 calibration start 2026-08-13T16:34:55-04:00 (EDT)
 ```
 
 ## 9. Execution manifests
@@ -239,10 +255,10 @@ residual_finite_sample_correlation_permitted: true
 |---|---|---|
 | Dependency provenance manifest | `rc3_provenance.build_provenance_manifest` | emitted at run time; records installed versions, the commit, and the lock digest |
 | A3.2 world construction record | `rc3_provenance.a3_2_world_construction` | emitted at run time |
-| Calibration seed records, one per `(world, seed)` | `rc3_calibration_runner` | **NOT YET CREATED** |
-| Calibration threshold table | `rc3_calibration_runner` | **NOT YET CREATED** |
-| Development run record under A3.1/A3.2 | Development runner | **NOT YET CREATED** (a pre-A3.1 Development record exists at `d9e2795`; its G2/G3 do not exist) |
-| Executable freeze record | freeze machinery | **NOT YET CREATED** |
+| Calibration seed records, one per `(world, seed)` | calibration runner | **NOT YET CREATED** |
+| Calibration threshold table | calibration runner | **NOT YET CREATED** |
+| Development run record under A3.4 | Development runner | **NOT YET CREATED** |
+| Executable freeze record | freeze machinery | **NOT YET CREATED** (`[RC4 EXECUTABLE FREEZE TO INSERT]`) |
 | Held-out scoring record | Held-out runner | **NOT YET CREATED**; guarded, refuses until executable freeze |
 | Challenge scoring record | Challenge runner | **NOT YET CREATED** |
 
@@ -256,14 +272,14 @@ is explicit.
 | calibration threshold table with bootstrap intervals | Manuscript 7.1, Table 3c, Figure 4D |
 | per-construction calibration breakdown | Table 3d |
 | calibration validity record (worlds with zero failure seeds, against the 95/100 floor) | Manuscript 7.1, Table 3b |
-| Development run summary under A3.1/A3.2 | Manuscript 7.2, Table 4 |
+| Development run summary under A3.4 | Manuscript 7.2, Table 4 |
 | Held-out G1/G2/G3 scoring with Wilson intervals | Manuscript 7.3, Table 5, Figure 7A |
-| Held-out secondary endpoint scoring | Manuscript 7.4 to 7.9, Table 5a, Figure 7B |
+| Held-out secondary endpoint scoring (parameter recovery, predictive equivalence, exact algebra) | Manuscript 7.8 to 7.10, Table 5a, Figure 7B |
 | Held-out per-family and per-truth-family breakdown | Table 6, Figure 7C |
-| G3 component and variant breakdown | Manuscript 7.10, Table 7 |
-| Challenge scoring | Manuscript 7.14, Table 8 |
-| typed failure census | Manuscript 7.15, Figure 8B |
-| executable freeze record and clean-tree confirmation | Manuscript 7.16 |
+| G3 component and variant breakdown | Manuscript 7.11, Table 7 |
+| Challenge scoring | Manuscript 7.15, Table 8 |
+| typed failure census | Manuscript 7.16, Figure 8B |
+| executable freeze record and clean-tree confirmation | Manuscript 7.17 |
 
 ## 11. Reproduction commands
 
@@ -387,13 +403,19 @@ before any prospective number existed from those that can only exist afterwards.
 | `MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md`, `_A2_1_...md` | F16 repair and version bump | **before** | yes | yes | no | CLASS B governance |
 | `MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md` | G2/G3 endpoints, calibration contract | **before** | yes | yes | no | CLASS B governance |
 | `MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md` | null base target and calibration split | **before** | yes | yes | no | CLASS B governance |
+| `MURU_PAPER_BENCHMARK_AMENDMENT_A3_3.md` | candidate evaluation domain contract | **before** | yes (`71f5369`) | yes | no | CLASS B governance |
+| `audit/MURU_A3_3_MATHEMATICAL_AUDIT.md` | A3.3 mathematical audit | **before** | yes (`78cc7c2`) | yes | no | CLASS B audit |
+| `MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md` | parameter recovery and predictive equivalence contracts | **before** | yes (`be23b80`) | yes | no | CLASS B governance |
+| `audit/MURU_A3_4_INTEGRITY_AUDIT.md` | A3.4 mathematical and code integrity audit | **before** | yes (`f1fb943`) | yes | no | CLASS B audit |
+| `audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md` | A3.4 temporal provenance adjudication | **before** | yes (`220c9cb`) | yes | no | CLASS B audit erratum |
 | `artifacts/paper_benchmark_case_manifest.json` | 380 case hashes and applicability | **before** | yes | yes | yes | CLASS B frozen content |
 | `artifacts/paper_benchmark_partition_manifest.json` | partition counts | **before** | yes | yes | yes | CLASS B frozen content |
 | `artifacts/paper_benchmark_truth_manifest.json` | truth digests | **before** | yes | yes | yes | CLASS B frozen content |
 | `artifacts/paper_benchmark_hash_inventory.json` | nine input/truth/manifest digests | **before** | self | yes | yes | CLASS B seal evidence |
 | `artifacts/paper_benchmark_content_freeze.json` | freeze status | **before** | yes | yes | no | CLASS B governance |
 | `artifacts/paper_benchmark_preflight.json` | Development-only preflight | **before** | yes | yes | no | CLASS B infrastructure |
-| `artifacts/paper_benchmark_amendment_a1..a3_2.json` | per-amendment integrity and governance flags | **before** | yes | yes | yes (verification) | CLASS B provenance |
+| `artifacts/paper_benchmark_amendment_a1..a3_4.json` | per-amendment integrity and governance flags | **before** | yes | yes | yes (verification) | CLASS B provenance |
+| `audit/muru_a3_4_temporal_provenance_erratum.json` | A3.4 Temporal Provenance Erratum machine-readable record | **before** | yes | yes | yes (verification) | CLASS B provenance |
 | `configs/rc3_requirements_lock_c7c2332.txt` | RC3 dependency pin source | **before** | yes | yes | yes | CLASS B infrastructure |
 | `inputs/*.jsonl`, `truth/*.jsonl` | generated case rows | **before** | yes (in inventory) | no, gitignored, regenerable | yes | CLASS B frozen content |
 | `scripts/pb_30..pb_34_*.py` | integrity verification | **before** | yes | yes | yes (verification) | CLASS B infrastructure |
@@ -401,7 +423,7 @@ before any prospective number existed from those that can only exist afterwards.
 | `tests/` (51 modules) | contract enforcement | **before** | partly | yes | yes | CLASS B infrastructure |
 | Dependency provenance manifest | observed versions against the pin | at run time | yes | emitted | yes | CLASS B provenance |
 | Calibration seed records | one per `(world, seed)`, append-only | **after** | yes (settings digest, world binding) | **NOT YET CREATED** | yes | CLASS C prospective |
-| Calibration threshold table | acceptance thresholds T(1..20) | **after** | to be hashed | **NOT YET CREATED** | yes | CLASS C prospective |
+| Calibration threshold table | `T(1..20)` and bootstrap band | **after** | to be hashed | **NOT YET CREATED** | yes | CLASS B/C boundary; calibration |
 | Development run record (A3.1/A3.2) | sanity and feasibility | **after** | to be hashed | **NOT YET CREATED** | yes | CLASS C prospective, non-gating |
 | Held-out scoring record | G1/G2/G3 and secondaries | **after** | to be hashed | **NOT YET CREATED** | yes | **CLASS C PROSPECTIVE PRIMARY** |
 | Challenge scoring record | stress outcomes | **after** | to be hashed | **NOT YET CREATED** | yes | CLASS C prospective, descriptive |
@@ -445,6 +467,10 @@ Recorded rather than filled with a guess.
    a frozen property of the truth payloads and must be read from
    `artifacts/paper_benchmark_truth_manifest.json` before Table 6 can be
    completed. `[METHOD DETAIL REQUIRES VERIFIED SOURCE]`
-6. The frozen success rules for parameter recovery and predictive equivalence
-   were not located in the governance documents read for this draft.
-   `[METHOD DETAIL REQUIRES VERIFIED SOURCE]`
+6. **Resolved by Amendment A3.4.** Parameter recovery is evaluated at anchor
+   $\mathbf{x}_0 = (250, 0, 0, 0, 0)$ across 156 cases (mass exponent tolerance
+   $\pm 0.15$, descriptor coupling tolerance $\pm 0.10$ on 84 cases); Predictive
+   equivalence is evaluated across 2,160 reference points (12 frames $\times$ 180 rows,
+   aggregate digest `4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44`)
+   across 144 cases (validity $\ge 0.995$, positive scale $c^* > 0$, relative RMSE
+   $\le 0.05$, Pearson $r \ge 0.990$ with zero-variance failure semantics).

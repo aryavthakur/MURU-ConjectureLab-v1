@@ -76,15 +76,16 @@ stage?
   of Held-out and Confirmation at that point. Mark the current position of this
   manuscript.
 - **2C. Amendment timeline.** V1 `d94d2c9`, A1 `2ac86c5`, A2 `03cc4d3`,
-  A2.1 `80a7803`, A3.1 `c8938e8`, A3.2 `1194fcb`, with Engineering RC2
-  `c7c2332`, RC3 `adfdec0`, RC3.1 `07c64c8`. Each amendment annotated with its
-  declared temporal position relative to calibration, Development, Held-out and
-  Confirmation.
+  A2.1 `80a7803`, A3.1 `c8938e8`, A3.2 `1194fcb`, A3.3 `71f5369`, A3.4 `be23b80`,
+  with the A3.4 Temporal Provenance Erratum `220c9cb` (tag `a3-4-temporal-provenance-erratum`),
+  and Engineering RC2 `c7c2332`, RC3 `adfdec0`, RC3.1 `07c64c8`, and active RC4 on `eng/muru-rc4-a3-4`.
+  Each amendment annotated with its declared temporal position relative to calibration,
+  Development, Held-out and Confirmation.
 
 **Data source.** `artifacts/paper_benchmark_partition_manifest.json`,
 `artifacts/paper_benchmark_case_manifest.json`,
-`MURU_PAPER_BENCHMARK_FREEZE.md`, the five amendment documents and their
-`artifacts/paper_benchmark_amendment_*.json` records.
+`MURU_PAPER_BENCHMARK_FREEZE.md`, the seven amendment documents (A1 to A3.4) and their
+`artifacts/paper_benchmark_amendment_*.json` records, and `audit/muru_a3_4_temporal_provenance_erratum.json`.
 
 **Axes.** 2C: time, ordered by commit, not calendar.
 
@@ -161,8 +162,8 @@ that comparison constructed the way it is?
   180 compound identities before any null-family transformation and before any
   partition use, preserving the marginal distribution exactly while destroying
   the assignment.
-- **4C. Seed and namespace separation.** The five independent seed namespaces
-  and the calibration/smoke seed-band separation.
+- **4C. Seed and namespace separation.** The six independent seed namespaces
+  (including `PB|PRED_EQUIV|FRAME|{index:03d}`) and the calibration/smoke seed-band separation.
 - **4D. Threshold table.** `T(c)` against complexity 1 to 20, with the
   2,000-resample bootstrap band, and per-construction 95th percentiles overlaid.
   **Requires prospective results: `[PROSPECTIVE RESULT TO INSERT]`.**
@@ -236,16 +237,17 @@ Amendment A1.
 **Can be created now: YES as a concept figure.** Historical panel is CLASS A and
 must be labelled as such.
 
-**Scientific question.** Why are family recovery and exact algebra recovery
-different claims, and why does the benchmark gate on the former only?
+**Scientific question.** Why are family recovery, parameter recovery, predictive
+equivalence, and exact algebra recovery different claims, and why does the
+benchmark gate on family recovery only?
 
 **Panels.**
 
 - **6A. Ladder of claims.** Five nested levels, weakest to strongest: variable
-  support; mathematical family; coefficients and exponents; predictive
-  equivalence on the declared domain; exact algebraic identity. Annotate each
-  with its endpoint and Held-out denominator (144, 144 jointly as G2, 156, 144,
-  60).
+  support; mathematical family; parameters (exponents and coefficients); predictive
+  equivalence on the declared reference distribution; exact algebraic identity.
+  Annotate each with its endpoint and Held-out denominator (144, 144 jointly as G2,
+  156 with mass 156 / descriptor 84, 144 across 2,160 reference points, 60).
 - **6B. Why they diverge.** Schematic Pareto front over complexity and
   validation R2, showing a lower-complexity approximation sitting within a small
   R2 distance of the higher-complexity true form, and a selection rule choosing
@@ -260,18 +262,22 @@ different claims, and why does the benchmark gate on the former only?
   shown, distinctly labelled, since neither is the G2 definition. Label the
   panel HISTORICAL and do not place it on axes shared with prospective results.
 - **6D. Prospective comparison.** G2 rate on 144 against exact-algebra rate on
-  60. **Requires prospective results: `[PROSPECTIVE RESULT TO INSERT]`.**
+  60, parameter recovery rate on 156, and predictive equivalence on 144.
+  **Requires prospective results: `[PROSPECTIVE RESULT TO INSERT]`.**
 
 **Data source.** 6B and 6C from `PHASE3_DECISION.md` and
 `TYPE2_VALIDATION_DECISION.md`. 6A from
-`MURU_PAPER_BENCHMARK_METRICS.md` and the case manifest.
+`MURU_PAPER_BENCHMARK_METRICS.md`, `MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md`,
+and the case manifest.
 
 **Axes.** 6B: x = complexity, y = validation R2.
 
-**Caption outline.** Family recovery and exact algebra are separate endpoints
-because historical evidence shows they diverge. A low exact-algebra rate is a
-finding about identifiability, not a failure of G2, and neither may be inferred
-from the other.
+**Caption outline.** Family recovery, parameter recovery, predictive equivalence,
+and exact algebra are separate endpoints because historical evidence and
+mathematical identifiability limits show they diverge. A low exact-algebra rate
+is a finding about identifiability, not a failure of G2. Predictive equivalence
+does not imply family recovery; family recovery does not imply exact algebra;
+and parameter recovery does not imply exact law identification.
 
 ---
 
@@ -289,10 +295,11 @@ endpoint ladder behave across families?
   point estimate with its 95% Wilson interval, with the gate lines drawn at 0.70
   (lower bound, G1 and G2) and 0.15 (upper bound, G3). This single panel carries
   the primary result.
-- **7B. Endpoint ladder.** Support (144), family (144), parameter (156),
-  predictive equivalence (144), exact algebra (60), each with interval, ordered
-  from weakest to strongest claim so that any monotone structure, in either
-  direction, is visible without being asserted in advance. No pattern is
+- **7B. Endpoint ladder.** Support (144), family (144), parameter recovery (156,
+  with mass /156 and descriptor /84), predictive equivalence (144, over 2,160
+  reference points across 12 frames), exact algebra (60), each with Wilson 95%
+  interval, ordered from weakest to strongest claim so that any monotone structure,
+  in either direction, is visible without being asserted in advance. No pattern is
   predicted; interpretation belongs behind `[INTERPRET HELD-OUT PERFORMANCE]`.
 - **7C. By family.** G1 and G2 rates for each applicable family. G1's 164 cases
   are F01 to F05, F07 to F12, F17 and F18 at 12 each (156) plus the F19A and

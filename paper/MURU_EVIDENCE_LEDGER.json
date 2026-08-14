@@ -533,6 +533,86 @@
       "manuscript_location": ["4.5", "Limitation L14"]
     },
     {
+      "id": "E042",
+      "statement": "Amendment A3.3 candidate evaluation domain contract defining strict coordinate-domain constraints and evaluation rules.",
+      "value": {"amendment_version": "A3.3", "commit": "71f53697e8894df6469ad0ff7150a049fa531b74", "tag": "benchmark-content-freeze-a3-3", "status": "WAITING_FOR_LOCKED_IMPLEMENTATION"},
+      "source_artifact": "artifacts/paper_benchmark_amendment_a3_3.json; MURU_PAPER_BENCHMARK_AMENDMENT_A3_3.md",
+      "commit": "71f5369",
+      "evidence_class": "B",
+      "status": "frozen_contract",
+      "manuscript_location": ["Document status", "5.15", "5.22", "Inventory 2"]
+    },
+    {
+      "id": "E043",
+      "statement": "Independent mathematical audit of Amendment A3.3 candidate evaluation domain contract.",
+      "value": {"audit_file": "audit/MURU_A3_3_MATHEMATICAL_AUDIT.md", "audit_commit": "78cc7c2"},
+      "source_artifact": "audit/MURU_A3_3_MATHEMATICAL_AUDIT.md",
+      "commit": "78cc7c2",
+      "evidence_class": "B",
+      "status": "audit_artifact",
+      "manuscript_location": ["Document status", "5.15", "Inventory 3"]
+    },
+    {
+      "id": "E044",
+      "statement": "Amendment A3.4 parameter recovery and predictive equivalence contracts.",
+      "value": {"amendment_version": "A3.4", "commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe", "tag": "benchmark-content-freeze-a3-4", "status": "WAITING_FOR_LOCKED_IMPLEMENTATION"},
+      "source_artifact": "artifacts/paper_benchmark_amendment_a3_4.json; MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "commit": "be23b80",
+      "evidence_class": "B",
+      "status": "frozen_contract",
+      "manuscript_location": ["Document status", "5.15", "5.22.2", "5.22.3", "Section 6", "Table 2", "Inventory 2"]
+    },
+    {
+      "id": "E045",
+      "statement": "Predictive equivalence reference distribution of 12 independent case-shaped synthetic covariate frames (180 compounds/frame, 30 scaffolds/frame, 2,160 total rows) with frozen aggregate digest.",
+      "value": {"frames_count": 12, "compounds_per_frame": 180, "total_rows": 2160, "aggregate_digest": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44", "seed_namespace_pattern": "PB|PRED_EQUIV|FRAME|{index:03d}"},
+      "source_artifact": "artifacts/paper_benchmark_amendment_a3_4.json; MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "commit": "be23b80",
+      "evidence_class": "B",
+      "status": "frozen_dataset_specification",
+      "manuscript_location": ["5.15", "5.22.3", "5.24", "Table 2", "Inventory 5"]
+    },
+    {
+      "id": "E046",
+      "statement": "Parameter recovery derivative formulas, tolerances, and canonical anchor x0 = (mass=250, descriptor=0, descriptor2=0, distractor=0, correlated_distractor=0) on 156 held-out cases.",
+      "value": {"applicable_cases": 156, "mass_applicable": 156, "mass_tolerance_abs": 0.15, "descriptor_applicable": 84, "descriptor_tolerance_abs": 0.10, "anchor": {"mass": 250, "descriptor": 0, "descriptor2": 0, "distractor": 0, "correlated_distractor": 0}},
+      "source_artifact": "artifacts/paper_benchmark_amendment_a3_4.json; MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "commit": "be23b80",
+      "evidence_class": "B",
+      "status": "frozen_metric_specification",
+      "manuscript_location": ["5.15", "5.22.2", "Section 6", "Table 2", "Table 5a", "Claim C4a"]
+    },
+    {
+      "id": "E047",
+      "statement": "Predictive equivalence metric contract and decision rules on 144 held-out cases over the 2,160 reference points.",
+      "value": {"applicable_cases": 144, "min_valid_fraction": 0.995, "max_invalid_points": 10, "scale_constraint": "c_star > 0", "max_rel_rmse": 0.05, "min_pearson_r": 0.990, "zero_variance_rule": "zero variance in either true or pred maps r to 0.0, failing equivalence"},
+      "source_artifact": "artifacts/paper_benchmark_amendment_a3_4.json; MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "commit": "be23b80",
+      "evidence_class": "B",
+      "status": "frozen_metric_specification",
+      "manuscript_location": ["5.15", "5.22.3", "Section 6", "Table 2", "Table 5a", "Claim C4b"]
+    },
+    {
+      "id": "E048",
+      "statement": "Independent mathematical and code integrity review of Amendment A3.4.",
+      "value": {"audit_file": "audit/MURU_A3_4_INTEGRITY_AUDIT.md", "audit_commit": "f1fb943"},
+      "source_artifact": "audit/MURU_A3_4_INTEGRITY_AUDIT.md",
+      "commit": "f1fb943",
+      "evidence_class": "B",
+      "status": "audit_artifact",
+      "manuscript_location": ["Document status", "5.15", "Inventory 3"]
+    },
+    {
+      "id": "E049",
+      "statement": "Amendment A3.4 Temporal Provenance Erratum establishing that A3.4 was committed at 15:58:39 EDT on 2026-08-13, preceding the A3.4 calibration run start at 16:34:55 EDT on 2026-08-13.",
+      "value": {"a3_4_commit_time_edt": "2026-08-13T15:58:39-04:00", "a3_4_cal_start_edt": "2026-08-13T16:34:55-04:00", "a3_4_cal_end_edt": "2026-08-13T17:41:20-04:00", "adjudication": "A3.4 was prospectively frozen before A3.4 calibration execution began", "tag": "a3-4-temporal-provenance-erratum"},
+      "source_artifact": "audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md; audit/muru_a3_4_temporal_provenance_erratum.json",
+      "commit": "220c9cb",
+      "evidence_class": "B",
+      "status": "audit_erratum",
+      "manuscript_location": ["Document status", "5.16", "5.26", "Inventory 3", "Appendix A"]
+    },
+    {
       "id": "H001",
       "statement": "Phase 3 verdict is STOP BEFORE PHASE 4, computed from a pre-registration frozen before any governed symbolic run.",
       "value": {"verdict": "STOP BEFORE PHASE 4", "prereg_sha256": "064ce1fb9939b10d3b22be1f74aa3da28f487ec3917449db0794cf6431af5a63", "prereg_commit": "9ca09e9b950d4c473af6ff8740f8b3d1625d1a2b"},
@@ -841,8 +921,6 @@
   ],
   "unsupported_number_policy": "No SCIENTIFIC quantity appears in the manuscript package without a corresponding entry above: every count, denominator, threshold, seed constant, rate and interval. Any such statement lacking a verified source is written as [METHOD DETAIL REQUIRES VERIFIED SOURCE] rather than estimated. Two classes of number are deliberately NOT given individual entries, because they are self-verifying against the repository rather than against this ledger: (1) commit SHAs and tags, each of which is checked by `git rev-parse <ref>` and `git log -1 --format=%s <ref>` and is listed in MURU_REPRODUCIBILITY_INVENTORY.md sections 2 and 3; (2) inventory bookkeeping counts such as lockfile pin counts and test-module counts, which are checked by running the command named beside them. Entries E035 to E038 cover the bookkeeping counts a reviewer flagged as load-bearing.",
   "open_method_detail_gaps": [
-    {"location": "Section 6, Table 2", "gap": "frozen success rule for parameter recovery"},
-    {"location": "Section 6, Table 2", "gap": "frozen success rule for predictive equivalence"},
     {"location": "5.6, Table 1c", "gap": "per-family noise levels, F04 missingness pattern, F05 boundary parameters"},
     {"location": "5.7", "gap": "numerical procedure for per-compound g estimation against the frozen Phi in the RC3.1 production path"},
     {"location": "Table 6", "gap": "mapping from case family F01 to F18 onto truth-family taxonomy members"},
