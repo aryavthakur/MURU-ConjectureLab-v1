@@ -165,3 +165,60 @@ def test_static_scan_rejects_frozen_outcome_api(tmp_path: Path):
     errors = integrity.scan_a34_endpoint_sources(tmp_path)
 
     assert any("analysis" in error for error in errors)
+
+
+def test_static_scan_follows_local_bridge_to_forbidden_outcome_api(
+    tmp_path: Path,
+    monkeypatch,
+):
+    """A local helper cannot hide an outcome import from an A3.4 endpoint."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_bridge_bypass.py").write_text(
+        "from .outcome_bridge import make_outcome\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "outcome_bridge.py").write_text(
+        "from .analysis import CaseOutcome\n"
+        "def make_outcome():\n"
+        "    return CaseOutcome\n",
+        encoding="utf-8",
+    )
+
+    original_import = builtins.__import__
+
+    def forbid_bridge_import(name, globals=None, locals=None, fromlist=(), level=0):
+        if name.endswith("outcome_bridge") or name.endswith("analysis"):
+            raise AssertionError(f"static scan imported {name}")
+        return original_import(name, globals, locals, fromlist, level)
+
+    monkeypatch.setattr(builtins, "__import__", forbid_bridge_import)
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any("outcome_bridge.py" in error and "analysis" in error for error in errors)
+
+
+def test_static_scan_rejects_unbounded_local_package_import(tmp_path: Path):
+    """An endpoint cannot bypass the local closure through package-root access."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_package_bypass.py").write_text(
+        "import muru.paper_benchmark as benchmark\n"
+        "OUTCOME = benchmark.analysis.CaseOutcome\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any("muru.paper_benchmark" in error for error in errors)

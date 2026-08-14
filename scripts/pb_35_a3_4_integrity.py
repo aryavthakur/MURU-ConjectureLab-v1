@@ -395,6 +395,12 @@ def _module_components(module: str | None) -> frozenset[str]:
 
 
 def _forbidden_module_reason(module: str | None) -> str | None:
+    # A package-root import can defer access to an arbitrary local submodule
+    # (for example ``benchmark.analysis``).  It has no bounded static target,
+    # so reject it instead of importing or executing the package to discover
+    # its attributes.
+    if module == "muru.paper_benchmark":
+        return "unbounded_package"
     components = _module_components(module)
     if "generator" in components:
         return "generator"
@@ -448,6 +454,14 @@ def _scan_import_node(relative_path: str, node: ast.AST) -> list[str]:
                 errors.append(
                     f"SEALED_BOUNDARY_MODULE: {relative_path}: {module} ({reason})"
                 )
+            elif node.module and alias.name != "*":
+                qualified_module = f"{node.module}.{alias.name}"
+                qualified_reason = _forbidden_module_reason(qualified_module)
+                if qualified_reason:
+                    errors.append(
+                        "SEALED_BOUNDARY_MODULE: "
+                        f"{relative_path}: {qualified_module} ({qualified_reason})"
+                    )
             if alias.name in FORBIDDEN_API_NAMES:
                 errors.append(
                     f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
@@ -488,16 +502,122 @@ def _scan_reference_node(relative_path: str, node: ast.AST) -> list[str]:
     return errors
 
 
-def scan_a34_endpoint_sources(root: Path = ROOT) -> list[str]:
-    """Statically reject execution-boundary references in every ``a34_*.py``.
+def _is_within(path: Path, directory: Path) -> bool:
+    """Return whether ``path`` resolves beneath ``directory``."""
+    try:
+        path.resolve().relative_to(directory.resolve())
+    except ValueError:
+        return False
+    return True
 
-    AST parsing reads source syntax only; it never imports or evaluates the
-    scanned endpoints.  This keeps the integrity gate unable to invoke the
-    generator, search/selection code, calibration code, or outcome APIs.
+
+def _existing_local_module(
+    base: Path,
+    module_parts: tuple[str, ...],
+    source_root: Path,
+) -> Path | None:
+    """Resolve one local module file without importing it."""
+    if not module_parts:
+        return None
+    candidate_base = base.joinpath(*module_parts)
+    for candidate in (
+        candidate_base.with_suffix(".py"),
+        candidate_base / "__init__.py",
+    ):
+        if candidate.is_file() and _is_within(candidate, source_root):
+            return candidate
+    return None
+
+
+def _local_module_path(
+    source_path: Path,
+    *,
+    level: int,
+    module: str | None,
+    source_root: Path,
+) -> Path | None:
+    """Resolve a relative or package-qualified import inside paper_benchmark."""
+    if level:
+        base = source_path.parent
+        for _ in range(level - 1):
+            base = base.parent
+        module_parts = tuple(module.split(".")) if module else ()
+    else:
+        if not module:
+            return None
+        parts = tuple(module.split("."))
+        if parts[:2] != ("muru", "paper_benchmark"):
+            return None
+        base = source_root
+        module_parts = parts[2:]
+    return _existing_local_module(base, module_parts, source_root)
+
+
+def _local_import_targets(
+    source_path: Path,
+    tree: ast.AST,
+    source_root: Path,
+    relative_path: str,
+) -> tuple[Path, ...]:
+    """Find safe local import targets to parse transitively, never import.
+
+    A forbidden module is already reported by the direct-node scan, so it is
+    deliberately not opened here.  The one permitted covariate adapter is a
+    terminal leaf: following ``generator.py`` would incorrectly treat its
+    unrelated partition APIs as an A3.4 endpoint dependency.
+    """
+    targets: set[Path] = set()
+
+    def add_target(level: int, module: str | None) -> None:
+        if _forbidden_module_reason(module):
+            return
+        target = _local_module_path(
+            source_path,
+            level=level,
+            module=module,
+            source_root=source_root,
+        )
+        if target is not None:
+            targets.add(target)
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                add_target(0, alias.name)
+        elif isinstance(node, ast.ImportFrom):
+            if _is_allowed_covariate_adapter(relative_path, node):
+                continue
+            add_target(node.level, node.module)
+            if node.module:
+                for alias in node.names:
+                    if alias.name != "*":
+                        add_target(node.level, f"{node.module}.{alias.name}")
+            else:
+                for alias in node.names:
+                    if alias.name != "*":
+                        add_target(node.level, alias.name)
+    return tuple(sorted(targets))
+
+
+def scan_a34_endpoint_sources(root: Path = ROOT) -> list[str]:
+    """Statically reject execution-boundary references in the A3.4 closure.
+
+    Every ``a34_*.py`` root is parsed, then every safe local import reached
+    from those roots is parsed recursively. AST parsing reads source syntax
+    only; it never imports or evaluates the scanned endpoints. This keeps the
+    integrity gate unable to invoke the generator, search/selection code,
+    calibration code, or outcome APIs.
     """
     source_root = root / "src/muru/paper_benchmark"
     errors: list[str] = []
-    for path in sorted(source_root.glob("a34_*.py")):
+    pending = list(reversed(sorted(source_root.glob("a34_*.py"))))
+    scanned: set[Path] = set()
+    while pending:
+        path = pending.pop()
+        resolved_path = path.resolve()
+        if resolved_path in scanned:
+            continue
+        scanned.add(resolved_path)
         relative_path = path.relative_to(root).as_posix()
         try:
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
@@ -507,6 +627,9 @@ def scan_a34_endpoint_sources(root: Path = ROOT) -> list[str]:
         for node in ast.walk(tree):
             errors.extend(_scan_import_node(relative_path, node))
             errors.extend(_scan_reference_node(relative_path, node))
+        pending.extend(
+            reversed(_local_import_targets(path, tree, source_root, relative_path))
+        )
     return sorted(set(errors))
 
 
