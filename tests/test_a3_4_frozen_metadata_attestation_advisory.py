@@ -26,10 +26,10 @@ A34_DOCUMENT_PATH = "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md"
 A34_ARTIFACT_PATH = "artifacts/paper_benchmark_amendment_a3_4.json"
 A34_DOCUMENT_SHA256 = "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada"
 A34_REFERENCE_DIGEST = "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44"
-RECORDED_PROTECTED_AGGREGATE = (
+HISTORICAL_NO_TERMINAL_NEWLINE_AGGREGATE = (
     "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8"
 )
-STANDARD_PROTECTED_AGGREGATE = (
+TERMINAL_NEWLINE_ALTERNATE_AGGREGATE = (
     "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a"
 )
 
@@ -59,6 +59,31 @@ def git_text(*args: str) -> str:
     )
     assert result.returncode == 0, result.stderr
     return result.stdout.strip()
+
+
+def git_blob_metadata(
+    revision: str,
+    relative_paths: list[str],
+) -> dict[str, tuple[str, str, str]]:
+    """Read only Git tree metadata; never materialize protected blob bytes."""
+    result = subprocess.run(
+        ("git", "ls-tree", "-r", "-z", revision, "--", *relative_paths),
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+    )
+    assert result.returncode == 0, result.stderr.decode("utf-8", errors="replace")
+
+    metadata: dict[str, tuple[str, str, str]] = {}
+    for entry in result.stdout.split(b"\0"):
+        if not entry:
+            continue
+        header, raw_path = entry.split(b"\t", maxsplit=1)
+        mode, object_type, object_id = header.decode("ascii").split(" ")
+        relative_path = raw_path.decode("utf-8")
+        assert relative_path not in metadata
+        metadata[relative_path] = (mode, object_type, object_id)
+    return metadata
 
 
 def frozen_a34_artifact() -> dict[str, Any]:
@@ -171,8 +196,15 @@ def test_advisory_attests_the_parent_literal_against_frozen_git_provenance():
     }
 
 
-def test_advisory_attests_all_frozen_path_hashes_and_the_aggregate_difference():
-    """Missing per-path validation, hash drift, or a changed digest algorithm must fail."""
+def test_live_a34_freeze_tag_is_annotated_and_dereferences_to_the_frozen_commit():
+    """A lightweight or retargeted live A3.4 tag must fail the provenance check."""
+    assert git_text("cat-file", "-t", A34_FREEZE_TAG) == "tag"
+    assert git_text("rev-parse", A34_FREEZE_TAG) == A34_FREEZE_TAG_OBJECT
+    assert git_text("rev-parse", f"{A34_FREEZE_TAG}^{{}}") == A34_FREEZE_COMMIT
+
+
+def test_advisory_attests_blob_identity_and_serialization_convention_without_rehashing():
+    """Blob drift or an altered historical serialization convention must fail."""
     ledger = read_advisory()
     attestation = ledger["canonical_attestation"]
     assert isinstance(attestation, dict)
@@ -187,44 +219,80 @@ def test_advisory_attests_all_frozen_path_hashes_and_the_aggregate_difference():
     assert len(protected_paths) == 31
     assert len(set(protected_paths)) == 31
     assert set(protected_paths) == set(protected_sha256)
+    assert all(
+        isinstance(digest, str)
+        and len(digest) == 64
+        and all(character in "0123456789abcdef" for character in digest)
+        for digest in protected_sha256.values()
+    )
 
-    for relative_path in protected_paths:
-        frozen = git_bytes(A34_FREEZE_COMMIT, relative_path)
-        assert sha256(frozen) == protected_sha256[relative_path]
-        assert (ROOT / relative_path).read_bytes() == frozen
+    frozen_blob_metadata = git_blob_metadata(A34_FREEZE_COMMIT, protected_paths)
+    tip_blob_metadata = git_blob_metadata("HEAD", protected_paths)
+    assert set(frozen_blob_metadata) == set(protected_paths)
+    assert frozen_blob_metadata == tip_blob_metadata
 
-    frozen_document = git_bytes(A34_FREEZE_COMMIT, A34_DOCUMENT_PATH)
-    frozen_artifact = git_bytes(A34_FREEZE_COMMIT, A34_ARTIFACT_PATH)
-    assert sha256(frozen_document) == A34_DOCUMENT_SHA256
-    assert (ROOT / A34_DOCUMENT_PATH).read_bytes() == frozen_document
-    assert (ROOT / A34_ARTIFACT_PATH).read_bytes() == frozen_artifact
+    frozen_governance_metadata = git_blob_metadata(
+        A34_FREEZE_COMMIT,
+        [A34_DOCUMENT_PATH, A34_ARTIFACT_PATH],
+    )
+    assert frozen_governance_metadata == git_blob_metadata(
+        "HEAD",
+        [A34_DOCUMENT_PATH, A34_ARTIFACT_PATH],
+    )
+    assert artifact["amendment_file_sha256"][A34_DOCUMENT_PATH] == A34_DOCUMENT_SHA256
 
-    standard_payload = "".join(
-        f"{relative_path}:{protected_sha256[relative_path]}\n"
-        for relative_path in sorted(protected_sha256)
-    ).encode("utf-8")
-    no_terminal_newline_payload = "\n".join(
+    historical_no_terminal_newline_payload = "\n".join(
         f"{relative_path}:{protected_sha256[relative_path]}"
         for relative_path in sorted(protected_sha256)
     ).encode("utf-8")
-    assert artifact["protected_path_digest"] == RECORDED_PROTECTED_AGGREGATE
-    assert sha256(standard_payload) == STANDARD_PROTECTED_AGGREGATE
-    assert sha256(no_terminal_newline_payload) == RECORDED_PROTECTED_AGGREGATE
+    terminal_newline_alternate_payload = "".join(
+        f"{relative_path}:{protected_sha256[relative_path]}\n"
+        for relative_path in sorted(protected_sha256)
+    ).encode("utf-8")
+    assert artifact["protected_path_digest"] == HISTORICAL_NO_TERMINAL_NEWLINE_AGGREGATE
+    assert (
+        sha256(historical_no_terminal_newline_payload)
+        == HISTORICAL_NO_TERMINAL_NEWLINE_AGGREGATE
+    )
+    assert (
+        sha256(terminal_newline_alternate_payload)
+        == TERMINAL_NEWLINE_ALTERNATE_AGGREGATE
+    )
 
     assert finding == {
         "a3_4_freeze_commit": A34_FREEZE_COMMIT,
-        "all_31_individual_sha256_entries_validate_at_freeze": True,
+        "historical_no_terminal_newline_serialization": {
+            "digest": "SHA-256",
+            "encoding": "UTF-8",
+            "entry_format": "{relative_path}:{sha256}",
+            "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+            "record_separator": "\\n",
+            "recomputed_aggregate_sha256": HISTORICAL_NO_TERMINAL_NEWLINE_AGGREGATE,
+            "terminal_newline": False,
+        },
+        "interpretation": (
+            "HISTORICAL_SERIALIZATION_CONVENTION_OR_AMBIGUITY_"
+            "NOT_A_CONTENT_INTEGRITY_DEFECT"
+        ),
+        "live_blob_identity_verification": {
+            "algorithm": (
+                "git ls-tree -r -z <revision> -- <listed protected paths>; compare "
+                "mode, object type, object ID, and path metadata at the A3.4 freeze "
+                "commit and test-run HEAD"
+            ),
+            "all_31_listed_paths_match": True,
+            "materializes_protected_path_bytes": False,
+        },
         "protected_path_count": 31,
-        "recorded_aggregate_sha256": RECORDED_PROTECTED_AGGREGATE,
-        "recorded_value_matches_no_terminal_newline_variant": True,
-        "standard_path_sha256_newline_algorithm": {
+        "recorded_aggregate_sha256": HISTORICAL_NO_TERMINAL_NEWLINE_AGGREGATE,
+        "terminal_newline_alternate_serialization": {
             "digest": "SHA-256",
             "encoding": "UTF-8",
             "entry_format": "{relative_path}:{sha256}\\n",
             "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+            "recomputed_aggregate_sha256": TERMINAL_NEWLINE_ALTERNATE_AGGREGATE,
             "terminal_newline": True,
         },
-        "standard_recomputed_aggregate_sha256": STANDARD_PROTECTED_AGGREGATE,
     }
     assert attestation["frozen_a3_4"] == {
         "artifact_path": A34_ARTIFACT_PATH,

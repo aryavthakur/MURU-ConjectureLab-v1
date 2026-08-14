@@ -10,16 +10,17 @@
 
 ## Purpose and scope
 
-This advisory records two immutable historical provenance-attestation
-discrepancies in the frozen A3.4 metadata. It does not replace, amend,
-regenerate, or edit Amendment A3.4. It makes no scientific definition,
-reference distribution, threshold, denominator, selection, metric, or outcome
-change.
+This advisory records one immutable historical provenance-attestation discrepancy
+and one historical serialization convention/ambiguity in frozen A3.4 metadata.
+It does not replace, amend, regenerate, or edit Amendment A3.4. It makes no
+scientific definition, reference distribution, threshold, denominator,
+selection, metric, or outcome change.
 
-The evidence source is limited to read-only Git objects and byte comparisons of
-the frozen A3.4 source paths. No calibration record, Development result,
-Held-out result, Confirmation result, or other outcome-bearing payload was
-opened or inspected.
+The evidence source is limited to read-only Git objects, Git tree metadata, and
+the frozen A3.4 artifact map. The advisory does not materialize or rehash any
+of the 31 listed protected-path blobs. No calibration record, Development
+result, Held-out result, Confirmation result, or other outcome-bearing payload
+was opened or inspected.
 
 ## Frozen source identity
 
@@ -61,12 +62,14 @@ d0ea5d4b0309e4e95dcab4035b9be66e166765b1^
 This advisory does not substitute the actual commit into either frozen A3.4
 record. The recorded literal remains byte-preserved historical provenance.
 
-## Finding 2 — protected-path aggregate serialization discrepancy
+## Finding 2 — protected-path aggregate serialization convention
 
 At `be23b80d63fbd30227f0ab8f200dddc2121f3bfe`, the A3.4
-`protected_sha256` map has 31 listed paths. SHA-256 of each frozen path's bytes
-matches its corresponding map entry. The individual content attestations are
-therefore valid.
+`protected_sha256` map has 31 listed paths and 31 SHA-256 entries. The
+accompanying regression check compares only Git blob metadata—mode, object
+type, object ID, and path—for each listed path at the freeze commit and the
+test-run `HEAD`. It requires all 31 metadata records to match and deliberately
+does not materialize or rehash the protected blobs.
 
 The artifact records aggregate digest:
 
@@ -74,33 +77,42 @@ The artifact records aggregate digest:
 d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8
 ```
 
-The standard recomputation cited by this advisory is:
+The historical aggregate is exactly reproduced by this serialization:
 
 1. Sort relative paths in lexicographic ascending order.
-2. For each path append the UTF-8 entry
-   `{relative_path}:{sha256}\n`, including a newline after the final entry.
-3. Apply SHA-256 to the resulting byte stream.
+2. Serialize each UTF-8 entry as `{relative_path}:{sha256}`.
+3. Join adjacent entries with `\n`, with no terminal newline after the final
+   entry.
+4. Apply SHA-256 to the resulting byte stream.
 
-That exact `path:sha256-newline` algorithm recomputes:
+That exact no-terminal-newline convention recomputes the recorded value
+`d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8`.
+
+An alternate, equally explicit serialization appends `\n` after every UTF-8
+`{relative_path}:{sha256}` entry, including the final entry. It instead
+recomputes:
 
 ```text
 55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a
 ```
 
-The recorded value instead equals the calculation obtained from the same
-sorted entries joined by newline separators with no terminal newline. This
-numeric relationship does not establish historical author intent or replace
-the frozen value; it records the reproducible serialization difference only.
+The frozen artifact does not state whether a terminal newline is required. The
+two values therefore express a historical serialization convention/ambiguity,
+not a content-integrity defect: `d24cc…` is not incorrect, and this advisory
+does not replace it.
 
 ## Scientific effect and preservation
 
 Neither discrepancy changes A3.4's scientific definitions or its frozen
 reference-covariate digest
 `4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44`.
-The A3.4 document and artifact remain byte-identical to their `be23` blobs,
-and every one of the 31 listed protected paths remains byte-identical to its
-`be23` blob. This is an immutable historical provenance-attestation discrepancy,
-not an operational correction or new science amendment.
+The live annotated `benchmark-content-freeze-a3-4` tag remains a Git tag object
+that dereferences to `be23b80d63fbd30227f0ab8f200dddc2121f3bfe`. The A3.4
+document and artifact remain identified by their frozen Git blobs, and the
+metadata-only regression check requires every listed protected-path blob ID to
+match from `be23` through test-run `HEAD`. This is an immutable historical
+provenance-attestation record, not an operational correction or new science
+amendment.
 
 ## Canonical advisory binding
 

@@ -1,6 +1,6 @@
 {
   "canonical_attestation": {
-    "advisory_conclusion": "The parent literal and aggregate serialization facts are immutable historical provenance-attestation discrepancies. They are recorded without replacing frozen A3.4 content or creating a scientific amendment.",
+    "advisory_conclusion": "The non-object parent literal is an immutable historical provenance-attestation discrepancy. The aggregate values record a historical serialization convention/ambiguity, not a content-integrity defect; neither finding replaces frozen A3.4 content or creates a scientific amendment.",
     "classification": "IMMUTABLE_HISTORICAL_PROVENANCE_ATTESTATION_DISCREPANCY",
     "findings": {
       "parent_a3_3_commit": {
@@ -23,18 +23,31 @@
       },
       "protected_path_digest": {
         "a3_4_freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
-        "all_31_individual_sha256_entries_validate_at_freeze": true,
+        "historical_no_terminal_newline_serialization": {
+          "digest": "SHA-256",
+          "encoding": "UTF-8",
+          "entry_format": "{relative_path}:{sha256}",
+          "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+          "record_separator": "\\n",
+          "recomputed_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
+          "terminal_newline": false
+        },
+        "interpretation": "HISTORICAL_SERIALIZATION_CONVENTION_OR_AMBIGUITY_NOT_A_CONTENT_INTEGRITY_DEFECT",
+        "live_blob_identity_verification": {
+          "algorithm": "git ls-tree -r -z <revision> -- <listed protected paths>; compare mode, object type, object ID, and path metadata at the A3.4 freeze commit and test-run HEAD",
+          "all_31_listed_paths_match": true,
+          "materializes_protected_path_bytes": false
+        },
         "protected_path_count": 31,
         "recorded_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
-        "recorded_value_matches_no_terminal_newline_variant": true,
-        "standard_path_sha256_newline_algorithm": {
+        "terminal_newline_alternate_serialization": {
           "digest": "SHA-256",
           "encoding": "UTF-8",
           "entry_format": "{relative_path}:{sha256}\\n",
           "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+          "recomputed_aggregate_sha256": "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a",
           "terminal_newline": true
-        },
-        "standard_recomputed_aggregate_sha256": "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a"
+        }
       }
     },
     "frozen_a3_4": {
@@ -53,13 +66,13 @@
     "frozen_content_changed": false,
     "human_readable_projection": {
       "path": "audit/MURU_A3_4_FROZEN_METADATA_ATTESTATION_ADVISORY.md",
-      "sha256": "62df3c2f50445917cc7e52ad5aecdab1cd1f47c77adbc42f1c8b80eb4f14ead9"
+      "sha256": "fcef27933fe4627306c001bdc4f8955ad8c621d4480b6a33f56439d9ee64f2da"
     },
     "outcome_boundary": {
       "calibration_records_opened": "NONE",
       "confirmation_results_opened": "NONE",
       "development_results_opened": "NONE",
-      "evidence_sources": "READ_ONLY_GIT_OBJECTS_AND_FROZEN_SOURCE_BYTES",
+      "evidence_sources": "READ_ONLY_GIT_OBJECTS_GIT_TREE_METADATA_AND_FROZEN_A3_4_ARTIFACT_MAP",
       "held_out_results_opened": "NONE",
       "outcome_payloads_opened": "NONE"
     },
@@ -80,6 +93,6 @@
     "algorithm": "SHA-256",
     "canonicalization": "UTF-8 JSON; recursive lexicographic object-key ordering; compact separators ',' and ':'; ensure_ascii=false; allow_nan=false; no trailing newline",
     "content_pointer": "/canonical_attestation",
-    "content_sha256": "9e58c7c3d0b9b88eb4fa4efbab8384f5780dbc657094f0490248bd37a3ca6b9b"
+    "content_sha256": "9d89197979bb39a2ec934b21f99fe38ea7cdeab2a7af0ade35f6f930cf7cbf54"
   }
 }
