@@ -11,12 +11,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "pb_35_a3_4_integrity.py"
-STANDARD_PROTECTED_AGGREGATE = (
+RECORDED_PROTECTED_AGGREGATE = (
+    "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8"
+)
+TERMINAL_NEWLINE_PROTECTED_AGGREGATE = (
     "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a"
 )
 FROZEN_METADATA_ADVISORIES = [
     "ADVISORY_A3_4_PARENT_A3_3_LITERAL_NONOBJECT",
-    "ADVISORY_A3_4_PROTECTED_AGGREGATE_NONSTANDARD",
 ]
 
 
@@ -62,9 +64,17 @@ def test_a34_integrity_script_accepts_clean_checkout():
 
     assert result.returncode == 0, result.stdout + result.stderr
     assert "A3.4 INTEGRITY VERIFIED" in result.stdout
-    assert f"STANDARD_PROTECTED_AGGREGATE: {STANDARD_PROTECTED_AGGREGATE}" in result.stdout
+    assert (
+        "RECORDED_PROTECTED_AGGREGATE_NO_TERMINAL_NEWLINE: "
+        f"{RECORDED_PROTECTED_AGGREGATE}"
+    ) in result.stdout
+    assert (
+        "DERIVED_PROTECTED_AGGREGATE_TERMINAL_NEWLINE: "
+        f"{TERMINAL_NEWLINE_PROTECTED_AGGREGATE}"
+    ) in result.stdout
     for advisory in FROZEN_METADATA_ADVISORIES:
         assert f"ADVISORY: {advisory}" in result.stdout
+    assert "ADVISORY_A3_4_PROTECTED_AGGREGATE_NONSTANDARD" not in result.stdout
 
 
 def test_byte_identity_reports_a_changed_protected_file(tmp_path: Path):
@@ -84,11 +94,16 @@ def test_byte_identity_reports_a_changed_protected_file(tmp_path: Path):
 
 
 def test_frozen_a34_artifact_links_all_published_digests():
-    """The frozen artifact must bind its complete protected-path digest set."""
+    """The frozen record uses the no-terminal-newline aggregate convention."""
     integrity = _load_integrity_module()
 
     assert integrity.check_a34_artifact_linkage(ROOT) == []
-    assert integrity.frozen_standard_protected_aggregate(ROOT) == STANDARD_PROTECTED_AGGREGATE
+    assert integrity.frozen_recorded_protected_aggregate(ROOT) == RECORDED_PROTECTED_AGGREGATE
+    assert (
+        integrity.frozen_terminal_newline_protected_aggregate(ROOT)
+        == TERMINAL_NEWLINE_PROTECTED_AGGREGATE
+    )
+    assert RECORDED_PROTECTED_AGGREGATE != TERMINAL_NEWLINE_PROTECTED_AGGREGATE
     assert integrity.known_frozen_metadata_advisories(ROOT) == FROZEN_METADATA_ADVISORIES
 
 

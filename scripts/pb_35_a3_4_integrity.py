@@ -23,9 +23,6 @@ ROOT = Path(__file__).resolve().parent.parent
 A34_FREEZE_COMMIT = "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
 A34_CREATION_COMMIT = "d0ea5d4b0309e4e95dcab4035b9be66e166765b1"
 FROZEN_A33_PARENT_LITERAL = "71f53697e8894df6469ad0ff7150a049fa531b74"
-FROZEN_RECORDED_PROTECTED_AGGREGATE = (
-    "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8"
-)
 
 A34_AMENDMENT_PATH = "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md"
 A34_ARTIFACT_PATH = "artifacts/paper_benchmark_amendment_a3_4.json"
@@ -203,11 +200,17 @@ def _is_commit_object(root: Path, revision: str) -> bool:
     return result.returncode == 0
 
 
-def _protected_path_digest(digests: Mapping[str, str]) -> str:
-    payload = "".join(
-        f"{relative_path}:{digests[relative_path]}\n"
-        for relative_path in sorted(digests)
+def _protected_path_digest(
+    digests: Mapping[str, str],
+    *,
+    terminal_newline: bool,
+) -> str:
+    """Hash sorted protected entries using the requested final-newline form."""
+    payload = "\n".join(
+        f"{relative_path}:{digests[relative_path]}" for relative_path in sorted(digests)
     )
+    if terminal_newline:
+        payload += "\n"
     return sha256_bytes(payload.encode("utf-8"))
 
 
@@ -220,12 +223,8 @@ def _artifact_protected_paths(artifact: Mapping[str, Any]) -> tuple[str, ...] | 
     return tuple(protected_paths)
 
 
-def frozen_standard_protected_aggregate(root: Path = ROOT) -> str | None:
-    """Compute the standard ``path:sha256\\n`` aggregate from frozen entries.
-
-    This is an independent engineering calculation.  It deliberately does not
-    treat a difference from the immutable historical field as science drift.
-    """
+def _frozen_protected_digests(root: Path) -> dict[str, str] | None:
+    """Load A3.4's validated frozen protected-path digest map."""
     artifact, _ = _load_frozen_a34_artifact(root)
     if artifact is None:
         return None
@@ -238,13 +237,29 @@ def frozen_standard_protected_aggregate(root: Path = ROOT) -> str | None:
         or not all(_is_sha256(digest) for digest in protected_digests.values())
     ):
         return None
-    return _protected_path_digest(protected_digests)
+    return protected_digests
+
+
+def frozen_terminal_newline_protected_aggregate(root: Path = ROOT) -> str | None:
+    """Compute the separate sorted aggregate with a terminal newline."""
+    protected_digests = _frozen_protected_digests(root)
+    if protected_digests is None:
+        return None
+    return _protected_path_digest(protected_digests, terminal_newline=True)
+
+
+def frozen_recorded_protected_aggregate(root: Path = ROOT) -> str | None:
+    """Compute A3.4's recorded sorted aggregate without a terminal newline."""
+    protected_digests = _frozen_protected_digests(root)
+    if protected_digests is None:
+        return None
+    return _protected_path_digest(protected_digests, terminal_newline=False)
 
 
 def known_frozen_metadata_advisories(root: Path = ROOT) -> list[str]:
-    """Report, without failing, the two known immutable provenance facts.
+    """Report the one known immutable provenance erratum without failing.
 
-    Their literals remain byte-pinned by the frozen artifact.  They are not a
+    The parent literal remains byte-pinned by the frozen artifact and is not a
     change to the 31 protected scientific paths, all of whose individual
     SHA-256 entries are checked separately below.
     """
@@ -257,14 +272,6 @@ def known_frozen_metadata_advisories(root: Path = ROOT) -> list[str]:
         and not _is_commit_object(root, FROZEN_A33_PARENT_LITERAL)
     ):
         advisories.append("ADVISORY_A3_4_PARENT_A3_3_LITERAL_NONOBJECT")
-    standard_aggregate = frozen_standard_protected_aggregate(root)
-    if (
-        artifact.get("protected_path_digest")
-        == FROZEN_RECORDED_PROTECTED_AGGREGATE
-        and standard_aggregate is not None
-        and standard_aggregate != FROZEN_RECORDED_PROTECTED_AGGREGATE
-    ):
-        advisories.append("ADVISORY_A3_4_PROTECTED_AGGREGATE_NONSTANDARD")
     return advisories
 
 
@@ -330,6 +337,14 @@ def check_a34_artifact_linkage(root: Path = ROOT) -> list[str]:
                     errors.append(f"A3_4_ARTIFACT_PROTECTED_MISSING: {relative_path}")
                 elif sha256_bytes(frozen) != protected_digests[relative_path]:
                     errors.append(f"A3_4_ARTIFACT_PROTECTED_DRIFT: {relative_path}")
+            recorded_aggregate = artifact.get("protected_path_digest")
+            if not _is_sha256(recorded_aggregate):
+                errors.append("A3_4_ARTIFACT_PROTECTED_AGGREGATE_FORMAT")
+            elif recorded_aggregate != _protected_path_digest(
+                protected_digests,
+                terminal_newline=False,
+            ):
+                errors.append("A3_4_ARTIFACT_PROTECTED_AGGREGATE")
 
     reference_contract = artifact.get("predictive_equivalence_contract")
     if not isinstance(reference_contract, dict):
@@ -664,13 +679,16 @@ def main() -> int:
     _report("1. Frozen A3.4 and inherited RC3/A3.2 science bytes...", protected_errors)
 
     artifact_errors = check_a34_artifact_linkage(ROOT)
-    standard_aggregate = frozen_standard_protected_aggregate(ROOT)
+    recorded_aggregate = frozen_recorded_protected_aggregate(ROOT)
+    terminal_newline_aggregate = frozen_terminal_newline_protected_aggregate(ROOT)
     _report(
         "2. Frozen A3.4 artifact linkage and digests...",
         artifact_errors,
         (
-            "STANDARD_PROTECTED_AGGREGATE: "
-            f"{standard_aggregate or 'UNAVAILABLE'}",
+            "RECORDED_PROTECTED_AGGREGATE_NO_TERMINAL_NEWLINE: "
+            f"{recorded_aggregate or 'UNAVAILABLE'}",
+            "DERIVED_PROTECTED_AGGREGATE_TERMINAL_NEWLINE: "
+            f"{terminal_newline_aggregate or 'UNAVAILABLE'}",
         ),
     )
     _report_advisories(known_frozen_metadata_advisories(ROOT))
