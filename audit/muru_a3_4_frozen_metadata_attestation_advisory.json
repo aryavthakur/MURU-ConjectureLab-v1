@@ -1,0 +1,85 @@
+{
+  "canonical_attestation": {
+    "advisory_conclusion": "The parent literal and aggregate serialization facts are immutable historical provenance-attestation discrepancies. They are recorded without replacing frozen A3.4 content or creating a scientific amendment.",
+    "classification": "IMMUTABLE_HISTORICAL_PROVENANCE_ATTESTATION_DISCREPANCY",
+    "findings": {
+      "parent_a3_3_commit": {
+        "a3_4_creation_commit": "d0ea5d4b0309e4e95dcab4035b9be66e166765b1",
+        "a3_4_creation_commit_git_parent": "71f5369c8aa9e5c47f951bd894d744af70956616",
+        "actual_a3_3_tag": {
+          "name": "benchmark-content-freeze-a3-3",
+          "tag_object": "363e1c5a64cdf235712900fc2a14409fa6ec3e1e",
+          "target_commit": "71f5369c8aa9e5c47f951bd894d744af70956616"
+        },
+        "frozen_locations": [
+          "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+          "artifacts/paper_benchmark_amendment_a3_4.json"
+        ],
+        "frozen_recorded_literal": "71f53697e8894df6469ad0ff7150a049fa531b74",
+        "git_commit_object_check": {
+          "algorithm": "git cat-file -e <literal>^{commit}",
+          "literal_resolves_to_commit": false
+        }
+      },
+      "protected_path_digest": {
+        "a3_4_freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+        "all_31_individual_sha256_entries_validate_at_freeze": true,
+        "protected_path_count": 31,
+        "recorded_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
+        "recorded_value_matches_no_terminal_newline_variant": true,
+        "standard_path_sha256_newline_algorithm": {
+          "digest": "SHA-256",
+          "encoding": "UTF-8",
+          "entry_format": "{relative_path}:{sha256}\\n",
+          "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+          "terminal_newline": true
+        },
+        "standard_recomputed_aggregate_sha256": "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a"
+      }
+    },
+    "frozen_a3_4": {
+      "artifact_path": "artifacts/paper_benchmark_amendment_a3_4.json",
+      "creation_commit": "d0ea5d4b0309e4e95dcab4035b9be66e166765b1",
+      "document_path": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "document_sha256": "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada",
+      "freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "freeze_tag": {
+        "name": "benchmark-content-freeze-a3-4",
+        "tag_object": "326727d5f17943b22f014262dcf42f5cf043ba42",
+        "target_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
+      },
+      "reference_covariates_sha256": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44"
+    },
+    "frozen_content_changed": false,
+    "human_readable_projection": {
+      "path": "audit/MURU_A3_4_FROZEN_METADATA_ATTESTATION_ADVISORY.md",
+      "sha256": "62df3c2f50445917cc7e52ad5aecdab1cd1f47c77adbc42f1c8b80eb4f14ead9"
+    },
+    "outcome_boundary": {
+      "calibration_records_opened": "NONE",
+      "confirmation_results_opened": "NONE",
+      "development_results_opened": "NONE",
+      "evidence_sources": "READ_ONLY_GIT_OBJECTS_AND_FROZEN_SOURCE_BYTES",
+      "held_out_results_opened": "NONE",
+      "outcome_payloads_opened": "NONE"
+    },
+    "outcome_inspection": "NONE",
+    "schema_version": "muru-a3-4-frozen-metadata-attestation-advisory-1.0.0",
+    "scope": "ADDITIVE_OUTCOME_BLIND_ADVISORY_NOT_A_SCIENCE_AMENDMENT",
+    "scientific_amendment": false,
+    "scientific_change": "NONE",
+    "scientific_impact": {
+      "a3_4_reference_digest_changed": false,
+      "a3_4_scientific_definitions_changed": false,
+      "frozen_content_changed": false,
+      "reference_covariates_sha256": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44"
+    },
+    "status": "IMMUTABLE_HISTORICAL_PROVENANCE_ATTESTATION_DISCREPANCY"
+  },
+  "canonical_binding": {
+    "algorithm": "SHA-256",
+    "canonicalization": "UTF-8 JSON; recursive lexicographic object-key ordering; compact separators ',' and ':'; ensure_ascii=false; allow_nan=false; no trailing newline",
+    "content_pointer": "/canonical_attestation",
+    "content_sha256": "9e58c7c3d0b9b88eb4fa4efbab8384f5780dbc657094f0490248bd37a3ca6b9b"
+  }
+}
