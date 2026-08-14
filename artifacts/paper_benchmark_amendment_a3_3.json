@@ -9,7 +9,7 @@
     "artifacts/paper_benchmark_amendment_a3_3.json": "self"
   },
   "amendment_reason": "Content freeze V1 named parameter recovery and predictive equivalence as secondary endpoints and assigned them held-out denominators (156 and 144) but did not bind their mathematical evaluation contracts, metrics, tolerances, or failure semantics. Amendment A3.3 prospectively defines complete, deterministic, algebraically invariant evaluation contracts for both secondary endpoints before any calibration execution, Development rerun, or Held-out opening.",
-  "creation_commit": "pending_self_bind",
+  "creation_commit": "e91aae67330a590b6c48663190e76973adc3cb02",
   "governance_form": {
     "a3_1_scientific_content_otherwise_unchanged": true,
     "a3_2_calibration_content_unchanged": true,
