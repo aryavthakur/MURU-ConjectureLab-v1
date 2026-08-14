@@ -324,11 +324,25 @@ def _score_arrays(
 
     candidate_v = candidate[valid]
     planted_v = planted[valid]
+    candidate_unit = _positive_unit_vector(candidate_v)
+    planted_unit = _positive_unit_vector(planted_v)
+    if candidate_unit is None or planted_unit is None:
+        return _failed_result(
+            applicable=applicable,
+            valid_count=valid_count,
+            valid_fraction=valid_fraction,
+            reason="positive scale alignment is not finite",
+        )
+    candidate_normalized, candidate_magnitude = candidate_unit
+    planted_normalized, planted_magnitude = planted_unit
     try:
         with np.errstate(all="ignore"):
-            numerator = float(np.dot(planted_v, candidate_v))
-            denominator = float(np.dot(candidate_v, candidate_v))
-            c_star = numerator / denominator
+            numerator = float(np.dot(planted_normalized, candidate_normalized))
+            denominator = float(np.dot(candidate_normalized, candidate_normalized))
+            normalized_alignment = numerator / denominator
+            c_star = (
+                planted_magnitude / candidate_magnitude
+            ) * normalized_alignment
     except (ArithmeticError, TypeError, ValueError, OverflowError, ZeroDivisionError):
         return _failed_result(
             applicable=applicable,
@@ -336,7 +350,14 @@ def _score_arrays(
             valid_fraction=valid_fraction,
             reason="positive scale alignment is not finite",
         )
-    if not isfinite(denominator) or denominator <= 0.0 or not isfinite(c_star) or c_star <= 0.0:
+    if (
+        not isfinite(denominator)
+        or denominator <= 0.0
+        or not isfinite(normalized_alignment)
+        or normalized_alignment <= 0.0
+        or not isfinite(c_star)
+        or c_star <= 0.0
+    ):
         return _failed_result(
             applicable=applicable,
             valid_count=valid_count,
@@ -346,10 +367,14 @@ def _score_arrays(
 
     try:
         with np.errstate(all="ignore"):
-            residual = c_star * candidate_v - planted_v
-            rmse = float(sqrt(float(np.mean(residual * residual))))
-            truth_rms = float(sqrt(float(np.mean(planted_v * planted_v))))
-            rel_rmse = rmse / truth_rms
+            residual = normalized_alignment * candidate_normalized - planted_normalized
+            rmse_unit = float(sqrt(float(np.mean(residual * residual))))
+            truth_rms_unit = float(
+                sqrt(float(np.mean(planted_normalized * planted_normalized)))
+            )
+            rmse = planted_magnitude * rmse_unit
+            truth_rms = planted_magnitude * truth_rms_unit
+            rel_rmse = rmse_unit / truth_rms_unit
     except (ArithmeticError, TypeError, ValueError, OverflowError, ZeroDivisionError):
         return _failed_result(
             applicable=applicable,
@@ -375,8 +400,11 @@ def _score_arrays(
             reason="scale-adjusted error metrics are not finite",
         )
 
-    pearson_r = _pearson_or_zero(candidate_v, planted_v)
-    if pearson_r == 0.0:
+    pearson_r, zero_variance = _pearson_or_zero(
+        candidate_normalized,
+        planted_normalized,
+    )
+    if zero_variance:
         return _failed_result(
             applicable=applicable,
             valid_count=valid_count,
@@ -419,8 +447,31 @@ def _score_arrays(
     )
 
 
-def _pearson_or_zero(candidate: np.ndarray, planted: np.ndarray) -> float:
-    """Compute Pearson r over V, with A3.4's explicit zero-variance rule."""
+def _positive_unit_vector(values: np.ndarray) -> tuple[np.ndarray, float] | None:
+    """Normalize a positive finite V vector without changing its direction.
+
+    The scalar multiplier is held separately so all dot products and centered
+    sums stay in a safe numerical range.  This is algebraically identical to
+    the frozen V-only equations and introduces no additional model parameter.
+    """
+    try:
+        magnitude = float(np.max(values))
+        with np.errstate(all="ignore"):
+            normalized = values / magnitude
+    except (ArithmeticError, TypeError, ValueError, OverflowError):
+        return None
+    if (
+        not isfinite(magnitude)
+        or magnitude <= 0.0
+        or not np.all(np.isfinite(normalized))
+        or not np.all(normalized > 0.0)
+    ):
+        return None
+    return normalized, magnitude
+
+
+def _pearson_or_zero(candidate: np.ndarray, planted: np.ndarray) -> tuple[float, bool]:
+    """Compute Pearson r over V and report whether variance was degenerate."""
     try:
         with np.errstate(all="ignore"):
             candidate_centered = candidate - np.mean(candidate)
@@ -430,7 +481,7 @@ def _pearson_or_zero(candidate: np.ndarray, planted: np.ndarray) -> float:
             denominator = sqrt(candidate_sum_squares * planted_sum_squares)
             correlation = float(np.dot(candidate_centered, planted_centered) / denominator)
     except (ArithmeticError, TypeError, ValueError, OverflowError, ZeroDivisionError):
-        return 0.0
+        return 0.0, False
     if (
         not isfinite(candidate_sum_squares)
         or not isfinite(planted_sum_squares)
@@ -440,8 +491,10 @@ def _pearson_or_zero(candidate: np.ndarray, planted: np.ndarray) -> float:
         or denominator <= 0.0
         or not isfinite(correlation)
     ):
-        return 0.0
-    return correlation
+        return 0.0, (
+            candidate_sum_squares == 0.0 or planted_sum_squares == 0.0
+        )
+    return correlation, False
 
 
 def _meets_metric_thresholds(rel_rmse: float, pearson_r: float) -> bool:

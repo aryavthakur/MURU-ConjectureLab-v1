@@ -109,6 +109,28 @@ def test_positive_scalar_truth_passes_without_reselection_or_refit(fixed_referen
     assert result.c_star == pytest.approx(0.5)
 
 
+@pytest.mark.parametrize(
+    ("multiplier", "expected_c_star"),
+    [("1e-200", 1e200), ("1e200", 1e-200)],
+)
+def test_extreme_positive_global_scales_preserve_exact_predictive_equivalence(
+    fixed_reference,
+    multiplier: str,
+    expected_c_star: float,
+):
+    """Raw dot-product overflow or underflow must not defeat scale invariance."""
+    result = predictive.score_predictive_equivalence(
+        f"{multiplier} * sqrt(mass / 250) * (1 + 0.4 * descriptor)",
+        constructed_truth(),
+    )
+
+    assert result.success is True
+    assert result.valid_count == 2160
+    assert result.c_star == pytest.approx(expected_c_star)
+    assert result.rel_rmse == pytest.approx(0.0)
+    assert result.pearson_r == pytest.approx(1.0)
+
+
 def test_reconstruction_uses_truth_fields_not_per_compound_values(fixed_reference):
     """A planted per-compound value would silently leak generated outcomes."""
     result = predictive.score_predictive_equivalence(
@@ -256,6 +278,19 @@ def test_zero_truth_variance_is_formally_a_zero_correlation_failure():
     assert result.valid_count == 2160
     assert result.pearson_r == 0.0
     assert result.failure_reason == "candidate or truth values have zero variance"
+
+
+def test_nonconstant_orthogonal_values_fail_the_pearson_threshold_not_zero_variance():
+    """A genuine r=0 differs from the contract's degenerate-variance rule."""
+    truth = np.tile((100.0, 100.0, 101.0, 101.0), 540)
+    candidate = np.tile((100.0, 101.0, 100.0, 101.0), 540)
+
+    result = predictive._score_arrays(candidate, truth)
+
+    assert result.success is False
+    assert result.rel_rmse is not None and result.rel_rmse <= 0.05
+    assert result.pearson_r == 0.0
+    assert result.failure_reason == "Pearson correlation is below the A3.4 threshold"
 
 
 def test_f09_reference_never_evaluates_its_descriptor_pole(fixed_reference, validated_reference):

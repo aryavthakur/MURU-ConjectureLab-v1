@@ -121,6 +121,24 @@ def test_truth_snapshot_binds_scalar_law_fields_without_per_compound_values():
     assert "per_compound" not in sidecar(truth=changed_values).to_canonical_json()
 
 
+def test_sidecar_freezes_the_truth_snapshot_when_input_maps_mutate_after_creation():
+    """An old score must retain the exact truth snapshot it was adjudicated on."""
+    truth = binding_truth()
+    record = sidecar(truth=truth)
+    original_json = record.to_canonical_json()
+    original_digest = record.scientific_digest()
+    original_truth_digest = record.truth_record_snapshot_digest
+
+    truth.coefficients["scale"] = 1.7
+    truth.coefficients["coefficient"] = 0.9
+    truth.exponents["mass"] = 0.6
+
+    assert record.to_canonical_json() == original_json
+    assert record.scientific_digest() == original_digest
+    assert record.truth_record_snapshot_digest == original_truth_digest
+    assert sidecar(truth=truth).scientific_digest() != original_digest
+
+
 def test_sidecar_serialization_is_byte_stable_and_excludes_time_path_and_diagnostics():
     """Runtime metadata must not perturb the scientific endpoint hash."""
     record = sidecar(
@@ -160,3 +178,9 @@ def test_sidecar_is_frozen_and_requires_digest_like_bindings():
         sidecar(source_case_record_digest="not-a-sha256")
     with pytest.raises(ValueError):
         sidecar(reference_digest="not-a-sha256")
+
+
+def test_sidecar_rejects_a_case_identifier_that_disagrees_with_its_truth():
+    """A binding record cannot pair one score's case ID with another truth law."""
+    with pytest.raises(ValueError, match="case ID must match truth case ID"):
+        sidecar(case_id="PB|constructed|F09|r000")

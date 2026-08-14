@@ -4,7 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from dataclasses import dataclass
+from dataclasses import InitVar, dataclass, field
 from typing import Any, Mapping
 
 from .a34_contract import EXPECTED_REFERENCE_DIGEST
@@ -139,13 +139,15 @@ class CandidateBindingSidecar:
     source_case_record_digest: str
     candidate_expression: str | None
     grammar_version: str
-    truth: TruthRecord
+    truth: InitVar[TruthRecord]
     result: PredictiveEquivalenceResult
     contract_identity: str = A34_CONTRACT_IDENTITY
     reference_digest: str = EXPECTED_REFERENCE_DIGEST
     schema_version: str = A34_RECORD_SCHEMA_VERSION
+    _truth_snapshot_json: str = field(init=False, repr=False)
+    _truth_snapshot_digest: str = field(init=False, repr=False)
 
-    def __post_init__(self) -> None:
+    def __post_init__(self, truth: TruthRecord) -> None:
         if not isinstance(self.case_id, str) or not self.case_id:
             raise ValueError("case ID must be a non-empty string")
         object.__setattr__(
@@ -164,8 +166,18 @@ class CandidateBindingSidecar:
             raise ValueError("candidate expression must be a string or None")
         if not isinstance(self.grammar_version, str) or not self.grammar_version:
             raise ValueError("grammar version must be a non-empty string")
-        if not isinstance(self.truth, TruthRecord):
+        if not isinstance(truth, TruthRecord):
             raise ValueError("truth must be a TruthRecord")
+        truth_snapshot = truth_record_snapshot_payload(truth)
+        if self.case_id != truth_snapshot["case_id"]:
+            raise ValueError("case ID must match truth case ID")
+        snapshot_json = canonical_json(truth_snapshot)
+        object.__setattr__(self, "_truth_snapshot_json", snapshot_json)
+        object.__setattr__(
+            self,
+            "_truth_snapshot_digest",
+            hashlib.sha256(snapshot_json.encode("utf-8")).hexdigest(),
+        )
         if not isinstance(self.contract_identity, str) or not self.contract_identity:
             raise ValueError("contract identity must be a non-empty string")
         if not isinstance(self.schema_version, str) or not self.schema_version:
@@ -182,7 +194,7 @@ class CandidateBindingSidecar:
 
     @property
     def truth_record_snapshot_digest(self) -> str:
-        return truth_record_snapshot_digest(self.truth)
+        return self._truth_snapshot_digest
 
     def scientific_payload(self) -> dict[str, object]:
         """Return the deterministic endpoint projection, without free text."""
