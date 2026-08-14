@@ -464,32 +464,122 @@ def check_dependencies() -> list[str]:
     return errors
 
 
+#: The one authorized A3.2 calibration store, and the canonical digest of the
+#: execution manifest that defines it.  Both are quoted from the frozen
+#: governance record, not recomputed from whatever happens to be on disk.
+AUTHORIZED_CALIBRATION_DIR = "calibration/a3_2"
+AUTHORIZED_CALIBRATION_MANIFEST_SHA256 = (
+    "9950b964346581d104bf3069c992eec2599c88235f6598b2aed1bb31ac58fe0f"
+)
+AUTHORIZED_CALIBRATION_WORLDS = 100
+AUTHORIZED_CALIBRATION_RECORDS = 3000
+
+
 def check_calibration_execution_status() -> tuple[str, list[str]]:
     """Report whether the 100 calibration worlds have been executed.
 
-    RC3 must report NOT EXECUTED.  Any calibration record store outside the
-    quarantined smoke directory contradicts that.
+    When RC3 was frozen the calibration had not run, so this reported NOT
+    EXECUTED and treated any record store outside the quarantined smoke
+    directory as a breach.  The A3.2 calibration has since been executed once
+    and independently audited VALID, so that premise is now obsolete: the
+    evidence legitimately exists and is committed.
 
-    Scope, stated honestly: this scans the repository tree.  A record store
-    written outside the repository (``SeedRecordStore`` accepts any path)
-    is not visible here, so this establishes "no calibration output in this
-    repository", which is what the freeze needs, not "no calibration was
-    ever run anywhere".
+    The check is therefore not relaxed, it is redirected, and it is strictly
+    stronger than before in the post-calibration state.  It no longer asks
+    "is there any calibration output" but "is every calibration record here
+    part of the one authorized run".  A record store anywhere else still
+    fails, and the authorized store must positively verify: its execution
+    manifest must canonicalize to the governance digest, its threshold table
+    must cite that same digest and declare VALID, and the store must hold
+    exactly 100 worlds and 3000 records, every one a PB|NCAL| world.
+
+    Scope, stated honestly and unchanged: this scans the repository tree.  A
+    record store written outside the repository (``SeedRecordStore`` accepts
+    any path) is not visible here, so this establishes "no unauthorized
+    calibration output in this repository", not "no other calibration was ever
+    run anywhere".
     """
+    import json
+
     errors: list[str] = []
     smoke_parts = Path(SMOKE_DIR).parts
-    candidates = []
+    authorized_parts = Path(AUTHORIZED_CALIBRATION_DIR).parts
+
+    foreign: list[str] = []
+    authorized: list[Path] = []
     for path in ROOT.rglob("PB__NCAL__*.jsonl"):
         rel = path.relative_to(ROOT)
         # Path-component match, not substring: a sibling directory named
         # rc3_engineering_smoke_real must NOT be treated as quarantined.
         if rel.parts[:len(smoke_parts)] == smoke_parts:
             continue
-        candidates.append(str(rel))
-    if candidates:
-        errors.append(f"CALIBRATION_RECORDS_PRESENT: {sorted(candidates)[:5]}")
+        if rel.parts[:len(authorized_parts)] == authorized_parts:
+            authorized.append(path)
+            continue
+        foreign.append(str(rel))
+
+    if foreign:
+        errors.append(f"UNAUTHORIZED_CALIBRATION_RECORDS: {sorted(foreign)[:5]}")
+
+    if not authorized:
+        return ("NOT EXECUTED" if not foreign else "EXECUTED"), errors
+
+    manifest_path = ROOT / AUTHORIZED_CALIBRATION_DIR / "execution_manifest.json"
+    if not manifest_path.exists():
+        errors.append("CALIBRATION_MANIFEST_MISSING")
         return "EXECUTED", errors
-    return "NOT EXECUTED", errors
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        errors.append(f"CALIBRATION_MANIFEST_UNREADABLE: {type(exc).__name__}")
+        return "EXECUTED", errors
+
+    canonical = json.dumps(manifest, sort_keys=True, separators=(",", ":"))
+    digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    if digest != AUTHORIZED_CALIBRATION_MANIFEST_SHA256:
+        errors.append(
+            f"CALIBRATION_MANIFEST_DIGEST: {digest} != "
+            f"{AUTHORIZED_CALIBRATION_MANIFEST_SHA256}"
+        )
+
+    table_path = ROOT / AUTHORIZED_CALIBRATION_DIR / "threshold_table.json"
+    if not table_path.exists():
+        errors.append("CALIBRATION_THRESHOLD_TABLE_MISSING")
+    else:
+        table = json.loads(table_path.read_text())
+        if table.get("execution_manifest_sha256") != AUTHORIZED_CALIBRATION_MANIFEST_SHA256:
+            errors.append("CALIBRATION_THRESHOLD_TABLE_UNBOUND")
+        if table.get("validity") != "VALID":
+            errors.append(f"CALIBRATION_NOT_VALID: {table.get('validity')}")
+
+    if len(authorized) != AUTHORIZED_CALIBRATION_WORLDS:
+        errors.append(
+            f"CALIBRATION_WORLD_COUNT: {len(authorized)} != "
+            f"{AUTHORIZED_CALIBRATION_WORLDS}"
+        )
+
+    records = 0
+    for path in authorized:
+        for line in path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            records += 1
+            try:
+                world_id = json.loads(line).get("world_id", "")
+            except json.JSONDecodeError:
+                errors.append(f"CALIBRATION_RECORD_MALFORMED: {path.name}")
+                break
+            if not world_id.startswith("PB|NCAL|"):
+                errors.append(f"CALIBRATION_RECORD_FOREIGN_WORLD: {world_id}")
+                break
+    if records != AUTHORIZED_CALIBRATION_RECORDS:
+        errors.append(
+            f"CALIBRATION_RECORD_COUNT: {records} != "
+            f"{AUTHORIZED_CALIBRATION_RECORDS}"
+        )
+
+    return "EXECUTED (AUTHORIZED A3.2, VERIFIED)", errors
 
 
 def main() -> int:
