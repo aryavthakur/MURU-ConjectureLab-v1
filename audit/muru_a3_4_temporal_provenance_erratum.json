@@ -1,0 +1,30 @@
+{
+  "classification": "TEMPORAL_PROVENANCE_ERRATUM_REQUIRED_OUTCOME_BLIND",
+  "scope": "ADDITIVE_GOVERNANCE_RECORD_ONLY",
+  "scientific_change": "NONE",
+  "outcome_inspection": "NONE",
+  "a3_4_source_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+  "a3_4_document_path": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+  "a3_4_document_sha256": "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada",
+  "frozen_first_durable_seed_definition": "The first durable seed is the first seed record persisted in version control before any outcome inspection; its identity is frozen at that commit and may not be reselected from later outputs.",
+  "chronology": {
+    "date": "2026-08-14",
+    "timezone": "EDT (UTC-04:00)",
+    "a3_4_commit_timestamp": "2026-08-14T11:56:23-04:00",
+    "merge_commit": "5055f69097aa0c6ce2ded6a3e57f0edfaea69faf",
+    "merge_commit_timestamp": "2026-08-14T12:27:08-04:00",
+    "event_order": [
+      "A3_4_FROZEN",
+      "A3_4_LINEAGE_MERGED"
+    ],
+    "event_timestamps": {
+      "A3_4_FROZEN": "2026-08-14T11:56:23-04:00",
+      "A3_4_LINEAGE_MERGED": "2026-08-14T12:27:08-04:00"
+    }
+  },
+  "release_control": {
+    "required_tag": "a3-4-temporal-provenance-erratum",
+    "tag_creation_condition": "Create the annotated tag only after this erratum is committed and its regression test is green.",
+    "git_history_is_authoritative_for_commit_and_tag_timestamps": true
+  }
+}
