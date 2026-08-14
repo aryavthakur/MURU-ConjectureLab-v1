@@ -31,6 +31,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+#: Engineering-owned changes inside the frozen set, declared once for all
+#: three amendment integrity scripts.  Reported separately from the amendment
+#: sets so an engineering exemption is never readable as a science amendment.
+from pb_engineering_paths import (  # noqa: E402
+    ENGINEERING_CHANGED_PATHS,
+    ENGINEERING_OWNER,
+    assert_engineering_paths_carry_no_science,
+)
 
 AMENDMENT_A2_FREEZE = "03cc4d3"
 
@@ -55,6 +65,7 @@ ALLOWED_CHANGED_PATHS = frozenset({
 })
 
 CHANGE_JUSTIFICATION = {
+    "requirements.lock.txt": "ENGINEERING (not this amendment): RC4.1 environment closure replaced the reduced 39-pin Phase-1 lock with the 50-pin lock the frozen runtime guard already enforced and the audited A3.2 calibration declared; no science moved",
     "src/muru/paper_benchmark/generator.py": "GENERATOR_VERSION bumped to paper-benchmark-generator-1.1.0; adds scientific_payload_hash helper (byte-neutral refactor)",
     "artifacts/paper_benchmark_case_manifest.json": "content_hash changes for all 380 cases (version string is part of the hash pre-image)",
     "artifacts/paper_benchmark_hash_inventory.json": "SHA-256 of the six regenerated row files, which change only in their content_hash fields",
@@ -241,13 +252,15 @@ def _population_invariants() -> dict[str, object]:
 def build_manifest() -> dict[str, object]:
     from muru.paper_benchmark.generator import GENERATOR_VERSION
 
+    assert_engineering_paths_carry_no_science()
     tracked = _tracked_comparison()
     rows = _row_comparison()
     invariants = _population_invariants()
 
     changed = tracked["changed"]
-    unexpected_changed = sorted(set(changed) - ALLOWED_CHANGED_PATHS)
-    declared_missing = sorted(ALLOWED_CHANGED_PATHS - set(changed))
+    allowed_changed = ALLOWED_CHANGED_PATHS | ENGINEERING_CHANGED_PATHS
+    unexpected_changed = sorted(set(changed) - allowed_changed)
+    declared_missing = sorted(allowed_changed - set(changed))
     expected_denominators = {
         "scalar_competence": 164, "family_recovery": 144, "principal_structural_safety": 36,
         "m0_specificity": 164, "m1_sensitivity": 36, "m2_sensitivity": 24, "m3_sensitivity": 24,
@@ -284,6 +297,11 @@ def build_manifest() -> dict[str, object]:
         "removed_paths": sorted(tracked["removed"]),
         "unexpected_changed_paths": unexpected_changed,
         "declared_changed_paths_not_actually_changed": declared_missing,
+        "changed_by_engineering": {
+            ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),
+        },
+        "engineering_declared_paths": sorted(ENGINEERING_CHANGED_PATHS),
+        "engineering_paths_carry_no_science": True,
         "generated_row_comparison": rows,
         "population_invariants": invariants,
         "population_invariants_hold": invariants_hold,

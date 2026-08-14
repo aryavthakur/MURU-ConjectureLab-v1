@@ -8,11 +8,16 @@
   "added_sha256": {
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md": "8416fb1419bc3ee427910cc680b4f17ba8eb1ab934b85899d58afc82e90f60bd",
     "artifacts/paper_benchmark_amendment_a2_1.json": "self",
-    "scripts/pb_32_amendment_a2_1_integrity.py": "df729185821d5f5d8af0737d9f3ba30f94ced4915fa88faf10a98b35e4ad63be",
+    "scripts/pb_32_amendment_a2_1_integrity.py": "6184b221c03217d4d19caffb91e12be4ad184e0ce03ee95f50b6202c2d674e5e",
     "tests/test_paper_benchmark_amendment_a2_1_integrity.py": "736ebc44db9646cfab69d934f257b7db065a96322626a5aff58f3ed67b716717"
   },
   "amendment": "A2.1",
   "amendment_a2_freeze": "03cc4d3",
+  "changed_by_engineering": {
+    "RC4.1_environment_closure": [
+      "requirements.lock.txt"
+    ]
+  },
   "changed_paths": [
     "artifacts/paper_benchmark_amendment_a1.json",
     "artifacts/paper_benchmark_amendment_a2.json",
@@ -20,6 +25,7 @@
     "artifacts/paper_benchmark_content_freeze.json",
     "artifacts/paper_benchmark_hash_inventory.json",
     "artifacts/paper_benchmark_preflight.json",
+    "requirements.lock.txt",
     "scripts/pb_30_amendment_a1_integrity.py",
     "scripts/pb_31_amendment_a2_integrity.py",
     "src/muru/paper_benchmark/generator.py",
@@ -58,13 +64,18 @@
       "a2_sha256": "0414ea83314f7b7e532172f1652adf0f9a16a1605e95ea5442459ad767fdea66",
       "justification": "re-measured wall/cpu/rss; artifact_bytes is unchanged (content_hash is fixed-width hex)"
     },
+    "requirements.lock.txt": {
+      "a2_1_sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+      "a2_sha256": "1a6e61d6e006110e1afd8b2d065332107a8b2d05dec537ee5f4fc570887e13cb",
+      "justification": "ENGINEERING (not this amendment): RC4.1 environment closure replaced the reduced 39-pin Phase-1 lock with the 50-pin lock the frozen runtime guard already enforced and the audited A3.2 calibration declared; no science moved"
+    },
     "scripts/pb_30_amendment_a1_integrity.py": {
-      "a2_1_sha256": "c8648d0fc03697971af7d2e16ad285388a52d052b890406bce03a7be06f1cddc",
+      "a2_1_sha256": "36199251fae9be441b73412383d6b33647882c0b37d1f3b0279e99b75f62e1a9",
       "a2_sha256": "540b541d66349e2a9dc7c2a1214e16cf7b6d6fa4584b72bb95ea104b83b46d4a",
       "justification": "bookkeeping: imports A2.1's allowed-path sets alongside A2's"
     },
     "scripts/pb_31_amendment_a2_integrity.py": {
-      "a2_1_sha256": "94dd8f1a1c7695a67594597f0974076074c3bb1170e6dde8b7b13b770bde8c69",
+      "a2_1_sha256": "3db5d2b4a9e085c1de391bda5be90adebc3d0ad55870e6474bc1e11caaac2f96",
       "a2_sha256": "3c30781254ac0658c638be07a545f6a9ac8b219091983cd299eb667a73e2096e",
       "justification": "row comparison made payload-aware so it stays accurate across a later metadata-only bump"
     },
@@ -79,7 +90,7 @@
       "justification": "content_hash pins replaced with version-independent scientific_payload_hash pins"
     },
     "tests/test_paper_benchmark_amendment_integrity.py": {
-      "a2_1_sha256": "54c48e18519f49c478ae1a1434c9bce5704aa9025c18c39c7fd5463ed4f29c77",
+      "a2_1_sha256": "bfdbeec8388b1e0d6773d6b1eea3de2e750bdeca2118491ed8d0f6ce4b0cc0d3",
       "a2_sha256": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
       "justification": "asserts the new three-amendment (A1/A2/A2.1) attribution split"
     },
@@ -92,6 +103,10 @@
   "declared_changed_paths_not_actually_changed": [],
   "development_outcomes_executed": false,
   "effective_content_freeze": "the Amendment A2.1 commit, tagged benchmark-content-freeze-a2-1",
+  "engineering_declared_paths": [
+    "requirements.lock.txt"
+  ],
+  "engineering_paths_carry_no_science": true,
   "frozen_path_count": 259,
   "generated_row_comparison": {
     "case_records_content_hash_changed": 380,
@@ -170,7 +185,7 @@
     "root_seed": 20260813
   },
   "population_invariants_hold": true,
-  "protected_unchanged_count": 247,
+  "protected_unchanged_count": 246,
   "protected_unchanged_paths": [
     ".gitignore",
     "BACKLOG.md",
@@ -289,7 +304,6 @@
     "docs/superpowers/plans/2026-08-13-muru-paper-benchmark.md",
     "docs/superpowers/specs/2026-08-13-muru-paper-benchmark-design.md",
     "pytest.ini",
-    "requirements.lock.txt",
     "scripts/ov_00_env.py",
     "scripts/ov_01_runtime_budget.py",
     "scripts/ov_10_build_worlds.py",

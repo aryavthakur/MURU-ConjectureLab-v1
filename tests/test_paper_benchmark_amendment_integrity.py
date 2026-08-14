@@ -102,6 +102,17 @@ A2_1_ADDED = [
     "scripts/pb_32_amendment_a2_1_integrity.py",
     "tests/test_paper_benchmark_amendment_a2_1_integrity.py",
 ]
+#: Not an amendment.  The RC4.1 environment closure repaired one engineering
+#: file inside the V1-frozen path set: `requirements.lock.txt` was a reduced
+#: 39-pin Phase-1 lock omitting SymPy, mpmath, PySR, gplearn and the Julia
+#: bridge, while README.md instructs a replicator to build the environment
+#: from it.  It is now byte-identical to the 50-pin
+#: `configs/rc3_requirements_lock_c7c2332.txt` the frozen runtime guard
+#: already enforced and the audited A3.2 calibration declared.  No scientific
+#: definition moved, which is what the last test in this module pins.
+ENGINEERING_CHANGED = [
+    "requirements.lock.txt",
+]
 
 
 def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze(tmp_path):
@@ -114,7 +125,10 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
     # more, leaving 237 still byte-identical to the original content freeze.
     # A2.1 changed no path A2 had not already changed, so 237 is unchanged.
     assert manifest["frozen_path_count"] == 247
-    assert manifest["protected_unchanged_count"] == 237
+    # 237 until the RC4.1 environment closure, which repaired exactly one
+    # engineering-only path inside the frozen set (requirements.lock.txt),
+    # leaving 236 byte-identical to the original content freeze.
+    assert manifest["protected_unchanged_count"] == 236
     assert manifest["unexpected_changed_paths"] == []
     assert manifest["removed_paths"] == []
 
@@ -122,8 +136,38 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
 def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp_path):
     _, manifest = _run(tmp_path)
 
-    assert sorted(manifest["changed_paths"]) == sorted(set(A1_CHANGED) | set(A2_CHANGED) | set(A2_1_CHANGED))
+    assert sorted(manifest["changed_paths"]) == sorted(
+        set(A1_CHANGED) | set(A2_CHANGED) | set(A2_1_CHANGED) | set(ENGINEERING_CHANGED)
+    )
     assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED) | set(A2_1_ADDED))
+
+
+def test_the_engineering_change_is_attributed_to_engineering_not_to_an_amendment(tmp_path):
+    """An engineering exemption must never be readable as a science amendment."""
+    _, manifest = _run(tmp_path)
+
+    assert manifest["changed_by_engineering"]["RC4.1_environment_closure"] == sorted(
+        ENGINEERING_CHANGED
+    )
+    for amendment in ("A1", "A2", "A2.1"):
+        assert not set(manifest["changed_by_amendment"][amendment]) & set(
+            ENGINEERING_CHANGED
+        )
+
+
+def test_no_engineering_exemption_can_cover_a_benchmark_science_path(tmp_path):
+    _, manifest = _run(tmp_path)
+
+    forbidden = (
+        "src/muru/paper_benchmark/",
+        "artifacts/",
+        "MURU_PAPER_BENCHMARK",
+        "tests/test_a3_",
+        "tests/test_paper_benchmark",
+    )
+    assert manifest["engineering_paths_carry_no_science"] is True
+    for path in manifest["engineering_declared_paths"]:
+        assert not path.startswith(forbidden), path
 
 
 def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):

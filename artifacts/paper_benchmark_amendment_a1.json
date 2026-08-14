@@ -47,16 +47,16 @@
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md": "8416fb1419bc3ee427910cc680b4f17ba8eb1ab934b85899d58afc82e90f60bd",
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md": "65598aa80b9d03f5c4e276e109917eae06690fe4a2b86c6ec3d2150ff8e296b7",
     "artifacts/paper_benchmark_amendment_a1.json": "self",
-    "artifacts/paper_benchmark_amendment_a2.json": "e296b442d100670a47c0b01aa9ac84afbf5900fd80dc190df87398423c992ee3",
-    "artifacts/paper_benchmark_amendment_a2_1.json": "5577bbf1897cd790b74d4952455bae1778b1dfbfbd1f0d2133d8db3eda04670f",
-    "scripts/pb_30_amendment_a1_integrity.py": "c8648d0fc03697971af7d2e16ad285388a52d052b890406bce03a7be06f1cddc",
-    "scripts/pb_31_amendment_a2_integrity.py": "94dd8f1a1c7695a67594597f0974076074c3bb1170e6dde8b7b13b770bde8c69",
-    "scripts/pb_32_amendment_a2_1_integrity.py": "df729185821d5f5d8af0737d9f3ba30f94ced4915fa88faf10a98b35e4ad63be",
+    "artifacts/paper_benchmark_amendment_a2.json": "d954f990a81a7406b9cb8c60e12249a855be2ea28676dc8a999b536e7b78012e",
+    "artifacts/paper_benchmark_amendment_a2_1.json": "2230b74d5dde07e669721584fe1e5f2971c2abfb8b0c883ef1e17aba3285dbe2",
+    "scripts/pb_30_amendment_a1_integrity.py": "36199251fae9be441b73412383d6b33647882c0b37d1f3b0279e99b75f62e1a9",
+    "scripts/pb_31_amendment_a2_integrity.py": "3db5d2b4a9e085c1de391bda5be90adebc3d0ad55870e6474bc1e11caaac2f96",
+    "scripts/pb_32_amendment_a2_1_integrity.py": "6184b221c03217d4d19caffb91e12be4ad184e0ce03ee95f50b6202c2d674e5e",
     "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
     "tests/test_paper_benchmark_adequacy.py": "e646c689c10de75548a09b1ab3fa17a1831ccdc69437b3bc6f279e3337aadcc1",
     "tests/test_paper_benchmark_amendment_a2_1_integrity.py": "736ebc44db9646cfab69d934f257b7db065a96322626a5aff58f3ed67b716717",
     "tests/test_paper_benchmark_amendment_a2_integrity.py": "4936283f6802c303e5b180bdac8011e6481a83a79ecfcda87d4c3d18687ac5c5",
-    "tests/test_paper_benchmark_amendment_integrity.py": "54c48e18519f49c478ae1a1434c9bce5704aa9025c18c39c7fd5463ed4f29c77",
+    "tests/test_paper_benchmark_amendment_integrity.py": "bfdbeec8388b1e0d6773d6b1eea3de2e750bdeca2118491ed8d0f6ce4b0cc0d3",
     "tests/test_paper_benchmark_f16_combined.py": "ce814ffa1bf6fea9f4fcee87b54e1559d4429c45c8d8bc19b368c051b11043c7"
   },
   "amendment": "A1",
@@ -88,6 +88,11 @@
       "src/muru/paper_benchmark/generator.py"
     ]
   },
+  "changed_by_engineering": {
+    "RC4.1_environment_closure": [
+      "requirements.lock.txt"
+    ]
+  },
   "changed_paths": [
     "MURU_PAPER_BENCHMARK_FREEZE.md",
     "MURU_PAPER_BENCHMARK_METRICS.md",
@@ -96,6 +101,7 @@
     "artifacts/paper_benchmark_content_freeze.json",
     "artifacts/paper_benchmark_hash_inventory.json",
     "artifacts/paper_benchmark_preflight.json",
+    "requirements.lock.txt",
     "src/muru/paper_benchmark/analysis.py",
     "src/muru/paper_benchmark/generator.py",
     "tests/test_paper_benchmark_docs.py"
@@ -129,6 +135,10 @@
       "amended_sha256": "fb83d19d3070acd43d562f7d9e76deb57769de4b0341ea6bde03f934130b239a",
       "original_sha256": "d48eb5ebb0574f9f384fc10cf5e93ad05264bc0c9333ff21f6ba75bad6956158"
     },
+    "requirements.lock.txt": {
+      "amended_sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+      "original_sha256": "1a6e61d6e006110e1afd8b2d065332107a8b2d05dec537ee5f4fc570887e13cb"
+    },
     "src/muru/paper_benchmark/analysis.py": {
       "amended_sha256": "22243eeab1233459e1575b83c69dea781b995fabe1029573af759088d86248d1",
       "original_sha256": "b2fad8777ce4e5bb0c30d3d3fcbb0751c24fcb1653496d7ee9b36566f96eded7"
@@ -152,13 +162,17 @@
     "tests/test_paper_benchmark_f16_combined.py"
   ],
   "effective_content_freeze": "the Amendment A2.1 commit, tagged benchmark-content-freeze-a2-1",
+  "engineering_declared_paths": [
+    "requirements.lock.txt"
+  ],
+  "engineering_paths_carry_no_science": true,
   "frozen_path_count": 247,
   "held_out_integrity_note": "inputs/*.jsonl and truth/*.jsonl are untracked regenerable bytes absent from the tree; their SHA-256 values live in the unchanged paper_benchmark_hash_inventory.json",
   "held_out_rows_opened": false,
   "integrity_verified": true,
   "original_content_freeze": "d94d2c9",
   "original_freeze_designation": "BENCHMARK CONTENT FREEZE V1",
-  "protected_unchanged_count": 237,
+  "protected_unchanged_count": 236,
   "protected_unchanged_paths": [
     ".gitignore",
     "BACKLOG.md",
@@ -271,7 +285,6 @@
     "docs/superpowers/plans/2026-08-13-muru-paper-benchmark.md",
     "docs/superpowers/specs/2026-08-13-muru-paper-benchmark-design.md",
     "pytest.ini",
-    "requirements.lock.txt",
     "scripts/ov_00_env.py",
     "scripts/ov_01_runtime_budget.py",
     "scripts/ov_10_build_worlds.py",
@@ -510,7 +523,6 @@
     "docs/superpowers/plans/2026-08-13-muru-paper-benchmark.md": "b34428d51ed488367fdeb6ea29d5bf3d12d4db642da8443fce84794cd2bdb3cb",
     "docs/superpowers/specs/2026-08-13-muru-paper-benchmark-design.md": "8ce2fdfc2e0cc6e14c161107123f6ebbd57d01352555fcfb930d595112cf9202",
     "pytest.ini": "ae52f2f8c1a0bfb9d35f074821cd01b90db506a22feb086ad00c12c4c7bbe658",
-    "requirements.lock.txt": "1a6e61d6e006110e1afd8b2d065332107a8b2d05dec537ee5f4fc570887e13cb",
     "scripts/ov_00_env.py": "3b55db713885e7010121396a66ac3c51e22e24b66a591d826596190d5e0b6200",
     "scripts/ov_01_runtime_budget.py": "002cdfad091816f29ea3e46f3ae307190ec56e9a6f6003478e106205df0c956f",
     "scripts/ov_10_build_worlds.py": "ca0f3328533543fe8d9e86d24dcec980482ec0c3fabd1d72348be97040af0e9b",

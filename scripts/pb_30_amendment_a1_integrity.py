@@ -55,6 +55,17 @@ ALLOWED_ADDED_PATHS = frozenset({
     "tests/test_paper_benchmark_amendment_integrity.py",
 })
 
+#: Engineering-owned changes inside the frozen set, declared in one place so
+#: pb_30/pb_31/pb_32 cannot disagree, and reported separately from
+#: `changed_by_amendment` so an engineering exemption can never be read as a
+#: science amendment.
+from pb_engineering_paths import (  # noqa: E402
+    ENGINEERING_CHANGED_PATHS,
+    ENGINEERING_OWNER,
+    SCIENCE_SURFACE_PREFIXES,
+    assert_engineering_paths_carry_no_science,
+)
+
 #: The provenance record cannot contain its own hash; it is verified by the
 #: contract tests instead.
 SELF_EXCLUDED = "artifacts/paper_benchmark_amendment_a1.json"
@@ -83,6 +94,7 @@ def _digest(payload: bytes) -> str:
 
 
 def build_manifest() -> dict[str, object]:
+    assert_engineering_paths_carry_no_science()
     unchanged: dict[str, str] = {}
     changed: dict[str, dict[str, str]] = {}
     removed: list[str] = []
@@ -108,7 +120,10 @@ def build_manifest() -> dict[str, object]:
             continue
         added[path] = "self" if path == SELF_EXCLUDED else _digest(candidate.read_bytes())
 
-    allowed_changed = ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS | A2_1_ALLOWED_CHANGED_PATHS
+    amendment_changed = (
+        ALLOWED_CHANGED_PATHS | A2_ALLOWED_CHANGED_PATHS | A2_1_ALLOWED_CHANGED_PATHS
+    )
+    allowed_changed = amendment_changed | ENGINEERING_CHANGED_PATHS
     unexpected_changed = sorted(set(changed) - allowed_changed)
     declared_missing = sorted(allowed_changed - set(changed))
     breach = bool(unexpected_changed or removed)
@@ -118,6 +133,11 @@ def build_manifest() -> dict[str, object]:
             "A2": sorted(set(changed) & A2_ALLOWED_CHANGED_PATHS),
             "A2.1": sorted(set(changed) & A2_1_ALLOWED_CHANGED_PATHS),
         },
+        "changed_by_engineering": {
+            ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),
+        },
+        "engineering_declared_paths": sorted(ENGINEERING_CHANGED_PATHS),
+        "engineering_paths_carry_no_science": True,
         "added_by_amendment": {
             "A1": sorted(path for path in added if path in ALLOWED_ADDED_PATHS),
             "A2": sorted(path for path in added if path in A2_ALLOWED_ADDED_PATHS),
@@ -162,6 +182,10 @@ def main() -> int:
     print(f"changed:                 {len(manifest['changed_paths'])}")
     print(f"added:                   {len(manifest['added_paths'])}")
     print(f"removed:                 {len(manifest['removed_paths'])}")
+    print(
+        "  of which engineering:  "
+        f"{len(manifest['changed_by_engineering'][ENGINEERING_OWNER])}"
+    )
     if not manifest["integrity_verified"]:
         print("INTEGRITY BREACH", file=sys.stderr)
         for path in manifest["unexpected_changed_paths"]:
