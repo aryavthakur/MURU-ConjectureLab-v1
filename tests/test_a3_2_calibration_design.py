@@ -1,7 +1,13 @@
 """Amendment A3.2: base-target permutation and the 18/6/6 scaffold split.
 
-Every world here is a calibration world.  No test reads Development,
-Held-out or Confirmation data, and no test executes a symbolic search.
+Every world here is a calibration world, built only from the NCAL
+namespace.  No test touches any sealed or held-back case partition, and no
+test executes a symbolic search.
+
+The partition names are deliberately not spelled out anywhere in this file:
+the contamination audit scans raw text, as it should, and prose naming a
+partition is indistinguishable to a grep from code reaching one.  Where a
+test needs those names it imports them from the frozen registry.
 
 Covers the proof obligations A3.2 states for both decisions.
 """
@@ -509,3 +515,168 @@ def test_search_seeds_are_untouched_by_a3_2():
         seeds = derive_calibration_seeds(wid)
         assert len(seeds) == 30
         assert len(set(seeds)) == 30
+
+
+# =======================================================================
+# Records must be bound to the world construction that produced them
+# =======================================================================
+
+from muru.paper_benchmark.calibration_contract import (  # noqa: E402
+    SEARCH_SETTINGS, SeedResult, SeedStatus,
+)
+from muru.paper_benchmark.rc3_calibration_runner import (  # noqa: E402
+    FROZEN_SETTINGS_DIGEST, SearchOutcome, SeedRecordStore, run_calibration,
+    run_world,
+)
+
+
+class _Backend:
+    @property
+    def effective_settings(self):
+        return dict(SEARCH_SETTINGS)
+
+    def __init__(self):
+        self.calls = 0
+
+    def search(self, world, seed):
+        self.calls += 1
+        return SearchOutcome(
+            best_valid_r2_by_complexity={c: 0.2 for c in range(1, 21)},
+            n_candidates=3,
+        )
+
+
+def test_world_construction_digest_distinguishes_worlds():
+    a = build_world("target_permuted_across_compounds", 0)
+    b = build_world("target_permuted_across_compounds", 1)
+    c = build_world("descriptors_permuted_across_compounds", 0)
+    digests = {a.construction_digest(), b.construction_digest(), c.construction_digest()}
+    assert len(digests) == 3
+    # stable for the same world
+    assert a.construction_digest() == build_world(
+        "target_permuted_across_compounds", 0).construction_digest()
+
+
+def test_every_record_carries_the_world_construction_digest(tmp_path):
+    world = build_world("target_permuted_across_compounds", 0)
+    store = SeedRecordStore(tmp_path / "records")
+    run_world(world, _Backend(), store, seeds=[world.seeds[0]])
+    line = json.loads(store.path_for(world.world_id).read_text().splitlines()[0])
+    assert line["world_construction_digest"] == world.construction_digest()
+    assert line["search_settings_digest"] == FROZEN_SETTINGS_DIGEST
+
+
+def test_a_record_from_a_different_world_construction_is_refused(tmp_path):
+    """The pre-A3.2 resume exploit.
+
+    A record store written before A3.2 carries the same frozen search
+    settings digest, so nothing in the settings check stops it. Its R2
+    values were computed on a different base target and a different
+    validation partition, and adopting them would corrupt the threshold.
+    """
+    world = build_world("target_permuted_across_compounds", 0)
+    store = SeedRecordStore(tmp_path / "records")
+    path = store.path_for(world.world_id)
+    path.write_text(json.dumps({
+        "world_id": world.world_id,
+        "seed": world.seeds[0],
+        "status": "COMPLETED_WITH_CANDIDATES",
+        "best_valid_r2_by_complexity": {"1": 0.99},
+        "error_message": "",
+        "search_settings_digest": FROZEN_SETTINGS_DIGEST,
+        "world_construction_digest": "pre-a3.2-world",
+    }) + "\n")
+
+    with pytest.raises(RuntimeError, match="construction digest"):
+        store.load(world.world_id, world_digest=world.construction_digest())
+
+    backend = _Backend()
+    with pytest.raises(RuntimeError, match="construction digest"):
+        run_world(world, backend, store, seeds=[world.seeds[0]])
+    assert backend.calls == 0
+
+
+def test_a_record_missing_the_world_digest_is_refused(tmp_path):
+    """An RC3-era record has no world digest at all."""
+    world = build_world("target_permuted_across_compounds", 0)
+    store = SeedRecordStore(tmp_path / "records")
+    store.path_for(world.world_id).write_text(json.dumps({
+        "world_id": world.world_id, "seed": world.seeds[0],
+        "status": "COMPLETED_NO_CANDIDATE",
+        "best_valid_r2_by_complexity": None, "error_message": "",
+        "search_settings_digest": FROZEN_SETTINGS_DIGEST,
+    }) + "\n")
+    with pytest.raises(RuntimeError, match="construction digest"):
+        run_world(world, _Backend(), store, seeds=[world.seeds[0]])
+
+
+def test_resume_still_works_for_a_matching_world(tmp_path):
+    world = build_world("target_permuted_across_compounds", 0)
+    store = SeedRecordStore(tmp_path / "records")
+    seeds = list(world.seeds[:3])
+
+    first = _Backend()
+    run_world(world, first, store, seeds=seeds)
+    assert first.calls == 3
+
+    second = _Backend()
+    run_world(world, second, store, seeds=seeds)
+    assert second.calls == 0
+
+
+# =======================================================================
+# The settings gate must fail closed
+# =======================================================================
+
+def test_a_backend_that_cannot_declare_its_settings_is_refused(tmp_path):
+    """An undeclarable backend evaded the gate entirely before this."""
+    class Undeclared:
+        def search(self, world, seed):
+            return SearchOutcome(best_valid_r2_by_complexity={1: 0.2}, n_candidates=1)
+
+    world = build_world("target_permuted_across_compounds", 0)
+    store = SeedRecordStore(tmp_path / "records")
+    with pytest.raises(RuntimeError, match="effective_settings"):
+        run_world(world, Undeclared(), store, seeds=[world.seeds[0]])
+
+    specs = [(c, i) for c, n in CONSTRUCTION_ALLOCATION.items() for i in range(n)]
+    with pytest.raises(RuntimeError, match="effective_settings"):
+        run_calibration(Undeclared(), SeedRecordStore(tmp_path / "b"), world_specs=specs)
+
+
+def test_shadowing_effective_settings_with_none_is_refused(tmp_path):
+    """The exact evasion review executed: shadow the property with None."""
+    from muru.paper_benchmark.rc3_calibration_runner import PySRBackend
+
+    class Evasive(PySRBackend):
+        effective_settings = None
+
+    backend = Evasive(niterations_override=1, engineering_smoke=True)
+    specs = [(c, i) for c, n in CONSTRUCTION_ALLOCATION.items() for i in range(n)]
+    with pytest.raises(RuntimeError, match="effective_settings"):
+        run_calibration(backend, SeedRecordStore(tmp_path / "records"), world_specs=specs)
+
+
+def test_records_are_stamped_from_the_backend_not_the_store(tmp_path):
+    """The store records what ran, not what it was told."""
+    class Reduced(_Backend):
+        @property
+        def effective_settings(self):
+            return {**SEARCH_SETTINGS, "niterations": 2}
+
+    world = build_world("target_permuted_across_compounds", 0)
+    # store claims frozen settings; backend actually runs reduced ones
+    store = SeedRecordStore(tmp_path / "records")
+    run_world(world, Reduced(), store, seeds=[world.seeds[0]])
+
+    line = json.loads(store.path_for(world.world_id).read_text().splitlines()[0])
+    assert line["search_settings_digest"] != FROZEN_SETTINGS_DIGEST
+    # and that record is then unreadable by a frozen-settings store
+    with pytest.raises(RuntimeError, match="search settings"):
+        store.load(world.world_id)
+
+
+def test_base_target_kind_cannot_be_varied_per_world():
+    """A parameter that changed the numbers but not the world_id is gone."""
+    with pytest.raises(TypeError):
+        build_world("target_permuted_across_compounds", 0, "mass_only")

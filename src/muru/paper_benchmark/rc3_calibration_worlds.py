@@ -93,6 +93,7 @@ PySR search seeds            ``calibration_contract.derive_calibration_seeds``
 """
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from typing import Sequence
 
@@ -217,9 +218,25 @@ class CalibrationWorld:
 
     def split_masks(self) -> dict[str, np.ndarray]:
         splits = np.asarray(self.compounds["split"], dtype=object)
-        return {
-            name: splits == name for name in ("train", "validation", "test")
-        }
+        return {name: splits == name for name in SPLIT_ORDER}
+
+    def construction_digest(self) -> str:
+        """Identity of the world's actual scientific content.
+
+        Binds the base-target values, the split labels and the scaffold
+        labels, so a seed record can prove it was produced on THIS world.
+        A record made before A3.2 - different base target, different split -
+        cannot match, and is therefore not adoptable on resume.
+        """
+        payload = hashlib.sha256()
+        payload.update(self.world_id.encode("utf-8"))
+        payload.update(BASE_TARGET_ALGORITHM.encode("utf-8"))
+        payload.update(SPLIT_ALGORITHM.encode("utf-8"))
+        payload.update(np.asarray(self.target, dtype=np.float64).tobytes())
+        for column in ("scaffold_id", "split"):
+            values = "|".join(str(v) for v in self.compounds[column])
+            payload.update(values.encode("utf-8"))
+        return payload.hexdigest()
 
 
 def iter_world_ids() -> list[str]:
@@ -308,7 +325,16 @@ def assign_calibration_split(
     ``compounds`` row order.
     """
     scaffolds = np.asarray(compounds["scaffold_id"], dtype=object)
-    unique = np.array(sorted(set(scaffolds)), dtype=object)
+    # Sort only after confirming the labels are mutually comparable, so a
+    # NaN or a mixed int/str scaffold column raises ScaffoldGeometryError
+    # rather than escaping as a bare TypeError from sorted().
+    try:
+        unique = np.array(sorted(set(scaffolds)), dtype=object)
+    except TypeError as exc:
+        raise ScaffoldGeometryError(
+            f"scaffold labels are not mutually comparable ({exc}); "
+            f"refusing to approximate 60/20/20"
+        ) from exc
 
     if len(unique) != N_SCAFFOLD_GROUPS:
         raise ScaffoldGeometryError(
@@ -337,11 +363,7 @@ def assign_calibration_split(
     return np.array([assignment[s] for s in scaffolds], dtype=object)
 
 
-def build_world(
-    construction: str,
-    index: int,
-    base_target_kind: str | None = None,
-) -> CalibrationWorld:
+def build_world(construction: str, index: int) -> CalibrationWorld:
     """Build one calibration world, under Amendment A3.2.
 
     The world is a pure function of ``(construction, index)``: identical
@@ -351,6 +373,11 @@ def build_world(
     permutation, then the calibration split, then the null-family
     transformation.  The base target is randomized before any partition
     exists, so the split cannot have informed it.
+
+    There is deliberately no ``base_target_kind`` parameter.  A3.2 pins the
+    base target, and a parameter that changed a world's numbers while leaving
+    its ``world_id`` unchanged would let two different worlds share one seed
+    record file.
     """
     _check_construction(construction)
     if index < 0 or index >= CONSTRUCTION_ALLOCATION[construction]:
@@ -359,7 +386,7 @@ def build_world(
             f"for construction {construction!r}; the frozen allocation is "
             f"{dict(CONSTRUCTION_ALLOCATION)}"
         )
-    kind = BASE_TARGET_KIND if base_target_kind is None else base_target_kind
+    kind = BASE_TARGET_KIND
     world_id = derive_world_id(construction, index)
 
     compounds, _seeds = _synthetic_compounds(world_id)
@@ -419,9 +446,7 @@ def build_world(
     )
 
 
-def build_all_worlds(
-    base_target_kind: str | None = None,
-) -> list[CalibrationWorld]:
+def build_all_worlds() -> list[CalibrationWorld]:
     """Build all 100 worlds in the frozen allocation order.
 
     Materializing all 100 worlds is cheap; *executing* them is not, and this
@@ -433,7 +458,7 @@ def build_all_worlds(
     worlds: list[CalibrationWorld] = []
     for construction in CONSTRUCTION_ALLOCATION:
         for index in range(CONSTRUCTION_ALLOCATION[construction]):
-            worlds.append(build_world(construction, index, base_target_kind))
+            worlds.append(build_world(construction, index))
     if len(worlds) != N_CALIBRATION_WORLDS:  # pragma: no cover - frozen sum
         raise RuntimeError(
             f"expected {N_CALIBRATION_WORLDS} worlds, built {len(worlds)}"

@@ -189,6 +189,27 @@ def check_a3_2_governance() -> list[str]:
             actual = sha256_file(ROOT / rel)
             if actual != expected:
                 errors.append(f"A3_2_PROTECTED_DRIFT: {rel}")
+
+        # The aggregate digest and the amendment's own file digest were
+        # recorded but never recomputed by any verifier. A digest nothing
+        # checks is decoration.
+        digests = payload["protected_sha256"]
+        aggregate = hashlib.sha256(
+            "".join(f"{p}:{digests[p]}\n" for p in sorted(digests)).encode("utf-8")
+        ).hexdigest()
+        if aggregate != payload["protected_path_digest"]:
+            errors.append(
+                f"A3_2_AGGREGATE_DIGEST: recomputed {aggregate}, recorded "
+                f"{payload['protected_path_digest']}"
+            )
+        for rel, expected in payload["amendment_file_sha256"].items():
+            if expected == "self":
+                continue  # a file cannot contain its own digest
+            actual = sha256_file(ROOT / rel)
+            if actual != expected:
+                errors.append(
+                    f"A3_2_AMENDMENT_DIGEST: {rel} is {actual}, recorded {expected}"
+                )
         if payload["status"]["calibration"] != "NOT_EXECUTED":
             errors.append("A3_2_STATUS: calibration is not NOT_EXECUTED")
         for key, want in (("development", "NOT_OPENED"),
@@ -242,33 +263,20 @@ def check_rc3_files() -> tuple[list[str], dict[str, str]]:
     return errors, hashes
 
 
-def executable_code(source: str) -> str:
-    """Strip comments and string literals, leaving executable code.
-
-    Contamination is a code-level reference to a sealed partition, not the
-    English word appearing in a docstring that promises not to touch it.
-    Scanning prose makes the audit unable to distinguish "loads Development"
-    from "never loads Development", which is the wrong way round.
-
-    Data-access *literals* are still caught: they are checked against the raw
-    text by the caller, precisely because they live inside strings.
-    """
-    import io
-    import tokenize
-
-    kept: list[str] = []
-    try:
-        for token in tokenize.generate_tokens(io.StringIO(source).readline):
-            if token.type in (tokenize.COMMENT, tokenize.STRING):
-                continue
-            kept.append(token.string)
-    except (tokenize.TokenError, IndentationError):  # pragma: no cover
-        return source  # unparseable: fall back to scanning everything
-    return " ".join(kept)
-
-
 def check_no_development_contamination() -> list[str]:
-    """RC3 source must not name, load, or reference Development outcomes."""
+    """RC3 source must not name, load, or reference Development outcomes.
+
+    Deliberately scans RAW text, string literals and comments included.
+
+    An earlier RC3.1 revision tokenized the source and stripped strings and
+    comments first, so that a docstring promising not to read Development
+    would not trip the audit.  That was a LOOSENING, not a tightening:
+    partition names are necessarily string literals, so stripping strings
+    made `load_partition(partition="development")` invisible while only the
+    five hard-coded call-shaped literals still fired.  Two independent
+    reviews caught it.  The audit is conservative again, and the false
+    positive it caused was fixed where it belonged - in the prose.
+    """
     errors: list[str] = []
     patterns_lower = ["development", "dev_result", "dev_outcome", "load_development"]
     patterns_exact = ["PB|development|", 'iter_case_ids("development")',
@@ -280,15 +288,13 @@ def check_no_development_contamination() -> list[str]:
         if not path.exists():
             continue
         content = path.read_text()
-        # literals live inside strings, so these are checked against raw text
+        lowered = content.lower()
         for pattern in patterns_exact:
             if pattern in content:
                 errors.append(f"CONTAMINATION: {rel} contains '{pattern}'")
-        # identifiers are checked against code only, never against prose
-        code = executable_code(content).lower()
         for pattern in patterns_lower:
-            if pattern in code:
-                errors.append(f"CONTAMINATION: {rel} references '{pattern}' in code")
+            if pattern in lowered:
+                errors.append(f"CONTAMINATION: {rel} contains '{pattern}'")
     return errors
 
 
@@ -339,6 +345,8 @@ def check_import_graph() -> list[str]:
     """
     errors: list[str] = []
     forbidden = {"generate_partition", "iter_case_ids", "resolve_case_id", "generate_case"}
+
+    # (a) runtime namespace: is the name bound under its own name?
     module_names = [
         "muru.paper_benchmark." + Path(rel).stem for rel in RC3_SOURCE_FILES
     ]
@@ -352,6 +360,40 @@ def check_import_graph() -> list[str]:
                 errors.append(f"IMPORT_GRAPH: {name} binds {sorted(bound)}")
     except Exception as exc:
         errors.append(f"IMPORT_GRAPH_ERROR: {type(exc).__name__}: {exc}")
+
+    # (b) AST: is it imported under an ALIAS, or reached as an attribute?
+    # `from .generator import generate_partition as _gp` binds only `_gp`,
+    # so the runtime check above cannot see it.
+    import ast
+
+    for rel in RC3_SCANNED_FILES:
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        try:
+            tree = ast.parse(path.read_text())
+        except SyntaxError as exc:  # pragma: no cover
+            errors.append(f"IMPORT_GRAPH_PARSE: {rel}: {exc}")
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, ast.ImportFrom):
+                for alias in node.names:
+                    if alias.name in forbidden:
+                        as_what = alias.asname or alias.name
+                        errors.append(
+                            f"IMPORT_GRAPH_ALIAS: {rel} imports {alias.name} "
+                            f"as {as_what}"
+                        )
+            elif isinstance(node, ast.Import):
+                for alias in node.names:
+                    if alias.name.split(".")[-1] in forbidden:
+                        errors.append(
+                            f"IMPORT_GRAPH_ALIAS: {rel} imports {alias.name}"
+                        )
+            elif isinstance(node, ast.Attribute) and node.attr in forbidden:
+                errors.append(
+                    f"IMPORT_GRAPH_ATTR: {rel} reaches .{node.attr}"
+                )
     return errors
 
 

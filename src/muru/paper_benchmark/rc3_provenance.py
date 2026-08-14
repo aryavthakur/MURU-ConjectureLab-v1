@@ -304,6 +304,13 @@ def a3_2_world_construction() -> dict[str, object]:
         SPLIT_SEED_NAMESPACE,
     )
 
+    # The amendment writes the namespace as PB|NCAL|<world_id>|BASE_TARGET.
+    # Read literally that doubles the prefix, because world_id ALREADY is
+    # PB|NCAL|<construction>|r###.  The resolved payload below is what
+    # derive_seed actually hashes, including the paper-benchmark-v1 domain
+    # prefix the canonical API prepends - recorded so a replicator can
+    # reconstruct a seed from this manifest alone rather than from the
+    # notation.
     return {
         "amendment": "A3.2",
         "base_target_algorithm": BASE_TARGET_ALGORITHM,
@@ -311,6 +318,15 @@ def a3_2_world_construction() -> dict[str, object]:
         "split_algorithm": SPLIT_ALGORITHM,
         "split_seed_namespace": f"PB|NCAL|<world_id>|{SPLIT_SEED_NAMESPACE}",
         "canonical_seed_api": "muru.paper_benchmark.generator.derive_seed",
+        "resolved_seed_payload_form": (
+            "paper-benchmark-v1|<world_id>|<namespace>, where <world_id> is "
+            "PB|NCAL|<construction>|r<index:03d> and <namespace> is one of "
+            f"{BASE_TARGET_SEED_NAMESPACE!r} / {SPLIT_SEED_NAMESPACE!r}"
+        ),
+        "resolved_seed_payload_example": (
+            "paper-benchmark-v1|PB|NCAL|target_permuted_across_compounds|r000"
+            "|BASE_TARGET"
+        ),
         "scaffold_counts": dict(sorted(CALIBRATION_SCAFFOLD_COUNTS.items())),
         "compound_counts": dict(sorted(EXPECTED_SPLIT_COUNTS.items())),
         "compounds_per_scaffold": COMPOUNDS_PER_SCAFFOLD,

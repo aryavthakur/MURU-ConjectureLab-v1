@@ -321,7 +321,7 @@ FROZEN_SETTINGS_DIGEST = search_settings_digest(SEARCH_SETTINGS)
 
 
 def _seed_record_payload(
-    world_id: str, result: SeedResult, settings_digest: str
+    world_id: str, result: SeedResult, settings_digest: str, world_digest: str
 ) -> dict:
     curve = result.best_valid_r2_by_complexity
     return {
@@ -334,6 +334,11 @@ def _seed_record_payload(
         ),
         "error_message": result.error_message,
         "search_settings_digest": settings_digest,
+        # Binds the world's actual scientific content - base target values,
+        # split labels, scaffold labels.  A record produced under a different
+        # world construction (a pre-A3.2 base target or a 20/5/5 split) has a
+        # different digest and cannot be adopted on resume.
+        "world_construction_digest": world_digest,
     }
 
 
@@ -375,6 +380,11 @@ class SeedRecordStore:
     ``EXECUTION_FAILURE`` into a clean status, un-poisoning that world's
     ``+1.0`` row and lowering the Q95 threshold - precisely the selective
     retry the amendment forbids.
+
+    ``settings_digest`` is the digest this store EXPECTS.  What each record
+    is stamped with is supplied per-append by the caller from the backend
+    that actually ran, so a record cannot claim settings it did not run
+    under.
     """
 
     def __init__(
@@ -391,8 +401,19 @@ class SeedRecordStore:
     def path_for(self, world_id: str) -> Path:
         return self.root / f"{_sanitize(world_id)}.jsonl"
 
-    def append(self, world_id: str, result: SeedResult) -> None:
-        payload = _seed_record_payload(world_id, result, self.settings_digest)
+    def append(
+        self,
+        world_id: str,
+        result: SeedResult,
+        settings_digest: str | None = None,
+        world_digest: str = "",
+    ) -> None:
+        payload = _seed_record_payload(
+            world_id,
+            result,
+            self.settings_digest if settings_digest is None else settings_digest,
+            world_digest,
+        )
         if self.quarantined:
             payload["marker"] = ENGINEERING_SMOKE_MARKER
         line = json.dumps(
@@ -405,15 +426,23 @@ class SeedRecordStore:
             handle.write(line + "\n")
             handle.flush()
 
-    def load(self, world_id: str) -> dict[int, SeedResult]:
+    def load(
+        self, world_id: str, world_digest: str | None = None
+    ) -> dict[int, SeedResult]:
         """Load completed seeds for a world.
 
         A truncated final line (an interrupted write) is discarded, so a
         half-written record can never be mistaken for a completed seed.
 
         Everything else is verified rather than trusted: the smoke marker,
-        the record's own ``world_id``, its search-settings digest, and
-        first-write-wins on the seed.  Any mismatch raises; none is repaired.
+        the record's own ``world_id``, its search-settings digest, its
+        world-construction digest, and first-write-wins on the seed.  Any
+        mismatch raises; none is repaired.
+
+        ``world_digest`` is the construction digest of the world being
+        resumed.  When supplied, a record whose world was built differently -
+        a different base target or a different split, i.e. anything produced
+        before Amendment A3.2 - is refused rather than adopted.
         """
         path = self.path_for(world_id)
         if not path.exists():
@@ -447,6 +476,17 @@ class SeedRecordStore:
                     f"{self.settings_digest}; a record produced under different "
                     f"settings must not be adopted"
                 )
+            if world_digest is not None:
+                recorded_world_digest = payload.get("world_construction_digest")
+                if recorded_world_digest != world_digest:
+                    raise RuntimeError(
+                        f"{path} seed {payload.get('seed')} was produced on a "
+                        f"world whose construction digest is "
+                        f"{recorded_world_digest!r}, but this world's is "
+                        f"{world_digest!r}. The base target or the split "
+                        f"differs, so the recorded validation R2 was computed "
+                        f"on different data and must not be adopted."
+                    )
             seed = int(payload["seed"])
             if seed in results:
                 raise RuntimeError(
@@ -485,7 +525,21 @@ def run_world(
     *not* re-run.  It stays failed and its world stays failed.
     """
     seeds = list(world.seeds if seeds is None else seeds)
-    completed = store.load(world.world_id)
+    world_digest = world.construction_digest()
+
+    # Records are stamped with what the backend will actually run, not with
+    # what the store was told.  A backend that cannot say what it runs is
+    # refused rather than trusted.
+    effective = getattr(backend, "effective_settings", None)
+    if effective is None:
+        raise RuntimeError(
+            f"backend {type(backend).__name__} does not expose "
+            f"effective_settings; a run whose search settings cannot be "
+            f"recorded must not write seed records"
+        )
+    settings_digest = search_settings_digest(effective)
+
+    completed = store.load(world.world_id, world_digest=world_digest)
 
     results: list[SeedResult] = []
     for seed in seeds:
@@ -493,7 +547,10 @@ def run_world(
             results.append(completed[seed])
             continue
         result = run_seed(world, seed, backend, timeout_seconds=timeout_seconds)
-        store.append(world.world_id, result)
+        store.append(
+            world.world_id, result,
+            settings_digest=settings_digest, world_digest=world_digest,
+        )
         if on_seed is not None:
             on_seed(world.world_id, result)
         results.append(result)
@@ -523,6 +580,11 @@ class CalibrationRunResult:
     world_construction: Mapping[str, object] = field(
         default_factory=lambda: dict(a3_2_world_construction())
     )
+    #: Per-world construction digests of the worlds actually built in this
+    #: run.  Unlike the identity block above, which describes the code, this
+    #: is evidence about the data: it is what the seed records were verified
+    #: against, so a threshold table can be traced to the exact worlds.
+    world_digests: Mapping[str, str] = field(default_factory=dict)
 
     def threshold_table_active(self) -> bool:
         return self.validity == CalibrationValidity.VALID and self.thresholds is not None
@@ -553,16 +615,23 @@ def run_calibration(
 
     # Determined from what the backend will actually do, not from a settable
     # flag: clearing ``engineering_smoke`` on a reduced-niterations backend
-    # must not buy a pass.
+    # must not buy a pass.  This gate FAILS CLOSED - a backend that does not
+    # declare its effective settings is refused, because a backend that
+    # cannot be checked is not a backend that has passed.
     effective = getattr(backend, "effective_settings", None)
-    if effective is not None:
-        digest = search_settings_digest(effective)
-        if digest != FROZEN_SETTINGS_DIGEST:
-            raise RuntimeError(
-                "refusing to run calibration under non-frozen search settings "
-                f"(digest {digest}, frozen {FROZEN_SETTINGS_DIGEST}); the "
-                "frozen search settings must not be overridden"
-            )
+    if effective is None:
+        raise RuntimeError(
+            f"backend {type(backend).__name__} does not expose "
+            f"effective_settings; refusing to calibrate under search settings "
+            f"that cannot be verified against the frozen ones"
+        )
+    digest = search_settings_digest(effective)
+    if digest != FROZEN_SETTINGS_DIGEST:
+        raise RuntimeError(
+            "refusing to run calibration under non-frozen search settings "
+            f"(digest {digest}, frozen {FROZEN_SETTINGS_DIGEST}); the "
+            "frozen search settings must not be overridden"
+        )
     if store.settings_digest != FROZEN_SETTINGS_DIGEST:
         raise RuntimeError(
             "refusing to compute thresholds from a store bound to non-frozen "

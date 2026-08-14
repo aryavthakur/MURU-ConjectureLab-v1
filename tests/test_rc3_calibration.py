@@ -54,7 +54,20 @@ from muru.paper_benchmark.rc3_calibration_worlds import (
 # Constructed backends
 # -----------------------------------------------------------------------
 
-class FlatBackend:
+class _FrozenSettingsBackend:
+    """Base for constructed backends.
+
+    Declares the frozen search settings, because ``run_world`` and
+    ``run_calibration`` now fail CLOSED: a backend that cannot say what it
+    runs is refused rather than trusted.
+    """
+
+    @property
+    def effective_settings(self):
+        return dict(SEARCH_SETTINGS)
+
+
+class FlatBackend(_FrozenSettingsBackend):
     """Returns a fixed curve for every seed."""
 
     def __init__(self, curve, n_candidates=5):
@@ -70,7 +83,7 @@ class FlatBackend:
         )
 
 
-class RaisingBackend:
+class RaisingBackend(_FrozenSettingsBackend):
     def __init__(self, exc):
         self.exc = exc
         self.calls = 0
@@ -80,12 +93,12 @@ class RaisingBackend:
         raise self.exc
 
 
-class NoCandidateBackend:
+class NoCandidateBackend(_FrozenSettingsBackend):
     def search(self, world, seed):
         return SearchOutcome(best_valid_r2_by_complexity={}, n_candidates=0)
 
 
-class MalformedBackend:
+class MalformedBackend(_FrozenSettingsBackend):
     def search(self, world, seed):
         return {"not": "a SearchOutcome"}
 
@@ -595,6 +608,10 @@ def _append_raw(store, world_id, payload):
         handle.write(json.dumps(payload) + "\n")
 
 
+def _world_digest(world):
+    return world.construction_digest()
+
+
 def test_a_second_record_for_a_seed_is_rejected(tmp_path):
     """Appending one line must not un-poison a failed seed."""
     world = build_world("target_permuted_across_compounds", 0)
@@ -754,7 +771,7 @@ def test_a_clean_hundred_world_run_is_valid_and_builds_a_table(tmp_path):
 
 
 def test_six_failed_worlds_in_a_full_run_yield_no_table(tmp_path):
-    class FailFirstSix:
+    class FailFirstSix(_FrozenSettingsBackend):
         def search(self, world, seed):
             index = ALL_SPECS.index((world.construction, world.index))
             if index < 6:
