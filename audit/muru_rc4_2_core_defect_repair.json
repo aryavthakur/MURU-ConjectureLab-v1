@@ -1,0 +1,286 @@
+{
+  "document_id": "MURU-RC4-2-CORE-DEFECT-REPAIR-01",
+  "classification": "ENGINEERING_RELEASE_CANDIDATE_FREEZE",
+  "mode": "frozen_contract_engineering_defect_repair_r1_r4_only",
+  "not_named": "This is NOT Amendment A3.5. No new scientific choice was made.",
+  "development_status_wording": {
+    "historical": "HISTORICAL DEVELOPMENT EXECUTED UNDER SUPERSEDED A2.1/RC2 CONTRACT",
+    "current": "CURRENT-CONTRACT DEVELOPMENT RERUN NOT OPENED"
+  },
+  "parent_lineage": {
+    "repair_base_commit": "a605120242594d23a5fc36d2e622d7d3084356fb",
+    "repair_base_note": "RC5 Gate 1 stop; the single most-downstream authoritative source tree per the defect adjudication's own ancestry_verified note. Verified by this task via `git merge-base --is-ancestor` that be23b80, c800e7a5, 44e5e36, and 6a67982 are all ancestors of a605120.",
+    "a3_4_science_freeze": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+    "a3_4_tag": "benchmark-content-freeze-a3-4",
+    "rc4_engineering_freeze": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee",
+    "rc4_tag": "engineering-rc4-a3-4",
+    "rc4_1_environment_closure_tag": "engineering-rc4-1-environment-closure",
+    "rc4_1_environment_closure_tag_commit": "8c5dd413264fa6661982ae70fbeb323d4a647a27",
+    "calibration_preservation": "44e5e3661aba39b360ef60ed842381c9426c0c82",
+    "authorized_calibration_guard": "6a6798273d00af374b7a62976a80cea1ae7df32c",
+    "blocked_rc5_audit": "a605120242594d23a5fc36d2e622d7d3084356fb",
+    "defect_adjudication_source": {
+      "branch": "audit/muru-benchmark-core-defect-adjudication",
+      "commit": "15a777a",
+      "files": [
+        "audit/MURU_BENCHMARK_CORE_DEFECT_ADJUDICATION.md",
+        "audit/muru_benchmark_core_defect_adjudication.json"
+      ],
+      "terminal_status_read": "BENCHMARK CORE DEFECTS CONFIRMED — ENGINEERING REPAIR ONLY"
+    },
+    "calibration_impact_matrix_document": {
+      "requested_path": "audit/MURU_CORE_DEFECT_CALIBRATION_IMPACT_MATRIX.md / .json",
+      "found": false,
+      "note": "Searched every ref in this repository (`git rev-list --all` combined with per-branch tree listing and blob-content pickaxe). No file at this path, and no file containing the string 'calibration_impact_matrix', exists anywhere in git history. A branch named claude/muru-defect-calibration-impact-220641 exists but sits at the same stale pre-lineage commit as main and was never advanced. This is a genuine repository gap in the mandated reading, reported transparently rather than fabricated. It did not block this repair: the defect adjudication JSON already carries a per-defect calibration_impact assessment (affects_calibration: false for DEFECT_A/B3/C/D, all G1_only/G3_only/G2_only scoped), and this task independently re-derived and verified calibration non-interference from first principles (see calibration_non_interference below) rather than relying on either document's claim alone, per the mission's own 'treat those as allegations to independently verify' instruction."
+    },
+    "starting_worktree_note": "This task's starting branch (claude/muru-defect-repair-r1-r4-9ec904) and main both sit at 5049a1a, an unrelated wet-lab-track lineage (mzML parsing / Phase 1 decisions) that is an ANCESTOR of a605120 but shares no other history with the paper-benchmark apparatus built on top of it. This matches and confirms the defect adjudication's own worktree_note verbatim. The engineering repair was built on a new branch, eng/muru-rc4-2-core-defect-repair, forked directly from a605120, not from the stale starting branch."
+  },
+  "repairs": [
+    {
+      "id": "R1",
+      "defect_id": "DEFECT_A",
+      "title": "G1 scalar estimator orientation",
+      "file": "src/muru/paper_benchmark/protocol.py",
+      "function": "estimate_one",
+      "defect": "log_g = clip(-mean(observed - training_baseline), *support) was anti-monotone against the frozen M0 generator.",
+      "analytic_derivation": "generator.py::_response_matrix: u = (E/45)/g, mu = mu_inf + (1-mu_inf)*exp(-(u**phi_p)), mu_inf in (0.15,0.30) always < 1, phi_p in (1.20,1.70) always > 0. For fixed E>0: g increasing -> u decreasing -> u**phi_p decreasing -> exp(-(.)) increasing -> mu increasing. mu is strictly increasing in g for every valid (mu_inf, phi_p) draw.",
+      "minimum_correction": "Removed the sign flip: log_g = clip(residual, *support). No other line changed.",
+      "unchanged": [
+        "fold-locality (fit_training_scalar / estimate_one refusal checks, byte-identical)",
+        "clip/support range (-2.0, 2.0)",
+        "estimator domain",
+        "no smoothing/interpolation/extrapolation added",
+        "G1 thresholds (0.80 Spearman, 0.70 Wilson lower, MURU_PAPER_BENCHMARK_METRICS.md / analysis.py untouched)"
+      ],
+      "tests_added": "tests/test_paper_benchmark_protocol.py: 6 new tests (hand-built canaries, 6 true-g values spanning 0.75-2.50, reproducing the M0 law directly with fixed mu_inf/phi_p; no case_id/registry/generate_case/partition). Covers positive monotonicity, exact orientation, degenerate-case (log_g==0 when compound == training center), boundary-clip direction, and FM-06 fold-locality across the full canary sweep.",
+      "adversarial_verification": "Sign temporarily re-inverted in a throwaway copy; 4 of the 6 new tests failed as expected (test_g1_estimate_is_positive_monotonic_in_true_g, test_g1_estimate_orientation_matches_frozen_generator, test_g1_estimate_sign_is_not_inverted, test_g1_boundary_clip_direction_is_correct). Degenerate-case and fold-locality tests correctly stayed green either way (sign-invariant by construction)."
+    },
+    {
+      "id": "R2",
+      "defect_id": "DEFECT_B3",
+      "title": "G3 F07 dispatcher",
+      "file": "src/muru/paper_benchmark/g3_contract.py",
+      "function": "classify_g3_event / new classify_f07_event",
+      "defect": "classify_g3_event raised ValueError for variant 'F07'; only F19A/F19B/F19C/F20A/F20B/F20C were dispatched.",
+      "reference_implementation_matched": "analysis.py::classify_negative_control, lines 81-91 (already correct, already the function analysis.umbrella_decision calls for the production G3 gate): F07 branch returns 'false_extra_structure' iff unsupported_non_mass or richer_family.",
+      "repair": "Added classify_f07_event, structurally identical to classify_f19a_event/classify_f19b_event (UNEVALUABLE -> VIOLATION; not accepted -> SAFE; accepted and effective_support subset-of {mass} -> SAFE; else UNSAFE). Wired as the first branch of classify_g3_event's dispatch.",
+      "unchanged": [
+        "classify_f19a_event, classify_f19b_event, classify_f19c_event, classify_f20a_event, classify_f20b_event, classify_f20c_event bodies: zero diff hunks",
+        "G3_HELD_OUT_DENOMINATOR = 36",
+        "G3_WILSON_UPPER_GATE = 0.15",
+        "score_g3 Wilson-upper-bound logic",
+        "F19/F20 meaning and dispatch"
+      ],
+      "tests_added": "tests/test_a3_1_g3_contract.py: TestF07 (5 unit tests) + 3 dispatch-equivalence tests + 'F07' added to test_all_variants. New file tests/test_g3_f07_dispatcher_equivalence.py: 4 parametrized scenarios proving classify_f07_event, classify_g3_event('F07', ...), and analysis.classify_negative_control agree (accepted-mass-only-safe, accepted-unsupported-non-mass-unsafe, accepted-richer-family-unsafe, rejected-safe)."
+    },
+    {
+      "id": "R3",
+      "defect_id": "DEFECT_C",
+      "title": "G2 parser / support / feature mapping",
+      "file": "src/muru/paper_benchmark/g2_contract.py",
+      "function": "_safe_parse, extract_effective_support, classify_discovered_family",
+      "defect": "square/cube/inv left unbound in sympify's locals (sqrt/log already resolve via sympy's own builtin namespace), so sympy treated them as opaque undefined functions: mass*inv(mass) -> {mass} instead of cancelling to {}; mass/descriptor and the algebraically identical inv(descriptor)*mass classified differently. Unmapped raw symbols (PySR-default x0/x1/...) silently reported empty support instead of SUPPORT_UNRESOLVED.",
+      "repair": [
+        "Bound square=x**2, cube=x**3, inv=1/x in _safe_parse's locals, reproduced verbatim from the sibling frozen module src/muru/discovery/grammar.py::_SYMPY_LOCALS.",
+        "Aliased 'x{i}' to the SAME Symbol object as GRAMMAR_PRIMITIVES[i], the covariate order already frozen in rc3_calibration_worlds.py::CALIBRATION_COVARIATE_ORDER and rc3_ceiling.py::CEILING_COVARIATE_ORDER.",
+        "Added _resolved_support: any free symbol outside the known primitive+alias set now fails closed (returns None) instead of being silently omitted from support."
+      ],
+      "unchanged": [
+        "GRAMMAR_PRIMITIVES tuple and _PRIMITIVE_SYMBOLS",
+        "classify_support",
+        "evaluate_g2_event",
+        "G2_HELD_OUT_DENOMINATOR = 144",
+        "G2_WILSON_LOWER_GATE = 0.70",
+        "no new broad symbolic-equivalence contract added (discovery/equivalence.py's algebraically_equivalent is not imported or duplicated)"
+      ],
+      "tests_added": "tests/test_a3_1_g2_contract.py: TestR3ParserSupportFeatureMapping, 20 tests covering exactly the mission's required fixture set (mass/mass, mass*inv(mass), descriptor/descriptor, descriptor*inv(descriptor), mass/descriptor, inv(descriptor)*mass, mass*square(inv(mass)), x0, x1, x2) plus reordered/factored equivalents and fail-closed unknown-symbol cases.",
+      "known_out_of_scope_gap": "E3's adversarial review found that an unmapped FUNCTION name (not symbol), e.g. weird_op(mass), still silently returns {mass} rather than failing closed, because sympy's free_symbols on a Function application only inspects argument symbols, never the function name. Verified byte-identical on the pre-repair base commit (a605120) -- not a regression, and outside R3's stated scope (the adjudication named only square/cube/inv and PySR raw-symbol naming). Recorded here for the backlog, not repaired in this cycle."
+    },
+    {
+      "id": "R4",
+      "defect_id": "DEFECT_D",
+      "title": "G2 truth support producer",
+      "file": "src/muru/paper_benchmark/g2_contract.py",
+      "function": "new truth_support_for_case",
+      "defect": "classify_support(discovered_support, truth_support) always required a truth_support operand; nothing in the repository produced one (rc3_acceptance.py explicitly declines to read it; rc3_record.py's CaseExecutionRecord.truth_support was a schema slot only).",
+      "unique_derivation": "generator.py::_law's active_variables (already written for every TruthRecord) is the single source of truth. Four of five G2-applicable law shapes already use exact GRAMMAR_PRIMITIVES names ('mass', 'descriptor'). The fifth (mass_interaction, family F10) uses block labels 'interaction_left'/'interaction_right'; generator.py's single interaction branch returns, in the same call, both the law string '...*descriptor*descriptor2...' and active_variables=['mass','interaction_left','interaction_right'] -- the block labels are mechanically forced 1:1, in the order they already appear, onto descriptor/descriptor2. Only one branch in _law ever produces these labels (verified: single grep hit), so there is no second, conflicting reading.",
+      "repair": "Added truth_support_for_case(truth: TruthRecord) -> frozenset[str]. Gated on TruthRecord.symbolic_truth_kind == 'defined' (per-variant frozen registry metadata already carried onto every generated TruthRecord by generator.py -- read directly off the record rather than re-resolved via registry.resolve_case_id, which would have pulled the 'registry' module into g2_contract.py's A3.4 sealed-boundary import closure and failed scripts/pb_35_a3_4_integrity.py's static scan). Raises ValueError for non-G2-applicable families, unrecognized mathematical_family, or an unmapped active_variable label, rather than guessing.",
+      "unchanged": [
+        "G2 denominator (144)",
+        "support-recovery rule (classify_support itself)",
+        "no partition-dependent logic (structurally proven: 'partition' not in truth_support_for_case.__code__.co_names)"
+      ],
+      "tests_added": "tests/test_r4_g2_truth_support.py (new, 18 tests): hand-built block-label mapping unit tests; exhaustive parametrized coverage of all 12 G2-applicable families (F01-F05, F08-F12, F17, F18) via generate_case on the development partition only, proving support is produced, deterministic, matches a hand-derived expected-support table per family (independent cross-check, not circular), and that every non-applicable family raises rather than guessing; a structural (bytecode-level) proof of no partition-dependent logic; and integration with the untouched classify_support."
+    }
+  ],
+  "calibration_non_interference": {
+    "claim": "CALIBRATION_PROVABLY_UNAFFECTED",
+    "method": "import/call-graph grep plus direct reading of PySRBackend.search and CalibrationWorld construction, plus a digest comparison of the preserved threshold table",
+    "grep_checks": [
+      "grep -rn \"estimate_one|fit_training_scalar\" rc3_calibration_runner.py rc3_calibration_worlds.py calibration_contract.py -> zero matches",
+      "grep -rn \"classify_g3_event|classify_f07_event\" rc3_calibration_runner.py rc3_calibration_worlds.py calibration_contract.py -> zero matches",
+      "grep -rn \"extract_effective_support|classify_discovered_family|truth_support_for_case\" rc3_calibration_runner.py rc3_calibration_worlds.py calibration_contract.py -> zero matches"
+    ],
+    "manual_call_graph_confirmation": "rc3_calibration_worlds.py imports only GRAMMAR_PRIMITIVES from g2_contract.py (an untouched frozen tuple, defined before every R3/R4 addition in the diff). PySRBackend.search and CalibrationWorld construction (rc3_calibration_runner.py, rc3_calibration_worlds.py) read only world.split_masks()/design_matrix()/target and PySR internals; rc3_scoring.py imports only frozen denominators/gate constants/event enums from g2_contract.py and g3_contract.py, none of the four changed functions, and is not imported by the calibration runner/worlds modules.",
+    "threshold_table_digest": {
+      "path": "calibration/a3_2/threshold_table.json",
+      "sha256": "f36864aaec1b0afb10b6d6b691ace07ab71cda4a1e6d337885390e8de27ae3d3",
+      "matches": [
+        "current working tree",
+        "44e5e3661aba39b360ef60ed842381c9426c0c82 (calibration preservation commit)",
+        "a605120242594d23a5fc36d2e622d7d3084356fb (this repair's base commit)"
+      ],
+      "git_status_calibration_dir": "empty (no working-tree changes under calibration/)"
+    },
+    "no_calibration_rerun": true,
+    "no_development_rerun": true,
+    "no_held_out_opened": true,
+    "no_challenge_run": true,
+    "no_confirmation_opened": true
+  },
+  "protected_science_changes": {
+    "mechanism": "engineering_exception_transparent_documentation",
+    "note": "The frozen byte-identity integrity scripts (pb_35_a3_4_integrity.py; the A2.1 protected-path pin in pb_32_amendment_a2_1_integrity.py; the RC4.1 environment closure SCIENCE_DRIFT_VS_RC4_PARENT check) correctly detect and report every one of these 6 files as changed. That detection is expected and necessary; it is not suppressed, and none of those scripts were modified. This section is the transparent record the mission requires in lieu of a passing byte-identity check.",
+    "changed_files": [
+      {
+        "path": "src/muru/paper_benchmark/protocol.py",
+        "protected_by": ["A2.1 (pb_32_amendment_a2_1_integrity.py protected_unchanged_paths)"],
+        "old_blob_sha1": "a913a71ef17f41fba3c102b898cf2536b2b740f8",
+        "new_blob_sha1": "8a8e3c548c8e6f25ab21974bd0a1be9159f5093b",
+        "defect_repaired": "R1 / DEFECT_A: sign inversion in estimate_one",
+        "why_semantics_unchanged": "Analytic derivation from the frozen generator (see repairs[0]) shows the corrected sign is the ONLY orientation consistent with mu strictly increasing in g; the pre-repair sign was the defect, not an alternate valid convention. No new estimator, domain, clip range, or fold-locality rule was introduced."
+      },
+      {
+        "path": "src/muru/paper_benchmark/g3_contract.py",
+        "protected_by": ["A3.4 (artifacts/paper_benchmark_amendment_a3_4.json::protected_paths)"],
+        "old_blob_sha1": "a2b2bc75a517f580af0ead97287b360b081b5693",
+        "new_blob_sha1": "f327ad709f131f65253abb36efa2947e4b7ae16c",
+        "defect_repaired": "R2 / DEFECT_B3: missing F07 dispatch branch",
+        "why_semantics_unchanged": "classify_f07_event reuses the exact F19A/F19B mass-only-permitted pattern already frozen in this same file, and was proven to agree with analysis.py's already-correct production F07 rule for every scenario. F19/F20 classifiers are byte-identical; the change is purely additive (one new function, one new dispatch branch)."
+      },
+      {
+        "path": "src/muru/paper_benchmark/g2_contract.py",
+        "protected_by": ["A3.4 (artifacts/paper_benchmark_amendment_a3_4.json::protected_paths)"],
+        "old_blob_sha1": "3abc095ee58bce3bd5630a5680104c6f1220f765",
+        "new_blob_sha1": "d2ee5ebc77c55498c94cb4c06256b6ab308f1562",
+        "defect_repaired": "R3 / DEFECT_C (unbound square/cube/inv, unmapped x-index names) and R4 / DEFECT_D (missing truth_support producer)",
+        "why_semantics_unchanged": "R3 binds three numeric operators to the exact semantics already frozen verbatim in the sibling module discovery/grammar.py, and aliases x{i} to the exact covariate order already frozen in rc3_calibration_worlds.py/rc3_ceiling.py -- no new definition was invented, both were already uniquely determined by existing frozen source. R4 derives truth_support purely mechanically from generator.py's own active_variables with no hand-coded label table and a single, unambiguous block-label mapping (verified by E3 to be the only reading generator.py supports). classify_support, evaluate_g2_event, G2_HELD_OUT_DENOMINATOR, and G2_WILSON_LOWER_GATE are byte-identical."
+      },
+      {
+        "path": "tests/test_paper_benchmark_protocol.py",
+        "protected_by": ["A2.1 (pb_32_amendment_a2_1_integrity.py protected_unchanged_paths)"],
+        "old_blob_sha1": "804bc13c9b0a206c8d83a5c63843eb88107f5abe",
+        "new_blob_sha1": "63b1f7443fdeadc21a8a97bcf2f3f64d1ca35874",
+        "defect_repaired": "R1 test coverage addition (canaries, orientation, degenerate case, boundary clip, FM-06 sweep)",
+        "why_semantics_unchanged": "Purely additive: the two pre-existing tests are untouched; six new hand-built tests were appended."
+      },
+      {
+        "path": "tests/test_a3_1_g3_contract.py",
+        "protected_by": ["A3.4 (artifacts/paper_benchmark_amendment_a3_4.json::protected_paths)"],
+        "old_blob_sha1": "fd9e4fbb9d2e56279928b6a949a74b529304a2e8",
+        "new_blob_sha1": "49ffff2fa305df0effd06e9921f52035ca6e4360",
+        "defect_repaired": "R2 test coverage addition (TestF07, dispatch equivalence)",
+        "why_semantics_unchanged": "Purely additive: all pre-existing F19/F20/dispatch/score/frozen-parameter test classes are untouched; TestF07 and three new dispatch tests were appended, plus 'F07' added to the existing test_all_variants loop."
+      },
+      {
+        "path": "tests/test_a3_1_g2_contract.py",
+        "protected_by": ["A3.4 (artifacts/paper_benchmark_amendment_a3_4.json::protected_paths)"],
+        "old_blob_sha1": "d156c128e1e1e7eb3c275cd5ba4e8a078fee61b8",
+        "new_blob_sha1": "835323660555a7ecfbdc9a12909952997e5b52e2",
+        "defect_repaired": "R3 test coverage addition (mission-required regression fixture set)",
+        "why_semantics_unchanged": "Purely additive: TestEffectiveSupport, TestSupportClassification, TestFamilyClassification, and every other pre-existing class are untouched; TestR3ParserSupportFeatureMapping was appended."
+      }
+    ],
+    "new_unprotected_files": [
+      {
+        "path": "tests/test_g3_f07_dispatcher_equivalence.py",
+        "new_blob_sha1": "95d4b57609e69134f8ac82524765885fb5ca4b1c",
+        "purpose": "R2 cross-entry-point F07 equivalence tests"
+      },
+      {
+        "path": "tests/test_r4_g2_truth_support.py",
+        "new_blob_sha1": "7b534971bbc5c08624fdd3d8660af65a1097f7b2",
+        "purpose": "R4 truth_support_for_case tests"
+      }
+    ]
+  },
+  "sealed_boundary_scan": {
+    "script": "scripts/pb_35_a3_4_integrity.py",
+    "result": "VERIFIED (section 3, A3.4 endpoint static sealed-boundary scan): no SEALED_BOUNDARY_* violation",
+    "note": "An earlier draft of the R4 producer imported registry.resolve_case_id directly into g2_contract.py, which IS reachable from the a34_*.py secondary-scorer roots and DID trigger SEALED_BOUNDARY_IMPORT/SEALED_BOUNDARY_MODULE/SEALED_BOUNDARY_REFERENCE violations against 'registry' (a FORBIDDEN_MODULE_TOKEN). This was caught by this task's own verification (not a reviewer) before the freeze and redesigned to read TruthRecord.symbolic_truth_kind directly off the record instead, eliminating the registry import entirely while preserving identical producer behavior. The final code carries zero registry/generator/partition/calibration/analysis references reachable from the a34_*.py closure."
+  },
+  "tests": {
+    "focused_r1": {"file": "tests/test_paper_benchmark_protocol.py", "count": 8, "result": "8 passed"},
+    "focused_r2": {"files": ["tests/test_a3_1_g3_contract.py", "tests/test_g3_f07_dispatcher_equivalence.py"], "count": 45, "result": "45 passed"},
+    "focused_r3_r4": {"files": ["tests/test_a3_1_g2_contract.py", "tests/test_r4_g2_truth_support.py"], "count": 122, "result": "122 passed"},
+    "total_r1_r4_focused": 175,
+    "a34_regression_check": {"files": ["tests/test_a34_record.py", "tests/test_a34_parameter_recovery.py", "tests/test_a34_contract.py", "tests/test_a34_predictive_equivalence.py"], "result": "68 passed", "note": "a34_parameter_recovery.py and a34_predictive_equivalence.py both import _safe_parse/_PRIMITIVE_SYMBOLS/GRAMMAR_PRIMITIVES from g2_contract.py; confirmed unaffected."},
+    "widest_repository_suite": {
+      "command": "python3 -m pytest tests/ --ignore=tests/test_models.py --ignore=tests/test_p3_falsify.py --ignore=tests/test_p3_protocol.py --ignore=tests/test_parser.py --ignore=tests/test_splits.py",
+      "result": "1018 passed, 34 failed, 58 skipped, 14 errors, 1 warning in 49.32s",
+      "excluded_from_collection": {
+        "files": ["tests/test_models.py", "tests/test_p3_falsify.py", "tests/test_p3_protocol.py", "tests/test_parser.py", "tests/test_splits.py"],
+        "reason": "ModuleNotFoundError at import time for sklearn (test_models.py, test_p3_falsify.py, test_p3_protocol.py) or rdkit (test_parser.py, test_splits.py) -- a pre-existing environment gap in this worktree, confirmed unrelated to src/muru/discovery/* or src/muru/identity.py's own logic and unrelated to any of R1-R4's four changed modules."
+      },
+      "failure_classification": {
+        "method": "git stash of all R1-R4 changes, full suite rerun against pristine a605120, failure set diffed against post-repair failure set",
+        "pre_existing_environment_baseline": {
+          "count": 27,
+          "confirmed_identical_pre_and_post_repair": true,
+          "causes": [
+            "sklearn not installed (test_rc3_ceiling.py: 20 tests)",
+            "dependency version/absence mismatch vs configs/rc3_requirements_lock_c7c2332.txt (test_rc3_provenance.py: 3 tests; test_a3_2_calibration_design.py: 1 test)",
+            "missing pyarrow/fastparquet parquet engine, the historical p2_compounds.parquet gap (test_ov_blinding.py: 2 tests; test_ov_pipeline.py: 1 test + 13 collection ERRORs)"
+          ]
+        },
+        "new_expected_protected_path_drift": {
+          "count": 7,
+          "confirmed_absent_on_pristine_baseline": true,
+          "tests": [
+            "test_a3_4_integrity.py::test_a34_integrity_script_accepts_clean_checkout",
+            "test_eng_environment_closure.py::test_the_closure_verifier_passes_in_this_environment",
+            "test_paper_benchmark_amendment_a2_1_integrity.py::test_the_repair_running_script_proves_zero_payload_changes_across_all_380_cases",
+            "test_paper_benchmark_amendment_a2_1_integrity.py::test_only_declared_version_bump_paths_differ_from_amendment_a2",
+            "test_paper_benchmark_amendment_integrity.py::test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze",
+            "test_paper_benchmark_amendment_integrity.py::test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets",
+            "test_paper_benchmark_amendment_integrity.py::test_no_registry_truth_schema_or_partition_artifact_is_touched_by_any_amendment"
+          ],
+          "explanation": "Every one of these is a byte-identity/protected-path check reacting exactly to the 6 intentionally-changed files documented in protected_science_changes above. No other, unexplained failure was introduced by this repair."
+        }
+      }
+    },
+    "historical_p2_compounds_parquet_gap": {
+      "kept_separately_classified": true,
+      "affected_tests": ["test_ov_blinding.py::test_world_manifest_carries_no_planted_law", "test_ov_blinding.py::test_search_inputs_expose_only_response_and_covariates", "test_ov_pipeline.py::test_g1a_is_independent_of_real_chemistry", "test_ov_pipeline.py (13 collection ERRORs)"],
+      "cause": "ImportError: no usable parquet engine (pyarrow/fastparquet not installed) when loading a historical development-track compounds file; pre-existing in this environment, unrelated to R1-R4"
+    }
+  },
+  "independent_reviewers": [
+    {
+      "id": "E1",
+      "scope": "G1 numerical orientation / FM-06",
+      "verdict": "PASS",
+      "summary": "Independently re-derived mu strictly increasing in g from generator.py; confirmed the implemented sign matches; confirmed G1's Spearman requirement is positive-direction; verified new tests are hand-built/deterministic and fail against the pre-repair formula; confirmed fold-locality, clip range, domain, and thresholds untouched; found no evidence of a hidden new scientific choice."
+    },
+    {
+      "id": "E2",
+      "scope": "G3 F07 conformance",
+      "verdict": "PASS",
+      "summary": "Confirmed classify_f07_event is structurally identical to classify_f19a_event/classify_f19b_event and matches the frozen design-spec F07 rule and analysis.py's already-correct production implementation; confirmed the diff to g3_contract.py is purely additive with F19/F20/denominator/threshold byte-identical; ran the full test suite (47 passed). Noted (non-blocking, pre-existing, not introduced by this repair) that g3_contract.py's support-set representation and analysis.py's boolean-flag representation are not exhaustively cross-checked for every possible support value, only the tested correspondences -- inherited from the pre-existing F19A/F19B pattern, not a new gap."
+    },
+    {
+      "id": "E3",
+      "scope": "G2 parser/support adversary",
+      "verdict": "PASS",
+      "summary": "Ran an extensive adversarial battery (nested inv/square/cube chains, mixed x-alias and primitive names, deep cancellation, zero-denominator, malformed x-indices, unknown symbols in combination with cancelling known ones) against extract_effective_support/classify_discovered_family/truth_support_for_case; every case resolved correctly or failed closed as designed. Confirmed the interaction_left/interaction_right to descriptor/descriptor2 mapping is the only reading generator.py supports, and that even a hypothetically reversed mapping could not produce a wrong final support set (returned as an unordered frozenset). Confirmed no new broad symbolic-equivalence contract was added (discovery/equivalence.py not imported or duplicated). Confirmed byte-identical classify_support/evaluate_g2_event/denominator/gate. Ran the test suite (122 passed). Flagged one pre-existing, out-of-scope, non-blocking gap: an unmapped FUNCTION name (not symbol) still slips through the fail-closed check, verified identical on the pre-repair base commit -- recorded in this document's known_out_of_scope_gap field, not repaired this cycle."
+    },
+    {
+      "id": "E4",
+      "scope": "calibration non-interference + governance",
+      "verdict": "PASS",
+      "summary": "Independently reproduced every calibration non-interference grep/import-graph/digest check in this document with matching results. Ran every applicable integrity script (pb_30 through pb_35) and confirmed the union of every changed/unexpected/modified path they report is exactly the 6 files in protected_science_changes, with the A3.4 sealed-boundary scan VERIFIED. Confirmed no Held-out/Challenge/Confirmation partition reference in the new/changed tests is anything other than a hand-built in-memory fixture. Incidental finding: pb_30/pb_31/pb_32 write artifacts/*.json as a side effect of running them (not pure read-only checkers); this was triggered by the reviewer's own verification run, detected via git status, and reverted before concluding -- it is not part of, and was not caused by, the R1-R4 repair diff."
+    }
+  ],
+  "sealed_status": "SEALED_CLEAN_NO_BLOCKING_FINDING",
+  "final_status": "RC4.2 CORE ENGINEERING REPAIRS FROZEN — CALIBRATION UNCHANGED"
+}
