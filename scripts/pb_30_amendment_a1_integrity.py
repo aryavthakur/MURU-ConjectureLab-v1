@@ -62,6 +62,7 @@ ALLOWED_ADDED_PATHS = frozenset({
 from pb_engineering_paths import (  # noqa: E402
     ENGINEERING_CHANGED_PATHS,
     ENGINEERING_OWNER,
+    science_surface_violations,
     SCIENCE_SURFACE_PREFIXES,
     assert_engineering_paths_carry_no_science,
 )
@@ -137,7 +138,7 @@ def build_manifest() -> dict[str, object]:
             ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),
         },
         "engineering_declared_paths": sorted(ENGINEERING_CHANGED_PATHS),
-        "engineering_paths_carry_no_science": True,
+        "engineering_science_surface_violations": science_surface_violations(),
         "added_by_amendment": {
             "A1": sorted(path for path in added if path in ALLOWED_ADDED_PATHS),
             "A2": sorted(path for path in added if path in A2_ALLOWED_ADDED_PATHS),

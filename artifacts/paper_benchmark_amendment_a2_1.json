@@ -8,7 +8,7 @@
   "added_sha256": {
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md": "8416fb1419bc3ee427910cc680b4f17ba8eb1ab934b85899d58afc82e90f60bd",
     "artifacts/paper_benchmark_amendment_a2_1.json": "self",
-    "scripts/pb_32_amendment_a2_1_integrity.py": "6184b221c03217d4d19caffb91e12be4ad184e0ce03ee95f50b6202c2d674e5e",
+    "scripts/pb_32_amendment_a2_1_integrity.py": "d707417e0baeb6e4c4dfed4676807955241fc8defef05ed9b41309d912c920df",
     "tests/test_paper_benchmark_amendment_a2_1_integrity.py": "736ebc44db9646cfab69d934f257b7db065a96322626a5aff58f3ed67b716717"
   },
   "amendment": "A2.1",
@@ -70,12 +70,12 @@
       "justification": "ENGINEERING (not this amendment): RC4.1 environment closure replaced the reduced 39-pin Phase-1 lock with the 50-pin lock the frozen runtime guard already enforced and the audited A3.2 calibration declared; no science moved"
     },
     "scripts/pb_30_amendment_a1_integrity.py": {
-      "a2_1_sha256": "36199251fae9be441b73412383d6b33647882c0b37d1f3b0279e99b75f62e1a9",
+      "a2_1_sha256": "2376125522661e96b1e19c2f2cb92530613b50faaf26fd9177ed8e829304c50c",
       "a2_sha256": "540b541d66349e2a9dc7c2a1214e16cf7b6d6fa4584b72bb95ea104b83b46d4a",
       "justification": "bookkeeping: imports A2.1's allowed-path sets alongside A2's"
     },
     "scripts/pb_31_amendment_a2_integrity.py": {
-      "a2_1_sha256": "3db5d2b4a9e085c1de391bda5be90adebc3d0ad55870e6474bc1e11caaac2f96",
+      "a2_1_sha256": "cb058cf4f957bf93d43a7520c46ae5a2c3bb1b542492a4efb92d0eeb2691229a",
       "a2_sha256": "3c30781254ac0658c638be07a545f6a9ac8b219091983cd299eb667a73e2096e",
       "justification": "row comparison made payload-aware so it stays accurate across a later metadata-only bump"
     },
@@ -90,7 +90,7 @@
       "justification": "content_hash pins replaced with version-independent scientific_payload_hash pins"
     },
     "tests/test_paper_benchmark_amendment_integrity.py": {
-      "a2_1_sha256": "bfdbeec8388b1e0d6773d6b1eea3de2e750bdeca2118491ed8d0f6ce4b0cc0d3",
+      "a2_1_sha256": "aad147b833ac7b5482884a8ade468a4b5fe738ff2e02207ffd84787134030ffa",
       "a2_sha256": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
       "justification": "asserts the new three-amendment (A1/A2/A2.1) attribution split"
     },
@@ -106,7 +106,7 @@
   "engineering_declared_paths": [
     "requirements.lock.txt"
   ],
-  "engineering_paths_carry_no_science": true,
+  "engineering_science_surface_violations": [],
   "frozen_path_count": 259,
   "generated_row_comparison": {
     "case_records_content_hash_changed": 380,

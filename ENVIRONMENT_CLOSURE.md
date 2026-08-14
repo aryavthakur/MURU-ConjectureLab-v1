@@ -111,7 +111,9 @@ is frozen and enforced instead:
   `git-tree-sha1`.
 * `pb_37_environment_closure.assert_julia_identity()` boots Julia through
   PySR and **raises** when the live stack is not the frozen one. It fails
-  closed.
+  closed *when called*. See limitation L1 below: nothing on a prospective
+  execution path calls it yet, because RC4 has no prospective case execution
+  path at all.
 * `configs/rc4_1_julia_identity_proof.json` records a live reading of the
   loaded Julia module versions, not a declaration copied from a config file.
   It is written only by `--start-julia`, so a later run that never boots
@@ -163,7 +165,61 @@ calibration science, the threshold table, G1/G2/G3, secondary endpoint
 definitions, the search grammar and the search budget are all untouched.
 The A3.4 protected set remains 31/31 byte-identical.
 
-## 8. Verification
+## 8. Known limitations
+
+Recorded from the two independent read-only reviews of this closure. None is
+a claim retraction; each bounds what the closure does and does not enforce.
+
+**L1. The Julia identity gate is not wired into any execution path.** The only
+caller of `assert_julia_identity()` is `pb_37_environment_closure.main()` under
+`--start-julia`. No prospective path calls it, because RC4 contains no
+prospective case execution path. Additionally, `configs/julia/*.toml` are
+verification inputs, not install inputs: nothing sets `JULIA_PROJECT` or runs
+`Pkg.instantiate()` against them, so a fresh clone still resolves from
+juliapkg's ranges. **Consequence:** a future Development or Held-out run built
+in a fresh environment could execute on a different `SymbolicRegression.jl`
+patch than the 1.11.3 that produced the calibrated thresholds, with nothing
+failing closed. **Required of the release that builds the case runner:** call
+`assert_julia_identity()` before the first search seed, and record its result
+in the execution manifest. `test_the_julia_identity_gate_has_no_prospective_caller_yet`
+pins this so it cannot be silently forgotten. Until then, running
+`python scripts/pb_37_environment_closure.py --start-julia` is a mandatory
+recorded preflight for any prospective execution.
+
+**L2. The engineering exemption's science guard covers a minority of the
+frozen tree.** `SCIENCE_SURFACE_PREFIXES` blocks nine prefixes, roughly a third
+of the 247 frozen paths. It does not cover `src/muru/discovery/grammar.py`,
+the rest of `src/muru/`, the pipeline scripts, `tests/test_p3_*` /
+`test_ov_*` / `test_rc3_*`, or the preregistration documents. The gap is
+coverage, not bypass: a declared path that dodges the prefix check also fails
+to match the canonical changed-path key, so it exempts nothing, and the guard
+runs before manifest production. `ENGINEERING_CHANGED_PATHS` is pinned by an
+exact-equality test to the single entry `requirements.lock.txt`.
+
+**L3. `rc3_provenance.py`'s module docstring is now factually stale.** It still
+says the tree's own `requirements.lock.txt` "is a reduced Phase-1 lock ... so
+it cannot serve as the RC3 pin source". As of this closure it is byte-identical
+to the pin source. Correcting the text would mean editing a file inside the
+frozen engineering surface, so it is recorded here instead.
+
+**L4. First-party bootstrap remains convention-dependent.** This lineage has no
+`pyproject.toml`, so `pip install -r requirements.lock.txt` alone does not make
+`muru` importable. `pytest.ini` sets `pythonpath = src` and the scripts prepend
+`ROOT/src`, so every documented flow works, but a bare `python -c "import muru"`
+from a fresh clone fails. The lock is closed for third-party dependencies;
+first-party import is by convention.
+
+**L5. Environment hazard in the existing project `.venv`.** `muru` is installed
+editable pointing at a *different* worktree
+(`.claude/worktrees/muru-engineering-completion-9936eb`, branch
+`engineering/muru-completion`). Under pytest and the scripts the local `src`
+wins, so all results here are correct, but an ad-hoc `python -c "import muru"`
+in that venv reads foreign source. Prefer the scripts or pytest.
+
+**L6. `pip`, `setuptools` and `wheel` are unpinned**; a fresh virtual
+environment takes whatever ships with the interpreter.
+
+## 9. Verification
 
 ```bash
 python scripts/pb_37_environment_closure.py

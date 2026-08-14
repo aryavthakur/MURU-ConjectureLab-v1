@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pb_engineering_paths import (  # noqa: E402
     ENGINEERING_CHANGED_PATHS,
     ENGINEERING_OWNER,
+    science_surface_violations,
     assert_engineering_paths_carry_no_science,
 )
 
@@ -302,7 +303,7 @@ def build_manifest() -> dict[str, object]:
             ENGINEERING_OWNER: sorted(set(changed) & ENGINEERING_CHANGED_PATHS),
         },
         "engineering_declared_paths": sorted(ENGINEERING_CHANGED_PATHS),
-        "engineering_paths_carry_no_science": True,
+        "engineering_science_surface_violations": science_surface_violations(),
         "generated_row_comparison": rows,
         "population_invariants": invariants,
         "population_invariants_hold": invariants_hold,

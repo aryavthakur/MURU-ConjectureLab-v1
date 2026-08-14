@@ -50,12 +50,21 @@ class EngineeringExemptionCoversScience(RuntimeError):
     """An engineering-declared path reaches the benchmark science surface."""
 
 
-def assert_engineering_paths_carry_no_science() -> None:
-    offending = sorted(
+def science_surface_violations() -> list[str]:
+    """Engineering-declared paths that reach the benchmark science surface.
+
+    Returned rather than asserted so a manifest can record the *computed*
+    result instead of a hardcoded ``True``.
+    """
+    return sorted(
         path
         for path in ENGINEERING_CHANGED_PATHS
         if path.startswith(SCIENCE_SURFACE_PREFIXES)
     )
+
+
+def assert_engineering_paths_carry_no_science() -> None:
+    offending = science_surface_violations()
     if offending:
         raise EngineeringExemptionCoversScience(
             "ENGINEERING_EXEMPTION_COVERS_SCIENCE: "

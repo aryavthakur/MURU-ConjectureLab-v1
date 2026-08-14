@@ -158,16 +158,21 @@ def test_the_engineering_change_is_attributed_to_engineering_not_to_an_amendment
 def test_no_engineering_exemption_can_cover_a_benchmark_science_path(tmp_path):
     _, manifest = _run(tmp_path)
 
-    forbidden = (
-        "src/muru/paper_benchmark/",
-        "artifacts/",
-        "MURU_PAPER_BENCHMARK",
-        "tests/test_a3_",
-        "tests/test_paper_benchmark",
+    # The prefix list is imported, never restated: a fourth copy would be the
+    # exact drift the single shared declaration exists to prevent.
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "pb_engineering_paths_for_integrity_test",
+        Path(__file__).resolve().parents[1] / "scripts" / "pb_engineering_paths.py",
     )
-    assert manifest["engineering_paths_carry_no_science"] is True
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    # A computed result, not a flag the script wrote about itself.
+    assert manifest["engineering_science_surface_violations"] == []
     for path in manifest["engineering_declared_paths"]:
-        assert not path.startswith(forbidden), path
+        assert not path.startswith(module.SCIENCE_SURFACE_PREFIXES), path
 
 
 def test_each_change_is_attributed_to_the_amendment_that_owns_it(tmp_path):

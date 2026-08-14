@@ -123,14 +123,57 @@ def test_the_tracked_environment_manifest_matches_this_tree():
     recorded = json.loads(
         (ROOT / "configs" / "rc4_1_environment_manifest.json").read_text()
     )
-    assert recorded["closure_verified"] is True
-    assert recorded["scientific_definitions_changed"] is False
+    assert recorded["static_closure_verified"] is True
+    # Derived from git against the RC4 parent, not a self-declared flag.
+    assert recorded["paper_benchmark_paths_changed_vs_rc4_parent"] == []
     assert recorded["pinned_distribution_count"] == 50
     assert recorded["tracked_lock_sha256"] == _sha256(ROOT / "requirements.lock.txt")
     assert recorded["pin_source_sha256"] == recorded["tracked_lock_sha256"]
     assert recorded["unpinned_imports"] == []
     assert recorded["julia"]["julia"] == "1.12.6"
     assert recorded["julia"]["SymbolicRegression.jl"] == "1.11.3"
+
+
+def test_the_manifest_does_not_claim_the_julia_identity_was_verified():
+    """The static closure flag must not be readable as a Julia guarantee.
+
+    pb_37 writes the manifest before the optional --start-julia block runs, so
+    a manifest that claimed to cover Julia would be claiming something it
+    cannot know.  It points at the separate proof instead.
+    """
+    import json
+
+    recorded = json.loads(
+        (ROOT / "configs" / "rc4_1_environment_manifest.json").read_text()
+    )
+    assert "closure_verified" not in recorded
+    assert "julia_live" not in recorded
+    assert (
+        recorded["julia_identity_proof_relpath"]
+        == "configs/rc4_1_julia_identity_proof.json"
+    )
+
+
+def test_the_julia_identity_gate_has_no_prospective_caller_yet():
+    """Pins reviewer finding B1 so it cannot be forgotten by RC5.
+
+    assert_julia_identity() fails closed WHEN CALLED, but nothing on a
+    prospective execution path calls it, because RC4 has no prospective case
+    execution path at all.  When that path is built it MUST call this before
+    the first search seed.  If a caller appears in src/, this test should be
+    updated to assert the caller exists rather than deleted.
+    """
+    callers = []
+    for base in ("src", "scripts"):
+        for path in sorted((ROOT / base).rglob("*.py")):
+            if path.name == "pb_37_environment_closure.py":
+                continue
+            if "assert_julia_identity" in path.read_text(encoding="utf-8"):
+                callers.append(str(path.relative_to(ROOT)))
+    assert callers == [], (
+        "a caller appeared; update this test to assert the prospective "
+        f"execution path calls the gate: {callers}"
+    )
 
 
 def test_the_julia_identity_proof_is_a_live_reading_not_a_declaration():

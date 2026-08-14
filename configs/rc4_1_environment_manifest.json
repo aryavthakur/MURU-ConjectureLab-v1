@@ -1,5 +1,4 @@
 {
- "closure_verified": true,
  "declared_scopes": {
   "gplearn": "historical baseline engine (Phase 3 / objective validation) only; no prospective benchmark module executes it. Retained because the frozen provenance guard rc3_provenance.verify_dependencies requires it to be installed and pinned.",
   "matplotlib": "figure rendering only; no scientific value is computed",
@@ -32,6 +31,8 @@
   "project_sha256": "2549db49b812ef17b253216303e7ea2078e6cfd903c9b42617c19689a27c54d7",
   "resolution_note": "juliapkg resolves julia and SymbolicRegression.jl from compatibility ranges, not pins; the identity is enforced at execution time by assert_julia_identity rather than pinned by the installer"
  },
+ "julia_identity_proof_relpath": "configs/rc4_1_julia_identity_proof.json",
+ "paper_benchmark_paths_changed_vs_rc4_parent": [],
  "pin_source_commit": "c7c23324d40cd432bdd14bf9d3292b5a2867ef9e",
  "pin_source_relpath": "configs/rc3_requirements_lock_c7c2332.txt",
  "pin_source_sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
@@ -92,7 +93,7 @@
  "python_version": "3.13.12",
  "rc4_parent_commit": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee",
  "rc4_parent_tag": "engineering-rc4-a3-4",
- "scientific_definitions_changed": false,
+ "static_closure_verified": true,
  "third_party_imports": {
   "gplearn": [
    "scripts/ov_00_env.py",

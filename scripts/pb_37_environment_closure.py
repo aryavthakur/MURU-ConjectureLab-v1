@@ -138,8 +138,13 @@ def third_party_imports() -> dict[str, list[str]]:
     """Top-level non-stdlib, non-local imports reachable from the tree."""
     stdlib = set(sys.stdlib_module_names)
     local_modules = {"muru"}
+    # Only TOP-LEVEL modules of scripts/ and tests/ are importable as bare
+    # names (both directories are put on sys.path by their own callers and by
+    # pytest).  Absorbing every nested stem would let a third-party
+    # distribution that happens to share a filename with some test escape the
+    # closure check unnoticed.
     for base in ("scripts", "tests"):
-        for path in (ROOT / base).rglob("*.py"):
+        for path in (ROOT / base).glob("*.py"):
             local_modules.add(path.stem)
 
     found: dict[str, set[str]] = {}
@@ -257,11 +262,38 @@ def check_closure() -> tuple[list[str], dict[str, object]]:
         "unpinned_imports": sorted(unpinned_imports),
         "declared_scopes": dict(sorted(DECLARED_SCOPES.items())),
         "installed_versions": installed,
-        "scientific_definitions_changed": False,
-        "closure_verified": not errors,
+        # Derived from the tree, not asserted: every path under
+        # src/muru/paper_benchmark/ is compared byte-for-byte against the RC4
+        # parent.  A self-declared "no science changed" flag would be worth
+        # nothing.
+        "paper_benchmark_paths_changed_vs_rc4_parent": _paper_benchmark_drift(),
+        # The Julia identity is NOT covered by this flag; it is verified only
+        # under --start-julia and recorded separately.  See
+        # julia_identity_proof_relpath and limitation L1 in
+        # ENVIRONMENT_CLOSURE.md.
+        "static_closure_verified": not errors,
+        "julia_identity_proof_relpath": "configs/rc4_1_julia_identity_proof.json",
         "errors": errors,
     }
+    drift = payload["paper_benchmark_paths_changed_vs_rc4_parent"]
+    if drift and drift != ["UNKNOWN_GIT_UNAVAILABLE"]:
+        errors.append(f"SCIENCE_DRIFT_VS_RC4_PARENT: {drift}")
+        payload["static_closure_verified"] = False
     return errors, payload
+
+
+def _paper_benchmark_drift() -> list[str]:
+    """Paths under src/muru/paper_benchmark/ that differ from the RC4 parent."""
+    import subprocess
+
+    result = subprocess.run(
+        ["git", "diff", "--name-only", RC4_PARENT_COMMIT, "--",
+         "src/muru/paper_benchmark/"],
+        cwd=ROOT, capture_output=True, text=True, check=False,
+    )
+    if result.returncode != 0:
+        return ["UNKNOWN_GIT_UNAVAILABLE"]
+    return sorted(line for line in result.stdout.splitlines() if line)
 
 
 def _installed(distribution: str) -> str:
@@ -371,14 +403,16 @@ def main() -> int:
     print(f"pinned distributions:    {payload['pinned_distribution_count']}")
     print(f"third-party imports:     {len(payload['third_party_imports'])}")
     print(f"undeclared hard imports: {len(payload['unpinned_imports'])}")
-    print(f"julia:                   {FROZEN_JULIA_VERSION}")
+    print(f"julia (frozen):          {FROZEN_JULIA_VERSION}")
     print(f"SymbolicRegression.jl:   {FROZEN_SYMBOLICREGRESSION_JL_VERSION}")
+    if not arguments.start_julia:
+        print("julia identity:          NOT CHECKED (pass --start-julia)")
     if errors:
         print("ENVIRONMENT CLOSURE FAILED", file=sys.stderr)
         for error in errors:
             print(f"  {error}", file=sys.stderr)
         return 1
-    print("environment closure verified")
+    print("static environment closure verified")
     return 0
 
 
