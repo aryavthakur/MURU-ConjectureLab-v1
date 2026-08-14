@@ -1,0 +1,195 @@
+{
+  "document_id": "MURU-AUDIT-RC5-EXECUTION-SEMANTICS-AUTHORITY-01",
+  "classification": "INDEPENDENT_PROSPECTIVE_AUTHORITY_AUDIT",
+  "status": "AUDIT_COMPLETE",
+  "audit_branch": "audit/muru-rc5-execution-semantics-authority-audit",
+  "mode": "READ_ONLY",
+  "governing_state": {
+    "a3_4_science_freeze": "be23b80",
+    "rc4_engineering_freeze": "c800e7a",
+    "rc4_1_environment_closure": "8c5dd41",
+    "calibration_preservation": "44e5e36",
+    "calibration_integrity_adjustment": "6a67982",
+    "development": "NOT_OPENED",
+    "held_out": "SEALED"
+  },
+  "headline_finding": "RC4 has no executable production-case path. Independently confirmed at commit 6a67982: no CaseExecutionRecord/CompoundContrastRecord constructor exists outside tests; PySRBackend.search is typed on CalibrationWorld only; no runner.py exists anywhere in the paper_benchmark lineage; eng/muru-rc5-case-execution has zero RC5 commits beyond 6a67982.",
+  "classification_counts": {
+    "FROZEN_EXPLICIT": 19,
+    "FROZEN_DERIVABLE_ENGINEERING": 9,
+    "HISTORICAL_PRECEDENT_ONLY": 0,
+    "UNFROZEN_SCIENTIFIC_DECISION": 12,
+    "NOT_REQUIRED": 0
+  },
+  "semantics": [
+    {"id": 1, "semantic": "case -> execution adapter", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "No function builds a case's design matrix/target/split into the CalibrationWorld-shaped input PySRBackend.search requires (rc3_calibration_runner.py:114,827). CalibrationWorld is bound to A3.2 null-specific covariate order/split/base-target identity, so it is not a generic container.",
+     "files": ["src/muru/paper_benchmark/rc3_calibration_runner.py"], "commits": ["6a67982"]},
+
+    {"id": 2, "semantic": "train/validation/test usage", "classification": "FROZEN_EXPLICIT",
+     "proof": "generator.py: N_COMPOUNDS=180, N_SCAFFOLDS=30, scaffold split 20/5/5 (train/val/test), scaffold-disjoint. Restated in MURU_PAPER_BENCHMARK_PROTOCOL.md.",
+     "files": ["src/muru/paper_benchmark/generator.py", "MURU_PAPER_BENCHMARK_PROTOCOL.md"], "commits": []},
+
+    {"id": 3, "semantic": "scalar target construction (M0-adequacy scalar)", "classification": "FROZEN_EXPLICIT",
+     "proof": "protocol.py fit_training_scalar/estimate_one: training-only mean profile, log_g = clip(-residual, -2, 2). Structurally fold-local by construction. No production caller exists (engineering gap, not a semantics gap).",
+     "files": ["src/muru/paper_benchmark/protocol.py"], "commits": []},
+
+    {"id": 4, "semantic": "M0 fit", "classification": "FROZEN_EXPLICIT",
+     "proof": "Amendment A1 (2ac86c5) binds M0 as the frozen shared horizontal-scaling model against training-only Phi. Implemented verbatim in src/muru/adequacy/ on engineering/muru-completion (c7c2332): unweighted squared mu residuals, closed-form solves, coarse-to-fine grid, lexicographic tie resolution, no random restart.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md"], "commits": ["2ac86c5", "c7c2332"]},
+
+    {"id": 5, "semantic": "M1 fit", "classification": "FROZEN_EXPLICIT",
+     "proof": "Same source as M0: M1 warps the profile argument about the frozen E_REF=45 pivot.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md"], "commits": ["2ac86c5", "c7c2332"]},
+
+    {"id": 6, "semantic": "M2 fit", "classification": "FROZEN_EXPLICIT",
+     "proof": "M2 rescales the normalised shape between a compound-specific vertical endpoint and the frozen opposite one; closed-form solve, adds exactly one degree of freedom.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md"], "commits": ["2ac86c5", "c7c2332"]},
+
+    {"id": 7, "semantic": "M3 fit", "classification": "FROZEN_EXPLICIT",
+     "proof": "Same source as M2, opposite endpoint.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A1_ADEQUACY.md"], "commits": ["2ac86c5", "c7c2332"]},
+
+    {"id": 8, "semantic": "adequacy decision", "classification": "FROZEN_EXPLICIT",
+     "proof": "src/muru/adequacy/decision.py on c7c2332, conformance-proven by tests/test_eng_adequacy_conformance.py against the frozen decision module materialised from commit 80a7803, across 11 named scenarios (19/30, 20/30, 23/24 evaluable, each detector alone/multiple, timeout, fit failure, numerical failure, boundary limitation, population violations, F04 boundary).",
+     "files": ["src/muru/adequacy/decision.py"], "commits": ["c7c2332", "80a7803"]},
+
+    {"id": 9, "semantic": "exact symbolic target", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "No document or module states what a case's symbolic search fits (raw mu, log_g scalar, per-energy trajectory, or other) or its representation. contract.py docstring: 'Strict evaluator input contract for a future locked MURU engine' -- validates predictions computed elsewhere, does not define what is predicted.",
+     "files": ["src/muru/paper_benchmark/contract.py"], "commits": []},
+
+    {"id": 10, "semantic": "symbolic covariates", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "Case content generation (descriptor columns) is frozen and healthy (generator.py), but which columns enter the PySR design matrix, in what order/representation, is the missing case-to-search adapter's job. A3.1's 'same five synthetic covariates' statement describes calibration worlds, not a binding statement about case search inputs.",
+     "files": ["src/muru/paper_benchmark/generator.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md"], "commits": []},
+
+    {"id": 11, "semantic": "search settings (PySR version/grammar/niterations/populations/population_size/maxsize/parsimony)", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "calibration_contract.py SEARCH_SETTINGS is one frozen dict (PySR 1.5.10, binary +-*/, unary sqrt/log/square/cube/inv, exp/trig excluded, niterations=40, populations=15, population_size=33, maxsize=20, parsimony=0.0032). A3.2 restates these facts in its 'unchanged' list without the calibration-only qualifier it attaches to seed/split mechanics two lines above, and Gate 2 (valid_r2 > null_threshold[complexity]) is only meaningful if the real search and the calibrating search share settings -- only one scientific reading survives, though no sentence states it in so many words.",
+     "files": ["src/muru/paper_benchmark/calibration_contract.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md"], "commits": []},
+
+    {"id": 12, "semantic": "seeds/case (count = 30)", "classification": "FROZEN_EXPLICIT",
+     "proof": "structural_acceptance.py: STABILITY_DENOMINATOR = 30, under the 'Structural acceptance' (real case-level, non-calibration) docstring 'selection_fraction >= 20/30'. Imported directly into CaseExecutionRecord in rc3_record.py.",
+     "files": ["src/muru/paper_benchmark/structural_acceptance.py", "src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 13, "semantic": "search-seed derivation (Development/Held-out case)", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "Only derive_calibration_seeds (calibration-band, world_id-hashed) and derive_smoke_seed (engineering-smoke-band) exist. Neither is declared as or reducible to a Development/Held-out rule. Confirmed by e54364b item 1 and reverified directly at 6a67982.",
+     "files": ["src/muru/paper_benchmark/calibration_contract.py", "src/muru/paper_benchmark/rc3_provenance.py"], "commits": ["e54364b"]},
+
+    {"id": 14, "semantic": "prospective seed namespace", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "rc3_provenance.py declares only base_target_seed_namespace='PB|NCAL|<world_id>|...' and split_seed_namespace, both calibration-prefixed. No PB|development|... or PB|held_out|... search-seed namespace is declared anywhere.",
+     "files": ["src/muru/paper_benchmark/rc3_provenance.py"], "commits": []},
+
+    {"id": 15, "semantic": "seed band", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "assert_seed_band_separation() proves exactly two bands disjoint: smoke (1_900_000_000+) and calibration (2_110_000_000..2_146_999_929). No Development/Held-out band is reserved or asserted disjoint; naive reuse of calibration derivation risks numeric collision.",
+     "files": ["src/muru/paper_benchmark/rc3_provenance.py"], "commits": []},
+
+    {"id": 16, "semantic": "per-seed candidate retention", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "PerSeedStatusEntry stores only seed/status/selected_expression_string/error_message -- a single already-selected string, but no rule specifies how that string is chosen from a seed's raw Pareto output. Prior audit separately found full-Pareto retention is 'optional hardening,' sharpening rather than resolving the gap.",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 17, "semantic": "Pareto handling", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "rc3_calibration_runner.py already extracts a per-complexity best-validation-R2 curve (best_valid_r2_by_complexity) from a seed's raw PySR equations dataframe -- a generic, case-agnostic transform reusable with no scientific choice. Does not resolve per-seed single-candidate selection (#16/#19), a different operation.",
+     "files": ["src/muru/paper_benchmark/rc3_calibration_runner.py"], "commits": []},
+
+    {"id": 18, "semantic": "cross-seed selection", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "No equivalence rule (exact string, SymPy-simplify-equal, family-taxonomy-equal) is declared for grouping 30 seeds into a modal candidate. objval/select.py implements a band/family-retaining rule for a different, declared study (Type 2 objective-alignment) with its own non-transferable tolerance, and is structurally incompatible with structural_acceptance.py's count-based k/30 gate -- evidence of a different design elsewhere, not authority here.",
+     "files": ["src/muru/objval/select.py", "src/muru/paper_benchmark/structural_acceptance.py"], "commits": []},
+
+    {"id": 19, "semantic": "selection_count", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "Field is frozen (rc3_record.py: 'selection_count: int # k, out of 30', validated 0<=k<=30) and its denominator/threshold consumption is frozen (#20), but no function anywhere computes it. git grep 'selection_count' at 6a67982 returns only field references.",
+     "files": ["src/muru/paper_benchmark/rc3_record.py", "src/muru/paper_benchmark/rc3_acceptance.py"], "commits": ["e54364b"]},
+
+    {"id": 20, "semantic": "stability threshold (k/30 >= 20/30)", "classification": "FROZEN_EXPLICIT",
+     "proof": "structural_acceptance.py: STABILITY_GATE=20, STABILITY_DENOMINATOR=30. MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md: 'selection_fraction >= 20/30'. A3.2 reaffirms 'stability 20/30 ... unchanged.'",
+     "files": ["src/muru/paper_benchmark/structural_acceptance.py"], "commits": []},
+
+    {"id": 21, "semantic": "valid_r2 definition", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "rc3_record.py declares 'valid_r2: float' as a dataclass field only; no function computes it. Ambiguous between validation-only vs validation+test scope, sklearn.r2_score vs manual formula, per-seed-best vs per-candidate.",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 22, "semantic": "complexity definition", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "SEARCH_SETTINGS declares no custom per-operator complexity weights, so PySR 1.5.10's default node-count complexity applies uniquely once the grammar/version are pinned -- already consumed as-is at rc3_calibration_runner.py:846 (equations['complexity']).",
+     "files": ["src/muru/paper_benchmark/calibration_contract.py", "src/muru/paper_benchmark/rc3_calibration_runner.py"], "commits": []},
+
+    {"id": 23, "semantic": "invalid_fraction definition", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "rc3_record.py declares 'invalid_fraction: float' as a dataclass field only, no computation anywhere. Undefined whether numerator counts invalid seeds, invalid candidates within a seed's Pareto front, or invalid evaluations.",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 24, "semantic": "null-threshold lookup", "classification": "FROZEN_EXPLICIT",
+     "proof": "A3.1: valid_r2 > null_threshold[min(complexity, 20)]. Threshold table: numpy.quantile(...,0.95,method='linear') then np.maximum.accumulate, calibrated once and VALID (preserved at 44e5e36).",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md"], "commits": ["44e5e36"]},
+
+    {"id": 25, "semantic": "ceiling rule", "classification": "FROZEN_EXPLICIT",
+     "proof": "A3.1: ceiling_fraction>=0.80 OR ceiling_r2<0.05 (waiver). HistGradientBoostingRegressor(max_iter=150,max_depth=3,min_samples_leaf=20,random_state=0) pinned to scikit-learn==1.9.0, implemented in rc3_ceiling.py.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md", "src/muru/paper_benchmark/rc3_ceiling.py"], "commits": []},
+
+    {"id": 26, "semantic": "support recovery", "classification": "FROZEN_EXPLICIT",
+     "proof": "A3.1 'Effective support' section: parse under protected grammar, SymPy simplify normalization, cancelled/zero/constant terms excluded, 'No new magnitude threshold invented,' unresolvable -> SUPPORT_UNRESOLVED. Implemented in g2_contract.py.",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md", "src/muru/paper_benchmark/g2_contract.py"], "commits": []},
+
+    {"id": 27, "semantic": "six falsification-rung execution (per-rung pass/fail procedure)", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "check_falsification_harness() only aggregates an already-supplied Mapping[FalsificationRung, FalsificationResult]; no executor exists. Rung names are frozen but e.g. reproducibility tolerance or perturbation magnitude per rung is nowhere specified.",
+     "files": ["src/muru/paper_benchmark/structural_acceptance.py"], "commits": ["e54364b"]},
+
+    {"id": 28, "semantic": "rung ordering / membership", "classification": "FROZEN_EXPLICIT",
+     "proof": "FALSIFICATION_RUNG_ORDER = (F1_REPRODUCIBILITY, F4_COMPOUND_HOLDOUT, F5_SCAFFOLD_HOLDOUT, F7_INFLUENCE_DROP, F9_ENERGY_SUBSET, F10_NEGATIVE_CONTROL), cross-checked at import time against REQUIRED_FALSIFICATION_RUNGS. Matches A3.1 exactly, including 'F8 is structural labelling, not an acceptance gate.'",
+     "files": ["src/muru/paper_benchmark/rc3_record.py", "src/muru/paper_benchmark/structural_acceptance.py"], "commits": []},
+
+    {"id": 29, "semantic": "structural acceptance (8-gate ordered predicate)", "classification": "FROZEN_EXPLICIT",
+     "proof": "A3.1 gives the exact ordered 8-gate predicate; structural_acceptance.py implements it verbatim, self-declared 'the REFERENCE CONTRACT.'",
+     "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md", "src/muru/paper_benchmark/structural_acceptance.py"], "commits": []},
+
+    {"id": 30, "semantic": "parameter recovery integration", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "Denominators (156/156/84) and tolerances (|dp_mass|<=0.15, |dc_desc|<=0.10) are fully specified by Amendment A3.3 and already implemented. Only the per-case call into the existing scorer is missing -- mechanical wiring once the adapter (#1/#9/#10) exists.",
+     "files": ["src/muru/paper_benchmark/a34_parameter_recovery.py"], "commits": ["e91aae6"]},
+
+    {"id": 31, "semantic": "predictive equivalence integration", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "A3.4 fully specifies thresholds (|V|>=2150, c*>0, rel_RMSE<=0.05, r>=0.990) and denominator (144); only per-case invocation is missing.",
+     "files": ["src/muru/paper_benchmark/a34_predictive_equivalence.py"], "commits": []},
+
+    {"id": 32, "semantic": "exact algebra scoring", "classification": "FROZEN_EXPLICIT",
+     "proof": "A3.4: 5 families (F01, F08, F09, F10, F17) x 12 cases = 60 denominator, per prior held-out preparation audit Pass 1, consistent with registry.py family/partition counts.",
+     "files": ["audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"], "commits": []},
+
+    {"id": 33, "semantic": "scientific failure semantics (per-seed EXECUTION_FAILURE handling)", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "SeedStatus enum and 'if ANY seed has EXECUTION_FAILURE, world S(w,1..20) becomes +1.0 (conservative)' is calibration-worded, but e54364b item 3 itself frames the missing piece as reuse ('with the calibration runner's failure and resume semantics'), not reinvention; the enum generalizes with one sensible reading.",
+     "files": ["src/muru/paper_benchmark/calibration_contract.py"], "commits": []},
+
+    {"id": 34, "semantic": "operational resume semantics", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "rc3_calibration_runner.py SeedStore (settings-digest-checked resume, no selective retries) is an existing, reusable pattern; corroborated by heldout audit DEF-09 (no-retry rule is binding).",
+     "files": ["src/muru/paper_benchmark/rc3_calibration_runner.py"], "commits": []},
+
+    {"id": 35, "semantic": "Development/Held-out path parameterization", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "MURU_PAPER_BENCHMARK_PROTOCOL.md 'Execution boundary' binds path identity (same backend/settings/grammar/selection rules/threshold/representation/endpoints/failure semantics, differing only in partition and seeds) as a requirement, not a free choice. No code implements any path yet, so the requirement is frozen but the artifact does not exist to check for divergence.",
+     "files": ["MURU_PAPER_BENCHMARK_PROTOCOL.md"], "commits": ["e54364b"]},
+
+    {"id": 36, "semantic": "raw seed record format", "classification": "FROZEN_EXPLICIT",
+     "proof": "PerSeedStatusEntry: seed, status, selected_expression_string, error_message, error_type (exception class name only, no path/PID leakage). Container schema frozen; contents of selected_expression_string underspecified (see #16/#18).",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 37, "semantic": "case record format", "classification": "FROZEN_EXPLICIT",
+     "proof": "CaseExecutionRecord dataclass, RECORD_SCHEMA_VERSION='muru-rc3-case-record-1.0.0', canonical JSON rules (sorted keys, fixed float formatting via shortest round-trip decimal, -0.0 normalized, no timestamps/paths/hostnames in scientific payload).",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 38, "semantic": "sidecar format", "classification": "FROZEN_EXPLICIT",
+     "proof": "ProvenanceSidecar, the explicit container for timestamps/paths/hostnames/durations, excluded from the scientific hash by design.",
+     "files": ["src/muru/paper_benchmark/rc3_record.py"], "commits": []},
+
+    {"id": 39, "semantic": "execution manifest", "classification": "UNFROZEN_SCIENTIFIC_DECISION",
+     "proof": "No ExecutionManifest class/schema exists anywhere (only ImplementationLock in governance.py). Prior audit classified manifest paths as FROZEN_FUTURE_PATH -- only the filename convention is anticipated, not content schema. A manifest that under-specifies what it locks would fail to actually prevent selective retries, so this is a real design surface.",
+     "files": ["src/muru/paper_benchmark/governance.py", "audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"], "commits": []},
+
+    {"id": 40, "semantic": "atomic-write requirements", "classification": "FROZEN_DERIVABLE_ENGINEERING",
+     "proof": "artifacts.py _write_atomic(): write to path.tmp then Path.replace() (POSIX atomic rename), return sha256 of payload -- an established, already-used pattern for every existing frozen-content artifact. Extending it to new execution outputs has only one standard-engineering meaning.",
+     "files": ["src/muru/paper_benchmark/artifacts.py"], "commits": []}
+  ],
+  "special_focus_verdict": {
+    "development_search_seed_rule": "CONFIRMED_UNFROZEN",
+    "seed_namespace_band": "CONFIRMED_UNFROZEN",
+    "cross_seed_selection": "CONFIRMED_UNFROZEN",
+    "selection_count": "CONFIRMED_UNFROZEN",
+    "k_20_30_stability_threshold": "CONFIRMED_FROZEN (threshold itself; the count k that feeds it is unfrozen)",
+    "case_to_pysr_target_mapping": "CONFIRMED_UNFROZEN",
+    "note": "None of these were found buried elsewhere under a different name. engineering/muru-completion's pipeline.py (old engine, n_seeds=8, random engine, not PySR) and src/muru/objval/select.py (a declared different study with an incompatible band/family selection philosophy) were the only plausible sibling artifacts and were both inspected and ruled out as authority."
+  },
+  "final_conclusion": "RC5 HAS UNFROZEN SCIENTIFIC EXECUTION SEMANTICS"
+}
