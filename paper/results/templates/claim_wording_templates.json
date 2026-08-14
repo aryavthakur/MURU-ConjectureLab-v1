@@ -1,0 +1,106 @@
+{
+  "version": "muru-claim-wording-templates-1.0.0",
+  "description": "Mechanical wording templates for claims C1 through C10, C4a, and C4b from MURU_CLAIM_MATRIX.md. Phrasing is selected strictly by gate / endpoint outcome, preserving all binding forbidden overclaims.",
+  "claims": {
+    "C1": {
+      "claim_id": "C1",
+      "title": "Estimating a molecule-specific horizontal scale",
+      "role": "PRIMARY (G1)",
+      "denominator": 164,
+      "allowed_wording_pass": "On scaffold-disjoint synthetic test compounds, fold-local horizontal scale estimation achieved scalar competence in {k} of 164 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]), satisfying the pre-specified G1 gate (>= 0.70).",
+      "allowed_wording_fail": "Fold-local horizontal scale estimation achieved scalar competence in {k} of 164 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]), failing to satisfy the pre-specified G1 gate (>= 0.70).",
+      "forbidden_overclaim": "That g is a real physical or chemical property; that g transfers across collision-energy regimes or instruments; that synthetic scalar competence implies collapse holds for real MS/MS spectra."
+    },
+    "C2": {
+      "claim_id": "C2",
+      "title": "Rejecting scalar adequacy violations",
+      "role": "PRIMARY (Adequacy / G1 Component)",
+      "allowed_wording_pass": "Under the frozen Amendment A1 adequacy decision rule, M0 specificity was maintained in {m0_k} of 164 cases (Wilson 95% [{m0_lo:.4f}, {m0_hi:.4f}]), while M1, M2, and M3 violations were detected in {m1_k}/36, {m2_k}/24, and {m3_k}/24 cases respectively.",
+      "allowed_wording_fail": "The adequacy evaluation did not achieve the required separation: M0 specificity was {m0_k}/164, and sensitivity in M1/M2/M3 violation families was {m1_k}/36, {m2_k}/24, and {m3_k}/24.",
+      "forbidden_overclaim": "That the collapse model is adequate for real spectra; that non-rejection of M0 proves M0 is true; that passing adequacy proves the scalar target is physically correct."
+    },
+    "C3": {
+      "claim_id": "C3",
+      "title": "Recovering relevant variable support",
+      "role": "SECONDARY (Support Recovery)",
+      "denominator": 144,
+      "allowed_wording_pass": "Under prospectively frozen synthetic truth, the pipeline recovered the correct effective variable support in {k} of 144 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]).",
+      "allowed_wording_fail": "Effective variable support was recovered in {k} of 144 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]).",
+      "forbidden_overclaim": "That the recovered variables are the causal drivers of fragmentation; that support recovery implies the functional form is identified; that a proxy variable and its principal are interchangeable."
+    },
+    "C4": {
+      "claim_id": "C4",
+      "title": "Recovering mathematical family structure",
+      "role": "PRIMARY (G2)",
+      "denominator": 144,
+      "allowed_wording_pass": "Under prospectively frozen synthetic truth, the pipeline recovered both the correct effective support and the correct mathematical family in {k} of 144 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]), satisfying the pre-specified G2 gate (>= 0.70).",
+      "allowed_wording_fail": "Discovered expressions recovered both effective support and mathematical family in {k} of 144 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]), failing the pre-specified G2 gate (>= 0.70).",
+      "forbidden_overclaim": "That the family is the equation; that family recovery means the generating law was discovered; that family recovery implies exact algebraic recovery; that the family generalises to real fragmentation; any use of 'law', 'universal', or 'mechanistic'."
+    },
+    "C4a": {
+      "claim_id": "C4a",
+      "title": "Recovering physical parameters and exponents",
+      "role": "SECONDARY (Parameter Recovery, Ungated)",
+      "denominator_joint": 156,
+      "denominator_mass": 156,
+      "denominator_desc": 84,
+      "allowed_wording_pass": "At the frozen benchmark anchor, the discovered expressions recovered the planted mass exponent within 0.15 in {mass_k} of 156 cases (point estimate {mass_rate:.4f}, Wilson 95% [{mass_lo:.4f}, {mass_hi:.4f}]) and the descriptor coupling coefficient within 0.10 in {desc_k} of 84 cases (point estimate {desc_rate:.4f}, Wilson 95% [{desc_lo:.4f}, {desc_hi:.4f}]), giving a joint parameter recovery rate of {joint_k}/156 (Wilson 95% [{joint_lo:.4f}, {joint_hi:.4f}]).",
+      "forbidden_overclaim": "That parameter recovery implies exact algebraic identification; that parameters are 'coordinate-free' (descriptor coupling has dimension [d]^-1); that recovering synthetic exponents establishes physical mass scaling in real MS/MS."
+    },
+    "C4b": {
+      "claim_id": "C4b",
+      "title": "Achieving predictive equivalence on the reference distribution",
+      "role": "SECONDARY (Predictive Equivalence, Ungated)",
+      "denominator": 144,
+      "allowed_wording_pass": "Across 2,160 reference points sampled from the frozen synthetic covariate generator (12 reference frames), discovered expressions achieved relative RMSE <= 0.05 and Pearson r >= 0.990 in {k} of 144 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]).",
+      "forbidden_overclaim": "That predictive equivalence implies mathematical family recovery or exact algebra recovery; describing the reference distribution as a 'physical domain', 'chemical domain', or 'realistic molecular domain'; claiming predictive equivalence on real molecules."
+    },
+    "C5": {
+      "claim_id": "C5",
+      "title": "Recovering exact generating algebra",
+      "role": "SECONDARY (Exact Algebra, Ungated)",
+      "denominator": 60,
+      "allowed_wording_pass": "Symbolic equivalence to the planted law under frozen SymPy normalisation was observed in {k} of 60 held-out cases (point estimate {rate:.4f}, Wilson 95% [{lower:.4f}, {upper:.4f}]), across {n_classes} distinct functional-equivalence classes.",
+      "forbidden_overclaim": "'The equation was recovered'; 'the law was discovered'; presenting a single expression as the generating relationship; inferring exact recovery from family recovery or predictive equivalence; treating a low rate as a G2 failure or repairing it by loosening the equivalence definition."
+    },
+    "C6": {
+      "claim_id": "C6",
+      "title": "Avoiding false discoveries under tested nulls",
+      "role": "PRIMARY (G3)",
+      "denominator": 36,
+      "allowed_wording_pass": "Across the 36 frozen structural-safety opportunities, {violations} unsafe structural acceptances occurred (point estimate {rate:.4f}, Wilson 95% upper bound {upper:.4f}), satisfying the pre-specified G3 gate of <= 0.15 under valid calibration.",
+      "allowed_wording_fail": "Across the 36 frozen structural-safety opportunities, {violations} unsafe structural acceptances occurred (point estimate {rate:.4f}, Wilson 95% upper bound {upper:.4f}), failing the pre-specified G3 gate of <= 0.15.",
+      "forbidden_overclaim": "'The false discovery rate is zero' or any p = 0 phrasing for a finite simulation count; that the pipeline is safe against untested confounding or coupling mechanisms; that a good G3 result licenses real-data discovery."
+    },
+    "C7": {
+      "claim_id": "C7",
+      "title": "Detecting structure beyond mass",
+      "role": "COMPOSITE (G2 Positive vs F07/F20 Negative)",
+      "allowed_wording_pass": "Under tested synthetic covariates, structure beyond mass was recovered in {g2_k} of 144 positive cases while non-mass claims were rejected in {neg_safe_k} of 24 negative-control cases (F07 and F20).",
+      "forbidden_overclaim": "Claiming non-mass structure exists in real data; quoting positive rates without reporting negative-control refusal rates."
+    },
+    "C8": {
+      "claim_id": "C8",
+      "title": "Generalizing to held-out synthetic compounds",
+      "role": "SECONDARY (Generalization)",
+      "allowed_wording_pass": "On scaffold-disjoint test compounds, discovered expressions generalized with trajectory MAE <= 0.80 * baseline in {g1_k} of 164 cases and predictive equivalence in {pred_k} of 144 cases.",
+      "forbidden_overclaim": "Generalization to real compounds or instruments; calling historical results fold-local."
+    },
+    "C9": {
+      "claim_id": "C9",
+      "title": "Identifying a real collision energy law",
+      "role": "UNSUPPORTED",
+      "status": "UNSUPPORTED",
+      "allowed_wording": "None. Claim unavailable from this benchmark.",
+      "forbidden_overclaim": "Every form: 'universal law', 'physical equation of fragmentation', 'general fragmentation model'."
+    },
+    "C10": {
+      "claim_id": "C10",
+      "title": "Establishing fragmentation mechanism",
+      "role": "UNSUPPORTED",
+      "status": "UNSUPPORTED",
+      "allowed_wording": "None. Claim unavailable from this benchmark.",
+      "forbidden_overclaim": "Every causal verb: 'explains', 'is driven by', 'RRKM-consistent', 'mechanistic'."
+    }
+  }
+}

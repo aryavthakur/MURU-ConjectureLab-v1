@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/development_aggregate.schema.json",
+  "title": "MURU Development Aggregate Artifact Schema",
+  "description": "Schema for the 80-case Development sanity-check aggregate artifact under Amendments A3.1 and A3.2.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "partition",
+    "total_cases",
+    "denominators",
+    "numerators",
+    "rates",
+    "wilson_95",
+    "engine_failures",
+    "cases"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["muru-development-aggregate-schema-1.0.0"]
+    },
+    "partition": {
+      "type": "string",
+      "const": "development"
+    },
+    "total_cases": {
+      "type": "integer",
+      "const": 80
+    },
+    "denominators": {
+      "type": "object",
+      "required": [
+        "scalar_competence",
+        "family_recovery",
+        "principal_structural_safety",
+        "support_recovery",
+        "parameter_recovery",
+        "predictive_equivalence",
+        "exact_algebra",
+        "m0_specificity",
+        "m1_sensitivity",
+        "m2_sensitivity",
+        "m3_sensitivity"
+      ],
+      "properties": {
+        "scalar_competence": { "type": "integer", "const": 55 },
+        "family_recovery": { "type": "integer", "const": 48 },
+        "principal_structural_safety": { "type": "integer", "const": 12 },
+        "support_recovery": { "type": "integer", "const": 48 },
+        "parameter_recovery": { "type": "integer", "const": 52 },
+        "predictive_equivalence": { "type": "integer", "const": 48 },
+        "exact_algebra": { "type": "integer", "const": 20 },
+        "m0_specificity": { "type": "integer", "const": 55 },
+        "m1_sensitivity": { "type": "integer", "const": 12 },
+        "m2_sensitivity": { "type": "integer", "const": 8 },
+        "m3_sensitivity": { "type": "integer", "const": 8 }
+      }
+    },
+    "numerators": {
+      "type": "object",
+      "required": [
+        "scalar_competence",
+        "family_recovery",
+        "principal_structural_safety",
+        "support_recovery",
+        "parameter_recovery",
+        "predictive_equivalence",
+        "exact_algebra",
+        "m0_specificity",
+        "m1_sensitivity",
+        "m2_sensitivity",
+        "m3_sensitivity"
+      ],
+      "properties": {
+        "scalar_competence": { "type": "integer", "minimum": 0, "maximum": 55 },
+        "family_recovery": { "type": "integer", "minimum": 0, "maximum": 48 },
+        "principal_structural_safety": { "type": "integer", "minimum": 0, "maximum": 12 },
+        "support_recovery": { "type": "integer", "minimum": 0, "maximum": 48 },
+        "parameter_recovery": { "type": "integer", "minimum": 0, "maximum": 52 },
+        "predictive_equivalence": { "type": "integer", "minimum": 0, "maximum": 48 },
+        "exact_algebra": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "m0_specificity": { "type": "integer", "minimum": 0, "maximum": 55 },
+        "m1_sensitivity": { "type": "integer", "minimum": 0, "maximum": 12 },
+        "m2_sensitivity": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "m3_sensitivity": { "type": "integer", "minimum": 0, "maximum": 8 }
+      }
+    },
+    "rates": {
+      "type": "object"
+    },
+    "wilson_95": {
+      "type": "object"
+    },
+    "engine_failures": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "runtime_seconds": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "peak_memory_mb": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 80,
+      "maxItems": 80,
+      "items": {
+        "$ref": "case_outcome.schema.json"
+      }
+    }
+  }
+}

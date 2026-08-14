@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/case_outcome.schema.json",
+  "title": "MURU Benchmark Case Outcome Schema",
+  "description": "Schema for individual benchmark case evaluation record across Development, Held-Out, or Challenge partitions.",
+  "type": "object",
+  "required": [
+    "case_id",
+    "partition",
+    "family",
+    "variant",
+    "g_spearman",
+    "trajectory_mae",
+    "per_energy_mean_mae",
+    "adequacy_status",
+    "m0_accepted",
+    "structural_acceptance_status",
+    "accepted",
+    "support_status",
+    "family_status",
+    "g1_scalar_competent",
+    "g2_family_recovered"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^PB\\|(development|held_out|challenge)\\|F[0-2][0-9]\\|r[0-9]{3}$"
+    },
+    "partition": {
+      "type": "string",
+      "enum": ["development", "held_out", "challenge"]
+    },
+    "family": {
+      "type": "string",
+      "pattern": "^F(0[1-9]|1[0-9]|20)$"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "replicate": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "g_spearman": {
+      "type": "number"
+    },
+    "trajectory_mae": {
+      "type": "number"
+    },
+    "per_energy_mean_mae": {
+      "type": "number"
+    },
+    "adequacy_status": {
+      "type": "string",
+      "enum": [
+        "M0_NOT_REJECTED",
+        "M0_REJECTED_M1",
+        "M0_REJECTED_M2",
+        "M0_REJECTED_M3",
+        "M0_REJECTED_MULTIPLE",
+        "INSUFFICIENT_DATA",
+        "BOUNDARY_LIMITED",
+        "NUMERICAL_FAILURE",
+        "MODEL_FIT_FAILURE",
+        "TIMEOUT",
+        "CONTRACT_FAILURE"
+      ]
+    },
+    "m0_accepted": {
+      "type": "boolean"
+    },
+    "candidate_expression": {
+      "type": ["string", "null"]
+    },
+    "candidate_complexity": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "candidate_valid_r2": {
+      "type": ["number", "null"]
+    },
+    "null_threshold": {
+      "type": ["number", "null"]
+    },
+    "structural_acceptance_status": {
+      "type": "string",
+      "enum": [
+        "STRUCTURAL_ACCEPTED",
+        "REJECTED_A1_INADEQUATE",
+        "REJECTED_NULL_FIT",
+        "REJECTED_UNSTABLE",
+        "REJECTED_OVERCOMPLEX",
+        "REJECTED_INVALID_FRACTION",
+        "REJECTED_EMPTY_SUPPORT",
+        "REJECTED_CEILING",
+        "REJECTED_FALSIFICATION",
+        "UNEVALUABLE"
+      ]
+    },
+    "accepted": {
+      "type": "boolean"
+    },
+    "effective_support": {
+      "type": ["array", "null"],
+      "items": { "type": "string" }
+    },
+    "support_status": {
+      "type": "string",
+      "enum": ["MATCH", "MISMATCH", "SUPPORT_UNRESOLVED"]
+    },
+    "discovered_family": {
+      "type": ["string", "null"]
+    },
+    "truth_family": {
+      "type": ["string", "null"]
+    },
+    "family_status": {
+      "type": "string",
+      "enum": ["MATCH", "MISMATCH", "FAMILY_UNRESOLVED", "FAMILY_AMBIGUOUS"]
+    },
+    "g1_scalar_competent": {
+      "type": "boolean"
+    },
+    "g2_family_recovered": {
+      "type": "boolean"
+    },
+    "g3_event": {
+      "type": "string",
+      "enum": ["SAFE", "UNSAFE", "VIOLATION", "NOT_APPLICABLE"]
+    },
+    "parameter_recovery": {
+      "type": "object",
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "p_mass_truth": { "type": ["number", "null"] },
+        "p_mass_discovered": { "type": ["number", "null"] },
+        "p_mass_error": { "type": ["number", "null"] },
+        "p_mass_recovered": { "type": ["boolean", "null"] },
+        "c_desc_truth": { "type": ["number", "null"] },
+        "c_desc_discovered": { "type": ["number", "null"] },
+        "c_desc_error": { "type": ["number", "null"] },
+        "c_desc_recovered": { "type": ["boolean", "null"] },
+        "joint_recovered": { "type": "boolean" }
+      }
+    },
+    "predictive_equivalence": {
+      "type": "object",
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "valid_fraction": { "type": "number" },
+        "c_star": { "type": "number" },
+        "rel_rmse": { "type": "number" },
+        "pearson_r": { "type": "number" },
+        "passed": { "type": "boolean" }
+      }
+    },
+    "exact_algebra": {
+      "type": "object",
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "symbolically_equivalent": { "type": "boolean" },
+        "functional_equivalence_class": { "type": ["string", "null"] }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "properties": {
+        "boundary_hit": { "type": "boolean" },
+        "unsupported_non_mass": { "type": "boolean" },
+        "richer_family": { "type": "boolean" },
+        "adversarial_flagged": { "type": "boolean" },
+        "null_flagged": { "type": "boolean" }
+      }
+    }
+  }
+}

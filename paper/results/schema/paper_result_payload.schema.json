@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/paper_result_payload.schema.json",
+  "title": "MURU Comprehensive Paper Result Payload Schema",
+  "description": "Master machine-readable schema for all prospective experimental outcomes, statistical confidence intervals, gate verdicts, table data, and figure source points.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "governance",
+    "calibration",
+    "development",
+    "held_out",
+    "gate_verdicts",
+    "claim_evaluations",
+    "evidence_ledger_updates"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["muru-paper-results-1.0.0"]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "governance": {
+      "type": "object",
+      "required": [
+        "code_commit",
+        "calibration_artifact_sha256",
+        "held_out_artifact_sha256",
+        "preflight_sha256"
+      ],
+      "properties": {
+        "code_commit": { "type": "string" },
+        "calibration_artifact_sha256": { "type": "string" },
+        "development_artifact_sha256": { "type": "string" },
+        "held_out_artifact_sha256": { "type": "string" },
+        "challenge_artifact_sha256": { "type": "string" },
+        "preflight_sha256": { "type": "string" }
+      }
+    },
+    "calibration": {
+      "$ref": "calibration_result.schema.json"
+    },
+    "development": {
+      "$ref": "development_aggregate.schema.json"
+    },
+    "held_out": {
+      "$ref": "held_out_aggregate.schema.json"
+    },
+    "challenge": {
+      "$ref": "challenge_aggregate.schema.json"
+    },
+    "gate_verdicts": {
+      "type": "object",
+      "required": ["G1", "G2", "G3", "umbrella_claim"],
+      "properties": {
+        "G1": {
+          "type": "object",
+          "required": ["verdict", "wording", "gate_passed"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_EVALUABLE"] },
+            "wording": { "type": "string" },
+            "gate_passed": { "type": "boolean" }
+          }
+        },
+        "G2": {
+          "type": "object",
+          "required": ["verdict", "wording", "gate_passed"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_EVALUABLE"] },
+            "wording": { "type": "string" },
+            "gate_passed": { "type": "boolean" }
+          }
+        },
+        "G3": {
+          "type": "object",
+          "required": ["verdict", "wording", "gate_passed"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_EVALUABLE"] },
+            "wording": { "type": "string" },
+            "gate_passed": { "type": "boolean" }
+          }
+        },
+        "umbrella_claim": {
+          "type": "object",
+          "required": ["verdict", "wording", "positive_claim"],
+          "properties": {
+            "verdict": { "type": "string", "enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_EVALUABLE"] },
+            "wording": { "type": "string" },
+            "positive_claim": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "claim_evaluations": {
+      "type": "object"
+    },
+    "evidence_ledger_updates": {
+      "type": "array"
+    },
+    "table_data": {
+      "type": "object"
+    },
+    "figure_data": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/challenge_aggregate.schema.json",
+  "title": "MURU Challenge Aggregate Artifact Schema",
+  "description": "Schema for the 60-case Challenge stress-test aggregate artifact. Staged and disabled; descriptive only, enters no primary denominator.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "partition",
+    "status",
+    "role",
+    "total_cases",
+    "stress_measures",
+    "cases"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["muru-challenge-aggregate-schema-1.0.0"]
+    },
+    "partition": {
+      "type": "string",
+      "const": "challenge"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["STAGED_DISABLED", "EXECUTED_DESCRIPTIVE"]
+    },
+    "role": {
+      "type": "string",
+      "const": "DESCRIPTIVE_ONLY_STRESS_TEST"
+    },
+    "total_cases": {
+      "type": "integer",
+      "const": 60
+    },
+    "stress_measures": {
+      "type": "object",
+      "required": [
+        "challenge_scalar_competence",
+        "challenge_family_recovery",
+        "challenge_structural_safety",
+        "challenge_exact_algebra"
+      ],
+      "properties": {
+        "challenge_scalar_competence": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 41 },
+            "denominator": { "type": "integer", "const": 41 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "challenge_family_recovery": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 36 },
+            "denominator": { "type": "integer", "const": 36 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "challenge_structural_safety": {
+          "type": "object",
+          "required": ["violations", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "violations": { "type": "integer", "minimum": 0, "maximum": 9 },
+            "denominator": { "type": "integer", "const": 9 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "challenge_exact_algebra": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 15 },
+            "denominator": { "type": "integer", "const": 15 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 60,
+      "maxItems": 60,
+      "items": {
+        "$ref": "case_outcome.schema.json"
+      }
+    }
+  }
+}

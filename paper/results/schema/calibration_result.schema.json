@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/calibration_result.schema.json",
+  "title": "MURU Calibration Result Artifact Schema",
+  "description": "Schema for the prospective null-calibration outcome artifact produced by rc3_calibration_runner under Amendments A3.1 and A3.2.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "n_worlds_executed",
+    "n_worlds_valid",
+    "validity_floor",
+    "validity_verdict",
+    "total_seeds_attempted",
+    "total_seeds_completed",
+    "execution_failure_seeds",
+    "completed_no_candidate_seeds",
+    "threshold_table",
+    "per_construction_diagnostics"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["muru-calibration-result-schema-1.0.0"]
+    },
+    "n_worlds_executed": {
+      "type": "integer",
+      "const": 100
+    },
+    "n_worlds_valid": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "validity_floor": {
+      "type": "integer",
+      "const": 95
+    },
+    "validity_verdict": {
+      "type": "string",
+      "enum": ["VALID", "INVALID"]
+    },
+    "total_seeds_attempted": {
+      "type": "integer",
+      "const": 3000
+    },
+    "total_seeds_completed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3000
+    },
+    "execution_failure_seeds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "completed_no_candidate_seeds": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "wall_clock_runtime_seconds": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "threshold_table": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "complexity",
+          "null_median",
+          "threshold",
+          "bootstrap_interval_95"
+        ],
+        "properties": {
+          "complexity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "null_median": {
+            "type": "number"
+          },
+          "threshold": {
+            "type": "number"
+          },
+          "bootstrap_interval_95": {
+            "type": "object",
+            "required": ["lower", "upper"],
+            "properties": {
+              "lower": { "type": "number" },
+              "upper": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "per_construction_diagnostics": {
+      "type": "object",
+      "required": [
+        "target_permuted_across_compounds",
+        "descriptors_permuted_across_compounds",
+        "gaussian_targets_with_observed_variance"
+      ],
+      "properties": {
+        "target_permuted_across_compounds": {
+          "type": "object",
+          "required": ["n_worlds", "p95_c4", "p95_c10", "p95_c20", "mean_constant_model_r2"],
+          "properties": {
+            "n_worlds": { "type": "integer", "const": 34 },
+            "p95_c4": { "type": "number" },
+            "p95_c10": { "type": "number" },
+            "p95_c20": { "type": "number" },
+            "mean_constant_model_r2": { "type": "number" }
+          }
+        },
+        "descriptors_permuted_across_compounds": {
+          "type": "object",
+          "required": ["n_worlds", "p95_c4", "p95_c10", "p95_c20", "mean_constant_model_r2"],
+          "properties": {
+            "n_worlds": { "type": "integer", "const": 33 },
+            "p95_c4": { "type": "number" },
+            "p95_c10": { "type": "number" },
+            "p95_c20": { "type": "number" },
+            "mean_constant_model_r2": { "type": "number" }
+          }
+        },
+        "gaussian_targets_with_observed_variance": {
+          "type": "object",
+          "required": ["n_worlds", "p95_c4", "p95_c10", "p95_c20", "mean_constant_model_r2"],
+          "properties": {
+            "n_worlds": { "type": "integer", "const": 33 },
+            "p95_c4": { "type": "number" },
+            "p95_c10": { "type": "number" },
+            "p95_c20": { "type": "number" },
+            "mean_constant_model_r2": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}

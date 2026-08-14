@@ -1,0 +1,40 @@
+{
+  "version": "muru-verdict-templates-1.0.0",
+  "description": "Deterministic wording templates for primary gates, calibration validity, and the umbrella scientific claim. Status is selected strictly mechanically from numerical inequalities without LLM subjectivity.",
+  "calibration": {
+    "PASS": "Structural-null calibration is VALID: {n_valid} of 100 worlds completed with zero execution-failure seeds, satisfying the pre-specified floor of 95/100. The 20-complexity monotonic threshold table T(c) is active.",
+    "FAIL": "Structural-null calibration is INVALID: only {n_valid} of 100 worlds completed with zero execution-failure seeds, failing the pre-specified validity floor of 95/100. No threshold table is activated; the benchmark halts.",
+    "INCONCLUSIVE": "Structural-null calibration outcome is INCONCLUSIVE: execution incomplete ({n_completed}/100 worlds executed).",
+    "NOT_EVALUABLE": "Structural-null calibration is NOT_EVALUABLE: missing calibration execution artifacts."
+  },
+  "G1": {
+    "name": "G1 Scalar Competence",
+    "threshold_rule": "lower 95% Wilson score interval >= 0.70 on denominator 164",
+    "PASS": "Gate G1 PASSED: fold-local scalar estimation achieved competence in {k} of 164 held-out cases (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), satisfying the pre-specified lower-bound criterion of >= 0.70.",
+    "FAIL": "Gate G1 FAILED: fold-local scalar estimation achieved competence in {k} of 164 held-out cases (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), falling below the pre-specified lower-bound criterion of >= 0.70.",
+    "INCONCLUSIVE": "Gate G1 is INCONCLUSIVE: fewer than 164 held-out cases were evaluated ({k}/{n_supplied}).",
+    "NOT_EVALUABLE": "Gate G1 is NOT_EVALUABLE: held-out execution artifacts are missing or unparseable."
+  },
+  "G2": {
+    "name": "G2 Family Recovery",
+    "threshold_rule": "lower 95% Wilson score interval >= 0.70 on denominator 144",
+    "PASS": "Gate G2 PASSED: discovered expressions recovered both the planted effective support and mathematical family in {k} of 144 held-out cases (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), satisfying the pre-specified lower-bound criterion of >= 0.70.",
+    "FAIL": "Gate G2 FAILED: discovered expressions recovered both effective support and mathematical family in {k} of 144 held-out cases (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), falling below the pre-specified lower-bound criterion of >= 0.70.",
+    "INCONCLUSIVE": "Gate G2 is INCONCLUSIVE: fewer than 144 held-out family-recovery cases were evaluated ({k}/{n_supplied}).",
+    "NOT_EVALUABLE": "Gate G2 is NOT_EVALUABLE: held-out symbolic outcomes are missing or unparseable."
+  },
+  "G3": {
+    "name": "G3 Principal Structural Safety",
+    "threshold_rule": "upper 95% Wilson score interval <= 0.15 on denominator 36 (UNEVALUABLE counted as violation)",
+    "PASS": "Gate G3 PASSED: {violations} unsafe structural acceptances occurred across 36 held-out opportunities (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), satisfying the pre-specified upper-bound safety criterion of <= 0.15.",
+    "FAIL": "Gate G3 FAILED: {violations} unsafe structural acceptances occurred across 36 held-out opportunities (point estimate {rate:.4f}, 95% Wilson [{lower:.4f}, {upper:.4f}]), exceeding the pre-specified upper-bound safety criterion of <= 0.15.",
+    "INCONCLUSIVE": "Gate G3 is INCONCLUSIVE: fewer than 36 held-out safety opportunities were evaluated ({violations}/{n_supplied}).",
+    "NOT_EVALUABLE": "Gate G3 is NOT_EVALUABLE: structural-safety outcomes are missing or unparseable."
+  },
+  "umbrella_claim": {
+    "PASS": "UMBRELLA BENCHMARK CLAIM: POSITIVE. Null calibration is valid (>=95/100 worlds) and all three primary gates passed (G1 lower Wilson >= 0.70, G2 lower Wilson >= 0.70, G3 upper Wilson <= 0.15). The pre-specified primary competence criteria under synthetic truth are met.",
+    "FAIL": "UMBRELLA BENCHMARK CLAIM: NEGATIVE. One or more pre-specified gates failed: {failed_gates_str}. Under the prospectively frozen decision rule, the synthetic benchmark hypothesis is not supported.",
+    "INCONCLUSIVE": "UMBRELLA BENCHMARK CLAIM: INCONCLUSIVE. Execution is incomplete or calibration validity is unresolved.",
+    "NOT_EVALUABLE": "UMBRELLA BENCHMARK CLAIM: NOT_EVALUABLE. Missing required prospective result artifacts."
+  }
+}

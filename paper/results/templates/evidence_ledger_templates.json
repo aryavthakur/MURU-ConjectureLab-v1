@@ -1,0 +1,150 @@
+{
+  "version": "muru-evidence-ledger-templates-1.0.0",
+  "description": "Template definitions for prospective Class C entries in MURU_EVIDENCE_LEDGER.json.",
+  "entries": [
+    {
+      "id": "P001",
+      "statement": "Structural-null calibration validity verdict, valid world count of 100, and 20-complexity monotonic threshold table T(c).",
+      "source_artifact": "artifacts/calibration_thresholds.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["5.5", "7.1", "Table 3b", "Table 3c", "Figure 4D"]
+    },
+    {
+      "id": "P002",
+      "statement": "Per-construction calibration 95th percentile breakdown (target-permuted 34, descriptors-permuted 33, gaussian 33) and constant-model R2 diagnostics.",
+      "source_artifact": "artifacts/calibration_thresholds.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.1", "Table 3d"]
+    },
+    {
+      "id": "P003",
+      "statement": "Development 80-case sanity execution record across all 11 endpoints under Amendment A3.1/A3.2 contract.",
+      "source_artifact": "artifacts/paper_benchmark_development_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.2", "Table 4"]
+    },
+    {
+      "id": "P004",
+      "statement": "Primary Gate G1 Scalar Competence: numerator against 164 held-out cases, point rate, and Wilson 95% interval against lower bound >= 0.70.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.3", "7.4", "Table 5", "Figure 7A"]
+    },
+    {
+      "id": "P005",
+      "statement": "Primary Gate G2 Family Recovery: numerator against 144 held-out cases, point rate, and Wilson 95% interval against lower bound >= 0.70.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.3", "7.7", "Table 5", "Figure 7A"]
+    },
+    {
+      "id": "P006",
+      "statement": "Primary Gate G3 Principal Structural Safety: violation count against 36 held-out opportunities (with UNEVALUABLE as violation), point rate, and Wilson 95% interval against upper bound <= 0.15.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.3", "7.11", "Table 5", "Figure 7A"]
+    },
+    {
+      "id": "P007",
+      "statement": "Umbrella Benchmark Scientific Claim verdict: positive iff calibration valid and all three primary gates (G1, G2, G3) pass.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Conclusions", "7.3", "Table 5", "Discussion"]
+    },
+    {
+      "id": "P008",
+      "statement": "Joint Parameter Recovery secondary endpoint: numerator against 156 held-out cases, rate, and Wilson 95% interval.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.8", "Table 5a", "Figure 5D", "Figure 7B"]
+    },
+    {
+      "id": "P009",
+      "statement": "Mass Exponent Recovery secondary component: numerator against 156 held-out cases within |p - p_truth| <= 0.15, rate, and Wilson 95% interval.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.8", "Table 5a", "Figure 7B"]
+    },
+    {
+      "id": "P010",
+      "statement": "Descriptor Coupling Recovery secondary component: numerator against 84 descriptor-dependent held-out cases within |c - c_truth| <= 0.10, rate, and Wilson 95% interval.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.8", "Table 5a", "Figure 7B"]
+    },
+    {
+      "id": "P011",
+      "statement": "Predictive Equivalence secondary endpoint: numerator against 144 held-out cases over 2,160 reference points across 12 frames, rate, and Wilson 95% interval.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.9", "Table 5a", "Figure 6D", "Figure 7B"]
+    },
+    {
+      "id": "P012",
+      "statement": "Exact Algebra Recovery secondary endpoint: symbolic equivalence numerator against 60 held-out cases, rate, Wilson 95% interval, and distinct functional class counts.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["Abstract Results", "7.10", "Table 5a", "Table 6", "Figure 6D", "Figure 7B"]
+    },
+    {
+      "id": "P013",
+      "statement": "Support Recovery secondary endpoint: effective support MATCH numerator against 144 held-out cases, rate, and Wilson 95% interval.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.6", "Table 5a", "Table 6", "Figure 7B"]
+    },
+    {
+      "id": "P014",
+      "statement": "Model Adequacy outcomes: M0 specificity (164), M1 sensitivity (36), M2 sensitivity (24), M3 sensitivity (24), and F16 combined breakdown.",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.5", "Table 5a"]
+    },
+    {
+      "id": "P015",
+      "statement": "False Discovery and Refusal breakdown: F07 (12), F19 (12 with A/B/C variants), F20 (12 with A/B/C variants), and F06 legitimate refusals (12).",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.11", "Table 7"]
+    },
+    {
+      "id": "P016",
+      "statement": "Diagnostic endpoints: F05 boundary-hit rate (12), F19C response-structure diagnostic (4), and scalar target yield (164).",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.12", "Table 5a"]
+    },
+    {
+      "id": "P017",
+      "statement": "Noise Envelope comparison: prospective recovery rates across F01 (noiseless), F02 (moderate), and F03 (stronger).",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.13", "Figure 7D"]
+    },
+    {
+      "id": "P018",
+      "statement": "Census of typed failure states across held-out execution (REJECTED_A1_INADEQUATE, UNEVALUABLE, SUPPORT_UNRESOLVED, FAMILY_AMBIGUOUS, COMPLETED_NO_CANDIDATE, EXECUTION_FAILURE).",
+      "source_artifact": "artifacts/paper_benchmark_held_out_aggregate.json",
+      "evidence_class": "C",
+      "status": "pending",
+      "manuscript_location": ["7.16", "Figure 8B", "Figure 8C"]
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://muru.science/schemas/held_out_aggregate.schema.json",
+  "title": "MURU Held-Out Aggregate Artifact Schema",
+  "description": "Schema for the 240-case Held-out evaluation aggregate artifact under Amendments A3.1 through A3.4.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "partition",
+    "total_cases",
+    "primary_gates",
+    "umbrella_decision",
+    "secondary_endpoints",
+    "model_adequacy",
+    "diagnostics",
+    "g3_decomposition",
+    "by_truth_family",
+    "failure_census",
+    "cases"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["muru-held-out-aggregate-schema-1.0.0"]
+    },
+    "partition": {
+      "type": "string",
+      "const": "held_out"
+    },
+    "total_cases": {
+      "type": "integer",
+      "const": 240
+    },
+    "primary_gates": {
+      "type": "object",
+      "required": ["G1", "G2", "G3"],
+      "properties": {
+        "G1": {
+          "type": "object",
+          "required": ["name", "endpoint", "numerator", "denominator", "rate", "wilson_95", "gate_threshold", "passed"],
+          "properties": {
+            "name": { "type": "string", "const": "G1" },
+            "endpoint": { "type": "string", "const": "scalar_competence" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 164 },
+            "denominator": { "type": "integer", "const": 164 },
+            "rate": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "wilson_95": {
+              "type": "object",
+              "required": ["lower", "upper"],
+              "properties": {
+                "lower": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+                "upper": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+              }
+            },
+            "gate_threshold": { "type": "number", "const": 0.70 },
+            "passed": { "type": "boolean" }
+          }
+        },
+        "G2": {
+          "type": "object",
+          "required": ["name", "endpoint", "numerator", "denominator", "rate", "wilson_95", "gate_threshold", "passed"],
+          "properties": {
+            "name": { "type": "string", "const": "G2" },
+            "endpoint": { "type": "string", "const": "family_recovery" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 144 },
+            "denominator": { "type": "integer", "const": 144 },
+            "rate": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "wilson_95": {
+              "type": "object",
+              "required": ["lower", "upper"],
+              "properties": {
+                "lower": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+                "upper": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+              }
+            },
+            "gate_threshold": { "type": "number", "const": 0.70 },
+            "passed": { "type": "boolean" }
+          }
+        },
+        "G3": {
+          "type": "object",
+          "required": ["name", "endpoint", "violations", "denominator", "rate", "wilson_95", "gate_threshold", "passed", "unevaluable_count"],
+          "properties": {
+            "name": { "type": "string", "const": "G3" },
+            "endpoint": { "type": "string", "const": "principal_structural_safety" },
+            "violations": { "type": "integer", "minimum": 0, "maximum": 36 },
+            "denominator": { "type": "integer", "const": 36 },
+            "rate": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "wilson_95": {
+              "type": "object",
+              "required": ["lower", "upper"],
+              "properties": {
+                "lower": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+                "upper": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+              }
+            },
+            "gate_threshold": { "type": "number", "const": 0.15 },
+            "passed": { "type": "boolean" },
+            "unevaluable_count": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "umbrella_decision": {
+      "type": "object",
+      "required": ["positive_claim", "all_primary_passed", "calibration_valid", "failed_gates"],
+      "properties": {
+        "positive_claim": { "type": "boolean" },
+        "all_primary_passed": { "type": "boolean" },
+        "calibration_valid": { "type": "boolean" },
+        "failed_gates": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "secondary_endpoints": {
+      "type": "object",
+      "required": [
+        "joint_parameter_recovery",
+        "mass_exponent_recovery",
+        "descriptor_coupling_recovery",
+        "predictive_equivalence",
+        "exact_algebra",
+        "support_recovery"
+      ],
+      "properties": {
+        "joint_parameter_recovery": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 156 },
+            "denominator": { "type": "integer", "const": 156 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "mass_exponent_recovery": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY_COMPONENT" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 156 },
+            "denominator": { "type": "integer", "const": 156 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "descriptor_coupling_recovery": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY_COMPONENT" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 84 },
+            "denominator": { "type": "integer", "const": 84 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "predictive_equivalence": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95", "n_reference_points", "n_frames"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 144 },
+            "denominator": { "type": "integer", "const": 144 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] },
+            "n_reference_points": { "type": "integer", "const": 2160 },
+            "n_frames": { "type": "integer", "const": 12 }
+          }
+        },
+        "exact_algebra": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 60 },
+            "denominator": { "type": "integer", "const": 60 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] },
+            "distinct_functional_classes": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "support_recovery": {
+          "type": "object",
+          "required": ["role", "numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "role": { "type": "string", "const": "SECONDARY" },
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 144 },
+            "denominator": { "type": "integer", "const": 144 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        }
+      }
+    },
+    "model_adequacy": {
+      "type": "object",
+      "required": ["m0_specificity", "m1_sensitivity", "m2_sensitivity", "m3_sensitivity", "f16_breakdown"],
+      "properties": {
+        "m0_specificity": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 164 },
+            "denominator": { "type": "integer", "const": 164 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "m1_sensitivity": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 36 },
+            "denominator": { "type": "integer", "const": 36 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "m2_sensitivity": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 24 },
+            "denominator": { "type": "integer", "const": 24 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "m3_sensitivity": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 24 },
+            "denominator": { "type": "integer", "const": 24 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "f16_breakdown": {
+          "type": "object",
+          "required": ["m1_detected", "m2_detected", "m3_detected", "at_least_one_detected", "denominator"],
+          "properties": {
+            "m1_detected": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "m2_detected": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "m3_detected": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "at_least_one_detected": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "denominator": { "type": "integer", "const": 12 }
+          }
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "required": ["boundary_hit", "response_structure_diagnostic", "scalar_target_yield"],
+      "properties": {
+        "boundary_hit": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "denominator": { "type": "integer", "const": 12 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "response_structure_diagnostic": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "denominator": { "type": "integer", "const": 4 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "scalar_target_yield": {
+          "type": "object",
+          "required": ["numerator", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "numerator": { "type": "integer", "minimum": 0, "maximum": 164 },
+            "denominator": { "type": "integer", "const": 164 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        }
+      }
+    },
+    "g3_decomposition": {
+      "type": "object",
+      "required": ["f07_false_extra_structure", "f19_false_null_structure", "f20_false_adversarial"],
+      "properties": {
+        "f07_false_extra_structure": {
+          "type": "object",
+          "required": ["unsafe_events", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "unsafe_events": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "denominator": { "type": "integer", "const": 12 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "f19_false_null_structure": {
+          "type": "object",
+          "required": ["f19a_unsafe", "f19b_unsafe", "f19c_unsafe", "total_unsafe", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "f19a_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "f19b_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "f19c_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "total_unsafe": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "denominator": { "type": "integer", "const": 12 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        },
+        "f20_false_adversarial": {
+          "type": "object",
+          "required": ["f20a_unsafe", "f20b_unsafe", "f20c_unsafe", "total_unsafe", "denominator", "rate", "wilson_95"],
+          "properties": {
+            "f20a_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "f20b_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "f20c_unsafe": { "type": "integer", "minimum": 0, "maximum": 4 },
+            "total_unsafe": { "type": "integer", "minimum": 0, "maximum": 12 },
+            "denominator": { "type": "integer", "const": 12 },
+            "rate": { "type": "number" },
+            "wilson_95": { "type": "object", "required": ["lower", "upper"] }
+          }
+        }
+      }
+    },
+    "by_truth_family": {
+      "type": "object"
+    },
+    "failure_census": {
+      "type": "object"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 240,
+      "maxItems": 240,
+      "items": {
+        "$ref": "case_outcome.schema.json"
+      }
+    }
+  }
+}
