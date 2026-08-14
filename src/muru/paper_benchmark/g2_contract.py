@@ -26,6 +26,8 @@ from typing import Sequence
 import sympy
 from sympy import Symbol, simplify, symbols, sympify
 
+from .truth import TruthRecord
+
 # -----------------------------------------------------------------------
 # Truth family taxonomy - frozen
 # -----------------------------------------------------------------------
@@ -54,6 +56,33 @@ _PRIMITIVE_SYMBOLS: dict[str, Symbol] = {
     name: symbols(name) for name in GRAMMAR_PRIMITIVES
 }
 
+# Frozen unary-operator numeric semantics, reproduced verbatim from the
+# sibling frozen module src/muru/discovery/grammar.py::_SYMPY_LOCALS
+# (square=x**2, cube=x**3, inv=1/x). sympy's default sympify namespace already
+# resolves "sqrt" and "log" as builtin functions, so only these three need
+# explicit binding; without them sympify treats "square"/"cube"/"inv" as
+# opaque undefined functions, which blocks the algebraic cancellation and
+# reordering-invariance rules below from ever firing.
+_UNARY_LOCALS: dict[str, object] = {
+    "square": lambda x: x**2,
+    "cube": lambda x: x**3,
+    "inv": lambda x: 1 / x,
+}
+
+# Deterministic PySR-default-naming alias: x{i} maps positionally to
+# GRAMMAR_PRIMITIVES[i], the same covariate order already frozen as the
+# design-matrix column order for calibration worlds and the ceiling
+# estimator (rc3_calibration_worlds.py::CALIBRATION_COVARIATE_ORDER,
+# rc3_ceiling.py::CEILING_COVARIATE_ORDER, both literally `= GRAMMAR_PRIMITIVES`).
+# Aliasing "x{i}" to the *same* Symbol object as GRAMMAR_PRIMITIVES[i] (rather
+# than a separate symbol) makes every downstream free-symbol check treat them
+# identically for free.
+_FEATURE_NAME_ALIASES: dict[str, Symbol] = {
+    f"x{index}": _PRIMITIVE_SYMBOLS[name] for index, name in enumerate(GRAMMAR_PRIMITIVES)
+}
+
+_KNOWN_SYMBOLS: frozenset[Symbol] = frozenset(_PRIMITIVE_SYMBOLS.values())
+
 
 class SupportStatus(str, Enum):
     MATCH = "MATCH"
@@ -81,13 +110,29 @@ class G2Event(str, Enum):
 def _safe_parse(expr_str: str) -> sympy.Expr | None:
     """Parse under protected grammar.  Returns None on failure."""
     try:
-        local_dict = dict(_PRIMITIVE_SYMBOLS)
+        local_dict: dict[str, object] = {**_PRIMITIVE_SYMBOLS, **_UNARY_LOCALS, **_FEATURE_NAME_ALIASES}
         parsed = sympify(expr_str, locals=local_dict)
         if parsed is None or not isinstance(parsed, sympy.Basic):
             return None
         return parsed
     except (sympy.SympifyError, SyntaxError, TypeError, ValueError):
         return None
+
+
+def _resolved_support(simplified: sympy.Expr) -> frozenset[str] | None:
+    """Effective support of an already-simplified expression, or None
+    (fail closed) if it references any symbol outside the protected grammar
+    primitives and their x{i} aliases.  A symbol reaching this point that is
+    not in ``_KNOWN_SYMBOLS`` was never bound in ``_safe_parse``'s locals, so
+    sympify auto-created it as an unmapped identifier: it must not be
+    silently reported as absent from support."""
+    free = simplified.free_symbols
+    if not free <= _KNOWN_SYMBOLS:
+        return None
+    return frozenset(
+        name for name, sym in _PRIMITIVE_SYMBOLS.items()
+        if sym in free
+    )
 
 
 def extract_effective_support(expr_str: str) -> frozenset[str] | None:
@@ -122,12 +167,7 @@ def extract_effective_support(expr_str: str) -> frozenset[str] | None:
     if simplified.is_number:
         return frozenset()
 
-    free = simplified.free_symbols
-    support = frozenset(
-        name for name, sym in _PRIMITIVE_SYMBOLS.items()
-        if sym in free
-    )
-    return support
+    return _resolved_support(simplified)
 
 
 def classify_support(
@@ -170,11 +210,7 @@ def classify_discovered_family(expr_str: str) -> str | None:
     if simplified.is_number:
         return None
 
-    free = simplified.free_symbols
-    support = frozenset(
-        name for name, sym in _PRIMITIVE_SYMBOLS.items()
-        if sym in free
-    )
+    support = _resolved_support(simplified)
 
     if not support:
         return None
@@ -294,6 +330,69 @@ def _fallback_classify(expr: sympy.Expr, desc_sym: Symbol) -> str | None:
     except Exception:
         pass
     return None
+
+
+# -----------------------------------------------------------------------
+# Truth-side support production (R4 repair: DEFECT_D)
+#
+# classify_support(discovered_support, truth_support) has always required a
+# truth_support operand; nothing in the repository produced one. The single
+# source of truth is generator.py::_law's active_variables, already written
+# for every case. This module only maps its block labels onto
+# GRAMMAR_PRIMITIVES names -- it invents no new label.
+# -----------------------------------------------------------------------
+
+# generator.py's single interaction-law branch returns, in the same call,
+# both the law string "... * descriptor * descriptor2 ..." and
+# active_variables=["mass", "interaction_left", "interaction_right"]. The
+# block labels are therefore forced 1:1, in the order they already appear in
+# that one call, onto descriptor/descriptor2 -- a mechanical reading of
+# existing frozen source, not a new naming choice.
+_BLOCK_LABEL_TO_PRIMITIVE: dict[str, str] = {
+    "interaction_left": "descriptor",
+    "interaction_right": "descriptor2",
+}
+
+
+def truth_support_for_case(truth: TruthRecord) -> frozenset[str]:
+    """Mechanically derive G2 truth support from a case's ``TruthRecord``.
+
+    Defined only for G2-applicable families -- ``TruthRecord.
+    symbolic_truth_kind == "defined"``, the frozen per-variant metadata
+    (registry.py's ``VariantSpec.symbolic_truth_kind``, already carried onto
+    every generated ``TruthRecord`` by generator.py) that distinguishes the
+    12 family_recovery-endpoint families (F01-F05, F08-F12, F17, F18) from
+    every other family. Reading it directly off the record -- rather than
+    importing registry.py here to re-resolve it -- keeps this module's A3.4
+    sealed-boundary import closure unchanged (scripts/pb_35_a3_4_integrity.py
+    statically forbids any registry/generator/partition reference reachable
+    from the a34_*.py secondary-scorer roots, which import this module).
+    Callers must not invoke this for a case outside that set; it raises
+    rather than returning an arbitrary label, mirroring
+    rc3_acceptance.py's truth-blind-by-design boundary for the acceptance
+    predicate itself.
+    """
+    if truth.symbolic_truth_kind != "defined":
+        raise ValueError(
+            f"case {truth.case_id!r} (variant {truth.variant!r}, symbolic_truth_kind="
+            f"{truth.symbolic_truth_kind!r}) is not G2-applicable; truth support is undefined"
+        )
+    if truth.mathematical_family not in TRUTH_FAMILIES:
+        raise ValueError(
+            f"case {truth.case_id!r} has no recognized truth family {truth.mathematical_family!r}"
+        )
+
+    mapped: set[str] = set()
+    for label in truth.active_variables:
+        if label in GRAMMAR_PRIMITIVES:
+            mapped.add(label)
+        elif label in _BLOCK_LABEL_TO_PRIMITIVE:
+            mapped.add(_BLOCK_LABEL_TO_PRIMITIVE[label])
+        else:
+            raise ValueError(
+                f"case {truth.case_id!r} has unmapped active_variable block label {label!r}"
+            )
+    return frozenset(mapped)
 
 
 # -----------------------------------------------------------------------

@@ -113,6 +113,109 @@ class TestEffectiveSupport:
 
 
 # -----------------------------------------------------------------------
+# R3: parser / support / feature mapping (DEFECT_C) regression fixtures
+#
+# Mission-mandated minimum coverage: mass/mass, mass*inv(mass),
+# descriptor/descriptor, descriptor*inv(descriptor), mass/descriptor,
+# inv(descriptor)*mass, mass*square(inv(mass)), x0, x1, x2, and equivalent
+# reordered/factored forms.
+# -----------------------------------------------------------------------
+
+class TestR3ParserSupportFeatureMapping:
+
+    # -- cancellation: square/cube/inv must be bound so sympy can cancel ----
+
+    def test_mass_over_mass_cancels(self):
+        assert extract_effective_support("mass / mass") == frozenset()
+
+    def test_mass_times_inv_mass_cancels(self):
+        """Pre-repair defect: inv() was an unbound opaque function, so this
+        returned {"mass"} instead of cancelling to no support."""
+        assert extract_effective_support("mass * inv(mass)") == frozenset()
+
+    def test_descriptor_over_descriptor_cancels(self):
+        assert extract_effective_support("descriptor / descriptor") == frozenset()
+
+    def test_descriptor_times_inv_descriptor_cancels(self):
+        assert extract_effective_support("descriptor * inv(descriptor)") == frozenset()
+
+    def test_mass_over_mass_and_mass_times_inv_mass_agree(self):
+        """Same cancellation, two syntactic routes to it."""
+        assert extract_effective_support("mass / mass") == extract_effective_support("mass * inv(mass)")
+
+    # -- reordering invariance: mass/descriptor vs inv(descriptor)*mass -----
+
+    def test_mass_over_descriptor_support(self):
+        assert extract_effective_support("mass / descriptor") == {"mass", "descriptor"}
+
+    def test_inv_descriptor_times_mass_support_matches_reordering(self):
+        """Pre-repair defect: inv(descriptor)*mass classified as unmapped
+        (opaque function), diverging from the algebraically identical
+        mass/descriptor."""
+        support_a = extract_effective_support("mass / descriptor")
+        support_b = extract_effective_support("inv(descriptor) * mass")
+        assert support_a == support_b == {"mass", "descriptor"}
+
+    def test_mass_over_descriptor_and_reordering_classify_identically(self):
+        family_a = classify_discovered_family("mass / descriptor")
+        family_b = classify_discovered_family("inv(descriptor) * mass")
+        assert family_a == family_b
+        assert family_a is not None
+
+    # -- square/inv composition preserves mass-only support -----------------
+
+    def test_mass_times_square_inv_mass(self):
+        """mass * square(inv(mass)) = mass * mass**-2 = mass**-1: still
+        mass-only support, still the mass_power family."""
+        assert extract_effective_support("mass * square(inv(mass))") == {"mass"}
+        assert classify_discovered_family("mass * square(inv(mass))") == "mass_power"
+
+    def test_mass_times_square_inv_mass_equivalent_factoring(self):
+        support_a = extract_effective_support("mass * square(inv(mass))")
+        support_b = extract_effective_support("mass * inv(mass) * inv(mass)")
+        support_c = extract_effective_support("cube(mass) * inv(mass) * inv(mass) * inv(mass) * inv(mass)")
+        assert support_a == support_b == support_c == {"mass"}
+
+    # -- PySR default feature-name mapping: x{i} -> GRAMMAR_PRIMITIVES[i] ---
+
+    def test_x0_maps_to_mass(self):
+        assert extract_effective_support("x0") == {"mass"}
+        assert classify_discovered_family("x0") == classify_discovered_family("mass")
+
+    def test_x1_maps_to_descriptor(self):
+        assert extract_effective_support("x1") == {"descriptor"}
+
+    def test_x2_maps_to_descriptor2(self):
+        assert extract_effective_support("x2") == {"descriptor2"}
+
+    def test_raw_feature_names_reorder_identically_to_primitive_names(self):
+        """x0 * inv(x1) is the PySR-default-named twin of mass/descriptor;
+        both must resolve to the same support and family. Pre-repair defect:
+        unmapped x0/x1 silently reported empty support."""
+        raw = extract_effective_support("x0 * inv(x1)")
+        named = extract_effective_support("mass / descriptor")
+        assert raw == named == {"mass", "descriptor"}
+        assert classify_discovered_family("x0 * inv(x1)") == classify_discovered_family("mass / descriptor")
+
+    def test_x0_over_x0_cancels(self):
+        assert extract_effective_support("x0 / x0") == frozenset()
+
+    # -- unknown feature symbols fail closed, never silently empty ----------
+
+    def test_unknown_symbol_fails_closed(self):
+        assert extract_effective_support("unmapped_feature_symbol * mass") is None
+
+    def test_unknown_x_index_out_of_frozen_range_fails_closed(self):
+        """Only x0..x{len(GRAMMAR_PRIMITIVES)-1} are bound; anything past the
+        frozen covariate range must fail closed, not silently drop."""
+        assert extract_effective_support("x99") is None
+        assert extract_effective_support("x5") is None
+
+    def test_unknown_symbol_family_classification_fails_closed(self):
+        assert classify_discovered_family("unmapped_feature_symbol * mass") is None
+
+
+# -----------------------------------------------------------------------
 # Support classification
 # -----------------------------------------------------------------------
 

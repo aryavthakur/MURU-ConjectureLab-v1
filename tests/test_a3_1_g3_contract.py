@@ -12,6 +12,7 @@ from muru.paper_benchmark.g3_contract import (
     G3_WILSON_UPPER_GATE,
     G3Event,
     G3Score,
+    classify_f07_event,
     classify_f19a_event,
     classify_f19b_event,
     classify_f19c_event,
@@ -38,6 +39,31 @@ def _rejected() -> AcceptanceResult:
 
 def _unevaluable() -> AcceptanceResult:
     return AcceptanceResult(status=AcceptanceStatus.UNEVALUABLE, gate_reached="a1_adequacy")
+
+
+# -----------------------------------------------------------------------
+# F07: mass-only g truth (false extra-structure acceptance) -- R2 repair
+# -----------------------------------------------------------------------
+
+class TestF07:
+
+    def test_safe_rejection(self):
+        assert classify_f07_event(_rejected(), None) == G3Event.SAFE
+
+    def test_mass_only_safe(self):
+        assert classify_f07_event(_accepted(), frozenset({"mass"})) == G3Event.SAFE
+
+    def test_empty_support_safe(self):
+        """Empty support is mass-only subset, so safe."""
+        assert classify_f07_event(_accepted(), frozenset()) == G3Event.SAFE
+
+    def test_non_mass_unsafe(self):
+        assert classify_f07_event(
+            _accepted(), frozenset({"mass", "descriptor"})
+        ) == G3Event.UNSAFE
+
+    def test_unevaluable_violation(self):
+        assert classify_f07_event(_unevaluable(), None) == G3Event.VIOLATION
 
 
 # -----------------------------------------------------------------------
@@ -157,7 +183,7 @@ class TestF20C:
 class TestG3Dispatch:
 
     def test_all_variants(self):
-        for variant in ("F19A", "F19B", "F19C", "F20A", "F20B", "F20C"):
+        for variant in ("F07", "F19A", "F19B", "F19C", "F20A", "F20B", "F20C"):
             result = classify_g3_event(variant, _rejected())
             assert result == G3Event.SAFE
 
@@ -169,6 +195,26 @@ class TestG3Dispatch:
         for variant in ("F20A", "F20B", "F20C"):
             result = classify_g3_event(variant, _accepted())
             assert result == G3Event.UNSAFE
+
+    def test_f07_dispatch_matches_direct_call(self):
+        """R2: every fixture routed through the dispatcher must agree with
+        calling classify_f07_event directly -- the dispatcher entry point and
+        the direct entry point are the same G3 opportunity."""
+        fixtures = [
+            (_rejected(), None),
+            (_accepted(), frozenset({"mass"})),
+            (_accepted(), frozenset()),
+            (_accepted(), frozenset({"mass", "descriptor"})),
+            (_unevaluable(), None),
+        ]
+        for acceptance, support in fixtures:
+            assert classify_g3_event("F07", acceptance, support) == classify_f07_event(acceptance, support)
+
+    def test_f07_accepted_unsafe_via_dispatch(self):
+        assert classify_g3_event("F07", _accepted(), frozenset({"mass", "descriptor"})) == G3Event.UNSAFE
+
+    def test_f07_unevaluable_violation_via_dispatch(self):
+        assert classify_g3_event("F07", _unevaluable(), None) == G3Event.VIOLATION
 
 
 # -----------------------------------------------------------------------
