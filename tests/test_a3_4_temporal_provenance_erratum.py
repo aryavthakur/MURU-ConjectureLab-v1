@@ -16,6 +16,7 @@ A34_SHA = "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada"
 A34_COMMIT = "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
 MERGE_COMMIT = "5055f69097aa0c6ce2ded6a3e57f0edfaea69faf"
 ERRATUM_TAG = "a3-4-temporal-provenance-erratum"
+ERRATUM_COMMIT = "220c9cb679e03865f1b2a02b975397de9f4c7b46"
 FIRST_DURABLE_SEED_DEFINITION = (
     "The frozen execution definition is the first non-quarantined PB__NCAL__ "
     "durable seed record, durably written at 2026-08-14T10:08:31-04:00 "
@@ -130,6 +131,4 @@ def test_erratum_human_record_distinguishes_provenance_stages():
 def test_erratum_tag_is_annotated_and_freezes_the_current_erratum_commit():
     """A lightweight tag cannot silently replace the corrected erratum record."""
     assert git_output("cat-file", "-t", ERRATUM_TAG) == "tag"
-    assert git_output("rev-parse", f"{ERRATUM_TAG}^{{}}") == git_output(
-        "rev-parse", "HEAD"
-    )
+    assert git_output("rev-parse", f"{ERRATUM_TAG}^{{}}") == ERRATUM_COMMIT

@@ -71,6 +71,9 @@ CALIBRATION_OUTCOME_API_NAMES = frozenset(
         "read_result",
         "open_result",
         "record_outcome",
+        "CaseOutcome",
+        "GateResult",
+        "m0_accepted_from_adequacy",
     }
 )
 
@@ -450,37 +453,174 @@ def _import_from_module(node: ast.ImportFrom, alias: ast.alias) -> str | None:
     return alias.name if node.level else None
 
 
-def _scan_import_node(relative_path: str, node: ast.AST) -> list[str]:
+def _scan_import_node(
+    relative_path: str,
+    node: ast.AST,
+    source_path: Path,
+    source_root: Path,
+) -> list[str]:
     errors: list[str] = []
     if isinstance(node, ast.Import):
         for alias in node.names:
-            reason = _forbidden_module_reason(alias.name)
-            if reason:
-                errors.append(
-                    f"SEALED_BOUNDARY_MODULE: {relative_path}: {alias.name} ({reason})"
-                )
+            if alias.name == "muru":
+                errors.append(f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: muru")
+            elif alias.name.startswith("muru."):
+                parts = alias.name.split(".")
+                if parts[:2] == ["muru", "paper_benchmark"]:
+                    if len(parts) == 2:
+                        errors.append(
+                            f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                            "muru.paper_benchmark (unbounded_package)"
+                        )
+                    else:
+                        reason = _forbidden_module_reason(alias.name)
+                        if reason:
+                            errors.append(
+                                f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                                f"{alias.name} ({reason})"
+                            )
+                else:
+                    errors.append(
+                        f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: {alias.name}"
+                    )
+            else:
+                reason = _forbidden_module_reason(alias.name)
+                if reason:
+                    errors.append(
+                        f"SEALED_BOUNDARY_MODULE: {relative_path}: {alias.name} ({reason})"
+                    )
     elif isinstance(node, ast.ImportFrom):
         if _is_allowed_covariate_adapter(relative_path, node):
             return errors
-        for alias in node.names:
-            module = _import_from_module(node, alias)
-            reason = _forbidden_module_reason(module)
-            if reason:
+
+        if node.level > 0:
+            if node.module is None and any(alias.name == "*" for alias in node.names):
                 errors.append(
-                    f"SEALED_BOUNDARY_MODULE: {relative_path}: {module} ({reason})"
+                    f"SEALED_BOUNDARY_RELATIVE_STAR_IMPORT: {relative_path}: "
+                    f"from {'.' * node.level} import *"
                 )
-            elif node.module and alias.name != "*":
-                qualified_module = f"{node.module}.{alias.name}"
-                qualified_reason = _forbidden_module_reason(qualified_module)
-                if qualified_reason:
+            base = source_path.parent
+            for _ in range(node.level - 1):
+                base = base.parent
+            if not _is_within(base, source_root):
+                target_str = f"{'.' * node.level}{node.module or ''}"
+                errors.append(
+                    f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: {target_str}"
+                )
+                return errors
+
+            for alias in node.names:
+                if node.module:
+                    reason = _forbidden_module_reason(node.module)
+                    if reason:
+                        errors.append(
+                            f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                            f"{node.module} ({reason})"
+                        )
+                    elif alias.name != "*":
+                        qualified_module = f"{node.module}.{alias.name}"
+                        qualified_reason = _forbidden_module_reason(qualified_module)
+                        if qualified_reason:
+                            errors.append(
+                                "SEALED_BOUNDARY_MODULE: "
+                                f"{relative_path}: {qualified_module} ({qualified_reason})"
+                            )
+                else:
+                    if alias.name != "*":
+                        reason = _forbidden_module_reason(alias.name)
+                        if reason:
+                            errors.append(
+                                f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                                f"{alias.name} ({reason})"
+                            )
+                if alias.name in FORBIDDEN_API_NAMES:
                     errors.append(
-                        "SEALED_BOUNDARY_MODULE: "
-                        f"{relative_path}: {qualified_module} ({qualified_reason})"
+                        f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
                     )
-            if alias.name in FORBIDDEN_API_NAMES:
-                errors.append(
-                    f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
-                )
+        else:
+            if node.module == "muru":
+                for alias in node.names:
+                    if alias.name == "*":
+                        errors.append(
+                            f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: from muru import *"
+                        )
+                    elif alias.name != "paper_benchmark":
+                        errors.append(
+                            f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: muru.{alias.name}"
+                        )
+                    else:
+                        errors.append(
+                            f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                            "muru.paper_benchmark (unbounded_package)"
+                        )
+            elif node.module and node.module.startswith("muru."):
+                parts = node.module.split(".")
+                if parts[:2] != ["muru", "paper_benchmark"]:
+                    errors.append(
+                        f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: {node.module}"
+                    )
+                else:
+                    if len(parts) == 2:
+                        if any(alias.name == "*" for alias in node.names):
+                            errors.append(
+                                f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                                "muru.paper_benchmark (unbounded_package)"
+                            )
+                        for alias in node.names:
+                            if alias.name != "*":
+                                qualified_module = f"muru.paper_benchmark.{alias.name}"
+                                reason = _forbidden_module_reason(
+                                    qualified_module
+                                ) or _forbidden_module_reason(alias.name)
+                                if reason:
+                                    errors.append(
+                                        "SEALED_BOUNDARY_MODULE: "
+                                        f"{relative_path}: {qualified_module} ({reason})"
+                                    )
+                            if alias.name in FORBIDDEN_API_NAMES:
+                                errors.append(
+                                    f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
+                                )
+                    else:
+                        reason = _forbidden_module_reason(node.module)
+                        if reason:
+                            errors.append(
+                                f"SEALED_BOUNDARY_MODULE: {relative_path}: "
+                                f"{node.module} ({reason})"
+                            )
+                        for alias in node.names:
+                            if alias.name != "*":
+                                qualified_module = f"{node.module}.{alias.name}"
+                                qualified_reason = _forbidden_module_reason(qualified_module)
+                                if qualified_reason:
+                                    errors.append(
+                                        "SEALED_BOUNDARY_MODULE: "
+                                        f"{relative_path}: {qualified_module} ({qualified_reason})"
+                                    )
+                            if alias.name in FORBIDDEN_API_NAMES:
+                                errors.append(
+                                    f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
+                                )
+            else:
+                if node.module:
+                    reason = _forbidden_module_reason(node.module)
+                    if reason:
+                        errors.append(
+                            f"SEALED_BOUNDARY_MODULE: {relative_path}: {node.module} ({reason})"
+                        )
+                    for alias in node.names:
+                        if alias.name != "*":
+                            qualified_module = f"{node.module}.{alias.name}"
+                            qualified_reason = _forbidden_module_reason(qualified_module)
+                            if qualified_reason:
+                                errors.append(
+                                    "SEALED_BOUNDARY_MODULE: "
+                                    f"{relative_path}: {qualified_module} ({qualified_reason})"
+                                )
+                        if alias.name in FORBIDDEN_API_NAMES:
+                            errors.append(
+                                f"SEALED_BOUNDARY_IMPORT: {relative_path}: {alias.name}"
+                            )
     return errors
 
 
@@ -501,11 +641,19 @@ def _scan_reference_node(relative_path: str, node: ast.AST) -> list[str]:
         if function_name in {"__import__", "import_module"} and node.args:
             argument = node.args[0]
             if isinstance(argument, ast.Constant) and isinstance(argument.value, str):
-                reason = _forbidden_module_reason(argument.value)
+                arg_val = argument.value
+                reason = _forbidden_module_reason(arg_val)
                 if reason:
                     errors.append(
                         f"SEALED_BOUNDARY_DYNAMIC_IMPORT: {relative_path}: "
-                        f"{argument.value} ({reason})"
+                        f"{arg_val} ({reason})"
+                    )
+                elif arg_val == "muru" or (
+                    arg_val.startswith("muru.")
+                    and not arg_val.startswith("muru.paper_benchmark.")
+                ):
+                    errors.append(
+                        f"SEALED_BOUNDARY_IMPORT_ESCAPE: {relative_path}: {arg_val}"
                     )
         if function_name == "getattr" and len(node.args) >= 2:
             attribute = node.args[1]
@@ -533,6 +681,9 @@ def _existing_local_module(
 ) -> Path | None:
     """Resolve one local module file without importing it."""
     if not module_parts:
+        candidate = base / "__init__.py"
+        if candidate.is_file() and _is_within(candidate, source_root):
+            return candidate
         return None
     candidate_base = base.joinpath(*module_parts)
     for candidate in (
@@ -556,6 +707,8 @@ def _local_module_path(
         base = source_path.parent
         for _ in range(level - 1):
             base = base.parent
+        if not _is_within(base, source_root):
+            return None
         module_parts = tuple(module.split(".")) if module else ()
     else:
         if not module:
@@ -640,7 +793,7 @@ def scan_a34_endpoint_sources(root: Path = ROOT) -> list[str]:
             errors.append(f"SEALED_BOUNDARY_PARSE: {relative_path}: {type(exc).__name__}")
             continue
         for node in ast.walk(tree):
-            errors.extend(_scan_import_node(relative_path, node))
+            errors.extend(_scan_import_node(relative_path, node, path, source_root))
             errors.extend(_scan_reference_node(relative_path, node))
         pending.extend(
             reversed(_local_import_targets(path, tree, source_root, relative_path))

@@ -237,3 +237,247 @@ def test_static_scan_rejects_unbounded_local_package_import(tmp_path: Path):
     errors = integrity.scan_a34_endpoint_sources(tmp_path)
 
     assert any("muru.paper_benchmark" in error for error in errors)
+
+
+def test_static_scan_rejects_relative_star_import(tmp_path: Path):
+    """A relative star import has no bounded static closure target."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_relative_star_bypass.py").write_text(
+        "from . import *\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any(
+        error.startswith("SEALED_BOUNDARY_RELATIVE_STAR_IMPORT")
+        and "a34_relative_star_bypass.py" in error
+        for error in errors
+    )
+
+
+def test_static_scan_rejects_relative_import_escaping_paper_benchmark(tmp_path: Path):
+    """A parent-relative helper cannot escape the bounded static closure."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_relative_escape_bypass.py").write_text(
+        "from ..innocuous_bridge import fetch\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any(
+        error.startswith("SEALED_BOUNDARY_IMPORT_ESCAPE")
+        and "..innocuous_bridge" in error
+        for error in errors
+    )
+
+
+def test_static_scan_rejects_absolute_muru_import_escaping_paper_benchmark(
+    tmp_path: Path,
+):
+    """An absolute MURU helper cannot escape the bounded static closure."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_absolute_escape_bypass.py").write_text(
+        "import muru.innocuous_bridge\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any(
+        error.startswith("SEALED_BOUNDARY_IMPORT_ESCAPE")
+        and "muru.innocuous_bridge" in error
+        for error in errors
+    )
+
+
+def test_static_scan_rejects_multihop_prohibited_transitive_import(tmp_path: Path):
+    """A multi-hop helper chain cannot reach a prohibited outcome API."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_multihop_bypass.py").write_text(
+        "from .helper_a import step_a\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "helper_a.py").write_text(
+        "from .helper_b import step_b\n"
+        "def step_a(): return step_b()\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "helper_b.py").write_text(
+        "from .helper_c import step_c\n"
+        "def step_b(): return step_c()\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "helper_c.py").write_text(
+        "from .analysis import CaseOutcome\n"
+        "def step_c(): return CaseOutcome\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any("helper_c.py" in error and "analysis" in error for error in errors)
+    assert any("helper_c.py" in error and "CaseOutcome" in error for error in errors)
+
+
+def test_static_scan_rejects_relative_star_with_transitive_prohibited_helper(
+    tmp_path: Path,
+):
+    """A relative star import of a helper module transitively scanning forbidden APIs fails."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_star_helper.py").write_text(
+        "from .danger_helper import *\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "danger_helper.py").write_text(
+        "from .analysis import CaseOutcome\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any("danger_helper.py" in error and "analysis" in error for error in errors)
+
+
+def test_static_scan_rejects_package_init_reexport_escape(tmp_path: Path):
+    """A package __init__.py re-exporting a prohibited module or escaping upward is rejected."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    subpkg_dir = endpoint_dir / "subpkg"
+    subpkg_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_subpkg_import.py").write_text(
+        "from .subpkg import helper\n",
+        encoding="utf-8",
+    )
+    (subpkg_dir / "__init__.py").write_text(
+        "from ..analysis import CaseOutcome\n"
+        "from .helper import helper\n",
+        encoding="utf-8",
+    )
+    (subpkg_dir / "helper.py").write_text(
+        "def helper(): return 42\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any("subpkg/__init__.py" in error and "analysis" in error for error in errors)
+
+
+def test_static_scan_handles_cyclic_safe_import_graph_safely(tmp_path: Path):
+    """Cyclic import graphs among safe modules terminate without infinite recursion."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_cyclic_entry.py").write_text(
+        "from .cycle_a import func_a\n"
+        "def compute(): return func_a()\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "cycle_a.py").write_text(
+        "from .cycle_b import func_b\n"
+        "def func_a(): return 1 + func_b()\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "cycle_b.py").write_text(
+        "from .cycle_a import func_a\n"
+        "def func_b(): return 2\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert errors == []
+
+
+def test_static_scan_accepts_genuinely_safe_helper_graph(tmp_path: Path):
+    """A multi-module safe helper tree with clean math and stdlib imports passes."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_pure_scorer.py").write_text(
+        "from .safe_math import safe_sqrt\n"
+        "def score_val(x): return safe_sqrt(x)\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "safe_math.py").write_text(
+        "import math\n"
+        "from .safe_util import validate_num\n"
+        "def safe_sqrt(x): validate_num(x); return math.sqrt(x)\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "safe_util.py").write_text(
+        "from typing import Any\n"
+        "def validate_num(x: Any) -> bool: return isinstance(x, (int, float))\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert errors == []
+
+
+def test_static_scan_rejects_parent_package_escape_via_dotdot_import(tmp_path: Path):
+    """Imports using 'from .. import ...' or 'from ... import ...' escape paper_benchmark and fail."""
+    integrity = _load_integrity_module()
+    endpoint_dir = tmp_path / "src/muru/paper_benchmark"
+    endpoint_dir.mkdir(parents=True)
+    (endpoint_dir / "a34_contract.py").write_text(
+        "from .generator import _synthetic_compounds\n",
+        encoding="utf-8",
+    )
+    (endpoint_dir / "a34_parent_escape.py").write_text(
+        "from .. import prohibited_module\n",
+        encoding="utf-8",
+    )
+
+    errors = integrity.scan_a34_endpoint_sources(tmp_path)
+
+    assert any(
+        error.startswith("SEALED_BOUNDARY_IMPORT_ESCAPE")
+        and ".." in error
+        for error in errors
+    )
