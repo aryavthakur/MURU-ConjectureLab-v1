@@ -1,0 +1,672 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "muru-heldout-preparation-spec-audit-1.0.0",
+  "document_id": "MURU-AUDIT-HELDOUT-PREPARATION-SPEC-01",
+  "audit_title": "MURU ConjectureLab v1 Held-Out Preparation Spec-vs-Invention Hostile Audit",
+  "audit_branch": "audit/muru-heldout-preparation-spec-audit",
+  "execution_mode": "READ_ONLY_AUDIT",
+  "governing_authorities": {
+    "science_content_freeze_a3_4": {
+      "commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "tag": "benchmark-content-freeze-a3-4"
+    },
+    "engineering_freeze_rc4": {
+      "commit": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee",
+      "tag": "engineering-rc4-a3-4"
+    },
+    "temporal_provenance_erratum": {
+      "commit": "220c9cb679e03865f1b2a02b975397de9f4c7b46",
+      "tag": "a3-4-temporal-provenance-erratum"
+    },
+    "amendment_a3_1": {
+      "commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0",
+      "tag": "benchmark-content-freeze-a3-1"
+    },
+    "amendment_a3_2": {
+      "commit": "363b517a4633cc5bea9f5eabd1e4afe401d7b317",
+      "tag": "benchmark-content-freeze-a3-2"
+    },
+    "amendment_a3_3": {
+      "commit": "363e1c5a64cdf235712900fc2a14409fa6ec3e1e",
+      "tag": "benchmark-content-freeze-a3-3"
+    },
+    "engineering_rc3_1": {
+      "commit": "0b4a5a49f17724fb69604999422fcbdc77b281cb",
+      "tag": "engineering-rc3-1-a3-2"
+    }
+  },
+  "audited_artifacts": [
+    "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md",
+    "audit/templates/muru_pre_heldout_authorization_matrix.json",
+    "audit/templates/MURU_DEVELOPMENT_RETURN_HOSTILE_REVIEW.md",
+    "ops/heldout_ready/MURU_HELDOUT_AUDIT_CHECKLIST.md",
+    "ops/heldout_ready/MURU_HELDOUT_EXECUTION_MANIFEST_TEMPLATE.json",
+    "ops/heldout_ready/MURU_HELDOUT_FAILURE_RESUME_MATRIX.md",
+    "ops/heldout_ready/MURU_HELDOUT_ONE_SHOT_RUNBOOK.md",
+    "ops/heldout_ready/MURU_HELDOUT_RESULT_SCHEMA.md",
+    "ops/heldout_ready/PROMPT_CLAUDE_HELDOUT_EXECUTION.md"
+  ],
+  "pass1_factual_verification": {
+    "benchmark_dimensions": {
+      "development_cases": {
+        "claimed_value": 80,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: PARTITION_CASE_COUNTS['development'] * 20",
+        "correct_value": 80,
+        "status": "VERIFIED_CORRECT"
+      },
+      "held_out_cases": {
+        "claimed_value": 240,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: PARTITION_CASE_COUNTS['held_out'] * 20",
+        "correct_value": 240,
+        "status": "VERIFIED_CORRECT"
+      },
+      "families": {
+        "claimed_value": 20,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: CASE_FAMILIES (F01-F20)",
+        "correct_value": 20,
+        "status": "VERIFIED_CORRECT"
+      },
+      "replicates_per_family_development": {
+        "claimed_value": 4,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: PARTITION_CASE_COUNTS['development']",
+        "correct_value": 4,
+        "status": "VERIFIED_CORRECT"
+      },
+      "replicates_per_family_held_out": {
+        "claimed_value": 12,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: PARTITION_CASE_COUNTS['held_out']",
+        "correct_value": 12,
+        "status": "VERIFIED_CORRECT"
+      },
+      "compounds_per_case": {
+        "claimed_value": "30 compounds in Pre-Held-Out Matrix Criterion 5; 180 compounds in schema/runbook",
+        "frozen_authority": "src/muru/paper_benchmark/generator.py: N_COMPOUNDS = 180",
+        "correct_value": 180,
+        "status": "FACTUAL_ERROR_IN_MATRIX_CRITERION_5",
+        "detail": "Pre-Held-Out Matrix Criterion 5 states '30 compounds x 6 energies'. Frozen truth is 180 compounds per case (30 scaffolds x 6 compounds/scaffold)."
+      },
+      "scaffolds_per_case": {
+        "claimed_value": 30,
+        "frozen_authority": "src/muru/paper_benchmark/generator.py: N_SCAFFOLDS = 30",
+        "correct_value": 30,
+        "status": "VERIFIED_CORRECT"
+      },
+      "compounds_per_scaffold": {
+        "claimed_value": 6,
+        "frozen_authority": "src/muru/paper_benchmark/generator.py: N_COMPOUNDS // N_SCAFFOLDS = 180 // 30 = 6",
+        "correct_value": 6,
+        "status": "VERIFIED_CORRECT"
+      },
+      "energies_per_case": {
+        "claimed_value": 6,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: ENERGY_GRID = (15, 30, 45, 60, 75, 90)",
+        "correct_value": "6 energies standard (1,080 trajectory rows), 5 energies for F04 missing-one-energy (900 rows)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "development_seeds": {
+        "claimed_value": 2400,
+        "frozen_authority": "80 cases * 30 seeds/case",
+        "correct_value": 2400,
+        "status": "VERIFIED_CORRECT"
+      },
+      "held_out_seeds": {
+        "claimed_value": 7200,
+        "frozen_authority": "240 cases * 30 seeds/case",
+        "correct_value": 7200,
+        "status": "VERIFIED_CORRECT"
+      }
+    },
+    "denominators": {
+      "g1_scalar_competence": {
+        "claimed_value": 164,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: endpoint_case_count('scalar_competence')",
+        "correct_value": 164,
+        "status": "VERIFIED_CORRECT"
+      },
+      "g2_family_recovery": {
+        "claimed_value": 144,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: endpoint_case_count('family_recovery')",
+        "correct_value": 144,
+        "status": "VERIFIED_CORRECT"
+      },
+      "g3_principal_structural_safety": {
+        "claimed_value": 36,
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: endpoint_case_count('principal_structural_safety')",
+        "correct_value": 36,
+        "status": "VERIFIED_CORRECT"
+      },
+      "parameter_recovery_joint": {
+        "claimed_value": 156,
+        "frozen_authority": "src/muru/paper_benchmark/a34_parameter_recovery.py: PARAMETER_RECOVERY_DENOMINATOR",
+        "correct_value": 156,
+        "status": "VERIFIED_CORRECT"
+      },
+      "parameter_recovery_mass": {
+        "claimed_value": 156,
+        "frozen_authority": "src/muru/paper_benchmark/a34_parameter_recovery.py: P_MASS_DENOMINATOR",
+        "correct_value": 156,
+        "status": "VERIFIED_CORRECT"
+      },
+      "parameter_recovery_descriptor": {
+        "claimed_value": 84,
+        "frozen_authority": "src/muru/paper_benchmark/a34_parameter_recovery.py: C_DESC_DENOMINATOR",
+        "correct_value": 84,
+        "status": "VERIFIED_CORRECT"
+      },
+      "predictive_equivalence": {
+        "claimed_value": 144,
+        "frozen_authority": "src/muru/paper_benchmark/a34_contract.py: PREDICTIVE_EQUIVALENCE_DENOMINATOR",
+        "correct_value": 144,
+        "status": "VERIFIED_CORRECT"
+      },
+      "exact_algebra": {
+        "claimed_value": 60,
+        "frozen_authority": "5 families (F01, F08, F09, F10, F17) * 12 cases",
+        "correct_value": 60,
+        "status": "VERIFIED_CORRECT"
+      }
+    },
+    "decision_rules_and_tolerances": {
+      "g1_decision_rule": {
+        "claimed_value": "Wilson Lower 95% Bound >= 0.70",
+        "frozen_authority": "src/muru/paper_benchmark/analysis.py: umbrella_decision",
+        "correct_value": "Wilson Lower 95% Bound >= 0.70 (/164)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "g2_decision_rule": {
+        "claimed_value": "Wilson Lower 95% Bound >= 0.70",
+        "frozen_authority": "src/muru/paper_benchmark/analysis.py: umbrella_decision",
+        "correct_value": "Wilson Lower 95% Bound >= 0.70 (/144)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "g3_decision_rule": {
+        "claimed_value": "Wilson Upper 95% Bound <= 0.15",
+        "frozen_authority": "src/muru/paper_benchmark/analysis.py: umbrella_decision",
+        "correct_value": "Wilson Upper 95% Bound <= 0.15 (/36)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "parameter_mass_tolerance": {
+        "claimed_value": "|p_mass - p_truth| <= 0.15",
+        "frozen_authority": "src/muru/paper_benchmark/a34_parameter_recovery.py: P_MASS_TOLERANCE = 0.15",
+        "correct_value": "|p_mass - p_truth| <= 0.15 (closed exact rational)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "parameter_descriptor_tolerance": {
+        "claimed_value": "|c_desc - c_truth| <= 0.10",
+        "frozen_authority": "src/muru/paper_benchmark/a34_parameter_recovery.py: C_DESC_TOLERANCE = 0.10",
+        "correct_value": "|c_desc - c_truth| <= 0.10 (closed exact rational)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "predictive_valid_fraction": {
+        "claimed_value": "|V| >= 2,150 (valid_fraction >= 0.995)",
+        "frozen_authority": "src/muru/paper_benchmark/a34_predictive_equivalence.py: PREDICTIVE_VALID_MIN_COUNT = 2150",
+        "correct_value": "|V| >= 2150 out of 2160 reference rows",
+        "status": "VERIFIED_CORRECT"
+      },
+      "predictive_rel_rmse_threshold": {
+        "claimed_value": "rel_RMSE <= 0.05",
+        "frozen_authority": "src/muru/paper_benchmark/a34_predictive_equivalence.py: REL_RMSE_THRESHOLD = 0.05",
+        "correct_value": "rel_RMSE <= 0.05",
+        "status": "VERIFIED_CORRECT"
+      },
+      "predictive_pearson_r_threshold": {
+        "claimed_value": "r >= 0.990",
+        "frozen_authority": "src/muru/paper_benchmark/a34_predictive_equivalence.py: PEARSON_R_THRESHOLD = 0.990",
+        "correct_value": "r >= 0.990 (zero-variance rule: r = 0.0)",
+        "status": "VERIFIED_CORRECT"
+      },
+      "case_id_syntax": {
+        "claimed_value": "PB|DEV|F01|000 in Matrix Criterion 5; PB|held_out|F01|r000 in Runbook/Schema",
+        "frozen_authority": "src/muru/paper_benchmark/registry.py: resolve_case_id, iter_case_ids",
+        "correct_value": "PB|{partition}|{family}|r{replicate:03d} (e.g. PB|development|F01|r000, PB|held_out|F01|r000)",
+        "status": "FACTUAL_ERROR_IN_MATRIX_CRITERION_5",
+        "detail": "'PB|DEV|F01|000' is invalid and throws ValueError under registry.py resolve_case_id."
+      }
+    }
+  },
+  "pass2_requirement_provenance_matrix": [
+    {
+      "id": 1,
+      "name": "environment_closure",
+      "claimed_rule": "Complete machine manifest: OS kernel, Python minor/patch, Julia runtime, LLVM/Clang compiler, thread caps (JULIA_NUM_THREADS=1, OMP_NUM_THREADS=1), and hardware allocation envelope.",
+      "source_file": "src/muru/paper_benchmark/preflight.py, protocol.py",
+      "source_commit": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee",
+      "frozen_before_development": false,
+      "scientifically_required": false,
+      "classification": "OPTIONAL_HARDENING_NOT_BINDING",
+      "detail": "Thread caps and Python/Julia runtime versions are frozen engineering execution contracts. Pinned OS kernel, LLVM/Clang compiler version, and hardware envelope were never frozen as blocking governance gates."
+    },
+    {
+      "id": 2,
+      "name": "dependency_transitive_closure",
+      "claimed_rule": "Full transitive lockfile (requirements.lock.txt, Julia Manifest.toml), wheel/package hashes, zero runtime network egress, and explicit verification of sympy==1.14.0 and mpmath==1.3.0.",
+      "source_file": "requirements.lock.txt, audit/MURU_CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md",
+      "source_commit": "c7c23324d40cd432bdd14bf9d3292b5a2867ef9e (RC2), c800e7a (RC4)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "requirements.lock.txt was frozen before Development. sympy==1.14.0 and mpmath==1.3.0 and zero network egress are binding. Transitive wheel hash verification is optional hardening."
+    },
+    {
+      "id": 3,
+      "name": "pysr_julia_symbolic_regression_identity",
+      "claimed_rule": "Byte-pinned PySR version, exact Julia SymbolicRegression.jl version/commit, parsimony weights, loss functions, operator grammar (+, -, *, /, ^, log, exp, sqrt), and seed propagation.",
+      "source_file": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md, src/muru/paper_benchmark/calibration_contract.py",
+      "source_commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0 (A3.1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Engine identity is binding, BUT the operator grammar claimed in Criterion 3 text contains a factual error: A3.1 explicitly excludes 'exp' from PySR search grammar and includes unary 'sqrt, log, square, cube, inv'."
+    },
+    {
+      "id": 4,
+      "name": "development_manifest_frozen_before_first_seed",
+      "claimed_rule": "Git commit history and filesystem provenance showing Development manifest was committed and hashed prior to started_utc and prior to the first non-quarantined durable seed record.",
+      "source_file": "audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md, src/muru/paper_benchmark/artifacts.py",
+      "source_commit": "220c9cb679e03865f1b2a02b975397de9f4c7b46",
+      "frozen_before_development": false,
+      "scientifically_required": true,
+      "classification": "ENGINEERING_DERIVED_REQUIREMENT",
+      "detail": "Temporal precedence of input manifest is a derived engineering requirement. Note: Artifact path 'artifacts/inputs/development_manifest.json' is an invented name (canonical is artifacts/paper_benchmark_case_manifest.json and artifacts/inputs/development.jsonl)."
+    },
+    {
+      "id": 5,
+      "name": "exact_80_development_cases",
+      "claimed_rule": "Exactly 80 Development cases (4 cases * 20 families: F01-F20), 2,400 seed records (30 seeds/case), case IDs PB|DEV|F01|000 through PB|DEV|F20|003, 30 compounds * 6 energies per case.",
+      "source_file": "src/muru/paper_benchmark/registry.py, generator.py",
+      "source_commit": "d94d2c9 (V1), 80a7803 (A2.1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "80 cases and 2,400 seeds are binding. BUT 'PB|DEV|F01|000' and '30 compounds x 6 energies' are FACTUALLY INCORRECT (canonical syntax is PB|development|F01|r000; geometry is 180 compounds across 30 scaffolds)."
+    },
+    {
+      "id": 6,
+      "name": "exact_search_budget",
+      "claimed_rule": "Per-seed computational limits verified from sidecars: niterations, timeout_in_seconds, maxsize, population size, worker count, and peak RSS memory ceiling (< 4 GB).",
+      "source_file": "src/muru/paper_benchmark/calibration_contract.py, MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md",
+      "source_commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0 (A3.1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Search parameters (niterations=40, populations=15, pop_size=33, maxsize=20, parsimony=0.0032) are binding. Peak RSS < 4 GB ceiling is operational telemetry, not a binding scientific gate."
+    },
+    {
+      "id": 7,
+      "name": "calibration_threshold_binding",
+      "claimed_rule": "Signed threshold table digest (artifacts/calibration/null_threshold_table.json), calibrated on 100 structural-null worlds * 30 seeds with >= 95 valid worlds under Amendment A3.1.",
+      "source_file": "src/muru/paper_benchmark/calibration_contract.py, rc3_acceptance.py",
+      "source_commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0 (A3.1), 363b517 (A3.2)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "100 worlds, 30 seeds/world, >=95 valid worlds, and signed threshold digest binding are binding scientific contracts."
+    },
+    {
+      "id": 8,
+      "name": "no_selective_retries",
+      "claimed_rule": "Monotonic execution logs, process IDs, filesystem inode creation times, and sequential run telemetry demonstrating a single deterministic pass over all seeds.",
+      "source_file": "ops/heldout_ready/MURU_HELDOUT_FAILURE_RESUME_MATRIX.md, MURU_PAPER_BENCHMARK_PROTOCOL.md",
+      "source_commit": "d94d2c9 (V1), c800e7a (RC4)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Prohibition of retrying scientific failures is binding. Inode creation time tracking and PID monotonic telemetry are non-binding optional hardening."
+    },
+    {
+      "id": 9,
+      "name": "no_result_dependent_science_changes",
+      "claimed_rule": "Cryptographic git diff audit of all 31 protected science and governance paths against frozen A3.4 commit be23b80d63fbd30227f0ab8f200dddc2121f3bfe.",
+      "source_file": "scripts/pb_35_a3_4_integrity.py, audit/MURU_RC4_A3_4_ENGINEERING_FREEZE.md",
+      "source_commit": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee (RC4)",
+      "frozen_before_development": false,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Exact byte-preservation of all 31 protected science files is binding."
+    },
+    {
+      "id": 10,
+      "name": "development_raw_record_completeness",
+      "claimed_rule": "Complete raw artifact set in artifacts/development/: 80 *.record.json, 80 *.sidecar.json, 2,400 *.seed.json, 80 *.a34_secondary.json, preflight, and provenance files.",
+      "source_file": "src/muru/paper_benchmark/rc3_record.py, a34_record.py",
+      "source_commit": "07c64c8 (RC3.1), c800e7a (RC4)",
+      "frozen_before_development": false,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Completeness of raw records, seeds, sidecars, and secondary bindings is binding. Mandatory retention of internal intermediate Pareto evolution traces is optional hardening."
+    },
+    {
+      "id": 11,
+      "name": "independent_aggregate_reconstruction",
+      "claimed_rule": "Standalone verification script (importing no runtime runner state) parsing all 80 raw records, re-deriving acceptance against calibration digest, and re-scoring G1-G3 and A3.4 endpoints.",
+      "source_file": "src/muru/paper_benchmark/rc3_acceptance.py, analysis.py",
+      "source_commit": "07c64c8 (RC3.1), be23b80 (A3.4)",
+      "frozen_before_development": false,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Re-derivation of acceptance and endpoints from raw records without reading truth is binding."
+    },
+    {
+      "id": 12,
+      "name": "fm06_actual_production_path_conformance",
+      "claimed_rule": "AST inspection and live non-transductive canary test of the production runner: split before scalar fit, training-only fit (split == 'train'), immutable objects (frozen=True), independent evaluation.",
+      "source_file": "src/muru/paper_benchmark/protocol.py, tests/test_paper_benchmark_protocol.py",
+      "source_commit": "d94d2c9 (V1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Fold-local scalar fitting without test leakage is a binding scientific and engineering contract."
+    },
+    {
+      "id": 13,
+      "name": "fm07_actual_production_path_conformance",
+      "claimed_rule": "AST inspection and adversary test of the production evaluator: typed rejection of complex values (sqrt(-x)), poles, and NaN; zero automatic real-casting (float(c.real)).",
+      "source_file": "src/muru/paper_benchmark/g2_contract.py, contract.py",
+      "source_commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0 (A3.1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Typed rejection of complex values, poles, and non-real evaluations is a binding scientific contract."
+    },
+    {
+      "id": 14,
+      "name": "development_heldout_path_identity",
+      "claimed_rule": "AST and execution flow audit proving Development and Held-out share 100% identical code paths, classes, and evaluation pipelines (differing only by input manifest path).",
+      "source_file": "src/muru/paper_benchmark/protocol.py, runner.py",
+      "source_commit": "d94d2c9 (V1), c800e7a (RC4)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Code-path identity across partitions is binding."
+    },
+    {
+      "id": 15,
+      "name": "sealed_heldout_status",
+      "claimed_rule": "Cryptographic seal verification: artifacts/inputs/held_out.jsonl (and confirmation set) unopened, unread, uninspected; zero held-out output artifacts exist in filesystem.",
+      "source_file": "src/muru/paper_benchmark/governance.py",
+      "source_commit": "d94d2c9 (V1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Held-out unread status and absence of output artifacts is binding. 'Cryptographic proof of unread status' phrasing is optional hardening."
+    },
+    {
+      "id": 16,
+      "name": "executable_freeze_commit_tag",
+      "claimed_rule": "Annotated git tag muru-executable-freeze-v1 pointing to immutable commit containing artifacts/paper_benchmark_executable_freeze.json with status READY_FOR_ONE_SHOT_HELD_OUT_EXECUTION.",
+      "source_file": "src/muru/paper_benchmark/freeze.py, governance.py",
+      "source_commit": "d94d2c9 (V1), c800e7a (RC4)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "ImplementationLock locking and executable freeze commit are binding. Specific tag name 'muru-executable-freeze-v1' is a TEMPLATE_PLACEHOLDER."
+    },
+    {
+      "id": 17,
+      "name": "clean_git_working_tree",
+      "claimed_rule": "git status --porcelain executed across the entire repository produces zero output (no untracked files, no unstaged modifications, no staged changes, no stashes).",
+      "source_file": "src/muru/paper_benchmark/governance.py: assert_held_out_execution_allowed(tree_clean=True)",
+      "source_commit": "d94d2c9 (V1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Pristine cleanliness of the execution worktree is binding. Demanding that unrelated parallel worktrees and branches be empty is NEW_REQUIREMENT_NOT_AUTHORIZED."
+    },
+    {
+      "id": 18,
+      "name": "unresolved_engineering_defects",
+      "claimed_rule": "Full prospective test suite passes with 0 failures and 0 errors (pytest tests/). Static AST scan clean (pb_35_a3_4_integrity.py). Zero open engineering blockers.",
+      "source_file": "scripts/pb_35_a3_4_integrity.py, audit/MURU_RC4_A3_4_ENGINEERING_FREEZE.md",
+      "source_commit": "c800e7a59eca904ee32231e43ce3d1ddda4a26ee (RC4)",
+      "frozen_before_development": false,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Passing prospective benchmark test suite and static sealed-boundary scan is binding."
+    },
+    {
+      "id": 19,
+      "name": "scientific_weakness_vs_engineering_defect_distinction",
+      "claimed_rule": "Documented classification of all anomalies: engineering defects (crashes, memory leaks) authorize software fixes; scientific weaknesses (low recovery on hard algebra) strictly prohibit redesign.",
+      "source_file": "MURU_PAPER_BENCHMARK_PROTOCOL.md, audit/templates/MURU_DEVELOPMENT_RETURN_HOSTILE_REVIEW.md",
+      "source_commit": "d94d2c9 (V1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Formal separation of software defects from scientific weaknesses is a binding epistemic contract."
+    },
+    {
+      "id": 20,
+      "name": "no_observed_development_result_influenced_methodology",
+      "claimed_rule": "Hostile audit of all commit logs, diffs, PR comments, and design notes demonstrating zero methodology, grammar, or threshold changes were informed by Development output.",
+      "source_file": "MURU_PAPER_BENCHMARK_PROTOCOL.md, MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md",
+      "source_commit": "d94d2c9 (V1), c8938e8 (A3.1)",
+      "frozen_before_development": true,
+      "scientifically_required": true,
+      "classification": "FROZEN_BINDING_REQUIREMENT",
+      "detail": "Outcome-blindness of scientific methodology is a binding governance contract."
+    }
+  ],
+  "pass3_execution_semantics_audit": {
+    "modal_stability_selection": {
+      "frozen_rule": "candidate.selection_fraction >= STABILITY_GATE / STABILITY_DENOMINATOR (20 / 30)",
+      "authority": "src/muru/paper_benchmark/structural_acceptance.py: lines 67-68, 213-217",
+      "packet_status": "VERIFIED_CONCORDANT"
+    },
+    "candidate_binding_digest": {
+      "frozen_rule": "CandidateBindingSidecar binds source case record digest, candidate expression grammar digest, truth snapshot digest, contract identity, reference digest",
+      "authority": "src/muru/paper_benchmark/a34_record.py",
+      "packet_status": "VERIFIED_CONCORDANT"
+    },
+    "acceptance_status_enum": {
+      "frozen_enum": [
+        "STRUCTURAL_ACCEPTED",
+        "REJECTED_A1_INADEQUATE",
+        "REJECTED_BELOW_NULL",
+        "REJECTED_UNSTABLE",
+        "REJECTED_OVERCOMPLEX",
+        "REJECTED_INVALID_FRACTION",
+        "REJECTED_EMPTY_SUPPORT",
+        "REJECTED_CEILING",
+        "REJECTED_FALSIFICATION",
+        "UNEVALUABLE"
+      ],
+      "packet_enum": [
+        "ACCEPTED_STRUCTURE",
+        "REJECTED_STABILITY",
+        "REJECTED_NULL_CALIBRATION",
+        "REJECTED_FALSIFICATION",
+        "REJECTED_NON_FINITE",
+        "REJECTED_HIGH_COMPLEXITY"
+      ],
+      "authority": "src/muru/paper_benchmark/structural_acceptance.py: lines 31-43, rc3_record.py",
+      "packet_status": "DRIFT_DEFECT_REQUIRES_CORRECTION"
+    },
+    "falsification_rungs_enum": {
+      "frozen_enum": [
+        "F1_REPRODUCIBILITY",
+        "F4_COMPOUND_HOLDOUT",
+        "F5_SCAFFOLD_HOLDOUT",
+        "F7_INFLUENCE_DROP",
+        "F9_ENERGY_SUBSET",
+        "F10_NEGATIVE_CONTROL"
+      ],
+      "packet_enum": [
+        "RUNG_1_PERMUTATION",
+        "RUNG_2_TARGET_PERTURBATION",
+        "RUNG_3_SPURIOUS_CORRELATION"
+      ],
+      "authority": "src/muru/paper_benchmark/structural_acceptance.py: lines 79-103, rc3_record.py: lines 59-66",
+      "packet_status": "DRIFT_DEFECT_REQUIRES_CORRECTION"
+    },
+    "case_record_schema_version": {
+      "frozen_version": "muru-rc3-case-record-1.0.0",
+      "packet_version": "muru-paper-benchmark-record-1.0.0",
+      "authority": "src/muru/paper_benchmark/rc3_record.py: line 53",
+      "packet_status": "DRIFT_DEFECT_REQUIRES_CORRECTION"
+    }
+  },
+  "pass4_path_and_artifact_classifications": [
+    {
+      "path": "artifacts/inputs/held_out.jsonl",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Canonical input path for held-out partition generated by artifacts.py"
+    },
+    {
+      "path": "artifacts/inputs/development.jsonl",
+      "classification": "EXISTING_CANONICAL_PATH",
+      "note": "Canonical input path for development partition"
+    },
+    {
+      "path": "artifacts/inputs/development_manifest.json",
+      "classification": "INVENTED_PATH",
+      "note": "Invented placeholder; canonical manifests are artifacts/paper_benchmark_case_manifest.json and artifacts/inputs/development.jsonl"
+    },
+    {
+      "path": "artifacts/development/",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Output directory for development partition records and sidecars"
+    },
+    {
+      "path": "artifacts/calibration/null_threshold_table.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Canonical threshold table artifact generated by calibration runner"
+    },
+    {
+      "path": "artifacts/paper_benchmark_executable_freeze.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Canonical executable freeze preparation artifact"
+    },
+    {
+      "path": "artifacts/held_out/held_out_execution_manifest.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Pre-execution manifest for held-out execution"
+    },
+    {
+      "path": "artifacts/held_out/paper_benchmark_heldout_audit.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Final signed audit dossier for held-out partition"
+    },
+    {
+      "path": "artifacts/held_out/case_records/{case_id}.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Per-case scientific execution records"
+    },
+    {
+      "path": "artifacts/held_out/provenance_sidecars/{case_id}.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Per-case non-scientific operational sidecars"
+    },
+    {
+      "path": "artifacts/held_out/seed_records/{case_id}/seed_{s:02d}.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Per-seed execution status records"
+    },
+    {
+      "path": "artifacts/held_out/candidate_bindings/{case_id}.json",
+      "classification": "FROZEN_FUTURE_PATH",
+      "note": "Per-case A3.4 candidate binding sidecars"
+    }
+  ],
+  "pass5_tag_and_freeze_naming": {
+    "exact_tag_muru_executable_freeze_v1_frozen": false,
+    "ruling": "The exact tag name 'muru-executable-freeze-v1' is NOT frozen in existing git tags or python source. Templates must parameterize this token as <EXECUTABLE_FREEZE_TAG> rather than asserting 'muru-executable-freeze-v1' as an immutable prior freeze."
+  },
+  "pass6_worktree_cleanliness": {
+    "scientific_cleanliness_rule": "The execution worktree must be 100% clean (git status --porcelain empty in the worktree directory), and the executed commit must be immutable and tagged.",
+    "parallel_worktrees_rule": "Unrelated parallel worktrees, audit worktrees, and draft branches (e.g. .claude/worktrees/*, writing/*, design/*, audit/*) do NOT contaminate the execution environment. Classifying unrelated worktrees as blocking contamination is unauthorizable over-reach."
+  },
+  "defects_ledger": [
+    {
+      "defect_id": "DEF-01",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 5), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 5)",
+      "current_wording_or_value": "30 compounds * 6 energies per case",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "src/muru/paper_benchmark/generator.py: lines 30-31 (N_COMPOUNDS = 180, N_SCAFFOLDS = 30)",
+      "correct_frozen_value_or_rule": "180 compounds across 30 scaffolds (6 compounds/scaffold) x 6 energies (1,080 trajectory rows standard)",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-02",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 5), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 5)",
+      "current_wording_or_value": "case IDs PB|DEV|F01|000 through PB|DEV|F20|003",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "src/muru/paper_benchmark/registry.py: lines 201-226 (resolve_case_id, iter_case_ids)",
+      "correct_frozen_value_or_rule": "PB|development|F01|r000 through PB|development|F20|r003",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-03",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 3), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 3)",
+      "current_wording_or_value": "operator grammar (+, -, *, /, ^, log, exp, sqrt)",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md: lines 156-158 ('binary: +, -, *, /; unary: sqrt, log, square, cube, inv; exp excluded, trig excluded')",
+      "correct_frozen_value_or_rule": "binary (+, -, *, /), unary (sqrt, log, square, cube, inv); exp and trig excluded",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-04",
+      "location": "ops/heldout_ready/MURU_HELDOUT_RESULT_SCHEMA.md (Section 3.2), ops/heldout_ready/MURU_HELDOUT_FAILURE_RESUME_MATRIX.md (Section 2)",
+      "current_wording_or_value": "acceptance_status enum: [ACCEPTED_STRUCTURE, REJECTED_STABILITY, REJECTED_NULL_CALIBRATION, REJECTED_FALSIFICATION, REJECTED_NON_FINITE, REJECTED_HIGH_COMPLEXITY]",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "src/muru/paper_benchmark/structural_acceptance.py: lines 31-43 (AcceptanceStatus enum), rc3_record.py",
+      "correct_frozen_value_or_rule": "enum: [STRUCTURAL_ACCEPTED, REJECTED_A1_INADEQUATE, REJECTED_BELOW_NULL, REJECTED_UNSTABLE, REJECTED_OVERCOMPLEX, REJECTED_INVALID_FRACTION, REJECTED_EMPTY_SUPPORT, REJECTED_CEILING, REJECTED_FALSIFICATION, UNEVALUABLE]",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-05",
+      "location": "ops/heldout_ready/MURU_HELDOUT_RESULT_SCHEMA.md (Section 3.2), ops/heldout_ready/MURU_HELDOUT_FAILURE_RESUME_MATRIX.md (Section 2), ops/heldout_ready/MURU_HELDOUT_AUDIT_CHECKLIST.md (Check C.05)",
+      "current_wording_or_value": "falsification_results: [RUNG_1_PERMUTATION, RUNG_2_TARGET_PERTURBATION, RUNG_3_SPURIOUS_CORRELATION]",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "src/muru/paper_benchmark/structural_acceptance.py: lines 79-103 (FalsificationRung enum), rc3_record.py: lines 59-66 (FALSIFICATION_RUNG_ORDER)",
+      "correct_frozen_value_or_rule": "6 rungs: [F1_REPRODUCIBILITY, F4_COMPOUND_HOLDOUT, F5_SCAFFOLD_HOLDOUT, F7_INFLUENCE_DROP, F9_ENERGY_SUBSET, F10_NEGATIVE_CONTROL]",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-06",
+      "location": "ops/heldout_ready/MURU_HELDOUT_RESULT_SCHEMA.md (Section 3.2)",
+      "current_wording_or_value": "schema_version: 'muru-paper-benchmark-record-1.0.0'",
+      "classification": "FACTUALLY_INCORRECT",
+      "authoritative_source": "src/muru/paper_benchmark/rc3_record.py: line 53 (RECORD_SCHEMA_VERSION = 'muru-rc3-case-record-1.0.0')",
+      "correct_frozen_value_or_rule": "schema_version: 'muru-rc3-case-record-1.0.0'",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-07",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 4), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 4)",
+      "current_wording_or_value": "artifacts/inputs/development_manifest.json",
+      "classification": "INVENTED_PATH",
+      "authoritative_source": "src/muru/paper_benchmark/artifacts.py: lines 69-78",
+      "correct_frozen_value_or_rule": "artifacts/paper_benchmark_case_manifest.json and artifacts/inputs/development.jsonl",
+      "must_be_fixed_before_packet_use": true
+    },
+    {
+      "defect_id": "DEF-08",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 1), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 1)",
+      "current_wording_or_value": "OS kernel, LLVM/Clang compiler, hardware allocation envelope as BLOCKING requirements",
+      "classification": "OPTIONAL_HARDENING_NOT_BINDING",
+      "authoritative_source": "src/muru/paper_benchmark/governance.py, preflight.py",
+      "correct_frozen_value_or_rule": "Runtime versions and thread caps are binding; OS kernel, compiler, and hardware envelope are non-blocking descriptive telemetry",
+      "must_be_fixed_before_packet_use": false
+    },
+    {
+      "defect_id": "DEF-09",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 8), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 8)",
+      "current_wording_or_value": "Monotonic process IDs, filesystem inode creation times as BLOCKING requirements",
+      "classification": "OPTIONAL_HARDENING_NOT_BINDING",
+      "authoritative_source": "src/muru/paper_benchmark/rc3_provenance.py",
+      "correct_frozen_value_or_rule": "No scientific retries is binding; inode creation time and PID monotonicity are non-binding operational metrics",
+      "must_be_fixed_before_packet_use": false
+    },
+    {
+      "defect_id": "DEF-10",
+      "location": "audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md (Criterion 17), audit/templates/muru_pre_heldout_authorization_matrix.json (Criterion 17)",
+      "current_wording_or_value": "git status --porcelain across the entire repository produces zero output (blocking on parallel worktrees)",
+      "classification": "NEW_REQUIREMENT_NOT_AUTHORIZED",
+      "authoritative_source": "src/muru/paper_benchmark/governance.py: assert_held_out_execution_allowed (tree_clean=True)",
+      "correct_frozen_value_or_rule": "Execution worktree must be 100% clean; unrelated parallel worktrees and branches do not contaminate execution",
+      "must_be_fixed_before_packet_use": false
+    }
+  ],
+  "final_classification": "HELD-OUT PREPARATION PACK CONTAINS SCIENTIFIC CONTRACT ERROR",
+  "final_classification_rationale": "The held-out preparation artifacts and authorization matrix contain multiple direct contradictions of frozen scientific and engineering contracts: (1) Criterion 3 asserts PySR search grammar includes 'exp', which directly violates Amendment A3.1's explicit exclusion of 'exp'; (2) Criterion 5 asserts '30 compounds x 6 energies', which directly contradicts the frozen 180-compound geometry in generator.py; (3) MURU_HELDOUT_RESULT_SCHEMA.md and MURU_HELDOUT_FAILURE_RESUME_MATRIX.md invent 6 non-canonical AcceptanceStatus enum names and 3 pseudo falsification rungs that conflict with structural_acceptance.py (10 AcceptanceStatus states and 6 FalsificationRung rungs); (4) Criterion 5 states case IDs 'PB|DEV|F01|000' which raises ValueError under registry.py resolve_case_id; (5) MURU_HELDOUT_RESULT_SCHEMA.md declares an incorrect schema_version. These discrepancies must be corrected before the preparation packet can be authorized for use."
+}
