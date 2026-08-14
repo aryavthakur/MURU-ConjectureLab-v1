@@ -1,0 +1,80 @@
+{
+  "canonical_freeze": {
+    "classification": "ENGINEERING_RELEASE_CANDIDATE_FREEZE",
+    "status": "FROZEN_VALID",
+    "tag": "engineering-rc4-a3-4",
+    "schema_version": "muru-rc4-engineering-freeze-1.0.0",
+    "provenance_bindings": {
+      "rc3_1_parent_commit": "07c64c862cb32a306f5081582dacf73e09211c0a",
+      "rc3_1_tag": "engineering-rc3-1-a3-2",
+      "a3_4_science_freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "a3_4_freeze_tag": "benchmark-content-freeze-a3-4",
+      "a3_4_merge_commit": "5055f69097aa0c6ce2ded6a3e57f0edfaea69faf",
+      "temporal_provenance_erratum_commit": "220c9cb679e03865f1b2a02b975397de9f4c7b46",
+      "temporal_provenance_erratum_tag": "a3-4-temporal-provenance-erratum"
+    },
+    "digests": {
+      "reference_distribution_aggregate_sha256": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44",
+      "protected_paths_count": 31,
+      "protected_paths_recorded_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
+      "protected_paths_terminal_newline_aggregate_sha256": "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a"
+    },
+    "contracts": {
+      "parameter_recovery": {
+        "joint_denominator": 156,
+        "p_mass_denominator": 156,
+        "c_desc_denominator": 84,
+        "p_mass_tolerance": 0.15,
+        "c_desc_tolerance": 0.1,
+        "anchor": {
+          "mass": 250.0,
+          "descriptor": 0.0,
+          "descriptor2": 0.0,
+          "distractor": 0.0,
+          "correlated_distractor": 0.0
+        }
+      },
+      "predictive_equivalence": {
+        "denominator": 144,
+        "frames": 12,
+        "rows": 2160,
+        "min_valid_rows": 2150,
+        "valid_fraction_threshold": 0.995,
+        "rel_rmse_threshold": 0.05,
+        "pearson_r_threshold": 0.99,
+        "scale_alignment": "POSITIVE_SCALAR_ONLY"
+      }
+    },
+    "independent_reviews": {
+      "reviewer_a_science_conformance": "PASS",
+      "reviewer_b_numerical_adversary": "PASS",
+      "reviewer_c_contamination_reproducibility": "PASS"
+    },
+    "test_results": {
+      "targeted_suite_passed": 90,
+      "targeted_suite_failed": 0,
+      "paper_benchmark_suite_passed": 663,
+      "paper_benchmark_suite_failed": 0,
+      "full_suite_excluding_historical_fixture_passed": 988,
+      "full_suite_excluding_historical_fixture_skipped": 60,
+      "full_suite_excluding_historical_fixture_failed": 0,
+      "historical_fixture_blocked_tests": 17
+    },
+    "sealed_boundary_status": {
+      "calibration_records_opened": "NONE",
+      "development_opened": "NONE",
+      "held_out_opened": "NONE",
+      "confirmation_opened": "NONE"
+    },
+    "human_readable_projection": {
+      "path": "audit/MURU_RC4_A3_4_ENGINEERING_FREEZE.md",
+      "sha256": "a8a5fafcc61c7a999d91f150aaca490eaf353b3831deda2b3563bf23f9123443"
+    }
+  },
+  "canonical_binding": {
+    "algorithm": "SHA-256",
+    "canonicalization": "UTF-8 JSON; recursive lexicographic object-key ordering; compact separators \",\" and \":\"; ensure_ascii=false; allow_nan=false; no trailing newline",
+    "content_pointer": "/canonical_freeze",
+    "content_sha256": "3691e938597b03cbdea56e2793b8a6f80198cf9c682b48b03561726424b115df"
+  }
+}
