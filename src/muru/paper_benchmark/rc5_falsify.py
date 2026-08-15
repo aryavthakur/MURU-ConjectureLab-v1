@@ -110,13 +110,42 @@ REQUIRED_HARD_GATES: frozenset[FalsificationRung] = frozenset({
 F9_CALIBRATION_STATUS = "NOT_PROVEN_FOR_HARD_GATE"
 
 # --- the numeric ledger, section 6.8 -----------------------------------
+#
+# Every value below is transcribed from that ledger, with the ledger's own
+# stated derivation.  Nothing here is chosen, and nothing is derived by an
+# arithmetic relationship the frozen text does not itself assert.
+
+#: "one adversarial re-execution falsifies a determinism claim".
 F1_RERUN_COUNT = 1
-F4_HELD_OUT_WITHIN_SCAFFOLD_INDEX = 5          # of 0..5, from N_COMPOUNDS // N_SCAFFOLDS
-F4_PASS_BAR = 0.0                              # R2's own zero point
-F7_LOSO_FOLDS = N_SCAFFOLDS - 10               # 20: the frozen train scaffold allocation
-F9_FOLDS = len(ENERGY_GRID)                    # 6
-F10_CONSTRUCTIONS: tuple[str, ...] = tuple(sorted(CONSTRUCTION_ALLOCATION))  # 3
-_COMPOUNDS_PER_SCAFFOLD = N_COMPOUNDS // N_SCAFFOLDS   # 6
+
+#: "1, at within-scaffold index 5" -- from the frozen geometry
+#: ``N_COMPOUNDS // N_SCAFFOLDS == 6``, asserted below.
+F4_HELD_OUT_WITHIN_SCAFFOLD_INDEX = 5
+
+#: "R2's own zero point under the frozen ``_r2``" -- not a fitted value.
+F4_PASS_BAR = 0.0
+
+#: "20 | frozen ``split_by_group`` train allocation".  ``generator.py``'s
+#: ``split_by_group = ["train"]*20 + ["validation"]*5 + ["test"]*5`` is a local,
+#: not an exported constant, so the ledger's own value is transcribed here with
+#: its citation rather than reconstructed from an invented arithmetic identity.
+#: It is a *reporting* expectation only: :func:`run_f7_influence_drop` derives
+#: its actual folds from the training scaffolds present in the case.
+F7_LOSO_FOLDS = 20
+
+#: "6 | frozen ``len(ENERGY_GRID) == 6``".
+F9_FOLDS = len(ENERGY_GRID)
+
+#: "3 | frozen ``len(CONSTRUCTION_ALLOCATION) == 3``". Phase 3's N = 20 rejected.
+F10_CONSTRUCTIONS: tuple[str, ...] = tuple(sorted(CONSTRUCTION_ALLOCATION))
+
+_COMPOUNDS_PER_SCAFFOLD = N_COMPOUNDS // N_SCAFFOLDS   # 6, from the frozen geometry
+
+if _COMPOUNDS_PER_SCAFFOLD != F4_HELD_OUT_WITHIN_SCAFFOLD_INDEX + 1:  # pragma: no cover
+    raise ImportError(
+        "F4's within-scaffold index is not the last position of the frozen "
+        f"{_COMPOUNDS_PER_SCAFFOLD}-compound scaffold geometry"
+    )
 
 
 # -----------------------------------------------------------------------

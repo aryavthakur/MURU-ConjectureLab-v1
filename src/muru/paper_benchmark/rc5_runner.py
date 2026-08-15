@@ -95,7 +95,11 @@ from .rc5_store import (
     resume_plan,
     write_case_record,
 )
-from .structural_acceptance import AcceptanceStatus, StructuralCandidate
+from .structural_acceptance import (
+    STABILITY_DENOMINATOR,
+    AcceptanceStatus,
+    StructuralCandidate,
+)
 
 __all__ = [
     "AUTHORISED_PARTITIONS",
@@ -361,7 +365,9 @@ def _unevaluable_record(
         valid_r2=float("-inf"),
         complexity=0,
         selection_count=0,
-        selection_denominator=30,
+        # Imported, never restated: the frozen denominator lives in
+        # structural_acceptance and a copy here could silently stop tracking it.
+        selection_denominator=STABILITY_DENOMINATOR,
         invalid_fraction=1.0,
         ceiling_r2=float("-inf"),
         ceiling_fraction=float("-inf"),

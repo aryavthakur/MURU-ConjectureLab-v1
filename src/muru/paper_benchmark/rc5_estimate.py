@@ -130,6 +130,15 @@ A35_LOG_G_GRID = np.linspace(
     A35_LOG_G_GRID_LOW, A35_LOG_G_GRID_HIGH, A35_LOG_G_GRID_POINTS
 )
 
+#: The parabolic-refinement vertex coefficient and degenerate-curvature guard,
+#: transcribed verbatim from ``estimate._best_log_g``.  Named rather than left
+#: inline so a reviewer auditing numeric literals can trace both to the frozen
+#: mechanism section 4.2 binds.  Neither is a threshold: ``0.5`` is the vertex
+#: formula's own coefficient, and the guard only avoids dividing by a
+#: numerically flat curvature.
+_PARABOLIC_VERTEX_COEFFICIENT = 0.5
+_PARABOLIC_DEGENERACY_GUARD = 1e-15
+
 TRAIN_SPLIT = "train"
 VALIDATION_SPLIT = "validation"
 TEST_SPLIT = "test"
@@ -220,13 +229,20 @@ def _best_log_g(
     out = grid[argmin].astype(np.float64)
     interior = (argmin > 0) & (argmin < len(grid) - 1)
     if interior.any():
+        # Parabolic refinement on the interior minimum, transcribed verbatim
+        # from ``estimate._best_log_g`` -- the mechanism section 4.2 names.  The
+        # ``0.5`` is the vertex formula's own coefficient and the ``1e-15`` is
+        # that function's own degenerate-curvature guard; neither is a threshold
+        # and neither was chosen here.
         rows = np.where(interior)[0]
         left = sse[rows, argmin[rows] - 1]
         centre = sse[rows, argmin[rows]]
         right = sse[rows, argmin[rows] + 1]
         denominator = left - 2 * centre + right
         step = np.where(
-            np.abs(denominator) > 1e-15, 0.5 * (left - right) / denominator, 0.0
+            np.abs(denominator) > _PARABOLIC_DEGENERACY_GUARD,
+            _PARABOLIC_VERTEX_COEFFICIENT * (left - right) / denominator,
+            0.0,
         )
         out[rows] = grid[argmin[rows]] + np.clip(step, -1, 1) * (grid[1] - grid[0])
     return out

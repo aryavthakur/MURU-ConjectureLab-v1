@@ -213,7 +213,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_estimate.py',
         defect_id='RC5-D14',
         old_sha256=None,
-        new_sha256='0ac841c10f1630d71030b3575c8611a168afb419eec28ff10b2aa986924d9444',
+        new_sha256='e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4',
         semantic_scope=(
             'new, purely additive: the two-stage Phi/g fit at E_REF=45.0, the raw-g search target, and invalid_fraction over denominator 30'
         ),
@@ -246,7 +246,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_falsify.py',
         defect_id='RC5-D7',
         old_sha256=None,
-        new_sha256='f8d2f4b6d708243413cbbdbc737ba0b7583a0a264e7dc1f2dbea5eb1dcf32d3d',
+        new_sha256='a81f236c4e631ca7f4a54603158df23be3c528e2d1a0e99580a5c02bf42055d1',
         semantic_scope=(
             'new, purely additive: the five per-case falsification procedures under A3.5 section 6 as amended by 6.9'
         ),
@@ -303,7 +303,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_runner.py',
         defect_id='RC5 runner',
         old_sha256=None,
-        new_sha256='87b885c0aa0eaefbb1184474b85515c280f49cab86e8f317e7a9fbad69f22cd3',
+        new_sha256='ce4db6360c68bb96209e84a82f928f2a29a03d2a5065857f442e6e6cb918418a',
         semantic_scope=(
             'new, purely additive: the production case runner, composition only'
         ),
