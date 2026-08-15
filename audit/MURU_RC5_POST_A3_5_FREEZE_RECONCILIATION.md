@@ -126,9 +126,10 @@ bound in the final frozen amendment:
 
 ## 3. Where the frozen A3.5 text differs from the prebuild map
 
-**Rule applied: the frozen A3.5 text wins.** Five differences were found. None creates a
+**Rule applied: the frozen A3.5 text wins.** Seven differences were found. None creates a
 new scientific rule; each is the frozen text being more specific than, or naming something
-differently from, the pre-freeze map.
+differently from, the pre-freeze map — or, in §3.5 and §3.7, a consequence of a
+supersession the frozen text itself declares.
 
 ### 3.1 §7.3's `TEMPLATE_KEY` recipe is superseded — resolved, with residual stale prose
 
@@ -176,7 +177,43 @@ exactly: **`f9_stress_test_result`** (∈ `{PASS, FAIL}`) and **`f9_stress_test_
 (the raw `min_k(R2_k)` over the six leave-one-energy-out folds). §11 obligation 19 repeats
 both names. RC5 uses the frozen names.
 
-### 3.5 A1.2's fit protocol is frozen as a specification, not as executable code
+### 3.5 §7.4's parameter-sharing merges do not occur under the frozen contract
+
+Found by execution during implementation, not by reading. §7.4 records five
+"executed confirmations" that the identity rule merges `a·m + a·d` with
+`a·m + b·d`: `2.0*(m+d)` with `2.0*m + 3.0*d`; `2.0*m + 2.0*d` with `2.0*m + 3.0*d`;
+`m/(1+d)` with `m/(2+d)`; `-(m*d)` with `m*d`; `m+d` with `m-d`.
+
+**None of the five holds under the frozen replacement contract.** Verified by
+direct execution of `identity_contract.positive_scale_equivalent` on all five pairs:
+every one returns `False`.
+
+**Why, and why it is not a defect.** All five are properties of the *superseded*
+§7.3 `TEMPLATE_KEY` recipe, which templated every numeric position. The frozen
+replacement (`MURU_A3_5_IDENTITY_FINAL_CONTRACT.md`, §2) is a
+**positive-scale-equivalence** relation: `a == c·b` for a single `c > 0`, and
+nothing else. `2.0*m + 2.0*d` and `2.0*m + 3.0*d` are not a constant multiple of
+one another, so under the frozen relation they are genuinely different functions.
+§7.4 is downstream of §7.3, so §7.3's supersession (§3.1 above) carries §7.4's
+merge-breadth claims with it. The replacement document never claims the broader
+behaviour; its §4 property table claims exactly reflexivity, symmetry,
+transitivity, positive-scale invariance, and negative-scale distinctness.
+
+**Direction, which is what makes this safe.** A narrower identity relation yields
+**more and smaller** equivalence classes, hence a **smaller** `selection_count`,
+hence a **harder** Gate 3 (`>= 20/30`). It is the acceptance-harder direction and
+cannot manufacture stability the broader rule would not also have found.
+
+**What survives from §7.4 unchanged, and is implemented:** the two **mandatory
+non-gating diagnostics** (distinct as-emitted expression strings and distinct
+coefficient vectors within the winning class), required precisely so class
+heterogeneity cannot hide behind `selection_count`.
+
+Pinned permanently as `tests/test_rc5_selection.py::test_the_superseded_template_key_merges_do_not_occur`,
+parametrised over all five pairs, so the supersession's consequence is a
+standing, checked record rather than an undocumented behaviour change.
+
+### 3.6 A1.2's fit protocol is frozen as a specification, not as executable code
 
 The map's D8 speaks of "consuming `adequacy.py`'s frozen M0 LOEO machinery". Direct
 inspection of `69e33c7:src/muru/paper_benchmark/adequacy.py` shows that module states its
@@ -196,6 +233,35 @@ number comes from `adequacy.py`; RC5 invents none. "Do not create a new trajecto
 estimator" is honoured by implementing the frozen protocol exactly and reading every
 constant from the frozen module, never by inventing an estimator or importing the Phase-3
 one.
+
+### 3.7 The `ENERGY_SCALE` leak is invisible end-to-end and detectable only at one boundary
+
+Found by execution while writing D14's regression tests. §4.1 states that "reusing
+`estimate.py` **verbatim** would normalise by 30 against a truth generated on 45,
+rescaling every `g_hat` by 2/3". That is exactly right for the reuse path it names,
+and RC5 reproduces it as a test — but a naive reading ("pass 30 instead of 45") does
+**not** reproduce it, and that distinction matters for how the correction is enforced.
+
+Executed result: changing the energy scale uniformly across **both** stages leaves
+`g_hat` **unchanged** (median ratio 1.000), because the isotonic `Phi` is re-fitted on
+the same `u` and absorbs the reparameterisation exactly; the two profiles differ by
+precisely `log(45/30)` in knot position. The 2/3 distortion appears only when a `Phi`
+fitted at `E_REF = 45.0` is handed to an estimator that divides by 30 — i.e. when
+`estimate._best_log_g` is called verbatim, which is the literal reuse §4.1 warns about.
+Executed: median `correct_g / leaked_g` = 2/3, exactly as §4.1 states.
+
+**Consequence for the implementation, and why it is the conservative reading.** Because
+the defect is invisible end-to-end, an integration test at the case level could never
+catch it. §4.1's remedy — "**parameterise the scale** rather than inherit its module
+constant" — is therefore load-bearing at the function boundary, which is why RC5 writes
+its own `_best_log_g` with the scale as a parameter instead of importing the frozen one,
+reuses `_fit_phi`/`_phi_eval` verbatim (neither reads `ENERGY_SCALE`), and pins the leak
+as `tests/test_rc5_estimate.py::test_energy_scale_30_leaks_exactly_where_a3_5_says_and_nowhere_here`.
+The end-to-end invariance is itself pinned as a separate test, so a future reader cannot
+mistake the absence of an end-to-end 2/3 shift for a missing correction.
+
+No scientific rule changes: `E_REF = 45.0` is bound and implemented exactly as §4.1
+requires.
 
 ---
 
