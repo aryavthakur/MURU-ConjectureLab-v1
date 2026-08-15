@@ -13,7 +13,6 @@ from muru.paper_benchmark.adequacy import CaseAdequacyStatus
 from muru.paper_benchmark.calibration_contract import SeedStatus
 from muru.paper_benchmark.g2_contract import FamilyStatus, G2Event, SupportStatus
 from muru.paper_benchmark.rc3_record import (
-    FALSIFICATION_RUNG_ORDER,
     HARD_GATE_ORDER,
     LEGACY_FALSIFICATION_RUNG_NAMES,
     LEGACY_RECORD_SCHEMA_VERSIONS,
@@ -114,8 +113,19 @@ def test_the_four_hard_gates_are_present_in_fixed_order():
         assert rung in HARD_GATE_ORDER
     assert FalsificationRung.F9_ENERGY_SUBSET not in HARD_GATE_ORDER
     assert not hasattr(FalsificationRung, "F5_SCAFFOLD_HOLDOUT")
-    # The historical spelling still resolves, to the same tuple.
-    assert FALSIFICATION_RUNG_ORDER is HARD_GATE_ORDER
+
+
+def test_the_rc3_era_spelling_is_gone_so_an_old_importer_breaks_loudly():
+    """A MAJOR bump must break an RC3-era importer at import time.
+
+    Keeping ``FALSIFICATION_RUNG_ORDER`` as an alias for a now-four-member
+    tuple would move the reinterpretation this bump exists to prevent from the
+    data layer to the code layer: a six-rung completeness check written against
+    it would pass vacuously.
+    """
+    import muru.paper_benchmark.rc3_record as module
+
+    assert not hasattr(module, "FALSIFICATION_RUNG_ORDER")
 
 
 def test_f9_is_recorded_as_a_reported_secondary_not_a_gate():

@@ -74,6 +74,7 @@ import numpy as np
 import sympy as sp
 
 from .calibration_contract import SeedStatus
+from .g2_contract import GRAMMAR_PRIMITIVES, _safe_parse
 from .identity_contract import parse_candidate, template_key
 from .structural_acceptance import (
     MAX_COMPLEXITY,
@@ -84,6 +85,7 @@ from .structural_acceptance import (
 
 __all__ = [
     "SEEDS_PER_CASE",
+    "parse_production_candidate",
     "SeedExecutionFailure",
     "SeedNoCandidate",
     "select_row_label",
@@ -97,6 +99,39 @@ __all__ = [
 
 #: A3.5 section 8.1 / structural_acceptance's frozen denominator.
 SEEDS_PER_CASE = STABILITY_DENOMINATOR
+
+
+def parse_production_candidate(expression_string: str):
+    """Parse an as-emitted candidate under the frozen grammar's own aliases.
+
+    **This is load-bearing, not a convenience.**  PySR is fitted on a bare
+    design matrix, so it names features ``x0..x4`` and every emitted
+    ``equations_["equation"]`` string is in those names.
+    ``identity_contract.parse_candidate``'s default binding covers only the
+    five ``GRAMMAR_PRIMITIVES`` names, so an ``x0`` string parses to a symbol
+    literally named ``"x0"`` -- and the contract's positivity step, which
+    asserts ``positive=True`` on the symbol *literally named* ``mass``, then
+    never fires.  Every merge that depends on ``mass > 0`` silently stops
+    happening:
+
+        log(square(mass)) == log(mass)   ->  True
+        log(square(x0))   == log(x0)     ->  False
+
+    which shrinks equivalence classes and can flip Gate 3.
+
+    ``g2_contract._safe_parse`` aliases ``x{i}`` to the **same Symbol object**
+    as ``GRAMMAR_PRIMITIVES[i]``, so parsing through it restores the frozen
+    contract's intended behaviour without touching the byte-frozen
+    ``identity_contract`` module.  It is a parser only -- no classifier, no
+    truth -- which is exactly what section 7.3 step 1 permits.
+    """
+    parsed = _safe_parse(expression_string)
+    if parsed is None:
+        # Unparseable candidates are screened out upstream (section 7.6), so
+        # this is defence in depth: fall back to the contract's own parser,
+        # which routes the candidate to its conservative singleton class.
+        return parse_candidate(expression_string)
+    return parsed
 
 
 class SeedExecutionFailure(RuntimeError):
@@ -184,7 +219,7 @@ def coefficient_vector(expression_string: str) -> tuple[float, ...] | None:
     being merged into any other.
     """
     try:
-        parsed = parse_candidate(expression_string)
+        parsed = parse_production_candidate(expression_string)
     except Exception:
         return None
     numbers: list[float] = []
@@ -279,7 +314,7 @@ def group_and_select(
     for selection in voters:
         candidate = selection.candidate
         assert candidate is not None  # `votes` guarantees it
-        key = template_key(parse_candidate(candidate.expression_string))
+        key = template_key(parse_production_candidate(candidate.expression_string))
         if key not in buckets:
             buckets[key] = []
             order.append(key)

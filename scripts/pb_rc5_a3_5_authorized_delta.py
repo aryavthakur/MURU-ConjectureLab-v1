@@ -94,7 +94,7 @@ _MODIFIED = (
         path='src/muru/paper_benchmark/preflight.py',
         defect_id='RC5-MECH-1 (partition-aware preflight)',
         old_sha256='4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb',
-        new_sha256='3698cfbff2f251c60275a61a8c3fa1df7c272a806dd9519c0ae1a1b4bdc54108',
+        new_sha256='13b41e02a3715be1733d5f28e5002f6d86085be114cc47634703af1e3be3a8c4',
         semantic_scope=(
             'run_preflight takes a partition, defaulting to "development", and reads the expected case count from the frozen registry instead of the literal 80. The default call is unchanged field for field; held_out_accessed reports the truth rather than a constant. No scientific behaviour, no authorisation logic, no threshold.'
         ),
@@ -117,7 +117,7 @@ _MODIFIED = (
         path='src/muru/paper_benchmark/rc3_record.py',
         defect_id='RC5-D4 (A3.5 obligation 19)',
         old_sha256='a1359e1e96ba268396dec7c21cfddffdc4110d817b4ddeb70b0b86161e7c0ff7',
-        new_sha256='5ecfa095bc07ff54049a91ea57aee1177e27417bcd8f5c1aae3a521434c10bdc',
+        new_sha256='3947f22667f047c76505d58cdee1531ec66e71548799d232cb650252d900bf15',
         semantic_scope=(
             'RECORD_SCHEMA_VERSION bumped to muru-rc5-case-record-2.0.0, with record_schema_generation refusing to read a legacy record as current; HARD_GATE_ORDER narrows to the four hard gates; candidate_test_r2, f9_stress_test_result, f9_stress_test_metric and f9_acceptance_calibration_status added; __post_init__ requires the hard gates and the F9 pair exactly when the case reached Gate 8, and refuses them otherwise. Canonical serialization, digest convention and the provenance-sidecar split are unchanged.'
         ),
@@ -138,6 +138,45 @@ _MODIFIED = (
         new_blob_sha1='127693754f212f005370590b7f10932f0cfaebc9',
     ),
     AuthorizedChange(
+        path='src/muru/paper_benchmark/rc3_ceiling.py',
+        defect_id='RC5-D1 (A3.5 obligation 17)',
+        old_sha256='bf8574c0a13cb7aa3c6648e20c2380846a3b985064af0880b3bf2dbebd8ecbf0',
+        new_sha256='c634fb9b44e5778c961ae1467a2479f1ffec4da33aaf03ce0ff9597183c304c4',
+        semantic_scope=(
+            'Removes the SUPERSEDED Gate-7 verdict. Obligation 17 names this '
+            "module's previous unconditional-waiver form as precisely what must "
+            'NOT be implemented, yet ceiling_satisfied (= gate_passed or '
+            'waiver_applied) was still live and exported, and was '
+            'acceptance-favouring wherever the candidate floor fails. '
+            'ceiling_satisfied is deleted and waiver_applied is renamed '
+            'waiver_regime, because it is only the CEILING half of the amended '
+            'waiver. Gate 7 is now decided solely by '
+            'evaluate_structural_acceptance, which has the threshold table and '
+            'the complexity this module deliberately does not. The estimator, '
+            'its frozen hyperparameters, the sklearn pin, the train/score '
+            'partitions, ceiling_r2, candidate_r2, ceiling_fraction and '
+            'gate_passed are all unchanged.'
+        ),
+        old_blob_sha1='0341b0e6d31e0d7cc4d5be0a28760acc5a824c44',
+        new_blob_sha1='2d2fbb775d5f3ade601663c6bbd93d6b51f89edb',
+    ),
+    AuthorizedChange(
+        path='tests/test_rc3_ceiling.py',
+        defect_id='RC5-D1 tests',
+        old_sha256='daac303500dafb790e340daa667628871c0818a59a2d6789f6c2ec7d223dcb49',
+        new_sha256='b029560c81f4df013e310feea7d56b5c9dc2dc826eaeb12fc05aeb91bcf7302f',
+        semantic_scope=(
+            'The test that entrenched the superseded rule (assert '
+            'estimate.ceiling_satisfied) is replaced by three that pin the '
+            'amended contract: the low-ceiling REGIME is detected but decides '
+            'nothing, no Gate-7 verdict is offered by this module at all, and '
+            'the regime with a failing floor still yields REJECTED_CEILING. No '
+            'test weakened, skipped or xfailed.'
+        ),
+        old_blob_sha1='3d5fcd693cbade51e7fda685fe64b3e853cd180d',
+        new_blob_sha1='9080e74a531c09aa69f2261ca895f5923eba23ec',
+    ),
+    AuthorizedChange(
         path='tests/test_a3_1_structural_acceptance.py',
         defect_id='RC5-D1+D3 tests',
         old_sha256='f9388034a0ab04b711f79b872bec065162cdd72e254605ca67e7caca2ec87855',
@@ -152,7 +191,7 @@ _MODIFIED = (
         path='tests/test_rc3_record.py',
         defect_id='RC5-D4 tests',
         old_sha256='eb2588555fb06c340dd6bc2cc9ece17fe0c65c5acd622d734472998da4d910f7',
-        new_sha256='249ce1018ccbc391e208b6b9e1a123d348dbb00f962b9ed37b811777a6e29cfe',
+        new_sha256='057573483d15957c8c7e6ae28349bfa95a9238f5d0ab33a158ae7fc89a837f43',
         semantic_scope=(
             'Six-rung assertions become four-rung; new coverage for the F9 secondary fields, the non-hard-gate refusal, the reached-Gate-8 conditionality, the schema version bump and legacy-record identification.'
         ),
@@ -235,7 +274,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_selection.py',
         defect_id='RC5-D11+D13',
         old_sha256=None,
-        new_sha256='8139e7289024ce2d6c0dc6c336f8dcfa62caf9dd443bd9bd33fdd274b22c9fc9',
+        new_sha256='a27257dd5c4d1fa3a33cb5361458b012b6261bc5bbd644575a9adf0a2621a05c',
         semantic_scope=(
             'new, purely additive: per-seed retention, cross-seed grouping by the frozen identity contract, selection_count and representative selection'
         ),
@@ -246,7 +285,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_falsify.py',
         defect_id='RC5-D7',
         old_sha256=None,
-        new_sha256='a81f236c4e631ca7f4a54603158df23be3c528e2d1a0e99580a5c02bf42055d1',
+        new_sha256='0dfaeb56da8e81aa530aaf8609c33da9c6559c0e987fa64b5e7b1ee05494df8c',
         semantic_scope=(
             'new, purely additive: the five per-case falsification procedures under A3.5 section 6 as amended by 6.9'
         ),
@@ -269,7 +308,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_manifest.py',
         defect_id='RC5-D9',
         old_sha256=None,
-        new_sha256='b9b36ff2807a8de8fd23d6ee5b47c704787bdfc55688281b70a39ab0c8628994',
+        new_sha256='5a8f102f6f16de0c5ec0a9dc43000562693960666419a8774f68ad19fac90354',
         semantic_scope=(
             'new, purely additive: the two-layer pre-execution manifest of A3.5 section 8.4'
         ),
@@ -280,7 +319,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_store.py',
         defect_id='RC5 mechanical',
         old_sha256=None,
-        new_sha256='89d478062ba3e72682eed8f33a6f76d294467a78f65a5949a1bf167037d0e2c2',
+        new_sha256='8a20e62205cd932cea299a0e1042cd98cf53d2f9515dcbc6dfc42c6326f9188c',
         semantic_scope=(
             'new, purely additive: the case-scoped seed store, atomic case- record writes and deterministic resume'
         ),
@@ -291,7 +330,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_case_scoring.py',
         defect_id='RC5 mechanical + D10',
         old_sha256=None,
-        new_sha256='cf623a170607a3a803ad0e642a8728513d272a3a18af11879e6750d2e588d510',
+        new_sha256='fad92299443a63355e368d20ca00a775391ff0860bcb240d4efd757615db80f5',
         semantic_scope=(
             "new, purely additive: per-case wiring of A3.4's frozen scorers and"
             'the sole G3 authority'
@@ -303,7 +342,7 @@ _ADDED = (
         path='src/muru/paper_benchmark/rc5_runner.py',
         defect_id='RC5 runner',
         old_sha256=None,
-        new_sha256='ce4db6360c68bb96209e84a82f928f2a29a03d2a5065857f442e6e6cb918418a',
+        new_sha256='bacb9b96409f8fdd5818ff3a4a2293b3f4bf2cd68329d8060a82c96c38cdd377',
         semantic_scope=(
             'new, purely additive: the production case runner, composition only'
         ),

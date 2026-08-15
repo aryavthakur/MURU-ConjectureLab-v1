@@ -37,14 +37,18 @@ from typing import Mapping, Sequence
 from .calibration_contract import SeedStatus
 from .rc3_calibration_runner import FROZEN_SETTINGS_DIGEST
 from .rc3_record import (
+    RECORD_SCHEMA_VERSION,
     CaseExecutionRecord,
     PerSeedStatusEntry,
     ProvenanceSidecar,
     canonical_json,
+    record_schema_generation,
 )
 
 __all__ = [
     "CaseRecordExists",
+    "SchemaGenerationRefused",
+    "StoredSeedOutcome",
     "CaseSeedRecordStore",
     "case_slug",
     "write_atomic",
@@ -87,6 +91,32 @@ class CaseRecordExists(RuntimeError):
     """A completed case record is already on disk and must not be rewritten."""
 
 
+class SchemaGenerationRefused(RuntimeError):
+    """A record on disk is not of the current schema generation."""
+
+
+@dataclass(frozen=True)
+class StoredSeedOutcome:
+    """One recorded seed, complete enough to resume from without recomputing.
+
+    The record carries the retained candidate's **own decided values** --
+    complexity, ``valid_r2`` and ``invalid_fraction`` -- not merely its
+    expression string.  Without them a resumed run would have to recompute a
+    number the original run already decided, which is the very thing A3.5
+    sections 8.2 and 12 forbid.  They are absent exactly when the seed retained
+    nothing.
+    """
+
+    entry: PerSeedStatusEntry
+    complexity: int | None = None
+    valid_r2: float | None = None
+    invalid_fraction: float | None = None
+
+    @property
+    def retained(self) -> bool:
+        return self.entry.status is SeedStatus.COMPLETED_WITH_CANDIDATES
+
+
 # -----------------------------------------------------------------------
 # Per-seed store, case-scoped
 # -----------------------------------------------------------------------
@@ -100,6 +130,11 @@ class CaseSeedRecordStore:
     ``case_content_hash`` plays the same role ``world_construction_digest``
     plays for calibration: a record produced against different case content is
     refused rather than adopted.
+
+    Resume is **seed-granular**: :meth:`load` returns enough to rebuild each
+    recorded seed's outcome exactly, so an interruption partway through a case
+    never re-executes a finished seed and never lets a fresh result supersede a
+    recorded ``EXECUTION_FAILURE``.
     """
 
     def __init__(
@@ -116,13 +151,48 @@ class CaseSeedRecordStore:
     def path_for(self, case_id: str) -> Path:
         return self.root / f"{case_slug(case_id)}.jsonl"
 
+    def recorded_seeds(self, case_id: str) -> frozenset[int]:
+        """Seed values already present in this case's file, cheaply.
+
+        Read without the full verification :meth:`load` performs, because
+        :meth:`append` needs it on every write and a malformed line must not be
+        able to make a duplicate look absent.
+        """
+        path = self.path_for(case_id)
+        if not path.exists():
+            return frozenset()
+        seeds: set[int] = set()
+        for raw in path.read_text(encoding="utf-8").splitlines():
+            raw = raw.strip()
+            if not raw:
+                continue
+            try:
+                seeds.add(int(json.loads(raw)["seed"]))
+            except (json.JSONDecodeError, KeyError, TypeError, ValueError):
+                continue
+        return frozenset(seeds)
+
     def append(
         self,
         case_id: str,
         entry: PerSeedStatusEntry,
         case_content_hash: str,
         settings_digest: str | None = None,
+        complexity: int | None = None,
+        valid_r2: float | None = None,
+        invalid_fraction: float | None = None,
     ) -> None:
+        # Refuse the duplicate HERE, not only on load.  A guard that fires only
+        # on read lets the writer commit the violation and continue, and once
+        # written the file becomes unreadable by its only reader -- so even an
+        # auditor cannot enumerate the seed history without destroying
+        # evidence.  A seed is decided once (A3.5 sections 8.2, 12).
+        if int(entry.seed) in self.recorded_seeds(case_id):
+            raise RuntimeError(
+                f"seed {entry.seed} already has a record for {case_id}; records "
+                f"are append-only and a seed is decided once - a second record "
+                f"would be a selective retry that supersedes a prior result"
+            )
         payload = {
             "case_id": case_id,
             "seed": int(entry.seed),
@@ -134,7 +204,20 @@ class CaseSeedRecordStore:
             ),
             "case_content_hash": case_content_hash,
             "global_plan_digest": self.plan_digest,
+            "complexity": None if complexity is None else int(complexity),
+            "valid_r2": None if valid_r2 is None else float(valid_r2),
+            "invalid_fraction": (
+                None if invalid_fraction is None else float(invalid_fraction)
+            ),
         }
+        if entry.status is SeedStatus.COMPLETED_WITH_CANDIDATES and (
+            complexity is None or valid_r2 is None or invalid_fraction is None
+        ):
+            raise ValueError(
+                f"seed {entry.seed} retained a candidate but its decided values "
+                f"were not supplied; a record that cannot be resumed from without "
+                f"recomputation is not a usable record"
+            )
         line = json.dumps(
             payload, sort_keys=True, separators=(",", ":"), allow_nan=False
         )
@@ -146,7 +229,7 @@ class CaseSeedRecordStore:
         self,
         case_id: str,
         case_content_hash: str | None = None,
-    ) -> dict[int, PerSeedStatusEntry]:
+    ) -> dict[int, StoredSeedOutcome]:
         """Load completed seeds for a case.
 
         A truncated final line (an interrupted write) is discarded, so a
@@ -158,14 +241,25 @@ class CaseSeedRecordStore:
         if not path.exists():
             return {}
         results: dict[int, PerSeedStatusEntry] = {}
-        for raw in path.read_text(encoding="utf-8").splitlines():
+        lines = path.read_text(encoding="utf-8").splitlines()
+        last_index = len(lines) - 1
+        for index, raw in enumerate(lines):
             raw = raw.strip()
             if not raw:
                 continue
             try:
                 payload = json.loads(raw)
             except json.JSONDecodeError:
-                continue  # truncated tail
+                if index == last_index:
+                    continue  # a genuinely truncated final line, mid-write
+                # Anywhere else, a corrupt line is evidence being lost: it
+                # could be hiding a recorded EXECUTION_FAILURE that a later
+                # clean record would then appear to supersede.
+                raise RuntimeError(
+                    f"{path} line {index + 1} of {len(lines)} is unparseable and "
+                    f"is not the final line; a corrupt interior record must not "
+                    f"be silently dropped"
+                ) from None
             recorded_case = payload.get("case_id")
             if recorded_case != case_id:
                 raise RuntimeError(
@@ -205,11 +299,18 @@ class CaseSeedRecordStore:
                     f"are append-only and a seed is decided once - a second record "
                     f"would be a selective retry"
                 )
-            results[seed] = PerSeedStatusEntry(
-                seed=seed,
-                status=SeedStatus(payload["status"]),
-                selected_expression_string=payload.get("selected_expression_string"),
-                error_message=payload.get("error_message", ""),
+            results[seed] = StoredSeedOutcome(
+                entry=PerSeedStatusEntry(
+                    seed=seed,
+                    status=SeedStatus(payload["status"]),
+                    selected_expression_string=payload.get(
+                        "selected_expression_string"
+                    ),
+                    error_message=payload.get("error_message", ""),
+                ),
+                complexity=payload.get("complexity"),
+                valid_r2=payload.get("valid_r2"),
+                invalid_fraction=payload.get("invalid_fraction"),
             )
         return results
 
@@ -264,18 +365,48 @@ def append_provenance(sidecar: ProvenanceSidecar, out_dir: Path) -> None:
 
 
 def load_case_record_payload(out_dir: Path, case_id: str) -> Mapping[str, object]:
-    """Read back one case's scientific payload as written."""
-    return json.loads(_record_path(out_dir, case_id).read_text(encoding="utf-8"))
+    """Read back one case's scientific payload, refusing any other generation.
+
+    A3.5's schema bump is only meaningful if something enforces it.  A
+    ``muru-rc3-case-record-1.0.0`` payload carries a six-rung
+    ``falsification_results`` mapping scored under the superseded Gate 8 --
+    where F5 gated, F9 gated, and ``NOT_APPLICABLE`` fell through to passing --
+    so reading one as current-generation would adopt a verdict the amended
+    rules never produced.
+    """
+    payload = json.loads(_record_path(out_dir, case_id).read_text(encoding="utf-8"))
+    generation = record_schema_generation(payload)
+    if generation != "current":
+        raise SchemaGenerationRefused(
+            f"{_record_path(out_dir, case_id)} is a {generation} record "
+            f"({payload.get('schema_version')!r}); the current generation is "
+            f"{RECORD_SCHEMA_VERSION!r}. The two are not interchangeable and an "
+            f"old record is never reinterpreted as a new one."
+        )
+    return payload
 
 
 def completed_case_ids(out_dir: Path) -> frozenset[str]:
-    """Case IDs whose scientific record is already on disk."""
+    """Case IDs whose **current-generation** scientific record is on disk.
+
+    A record of any other generation raises rather than counting as complete:
+    counting it would make the resume contract skip that case permanently, so
+    its superseded verdict would stand and never be re-executed under the
+    amended rules.
+    """
     root = Path(out_dir) / "records"
     if not root.exists():
         return frozenset()
     found: set[str] = set()
     for path in sorted(root.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
+        generation = record_schema_generation(payload)
+        if generation != "current":
+            raise SchemaGenerationRefused(
+                f"{path} is a {generation} record "
+                f"({payload.get('schema_version')!r}); it must not be counted as "
+                f"a completed case under {RECORD_SCHEMA_VERSION!r}"
+            )
         found.add(str(payload["case_id"]))
     return frozenset(found)
 

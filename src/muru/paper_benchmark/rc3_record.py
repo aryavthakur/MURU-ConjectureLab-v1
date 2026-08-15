@@ -48,6 +48,7 @@ __all__ = [
     "LEGACY_FALSIFICATION_RUNG_NAMES",
     "GATE8_REACHING_GATES",
     "HARD_GATE_ORDER",
+    "F9_ACCEPTANCE_CALIBRATION_STATUS",
     "SchemaVersionError",
     "record_schema_generation",
     "PerSeedStatusEntry",
@@ -96,10 +97,12 @@ HARD_GATE_ORDER: tuple[FalsificationRung, ...] = (
     FalsificationRung.F10_NEGATIVE_CONTROL,
 )
 
-#: Retained as the historical spelling so an importer written against RC3 keeps
-#: working; it names the same tuple, whose membership is now the four hard
-#: gates.
-FALSIFICATION_RUNG_ORDER = HARD_GATE_ORDER
+#: There is deliberately NO ``FALSIFICATION_RUNG_ORDER`` alias.  An RC3-era
+#: importer expecting six rungs must break loudly at import time: silently
+#: handing it a four-member tuple under the old name would move exactly the
+#: reinterpretation this MAJOR version bump exists to prevent from the data
+#: layer to the code layer, and any six-rung completeness check it performs
+#: would then pass vacuously.
 
 if set(HARD_GATE_ORDER) != set(REQUIRED_HARD_GATES):
     raise ImportError(
@@ -117,6 +120,14 @@ if set(HARD_GATE_ORDER) & SECONDARY_REPORTED_RUNGS:
 #: A3.5 obligation 19 requires the F9 secondary fields on every such record.
 GATE8_REACHING_GATES: frozenset[str] = frozenset({"falsification", "all_passed"})
 
+#: A3.5 section 6.0: ``NOT_APPLICABLE`` is "never emitted" by any rung, and
+#: ``EXECUTION_FAILURE`` "resolves to FAIL before entering the mapping Gate 8
+#: consumes".  So the only two values that may ever reach a record are these.
+_EMITTABLE_RESULTS: frozenset[FalsificationResult] = frozenset({
+    FalsificationResult.PASS,
+    FalsificationResult.FAIL,
+})
+
 
 class SchemaVersionError(ValueError):
     """A serialized record's schema version is unknown or mis-declared."""
@@ -131,6 +142,10 @@ def record_schema_generation(payload: Mapping[str, Any]) -> str:
     same ``falsification_results`` mapping *means*.
     """
     version = payload.get("schema_version")
+    if not isinstance(version, str):
+        raise SchemaVersionError(
+            f"record schema_version must be a string, got {type(version).__name__}"
+        )
     if version == RECORD_SCHEMA_VERSION:
         return "current"
     if version in LEGACY_RECORD_SCHEMA_VERSIONS:
@@ -343,6 +358,24 @@ class CaseExecutionRecord:
     schema_version: str = RECORD_SCHEMA_VERSION
 
     def __post_init__(self) -> None:
+        # A record may only ever stamp itself with the current schema.  Without
+        # this the writer could produce a record its own classifier calls
+        # `legacy`, which is the reinterpretation the bump exists to prevent.
+        if self.schema_version != RECORD_SCHEMA_VERSION:
+            raise SchemaVersionError(
+                f"a record may only be written under {RECORD_SCHEMA_VERSION!r}, "
+                f"not {self.schema_version!r}; the two generations are not "
+                f"interchangeable in either direction"
+            )
+        # A3.5 section 6.9.4 fixes this string; a record that self-declared
+        # PROVEN would launder section 12's promotion prohibition into a report.
+        if self.f9_acceptance_calibration_status != F9_ACCEPTANCE_CALIBRATION_STATUS:
+            raise ValueError(
+                f"f9_acceptance_calibration_status must be "
+                f"{F9_ACCEPTANCE_CALIBRATION_STATUS!r}, not "
+                f"{self.f9_acceptance_calibration_status!r}; promoting F9 requires "
+                f"a new prospective amendment and a fresh F9-specific calibration"
+            )
         if self.selection_denominator != STABILITY_DENOMINATOR:
             raise ValueError(
                 f"selection_denominator must be the frozen "
@@ -409,10 +442,23 @@ class CaseExecutionRecord:
                 f"{self.case_id} records f9_stress_test_result without "
                 f"f9_stress_test_metric; obligation 19 requires both"
             )
-        if has_f9 and self.f9_stress_test_result is FalsificationResult.NOT_APPLICABLE:
+        # Section 6.0's emission prohibition, enforced by MEMBERSHIP rather than
+        # identity, and on the hard gates too -- not only on F9.  The record is
+        # the artifact that prohibition is about: it is the one place a
+        # forbidden value would survive to disk.
+        for rung, result in self.falsification_results.items():
+            if result not in _EMITTABLE_RESULTS:
+                raise ValueError(
+                    f"{getattr(rung, 'value', rung)} carries "
+                    f"{getattr(result, 'value', result)!r}; A3.5 section 6.0 "
+                    f"permits only PASS or FAIL to be emitted by any rung"
+                )
+        if has_f9 and self.f9_stress_test_result not in _EMITTABLE_RESULTS:
             raise ValueError(
-                "f9_stress_test_result is NOT_APPLICABLE; A3.5 section 6.0 "
-                "forbids every rung from emitting it, F9 included"
+                f"f9_stress_test_result is "
+                f"{getattr(self.f9_stress_test_result, 'value', self.f9_stress_test_result)!r}; "
+                f"A3.5 section 6.0 forbids every rung from emitting anything but "
+                f"PASS or FAIL, F9 included"
             )
         if not reached_gate8 and has_f9:
             raise ValueError(
@@ -422,6 +468,23 @@ class CaseExecutionRecord:
             )
 
     # -------------------------------------------------------------------
+    @property
+    def execution_failure_poisoned(self) -> bool:
+        """Whether any of this case's seeds ended in ``EXECUTION_FAILURE``.
+
+        A3.5 section 8.2: one such seed makes the whole case ``UNEVALUABLE``,
+        with no replacement seed and no 29/30 denominator.  Obligation 16 then
+        requires the poisoned count to be disclosed **separately per endpoint**,
+        which is what "makes the conservative rule cost no information".
+
+        Derived from ``per_seed_status`` rather than stored, so it can never
+        disagree with the per-seed record it summarises.
+        """
+        return any(
+            entry.status is SeedStatus.EXECUTION_FAILURE
+            for entry in self.per_seed_status
+        )
+
     @property
     def selection_fraction(self) -> float:
         """k/30, computed rather than stored, so the two cannot disagree."""
@@ -475,6 +538,7 @@ class CaseExecutionRecord:
                 else _encode_float(self.f9_stress_test_metric)
             ),
             "f9_acceptance_calibration_status": self.f9_acceptance_calibration_status,
+            "execution_failure_poisoned": self.execution_failure_poisoned,
             "acceptance_status": self.acceptance_status.value,
             "acceptance_gate_reached": self.acceptance_gate_reached,
             "null_threshold_digest": self.null_threshold_digest,

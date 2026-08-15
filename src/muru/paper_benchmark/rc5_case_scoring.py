@@ -27,7 +27,7 @@ Three bindings it enforces structurally:
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Mapping, Sequence
+from typing import Any, Mapping, Sequence
 
 from .a34_parameter_recovery import ParameterRecoveryResult, score_parameter_recovery
 from .a34_predictive_equivalence import (
@@ -47,6 +47,8 @@ from .structural_acceptance import (
 from .truth import TruthRecord
 
 __all__ = [
+    "PoisonedDisclosure",
+    "execution_failure_poisoned_counts",
     "CaseAcceptance",
     "case_acceptance",
     "CaseSecondaries",
@@ -62,6 +64,65 @@ G3_AUTHORITY = (
     "muru.paper_benchmark.g3_contract.classify_g3_event",
     "muru.paper_benchmark.g3_contract.score_g3",
 )
+
+
+@dataclass(frozen=True)
+class PoisonedDisclosure:
+    """A3.5 obligation 16: execution-failure-poisoned counts, per endpoint.
+
+    Section 8.2 binds the per-endpoint consequences explicitly *because they
+    differ*: G1 gives no credit while the case stays in the fixed 164
+    denominator, G2 gives no credit within the fixed 144, and G3 counts the
+    case as a **violation** within the fixed 36.  The conservative rule is only
+    costless if the count it hides is disclosed, so this is a mandatory
+    separate disclosure, never a correction to a denominator.
+    """
+
+    scalar_competence: int
+    family_recovery: int
+    principal_structural_safety: int
+    total_poisoned_cases: int
+    poisoned_case_ids: tuple[str, ...]
+
+    def to_payload(self) -> dict[str, object]:
+        return {
+            "scalar_competence": self.scalar_competence,
+            "family_recovery": self.family_recovery,
+            "principal_structural_safety": self.principal_structural_safety,
+            "total_poisoned_cases": self.total_poisoned_cases,
+            "poisoned_case_ids": list(self.poisoned_case_ids),
+            "note": (
+                "A3.5 section 8.2 / obligation 16: an execution-failure-poisoned "
+                "case is UNEVALUABLE. It receives no G1 or G2 credit and counts "
+                "as a G3 violation, and every endpoint denominator stays fixed. "
+                "These counts are disclosed, never subtracted."
+            ),
+        }
+
+
+def execution_failure_poisoned_counts(
+    records: Sequence[Any],
+) -> PoisonedDisclosure:
+    """Count poisoned cases per primary endpoint, from the records themselves.
+
+    Endpoint applicability comes from the frozen registry variant, so a case is
+    counted against exactly the endpoints it was ever eligible for.
+    """
+    poisoned = [r for r in records if r.execution_failure_poisoned]
+    counts = {"scalar_competence": 0, "family_recovery": 0,
+              "principal_structural_safety": 0}
+    for record in poisoned:
+        _family, variant, _replicate = resolve_case_id(record.case_id)
+        for endpoint in counts:
+            if endpoint in variant.endpoint_names:
+                counts[endpoint] += 1
+    return PoisonedDisclosure(
+        scalar_competence=counts["scalar_competence"],
+        family_recovery=counts["family_recovery"],
+        principal_structural_safety=counts["principal_structural_safety"],
+        total_poisoned_cases=len(poisoned),
+        poisoned_case_ids=tuple(r.case_id for r in poisoned),
+    )
 
 
 @dataclass(frozen=True)

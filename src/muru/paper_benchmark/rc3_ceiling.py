@@ -16,6 +16,16 @@ The covariate order is frozen and is the grammar primitive order.
 Gates (already frozen, restated only as executable enforcement):
     ceiling_fraction >= 0.80          strict as written: >=
     waiver at ceiling_r2 < 0.05       strict as written: <
+
+**Gate 7 is NOT decided here (A3.5 section 6.9.3, obligation 17).**  Under
+A3.5 the waiver additionally requires
+``candidate_test_r2 > null_threshold[min(complexity, 20)]``, and obligation 17
+names this module's previous unconditional form as the thing that must NOT be
+implemented.  The floor needs the threshold table and the candidate's
+complexity, neither of which this module has or should acquire, so the whole
+Gate-7 decision belongs to
+``structural_acceptance.evaluate_structural_acceptance`` and lives nowhere
+else.  This module reports the ceiling *observables* only.
 """
 from __future__ import annotations
 
@@ -144,13 +154,25 @@ class CeilingEstimate:
     candidate_r2: float
     ceiling_fraction: float
     gate_passed: bool
-    waiver_applied: bool
+    #: ``ceiling_r2 < CEILING_WAIVER_THRESHOLD`` -- the waiver's ceiling
+    #: condition ALONE.  Under A3.5 section 6.9.3 the waiver also requires the
+    #: candidate floor, so this flag is **not** the waiver and must never be
+    #: read as one.  Renamed from ``waiver_applied`` for exactly that reason.
+    waiver_regime: bool
     sklearn_version: str
 
     @property
-    def ceiling_satisfied(self) -> bool:
-        """Gate 7 of the frozen acceptance predicate."""
-        return self.gate_passed or self.waiver_applied
+    def in_low_ceiling_waiver_regime(self) -> bool:
+        """Whether the ceiling condition of A3.5's waiver branch holds.
+
+        The waiver itself is ``this AND candidate_test_r2 > null_threshold[...]``
+        and is evaluated only by
+        ``structural_acceptance.evaluate_structural_acceptance``.  There is
+        deliberately no ``ceiling_satisfied`` property here: a Gate-7 verdict
+        computed without the floor would be the superseded rule, and would be
+        acceptance-favouring wherever the floor fails.
+        """
+        return self.waiver_regime
 
 
 def estimate_ceiling(
@@ -176,8 +198,9 @@ def estimate_ceiling(
     -----
     ``ceiling_fraction`` is ``candidate_r2 / ceiling_r2``.  When the ceiling
     itself is non-positive the fraction is not meaningful, so it is reported
-    as ``-inf`` and only the frozen waiver (``ceiling_r2 < 0.05``) can carry
-    the case past gate 7.
+    as ``-inf`` and only A3.5's amended waiver -- the low-ceiling regime **and**
+    the candidate floor -- can carry the case past gate 7.  This function
+    decides nothing; it reports observables.
     """
     version = assert_sklearn_version()
 
@@ -217,6 +240,6 @@ def estimate_ceiling(
         candidate_r2=float(candidate_test_r2),
         ceiling_fraction=float(fraction),
         gate_passed=bool(fraction >= CEILING_FRACTION_GATE),
-        waiver_applied=bool(ceiling_r2 < CEILING_WAIVER_THRESHOLD),
+        waiver_regime=bool(ceiling_r2 < CEILING_WAIVER_THRESHOLD),
         sklearn_version=version,
     )

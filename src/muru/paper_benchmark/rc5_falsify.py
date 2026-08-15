@@ -72,7 +72,12 @@ from .identity_contract import parse_candidate, positive_scale_equivalent
 from .rc3_calibration_runner import _r2
 from .registry import ENERGY_GRID
 from .rc5_estimate import TEST_SPLIT, TRAIN_SPLIT, fit_case_scalars
-from .structural_acceptance import FalsificationResult, FalsificationRung
+from .structural_acceptance import (
+    MAX_COMPLEXITY as _ACCEPTANCE_MAX_COMPLEXITY,
+    REQUIRED_HARD_GATES,
+    FalsificationResult,
+    FalsificationRung,
+)
 
 __all__ = [
     "REQUIRED_HARD_GATES",
@@ -96,14 +101,22 @@ __all__ = [
     "run_falsification",
 ]
 
-#: Section 6.9.4, verbatim.  F5 is absent because it is no longer a rung; F9 is
-#: absent because it is reported, never gating.
-REQUIRED_HARD_GATES: frozenset[FalsificationRung] = frozenset({
-    FalsificationRung.F1_REPRODUCIBILITY,
-    FalsificationRung.F4_COMPOUND_HOLDOUT,
-    FalsificationRung.F7_INFLUENCE_DROP,
-    FalsificationRung.F10_NEGATIVE_CONTROL,
-})
+#: Section 6.9.4's hard set, IMPORTED from the module that owns it rather than
+#: restated.  A second literal would be equal today and unguarded tomorrow: the
+#: container below validates against this name while ``check_gate8`` validates
+#: against the frozen one, so they must be the same object.
+_ = REQUIRED_HARD_GATES
+
+#: ``MAX_COMPLEXITY`` exists in two frozen modules.  Section 6.9.3's claim that
+#: Gate 7's floor and the rungs read "the identical, already-frozen table"
+#: rests on the two agreeing, so it is asserted rather than assumed.
+if _ACCEPTANCE_MAX_COMPLEXITY != MAX_COMPLEXITY:  # pragma: no cover - both frozen
+    raise ImportError(
+        f"MAX_COMPLEXITY disagrees between structural_acceptance "
+        f"({_ACCEPTANCE_MAX_COMPLEXITY}) and calibration_contract "
+        f"({MAX_COMPLEXITY}); Gate 2, Gate 7's floor and every rung bar would "
+        f"then index different tables"
+    )
 
 #: Section 6.9.4.  Recorded so no report can cite F9's PASS/FAIL as validated
 #: robustness.
@@ -398,6 +411,14 @@ def run_f4_compound_holdout(inputs: FalsificationInputs) -> RungOutcome:
     """
     train = inputs.mask(TRAIN_SPLIT)
     held = _f4_held_out_mask(inputs.compounds, train)
+    if int(held.sum()) != F7_LOSO_FOLDS:
+        # One held-out compound per training scaffold, and the frozen train
+        # allocation is 20 scaffolds: a short scaffold silently holding out
+        # nothing would shrink F4's evaluation set (section 6.0, no skipping).
+        raise ValueError(
+            f"F4 held out {int(held.sum())} compounds, not one per each of the "
+            f"{F7_LOSO_FOLDS} frozen training scaffolds"
+        )
     fit_rows = train & ~held
     value = affine_refit_r2(
         inputs.discovered_expression_string,
@@ -453,6 +474,15 @@ def run_f7_influence_drop(inputs: FalsificationInputs) -> RungOutcome:
                 fold,
                 test,
             )
+        )
+    if len(per_fold) != F7_LOSO_FOLDS:
+        # Section 6.0: "no rung may skip a fold ... for insufficient data".
+        # Fewer folds raises min_k(R2_k), which weakens a HARD gate in the
+        # acceptance-favouring direction, so it fails loudly instead.
+        raise ValueError(
+            f"F7 produced {len(per_fold)} leave-one-scaffold-out folds, not the "
+            f"frozen {F7_LOSO_FOLDS}; a missing fold would raise min_k(R2_k) and "
+            f"weaken a hard gate"
         )
     value = float(min(per_fold)) if per_fold else float("-inf")
     bar = inputs.bar
@@ -513,6 +543,11 @@ def run_f9_energy_subset(inputs: FalsificationInputs) -> RungOutcome:
             )
         )
 
+    if len(per_fold) != F9_FOLDS:
+        raise ValueError(
+            f"F9 produced {len(per_fold)} leave-one-energy-out folds, not the "
+            f"frozen {F9_FOLDS}"
+        )
     value = float(min(per_fold)) if per_fold else float("-inf")
     bar = inputs.bar
     return RungOutcome(
@@ -614,6 +649,11 @@ def run_f10_negative_control(inputs: FalsificationInputs) -> RungOutcome:
             test,
         )
 
+    if len(per_construction) != len(CONSTRUCTION_ALLOCATION):
+        raise ValueError(
+            f"F10 ran {len(per_construction)} corruptions, not the frozen "
+            f"{len(CONSTRUCTION_ALLOCATION)}"
+        )
     worst = float(max(per_construction.values()))
     return RungOutcome(
         FalsificationRung.F10_NEGATIVE_CONTROL,

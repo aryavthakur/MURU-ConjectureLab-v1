@@ -26,6 +26,7 @@ from muru.paper_benchmark.rc5_store import CaseSeedRecordStore, completed_case_i
 from muru.paper_benchmark.structural_acceptance import (
     REQUIRED_HARD_GATES,
     AcceptanceStatus,
+    FalsificationResult,
 )
 
 from rc5_synthetic import (
@@ -38,7 +39,7 @@ from rc5_synthetic import (
 DEV_CASE = "PB|development|F01|r000"
 
 
-def _execute(case_id: str = DEV_CASE, backend=None, **kwargs):
+def _outcome(case_id: str = DEV_CASE, backend=None, **kwargs):
     return execute_case(
         content=synthetic_content(case_id),
         a1_status=kwargs.pop("a1_status", CaseAdequacyStatus.M0_NOT_REJECTED),
@@ -47,6 +48,10 @@ def _execute(case_id: str = DEV_CASE, backend=None, **kwargs):
         engine_versions=ENGINE_VERSIONS,
         **kwargs,
     )
+
+
+def _execute(case_id: str = DEV_CASE, backend=None, **kwargs):
+    return _outcome(case_id, backend, **kwargs).record
 
 
 # =======================================================================
@@ -70,11 +75,12 @@ def test_materialising_an_unauthorised_partition_is_refused():
         materialize_case("PB|challenge|F01|r000")
 
 
-def test_run_partition_refuses_an_unauthorised_partition_before_anything_else():
+def test_run_partition_refuses_an_unauthorised_partition_before_anything_else(tmp_path):
     with pytest.raises(PartitionNotAuthorised):
         run_partition(
-            "held_out", [], {}, StubBackend(), NULL_THRESHOLD, ENGINE_VERSIONS,
-            output_root="/tmp/nowhere", run_commit="abc",
+            "held_out", {}, {}, {}, StubBackend(), NULL_THRESHOLD, ENGINE_VERSIONS,
+            artifact_dir=tmp_path, output_root=tmp_path,
+            lock=ImplementationLock.pending(), run_commit="abc",
         )
 
 
@@ -101,9 +107,86 @@ def test_all_thirty_frozen_seeds_are_used_in_order():
     backend = StubBackend()
     record = _execute(backend=backend)
     expected = list(case_search_seeds(DEV_CASE))
-    assert backend.seen == expected
+    assert backend.seen[:30] == expected
     assert list(record.seeds_used) == expected
     assert len(record.per_seed_status) == 30
+
+
+def test_f1_replays_the_same_thirty_seeds_verbatim():
+    """A3.5 section 6.1: universal scope, no sampling, identity perturbation.
+
+    "F1 runs for every case reaching Gate 8 ... one full 30-seed re-execution
+    per Gate-8-reaching case", with "its seeds reused verbatim and its
+    perturbation the identity".  So a Gate-8-reaching case drives the backend
+    exactly 60 times: 30 to search, 30 to replay the same seeds in the same
+    order.
+    """
+    backend = StubBackend()
+    record = _execute(backend=backend)
+    expected = list(case_search_seeds(DEV_CASE))
+    assert record.acceptance_gate_reached in {"falsification", "all_passed"}
+    assert len(backend.seen) == 60
+    assert backend.seen[:30] == expected
+    assert backend.seen[30:] == expected
+
+
+def test_a_deterministic_backend_passes_f1_and_reaches_acceptance():
+    """Without a real re-execution driver F1 would always FAIL, making
+    STRUCTURAL_ACCEPTED unreachable for every case."""
+    from muru.paper_benchmark.structural_acceptance import FalsificationRung
+
+    record = _execute()
+    assert (
+        record.falsification_results[FalsificationRung.F1_REPRODUCIBILITY]
+        is FalsificationResult.PASS
+    )
+    assert record.acceptance_status is AcceptanceStatus.STRUCTURAL_ACCEPTED
+
+
+def test_a_non_deterministic_backend_fails_f1():
+    """The replay must be able to disagree, or F1 measures nothing."""
+    from muru.paper_benchmark.structural_acceptance import FalsificationRung
+
+    class _Drifting(StubBackend):
+        def __init__(self):
+            super().__init__()
+            self._calls = 0
+
+        def search(self, design, seed):
+            self._calls += 1
+            if self._calls > 30:      # the replay finds a different form
+                self.expressions = ("descriptor2", "descriptor2", "mass * descriptor")
+                self.columns = (2, 2, 0)
+                self.scales = (1.0, 1.0, 0.004)
+            return super().search(design, seed)
+
+    record = _execute(backend=_Drifting())
+    assert (
+        record.falsification_results[FalsificationRung.F1_REPRODUCIBILITY]
+        is FalsificationResult.FAIL
+    )
+    assert record.acceptance_status is AcceptanceStatus.REJECTED_FALSIFICATION
+
+
+def test_the_f1_replay_writes_nothing_to_the_seed_store(tmp_path):
+    """The replay is a determinism probe, not a second result.
+
+    If it appended, every seed would gain a duplicate record -- the exact
+    selective-retry violation A3.5 sections 8.2 and 12 forbid.
+    """
+    store = CaseSeedRecordStore(tmp_path)
+    content = synthetic_content(DEV_CASE)
+    execute_case(
+        content=content,
+        a1_status=CaseAdequacyStatus.M0_NOT_REJECTED,
+        backend=StubBackend(),
+        null_threshold=NULL_THRESHOLD,
+        engine_versions=ENGINE_VERSIONS,
+        seed_store=store,
+    )
+    assert len(store.recorded_seeds(DEV_CASE)) == 30
+    loaded = store.load(DEV_CASE, content.content_hash)
+    assert len(loaded) == 30
 
 
 def test_candidate_test_r2_is_computed_once_and_feeds_both_consumers():
@@ -251,15 +334,69 @@ def test_the_a1_status_is_required_and_never_derived():
 # Resume, atomicity, provenance
 # =======================================================================
 
+def _plan_and_manifest(tmp_path, case_ids):
+    """A real plan and a real, verifying partition manifest.
+
+    The manifest's case list is what run_partition executes, so the fixture
+    narrows the plan's development inventory to the cases under test rather
+    than passing a separate sequence -- which is the point of the change.
+    """
+    from muru.paper_benchmark.rc5_manifest import (
+        EnvironmentIdentity,
+        build_global_science_plan,
+        build_partition_manifest,
+        manifest_digest,
+        resolve_tag_commit,
+    )
+
+    plan = build_global_science_plan(
+        engineering_parent_commit=resolve_tag_commit(
+            "engineering-rc4-2-1-integrity-closure"
+        ),
+        a3_5_tag="benchmark-content-freeze-a3-5",
+        a3_5_tag_object="533777b73748e3c45dd1ecbda07098ba9837c587",
+        a3_5_commit=resolve_tag_commit("benchmark-content-freeze-a3-5"),
+        null_threshold=NULL_THRESHOLD,
+        calibration_manifest_digest="c" * 64,
+        code_provenance={"test": "fixture"},
+    )
+    plan = json.loads(json.dumps(plan))
+    inventory = plan["case_inventory"]["development"]
+    inventory["case_ids"] = list(case_ids)
+    inventory["case_count"] = len(case_ids)
+    plan["digest"] = manifest_digest(plan)
+
+    environment = EnvironmentIdentity(
+        platform="TestOS", machine="arm64", python_version="3.13.12",
+        python_implementation="CPython", environment_lock_digest="d" * 64,
+    )
+    manifest = build_partition_manifest(
+        plan, "development", environment, str(tmp_path), "abc123", True
+    )
+    return plan, manifest
+
+
+def _artifact_dir(tmp_path):
+    from muru.paper_benchmark.artifacts import build_partition
+
+    root = tmp_path / "artifacts"
+    build_partition("development", root)
+    return root
+
+
 def _run(tmp_path, case_ids, backend=None):
+    plan, manifest = _plan_and_manifest(tmp_path, case_ids)
     return run_partition(
         "development",
-        case_ids,
+        plan,
+        manifest,
         {c: CaseAdequacyStatus.M0_NOT_REJECTED for c in case_ids},
         backend or StubBackend(),
         NULL_THRESHOLD,
         ENGINE_VERSIONS,
-        output_root=tmp_path,
+        artifact_dir=_artifact_dir(tmp_path),
+        output_root=tmp_path / "out",
+        lock=ImplementationLock.locked("abc", "sev", "gram", "pysr"),
         run_commit="abc123",
     )
 
@@ -271,7 +408,7 @@ def test_a_completed_case_is_never_re_executed(tmp_path, monkeypatch):
 
     first = _run(tmp_path, [DEV_CASE])
     assert first["executed"] == [DEV_CASE]
-    assert completed_case_ids(tmp_path) == frozenset({DEV_CASE})
+    assert completed_case_ids(tmp_path / "out") == frozenset({DEV_CASE})
 
     second = _run(tmp_path, [DEV_CASE])
     assert second["executed"] == []
@@ -298,16 +435,16 @@ def test_records_are_written_atomically_and_provenance_stays_separate(
     monkeypatch.setattr(runner, "materialize_case", synthetic_content)
     _run(tmp_path, [DEV_CASE])
 
-    assert not list((tmp_path / "records").glob("*.tmp"))
+    assert not list((tmp_path / "out" / "records").glob("*.tmp"))
     payload = json.loads(
-        (tmp_path / "records" / "PB_development_F01_r000.json").read_text()
+        (tmp_path / "out" / "records" / "PB_development_F01_r000.json").read_text()
     )
     flat = json.dumps(payload)
     assert "started_utc" not in flat
     assert "host_platform" not in flat
     assert "abc123" not in flat
 
-    provenance = (tmp_path / "provenance" / "case_provenance.jsonl").read_text()
+    provenance = (tmp_path / "out" / "provenance" / "case_provenance.jsonl").read_text()
     assert "abc123" in provenance
     assert payload["case_id"] in provenance
 
@@ -318,7 +455,7 @@ def test_per_seed_records_are_appended_for_resume(tmp_path, monkeypatch):
     monkeypatch.setattr(runner, "materialize_case", synthetic_content)
     _run(tmp_path, [DEV_CASE])
 
-    store = CaseSeedRecordStore(tmp_path / "seed_records")
+    store = CaseSeedRecordStore(tmp_path / "out" / "seed_records")
     loaded = store.load(DEV_CASE, "s" * 64)
     assert set(loaded) == set(case_search_seeds(DEV_CASE))
 
@@ -327,10 +464,14 @@ def test_a_case_without_an_a1_verdict_is_refused(tmp_path, monkeypatch):
     import muru.paper_benchmark.rc5_runner as runner
 
     monkeypatch.setattr(runner, "materialize_case", synthetic_content)
+    plan, manifest = _plan_and_manifest(tmp_path, [DEV_CASE])
     with pytest.raises(ValueError, match="no A1 adequacy status"):
         run_partition(
-            "development", [DEV_CASE], {}, StubBackend(), NULL_THRESHOLD,
-            ENGINE_VERSIONS, output_root=tmp_path, run_commit="abc123",
+            "development", plan, manifest, {}, StubBackend(), NULL_THRESHOLD,
+            ENGINE_VERSIONS, artifact_dir=_artifact_dir(tmp_path),
+            output_root=tmp_path / "out",
+            lock=ImplementationLock.locked("a", "b", "c", "d"),
+            run_commit="abc123",
         )
 
 

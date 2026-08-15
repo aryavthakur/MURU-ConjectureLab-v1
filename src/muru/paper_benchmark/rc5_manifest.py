@@ -64,6 +64,7 @@ from .g2_contract import GRAMMAR_PRIMITIVES
 from .rc3_acceptance import null_threshold_digest
 from .rc3_calibration_runner import FROZEN_SETTINGS_DIGEST
 from .rc3_record import RECORD_SCHEMA_VERSION
+from .rc5_authorization import assert_partition_authorised
 from .registry import ENERGY_GRID, PARTITIONS, iter_case_ids
 from .rc5_estimate import (
     A35_LOG_G_GRID_HIGH,
@@ -121,6 +122,7 @@ __all__ = [
     "EnvironmentIdentity",
     "capture_environment",
     "build_global_science_plan",
+    "verify_global_plan",
     "derive_partition_science",
     "build_partition_manifest",
     "verify_partition_manifest",
@@ -201,6 +203,34 @@ def _git(*arguments: str, root: Path | None = None) -> str:
         text=True,
         check=True,
     ).stdout.strip()
+
+
+def _assert_is_commit(value: str, field: str, root: Path | None = None) -> str:
+    """Section 1's manifest rule, enforced rather than merely documented.
+
+    A field typed as a commit must actually be a commit.  Passing an annotated
+    tag OBJECT here is exactly the defect section 1 records, and a docstring
+    saying "only reachable through resolve_tag_commit" is a convention, not a
+    structural property -- so the value is checked.
+    """
+    if not (isinstance(value, str) and len(value) == 40):
+        raise ValueError(f"{field} must be a 40-character commit SHA, got {value!r}")
+    if any(character not in "0123456789abcdef" for character in value):
+        raise ValueError(f"{field} must be lowercase hexadecimal, got {value!r}")
+    probe = subprocess.run(
+        ["git", "cat-file", "-t", value],
+        cwd=str(root) if root else None,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if probe.returncode == 0 and probe.stdout.strip() != "commit":
+        raise ValueError(
+            f"{field} is {value} which git reports as a "
+            f"{probe.stdout.strip()!r}, not a commit; section 1 requires "
+            f"`git rev-parse <tag>^{{}}`, never `git rev-parse <tag>`"
+        )
+    return value
 
 
 def resolve_tag_commit(tag: str, root: Path | None = None) -> str:
@@ -396,6 +426,10 @@ def build_global_science_plan(
     so no manifest can be produced over a seed scheme that does not hold.
     """
     seed_report = verify_search_seed_invariants()
+    engineering_parent_commit = _assert_is_commit(
+        engineering_parent_commit, "engineering_parent_commit"
+    )
+    a3_5_commit = _assert_is_commit(a3_5_commit, "a3_5_science_freeze.commit")
 
     inventory: dict[str, Any] = {}
     seeds: dict[str, list[int]] = {}
@@ -456,6 +490,25 @@ def build_global_science_plan(
 # Layer 2: the per-partition pre-execution manifest
 # -----------------------------------------------------------------------
 
+def verify_global_plan(plan: Mapping[str, Any]) -> str:
+    """Re-verify a global plan's own digest against its content.
+
+    A plan loaded from disk is otherwise trusted: ``verify_partition_manifest``
+    compares a manifest's cited plan digest against ``plan["digest"]`` as
+    given, so a plan whose body was edited while its digest field was left
+    alone would verify self-consistently.  A3.5 section 12 forbids amending a
+    written pre-execution manifest; this is what makes that detectable.
+    """
+    recomputed = manifest_digest(plan)
+    declared = plan.get("digest")
+    if recomputed != declared:
+        raise ManifestDerivationError(
+            f"the global science plan's content digests to {recomputed} but it "
+            f"declares {declared}; a written pre-execution plan is never amended"
+        )
+    return recomputed
+
+
 def derive_partition_science(
     plan: Mapping[str, Any], partition: str
 ) -> dict[str, Any]:
@@ -502,6 +555,16 @@ def build_partition_manifest(
     only new content is host/environment identity and output locations.  There
     is no parameter here through which a scientific value could be supplied.
     """
+    # Section 8.4 defines a Layer-2 manifest as the object written "immediately
+    # before that partition executes", so it is the artifact whose existence
+    # declares a partition is about to run.  Section 14.2 therefore applies here
+    # as much as it does in the runner.  `derive_partition_science` stays
+    # unguarded so an independent verifier can still re-derive any partition's
+    # science block without being authorised to execute it.
+    assert_partition_authorised(partition)
+    # Obligation 10 covers a plan loaded from disk too, not only one just built.
+    verify_search_seed_invariants()
+    verify_global_plan(plan)
     science = derive_partition_science(plan, partition)
     payload: dict[str, Any] = {
         "schema_version": PARTITION_MANIFEST_SCHEMA_VERSION,
@@ -536,6 +599,7 @@ def verify_partition_manifest(
     byte-identical canonical JSON.  Any scientific value chosen at partition
     time -- by defect or otherwise -- fails here.
     """
+    verify_global_plan(plan)
     science = manifest["science"]
     partition = science["partition"]
     expected = derive_partition_science(plan, partition)

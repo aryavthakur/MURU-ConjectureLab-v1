@@ -17,10 +17,10 @@ Nothing scientific moves:
 * ``held_out_accessed`` now reports the truth rather than a constant, so a
   report can never claim held-out was untouched while naming it.
 
-Authorisation to run a partition at all is **not** this module's job and is
-deliberately not added here: it belongs to
-``governance.assert_held_out_execution_allowed`` and to the RC5 runner, which
-refuses every partition A3.5 section 14.2 does not authorise.
+The held-out quarantine stays **structural**.  ``run_preflight`` calls
+``rc5_authorization.assert_partition_authorised`` itself, so the one function
+that would actually open ``inputs/held_out.jsonl`` refuses to, rather than
+relying on every caller having checked first.
 """
 from __future__ import annotations
 
@@ -32,6 +32,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from .governance import ImplementationLock
+from .rc5_authorization import assert_partition_authorised
 from .registry import PARTITIONS, iter_case_ids
 
 #: The frozen per-partition case population, computed from the registry.
@@ -72,8 +73,10 @@ def run_preflight(
     scientific outcome is interpreted and no truth artifact is opened, for any
     partition.
     """
-    if partition not in PARTITIONS:
-        raise ValueError(f"unknown partition: {partition}")
+    # The quarantine is structural, not a caller convention: this function is
+    # the one that would actually read `inputs/held_out.jsonl`, so it refuses
+    # here rather than trusting every caller to have checked first.
+    assert_partition_authorised(partition)
     expected = PARTITION_EXPECTED_CASES[partition]
 
     start_wall, start_cpu = time.perf_counter(), time.process_time()

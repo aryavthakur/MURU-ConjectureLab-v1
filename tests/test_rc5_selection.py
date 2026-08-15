@@ -575,3 +575,69 @@ def test_the_same_candidates_group_identically_regardless_of_seed_values():
     ]
     assert group_and_select(a).selection_count == group_and_select(b).selection_count
     assert group_and_select(a).representative.k == group_and_select(b).representative.k
+
+
+# =======================================================================
+# Production feature naming (x0..x4), the names PySR actually emits
+# =======================================================================
+
+def test_the_identity_path_parses_the_names_pysr_actually_emits():
+    """PySR is fitted on a bare design matrix, so it emits x0..x4.
+
+    ``identity_contract.parse_candidate``'s default binding covers only the
+    five primitive names, so an ``x0`` string would parse to a symbol literally
+    named "x0" and the contract's ``mass``-positivity step would never fire --
+    silently removing every merge that depends on ``mass > 0``.
+    """
+    from muru.paper_benchmark.rc5_selection import parse_production_candidate
+
+    assert parse_production_candidate("x0").free_symbols == {
+        parse_candidate("mass").free_symbols.pop()
+    }
+    for index, name in enumerate(
+        ["mass", "descriptor", "descriptor2", "distractor", "correlated_distractor"]
+    ):
+        assert parse_production_candidate(f"x{index}") == parse_candidate(name)
+
+
+@pytest.mark.parametrize(
+    "a,b",
+    [
+        ("log(square(x0))", "log(x0)"),
+        ("log(cube(x0))", "log(x0)"),
+        ("2.0*log(square(x0))", "log(x0)"),
+        ("sqrt(square(x0))", "x0"),
+    ],
+)
+def test_mass_positivity_merges_still_fire_under_production_naming(a, b):
+    result = group_and_select([_selection(0, a), _selection(1, b)])
+    assert len(result.classes) == 1, f"{a} did not merge with {b} under x-naming"
+    assert result.selection_count == 2
+
+
+def test_the_same_expression_groups_identically_in_either_naming():
+    x_named = group_and_select(
+        [_selection(0, "x0 * x1"), _selection(1, "2.0 * x0 * x1")]
+    )
+    primitive_named = group_and_select(
+        [_selection(0, "mass * descriptor"), _selection(1, "2.0 * mass * descriptor")]
+    )
+    assert x_named.selection_count == primitive_named.selection_count == 2
+    assert x_named.classes[0].key == primitive_named.classes[0].key
+
+
+def test_production_naming_does_not_change_the_stability_verdict():
+    """The defect's observable consequence: it could flip Gate 3.
+
+    Same 30 seeds, same content, expressed in either naming; the winning class
+    size and therefore the stability verdict must agree.
+    """
+    x_seeds = [_selection(k, "log(square(x0))") for k in range(20)]
+    x_seeds += [_selection(k, "log(x0)") for k in range(20, 30)]
+    primitive_seeds = [_selection(k, "log(square(mass))") for k in range(20)]
+    primitive_seeds += [_selection(k, "log(mass)") for k in range(20, 30)]
+
+    x_result = group_and_select(x_seeds)
+    primitive_result = group_and_select(primitive_seeds)
+    assert x_result.selection_count == primitive_result.selection_count == 30
+    assert x_result.stability_gate_passed is primitive_result.stability_gate_passed is True

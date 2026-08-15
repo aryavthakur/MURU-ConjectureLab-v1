@@ -247,14 +247,42 @@ def test_a_partition_manifest_adds_only_host_facts_and_locations():
 
 def test_every_scientific_field_is_a_pure_derivation_of_plan_and_partition():
     plan = _plan()
+    manifest = build_partition_manifest(
+        plan, "development", _environment(), "/tmp/nowhere", "abc123", True
+    )
+    assert manifest["science"] == derive_partition_science(plan, "development")
+    report = verify_partition_manifest(plan, manifest)
+    assert report["partition"] == "development"
+    assert report["global_plan_digest"] == plan["digest"]
+
+
+def test_a_layer2_manifest_for_an_unauthorised_partition_is_refused():
+    """Section 8.4 defines a Layer-2 manifest as the object written
+    "immediately before that partition executes", so it is the artifact whose
+    existence declares a partition is about to run. Section 14.2 applies.
+    """
+    from muru.paper_benchmark.rc5_authorization import PartitionNotAuthorised
+
+    plan = _plan()
+    for refused in ("held_out", "challenge"):
+        with pytest.raises(PartitionNotAuthorised, match="Development partition only"):
+            build_partition_manifest(
+                plan, refused, _environment(), "/tmp/nowhere", "abc123", True
+            )
+
+
+def test_an_independent_verifier_can_still_re_derive_any_partition():
+    """`derive_partition_science` stays unguarded on purpose.
+
+    Section 8.4's derivation clause requires the science block to be
+    "byte-reproducible by an independent verifier"; that verifier must be able
+    to check a partition it is not authorised to execute.
+    """
+    plan = _plan()
     for partition in PARTITIONS:
-        manifest = build_partition_manifest(
-            plan, partition, _environment(), "/tmp/nowhere", "abc123", True
-        )
-        assert manifest["science"] == derive_partition_science(plan, partition)
-        report = verify_partition_manifest(plan, manifest)
-        assert report["partition"] == partition
-        assert report["global_plan_digest"] == plan["digest"]
+        science = derive_partition_science(plan, partition)
+        assert science["partition"] == partition
+        assert science["global_plan_digest"] == plan["digest"]
 
 
 def test_the_derivation_reads_only_the_plan_and_the_partition_name():

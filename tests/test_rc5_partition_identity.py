@@ -52,14 +52,14 @@ _SRC = Path(__file__).resolve().parents[1] / "src" / "muru" / "paper_benchmark"
 
 
 def _payload(case_id: str) -> dict:
-    record = execute_case(
+    outcome = execute_case(
         content=synthetic_content(case_id),
         a1_status=CaseAdequacyStatus.M0_NOT_REJECTED,
         backend=StubBackend(),
         null_threshold=NULL_THRESHOLD,
         engine_versions=ENGINE_VERSIONS,
     )
-    return record.scientific_payload()
+    return outcome.record.scientific_payload()
 
 
 def test_the_two_fixtures_carry_byte_identical_content():
@@ -255,7 +255,15 @@ def test_only_the_runner_and_the_manifest_know_about_partitions():
     to select that partition's case IDs.  ``rc5_seeds`` uses it only to build
     the frozen enumeration order.  No other module may see it.
     """
-    allowed = {"rc5_runner.py", "rc5_manifest.py", "rc5_seeds.py"}
+    allowed = {
+        "rc5_runner.py",
+        "rc5_manifest.py",
+        "rc5_seeds.py",
+        # The single authorisation object A3.5 section 14.2 is expressed in;
+        # every module that could open a partition imports it rather than
+        # restating the refusal.
+        "rc5_authorization.py",
+    }
     for path in sorted(_SRC.glob("rc5_*.py")):
         tree = ast.parse(path.read_text(encoding="utf-8"))
         names = {n.id for n in ast.walk(tree) if isinstance(n, ast.Name)}

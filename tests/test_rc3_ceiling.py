@@ -140,7 +140,7 @@ def test_ceiling_fraction_and_gate_use_the_frozen_inequalities():
     assert estimate.ceiling_r2 > 0.05
     assert estimate.ceiling_fraction == pytest.approx(0.5 / estimate.ceiling_r2)
     assert estimate.gate_passed == (estimate.ceiling_fraction >= CEILING_FRACTION_GATE)
-    assert estimate.waiver_applied is False
+    assert estimate.waiver_regime is False
 
 
 def test_gate_boundary_is_inclusive_at_0_80():
@@ -157,16 +157,73 @@ def test_gate_boundary_is_inclusive_at_0_80():
     assert not below.gate_passed
 
 
-def test_waiver_applies_strictly_below_0_05():
-    """A pure-noise target gives a near-zero ceiling, so the waiver carries it."""
+def test_the_low_ceiling_regime_is_detected_strictly_below_0_05():
+    """A pure-noise target gives a near-zero ceiling: the waiver REGIME holds.
+
+    A3.5 section 6.9.3 (obligation 17): the regime is only the ceiling half of
+    the amended waiver.  The waiver itself additionally requires
+    ``candidate_test_r2 > null_threshold[min(complexity, 20)]``, and this
+    module deliberately cannot evaluate that -- it has neither the threshold
+    table nor the complexity.  Gate 7 is decided only by
+    ``evaluate_structural_acceptance``.
+    """
     frame = make_frame()
     rng = np.random.default_rng(4)
     target = rng.normal(0, 1, len(frame))
 
     estimate = estimate_ceiling(frame, target, candidate_test_r2=0.01)
     assert estimate.ceiling_r2 < CEILING_WAIVER_THRESHOLD
-    assert estimate.waiver_applied
-    assert estimate.ceiling_satisfied
+    assert estimate.waiver_regime
+    assert estimate.in_low_ceiling_waiver_regime
+
+
+def test_this_module_no_longer_offers_a_gate7_verdict():
+    """The superseded unconditional waiver must not be reachable.
+
+    Obligation 17 names ``rc3_ceiling.py``'s previous unconditional form as
+    precisely what must NOT be implemented.  A ``ceiling_satisfied`` property
+    computed without the candidate floor would be that rule, and would be
+    acceptance-favouring wherever the floor fails -- so it does not exist.
+    """
+    frame = make_frame()
+    rng = np.random.default_rng(4)
+    estimate = estimate_ceiling(frame, rng.normal(0, 1, len(frame)), 0.01)
+    assert not hasattr(estimate, "ceiling_satisfied")
+    assert not hasattr(estimate, "waiver_applied")
+
+
+def test_the_low_ceiling_regime_alone_does_not_decide_gate_7():
+    """The regime holds, the floor fails, and Gate 7 must still reject."""
+    from muru.paper_benchmark.adequacy import CaseAdequacyStatus
+    from muru.paper_benchmark.structural_acceptance import (
+        AcceptanceStatus,
+        FalsificationResult,
+        REQUIRED_HARD_GATES,
+        StructuralCandidate,
+        evaluate_structural_acceptance,
+    )
+
+    frame = make_frame()
+    rng = np.random.default_rng(4)
+    estimate = estimate_ceiling(frame, rng.normal(0, 1, len(frame)), 0.01)
+    assert estimate.waiver_regime
+
+    threshold = {c: 0.10 for c in range(1, 21)}
+    candidate = StructuralCandidate(
+        valid_r2=0.9,
+        complexity=5,
+        selection_fraction=25 / 30,
+        invalid_fraction=0.0,
+        effective_support=frozenset({"mass"}),
+        ceiling_fraction=estimate.ceiling_fraction,
+        ceiling_r2=estimate.ceiling_r2,
+        falsification_results={r: FalsificationResult.PASS for r in REQUIRED_HARD_GATES},
+        candidate_test_r2=0.01,   # below the 0.10 bar
+    )
+    result = evaluate_structural_acceptance(
+        CaseAdequacyStatus.M0_NOT_REJECTED, candidate, threshold
+    )
+    assert result.status is AcceptanceStatus.REJECTED_CEILING
 
 
 def test_a_constant_scoring_target_fails_loudly_rather_than_passing_the_waiver():
