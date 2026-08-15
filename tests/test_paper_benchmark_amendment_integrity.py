@@ -128,6 +128,18 @@ RC4_2_DEFECT_REPAIR_CHANGED = [
     "tests/test_paper_benchmark_protocol.py",
 ]
 
+#: RC5's ledgered A3.5-implementation delta, declared here for the same reason
+#: RC4.2's is: it touches the science surface, so it is neither an amendment nor
+#: an engineering exemption, and it is recognized only by exact old+new bytes
+#: (scripts/pb_rc5_a3_5_authorized_delta.py). Of RC5's delta, only preflight.py
+#: was tracked at d94d2c9 (V1); structural_acceptance.py postdates V1 (A3.1),
+#: the rc3_* files postdate it (RC3), and every rc5_* module is a post-V1
+#: addition -- all out of this script's scope exactly like every other post-V1
+#: path it does not track.
+RC5_A3_5_IMPLEMENTATION_CHANGED = [
+    "src/muru/paper_benchmark/preflight.py",
+]
+
 
 def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze(tmp_path):
     process, manifest = _run(tmp_path)
@@ -142,13 +154,22 @@ def test_every_protected_benchmark_path_is_byte_identical_to_the_original_freeze
     # 237 until the RC4.1 environment closure, which repaired exactly one
     # engineering-only path inside the frozen set (requirements.lock.txt),
     # leaving 236 byte-identical to the original content freeze; RC4.2 then
-    # repaired two more of the 247 (protocol.py, its test), leaving 234.
-    assert manifest["protected_unchanged_count"] == 234
+    # repaired two more of the 247 (protocol.py, its test), leaving 234; RC5's
+    # A3.5 implementation then generalized one more (preflight.py), leaving 233.
+    assert manifest["protected_unchanged_count"] == 233
     assert manifest["unexpected_changed_paths"] == []
     assert manifest["removed_paths"] == []
-    assert sorted(entry["path"] for entry in manifest["changed_by_rc4_2_delta"]) == sorted(
-        RC4_2_DEFECT_REPAIR_CHANGED
+    # Both ledgers are reported through the same channel; each path is
+    # attributed to the ledger that authorizes it, so an A3.5 implementation
+    # can never be read as a defect repair.
+    ledgered = {entry["path"]: entry["ledger"] for entry in manifest["changed_by_rc4_2_delta"]}
+    assert sorted(ledgered) == sorted(
+        RC4_2_DEFECT_REPAIR_CHANGED + RC5_A3_5_IMPLEMENTATION_CHANGED
     )
+    for path in RC4_2_DEFECT_REPAIR_CHANGED:
+        assert ledgered[path] == "RC4.2_R1_R4_defect_repair"
+    for path in RC5_A3_5_IMPLEMENTATION_CHANGED:
+        assert ledgered[path] == "RC5_A3_5_implementation"
 
 
 def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp_path):
@@ -160,6 +181,7 @@ def test_the_changed_and_added_paths_are_exactly_the_declared_amendment_sets(tmp
         | set(A2_1_CHANGED)
         | set(ENGINEERING_CHANGED)
         | set(RC4_2_DEFECT_REPAIR_CHANGED)
+        | set(RC5_A3_5_IMPLEMENTATION_CHANGED)
     )
     assert sorted(manifest["added_paths"]) == sorted(set(A1_ADDED) | set(A2_ADDED) | set(A2_1_ADDED))
 

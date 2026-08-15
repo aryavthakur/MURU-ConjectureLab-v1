@@ -26,7 +26,15 @@ if _scripts not in sys.path:
     sys.path.insert(0, _scripts)
 SRC = ROOT / "src" / "muru" / "paper_benchmark"
 
-from pb_rc4_2_authorized_delta import AUTHORIZED_BY_PATH  # noqa: E402
+# RC5: the union view, so this check recognizes any authorized ledger by
+# path+hash -- RC4.2's R1-R4 repair, RC4.2.1's tooling change, and RC5's A3.5
+# implementation alike. The classification rule is unchanged: a protected path
+# may differ from A2.1 ONLY when BOTH its old and its new bytes match a ledger
+# entry exactly. Before this, the check consulted the RC4.2-only dict, so a
+# change authorized by either later ledger was reported as unauthorized drift.
+from pb_rc4_2_authorized_delta import (  # noqa: E402
+    ALL_AUTHORIZED_BY_PATH as AUTHORIZED_BY_PATH,
+)
 
 # A2.1 parent commit
 A2_1_COMMIT = "80a78032ac601466b35e9dce3fa56f6ae215605f"

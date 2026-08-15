@@ -224,9 +224,46 @@ RC4_2_1_TOOLING_DELTA: tuple[AuthorizedChange, ...] = (
 
 RC4_2_1_TOOLING_BY_PATH: dict[str, AuthorizedChange] = {c.path: c for c in RC4_2_1_TOOLING_DELTA}
 
-#: Union view for callers that want to recognize either ledger by path+hash
+
+# ---------------------------------------------------------------------------
+# RC5's OWN A3.5-implementation delta
+# ---------------------------------------------------------------------------
+#
+# RC5 implements the frozen A3.5 science contract, whose implementation
+# obligations 13/14/17/18/19 cannot be discharged without editing files these
+# same scripts byte-pin. That ledger lives in its own module -- kept SEPARATE
+# from RC4.2's R1-R4 repair and from RC4.2.1's tooling change, so an A3.5
+# implementation can never be read as a defect repair or as an engineering
+# exemption -- and is composed in HERE, at the one point every consuming
+# script already imports from, so all seven learn about it by construction
+# rather than by seven copies staying in sync. That is the same rationale
+# `pb_engineering_paths` states for its own single declaration point.
+#
+# Nothing about the classification rules below changes: an RC5-ledgered path
+# is still recognized only when BOTH its old and its new bytes match exactly.
+from pb_rc5_a3_5_authorized_delta import (  # noqa: E402
+    RC5_AUTHORIZED_BY_PATH,
+    RC5_AUTHORIZED_DELTA,
+)
+
+#: Union view for callers that want to recognize any ledger by path+hash
 #: without caring which one authorized the change.
-ALL_AUTHORIZED_BY_PATH: dict[str, AuthorizedChange] = {**AUTHORIZED_BY_PATH, **RC4_2_1_TOOLING_BY_PATH}
+ALL_AUTHORIZED_BY_PATH: dict[str, AuthorizedChange] = {
+    **AUTHORIZED_BY_PATH,
+    **RC4_2_1_TOOLING_BY_PATH,
+    **RC5_AUTHORIZED_BY_PATH,
+}
+
+_LEDGER_OWNER: dict[str, str] = {
+    **{c.path: "RC4.2_R1_R4_defect_repair" for c in AUTHORIZED_DELTA},
+    **{c.path: "RC4.2.1_integrity_tooling" for c in RC4_2_1_TOOLING_DELTA},
+    **{c.path: "RC5_A3_5_implementation" for c in RC5_AUTHORIZED_DELTA},
+}
+
+
+def ledger_owner(path: str) -> str | None:
+    """Which ledger authorizes ``path``, for transparent reporting."""
+    return _LEDGER_OWNER.get(path)
 
 
 def authorized_paths() -> frozenset[str]:
@@ -392,8 +429,17 @@ def split_unexpected_changed(
     for path in sorted(unexpected_changed):
         classification, _ = classify_path_against_commit(root, frozen_commit, path)
         if classification in ("AUTHORIZED_RC4_2_DELTA", "AUTHORIZED_RC4_2_DELTA_NEW_FILE"):
-            entry = AUTHORIZED_BY_PATH[path]
-            authorized.append({"path": path, "defect_id": entry.defect_id, "semantic_scope": entry.semantic_scope})
+            # Look the entry up in the SAME dict ``classify_path`` classified
+            # against. Reading it out of the RC4.2-only dict would raise
+            # KeyError for a path authorized by either of the other two
+            # ledgers, turning a recognized change into a crash.
+            entry = ALL_AUTHORIZED_BY_PATH[path]
+            authorized.append({
+                "path": path,
+                "defect_id": entry.defect_id,
+                "semantic_scope": entry.semantic_scope,
+                "ledger": ledger_owner(path) or "UNKNOWN",
+            })
         else:
             still_unexpected.append(path)
     return still_unexpected, authorized
