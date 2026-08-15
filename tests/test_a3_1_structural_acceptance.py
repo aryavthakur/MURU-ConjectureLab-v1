@@ -19,14 +19,21 @@ from muru.paper_benchmark.structural_acceptance import (
     AcceptanceStatus,
     FalsificationResult,
     FalsificationRung,
+    REQUIRED_HARD_GATES,
+    SECONDARY_REPORTED_RUNGS,
     StructuralCandidate,
-    check_falsification_harness,
+    check_gate8,
     evaluate_structural_acceptance,
 )
 
 
 def _all_pass_falsification() -> dict[FalsificationRung, FalsificationResult]:
-    return {rung: FalsificationResult.PASS for rung in FalsificationRung}
+    """Every HARD gate passing.
+
+    A3.5 section 6.9.4 narrowed the gating set to four rungs; F9 is computed
+    and reported but never enters this mapping, and F5 no longer exists.
+    """
+    return {rung: FalsificationResult.PASS for rung in REQUIRED_HARD_GATES}
 
 
 def _standard_threshold() -> dict[int, float]:
@@ -43,6 +50,10 @@ def _passing_candidate(**overrides) -> StructuralCandidate:
         ceiling_fraction=0.9,
         ceiling_r2=0.5,
         falsification_results=_all_pass_falsification(),
+        # A3.5 section 6.9.3: the waiver branch's floor.  Comfortably above
+        # _standard_threshold()'s 0.3 so it is never the binding constraint in
+        # a test that is measuring something else.
+        candidate_test_r2=0.75,
     )
     defaults.update(overrides)
     return StructuralCandidate(**defaults)
@@ -326,11 +337,95 @@ class TestCeiling:
         )
         assert result.status == AcceptanceStatus.REJECTED_CEILING
 
-    def test_ceiling_waiver(self):
-        """Low ceiling_r2 triggers waiver even when ceiling_fraction is low."""
+    def test_ceiling_waiver_with_candidate_floor_pass(self):
+        """A3.5 section 6.9.3: low ceiling_r2 AND the candidate floor cleared.
+
+        Under A3.1 the waiver fired on low ``ceiling_r2`` alone, with no floor
+        at all.  It now additionally requires
+        ``candidate_test_r2 > null_threshold[min(complexity, 20)]``.
+        """
         result = evaluate_structural_acceptance(
             CaseAdequacyStatus.M0_NOT_REJECTED,
-            _passing_candidate(ceiling_fraction=0.50, ceiling_r2=0.03),
+            _passing_candidate(
+                ceiling_fraction=0.50, ceiling_r2=0.03, candidate_test_r2=0.55
+            ),
+            _standard_threshold(),
+        )
+        assert result.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
+
+    def test_ceiling_waiver_with_candidate_floor_fail(self):
+        """Low ceiling_r2 but the floor not cleared: still REJECTED_CEILING.
+
+        This is the exact, sole, disclosed gap the fold closes.  Under the
+        superseded rule this case was accepted.
+        """
+        result = evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(
+                ceiling_fraction=0.50, ceiling_r2=0.03, candidate_test_r2=0.25
+            ),
+            _standard_threshold(),
+        )
+        assert result.status == AcceptanceStatus.REJECTED_CEILING
+
+    def test_the_waiver_floor_is_strict_at_the_threshold(self):
+        """`>` not `>=`: equality does not clear the floor."""
+        threshold = _standard_threshold()
+        exactly = threshold[10]
+        assert evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(
+                ceiling_fraction=0.50, ceiling_r2=0.03, candidate_test_r2=exactly
+            ),
+            threshold,
+        ).status == AcceptanceStatus.REJECTED_CEILING
+
+    def test_the_waiver_floor_reads_the_capped_complexity_index(self):
+        # min(complexity, MAX_COMPLEXITY): a complexity above the cap must not
+        # index past the table.
+        # Strictly increasing, so an off-by-one index is visible, and small
+        # enough at the cap that Gate 2 is not what this measures.
+        threshold = {c: 0.01 * c for c in range(1, 21)}
+        assert threshold[MAX_COMPLEXITY] == pytest.approx(0.20)
+
+        just_above = evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(
+                complexity=MAX_COMPLEXITY,
+                valid_r2=0.99,
+                ceiling_fraction=0.50,
+                ceiling_r2=0.03,
+                candidate_test_r2=threshold[MAX_COMPLEXITY] + 0.01,
+            ),
+            threshold,
+        )
+        assert just_above.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
+
+        just_below = evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(
+                complexity=MAX_COMPLEXITY,
+                valid_r2=0.99,
+                ceiling_fraction=0.50,
+                ceiling_r2=0.03,
+                candidate_test_r2=threshold[MAX_COMPLEXITY] - 0.01,
+            ),
+            threshold,
+        )
+        assert just_below.status == AcceptanceStatus.REJECTED_CEILING
+
+    def test_a_high_ceiling_fraction_needs_no_floor(self):
+        """Outside the waiver regime no floor is added.
+
+        Section 6.9.3: F7's own unconditional hard-gate floor already covers
+        that region, so the amended rule deliberately does not reproduce old
+        F5's every branch.  This is the disclosed residual gap, pinned.
+        """
+        result = evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(
+                ceiling_fraction=0.95, ceiling_r2=0.6, candidate_test_r2=-1.0
+            ),
             _standard_threshold(),
         )
         assert result.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
@@ -344,13 +439,20 @@ class TestCeiling:
         assert result.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
 
     def test_ceiling_waiver_boundary_not_triggered(self):
-        """ceiling_r2 == 0.05 does NOT trigger waiver (strict <)."""
+        """ceiling_r2 == 0.05 does NOT trigger the waiver (strict <).
+
+        Unchanged in spirit by A3.5; the fixture now supplies the floor field
+        so the boundary, not the floor, is what this measures.
+        """
         result = evaluate_structural_acceptance(
             CaseAdequacyStatus.M0_NOT_REJECTED,
-            _passing_candidate(ceiling_fraction=0.50, ceiling_r2=0.05),
+            _passing_candidate(
+                ceiling_fraction=0.50, ceiling_r2=0.05, candidate_test_r2=0.99
+            ),
             _standard_threshold(),
         )
         assert result.status == AcceptanceStatus.REJECTED_CEILING
+        assert CEILING_WAIVER_THRESHOLD == 0.05
 
 
 # -----------------------------------------------------------------------
@@ -377,18 +479,29 @@ class TestFalsification:
         )
         assert result.status == AcceptanceStatus.REJECTED_FALSIFICATION
 
-    def test_not_applicable_allowed(self):
-        fals = _all_pass_falsification()
-        fals[FalsificationRung.F7_INFLUENCE_DROP] = FalsificationResult.NOT_APPLICABLE
-        result = evaluate_structural_acceptance(
-            CaseAdequacyStatus.M0_NOT_REJECTED,
-            _passing_candidate(falsification_results=fals),
-            _standard_threshold(),
-        )
-        assert result.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
+    def test_not_applicable_on_a_hard_rung_blocks(self):
+        """A3.5 section 6.9.4's fail-closed repair.
 
-    def test_each_rung_fail(self):
-        for rung in FalsificationRung:
+        Under the superseded ``check_falsification_harness`` a stray
+        ``NOT_APPLICABLE`` fell through and the harness returned True.  The
+        amended predicate is ``result != PASS``, so it now rejects identically
+        to a FAIL.
+        """
+        for rung in sorted(REQUIRED_HARD_GATES, key=lambda r: r.value):
+            fals = _all_pass_falsification()
+            fals[rung] = FalsificationResult.NOT_APPLICABLE
+            result = evaluate_structural_acceptance(
+                CaseAdequacyStatus.M0_NOT_REJECTED,
+                _passing_candidate(falsification_results=fals),
+                _standard_threshold(),
+            )
+            assert result.status == AcceptanceStatus.REJECTED_FALSIFICATION, (
+                f"NOT_APPLICABLE on {rung.value} must fail closed"
+            )
+            assert not check_gate8(fals)
+
+    def test_each_hard_rung_fail_blocks(self):
+        for rung in sorted(REQUIRED_HARD_GATES, key=lambda r: r.value):
             fals = _all_pass_falsification()
             fals[rung] = FalsificationResult.FAIL
             result = evaluate_structural_acceptance(
@@ -396,12 +509,59 @@ class TestFalsification:
                 _passing_candidate(falsification_results=fals),
                 _standard_threshold(),
             )
-            assert result.status == AcceptanceStatus.REJECTED_FALSIFICATION, f"rung {rung} should reject"
+            assert result.status == AcceptanceStatus.REJECTED_FALSIFICATION, (
+                f"rung {rung} should reject"
+            )
 
-    def test_missing_rung_fails(self):
+    def test_missing_hard_rung_blocks(self):
+        for rung in sorted(REQUIRED_HARD_GATES, key=lambda r: r.value):
+            fals = _all_pass_falsification()
+            del fals[rung]
+            assert not check_gate8(fals)
+            result = evaluate_structural_acceptance(
+                CaseAdequacyStatus.M0_NOT_REJECTED,
+                _passing_candidate(falsification_results=fals),
+                _standard_threshold(),
+            )
+            assert result.status == AcceptanceStatus.REJECTED_FALSIFICATION
+
+    def test_the_hard_set_is_exactly_f1_f4_f7_f10(self):
+        assert {r.value for r in REQUIRED_HARD_GATES} == {
+            "F1_REPRODUCIBILITY",
+            "F4_COMPOUND_HOLDOUT",
+            "F7_INFLUENCE_DROP",
+            "F10_NEGATIVE_CONTROL",
+        }
+
+    def test_f5_is_not_independently_gate8_gating(self):
+        """F5 is superseded: it is not even a member of the rung enum."""
+        assert not hasattr(FalsificationRung, "F5_SCAFFOLD_HOLDOUT")
+        assert "F5_SCAFFOLD_HOLDOUT" not in {r.value for r in FalsificationRung}
+        assert "F5_SCAFFOLD_HOLDOUT" not in {r.value for r in REQUIRED_HARD_GATES}
+
+    def test_f9_failure_alone_does_not_block(self):
+        """F9 is reported, never gating.
+
+        It cannot be placed in the Gate-8 mapping at all, and its absence from
+        REQUIRED_HARD_GATES means a failing F9 leaves an otherwise-passing case
+        accepted.
+        """
+        assert FalsificationRung.F9_ENERGY_SUBSET in SECONDARY_REPORTED_RUNGS
+        assert FalsificationRung.F9_ENERGY_SUBSET not in REQUIRED_HARD_GATES
+
         fals = _all_pass_falsification()
-        del fals[FalsificationRung.F10_NEGATIVE_CONTROL]
-        assert not check_falsification_harness(fals)
+        result = evaluate_structural_acceptance(
+            CaseAdequacyStatus.M0_NOT_REJECTED,
+            _passing_candidate(falsification_results=fals),
+            _standard_threshold(),
+        )
+        assert result.status == AcceptanceStatus.STRUCTURAL_ACCEPTED
+
+        # Even if an F9 result were smuggled into the mapping, check_gate8
+        # never reads it.
+        smuggled = dict(fals)
+        smuggled[FalsificationRung.F9_ENERGY_SUBSET] = FalsificationResult.FAIL
+        assert check_gate8(smuggled) is True
 
 
 # -----------------------------------------------------------------------

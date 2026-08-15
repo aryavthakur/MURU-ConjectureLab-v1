@@ -46,6 +46,10 @@ TRUTH_BLIND_FIELDS: frozenset[str] = frozenset({
     "valid_r2", "complexity", "selection_count", "selection_denominator",
     "invalid_fraction", "effective_support", "ceiling_fraction", "ceiling_r2",
     "falsification_results", "a1_case_adequacy_status",
+    # A3.5 section 6.9.3: Gate 7's waiver floor.  Truth-blind like every other
+    # entry here -- it is an R2 on the `test` rows, computed from the
+    # discovered form and the estimated target, never from planted truth.
+    "candidate_test_r2",
 })
 
 
@@ -79,6 +83,7 @@ def candidate_from_record(record: CaseExecutionRecord) -> StructuralCandidate | 
         ceiling_fraction=record.ceiling_fraction,
         ceiling_r2=record.ceiling_r2,
         falsification_results=record.falsification_results,
+        candidate_test_r2=record.candidate_test_r2,
     )
 
 

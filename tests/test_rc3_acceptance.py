@@ -126,9 +126,35 @@ def test_no_candidate_is_unevaluable_not_rejected():
         discovered_expression_string=None,
         acceptance_status=AcceptanceStatus.UNEVALUABLE,
         acceptance_gate_reached="no_candidate",
+        # A case with no candidate never reaches Gate 8, so F9 was never
+        # computed for it (A3.5 section 6.9.4).
+        f9_stress_test_result=None,
+        f9_stress_test_metric=None,
     )
     assert candidate_from_record(record) is None
     assert verify_record_acceptance(record, THRESHOLD).agrees
+
+
+def test_the_waiver_floor_is_reproducible_from_the_record_alone():
+    """A3.5 section 6.9.3 via the record's own carried candidate_test_r2."""
+    passing = make_record(
+        ceiling_fraction=0.4,
+        ceiling_r2=0.03,
+        candidate_test_r2=0.9,
+        acceptance_status=AcceptanceStatus.STRUCTURAL_ACCEPTED,
+        acceptance_gate_reached="all_passed",
+    )
+    assert verify_record_acceptance(passing, THRESHOLD).agrees
+
+    failing = make_record(
+        ceiling_fraction=0.4,
+        ceiling_r2=0.03,
+        candidate_test_r2=0.05,  # below THRESHOLD's 0.10
+        acceptance_status=AcceptanceStatus.STRUCTURAL_ACCEPTED,
+        acceptance_gate_reached="all_passed",
+    )
+    with pytest.raises(AcceptanceMismatch, match="REJECTED_CEILING"):
+        verify_record_acceptance(failing, THRESHOLD)
 
 
 # -----------------------------------------------------------------------

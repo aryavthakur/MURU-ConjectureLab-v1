@@ -24,9 +24,9 @@ from muru.paper_benchmark.rc5_store import (
     write_case_record,
 )
 from muru.paper_benchmark.structural_acceptance import (
+    REQUIRED_HARD_GATES,
     AcceptanceStatus,
     FalsificationResult,
-    FalsificationRung,
 )
 
 CASE_A = "PB|development|F01|r000"
@@ -57,9 +57,11 @@ def _record(case_id: str, **overrides) -> CaseExecutionRecord:
         ceiling_r2=0.8,
         ceiling_fraction=0.95,
         falsification_results={
-            rung: FalsificationResult.PASS
-            for rung in FalsificationRung
+            rung: FalsificationResult.PASS for rung in REQUIRED_HARD_GATES
         },
+        candidate_test_r2=0.71,
+        f9_stress_test_result=FalsificationResult.PASS,
+        f9_stress_test_metric=0.33,
         acceptance_status=AcceptanceStatus.STRUCTURAL_ACCEPTED,
         acceptance_gate_reached="all_passed",
         per_seed_status=(),

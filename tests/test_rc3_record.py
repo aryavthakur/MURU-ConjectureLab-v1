@@ -14,10 +14,16 @@ from muru.paper_benchmark.calibration_contract import SeedStatus
 from muru.paper_benchmark.g2_contract import FamilyStatus, G2Event, SupportStatus
 from muru.paper_benchmark.rc3_record import (
     FALSIFICATION_RUNG_ORDER,
+    HARD_GATE_ORDER,
+    LEGACY_FALSIFICATION_RUNG_NAMES,
+    LEGACY_RECORD_SCHEMA_VERSIONS,
+    RECORD_SCHEMA_VERSION,
     CaseExecutionRecord,
     PerSeedStatusEntry,
     ProvenanceSidecar,
+    SchemaVersionError,
     canonical_json,
+    record_schema_generation,
 )
 from muru.paper_benchmark.structural_acceptance import (
     AcceptanceStatus,
@@ -48,8 +54,11 @@ def make_record(**overrides) -> CaseExecutionRecord:
         ceiling_r2=0.9,
         ceiling_fraction=0.902606309,
         falsification_results={
-            rung: FalsificationResult.PASS for rung in FALSIFICATION_RUNG_ORDER
+            rung: FalsificationResult.PASS for rung in HARD_GATE_ORDER
         },
+        candidate_test_r2=0.77,
+        f9_stress_test_result=FalsificationResult.PASS,
+        f9_stress_test_metric=0.41,
         acceptance_status=AcceptanceStatus.STRUCTURAL_ACCEPTED,
         acceptance_gate_reached="all_passed",
         per_seed_status=[
@@ -89,21 +98,113 @@ def test_payload_carries_every_contract_field():
     assert REQUIRED_FIELDS <= set(payload)
 
 
-def test_all_six_falsification_rungs_present_in_fixed_order():
+def test_the_four_hard_gates_are_present_in_fixed_order():
+    """A3.5 section 6.9.4 narrowed the gating set from six rungs to four."""
     payload = make_record().scientific_payload()
     assert list(payload["falsification_results"]) == [
-        r.value for r in FALSIFICATION_RUNG_ORDER
+        r.value for r in HARD_GATE_ORDER
     ]
-    assert len(FALSIFICATION_RUNG_ORDER) == 6
+    assert len(HARD_GATE_ORDER) == 4
     for rung in (
         FalsificationRung.F1_REPRODUCIBILITY,
         FalsificationRung.F4_COMPOUND_HOLDOUT,
-        FalsificationRung.F5_SCAFFOLD_HOLDOUT,
         FalsificationRung.F7_INFLUENCE_DROP,
-        FalsificationRung.F9_ENERGY_SUBSET,
         FalsificationRung.F10_NEGATIVE_CONTROL,
     ):
-        assert rung in FALSIFICATION_RUNG_ORDER
+        assert rung in HARD_GATE_ORDER
+    assert FalsificationRung.F9_ENERGY_SUBSET not in HARD_GATE_ORDER
+    assert not hasattr(FalsificationRung, "F5_SCAFFOLD_HOLDOUT")
+    # The historical spelling still resolves, to the same tuple.
+    assert FALSIFICATION_RUNG_ORDER is HARD_GATE_ORDER
+
+
+def test_f9_is_recorded_as_a_reported_secondary_not_a_gate():
+    payload = make_record().scientific_payload()
+    assert "F9_ENERGY_SUBSET" not in payload["falsification_results"]
+    assert payload["f9_stress_test_result"] == "PASS"
+    assert payload["f9_stress_test_metric"] == 0.41
+    assert payload["f9_acceptance_calibration_status"] == "NOT_PROVEN_FOR_HARD_GATE"
+
+
+def test_f9_is_still_stored_and_reportable_when_it_fails():
+    record = make_record(f9_stress_test_result=FalsificationResult.FAIL,
+                         f9_stress_test_metric=-2.5)
+    payload = record.scientific_payload()
+    assert payload["f9_stress_test_result"] == "FAIL"
+    assert payload["f9_stress_test_metric"] == -2.5
+    # And the case is still recorded as accepted: F9 cannot reject it.
+    assert payload["acceptance_status"] == "STRUCTURAL_ACCEPTED"
+
+
+def test_a_non_hard_gate_rung_may_not_enter_the_gate8_mapping():
+    smuggled = {rung: FalsificationResult.PASS for rung in HARD_GATE_ORDER}
+    smuggled[FalsificationRung.F9_ENERGY_SUBSET] = FalsificationResult.PASS
+    with pytest.raises(ValueError, match="non-hard-gate rungs"):
+        make_record(falsification_results=smuggled)
+
+
+def test_a_case_reaching_gate8_must_record_the_f9_secondary():
+    with pytest.raises(ValueError, match="obligation 19"):
+        make_record(f9_stress_test_result=None, f9_stress_test_metric=None)
+    with pytest.raises(ValueError, match="requires both"):
+        make_record(f9_stress_test_metric=None)
+
+
+def test_a_case_that_never_reached_gate8_records_no_f9_result():
+    record = make_record(
+        acceptance_status=AcceptanceStatus.REJECTED_UNSTABLE,
+        acceptance_gate_reached="stability",
+        f9_stress_test_result=None,
+        f9_stress_test_metric=None,
+    )
+    assert record.scientific_payload()["f9_stress_test_result"] is None
+    with pytest.raises(ValueError, match="did not reach Gate 8"):
+        make_record(
+            acceptance_status=AcceptanceStatus.REJECTED_UNSTABLE,
+            acceptance_gate_reached="stability",
+        )
+
+
+def test_f9_may_never_be_recorded_as_not_applicable():
+    with pytest.raises(ValueError, match="NOT_APPLICABLE"):
+        make_record(f9_stress_test_result=FalsificationResult.NOT_APPLICABLE)
+
+
+def test_candidate_test_r2_is_carried_and_affects_the_digest():
+    baseline = make_record().scientific_digest()
+    assert make_record(candidate_test_r2=0.12).scientific_digest() != baseline
+    assert make_record().scientific_payload()["candidate_test_r2"] == 0.77
+
+
+# -----------------------------------------------------------------------
+# Schema version bump (A3.5 section 6.9.4, RC5 obligations 14/18/19)
+# -----------------------------------------------------------------------
+
+def test_the_schema_version_is_bumped_and_the_old_one_is_known_legacy():
+    assert RECORD_SCHEMA_VERSION == "muru-rc5-case-record-2.0.0"
+    assert "muru-rc3-case-record-1.0.0" in LEGACY_RECORD_SCHEMA_VERSIONS
+    assert RECORD_SCHEMA_VERSION not in LEGACY_RECORD_SCHEMA_VERSIONS
+    assert make_record().scientific_payload()["schema_version"] == RECORD_SCHEMA_VERSION
+
+
+def test_an_old_record_is_identifiable_and_is_never_read_as_a_new_one():
+    legacy = {
+        "schema_version": "muru-rc3-case-record-1.0.0",
+        "falsification_results": {n: "PASS" for n in LEGACY_FALSIFICATION_RUNG_NAMES},
+    }
+    assert record_schema_generation(legacy) == "legacy"
+    assert record_schema_generation(make_record().scientific_payload()) == "current"
+    # The legacy mapping carries two rungs the current generation forbids, so
+    # reading it as current would silently change what the record means.
+    assert "F5_SCAFFOLD_HOLDOUT" in legacy["falsification_results"]
+    assert "F9_ENERGY_SUBSET" in legacy["falsification_results"]
+
+
+def test_an_unversioned_or_unknown_record_is_refused_rather_than_guessed():
+    with pytest.raises(SchemaVersionError):
+        record_schema_generation({})
+    with pytest.raises(SchemaVersionError):
+        record_schema_generation({"schema_version": "muru-rc9-case-record-9.9.9"})
 
 
 def test_selection_fraction_is_k_over_30():
@@ -133,8 +234,8 @@ def test_set_ordering_does_not_affect_bytes():
 
 
 def test_mapping_insertion_order_does_not_affect_bytes():
-    forward = dict.fromkeys(FALSIFICATION_RUNG_ORDER, FalsificationResult.PASS)
-    reverse = dict.fromkeys(reversed(FALSIFICATION_RUNG_ORDER), FalsificationResult.PASS)
+    forward = dict.fromkeys(HARD_GATE_ORDER, FalsificationResult.PASS)
+    reverse = dict.fromkeys(reversed(HARD_GATE_ORDER), FalsificationResult.PASS)
     a = make_record(falsification_results=forward,
                     engine_versions={"pysr": "1.5.10", "scikit-learn": "1.9.0"})
     b = make_record(falsification_results=reverse,
@@ -322,14 +423,15 @@ def test_selection_count_must_be_within_the_denominator():
         make_record(selection_count=-1)
 
 
-def test_a_missing_falsification_rung_fails_loudly():
-    partial = {
-        rung: FalsificationResult.PASS
-        for rung in FALSIFICATION_RUNG_ORDER
-        if rung != FalsificationRung.F9_ENERGY_SUBSET
-    }
-    with pytest.raises(ValueError, match="F9_ENERGY_SUBSET"):
-        make_record(falsification_results=partial)
+def test_a_missing_hard_gate_fails_loudly():
+    for rung in HARD_GATE_ORDER:
+        partial = {
+            other: FalsificationResult.PASS
+            for other in HARD_GATE_ORDER
+            if other != rung
+        }
+        with pytest.raises(ValueError, match=rung.value):
+            make_record(falsification_results=partial)
 
 
 def test_an_unknown_acceptance_gate_is_rejected():
@@ -337,11 +439,13 @@ def test_an_unknown_acceptance_gate_is_rejected():
         make_record(acceptance_gate_reached="whatever_i_like")
 
 
-def test_rung_order_matches_the_frozen_required_set():
+def test_rung_order_matches_the_frozen_required_hard_set():
     from muru.paper_benchmark.structural_acceptance import (
-        REQUIRED_FALSIFICATION_RUNGS,
+        REQUIRED_HARD_GATES,
+        SECONDARY_REPORTED_RUNGS,
     )
-    assert set(FALSIFICATION_RUNG_ORDER) == set(REQUIRED_FALSIFICATION_RUNGS)
+    assert set(HARD_GATE_ORDER) == set(REQUIRED_HARD_GATES)
+    assert not set(HARD_GATE_ORDER) & SECONDARY_REPORTED_RUNGS
 
 
 def test_null_threshold_digest_is_carried_and_affects_the_digest():
