@@ -126,8 +126,9 @@ def test_no_candidate_is_unevaluable_not_rejected():
         discovered_expression_string=None,
         acceptance_status=AcceptanceStatus.UNEVALUABLE,
         acceptance_gate_reached="no_candidate",
-        # A case with no candidate never reaches Gate 8, so F9 was never
-        # computed for it (A3.5 section 6.9.4).
+        # A case with no candidate never reaches Gate 8, so neither the rungs
+        # nor F9 were computed for it (A3.5 section 6.9.4).
+        falsification_results={},
         f9_stress_test_result=None,
         f9_stress_test_metric=None,
     )

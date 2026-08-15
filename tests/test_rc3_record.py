@@ -150,18 +150,35 @@ def test_a_case_reaching_gate8_must_record_the_f9_secondary():
         make_record(f9_stress_test_metric=None)
 
 
-def test_a_case_that_never_reached_gate8_records_no_f9_result():
+def test_a_case_that_never_reached_gate8_records_no_rung_results_at_all():
+    """A3.5 section 6.9.4: such a case "never reaches check_gate8 at all".
+
+    It cannot carry PASS or FAIL (nothing was evaluated) and section 6.0
+    forbids NOT_APPLICABLE, so it carries nothing -- rungs and F9 alike.
+    """
     record = make_record(
         acceptance_status=AcceptanceStatus.REJECTED_UNSTABLE,
         acceptance_gate_reached="stability",
+        falsification_results={},
         f9_stress_test_result=None,
         f9_stress_test_metric=None,
     )
-    assert record.scientific_payload()["f9_stress_test_result"] is None
+    payload = record.scientific_payload()
+    assert payload["falsification_results"] == {}
+    assert payload["f9_stress_test_result"] is None
+
     with pytest.raises(ValueError, match="did not reach Gate 8"):
         make_record(
             acceptance_status=AcceptanceStatus.REJECTED_UNSTABLE,
             acceptance_gate_reached="stability",
+            falsification_results={},
+        )
+    with pytest.raises(ValueError, match="produced no rung results"):
+        make_record(
+            acceptance_status=AcceptanceStatus.REJECTED_UNSTABLE,
+            acceptance_gate_reached="stability",
+            f9_stress_test_result=None,
+            f9_stress_test_metric=None,
         )
 
 

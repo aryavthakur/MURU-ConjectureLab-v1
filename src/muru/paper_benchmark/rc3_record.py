@@ -361,15 +361,7 @@ class CaseExecutionRecord:
                 f"a gate the frozen predicate reports; expected one of "
                 f"{sorted(VALID_ACCEPTANCE_GATES)}"
             )
-        missing = [
-            rung.value for rung in HARD_GATE_ORDER
-            if rung not in self.falsification_results
-        ]
-        if missing:
-            raise ValueError(
-                f"falsification_results is missing required hard gates {missing}; "
-                f"a missing rung must fail loudly, not serialize as null"
-            )
+        reached_gate8 = self.acceptance_gate_reached in GATE8_REACHING_GATES
         stray = sorted(
             str(getattr(rung, "value", rung))
             for rung in self.falsification_results
@@ -382,7 +374,28 @@ class CaseExecutionRecord:
                 f"f9_stress_test_result / f9_stress_test_metric, so neither may "
                 f"enter the Gate-8 mapping"
             )
-        reached_gate8 = self.acceptance_gate_reached in GATE8_REACHING_GATES
+        if reached_gate8:
+            missing = [
+                rung.value for rung in HARD_GATE_ORDER
+                if rung not in self.falsification_results
+            ]
+            if missing:
+                raise ValueError(
+                    f"falsification_results is missing required hard gates "
+                    f"{missing}; a missing rung must fail loudly, not serialize "
+                    f"as null"
+                )
+        elif self.falsification_results:
+            # A3.5 section 6.9.4: a case that stopped before Gate 8 "never
+            # reaches check_gate8 at all" and produced no rung results.  It
+            # cannot carry PASS or FAIL (nothing was evaluated) and section 6.0
+            # forbids NOT_APPLICABLE, so it must carry nothing.
+            raise ValueError(
+                f"{self.case_id} stopped at {self.acceptance_gate_reached!r}, "
+                f"before Gate 8, but carries falsification results "
+                f"{sorted(str(getattr(r, 'value', r)) for r in self.falsification_results)}; "
+                f"a case that never reached Gate 8 produced no rung results"
+            )
         has_f9 = self.f9_stress_test_result is not None
         if reached_gate8 and not has_f9:
             raise ValueError(
@@ -446,10 +459,12 @@ class CaseExecutionRecord:
             "ceiling_fraction": _encode_float(self.ceiling_fraction),
             "candidate_test_r2": _encode_float(self.candidate_test_r2),
             "falsification_results": {
-                # __post_init__ guarantees every hard gate is present, and
-                # that nothing else is.
+                # __post_init__ guarantees every hard gate is present when the
+                # case reached Gate 8, that nothing else ever is, and that a
+                # case which stopped earlier carries none.
                 rung.value: self.falsification_results[rung].value
                 for rung in HARD_GATE_ORDER
+                if rung in self.falsification_results
             },
             "f9_stress_test_result": (
                 None if self.f9_stress_test_result is None
