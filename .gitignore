@@ -145,3 +145,8 @@ artifacts/ov_adj/
 # reproducibility record. Generated row-level inputs/truths remain sealed
 # regenerable bytes whose SHA-256 values are committed in the inventory.
 !artifacts/paper_benchmark_*.json
+
+# E0 (v2 calibration): the analysis inputs and outputs are evidence, tracked.
+# The 583k-row fit-level parquet is regenerable from the seeds and is not.
+!artifacts/e0/
+artifacts/e0/*.parquet
