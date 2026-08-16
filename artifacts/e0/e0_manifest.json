@@ -1,0 +1,84 @@
+{
+  "experiment": "E0",
+  "name": "A1_ADMISSIBLE_RANGE_PROVENANCE",
+  "n_worlds": 540,
+  "n_cells": 9,
+  "n_replicates": 60,
+  "control_cell": "g1e4_c1e4",
+  "decoupled_cell": "gnone_copen",
+  "checks": [
+    {
+      "check": "world_count_540",
+      "expected": 540,
+      "actual": 540,
+      "pass": true
+    },
+    {
+      "check": "all_9_design_cells_present",
+      "expected": [
+        "g1e3_c1e3",
+        "g1e3_c1e4",
+        "g1e3_copen",
+        "g1e4_c1e3",
+        "g1e4_c1e4",
+        "g1e4_copen",
+        "gnone_c1e3",
+        "gnone_c1e4",
+        "gnone_copen"
+      ],
+      "actual": [
+        "g1e3_c1e3",
+        "g1e3_c1e4",
+        "g1e3_copen",
+        "g1e4_c1e3",
+        "g1e4_c1e4",
+        "g1e4_copen",
+        "gnone_c1e3",
+        "gnone_c1e4",
+        "gnone_copen"
+      ],
+      "pass": true
+    },
+    {
+      "check": "exact_replicates_per_cell",
+      "expected": 60,
+      "actual": {
+        "g1e3_c1e3": 60,
+        "g1e3_c1e4": 60,
+        "g1e3_copen": 60,
+        "g1e4_c1e3": 60,
+        "g1e4_c1e4": 60,
+        "g1e4_copen": 60,
+        "gnone_c1e3": 60,
+        "gnone_c1e4": 60,
+        "gnone_copen": 60
+      },
+      "pass": true
+    },
+    {
+      "check": "no_duplicate_world_or_within_cell_seed_ids",
+      "duplicate_world_ids": 0,
+      "duplicate_seeds_within_a_cell": 0,
+      "pass": true
+    },
+    {
+      "check": "generator_fitter_factor_assignment_matches_design",
+      "problems": [],
+      "pass": true
+    },
+    {
+      "check": "source_config_hashes_recorded",
+      "hashes": {
+        "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+        "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+        "src/muru/paper_benchmark/rc5_adequacy.py": "6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382",
+        "src/muru/paper_benchmark/rc5_estimate.py": "e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4",
+        "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+        "src/muru/discovery/estimate.py": "9a12263d369cbe5c3acc6ac6ca0f5ebf4c1bee776c33985b7039db2d4cb42876",
+        "scripts/e0_common.py": "b731b1df6643b20e55eda7cf2989b3a70216622f3c5f5b14470e78f20a09bceb"
+      },
+      "pass": true
+    }
+  ],
+  "all_checks_pass": true
+}

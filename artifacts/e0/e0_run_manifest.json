@@ -1,0 +1,29 @@
+{
+  "label": "full",
+  "n_worlds": 540,
+  "n_replicates": 60,
+  "n_fit_records": 583200,
+  "n_probe_records": 16393,
+  "wall_clock_seconds": 407.8012590408325,
+  "seconds_per_world": 0.7551875167422825,
+  "cpu_hours_projected_540_worlds": 0.11327812751134236,
+  "pysr_imported": false,
+  "python": "3.13.12",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "boundary_limited_count": 341,
+  "control_cell_worlds": 60,
+  "source_hashes": {
+    "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+    "src/muru/paper_benchmark/rc5_adequacy.py": "6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382",
+    "src/muru/paper_benchmark/rc5_estimate.py": "e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4",
+    "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+    "src/muru/discovery/estimate.py": "9a12263d369cbe5c3acc6ac6ca0f5ebf4c1bee776c33985b7039db2d4cb42876",
+    "scripts/e0_common.py": "0edbef06f4d9164018956a72718a83982000488950014ec9c424d6dedbcee37c"
+  },
+  "seed_namespace_prefix": "muru-v2-calibration|",
+  "control_cell": "g1e4_c1e4",
+  "decoupled_cell": "gnone_copen"
+}

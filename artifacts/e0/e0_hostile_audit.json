@@ -1,0 +1,199 @@
+{
+  "experiment": "E0",
+  "all_pass": true,
+  "findings": [
+    {
+      "check": "540_worlds_analyzed",
+      "pass": true,
+      "detail": {
+        "n_worlds": 540
+      }
+    },
+    {
+      "check": "0_missing_or_duplicate_worlds",
+      "pass": true,
+      "detail": {
+        "missing": 0,
+        "extra": 0,
+        "duplicates": 0
+      }
+    },
+    {
+      "check": "100pct_design_cell_coverage",
+      "pass": true,
+      "detail": {
+        "counts": {
+          "g1e3_c1e3": 60,
+          "g1e3_c1e4": 60,
+          "g1e3_copen": 60,
+          "g1e4_c1e3": 60,
+          "g1e4_c1e4": 60,
+          "g1e4_copen": 60,
+          "gnone_c1e3": 60,
+          "gnone_c1e4": 60,
+          "gnone_copen": 60
+        }
+      }
+    },
+    {
+      "check": "0_heldout_rows_in_decision_table",
+      "pass": true,
+      "detail": {
+        "matches": 0
+      }
+    },
+    {
+      "check": "0_pysr",
+      "pass": true,
+      "detail": {
+        "pysr_in_sys_modules_now": false,
+        "pysr_imported_during_run": false
+      }
+    },
+    {
+      "check": "cell_metrics_reproducible_from_raw_rows",
+      "pass": true,
+      "detail": {
+        "mismatched_columns": []
+      }
+    },
+    {
+      "check": "interaction_decomposition_reproducible",
+      "pass": true,
+      "detail": {
+        "recomputed": {
+          "metric": "boundary_limited_rate",
+          "grand_mean": 0.6314814814814815,
+          "c_gen_main_effect": {
+            "g1e4": -0.0037037037037036535,
+            "g1e3": 0.0018518518518518823,
+            "gnone": 0.0018518518518518823
+          },
+          "mu_ceil_main_effect": {
+            "c1e4": 0.06851851851851831,
+            "c1e3": 0.13518518518518519,
+            "copen": -0.20370370370370372
+          },
+          "interaction_residual_by_cell": {
+            "g1e4_c1e4": 0.0037037037037037646,
+            "g1e4_c1e3": 0.0037037037037036535,
+            "g1e4_copen": -0.007407407407407474,
+            "g1e3_c1e4": -0.0018518518518517713,
+            "g1e3_c1e3": -0.0018518518518518823,
+            "g1e3_copen": 0.0037037037037036535,
+            "gnone_c1e4": -0.0018518518518517713,
+            "gnone_c1e3": -0.0018518518518518823,
+            "gnone_copen": 0.0037037037037036535
+          },
+          "c_gen_main_effect_range": 0.005555555555555536,
+          "mu_ceil_main_effect_range": 0.3388888888888889,
+          "interaction_effect_magnitude": 0.003703703703703703,
+          "sum_of_squares": {
+            "c_gen_main": 6.172839506172796e-05,
+            "mu_ceil_main": 0.193395061728395,
+            "interaction": 0.00012345679012345674,
+            "total": 0.19358024691358017
+          },
+          "variance_share": {
+            "c_gen_main": 0.0003188775510204061,
+            "mu_ceil_main": 0.9990433673469388,
+            "interaction": 0.0006377551020408163
+          }
+        },
+        "sealed": {
+          "metric": "boundary_limited_rate",
+          "grand_mean": 0.6314814814814815,
+          "c_gen_main_effect": {
+            "g1e4": -0.0037037037037036535,
+            "g1e3": 0.0018518518518518823,
+            "gnone": 0.0018518518518518823
+          },
+          "mu_ceil_main_effect": {
+            "c1e4": 0.06851851851851831,
+            "c1e3": 0.13518518518518519,
+            "copen": -0.20370370370370372
+          },
+          "interaction_residual_by_cell": {
+            "g1e4_c1e4": 0.0037037037037037646,
+            "g1e4_c1e3": 0.0037037037037036535,
+            "g1e4_copen": -0.007407407407407474,
+            "g1e3_c1e4": -0.0018518518518517713,
+            "g1e3_c1e3": -0.0018518518518518823,
+            "g1e3_copen": 0.0037037037037036535,
+            "gnone_c1e4": -0.0018518518518517713,
+            "gnone_c1e3": -0.0018518518518518823,
+            "gnone_copen": 0.0037037037037036535
+          },
+          "c_gen_main_effect_range": 0.005555555555555536,
+          "mu_ceil_main_effect_range": 0.3388888888888889,
+          "interaction_effect_magnitude": 0.003703703703703703,
+          "sum_of_squares": {
+            "c_gen_main": 6.172839506172796e-05,
+            "mu_ceil_main": 0.193395061728395,
+            "interaction": 0.00012345679012345674,
+            "total": 0.19358024691358017
+          },
+          "variance_share": {
+            "c_gen_main": 0.0003188775510204061,
+            "mu_ceil_main": 0.9990433673469388,
+            "interaction": 0.0006377551020408163
+          }
+        }
+      }
+    },
+    {
+      "check": "decoupling_contrast_reproducible",
+      "pass": true,
+      "detail": {
+        "recomputed_drop": 0.2666666666666666,
+        "sealed_drop": 0.2666666666666666
+      }
+    },
+    {
+      "check": "decision_tree_output_matches_measured_values",
+      "pass": true,
+      "detail": {
+        "recomputed": {
+          "decoupling_drop": 0.2666666666666666,
+          "committed_row": "H_clip and H_alias both contribute",
+          "terminal_category": "COUPLING_INTERACTION_DOMINANT",
+          "decomposition_used": {
+            "c_gen_main_effect_range": 0.005555555555555536,
+            "mu_ceil_main_effect_range": 0.3388888888888889,
+            "interaction_effect_magnitude": 0.003703703703703703
+          }
+        },
+        "sealed": {
+          "decoupling_drop": 0.2666666666666666,
+          "committed_row": "H_clip and H_alias both contribute",
+          "terminal_category": "COUPLING_INTERACTION_DOMINANT",
+          "decomposition_used": {
+            "c_gen_main_effect_range": 0.005555555555555536,
+            "mu_ceil_main_effect_range": 0.3388888888888889,
+            "interaction_effect_magnitude": 0.003703703703703703
+          }
+        }
+      }
+    },
+    {
+      "check": "fit_record_count_matches_design_1080_per_world",
+      "pass": true,
+      "detail": {
+        "n_fits": 583200,
+        "expected": 583200
+      }
+    },
+    {
+      "check": "source_hashes_present_in_run_manifest",
+      "pass": true,
+      "detail": {
+        "n_hashes": 7
+      }
+    },
+    {
+      "check": "pre_execution_manifest_all_6_assertions_passed",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

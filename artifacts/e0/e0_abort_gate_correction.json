@@ -1,0 +1,17 @@
+{
+  "check": "mu_max_at_clip_share_CORRECTED_case_level_all_180_compounds",
+  "note": "Diagnostic only, not a decision statistic and not a replacement for the declared per-test-compound check, which remains FAILED as originally computed.",
+  "value": 0.48333333333333334,
+  "n_hit": 29,
+  "n": 60,
+  "reference_v1_case_level": 0.43902439024390244,
+  "reference_source": "v2_design/MURU_V1_G1_FAILURE_TAXONOMY.csv mu_max column, 72/164 cases exactly at clip",
+  "case_max_percentiles": {
+    "p0": 0.9523486466621711,
+    "p25": 0.9833965423056124,
+    "p50": 0.9992151941266394,
+    "p75": 0.9999,
+    "p100": 0.9999
+  },
+  "conclusion": "within reasonable Monte Carlo range of the v1 reference; the originally-declared check's failure is attributed to a denominator/aggregation mismatch in the check's own construction (30 test compounds vs the taxonomy's case-wide 180), not a generator/fitter defect."
+}

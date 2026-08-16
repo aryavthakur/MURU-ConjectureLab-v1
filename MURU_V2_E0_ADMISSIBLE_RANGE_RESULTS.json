@@ -1,0 +1,657 @@
+{
+  "experiment": "E0",
+  "name": "A1_ADMISSIBLE_RANGE_PROVENANCE",
+  "status": "E0_COMPLETE",
+  "pre_execution_manifest": {
+    "experiment": "E0",
+    "name": "A1_ADMISSIBLE_RANGE_PROVENANCE",
+    "n_worlds": 540,
+    "n_cells": 9,
+    "n_replicates": 60,
+    "control_cell": "g1e4_c1e4",
+    "decoupled_cell": "gnone_copen",
+    "checks": [
+      {
+        "check": "world_count_540",
+        "expected": 540,
+        "actual": 540,
+        "pass": true
+      },
+      {
+        "check": "all_9_design_cells_present",
+        "expected": [
+          "g1e3_c1e3",
+          "g1e3_c1e4",
+          "g1e3_copen",
+          "g1e4_c1e3",
+          "g1e4_c1e4",
+          "g1e4_copen",
+          "gnone_c1e3",
+          "gnone_c1e4",
+          "gnone_copen"
+        ],
+        "actual": [
+          "g1e3_c1e3",
+          "g1e3_c1e4",
+          "g1e3_copen",
+          "g1e4_c1e3",
+          "g1e4_c1e4",
+          "g1e4_copen",
+          "gnone_c1e3",
+          "gnone_c1e4",
+          "gnone_copen"
+        ],
+        "pass": true
+      },
+      {
+        "check": "exact_replicates_per_cell",
+        "expected": 60,
+        "actual": {
+          "g1e3_c1e3": 60,
+          "g1e3_c1e4": 60,
+          "g1e3_copen": 60,
+          "g1e4_c1e3": 60,
+          "g1e4_c1e4": 60,
+          "g1e4_copen": 60,
+          "gnone_c1e3": 60,
+          "gnone_c1e4": 60,
+          "gnone_copen": 60
+        },
+        "pass": true
+      },
+      {
+        "check": "no_duplicate_world_or_within_cell_seed_ids",
+        "duplicate_world_ids": 0,
+        "duplicate_seeds_within_a_cell": 0,
+        "pass": true
+      },
+      {
+        "check": "generator_fitter_factor_assignment_matches_design",
+        "problems": [],
+        "pass": true
+      },
+      {
+        "check": "source_config_hashes_recorded",
+        "hashes": {
+          "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+          "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+          "src/muru/paper_benchmark/rc5_adequacy.py": "6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382",
+          "src/muru/paper_benchmark/rc5_estimate.py": "e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4",
+          "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+          "src/muru/discovery/estimate.py": "9a12263d369cbe5c3acc6ac6ca0f5ebf4c1bee776c33985b7039db2d4cb42876",
+          "scripts/e0_common.py": "b731b1df6643b20e55eda7cf2989b3a70216622f3c5f5b14470e78f20a09bceb"
+        },
+        "pass": true
+      }
+    ],
+    "all_checks_pass": true
+  },
+  "run_manifest": {
+    "label": "full",
+    "n_worlds": 540,
+    "n_replicates": 60,
+    "n_fit_records": 583200,
+    "n_probe_records": 16393,
+    "wall_clock_seconds": 407.8012590408325,
+    "seconds_per_world": 0.7551875167422825,
+    "cpu_hours_projected_540_worlds": 0.11327812751134236,
+    "pysr_imported": false,
+    "python": "3.13.12",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "boundary_limited_count": 341,
+    "control_cell_worlds": 60,
+    "source_hashes": {
+      "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+      "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+      "src/muru/paper_benchmark/rc5_adequacy.py": "6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382",
+      "src/muru/paper_benchmark/rc5_estimate.py": "e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4",
+      "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+      "src/muru/discovery/estimate.py": "9a12263d369cbe5c3acc6ac6ca0f5ebf4c1bee776c33985b7039db2d4cb42876",
+      "scripts/e0_common.py": "0edbef06f4d9164018956a72718a83982000488950014ec9c424d6dedbcee37c"
+    },
+    "seed_namespace_prefix": "muru-v2-calibration|",
+    "control_cell": "g1e4_c1e4",
+    "decoupled_cell": "gnone_copen"
+  },
+  "analysis": {
+    "experiment": "E0",
+    "name": "A1_ADMISSIBLE_RANGE_PROVENANCE",
+    "n_worlds": 540,
+    "n_fit_records": 583200,
+    "n_probe_records": 16393,
+    "abort_gate": {
+      "contact_rate_gt_0": {
+        "value": 0.030601851851851852,
+        "pass": true
+      },
+      "mu_max_at_clip_share_in_band": {
+        "value": 0.013333333333333324,
+        "band": [
+          0.2,
+          0.9
+        ],
+        "pass": false
+      },
+      "boundary_limited_rate_in_band": {
+        "value": 0.7,
+        "band": [
+          0.3,
+          0.9
+        ],
+        "pass": true
+      },
+      "all_pass": false
+    },
+    "cell_metrics": [
+      {
+        "cell_id": "g1e3_c1e3",
+        "c_gen_level": "g1e3",
+        "mu_ceil_level": "c1e3",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0317746914,
+        "contact_rate_wilson_lo": 0.0304517177,
+        "contact_rate_wilson_hi": 0.0331531762,
+        "unresolved_rate": 0.0305246914,
+        "unresolved_rate_wilson_lo": 0.0292277599,
+        "unresolved_rate_wilson_hi": 0.0318772822,
+        "boundary_limited_rate": 0.7666666667,
+        "boundary_limited_rate_wilson_lo": 0.6456372962,
+        "boundary_limited_rate_wilson_hi": 0.8556043826,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.4833333333,
+        "evaluable_M3_median": 21.0,
+        "mu_max_at_clip_share_mean": 0.0138888889,
+        "pin_at_ceiling_share_mean": 0.1733333333
+      },
+      {
+        "cell_id": "g1e3_c1e4",
+        "c_gen_level": "g1e3",
+        "mu_ceil_level": "c1e4",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0304320988,
+        "contact_rate_wilson_lo": 0.0291371194,
+        "contact_rate_wilson_hi": 0.0317827485,
+        "unresolved_rate": 0.0290895062,
+        "unresolved_rate_wilson_lo": 0.0278232056,
+        "unresolved_rate_wilson_hi": 0.0304116362,
+        "boundary_limited_rate": 0.7,
+        "boundary_limited_rate_wilson_lo": 0.5749129205,
+        "boundary_limited_rate_wilson_hi": 0.8010183386,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.9,
+        "evaluable_M3_median": 21.0,
+        "mu_max_at_clip_share_mean": 0.0138888889,
+        "pin_at_ceiling_share_mean": 0.1652777778
+      },
+      {
+        "cell_id": "g1e3_copen",
+        "c_gen_level": "g1e3",
+        "mu_ceil_level": "copen",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0190277778,
+        "contact_rate_wilson_lo": 0.0180040132,
+        "contact_rate_wilson_hi": 0.0201085648,
+        "unresolved_rate": 0.0179320988,
+        "unresolved_rate_wilson_lo": 0.0169385503,
+        "unresolved_rate_wilson_hi": 0.0189827995,
+        "boundary_limited_rate": 0.4333333333,
+        "boundary_limited_rate_wilson_lo": 0.315723968,
+        "boundary_limited_rate_wilson_hi": 0.5589656122,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 22.85,
+        "evaluable_M3_median": 24.0,
+        "mu_max_at_clip_share_mean": 0.0138888889,
+        "pin_at_ceiling_share_mean": 0.0968518519
+      },
+      {
+        "cell_id": "g1e4_c1e3",
+        "c_gen_level": "g1e4",
+        "mu_ceil_level": "c1e3",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0319598765,
+        "contact_rate_wilson_lo": 0.0306330929,
+        "contact_rate_wilson_hi": 0.0333421494,
+        "unresolved_rate": 0.0305864198,
+        "unresolved_rate_wilson_lo": 0.0292881887,
+        "unresolved_rate_wilson_hi": 0.0319403029,
+        "boundary_limited_rate": 0.7666666667,
+        "boundary_limited_rate_wilson_lo": 0.6456372962,
+        "boundary_limited_rate_wilson_hi": 0.8556043826,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.45,
+        "evaluable_M3_median": 21.0,
+        "mu_max_at_clip_share_mean": 0.0133333333,
+        "pin_at_ceiling_share_mean": 0.174537037
+      },
+      {
+        "cell_id": "g1e4_c1e4",
+        "c_gen_level": "g1e4",
+        "mu_ceil_level": "c1e4",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0306018519,
+        "contact_rate_wilson_lo": 0.0293032961,
+        "contact_rate_wilson_hi": 0.0319560578,
+        "unresolved_rate": 0.029382716,
+        "unresolved_rate_wilson_lo": 0.0281100916,
+        "unresolved_rate_wilson_hi": 0.0307111352,
+        "boundary_limited_rate": 0.7,
+        "boundary_limited_rate_wilson_lo": 0.5749129205,
+        "boundary_limited_rate_wilson_hi": 0.8010183386,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.8166666667,
+        "evaluable_M3_median": 21.0,
+        "mu_max_at_clip_share_mean": 0.0133333333,
+        "pin_at_ceiling_share_mean": 0.1663888889
+      },
+      {
+        "cell_id": "g1e4_copen",
+        "c_gen_level": "g1e4",
+        "mu_ceil_level": "copen",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0192746914,
+        "contact_rate_wilson_lo": 0.0182442453,
+        "contact_rate_wilson_hi": 0.0203621305,
+        "unresolved_rate": 0.018117284,
+        "unresolved_rate_wilson_lo": 0.0171185616,
+        "unresolved_rate_wilson_hi": 0.0191731367,
+        "boundary_limited_rate": 0.4166666667,
+        "boundary_limited_rate_wilson_lo": 0.3006427856,
+        "boundary_limited_rate_wilson_hi": 0.5427191898,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 22.8333333333,
+        "evaluable_M3_median": 24.0,
+        "mu_max_at_clip_share_mean": 0.0133333333,
+        "pin_at_ceiling_share_mean": 0.0984259259
+      },
+      {
+        "cell_id": "gnone_c1e3",
+        "c_gen_level": "gnone",
+        "mu_ceil_level": "c1e3",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0345524691,
+        "contact_rate_wilson_lo": 0.0331735748,
+        "contact_rate_wilson_hi": 0.0359865453,
+        "unresolved_rate": 0.0333179012,
+        "unresolved_rate_wilson_lo": 0.0319635419,
+        "unresolved_rate_wilson_hi": 0.0347275887,
+        "boundary_limited_rate": 0.7666666667,
+        "boundary_limited_rate_wilson_lo": 0.6456372962,
+        "boundary_limited_rate_wilson_hi": 0.8556043826,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.05,
+        "evaluable_M3_median": 20.0,
+        "mu_max_at_clip_share_mean": 0.0,
+        "pin_at_ceiling_share_mean": 0.1906481481
+      },
+      {
+        "cell_id": "gnone_c1e4",
+        "c_gen_level": "gnone",
+        "mu_ceil_level": "c1e4",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.033441358,
+        "contact_rate_wilson_lo": 0.0320845228,
+        "contact_rate_wilson_hi": 0.0348535068,
+        "unresolved_rate": 0.0321604938,
+        "unresolved_rate_wilson_lo": 0.0308295964,
+        "unresolved_rate_wilson_hi": 0.0335468567,
+        "boundary_limited_rate": 0.7,
+        "boundary_limited_rate_wilson_lo": 0.5749129205,
+        "boundary_limited_rate_wilson_hi": 0.8010183386,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 19.4,
+        "evaluable_M3_median": 21.0,
+        "mu_max_at_clip_share_mean": 0.0,
+        "pin_at_ceiling_share_mean": 0.1839814815
+      },
+      {
+        "cell_id": "gnone_copen",
+        "c_gen_level": "gnone",
+        "mu_ceil_level": "copen",
+        "n_worlds": 60,
+        "n_fits": 64800,
+        "contact_rate": 0.0219135802,
+        "contact_rate_wilson_lo": 0.0208143849,
+        "contact_rate_wilson_hi": 0.0230694559,
+        "unresolved_rate": 0.0207716049,
+        "unresolved_rate_wilson_lo": 0.0197015887,
+        "unresolved_rate_wilson_hi": 0.0218984368,
+        "boundary_limited_rate": 0.4333333333,
+        "boundary_limited_rate_wilson_lo": 0.315723968,
+        "boundary_limited_rate_wilson_hi": 0.5589656122,
+        "false_m0_rejection_rate": 0.0,
+        "false_m0_rejection_rate_wilson_lo": 0.0,
+        "false_m0_rejection_rate_wilson_hi": 0.0601718521,
+        "evaluable_M3_mean": 22.3333333333,
+        "evaluable_M3_median": 24.0,
+        "mu_max_at_clip_share_mean": 0.0,
+        "pin_at_ceiling_share_mean": 0.1148148148
+      }
+    ],
+    "interaction_decomposition_boundary_limited_rate": {
+      "metric": "boundary_limited_rate",
+      "grand_mean": 0.6314814814814815,
+      "c_gen_main_effect": {
+        "g1e4": -0.0037037037037036535,
+        "g1e3": 0.0018518518518518823,
+        "gnone": 0.0018518518518518823
+      },
+      "mu_ceil_main_effect": {
+        "c1e4": 0.06851851851851831,
+        "c1e3": 0.13518518518518519,
+        "copen": -0.20370370370370372
+      },
+      "interaction_residual_by_cell": {
+        "g1e4_c1e4": 0.0037037037037037646,
+        "g1e4_c1e3": 0.0037037037037036535,
+        "g1e4_copen": -0.007407407407407474,
+        "g1e3_c1e4": -0.0018518518518517713,
+        "g1e3_c1e3": -0.0018518518518518823,
+        "g1e3_copen": 0.0037037037037036535,
+        "gnone_c1e4": -0.0018518518518517713,
+        "gnone_c1e3": -0.0018518518518518823,
+        "gnone_copen": 0.0037037037037036535
+      },
+      "c_gen_main_effect_range": 0.005555555555555536,
+      "mu_ceil_main_effect_range": 0.3388888888888889,
+      "interaction_effect_magnitude": 0.003703703703703703,
+      "sum_of_squares": {
+        "c_gen_main": 6.172839506172796e-05,
+        "mu_ceil_main": 0.193395061728395,
+        "interaction": 0.00012345679012345674,
+        "total": 0.19358024691358017
+      },
+      "variance_share": {
+        "c_gen_main": 0.0003188775510204061,
+        "mu_ceil_main": 0.9990433673469388,
+        "interaction": 0.0006377551020408163
+      }
+    },
+    "decoupling_contrast": {
+      "control_cell": "g1e4_c1e4",
+      "decoupled_cell": "gnone_copen",
+      "control_boundary_limited_rate": 0.7,
+      "control_wilson_ci": [
+        0.5749129205308552,
+        0.8010183386123089
+      ],
+      "decoupled_boundary_limited_rate": 0.43333333333333335,
+      "decoupled_wilson_ci": [
+        0.3157239680468677,
+        0.5589656122387444
+      ],
+      "n_per_cell": 60,
+      "absolute_drop": 0.2666666666666666,
+      "absolute_drop_approx_95ci": [
+        0.10061685670369458,
+        0.43271647662963864
+      ]
+    },
+    "causal_decision": {
+      "decoupling_drop": 0.2666666666666666,
+      "committed_row": "H_clip and H_alias both contribute",
+      "terminal_category": "COUPLING_INTERACTION_DOMINANT",
+      "decomposition_used": {
+        "c_gen_main_effect_range": 0.005555555555555536,
+        "mu_ceil_main_effect_range": 0.3388888888888889,
+        "interaction_effect_magnitude": 0.003703703703703703
+      }
+    },
+    "probe_gain_rel_overall": {
+      "median": 0.015886064634529358,
+      "bootstrap_95ci": [
+        0.015624890398003095,
+        0.01622047598714683
+      ],
+      "n_triggering_probes": 16393
+    },
+    "false_m0_rejection_rate_overall": {
+      "rate": 0.0,
+      "wilson_ci": [
+        0.0,
+        0.00706356376180703
+      ]
+    }
+  },
+  "hostile_audit": {
+    "experiment": "E0",
+    "all_pass": true,
+    "findings": [
+      {
+        "check": "540_worlds_analyzed",
+        "pass": true,
+        "detail": {
+          "n_worlds": 540
+        }
+      },
+      {
+        "check": "0_missing_or_duplicate_worlds",
+        "pass": true,
+        "detail": {
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        }
+      },
+      {
+        "check": "100pct_design_cell_coverage",
+        "pass": true,
+        "detail": {
+          "counts": {
+            "g1e3_c1e3": 60,
+            "g1e3_c1e4": 60,
+            "g1e3_copen": 60,
+            "g1e4_c1e3": 60,
+            "g1e4_c1e4": 60,
+            "g1e4_copen": 60,
+            "gnone_c1e3": 60,
+            "gnone_c1e4": 60,
+            "gnone_copen": 60
+          }
+        }
+      },
+      {
+        "check": "0_heldout_rows_in_decision_table",
+        "pass": true,
+        "detail": {
+          "matches": 0
+        }
+      },
+      {
+        "check": "0_pysr",
+        "pass": true,
+        "detail": {
+          "pysr_in_sys_modules_now": false,
+          "pysr_imported_during_run": false
+        }
+      },
+      {
+        "check": "cell_metrics_reproducible_from_raw_rows",
+        "pass": true,
+        "detail": {
+          "mismatched_columns": []
+        }
+      },
+      {
+        "check": "interaction_decomposition_reproducible",
+        "pass": true,
+        "detail": {
+          "recomputed": {
+            "metric": "boundary_limited_rate",
+            "grand_mean": 0.6314814814814815,
+            "c_gen_main_effect": {
+              "g1e4": -0.0037037037037036535,
+              "g1e3": 0.0018518518518518823,
+              "gnone": 0.0018518518518518823
+            },
+            "mu_ceil_main_effect": {
+              "c1e4": 0.06851851851851831,
+              "c1e3": 0.13518518518518519,
+              "copen": -0.20370370370370372
+            },
+            "interaction_residual_by_cell": {
+              "g1e4_c1e4": 0.0037037037037037646,
+              "g1e4_c1e3": 0.0037037037037036535,
+              "g1e4_copen": -0.007407407407407474,
+              "g1e3_c1e4": -0.0018518518518517713,
+              "g1e3_c1e3": -0.0018518518518518823,
+              "g1e3_copen": 0.0037037037037036535,
+              "gnone_c1e4": -0.0018518518518517713,
+              "gnone_c1e3": -0.0018518518518518823,
+              "gnone_copen": 0.0037037037037036535
+            },
+            "c_gen_main_effect_range": 0.005555555555555536,
+            "mu_ceil_main_effect_range": 0.3388888888888889,
+            "interaction_effect_magnitude": 0.003703703703703703,
+            "sum_of_squares": {
+              "c_gen_main": 6.172839506172796e-05,
+              "mu_ceil_main": 0.193395061728395,
+              "interaction": 0.00012345679012345674,
+              "total": 0.19358024691358017
+            },
+            "variance_share": {
+              "c_gen_main": 0.0003188775510204061,
+              "mu_ceil_main": 0.9990433673469388,
+              "interaction": 0.0006377551020408163
+            }
+          },
+          "sealed": {
+            "metric": "boundary_limited_rate",
+            "grand_mean": 0.6314814814814815,
+            "c_gen_main_effect": {
+              "g1e4": -0.0037037037037036535,
+              "g1e3": 0.0018518518518518823,
+              "gnone": 0.0018518518518518823
+            },
+            "mu_ceil_main_effect": {
+              "c1e4": 0.06851851851851831,
+              "c1e3": 0.13518518518518519,
+              "copen": -0.20370370370370372
+            },
+            "interaction_residual_by_cell": {
+              "g1e4_c1e4": 0.0037037037037037646,
+              "g1e4_c1e3": 0.0037037037037036535,
+              "g1e4_copen": -0.007407407407407474,
+              "g1e3_c1e4": -0.0018518518518517713,
+              "g1e3_c1e3": -0.0018518518518518823,
+              "g1e3_copen": 0.0037037037037036535,
+              "gnone_c1e4": -0.0018518518518517713,
+              "gnone_c1e3": -0.0018518518518518823,
+              "gnone_copen": 0.0037037037037036535
+            },
+            "c_gen_main_effect_range": 0.005555555555555536,
+            "mu_ceil_main_effect_range": 0.3388888888888889,
+            "interaction_effect_magnitude": 0.003703703703703703,
+            "sum_of_squares": {
+              "c_gen_main": 6.172839506172796e-05,
+              "mu_ceil_main": 0.193395061728395,
+              "interaction": 0.00012345679012345674,
+              "total": 0.19358024691358017
+            },
+            "variance_share": {
+              "c_gen_main": 0.0003188775510204061,
+              "mu_ceil_main": 0.9990433673469388,
+              "interaction": 0.0006377551020408163
+            }
+          }
+        }
+      },
+      {
+        "check": "decoupling_contrast_reproducible",
+        "pass": true,
+        "detail": {
+          "recomputed_drop": 0.2666666666666666,
+          "sealed_drop": 0.2666666666666666
+        }
+      },
+      {
+        "check": "decision_tree_output_matches_measured_values",
+        "pass": true,
+        "detail": {
+          "recomputed": {
+            "decoupling_drop": 0.2666666666666666,
+            "committed_row": "H_clip and H_alias both contribute",
+            "terminal_category": "COUPLING_INTERACTION_DOMINANT",
+            "decomposition_used": {
+              "c_gen_main_effect_range": 0.005555555555555536,
+              "mu_ceil_main_effect_range": 0.3388888888888889,
+              "interaction_effect_magnitude": 0.003703703703703703
+            }
+          },
+          "sealed": {
+            "decoupling_drop": 0.2666666666666666,
+            "committed_row": "H_clip and H_alias both contribute",
+            "terminal_category": "COUPLING_INTERACTION_DOMINANT",
+            "decomposition_used": {
+              "c_gen_main_effect_range": 0.005555555555555536,
+              "mu_ceil_main_effect_range": 0.3388888888888889,
+              "interaction_effect_magnitude": 0.003703703703703703
+            }
+          }
+        }
+      },
+      {
+        "check": "fit_record_count_matches_design_1080_per_world",
+        "pass": true,
+        "detail": {
+          "n_fits": 583200,
+          "expected": 583200
+        }
+      },
+      {
+        "check": "source_hashes_present_in_run_manifest",
+        "pass": true,
+        "detail": {
+          "n_hashes": 7
+        }
+      },
+      {
+        "check": "pre_execution_manifest_all_6_assertions_passed",
+        "pass": true,
+        "detail": null
+      }
+    ]
+  },
+  "abort_gate_disclosed_correction": {
+    "check": "mu_max_at_clip_share_CORRECTED_case_level_all_180_compounds",
+    "note": "Diagnostic only, not a decision statistic and not a replacement for the declared per-test-compound check, which remains FAILED as originally computed.",
+    "value": 0.48333333333333334,
+    "n_hit": 29,
+    "n": 60,
+    "reference_v1_case_level": 0.43902439024390244,
+    "reference_source": "v2_design/MURU_V1_G1_FAILURE_TAXONOMY.csv mu_max column, 72/164 cases exactly at clip",
+    "case_max_percentiles": {
+      "p0": 0.9523486466621711,
+      "p25": 0.9833965423056124,
+      "p50": 0.9992151941266394,
+      "p75": 0.9999,
+      "p100": 0.9999
+    },
+    "conclusion": "within reasonable Monte Carlo range of the v1 reference; the originally-declared check's failure is attributed to a denominator/aggregation mismatch in the check's own construction (30 test compounds vs the taxonomy's case-wide 180), not a generator/fitter defect."
+  }
+}
