@@ -1,0 +1,2 @@
+shard 1/5: 108 worlds assigned, 0 already done
+shard 1/3: 180 worlds assigned, 0 already done
