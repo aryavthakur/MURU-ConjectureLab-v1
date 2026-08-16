@@ -68,18 +68,17 @@ def test_an_unknown_partition_is_refused(tmp_path):
 
 
 def test_an_unauthorised_partition_is_refused_by_preflight_itself(tmp_path):
-    """The held-out quarantine is structural, not a caller convention.
+    """The challenge quarantine is structural, not a caller convention.
 
     ``run_preflight`` is the one function that would actually open
-    ``inputs/held_out.jsonl``, so A3.5 section 14.2's refusal lives here rather
+    ``inputs/challenge.jsonl``, so Amendment A3.6's refusal lives here rather
     than only in the runner that happens to call it.
     """
     from muru.paper_benchmark.rc5_authorization import PartitionNotAuthorised
 
     build_partition("development", tmp_path)
-    for refused in ("held_out", "challenge"):
-        with pytest.raises(PartitionNotAuthorised, match="Development partition only"):
-            run_preflight(tmp_path, ImplementationLock.pending(), refused)
+    with pytest.raises(PartitionNotAuthorised, match="Development and Held-out partitions only"):
+        run_preflight(tmp_path, ImplementationLock.pending(), "challenge")
 
 
 def test_the_refusal_precedes_any_artifact_read(tmp_path):
@@ -87,8 +86,9 @@ def test_the_refusal_precedes_any_artifact_read(tmp_path):
 
     # Nothing on disk at all: an authorisation refusal must still come first.
     with pytest.raises(PartitionNotAuthorised):
-        run_preflight(tmp_path, ImplementationLock.pending(), "held_out")
+        run_preflight(tmp_path, ImplementationLock.pending(), "challenge")
     assert not list(tmp_path.iterdir())
+
 
 
 def test_a_wrong_case_count_is_refused(tmp_path):

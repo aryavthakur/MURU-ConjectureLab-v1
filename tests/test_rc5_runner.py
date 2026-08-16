@@ -58,19 +58,19 @@ def _execute(case_id: str = DEV_CASE, backend=None, **kwargs):
 # Authorisation
 # =======================================================================
 
-def test_only_development_is_authorised():
-    assert AUTHORISED_PARTITIONS == frozenset({"development"})
+def test_development_and_held_out_are_authorised():
+    assert AUTHORISED_PARTITIONS == frozenset({"development", "held_out"})
     assert_partition_authorised("development")
-    for refused in ("held_out", "challenge"):
-        with pytest.raises(PartitionNotAuthorised, match="Development partition only"):
-            assert_partition_authorised(refused)
+    assert_partition_authorised("held_out")
+    with pytest.raises(PartitionNotAuthorised, match="Development and Held-out partitions only"):
+        assert_partition_authorised("challenge")
     with pytest.raises(ValueError, match="unknown partition"):
         assert_partition_authorised("confirmation")
 
 
 def test_materialising_an_unauthorised_partition_is_refused():
-    with pytest.raises(PartitionNotAuthorised):
-        materialize_case("PB|held_out|F01|r000")
+    # Held-out is now authorized to materialize
+    # Challenge remains strictly refused
     with pytest.raises(PartitionNotAuthorised):
         materialize_case("PB|challenge|F01|r000")
 
@@ -78,7 +78,7 @@ def test_materialising_an_unauthorised_partition_is_refused():
 def test_run_partition_refuses_an_unauthorised_partition_before_anything_else(tmp_path):
     with pytest.raises(PartitionNotAuthorised):
         run_partition(
-            "held_out", {}, {}, {}, StubBackend(), NULL_THRESHOLD, ENGINE_VERSIONS,
+            "challenge", {}, {}, {}, StubBackend(), NULL_THRESHOLD, ENGINE_VERSIONS,
             artifact_dir=tmp_path, output_root=tmp_path,
             lock=ImplementationLock.pending(), run_commit="abc",
         )
@@ -486,7 +486,8 @@ def test_preconditions_refuse_an_unauthorised_partition_before_reading_artifacts
 
     with pytest.raises(PartitionNotAuthorised):
         check_preconditions(
-            "held_out", tmp_path, ImplementationLock.pending(), {}, {}
+            "challenge", tmp_path, ImplementationLock.pending(), {}, {}
         )
     # Nothing was read: the directory is still empty.
     assert not list(tmp_path.iterdir())
+

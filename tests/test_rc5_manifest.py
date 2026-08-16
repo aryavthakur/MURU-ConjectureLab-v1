@@ -259,16 +259,16 @@ def test_every_scientific_field_is_a_pure_derivation_of_plan_and_partition():
 def test_a_layer2_manifest_for_an_unauthorised_partition_is_refused():
     """Section 8.4 defines a Layer-2 manifest as the object written
     "immediately before that partition executes", so it is the artifact whose
-    existence declares a partition is about to run. Section 14.2 applies.
+    existence declares a partition is about to run. Amendment A3.6 applies.
     """
     from muru.paper_benchmark.rc5_authorization import PartitionNotAuthorised
 
     plan = _plan()
-    for refused in ("held_out", "challenge"):
-        with pytest.raises(PartitionNotAuthorised, match="Development partition only"):
-            build_partition_manifest(
-                plan, refused, _environment(), "/tmp/nowhere", "abc123", True
-            )
+    with pytest.raises(PartitionNotAuthorised, match="Development and Held-out partitions only"):
+        build_partition_manifest(
+            plan, "challenge", _environment(), "/tmp/nowhere", "abc123", True
+        )
+
 
 
 def test_an_independent_verifier_can_still_re_derive_any_partition():
