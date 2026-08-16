@@ -1,0 +1,353 @@
+{
+  "experiment": "E1",
+  "all_pass": true,
+  "findings": [
+    {
+      "check": "11475_worlds_analyzed",
+      "pass": true,
+      "detail": {
+        "n": 11475
+      }
+    },
+    {
+      "check": "0_duplicate_worlds",
+      "pass": true,
+      "detail": {
+        "duplicates": 0
+      }
+    },
+    {
+      "check": "153_cells_present",
+      "pass": true,
+      "detail": {
+        "n_cells": 153
+      }
+    },
+    {
+      "check": "75_replicates_per_cell",
+      "pass": true,
+      "detail": {
+        "min": 75,
+        "max": 75
+      }
+    },
+    {
+      "check": "exact_60_15_split_per_cell",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "world_id_namespace_disjoint_from_v1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "0_heldout_or_challenge_rows",
+      "pass": true,
+      "detail": {
+        "matches": 0
+      }
+    },
+    {
+      "check": "0_pysr",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "0_run_errors",
+      "pass": true,
+      "detail": {
+        "n_errors": 0
+      }
+    },
+    {
+      "check": "protocol_frozen_before_implementation",
+      "pass": true,
+      "detail": {
+        "commits": [
+          "6ea0a83",
+          "de930c4"
+        ]
+      }
+    },
+    {
+      "check": "control_pair_C0_P0_reproducible",
+      "pass": true,
+      "detail": {
+        "recomputed": {
+          "FRR": {
+            "k": 3,
+            "n": 540,
+            "rate": 0.005555555555555556,
+            "wilson": [
+              0.001891151630295896,
+              0.01620503920082439
+            ]
+          },
+          "power": {
+            "M1": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            },
+            "M2": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            },
+            "M3": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            }
+          }
+        },
+        "sealed": {
+          "FRR": {
+            "k": 3,
+            "n": 540,
+            "rate": 0.005555555555555556,
+            "wilson": [
+              0.001891151630295896,
+              0.01620503920082439
+            ]
+          },
+          "indeterminate_rate": {
+            "k": 290,
+            "n": 540,
+            "rate": 0.5370370370370371,
+            "wilson": [
+              0.49486754847884556,
+              0.5786832986499096
+            ]
+          },
+          "power_primary": {
+            "M1": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            },
+            "M2": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            },
+            "M3": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.02089549792161305
+              ]
+            }
+          },
+          "misattribution": {
+            "M1": {
+              "k": 12,
+              "n": 540,
+              "rate": 0.022222222222222223,
+              "wilson": [
+                0.012756893024736288,
+                0.03843717901432376
+              ]
+            },
+            "M2": {
+              "k": 3,
+              "n": 540,
+              "rate": 0.005555555555555556,
+              "wilson": [
+                0.001891151630295896,
+                0.01620503920082439
+              ]
+            },
+            "M3": {
+              "k": 0,
+              "n": 540,
+              "rate": 0.0,
+              "wilson": [
+                0.0,
+                0.00706356376180703
+              ]
+            }
+          },
+          "power_curve": {
+            "M1": {
+              "0.25": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "0.5": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "1.0": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "2.0": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              }
+            },
+            "M2": {
+              "0.25": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "0.5": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "1.0": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "2.0": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              }
+            },
+            "M3": {
+              "0.25": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "0.5": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "1.0": {
+                "k": 0,
+                "n": 180,
+                "rate": 0.0,
+                "wilson_lower": 0.0,
+                "wilson_upper": 0.02089549792161305
+              },
+              "2.0": {
+                "k": 9,
+                "n": 180,
+                "rate": 0.05,
+                "wilson_lower": 0.026525138483007187,
+                "wilson_upper": 0.09228080964644456
+              }
+            }
+          },
+          "alpha_star": {
+            "M1": null,
+            "M2": null,
+            "M3": null
+          },
+          "monotone": {
+            "M1": true,
+            "M2": true,
+            "M3": true
+          },
+          "combined_power_curve": {
+            "0.25": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson_lower": 0.0,
+              "wilson_upper": 0.02089549792161305
+            },
+            "0.5": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson_lower": 0.0,
+              "wilson_upper": 0.02089549792161305
+            },
+            "1.0": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson_lower": 0.0,
+              "wilson_upper": 0.02089549792161305
+            },
+            "2.0": {
+              "k": 0,
+              "n": 180,
+              "rate": 0.0,
+              "wilson_lower": 0.0,
+              "wilson_upper": 0.02089549792161305
+            }
+          }
+        }
+      }
+    },
+    {
+      "check": "admissible_count_matches",
+      "pass": true,
+      "detail": {
+        "recomputed": 0,
+        "sealed": 0
+      }
+    },
+    {
+      "check": "selection_is_lexicographic_minimum_independently",
+      "pass": true,
+      "detail": {
+        "n_independently_admissible": 0,
+        "sealed_selected": false
+      }
+    },
+    {
+      "check": "no_pair_reaches_joint_power_at_alpha_2_either",
+      "pass": true,
+      "detail": {
+        "n_pairs_reaching_joint_power_at_alpha2": 0
+      }
+    }
+  ]
+}

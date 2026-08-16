@@ -1,0 +1,10 @@
+{
+  "label": "full",
+  "n_fit_units": 11475,
+  "n_errors": 0,
+  "elapsed_seconds": 3729.974837064743,
+  "seconds_per_fit_unit": 0.32505227338254844,
+  "workers": 8,
+  "pysr_imported": false,
+  "errors": []
+}

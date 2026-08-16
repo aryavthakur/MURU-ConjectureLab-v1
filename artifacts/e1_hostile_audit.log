@@ -1,0 +1,15 @@
+[PASS] 11475_worlds_analyzed
+[PASS] 0_duplicate_worlds
+[PASS] 153_cells_present
+[PASS] 75_replicates_per_cell
+[PASS] exact_60_15_split_per_cell
+[PASS] world_id_namespace_disjoint_from_v1
+[PASS] 0_heldout_or_challenge_rows
+[PASS] 0_pysr
+[PASS] 0_run_errors
+[PASS] protocol_frozen_before_implementation
+[PASS] control_pair_C0_P0_reproducible
+[PASS] admissible_count_matches
+[PASS] selection_is_lexicographic_minimum_independently
+[PASS] no_pair_reaches_joint_power_at_alpha_2_either
+HOSTILE AUDIT: ALL CHECKS PASS

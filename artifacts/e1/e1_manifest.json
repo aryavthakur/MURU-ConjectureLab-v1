@@ -1,0 +1,19 @@
+{
+  "experiment": "E1",
+  "protocol_commit": "de930c4",
+  "implementation_commit": "6ea0a83",
+  "n_fit_units": 11475,
+  "n_worlds_generated": 3825,
+  "n_compound_records": 1032750,
+  "source_hashes": {
+    "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+    "src/muru/paper_benchmark/rc5_adequacy.py": "6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382",
+    "src/muru/paper_benchmark/rc5_estimate.py": "e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4",
+    "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+    "src/muru/discovery/estimate.py": "9a12263d369cbe5c3acc6ac6ca0f5ebf4c1bee776c33985b7039db2d4cb42876",
+    "scripts/e1_common.py": "d1660df4080539062b2ef67b59f8cf7c7e540449703d08011b4ad4979998d68b"
+  },
+  "seed_namespace_prefix": "muru-v2-calibration|E1|",
+  "pysr_imported": false
+}
