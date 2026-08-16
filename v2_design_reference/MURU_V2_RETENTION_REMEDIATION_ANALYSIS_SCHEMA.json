@@ -1,0 +1,319 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muru://v2-retention-remediation/analysis-schema/1.0.0",
+  "title": "MURU v2 retention remediation: analysis output schema",
+  "description": "Every record shape this protocol's implementation must emit. Written before any E2a front is read; defines structure only, no expected values.",
+  "schema_version": "1.0.0",
+  "definitions": {
+    "policy_id": {
+      "type": "string",
+      "enum": ["R0", "R1", "R2", "R3", "R4", "R5", "R6"]
+    },
+    "first_loss_stage": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D", "E"]
+    },
+    "wilson_interval": {
+      "type": "object",
+      "required": ["successes", "total", "point_estimate", "lower_95", "upper_95"],
+      "properties": {
+        "successes": {"type": "integer", "minimum": 0},
+        "total": {"type": "integer", "minimum": 0},
+        "point_estimate": {"type": "number", "minimum": 0, "maximum": 1},
+        "lower_95": {"type": "number", "minimum": 0, "maximum": 1},
+        "upper_95": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "paired_bootstrap_result": {
+      "type": "object",
+      "required": [
+        "policy_id", "control_id", "n_cases", "point_estimate_diff",
+        "bootstrap_lower_95", "bootstrap_upper_95", "bootstrap_resamples",
+        "bootstrap_seed", "mcnemar_statistic", "mcnemar_p_value",
+        "discordant_policy_wins", "discordant_control_wins",
+        "holm_bonferroni_adjusted_p", "holm_bonferroni_significant_at_0.05"
+      ],
+      "properties": {
+        "policy_id": {"$ref": "#/definitions/policy_id"},
+        "control_id": {"const": "R0"},
+        "n_cases": {"type": "integer"},
+        "point_estimate_diff": {"type": "number"},
+        "bootstrap_lower_95": {"type": "number"},
+        "bootstrap_upper_95": {"type": "number"},
+        "bootstrap_resamples": {"const": 10000},
+        "bootstrap_seed": {"type": "integer"},
+        "mcnemar_statistic": {"type": "number"},
+        "mcnemar_p_value": {"type": "number", "minimum": 0, "maximum": 1},
+        "discordant_policy_wins": {"type": "integer", "minimum": 0},
+        "discordant_control_wins": {"type": "integer", "minimum": 0},
+        "holm_bonferroni_adjusted_p": {"type": "number", "minimum": 0, "maximum": 1},
+        "holm_bonferroni_significant_at_0.05": {"type": "boolean"}
+      }
+    }
+  },
+  "records": {
+    "gate_evaluation": {
+      "description": "Written once, before any policy is scored. Section 4 of the preregistration, evaluated mechanically.",
+      "type": "object",
+      "required": [
+        "evaluated_at_utc", "population", "stage_counts", "gate_1_result",
+        "gate_1_reason", "gate_2_branch_fired", "execution_status"
+      ],
+      "properties": {
+        "evaluated_at_utc": {"type": "string", "format": "date-time"},
+        "population": {"const": "full_540_e2a_cases"},
+        "stage_counts": {
+          "type": "object",
+          "required": ["A", "B", "C", "D", "E"],
+          "properties": {
+            "A": {"type": "integer"}, "B": {"type": "integer"},
+            "C": {"type": "integer"}, "D": {"type": "integer"},
+            "E": {"type": "integer"}
+          }
+        },
+        "gate_1_result": {"type": "string", "enum": ["PASS", "FAIL_SUSPEND_ALL_E4"]},
+        "gate_1_reason": {"type": "string"},
+        "gate_2_branch_fired": {
+          "type": "string",
+          "enum": [
+            "RETENTION_DOMINANT_EXECUTES",
+            "EXONERATED_DOES_NOT_EXECUTE",
+            "GENERATION_DOMINANT_DOES_NOT_EXECUTE",
+            "CROSS_SEED_DOMINANT_DIAGNOSTIC_ONLY",
+            "NO_PLURALITY_DIAGNOSTIC_ONLY"
+          ]
+        },
+        "execution_status": {
+          "type": "string",
+          "enum": ["EXECUTES_FULL", "EXECUTES_DIAGNOSTIC_ONLY", "DOES_NOT_EXECUTE"]
+        }
+      }
+    },
+    "dev_selection": {
+      "description": "One record per constant-bearing policy family (R2, R4). Written after gate_evaluation, before any V2C_RET_EVAL scoring.",
+      "type": "object",
+      "required": [
+        "policy_family", "grid", "grid_values_dev_recall", "grid_values_dev_paired_lower_95",
+        "selected_value", "selected_reason", "disqualified"
+      ],
+      "properties": {
+        "policy_family": {"type": "string", "enum": ["R2", "R4"]},
+        "grid": {"type": "array", "items": {"type": "number"}},
+        "grid_values_dev_recall": {
+          "type": "array",
+          "items": {"type": "number", "minimum": 0, "maximum": 1}
+        },
+        "grid_values_dev_paired_lower_95": {
+          "type": "array",
+          "items": {"type": "number"}
+        },
+        "selected_value": {"type": ["number", "null"]},
+        "selected_reason": {"type": "string"},
+        "disqualified": {"type": "boolean"}
+      }
+    },
+    "case_level_record": {
+      "description": "One record per (case, policy) pair. 540 cases x 7 policies = 3,780 records for the full population; V2C_RET_EVAL subset is 450 x 7 = 3,150.",
+      "type": "object",
+      "required": [
+        "world_id", "cell_id", "family", "regime", "noise_level", "replicate",
+        "split", "policy_id", "stage_A_invariant", "eligible_pool_member",
+        "first_loss_stage_under_policy", "truth_survives_retention",
+        "n_seeds_retained_correct_under_policy", "candidate_set_size_per_seed_mean",
+        "candidate_set_size_per_seed_median", "retained_set_complexity_mean",
+        "representative_complexity", "selection_count", "selection_denominator",
+        "stability_gate_cleared", "representative_g2_correct",
+        "representative_truth_equivalent"
+      ],
+      "properties": {
+        "world_id": {"type": "string", "pattern": "^V2C\\|E2\\|.+\\|r\\d{3}$"},
+        "cell_id": {"type": "string"},
+        "family": {
+          "type": "string",
+          "enum": [
+            "mass_affine_descriptor", "mass_power", "mass_saturating_descriptor",
+            "mass_interaction", "mass_exponential_descriptor"
+          ]
+        },
+        "regime": {"type": "string", "enum": ["low", "mid", "high"]},
+        "noise_level": {"type": "string", "enum": ["noiseless", "default", "strong"]},
+        "replicate": {"type": "integer", "minimum": 0, "maximum": 11},
+        "split": {"type": "string", "enum": ["V2C_RET_DEV", "V2C_RET_EVAL"]},
+        "policy_id": {"$ref": "#/definitions/policy_id"},
+        "stage_A_invariant": {
+          "type": "boolean",
+          "description": "true iff correct_on_front is false for all 30 seeds; identical value across all 7 policy records for this world_id"
+        },
+        "eligible_pool_member": {"type": "boolean", "description": "= NOT stage_A_invariant"},
+        "first_loss_stage_under_policy": {"$ref": "#/definitions/first_loss_stage"},
+        "truth_survives_retention": {
+          "type": ["boolean", "null"],
+          "description": "null iff not eligible_pool_member; else true iff first_loss_stage_under_policy is not B"
+        },
+        "n_seeds_retained_correct_under_policy": {"type": "integer", "minimum": 0, "maximum": 30},
+        "candidate_set_size_per_seed_mean": {"type": "number", "minimum": 0},
+        "candidate_set_size_per_seed_median": {"type": "number", "minimum": 0},
+        "retained_set_complexity_mean": {"type": ["number", "null"]},
+        "representative_complexity": {"type": ["integer", "null"]},
+        "selection_count": {"type": "integer", "minimum": 0, "maximum": 30},
+        "selection_denominator": {"const": 30},
+        "stability_gate_cleared": {"type": "boolean", "description": "selection_count / 30 >= 20/30"},
+        "representative_g2_correct": {"type": ["boolean", "null"]},
+        "representative_truth_equivalent": {"type": ["boolean", "null"]}
+      }
+    },
+    "policy_summary": {
+      "description": "One record per policy, computed on V2C_RET_EVAL (450 cases) unless split is explicitly DEV or FULL.",
+      "type": "object",
+      "required": [
+        "policy_id", "split", "n_cases", "n_eligible_pool",
+        "conditional_retention_recall", "false_structure_rate_proxy",
+        "candidate_set_size", "complexity_burden", "cross_seed_stability",
+        "family_performance", "worst_family_performance",
+        "final_downstream_recovery", "paired_vs_control"
+      ],
+      "properties": {
+        "policy_id": {"$ref": "#/definitions/policy_id"},
+        "split": {"type": "string", "enum": ["V2C_RET_DEV", "V2C_RET_EVAL", "FULL_540"]},
+        "n_cases": {"type": "integer"},
+        "n_eligible_pool": {"type": "integer"},
+        "conditional_retention_recall": {"$ref": "#/definitions/wilson_interval"},
+        "false_structure_rate_proxy": {
+          "allOf": [{"$ref": "#/definitions/wilson_interval"}],
+          "description": "computed over mass_power-truth cases only within the split"
+        },
+        "candidate_set_size": {
+          "type": "object",
+          "required": ["mean", "median", "max"],
+          "properties": {
+            "mean": {"type": "number"}, "median": {"type": "number"}, "max": {"type": "integer"}
+          }
+        },
+        "complexity_burden": {
+          "type": "object",
+          "required": ["retained_set_mean_complexity", "representative_mean_complexity", "representative_median_complexity"],
+          "properties": {
+            "retained_set_mean_complexity": {"type": "number"},
+            "representative_mean_complexity": {"type": "number"},
+            "representative_median_complexity": {"type": "number"}
+          }
+        },
+        "cross_seed_stability": {
+          "type": "object",
+          "required": ["selection_count_mean", "selection_count_median", "fraction_clearing_20_of_30"],
+          "properties": {
+            "selection_count_mean": {"type": "number"},
+            "selection_count_median": {"type": "number"},
+            "fraction_clearing_20_of_30": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        },
+        "family_performance": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["family", "conditional_retention_recall", "final_downstream_recovery"],
+            "properties": {
+              "family": {"type": "string"},
+              "conditional_retention_recall": {"$ref": "#/definitions/wilson_interval"},
+              "final_downstream_recovery": {"$ref": "#/definitions/wilson_interval"}
+            }
+          }
+        },
+        "worst_family_performance": {
+          "type": "object",
+          "required": ["family", "conditional_retention_recall_point_estimate"],
+          "properties": {
+            "family": {"type": "string"},
+            "conditional_retention_recall_point_estimate": {"type": "number"}
+          }
+        },
+        "final_downstream_recovery": {"$ref": "#/definitions/wilson_interval"},
+        "paired_vs_control": {
+          "oneOf": [
+            {"$ref": "#/definitions/paired_bootstrap_result"},
+            {"const": null, "description": "null only for policy_id == R0 (control has no comparison against itself)"}
+          ]
+        }
+      }
+    },
+    "adoption_decision": {
+      "description": "Written once, after every policy_summary on V2C_RET_EVAL is complete.",
+      "type": "object",
+      "required": [
+        "eligible_policies_evaluated", "criteria_results", "adopted_policy_id",
+        "adoption_reason", "tie_break_path_if_applicable"
+      ],
+      "properties": {
+        "eligible_policies_evaluated": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/policy_id"}
+        },
+        "criteria_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "policy_id", "recall_improvement_lower_bound_above_0",
+              "false_structure_within_ceiling", "stability_not_degraded",
+              "dev_selection_qualified", "all_criteria_met"
+            ],
+            "properties": {
+              "policy_id": {"$ref": "#/definitions/policy_id"},
+              "recall_improvement_lower_bound_above_0": {"type": "boolean"},
+              "false_structure_within_ceiling": {"type": "boolean"},
+              "stability_not_degraded": {"type": "boolean"},
+              "dev_selection_qualified": {"type": ["boolean", "null"]},
+              "all_criteria_met": {"type": "boolean"}
+            }
+          }
+        },
+        "adopted_policy_id": {
+          "oneOf": [{"$ref": "#/definitions/policy_id"}, {"const": null}]
+        },
+        "adoption_reason": {"type": "string"},
+        "tie_break_path_if_applicable": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    }
+  },
+  "top_level_output_document": {
+    "type": "object",
+    "required": [
+      "schema_version", "protocol_id", "protocol_version", "gate_evaluation",
+      "dev_selections", "case_level_records", "policy_summaries",
+      "adoption_decision", "compute_memory_cost"
+    ],
+    "properties": {
+      "schema_version": {"const": "1.0.0"},
+      "protocol_id": {"const": "MURU_V2_RETENTION_REMEDIATION"},
+      "protocol_version": {"const": "1.0.0"},
+      "gate_evaluation": {"$ref": "#/records/gate_evaluation"},
+      "dev_selections": {
+        "type": "array",
+        "items": {"$ref": "#/records/dev_selection"}
+      },
+      "case_level_records": {
+        "type": "array",
+        "items": {"$ref": "#/records/case_level_record"}
+      },
+      "policy_summaries": {
+        "type": "array",
+        "items": {"$ref": "#/records/policy_summary"}
+      },
+      "adoption_decision": {"$ref": "#/records/adoption_decision"},
+      "compute_memory_cost": {
+        "type": "object",
+        "required": ["wall_seconds", "peak_memory_mb", "output_size_mb"],
+        "properties": {
+          "wall_seconds": {"type": "number"},
+          "peak_memory_mb": {"type": "number"},
+          "output_size_mb": {"type": "number"}
+        }
+      }
+    }
+  }
+}

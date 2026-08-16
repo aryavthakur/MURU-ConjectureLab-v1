@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muru://v2-retention-remediation/manifest-template/1.0.0",
+  "_comment": "TEMPLATE. Every value below is a placeholder (null, 'PENDING', or an example) and must be replaced by the execution runner at the moment this protocol actually runs, not before. Mirrors the two-layer discipline of src/muru/paper_benchmark/rc5_manifest.py, reduced to one layer because this protocol runs zero new search: there is no partition-execution layer distinct from the global-plan layer, only a single re-scoring pass against an already-sealed E2a manifest.",
+  "manifest_kind": "RETENTION_REMEDIATION_PRE_EXECUTION_MANIFEST",
+  "write_once": true,
+  "write_once_rule": "written immediately before section-4 gate evaluation begins; never appended to or amended after. A re-run is a NEW manifest with a new manifest_id, never an edit of this one.",
+  "manifest_id": "PENDING",
+  "protocol": {
+    "protocol_id": "MURU_V2_RETENTION_REMEDIATION",
+    "protocol_version": "1.0.0",
+    "protocol_document_commit": "PENDING",
+    "protocol_document_digest_sha256": "PENDING",
+    "digest_convention": "sha256 over the canonical (sorted-key, no-whitespace) JSON serialization of MURU_V2_RETENTION_REMEDIATION_PROTOCOL.json, exactly as rc5_manifest.py's own digest convention requires -- stated here so a verifier hashing raw bytes does not raise a false tamper alarm"
+  },
+  "committed_before_e2a_seal": {
+    "preregistration_commit": "PENDING",
+    "preregistration_commit_timestamp_utc": "PENDING",
+    "claim": "this manifest's protocol block digest must match a commit that predates the e2a_source.sealed_at_utc timestamp below. If it does not, this protocol was not results-blind and must not be treated as a valid pre-registration."
+  },
+  "e2a_source": {
+    "description": "the sealed E2a Pareto data this protocol's implementation will consume. Populated only by an independent read of E2a's OWN manifest -- this template's author never opened it.",
+    "results_e2_manifest_path": "results/e2/manifest.json",
+    "results_e2_manifest_digest_sha256": "PENDING",
+    "sealed_at_utc": "PENDING",
+    "n_worlds": "PENDING (expected 540, per MURU_V2_RETENTION_REMEDIATION_E2_INPUT_CONTRACT.json)",
+    "n_seeds_per_world": "PENDING (expected 30)",
+    "retention_identity_regression_status": "PENDING (must be PASS before this protocol may consume any record; see e2_preflight.py)",
+    "e2b_rows_present": "PENDING (must be false, or must be filtered before ingestion; see input contract admissibility_requirement)"
+  },
+  "environment_lock": {
+    "description": "host/environment facts specific to THIS run of the re-scoring pass. No scientific field belongs here -- every scientific field is a pure function of (protocol, e2a_source), never chosen at this layer, mirroring rc5_manifest.py's own binding-derivation clause.",
+    "platform": "PENDING",
+    "python_version": "PENDING",
+    "python_implementation": "PENDING",
+    "python_packages": {
+      "numpy": "PENDING",
+      "pandas": "PENDING",
+      "sympy": "PENDING",
+      "scipy": "PENDING"
+    },
+    "requirements_lock_digest_sha256": "PENDING",
+    "git_commit": "PENDING (git rev-parse HEAD^{}, never the tag form)",
+    "tracked_tree_clean": "PENDING (boolean)"
+  },
+  "gate_evaluation_result": {
+    "description": "populated the moment section 4's gate fires; determines whether the remainder of this manifest is ever completed",
+    "gate_1_result": "PENDING",
+    "gate_2_branch_fired": "PENDING",
+    "execution_status": "PENDING (EXECUTES_FULL | EXECUTES_DIAGNOSTIC_ONLY | DOES_NOT_EXECUTE)"
+  },
+  "dev_selection_result": {
+    "description": "populated only if execution_status != DOES_NOT_EXECUTE. One entry per constant-bearing policy family.",
+    "R2_selected_k": "PENDING (or null if disqualified)",
+    "R4_selected_eps": "PENDING (or null if disqualified)",
+    "dev_selection_committed_before_eval_scoring": "PENDING (boolean; must be true)"
+  },
+  "bootstrap_seeds": {
+    "description": "one entry per non-control policy, derived per MURU_V2_RETENTION_REMEDIATION_PROTOCOL.json statistics.bootstrap_seed_construction",
+    "R1": "PENDING", "R2": "PENDING", "R3": "PENDING",
+    "R4": "PENDING", "R5": "PENDING", "R6": "PENDING"
+  },
+  "output": {
+    "analysis_output_path": "PENDING",
+    "analysis_output_digest_sha256": "PENDING",
+    "conforms_to_schema": "MURU_V2_RETENTION_REMEDIATION_ANALYSIS_SCHEMA.json#/top_level_output_document",
+    "wall_seconds": "PENDING",
+    "peak_memory_mb": "PENDING"
+  },
+  "adoption_decision_summary": {
+    "description": "populated only after every policy_summary on V2C_RET_EVAL is complete; must match analysis output's adoption_decision record exactly",
+    "adopted_policy_id": "PENDING (or null)",
+    "adoption_reason": "PENDING",
+    "e6_run_still_required_before_architecture_change": true
+  },
+  "static_checks_passed": {
+    "description": "boolean per structural control this protocol declares (section 9 of the preregistration); a manifest with any false value here is not a valid completion record",
+    "replay_self_consistency_R0_matches_e2a_sealed_labels": "PENDING",
+    "no_search_side_imports_in_implementation": "PENDING",
+    "no_heldout_or_challenge_imports_in_implementation": "PENDING",
+    "vote_reduction_rule_identical_across_all_policies": "PENDING"
+  }
+}

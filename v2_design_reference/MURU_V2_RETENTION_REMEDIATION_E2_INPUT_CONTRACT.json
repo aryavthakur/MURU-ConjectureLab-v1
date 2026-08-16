@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "muru://v2-retention-remediation/e2-input-contract/1.0.0",
+  "title": "Expected input contract: sealed E2a Pareto data",
+  "description": "What this protocol requires from E2a's persisted output before it may execute. Derived entirely from E2's own frozen source (src/muru/v2_calibration/e2_search.py FrontRow/SeedFrontResult, e2_worlds.py WorldContent/WorldTruth, e2_scoring.py ScoredRow) -- never from E2a's own result files, which this design was written without reading.",
+  "provenance_note": "This contract was authored by reading only e2_search.py, e2_worlds.py, e2_classify.py, e2_scoring.py, e2_aggregate.py, rc5_selection.py, g2_contract.py, identity_contract.py, and discovery/equivalence.py -- all frozen source, zero outcome content. No file under results/e2/ was opened while authoring this document.",
+  "admissibility_requirement": {
+    "required_value": "DECISION_ADMISSIBLE",
+    "source_field": "FrontRow.admissibility",
+    "rule": "every row consumed by this protocol MUST carry admissibility == DECISION_ADMISSIBLE. E2b rows (Held-out replay) carry DECISION_INADMISSIBLE and MUST be filtered out or absent from the input file entirely before this protocol's implementation is authorized to run. A static check must assert this filter ran, not merely that it exists in code."
+  },
+  "preflight_requirements_before_consumption": [
+    {
+      "name": "retention_identity_regression",
+      "authority": "MURU_V2_G2_PARETO_STUDY_DESIGN.md#section-2.5",
+      "requirement": "the instrumented engine's argmax(score)-retained candidate must be byte-identical to the frozen production path's, for every seed in the control set, before any E2a record is used for anything -- including this protocol"
+    },
+    {
+      "name": "world_count_reconciliation",
+      "requirement": "exactly 540 world_id values present, each unique, bijective with world_ordinal in [0, 540) via the formula in world_identity_and_namespace below"
+    },
+    {
+      "name": "seed_count_reconciliation",
+      "requirement": "exactly 30 seed records (seed_ordinal_k in [0, 30)) present per world_id, no duplicates, no gaps"
+    },
+    {
+      "name": "namespace_disjointness",
+      "requirement": "every world's seed payload is prefixed 'muru-v2-calibration|', never 'paper-benchmark-v1|'; verified by e2_worlds.assert_seed_namespace_disjoint, not by inspection"
+    },
+    {
+      "name": "R0_replay_self_consistency",
+      "requirement": "this protocol's own R0 (argmax(score)) re-scoring of the input, run through the identical rc5_selection.group_and_select grouping, must reproduce E2a's own sealed first_loss_stage, selection_count, and representative fields exactly, for all 540 worlds, before any non-control policy (R1, R2, R3, R4, R5, R6) result is reported"
+    }
+  ],
+  "world_identity_and_namespace": {
+    "world_id_pattern": "V2C|E2|<cell_id>|r<replicate:03d>",
+    "cell_id_pattern": "<family>|c_<regime_label>|n_<noise_label>",
+    "world_ordinal_formula": "((family_idx*3 + regime_idx)*3 + noise_idx)*12 + replicate",
+    "families_order": [
+      "mass_affine_descriptor", "mass_power", "mass_saturating_descriptor",
+      "mass_interaction", "mass_exponential_descriptor"
+    ],
+    "regimes_order": ["low", "mid", "high"],
+    "noise_levels_order": ["noiseless", "default", "strong"],
+    "replicate_range": [0, 11],
+    "source": "src/muru/v2_calibration/e2_worlds.py"
+  },
+  "required_per_world_fields": {
+    "source_type": "e2_worlds.WorldContent / e2_worlds.WorldTruth",
+    "fields": {
+      "world_id": {"type": "string", "required": true},
+      "cell_id": {"type": "string", "required": true},
+      "family": {"type": "string", "enum": ["mass_affine_descriptor", "mass_power", "mass_saturating_descriptor", "mass_interaction", "mass_exponential_descriptor"], "required": true},
+      "regime": {"type": "string", "enum": ["low", "mid", "high"], "required": true},
+      "noise_level": {"type": "string", "enum": ["noiseless", "default", "strong"], "required": true},
+      "replicate": {"type": "integer", "minimum": 0, "maximum": 11, "required": true},
+      "truth.support": {"type": "array of string", "required": true, "note": "frozenset of GRAMMAR_PRIMITIVES names; used as classify_support's truth_support operand"},
+      "truth.family": {"type": "string", "required": true, "note": "used as classify_family_match's truth_family operand"},
+      "truth.law_string": {"type": "string", "required": true, "note": "used only for the truth_equivalent (C/D split) check via discovery.equivalence.algebraically_equivalent; never read by any within-seed retention or search-time function"}
+    }
+  },
+  "required_per_seed_fields": {
+    "source_type": "e2_search.SeedFrontResult",
+    "fields": {
+      "seed_ordinal_k": {"type": "integer", "minimum": 0, "maximum": 29, "required": true},
+      "seed": {"type": "integer", "required": true},
+      "status": {"type": "string", "enum": ["COMPLETED_WITH_FRONT", "COMPLETED_NO_CANDIDATE", "EXECUTION_FAILURE"], "required": true},
+      "error_message": {"type": "string", "required": false},
+      "rows": {"type": "array of FrontRow", "required": true, "note": "empty iff status != COMPLETED_WITH_FRONT"},
+      "argmax_score_label_position": {"type": ["integer", "null"], "required": true, "note": "position within rows of the row R0 would retain; must correspond to exactly one row with retained_by_argmax_score == true"},
+      "wall_seconds": {"type": "number", "required": false}
+    }
+  },
+  "required_per_front_row_fields": {
+    "source_type": "e2_search.FrontRow",
+    "fields": {
+      "front_rank": {"type": "integer", "required": true},
+      "engine_complexity": {"type": "integer", "required": true, "note": "this protocol's candidate_set_size / complexity_burden metrics and R4's/R5's/R6's rules all key off this field"},
+      "grammar_complexity": {"type": "integer", "required": true},
+      "expression_string": {"type": "string", "required": true, "note": "as-emitted, PySR x{i} naming; must be parseable via g2_contract._safe_parse / rc5_selection.parse_production_candidate"},
+      "parse_ok": {"type": "boolean", "required": true},
+      "canonicalization_status": {"type": "string", "enum": ["OK", "UNPARSEABLE", "SIMPLIFY_TIMEOUT", "TEMPLATE_KEY_FAILED"], "required": true},
+      "canonical_expression": {"type": ["string", "null"], "required": false},
+      "train_r2": {"type": "number", "required": true},
+      "valid_r2": {"type": "number", "required": true, "note": "load-bearing for R1, R2's vote reduction, R4, R5, R6"},
+      "test_r2": {"type": "number", "required": true},
+      "loss": {"type": "number", "required": true, "note": "must be finite for every row; a non-finite loss anywhere in a seed's rows is an EXECUTION_FAILURE per rc5_selection.select_row_label, not a silently droppable row"},
+      "score": {"type": "number", "required": true, "note": "load-bearing for R0 (control) and R2's within-seed ranking"},
+      "invalid_fraction": {"type": "number", "required": true},
+      "effective_support": {"type": ["array of string", "null"], "required": true},
+      "template_key_repr": {"type": ["string", "null"], "required": true, "note": "used for R6's cross-seed recurrence check; must be computed by identity_contract.template_key_string, not re-derived"},
+      "coefficient_estimates": {"type": ["array of number", "null"], "required": false},
+      "retained_by_argmax_score": {"type": "boolean", "required": true, "note": "exactly one true per seed's rows when status == COMPLETED_WITH_FRONT"},
+      "admissibility": {"type": "string", "const": "DECISION_ADMISSIBLE", "required": true}
+    }
+  },
+  "required_per_scored_row_fields": {
+    "source_type": "e2_scoring.ScoredRow",
+    "note": "the truth-joined pass, computed downstream of the search and never consumed by any retention-stage function in this protocol -- only by the C/D/E stage classification",
+    "fields": {
+      "discovered_family": {"type": ["string", "null"], "required": true},
+      "truth_family": {"type": "string", "required": true},
+      "truth_support": {"type": "array of string", "required": true},
+      "coefficient_regime": {"type": "string", "required": true},
+      "support_status_vs_truth": {"type": "string", "enum": ["MATCH", "MISMATCH", "SUPPORT_UNRESOLVED"], "required": true},
+      "family_status_vs_truth": {"type": "string", "enum": ["MATCH", "MISMATCH", "FAMILY_AMBIGUOUS", "FAMILY_UNRESOLVED"], "required": true},
+      "g2_correct": {"type": "boolean", "required": true},
+      "g2_event": {"type": "string", "enum": ["SUCCESS", "FAILURE", "UNEVALUABLE"], "required": true},
+      "truth_equivalent": {"type": ["boolean", "null"], "required": true, "note": "the C/D split's own discriminator; null means undetermined (SIMPLIFY_TIMEOUT or excessive op count) and such cases must be flagged, not silently folded into C"}
+    }
+  },
+  "cross_reference_requirement": {
+    "rule": "every FrontRow within a SeedFrontResult must have exactly one corresponding ScoredRow, in the same order, joined only by (world_id, seed, expression_string) -- the join e2_aggregate.evaluate_world already performs via zip(sr.rows, scored_by_seed[sr.seed]). This protocol's implementation must assert len(rows) == len(scored_rows) per seed before using either, exactly as e2_aggregate.py's own assertion does."
+  },
+  "what_this_protocol_never_reads": [
+    "results/e2/manifest.json content",
+    "results/e2/retention_identity_control.json content",
+    "results/e2/run/log_shard_*.txt content",
+    "any E2b (Held-out replay) row where admissibility != DECISION_ADMISSIBLE",
+    "any Held-out or Challenge partition case identifier or content",
+    "any peer-session summary, Pareto front visualization, or conclusion document"
+  ],
+  "digest_and_seal_requirement": {
+    "rule": "before this protocol's implementation consumes any E2a record, it must verify a manifest digest (per MURU_V2_RETENTION_REMEDIATION_MANIFEST_TEMPLATE.json's e2a_source block) matching the digest recorded at the moment E2a's own results/e2/manifest.json was sealed. A mismatch means E2a's output changed after sealing and this protocol must refuse to run, exactly as governance.py's Held-out refusal gate refuses on an incomplete or tampered lock."
+  }
+}

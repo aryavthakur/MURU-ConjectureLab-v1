@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "protocol_id": "MURU_V2_RETENTION_REMEDIATION",
+  "protocol_version": "1.0.0",
+  "status": "DESIGN_ONLY_RESULTS_BLIND",
+  "operationalizes": "E4a (G2_SINGLE_FACTOR_ABLATIONS, arm a: retention policy)",
+  "authority_chain_most_specific_first": [
+    "MURU_V2_E2_PREDECLARATION.md#section-6",
+    "MURU_V2_G2_PARETO_STUDY_DESIGN.md#section-3.1",
+    "MURU_V2_CAUSAL_DECISION_TREE.md#section-B.2",
+    "MURU_V2_REMEDIATION_EXPERIMENT_PLAN.md#section-2",
+    "MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md"
+  ],
+  "companion_documents": {
+    "preregistration_md": "v2_design_reference/MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md",
+    "analysis_schema": "v2_design_reference/MURU_V2_RETENTION_REMEDIATION_ANALYSIS_SCHEMA.json",
+    "e2_input_contract": "v2_design_reference/MURU_V2_RETENTION_REMEDIATION_E2_INPUT_CONTRACT.json",
+    "manifest_template": "v2_design_reference/MURU_V2_RETENTION_REMEDIATION_MANIFEST_TEMPLATE.json",
+    "hostile_review_checklist": "v2_design_reference/MURU_V2_RETENTION_REMEDIATION_HOSTILE_REVIEW_CHECKLIST.md"
+  },
+  "scope": {
+    "consumes": ["E2a"],
+    "forbids": ["E2b", "Held-out", "Challenge", "Development(v1)"],
+    "new_symbolic_search": false,
+    "modifies_grammar": false,
+    "modifies_budget": false,
+    "modifies_objective": false,
+    "modifies_classifier": false
+  },
+  "first_loss_taxonomy": {
+    "authority": "MURU_V2_E2_PREDECLARATION.md#section-6",
+    "stages": ["A", "B", "C", "D", "E"],
+    "stage_definitions": {
+      "A": {
+        "name": "NEVER_ON_FRONT",
+        "meaning": "truth absent from candidate pool",
+        "condition": "correct_on_front(seed) is false for all 30 seeds",
+        "policy_invariant": true
+      },
+      "B": {
+        "name": "LOST_IN_RETENTION",
+        "meaning": "truth available but lost within-seed",
+        "condition": "correct_on_front(seed) true for >=1 seed AND retained_correct(seed) false for all 30 seeds",
+        "policy_invariant": false
+      },
+      "C": {
+        "name": "LOST_IN_CROSS_SEED_AGGREGATION",
+        "meaning": "survives within-seed retention but lost in cross-seed vote",
+        "condition": ">=1 seed retains correct row AND representative not g2_correct AND representative not algebraically_equivalent to truth",
+        "policy_invariant": false
+      },
+      "D": {
+        "name": "LOST_IN_CROSS_SEED_CLASSIFICATION",
+        "meaning": "survives aggregation but lost to equivalence/classification",
+        "condition": ">=1 seed retains correct row AND representative not g2_correct AND representative IS algebraically_equivalent to truth",
+        "policy_invariant": false
+      },
+      "E": {
+        "name": "SUCCESS",
+        "meaning": "final recovery",
+        "condition": "representative is g2_correct",
+        "policy_invariant": false
+      }
+    },
+    "decision_order": ["A", "B", "E_or_D_or_C"],
+    "classifier_functions": {
+      "correct_on_front": "g2_contract.evaluate_g2_event == SUCCESS, i.e. classify_support == MATCH and classify_family_match == MATCH",
+      "retained_correct": "policy's own within-seed retained row is itself g2_correct",
+      "cross_seed_grouping": "rc5_selection.group_and_select, unmodified, fed policy's vote-reduced RetainedCandidate per seed",
+      "truth_equivalence_check": "discovery.equivalence.algebraically_equivalent, up to a positive multiplicative constant"
+    }
+  },
+  "primary_endpoint": {
+    "name": "conditional_retention_recall",
+    "formula": "count(cases in eligible_pool where truth survives retention under P) / count(eligible_pool)",
+    "eligible_pool": "cases not in stage A (correct_on_front true for >=1 of 30 seeds); cardinality is policy-invariant",
+    "truth_survives_retention": "at least one of the case's 30 seeds retains a g2_correct row under policy P's own within-seed rule, applied to the frozen, already-persisted front",
+    "comparison_type": "paired at case level (same eligible pool, same front, across all policies)"
+  },
+  "execution_trigger": {
+    "evaluated_once": "immediately after E2a seals, before any policy is scored",
+    "population_for_gate": "full 540 E2a cases (not the DEV/EVAL split)",
+    "gate_1_falsification_hook": {
+      "condition": "E2b direct measurement contradicts v1 decomposition's 69/57 retention-vs-generation split by more than 10 cases (PE2-4 tolerance)",
+      "if_true": "DOES_NOT_EXECUTE",
+      "reason": "MURU_V2_G2_PARETO_STUDY_DESIGN.md#section-2.9 falsification hook; all E4 ablations suspended"
+    },
+    "gate_2_retention_dominance": {
+      "branches": [
+        {
+          "condition": "B > A AND B > (C + D)",
+          "result": "EXECUTES",
+          "reason": "RC3 confirmed by direct observation; E4a enabled (decision tree B.1)"
+        },
+        {
+          "condition": "P_retain_given_front near 1 wherever P_front is high",
+          "result": "DOES_NOT_EXECUTE",
+          "reason": "RC3 withdrawn; no retention change licensed"
+        },
+        {
+          "condition": "A is the strict plurality of {A, B, C+D}",
+          "result": "DOES_NOT_EXECUTE",
+          "reason": "RC4 confirmed; next step is E3-gated (E4b/c/d), not this protocol"
+        },
+        {
+          "condition": "(C + D) is the strict plurality of {A, B, C+D}",
+          "result": "DOES_NOT_EXECUTE_FOR_ADOPTION",
+          "reason": "RC7 larger than v1's 2 cases; E4f (classifier/voting) is licensed instead; metrics still reported diagnostically"
+        },
+        {
+          "condition": "no strict plurality among {A, B, C+D}",
+          "result": "EXECUTES_DIAGNOSTIC_ONLY",
+          "reason": "decision tree does not cover a non-plurality outcome; adoption rule (section 10) suspended pending named tie-break review"
+        }
+      ]
+    }
+  },
+  "policies": [
+    {
+      "id": "R0",
+      "role": "CONTROL",
+      "rule": "argmax(score)",
+      "free_parameters": 0,
+      "grid": null,
+      "adoption_eligible": false,
+      "notes": "frozen v1 production rule; reproduces E2a's own sealed labels exactly"
+    },
+    {
+      "id": "R1",
+      "role": "CANDIDATE",
+      "rule": "argmax(valid_r2)",
+      "free_parameters": 0,
+      "grid": null,
+      "adoption_eligible": true
+    },
+    {
+      "id": "R2",
+      "role": "CANDIDATE",
+      "rule": "top_k_by_score",
+      "free_parameters": 1,
+      "parameter_name": "k",
+      "grid": [1, 2, 3, 5],
+      "selection_surface": "V2C_RET_DEV",
+      "selection_rule": "smallest grid value whose paired improvement over R0 has a 95% bootstrap lower bound above 0 on V2C_RET_DEV; if none qualifies, R2 is disqualified from adoption",
+      "vote_reduction": "argmax(valid_r2) among the k retained rows",
+      "adoption_eligible": "conditional_on_dev_selection"
+    },
+    {
+      "id": "R3",
+      "role": "ORACLE_CONTROL",
+      "rule": "whole_front",
+      "free_parameters": 0,
+      "grid": null,
+      "vote_reduction": "argmax(valid_r2) among all retained rows",
+      "adoption_eligible": false,
+      "exclusion_reason": "definitionally near-tautological recall; measures the retention ceiling only, per explicit mission instruction to prevent a policy winning by retaining everything"
+    },
+    {
+      "id": "R4",
+      "role": "CANDIDATE",
+      "rule": "accuracy_tolerance_parsimony",
+      "description": "among rows with valid_r2 >= max(valid_r2) - eps, keep the lowest-complexity row",
+      "free_parameters": 1,
+      "parameter_name": "eps",
+      "grid": [0.001, 0.005, 0.02],
+      "selection_surface": "V2C_RET_DEV",
+      "selection_rule": "smallest grid value whose paired improvement over R0 has a 95% bootstrap lower bound above 0 on V2C_RET_DEV; if none qualifies, R4 is disqualified from adoption",
+      "vote_reduction": "argmax(valid_r2) among the eps-band retained rows (degenerate: band retains exactly one row per seed by construction, so no reduction needed)",
+      "adoption_eligible": "conditional_on_dev_selection"
+    },
+    {
+      "id": "R5",
+      "role": "CANDIDATE",
+      "rule": "pareto_nondominated",
+      "description": "row survives iff no other row on the same front has valid_r2 >= its own and complexity <= its own, with at least one strict inequality",
+      "free_parameters": 0,
+      "grid": null,
+      "vote_reduction": "argmax(valid_r2) among the nondominated retained rows",
+      "adoption_eligible": true
+    },
+    {
+      "id": "R6",
+      "role": "CANDIDATE",
+      "rule": "cross_seed_stability_aware",
+      "description": "top-3 rows by score, further restricted to rows whose template_key recurs in the top-3 of at least 2 of the world's other 29 seeds",
+      "free_parameters": 0,
+      "frozen_constants": {"shortlist_size": 3, "min_cross_seed_recurrence": 2},
+      "constant_selection": "frozen directly, not Development-tuned; shortlist_size matches R2's own grid value k=3, min_recurrence=2 is the minimal above-chance corroboration threshold",
+      "vote_reduction": "argmax(valid_r2) among the retained set",
+      "adoption_eligible": true
+    }
+  ],
+  "vote_reduction_rule_general": "for any policy retaining more than one row per seed, the seed's single cross-seed vote is cast by the argmax(valid_r2) row among that seed's own retained set; held fixed across every policy",
+  "population": {
+    "total_e2a_cases": 540,
+    "world_ordinal_formula": "((family_idx*3 + regime_idx)*3 + noise_idx)*12 + replicate",
+    "dev_split": {
+      "name": "V2C_RET_DEV",
+      "predicate": "replicate in {0, 1}",
+      "n_cases": 90,
+      "role": "constant selection only (R2 k, R4 eps); never used for headline comparison",
+      "stratification": "exactly 2 of 12 replicates per (family, regime, noise) cell across all 45 cells"
+    },
+    "eval_split": {
+      "name": "V2C_RET_EVAL",
+      "predicate": "replicate in {2,3,4,5,6,7,8,9,10,11}",
+      "n_cases": 450,
+      "role": "all headline metrics, all adoption decisions, all pre-registered predictions",
+      "stratification": "exactly 10 of 12 replicates per (family, regime, noise) cell across all 45 cells"
+    }
+  },
+  "required_metrics": [
+    {"id": "conditional_retention_recall", "satisfies": "primary_endpoint", "interval": "wilson_95_plus_paired_bootstrap"},
+    {"id": "false_structure_rate_proxy", "satisfies": "specificity", "population": "mass_power truth cases in V2C_RET_EVAL (36 of 450)", "caveat": "necessary_not_sufficient; formal E6 run required before adoption"},
+    {"id": "candidate_set_size", "satisfies": "candidate_set_size", "aggregation": ["mean", "median"], "scope": "per seed, all seeds"},
+    {"id": "complexity_burden", "satisfies": "complexity_burden", "components": ["retained_set_complexity", "representative_complexity"]},
+    {"id": "cross_seed_stability", "satisfies": "cross_seed_stability", "components": ["selection_count_distribution", "fraction_clearing_20_of_30_gate"]},
+    {"id": "family_performance", "satisfies": "family_level_performance", "breakdown": "per truth family (5)"},
+    {"id": "worst_family_performance", "satisfies": "worst_family_performance", "definition": "min over 5 families of conditional_retention_recall(P)"},
+    {"id": "final_downstream_recovery", "satisfies": "final_downstream_recovery_where_permitted", "definition": "fraction of eligible_pool reaching stage E under P", "admissibility": "DECISION_ADMISSIBLE, E2a only"},
+    {"id": "compute_memory_cost", "satisfies": "compute_memory_cost", "estimate_cpu_hours": "<1", "estimate_storage_mb": "<50"}
+  ],
+  "statistics": {
+    "primary_paired_test": "exact McNemar on discordant pairs",
+    "primary_interval": "case-level bootstrap, B=10000, resampled within V2C_RET_EVAL only",
+    "bootstrap_seed_construction": "derive_seed_v2('bootstrap', '<policy_id>') truncated to 64-bit unsigned, V2C namespace",
+    "single_proportion_interval": "g2_contract.wilson_lower_95 / wilson_upper_95 (imported, not reimplemented)",
+    "multiplicity_correction": "Holm-Bonferroni at alpha=0.05 across the 6 head-to-head comparisons (R1, R2*, R3, R4*, R5, R6 vs R0); raw and adjusted both reported"
+  },
+  "controls": [
+    "replay_self_consistency: R0 must reproduce E2a's own sealed A/B/C/D/E counts and selection_count values exactly",
+    "frozen_front: static import check forbids rc5_estimate/rc5_adapter/PySR/Julia imports in this protocol's implementation",
+    "vote_reduction_rule_fixed_across_arms",
+    "mass_power_scored_identically_to_descriptor_families"
+  ],
+  "adoption_rule": {
+    "eligible_policy_set": ["R1", "R2", "R4", "R5", "R6"],
+    "excluded_by_design": ["R0 (control)", "R3 (oracle/control)"],
+    "criteria_all_required": [
+      "paired bootstrap 95% lower bound of conditional_retention_recall improvement over R0 is above 0",
+      "false_structure_rate_proxy does not exceed R0's own by more than 0.15 Wilson-upper margin (necessary, not sufficient; formal E6 run still required)",
+      "cross_seed_stability 20-of-30 clearing fraction does not fall below R0's own",
+      "for R2/R4 only: grid value was selected on V2C_RET_DEV per section 6.1 and not disqualified there"
+    ],
+    "tie_break_lexicographic": [
+      "fewest_free_parameters",
+      "lowest_false_structure_rate_proxy",
+      "lowest_median_candidate_set_size",
+      "ladder_index: R0 < R1 < R5 < R6 < R2 < R4"
+    ],
+    "no_eligible_arm_outcome": "NO_CHANGE_LICENSED; frozen R0 stands; RC3 attribution revised downward"
+  },
+  "out_of_scope": [
+    "grammar/budget/objective/classifier changes (E4b/c/d/f territory)",
+    "formal E6 run",
+    "stability gate re-derivation (20/30 stays fixed)",
+    "Held-out or Challenge access (static import-graph check enforced)",
+    "final v2 architecture decision"
+  ],
+  "cost_estimate": {"cpu_hours": "<1", "storage_mb": "<50", "new_search_runs": 0},
+  "pre_registered_predictions": [
+    {"id": "PRR-1", "statement": "R3 conditional_retention_recall on V2C_RET_EVAL is at or within Wilson noise of 1.0 for every family except mass_saturating_descriptor"},
+    {"id": "PRR-2", "statement": "at least one of R2*, R4*, R5 clears the adoption bar, conditional on Gate 2 selecting the retention-dominant branch"},
+    {"id": "PRR-3", "statement": "R6's recall improvement over R0 is smaller than R2*/R4's, but its false_structure_rate_proxy is the lowest non-control arm"},
+    {"id": "PRR-4", "statement": "mass_saturating_descriptor is the worst_family_performance family for every policy including R3 (ceiling set by stage A, not B)"},
+    {"id": "PRR-5", "statement": "stage D is small relative to stage C across every policy"}
+  ],
+  "terminal_state": "RETENTION REMEDIATION PROTOCOL FROZEN RESULTS-BLIND"
+}
