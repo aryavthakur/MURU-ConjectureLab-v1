@@ -1,0 +1,130 @@
+{
+ "title": "MURU v2 Experiment E3: Descriptor Identifiability -- Results",
+ "status": "EXECUTED",
+ "authority": "MURU_V2_IDENTIFIABILITY_STUDY_DESIGN.md (frozen, commit befca0d, design-only, predates this execution)",
+ "branch": "exp/v2-e3-identifiability",
+ "rooted_at_commit": "befca0d",
+ "n_worlds_executed": 10000,
+ "n_worlds_preregistered": 10000,
+ "n_missing": 0,
+ "n_duplicate": 0,
+ "n_execution_failures": 0,
+ "n_pysr_imports": 0,
+ "n_symbolic_searches": 0,
+ "study_validity": {
+  "bic_criterion": {"false_structure_oracle_rate": 0.095, "count": 190, "n": 2000, "wilson_upper": 0.1086, "verdict": "VALID_NARROW"},
+  "r2_criterion": {"false_structure_oracle_rate": 0.685, "count": 1370, "n": 2000, "wilson_upper": 0.7050, "verdict": "STUDY_INVALID"},
+  "primary_criterion_used_for_all_classifications": "BIC",
+  "note": "R2-alone is reported per the frozen design's requirement but excluded from every licensing conclusion because it fails the study's own 0.10 specificity gate on the mass_power control."
+ },
+ "required_outputs": {
+  "1_oracle_recovery_overall": {
+   "all_5_families": {"n": 10000, "bic_rate": 0.8264, "bic_wilson_lower": 0.8189, "classification": "IDENTIFIABLE"},
+   "descriptor_families_only": {"n": 8000, "bic_rate": 0.8068, "bic_wilson_lower": 0.7980, "classification": "IDENTIFIABLE"},
+   "caveat": "pooled across the entire tested grid (c up to 2.2, all noise/grid levels), not the frozen benchmark operating point -- see frozen_operating_point_disposition below"
+  },
+  "2_recovery_by_family_pooled_whole_grid": [
+   {"family": "mass_interaction", "n": 2000, "bic_rate": 0.9855, "r2_rate": 0.9325},
+   {"family": "mass_power_control", "n": 2000, "bic_rate": 0.9050, "r2_rate": 0.3150, "note": "rate = specificity, not recovery"},
+   {"family": "mass_saturating_descriptor", "n": 2000, "bic_rate": 0.8430, "r2_rate": 0.7410},
+   {"family": "mass_affine_descriptor", "n": 2000, "bic_rate": 0.7300, "r2_rate": 0.6065},
+   {"family": "mass_exponential_descriptor", "n": 2000, "bic_rate": 0.6685, "r2_rate": 0.5610}
+  ],
+  "3_recovery_by_coefficient_regime_pooled_descriptor_families": [
+   {"c": 0.25, "n": 1600, "bic_rate": 0.6681, "r2_rate": 0.5769},
+   {"c": 0.40, "n": 1600, "bic_rate": 0.7569, "r2_rate": 0.6581},
+   {"c": 0.55, "n": 1600, "bic_rate": 0.8094, "r2_rate": 0.6944},
+   {"c": 1.10, "n": 1600, "bic_rate": 0.8813, "r2_rate": 0.7856},
+   {"c": 2.20, "n": 1600, "bic_rate": 0.9181, "r2_rate": 0.8363}
+  ],
+  "4_confusion_matrix_frozen_operating_point_bic": {
+   "description": "c in {0.25,0.40,0.55}, noise=0.02, grid=6, 750 worlds, rows=truth, columns=selected",
+   "mass_power": {"mass_power": 132, "mass_affine_descriptor": 0, "mass_saturating_descriptor": 0, "mass_exponential_descriptor": 3, "mass_interaction": 15},
+   "mass_affine_descriptor": {"mass_power": 0, "mass_affine_descriptor": 83, "mass_saturating_descriptor": 7, "mass_exponential_descriptor": 60, "mass_interaction": 0},
+   "mass_saturating_descriptor": {"mass_power": 0, "mass_affine_descriptor": 20, "mass_saturating_descriptor": 123, "mass_exponential_descriptor": 6, "mass_interaction": 1},
+   "mass_exponential_descriptor": {"mass_power": 2, "mass_affine_descriptor": 38, "mass_saturating_descriptor": 23, "mass_exponential_descriptor": 79, "mass_interaction": 8},
+   "mass_interaction": {"mass_power": 0, "mass_affine_descriptor": 0, "mass_saturating_descriptor": 0, "mass_exponential_descriptor": 0, "mass_interaction": 150},
+   "dominant_error_mode": "bidirectional affine<->exponential confusion: 98 of 183 total off-diagonal errors (53.6%)",
+   "full_data": "results/e3_identifiability/e3_confusion_matrices.csv"
+  },
+  "5_truth_vs_mass_only_separation": {
+   "finding": "every descriptor family separates from M_mass in expectation at every tested c, growing monotonically with c (mean delta_r2_vs_mass 0.007-0.038 at c=0.25 up to 0.18-0.30 at c=2.2)",
+   "conclusion": "detecting SOME descriptor effect is not the bottleneck; separating the FAMILY from its rivals is",
+   "full_data": "results/e3_identifiability/e3_aggregate.json -> truth_vs_mass_separation"
+  },
+  "6_truth_vs_best_wrong_family_separation": {
+   "modal_best_wrong_model": [
+    {"truth_family": "mass_affine_descriptor", "best_wrong": "M_exp", "share": 0.721},
+    {"truth_family": "mass_exponential_descriptor", "best_wrong": "M_affine", "share": 0.694},
+    {"truth_family": "mass_interaction", "best_wrong": "M_exp", "share": 0.765, "note": "still loses to truth in 100% of frozen-range worlds"},
+    {"truth_family": "mass_saturating_descriptor", "best_wrong": "M_affine", "share": 0.799}
+   ],
+   "full_data": "results/e3_identifiability/e3_aggregate.json -> truth_vs_best_wrong_separation, best_wrong_model_frequency"
+  },
+  "7_identifiability_curves": "results/e3_identifiability/e3_aggregate.json -> identifiability_curves (default noise/6pt grid, noise-free, 12pt grid)",
+  "8_special_analysis_F02_F03_F09_F18": [
+   {"case": "F02", "family": "mass_affine_descriptor", "noise_sd": 0.0295, "v1_observed_generation": "3/12", "e3_oracle_ceiling_bic": 0.487, "classification": "WEAKLY_IDENTIFIABLE"},
+   {"case": "F03", "family": "mass_affine_descriptor", "noise_sd": 0.06, "v1_observed_generation": "1/12", "e3_oracle_ceiling_bic": 0.360, "classification": "WEAKLY_IDENTIFIABLE"},
+   {"case": "F09", "family": "mass_saturating_descriptor", "noise_sd": 0.02, "v1_observed_generation": "0/12", "e3_oracle_ceiling_bic": 0.820, "classification": "IDENTIFIABLE", "attribution": "SEARCH_LIMITED"},
+   {"case": "F18", "family": "mass_exponential_descriptor", "noise_sd": 0.02, "v1_observed_generation": "0/12", "e3_oracle_ceiling_bic": 0.527, "classification": "MARGINAL", "attribution": "GRAMMAR_LIMITED_THEN_MARGINAL"}
+   ],
+  "9_f18_distinguishable_under_intended_geometry": {
+   "intended_geometry_grid6_bic_rate": 0.527,
+   "twelve_point_grid_bic_rate": 0.540,
+   "classification": "MARGINAL",
+   "distinguishable": false,
+   "e5_test2_gate_cleared": false,
+   "conclusion": "does not clear the IDENTIFIABLE bar E5 Test 2 requires before admitting exp to the grammar is worth evaluating on safety; admitting exp is not licensed by this measurement",
+   "partial_confirmation_of_PE5_1": true
+  }
+ },
+ "frozen_operating_point_disposition": {
+  "description": "c in {0.25,0.40,0.55}, noise=family's real production default, grid=6",
+  "mass_affine_descriptor": {"bic_rate": 0.553, "bic_wilson_lower": 0.473, "classification": "MARGINAL", "c_star_bic": 1.1, "search_side_attribution_licensed": false},
+  "mass_saturating_descriptor": {"bic_rate": 0.820, "bic_wilson_lower": 0.751, "classification": "IDENTIFIABLE", "c_star_bic": 0.4, "search_side_attribution_licensed": true},
+  "mass_interaction": {"bic_rate": 1.000, "bic_wilson_lower": 0.975, "classification": "IDENTIFIABLE", "c_star_bic": 0.25, "search_side_attribution_licensed": true},
+  "mass_exponential_descriptor": {"bic_rate": 0.527, "bic_wilson_lower": 0.447, "classification": "MARGINAL", "c_star_bic": 1.1, "search_side_attribution_licensed": false},
+  "mass_power_control": {"specificity_rate_pooled": 0.905, "false_structure_rate_pooled": 0.095, "note": "control, not a G2 truth family"}
+ },
+ "h_id_noise_result": {
+  "prediction_PE3_2": "failure survives at zero response noise (structural closeness)",
+  "measured": "every family reaches ~1.0 oracle-selection rate at noise_sd=0.0, at every tested coefficient including the smallest",
+  "verdict": "FALSIFIED -- the default-noise confusability is driven by response-measurement noise propagating through the g estimator, not by fundamental shape inseparability"
+ },
+ "h_id_geometry_result": {
+  "prediction": "doubling the energy grid from 6 to 12 points materially raises identifiability",
+  "measured": "confirmed for mass_affine_descriptor (crosses IDENTIFIABLE at c=0.55 under 12pt vs c=1.1 under 6pt) and mass_saturating_descriptor (modest gains); not confirmed for mass_exponential_descriptor (flat, within sampling noise)",
+  "verdict": "PARTIALLY_CONFIRMED"
+ },
+ "search_limited_vs_data_limited": {
+  "data_limited": ["mass_affine_descriptor", "mass_exponential_descriptor"],
+  "search_limited": ["mass_saturating_descriptor"],
+  "grammar_limited_then_marginal": ["mass_exponential_descriptor"],
+  "identifiable_not_specifically_attributed_here": ["mass_interaction"],
+  "not_a_truth_family_control_only": ["mass_power"]
+ },
+ "hostile_audit": {
+  "overall_pass": true,
+  "checks": {
+   "A_B_manifest_and_execution_completeness": "PASS -- manifest and executed world-ID sets are an exact bijection, 0 missing/extra/duplicate, 10000/10000 status=OK",
+   "C_zero_pysr_imports": "PASS -- 0 static import hits across every touched file, 0 pysr-named modules loaded dynamically",
+   "D_reproducibility": "PASS -- 40 randomly sampled worlds re-run from world_id alone reproduce every persisted number exactly (BIC to 1e-9)",
+   "E_no_post_result_criterion_changes": "PASS -- thresholds/factor levels/case counts verified identical to the frozen design documents",
+   "F_aggregate_reconciliation": "PASS -- every count reconciles exactly (10000=5x2000, 200 cells x 50 reps=10000, confusion rows sum to 150)"
+  },
+  "full_report": "results/e3_identifiability/e3_hostile_audit.json"
+ },
+ "deliverables": {
+  "narrative_report": "E3_RESULTS.md",
+  "manifest": "results/e3_identifiability/e3_manifest.json",
+  "per_world_records": "results/e3_identifiability/e3_worlds.jsonl",
+  "per_world_table_csv": "results/e3_identifiability/e3_per_world_table.csv",
+  "aggregate_json": "results/e3_identifiability/e3_aggregate.json",
+  "confusion_matrices_csv": "results/e3_identifiability/e3_confusion_matrices.csv",
+  "hostile_audit_json": "results/e3_identifiability/e3_hostile_audit.json",
+  "hashes_json": "results/e3_identifiability/e3_hashes.json",
+  "scripts": "scripts/e3_identifiability/{_bootstrap,v2c_generator,oracle_models,manifest,run_e3,aggregate_e3,hostile_audit_e3}.py"
+ },
+ "runtime": {"wall_clock_seconds": 55.6, "workers": 7, "storage_mb_approx": 37.7, "design_estimate": "2 to 4 CPU-hours"},
+ "terminal_state": "E3 COMPLETE - G2 IDENTIFIABILITY CEILING ESTABLISHED"
+}

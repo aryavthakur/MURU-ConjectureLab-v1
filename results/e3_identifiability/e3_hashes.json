@@ -1,0 +1,65 @@
+{
+ "files": {
+  "E3_RESULTS.json": {
+   "bytes": 10089,
+   "sha256": "f26e75df0df44c8a9cc386ee2ff2383f1d2f7e10d2dbe4866099ded021eddec3"
+  },
+  "E3_RESULTS.md": {
+   "bytes": 30284,
+   "sha256": "728b56ccc8045dd71dade0a13ada2963bb6149ae4bef80ffe67addf95f0a1b36"
+  },
+  "results/e3_identifiability/e3_aggregate.json": {
+   "bytes": 220855,
+   "sha256": "52e3b8304636984f4588b1c56e440c7dce00fbbe8b1002013b907622e9a55e0e"
+  },
+  "results/e3_identifiability/e3_confusion_matrices.csv": {
+   "bytes": 9306,
+   "sha256": "853095186d4bd9c43b860525ecb6c298ec5a5687ef2674dd92387c46ee3ca221"
+  },
+  "results/e3_identifiability/e3_hostile_audit.json": {
+   "bytes": 4268,
+   "sha256": "bc40e6668b8fd004135abfc0223d78127b392a654d50112743cf03786cf3c052"
+  },
+  "results/e3_identifiability/e3_manifest.json": {
+   "bytes": 2538940,
+   "sha256": "70569f8c1ff84d148437a3676ee07e749b7ac442492b1d010397ae149ecec6fa"
+  },
+  "results/e3_identifiability/e3_per_world_table.csv": {
+   "bytes": 4838464,
+   "sha256": "9249b2245391b7429d6d496b838b50c50a2e83b4b0252d255f9af550f98d7ffd"
+  },
+  "results/e3_identifiability/e3_worlds.jsonl": {
+   "bytes": 30367275,
+   "sha256": "a278fe6249f0870a6eed80e342d210bf2e9068902ace1addb4efaedfaedd7c7e"
+  },
+  "scripts/e3_identifiability/_bootstrap.py": {
+   "bytes": 1102,
+   "sha256": "85f79343c41d1c3bfc52a11c3e6300cb0c883c490fe972c048e8744025768e31"
+  },
+  "scripts/e3_identifiability/aggregate_e3.py": {
+   "bytes": 22088,
+   "sha256": "4592a595a7221f26b4a4c89edfd646a1aa37a23cb358daea6ad4d86d47bedc34"
+  },
+  "scripts/e3_identifiability/hostile_audit_e3.py": {
+   "bytes": 12238,
+   "sha256": "631420aac984dac9d0927007919d400eb53b13aeef8562f756cc4fee80d02411"
+  },
+  "scripts/e3_identifiability/manifest.py": {
+   "bytes": 3878,
+   "sha256": "9e54788748367de156ce6e510fffb12e90a47d61e4c968b378b26cc1d3c18805"
+  },
+  "scripts/e3_identifiability/oracle_models.py": {
+   "bytes": 9257,
+   "sha256": "557a63e83e42585664c9441e7585495636a15b3aa795592f946f58ca26ba0d62"
+  },
+  "scripts/e3_identifiability/run_e3.py": {
+   "bytes": 7940,
+   "sha256": "e0d61ccdb084b1b3f2adfb30cad73a6def287e7df4ab2541b4217f291dc89066"
+  },
+  "scripts/e3_identifiability/v2c_generator.py": {
+   "bytes": 10736,
+   "sha256": "019083e398511cdef9da27bca03a07ca9f265fac076dd0e74cbb2075afd567b8"
+  }
+ },
+ "generated_from": "scripts/e3_identifiability + top-level E3_RESULTS.{md,json} + results/e3_identifiability outputs"
+}
