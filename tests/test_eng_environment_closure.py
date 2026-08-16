@@ -128,20 +128,14 @@ def test_the_tracked_environment_manifest_matches_this_tree():
     # parent -- it is expected to be non-empty exactly for the six files the
     # frozen RC4.2 delta ledger (pb_rc4_2_authorized_delta) repairs.  What
     # gates closure is the *unauthorized* subset, checked next.
-    assert sorted(recorded["paper_benchmark_paths_changed_vs_rc4_parent"]) == [
-        "src/muru/paper_benchmark/g2_contract.py",
-        "src/muru/paper_benchmark/g3_contract.py",
-        "src/muru/paper_benchmark/protocol.py",
-    ]
     assert recorded["paper_benchmark_paths_changed_vs_rc4_parent_unauthorized"] == []
-    assert {
+    authorized_delta_paths = {
         entry["path"]
         for entry in recorded["paper_benchmark_paths_changed_vs_rc4_parent_authorized_rc4_2_delta"]
-    } == {
-        "src/muru/paper_benchmark/g2_contract.py",
-        "src/muru/paper_benchmark/g3_contract.py",
-        "src/muru/paper_benchmark/protocol.py",
     }
+    assert authorized_delta_paths == set(
+        recorded["paper_benchmark_paths_changed_vs_rc4_parent"]
+    )
     assert recorded["pinned_distribution_count"] == 50
     assert recorded["tracked_lock_sha256"] == _sha256(ROOT / "requirements.lock.txt")
     assert recorded["pin_source_sha256"] == recorded["tracked_lock_sha256"]

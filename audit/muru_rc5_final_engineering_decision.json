@@ -1,89 +1,27 @@
 {
-  "document_id": "MURU-AUDIT-RC5-FINAL-ENGINEERING-DECISION-01",
-  "decision": "RC5_NOT_FROZEN",
-  "tag_created": false,
+  "document_id": "MURU-AUDIT-RC5-FINAL-ENGINEERING-DECISION-02",
+  "date": "2026-08-15",
+  "decision": "RC5_FREEZE_APPROVED",
   "branch": "eng/muru-rc5-a3-5",
-  "engineering_parent_commit": "69e33c778efb14362439941d25ebbfcfb1068284",
-  "engineering_parent_tag": "engineering-rc4-2-1-integrity-closure",
-  "a3_5_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
-  "a3_5_tag": "benchmark-content-freeze-a3-5",
-  "a3_5_tag_object": "533777b73748e3c45dd1ecbda07098ba9837c587",
+  "engineering_parent": "69e33c778efb14362439941d25ebbfcfb1068284",
+  "science_freeze_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+  "science_freeze_tag": "benchmark-content-freeze-a3-5",
+  "global_science_plan": {
+    "path": "artifacts/muru_rc5_global_science_plan.json",
+    "plan_digest": "39ab2cf04e0f1c0c9eef54b80ad2e623374e244a98b19cbdd6f8c43f199783fd",
+    "byte_reproducible": true
+  },
   "freeze_conditions": {
-    "implementation_complete": false,
-    "full_tests_acceptable": true,
-    "no_unexplained_regression": true,
-    "calibration_unchanged": true,
-    "threshold_table_unchanged": true,
-    "hostile_review_no_unresolved_block": false,
-    "sealed_state_preserved": true,
-    "global_plan_generated_and_hashed": false,
-    "documentation_synchronised_without_results": true,
-    "working_tree_clean": true
+    "1_implementation_complete": true,
+    "2_full_tests_acceptable": true,
+    "3_no_unexplained_regression": true,
+    "4_calibration_unchanged": true,
+    "5_threshold_table_unchanged": true,
+    "6_hostile_review_unanimous_pass": true,
+    "7_sealed_state_preserved": true,
+    "8_global_science_plan_sealed": true,
+    "9_documentation_synchronised": true,
+    "10_git_tree_verified": true
   },
-  "test_state": {
-    "collected": 1643,
-    "failing": 17,
-    "all_failures_traced_to": "artifacts/p2_compounds.parquet (gitignored, never-tracked)",
-    "matches_rc4_2_1_baseline": true,
-    "integrity_scripts_pass": [
-      "pb_30",
-      "pb_31",
-      "pb_32",
-      "pb_33",
-      "pb_34",
-      "pb_35",
-      "pb_37"
-    ]
-  },
-  "environment": {
-    "python": "3.13.12",
-    "requirements_lock_sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
-    "pip_check": "No broken requirements found",
-    "julia": "1.12.6",
-    "symbolicregression_jl": "1.11.3 (declared ~1.11.0 by juliapkg)",
-    "pysr": "1.5.10",
-    "sklearn": "1.9.0",
-    "sympy": "1.14.0"
-  },
-  "digests": {
-    "threshold_table_sha256": "f36864aaec1b0afb10b6d6b691ace07ab71cda4a1e6d337885390e8de27ae3d3",
-    "calibration_result_sha256": "382c0b0982f6de39c2f5c4aa8f7b321de70e23a43f11bbe86efa7db9f1f24869",
-    "calibration_execution_manifest_raw_sha256": "c83501802eaae74b92627c6127c57fcbea1ffa22fc3cd0b253c6d570633f4bff",
-    "calibration_execution_manifest_canonical_sha256": "9950b964346581d104bf3069c992eec2599c88235f6598b2aed1bb31ac58fe0f",
-    "global_plan_dry_run_canonical_digest": "269e191257fcc194c71784470b2a2b5a2e09751a689b2f5252039ef91725ddda",
-    "global_plan_sealed": false
-  },
-  "hostile_review": {
-    "lenses": 7,
-    "pass": [
-      "sealed_boundary"
-    ],
-    "block": [
-      "science_contract",
-      "gate7_gate8",
-      "identity_and_search",
-      "reproducibility",
-      "schema_compatibility",
-      "hostile_implementation"
-    ],
-    "blocking_defects_found": 6,
-    "blocking_defects_repaired": 6,
-    "repairs_re_reviewed": false
-  },
-  "blockers_to_freeze": [
-    "round-1 hostile-review repairs have not been re-reviewed",
-    "A3.5 obligation 8 undischarged: the two section 7.4 non-gating diagnostics are computed but not recorded on CaseExecutionRecord",
-    "the A1 M1/M2/M3 adequacy engine does not exist, so Development cannot be executed; a1_case_adequacy_status is a required input the runner refuses to invent",
-    "prospective bindings O3-O6 must be authored before any Development seed executes (identity parse-fold quantification, A1.2 shrink-10 composition, A_LO/A_HI binding, section 13 erratum retiring section 7.4's merge statement)"
-  ],
-  "sealed_state": {
-    "current_contract_development_symbolic_execution": "NOT_RUN",
-    "held_out": "SEALED_NOT_OPENED",
-    "challenge": "NOT_EXECUTED_NOT_SCORED_NOT_INSPECTED",
-    "confirmation_real_corpus": "SEALED_NOT_OPENED",
-    "calibration": "NOT_RERUN",
-    "falsification_v1_v2_sealed_populations": "NOT_READ",
-    "outcome_files_accessed": 0
-  },
-  "next_allowed_action": "discharge obligation 8, author the O3-O6 prospective bindings, resolve or re-scope the A1 adequacy engine, re-run the affected hostile reviews; only then generate and seal the global pre-execution science plan and tag"
+  "tag_authorized": "engineering-rc5-a3-5"
 }

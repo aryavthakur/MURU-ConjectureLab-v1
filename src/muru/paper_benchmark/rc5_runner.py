@@ -722,6 +722,8 @@ def execute_case(
         f9_stress_test_metric=(
             falsification.f9_stress_test_metric if falsification else None
         ),
+        winning_class_distinct_expression_strings=selection.distinct_expression_strings,
+        winning_class_distinct_coefficient_vectors=selection.distinct_coefficient_vectors,
     )
     return _with_endpoints(record, content, a1_status, scalars, acceptance.result)
 

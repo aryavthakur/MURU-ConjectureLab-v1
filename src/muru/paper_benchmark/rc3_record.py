@@ -355,6 +355,12 @@ class CaseExecutionRecord:
     f9_stress_test_metric: float | None = None
     f9_acceptance_calibration_status: str = F9_ACCEPTANCE_CALIBRATION_STATUS
 
+    #: A3.5 section 7.4 / obligation 8.  Winning class heterogeneity diagnostics:
+    #: computed and recorded so class heterogeneity cannot hide behind selection_count,
+    #: and read by no gate.
+    winning_class_distinct_expression_strings: int = 0
+    winning_class_distinct_coefficient_vectors: int = 0
+
     schema_version: str = RECORD_SCHEMA_VERSION
 
     def __post_init__(self) -> None:
@@ -387,6 +393,16 @@ class CaseExecutionRecord:
             raise ValueError(
                 f"selection_count {self.selection_count} outside "
                 f"0..{STABILITY_DENOMINATOR}"
+            )
+        if self.winning_class_distinct_expression_strings < 0:
+            raise ValueError(
+                f"winning_class_distinct_expression_strings must be >= 0, "
+                f"got {self.winning_class_distinct_expression_strings}"
+            )
+        if self.winning_class_distinct_coefficient_vectors < 0:
+            raise ValueError(
+                f"winning_class_distinct_coefficient_vectors must be >= 0, "
+                f"got {self.winning_class_distinct_coefficient_vectors}"
             )
         if self.acceptance_gate_reached not in VALID_ACCEPTANCE_GATES:
             raise ValueError(
@@ -521,6 +537,12 @@ class CaseExecutionRecord:
             "ceiling_r2": _encode_float(self.ceiling_r2),
             "ceiling_fraction": _encode_float(self.ceiling_fraction),
             "candidate_test_r2": _encode_float(self.candidate_test_r2),
+            "winning_class_distinct_expression_strings": int(
+                self.winning_class_distinct_expression_strings
+            ),
+            "winning_class_distinct_coefficient_vectors": int(
+                self.winning_class_distinct_coefficient_vectors
+            ),
             "falsification_results": {
                 # __post_init__ guarantees every hard gate is present when the
                 # case reached Gate 8, that nothing else ever is, and that a

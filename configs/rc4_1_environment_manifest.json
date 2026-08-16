@@ -9,16 +9,16 @@
  "errors": [],
  "identity": "muru-rc4.1-environment-closure-1.0.0",
  "installed_versions": {
-  "gplearn": "NOT_INSTALLED",
-  "juliacall": "NOT_INSTALLED",
-  "juliapkg": "NOT_INSTALLED",
+  "gplearn": "0.4.3",
+  "juliacall": "0.9.26",
+  "juliapkg": "0.1.25",
   "mpmath": "1.3.0",
-  "numpy": "1.26.4",
-  "pandas": "2.2.2",
-  "pysr": "NOT_INSTALLED",
-  "rdkit": "NOT_INSTALLED",
-  "scikit-learn": "NOT_INSTALLED",
-  "scipy": "1.17.1",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "pysr": "1.5.10",
+  "rdkit": "2026.3.5",
+  "scikit-learn": "1.9.0",
+  "scipy": "1.18.0",
   "sympy": "1.14.0"
  },
  "julia": {
@@ -35,23 +35,152 @@
  "paper_benchmark_paths_changed_vs_rc4_parent": [
   "src/muru/paper_benchmark/g2_contract.py",
   "src/muru/paper_benchmark/g3_contract.py",
-  "src/muru/paper_benchmark/protocol.py"
+  "src/muru/paper_benchmark/identity_contract.py",
+  "src/muru/paper_benchmark/preflight.py",
+  "src/muru/paper_benchmark/protocol.py",
+  "src/muru/paper_benchmark/rc3_acceptance.py",
+  "src/muru/paper_benchmark/rc3_ceiling.py",
+  "src/muru/paper_benchmark/rc3_record.py",
+  "src/muru/paper_benchmark/rc5_adapter.py",
+  "src/muru/paper_benchmark/rc5_authorization.py",
+  "src/muru/paper_benchmark/rc5_case_scoring.py",
+  "src/muru/paper_benchmark/rc5_estimate.py",
+  "src/muru/paper_benchmark/rc5_falsify.py",
+  "src/muru/paper_benchmark/rc5_g1_bridge.py",
+  "src/muru/paper_benchmark/rc5_manifest.py",
+  "src/muru/paper_benchmark/rc5_runner.py",
+  "src/muru/paper_benchmark/rc5_seeds.py",
+  "src/muru/paper_benchmark/rc5_selection.py",
+  "src/muru/paper_benchmark/rc5_store.py",
+  "src/muru/paper_benchmark/seed_band_registry.py",
+  "src/muru/paper_benchmark/structural_acceptance.py"
  ],
  "paper_benchmark_paths_changed_vs_rc4_parent_authorized_rc4_2_delta": [
   {
    "defect_id": "R3/DEFECT_C + R4/DEFECT_D",
+   "ledger": "RC4.2_R1_R4_defect_repair",
    "path": "src/muru/paper_benchmark/g2_contract.py",
    "semantic_scope": "R3: binds square/cube/inv in _safe_parse's sympify locals (reproduced verbatim from grammar.py::_SYMPY_LOCALS) and aliases x{i} to the frozen GRAMMAR_PRIMITIVES Symbol objects, fixing cancellation/reordering and making unmapped raw symbols fail closed. R4: adds truth_support_for_case, a mechanical reader of TruthRecord.active_variables/symbolic_truth_kind, supplying the truth_support operand classify_support always required. GRAMMAR_PRIMITIVES, classify_support, evaluate_g2_event, G2_HELD_OUT_DENOMINATOR=144, G2_WILSON_LOWER_GATE=0.70 unchanged; discovery/equivalence.py not imported or duplicated."
   },
   {
    "defect_id": "R2/DEFECT_B3",
+   "ledger": "RC4.2_R1_R4_defect_repair",
    "path": "src/muru/paper_benchmark/g3_contract.py",
    "semantic_scope": "adds classify_f07_event (structurally identical to classify_f19a_event/classify_f19b_event) and wires it as the dispatcher's first branch, replacing a ValueError for variant 'F07'. classify_f19a_event through classify_f20c_event, G3_HELD_OUT_DENOMINATOR=36, G3_WILSON_UPPER_GATE=0.15 unchanged."
   },
   {
+   "defect_id": "RC5 provenance-preserved import (A3.5 section 14.1)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/identity_contract.py",
+   "semantic_scope": "imported byte-identical from the A3.5 science freeze 560bf28568e2762c60edc994aac7f2b6de14081f, blob 151867cbee4cf60189afc5c393d0c8f3ca77c6a0: the frozen positive- scale-invariant cross-seed identity contract"
+  },
+  {
+   "defect_id": "RC5-MECH-1 (partition-aware preflight)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/preflight.py",
+   "semantic_scope": "run_preflight takes a partition, defaulting to \"development\", and reads the expected case count from the frozen registry instead of the literal 80. The default call is unchanged field for field; held_out_accessed reports the truth rather than a constant. No scientific behaviour, no authorisation logic, no threshold."
+  },
+  {
    "defect_id": "R1/DEFECT_A",
+   "ledger": "RC4.2_R1_R4_defect_repair",
    "path": "src/muru/paper_benchmark/protocol.py",
    "semantic_scope": "estimate_one: log_g = clip(residual, *support) replacing clip(-residual, *support) -- removes an anti-monotone sign inversion against the frozen M0 law. Fold-locality, the (-2.0, 2.0) clip range, the estimator domain, and G1's thresholds (0.80 Spearman, 0.70 Wilson lower bound) unchanged."
+  },
+  {
+   "defect_id": "RC5-D2 (A3.5 obligation 13)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc3_acceptance.py",
+   "semantic_scope": "candidate_from_record projects candidate_test_r2 andTRUTH_BLIND_FIELDS names it, so Gate 7's waiver floor is re-derivable from the record alone. No truth field is added; the projection still carries no planted truth."
+  },
+  {
+   "defect_id": "RC5-D1 (A3.5 obligation 17)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc3_ceiling.py",
+   "semantic_scope": "Removes the SUPERSEDED Gate-7 verdict. Obligation 17 names this module's previous unconditional-waiver form as precisely what must NOT be implemented, yet ceiling_satisfied (= gate_passed or waiver_applied) was still live and exported, and was acceptance-favouring wherever the candidate floor fails. ceiling_satisfied is deleted and waiver_applied is renamed waiver_regime, because it is only the CEILING half of the amended waiver. Gate 7 is now decided solely by evaluate_structural_acceptance, which has the threshold table and the complexity this module deliberately does not. The estimator, its frozen hyperparameters, the sklearn pin, the train/score partitions, ceiling_r2, candidate_r2, ceiling_fraction and gate_passed are all unchanged."
+  },
+  {
+   "defect_id": "RC5-D4 (A3.5 obligation 19)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc3_record.py",
+   "semantic_scope": "RECORD_SCHEMA_VERSION bumped to muru-rc5-case-record-2.0.0, with record_schema_generation refusing to read a legacy record as current; HARD_GATE_ORDER narrows to the four hard gates; candidate_test_r2, f9_stress_test_result, f9_stress_test_metric and f9_acceptance_calibration_status added; winning_class_distinct_expression_strings and winning_class_distinct_coefficient_vectors diagnostics added; __post_init__ requires the hard gates and the F9 pair exactly when the case reached Gate 8, and refuses them otherwise. Canonical serialization, digest convention and the provenance-sidecar split are unchanged."
+  },
+  {
+   "defect_id": "RC5-D12",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_adapter.py",
+   "semantic_scope": "new, purely additive: the case-to-search design and Gate-2 input provenance from the calibration path"
+  },
+  {
+   "defect_id": "RC5 authorization guard",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_authorization.py",
+   "semantic_scope": "new, purely additive: the frozen partition authorization contract enforcing development partition exclusivity"
+  },
+  {
+   "defect_id": "RC5 mechanical + D10",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_case_scoring.py",
+   "semantic_scope": "new, purely additive: per-case wiring of A3.4's frozen scorers andthe sole G3 authority"
+  },
+  {
+   "defect_id": "RC5-D14",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_estimate.py",
+   "semantic_scope": "new, purely additive: the two-stage Phi/g fit at E_REF=45.0, the raw-g search target, and invalid_fraction over denominator 30"
+  },
+  {
+   "defect_id": "RC5-D7",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_falsify.py",
+   "semantic_scope": "new, purely additive: the five per-case falsification procedures under A3.5 section 6 as amended by 6.9"
+  },
+  {
+   "defect_id": "RC5-D8",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_g1_bridge.py",
+   "semantic_scope": "new, purely additive: G1's leave-one-energy-out trajectory bridgeunder A1.2/A1.3/A1.4"
+  },
+  {
+   "defect_id": "RC5-D9",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_manifest.py",
+   "semantic_scope": "new, purely additive: the two-layer pre-execution manifest of A3.5 section 8.4"
+  },
+  {
+   "defect_id": "RC5 runner",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_runner.py",
+   "semantic_scope": "new, purely additive: the production case runner, composition only"
+  },
+  {
+   "defect_id": "RC5-D6",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_seeds.py",
+   "semantic_scope": "new, purely additive: A3.5 section 8.1's injective ordinalsearch_seed plus the mandatory verify_search_seed_invariants"
+  },
+  {
+   "defect_id": "RC5-D11+D13",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_selection.py",
+   "semantic_scope": "new, purely additive: per-seed retention, cross-seed grouping by the frozen identity contract, selection_count and representative selection"
+  },
+  {
+   "defect_id": "RC5 mechanical",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/rc5_store.py",
+   "semantic_scope": "new, purely additive: the case-scoped seed store, atomic case- record writes and deterministic resume"
+  },
+  {
+   "defect_id": "RC5 provenance-preserved import (A3.5 section 8.1)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/seed_band_registry.py",
+   "semantic_scope": "imported byte-identical from 560bf28568e2762c60edc994aac7f2b6de14081f, blob b6b127ef11fc7f2c46379acd089755057f5ee7cb: the frozen seed-band governance registry"
+  },
+  {
+   "defect_id": "RC5-D1+D3 (A3.5 obligations 14, 17, 18)",
+   "ledger": "RC5_A3_5_implementation",
+   "path": "src/muru/paper_benchmark/structural_acceptance.py",
+   "semantic_scope": "Gate 7's waiver gains the candidate_test_r2 >null_threshold[min(complexity,20)] conjunct and StructuralCandidate gains that field; F5_SCAFFOLD_HOLDOUT is dropped from FalsificationRung; REQUIRED_FALSIFICATION_RUNGS becomes REQUIRED_HARD_GATES = {F1,F4,F7,F10}; check_falsification_harness becomes the fail-closed check_gate8 (result != PASS). CEILING_FRACTION_GATE=0.80, CEILING_WAIVER_THRESHOLD=0.05, STABILITY_GATE=20, STABILITY_DENOMINATOR=30, MAX_COMPLEXITY=20, MAX_INVALID_FRACTION=0.005 and Gates 1-6 are all unchanged."
   }
  ],
  "paper_benchmark_paths_changed_vs_rc4_parent_unauthorized": [],
@@ -186,11 +315,19 @@
    "src/muru/paper_benchmark/rc3_calibration_runner.py",
    "src/muru/paper_benchmark/rc3_calibration_worlds.py",
    "src/muru/paper_benchmark/rc3_ceiling.py",
+   "src/muru/paper_benchmark/rc5_adapter.py",
+   "src/muru/paper_benchmark/rc5_adequacy.py",
+   "src/muru/paper_benchmark/rc5_estimate.py",
+   "src/muru/paper_benchmark/rc5_falsify.py",
+   "src/muru/paper_benchmark/rc5_g1_bridge.py",
+   "src/muru/paper_benchmark/rc5_runner.py",
+   "src/muru/paper_benchmark/rc5_selection.py",
    "src/muru/screen.py",
    "src/muru/spectra.py",
    "src/muru/splits.py",
    "src/muru/synth/generators.py",
    "src/muru/synth/truth.py",
+   "tests/rc5_synthetic.py",
    "tests/test_a34_predictive_equivalence.py",
    "tests/test_a3_1_calibration_contract.py",
    "tests/test_a3_2_calibration_design.py",
@@ -211,6 +348,12 @@
    "tests/test_paper_benchmark_protocol.py",
    "tests/test_rc3_calibration.py",
    "tests/test_rc3_ceiling.py",
+   "tests/test_rc5_adapter.py",
+   "tests/test_rc5_adequacy.py",
+   "tests/test_rc5_estimate.py",
+   "tests/test_rc5_falsify.py",
+   "tests/test_rc5_g1_bridge.py",
+   "tests/test_rc5_selection.py",
    "tests/test_splits.py"
   ],
   "pandas": [
@@ -239,9 +382,16 @@
    "src/muru/paper_benchmark/generator.py",
    "src/muru/paper_benchmark/protocol.py",
    "src/muru/paper_benchmark/rc3_calibration_worlds.py",
+   "src/muru/paper_benchmark/rc5_adapter.py",
+   "src/muru/paper_benchmark/rc5_adequacy.py",
+   "src/muru/paper_benchmark/rc5_estimate.py",
+   "src/muru/paper_benchmark/rc5_falsify.py",
+   "src/muru/paper_benchmark/rc5_g1_bridge.py",
+   "src/muru/paper_benchmark/rc5_runner.py",
    "src/muru/screen.py",
    "src/muru/splits.py",
    "src/muru/synth/generators.py",
+   "tests/rc5_synthetic.py",
    "tests/test_confirmation_seal.py",
    "tests/test_corpus_assertions.py",
    "tests/test_models.py",
@@ -252,6 +402,12 @@
    "tests/test_paper_benchmark_adequacy.py",
    "tests/test_paper_benchmark_protocol.py",
    "tests/test_rc3_ceiling.py",
+   "tests/test_rc5_adapter.py",
+   "tests/test_rc5_adequacy.py",
+   "tests/test_rc5_estimate.py",
+   "tests/test_rc5_falsify.py",
+   "tests/test_rc5_g1_bridge.py",
+   "tests/test_rc5_selection.py",
    "tests/test_splits.py"
   ],
   "pymzml": [
@@ -266,7 +422,8 @@
    "scripts/t3_00_env.py",
    "src/muru/discovery/engine.py",
    "src/muru/paper_benchmark/rc3_calibration_runner.py",
-   "src/muru/paper_benchmark/rc3_provenance.py"
+   "src/muru/paper_benchmark/rc3_provenance.py",
+   "src/muru/paper_benchmark/rc5_adapter.py"
   ],
   "pytest": [
    "tests/test_a34_contract.py",
@@ -286,6 +443,7 @@
    "tests/test_eng_environment_closure.py",
    "tests/test_features.py",
    "tests/test_g3_f07_dispatcher_equivalence.py",
+   "tests/test_identity_contract.py",
    "tests/test_models.py",
    "tests/test_ov_blinding.py",
    "tests/test_ov_decision.py",
@@ -316,6 +474,23 @@
    "tests/test_rc3_provenance.py",
    "tests/test_rc3_record.py",
    "tests/test_rc3_scoring.py",
+   "tests/test_rc5_adapter.py",
+   "tests/test_rc5_adequacy.py",
+   "tests/test_rc5_authorized_delta.py",
+   "tests/test_rc5_case_scoring.py",
+   "tests/test_rc5_estimate.py",
+   "tests/test_rc5_falsify.py",
+   "tests/test_rc5_g1_bridge.py",
+   "tests/test_rc5_g3_authority.py",
+   "tests/test_rc5_grammar_identity.py",
+   "tests/test_rc5_manifest.py",
+   "tests/test_rc5_partition_identity.py",
+   "tests/test_rc5_preflight_partition.py",
+   "tests/test_rc5_runner.py",
+   "tests/test_rc5_seeds.py",
+   "tests/test_rc5_selection.py",
+   "tests/test_rc5_store.py",
+   "tests/test_seed_band_separation.py",
    "tests/test_splits.py"
   ],
   "rdkit": [
@@ -334,7 +509,8 @@
    "src/muru/discovery/nulls.py",
    "src/muru/objval/decision.py",
    "src/muru/screen.py",
-   "tests/test_paper_benchmark_protocol.py"
+   "tests/test_paper_benchmark_protocol.py",
+   "tests/test_rc5_estimate.py"
   ],
   "sklearn": [
    "scripts/ov_00_env.py",
@@ -373,6 +549,9 @@
    "src/muru/paper_benchmark/a34_parameter_recovery.py",
    "src/muru/paper_benchmark/a34_predictive_equivalence.py",
    "src/muru/paper_benchmark/g2_contract.py",
+   "src/muru/paper_benchmark/identity_contract.py",
+   "src/muru/paper_benchmark/rc5_selection.py",
+   "tests/test_identity_contract.py",
    "tests/test_ov_scoring.py",
    "tests/test_p3_grammar.py"
   ],

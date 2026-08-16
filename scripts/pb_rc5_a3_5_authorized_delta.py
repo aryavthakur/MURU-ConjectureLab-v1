@@ -99,7 +99,7 @@ _MODIFIED = (
             'run_preflight takes a partition, defaulting to "development", and reads the expected case count from the frozen registry instead of the literal 80. The default call is unchanged field for field; held_out_accessed reports the truth rather than a constant. No scientific behaviour, no authorisation logic, no threshold.'
         ),
         old_blob_sha1='76767ecac84970791a68a0dfb5ad5948d8618f4e',
-        new_blob_sha1='c60f6ee73fad8e984e3d288bdadf031693e36108',
+        new_blob_sha1='a9020d554aa9a3077403116385d66e726bd8df70',
     ),
     AuthorizedChange(
         path='src/muru/paper_benchmark/structural_acceptance.py',
@@ -117,12 +117,12 @@ _MODIFIED = (
         path='src/muru/paper_benchmark/rc3_record.py',
         defect_id='RC5-D4 (A3.5 obligation 19)',
         old_sha256='a1359e1e96ba268396dec7c21cfddffdc4110d817b4ddeb70b0b86161e7c0ff7',
-        new_sha256='3947f22667f047c76505d58cdee1531ec66e71548799d232cb650252d900bf15',
+        new_sha256='c7aa82699271ad433611ed4b1181b2aefdb30deb7f92ed2a0b1fff7b5e2ed665',
         semantic_scope=(
-            'RECORD_SCHEMA_VERSION bumped to muru-rc5-case-record-2.0.0, with record_schema_generation refusing to read a legacy record as current; HARD_GATE_ORDER narrows to the four hard gates; candidate_test_r2, f9_stress_test_result, f9_stress_test_metric and f9_acceptance_calibration_status added; __post_init__ requires the hard gates and the F9 pair exactly when the case reached Gate 8, and refuses them otherwise. Canonical serialization, digest convention and the provenance-sidecar split are unchanged.'
+            'RECORD_SCHEMA_VERSION bumped to muru-rc5-case-record-2.0.0, with record_schema_generation refusing to read a legacy record as current; HARD_GATE_ORDER narrows to the four hard gates; candidate_test_r2, f9_stress_test_result, f9_stress_test_metric and f9_acceptance_calibration_status added; winning_class_distinct_expression_strings and winning_class_distinct_coefficient_vectors diagnostics added; __post_init__ requires the hard gates and the F9 pair exactly when the case reached Gate 8, and refuses them otherwise. Canonical serialization, digest convention and the provenance-sidecar split are unchanged.'
         ),
         old_blob_sha1='fbd81ec7b1655a27f4d4aaaf64a11827d28dcd49',
-        new_blob_sha1='47f7d8643c43a4be629bf79cb1ce78d66fc186e6',
+        new_blob_sha1='2b4b54f56d707f8fcdafc9192aa984879cf836dd',
     ),
     AuthorizedChange(
         path='src/muru/paper_benchmark/rc3_acceptance.py',
@@ -191,12 +191,12 @@ _MODIFIED = (
         path='tests/test_rc3_record.py',
         defect_id='RC5-D4 tests',
         old_sha256='eb2588555fb06c340dd6bc2cc9ece17fe0c65c5acd622d734472998da4d910f7',
-        new_sha256='057573483d15957c8c7e6ae28349bfa95a9238f5d0ab33a158ae7fc89a837f43',
+        new_sha256='49473315798a95554bc60289b1b48897176506b8cb19e4f242c27f96ed8502a8',
         semantic_scope=(
             'Six-rung assertions become four-rung; new coverage for the F9 secondary fields, the non-hard-gate refusal, the reached-Gate-8 conditionality, the schema version bump and legacy-record identification.'
         ),
         old_blob_sha1='c77b222b4ac4be76e5668d50267b34f3d603d12a',
-        new_blob_sha1='c174777ac5fca8e5f3d28a0aa2d9e99c2e1aa045',
+        new_blob_sha1='a3259e4a06d3eb98f1e7ddc2dce893fb0e38505f',
     ),
     AuthorizedChange(
         path='tests/test_rc3_acceptance.py',
@@ -339,15 +339,37 @@ _ADDED = (
         new_blob_sha1='67eeb8bd39fd2a33eae6bf25cd572dc9b64b8f9d',
     ),
     AuthorizedChange(
+        path='src/muru/paper_benchmark/rc5_authorization.py',
+        defect_id='RC5 authorization guard',
+        old_sha256=None,
+        new_sha256='fd1dfe745feaf4344a08678eb6266e3bfb87add119b9927f78550ed70ebcfc72',
+        semantic_scope=(
+            'new, purely additive: the frozen partition authorization contract enforcing development partition exclusivity'
+        ),
+        old_blob_sha1=None,
+        new_blob_sha1='3e05f900f220d37e8e46058dc8db8f5ece49e2f2',
+    ),
+    AuthorizedChange(
+        path='src/muru/paper_benchmark/rc5_adequacy.py',
+        defect_id='RC5 adequacy engine',
+        old_sha256=None,
+        new_sha256='6ab7f9c860ddd74c6741590915d440e59e23bb0cfc5c696fecd1dd7a8a3f3382',
+        semantic_scope=(
+            'new, purely additive: the M0/M1/M2/M3 deterministic fitter and leave-one-energy-out adequacy engine'
+        ),
+        old_blob_sha1=None,
+        new_blob_sha1='bd61d3ad8406a42d6288f3d4e9a086a913e5f33d',
+    ),
+    AuthorizedChange(
         path='src/muru/paper_benchmark/rc5_runner.py',
         defect_id='RC5 runner',
         old_sha256=None,
-        new_sha256='bacb9b96409f8fdd5818ff3a4a2293b3f4bf2cd68329d8060a82c96c38cdd377',
+        new_sha256='ae3eeceb78476bc59f0a1d120a4090c30b65c94db571b11352c0ae880dba4b75',
         semantic_scope=(
             'new, purely additive: the production case runner, composition only'
         ),
         old_blob_sha1=None,
-        new_blob_sha1='f940115782f93e788d524eb19c54f484a9c29183',
+        new_blob_sha1='076e54f00b051f0fdfd3fb917015ee789f01234e',
     ),
 )
 

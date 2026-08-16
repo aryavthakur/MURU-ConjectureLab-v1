@@ -47,8 +47,8 @@
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_1_GENERATOR_VERSION.md": "8416fb1419bc3ee427910cc680b4f17ba8eb1ab934b85899d58afc82e90f60bd",
     "MURU_PAPER_BENCHMARK_AMENDMENT_A2_F16.md": "65598aa80b9d03f5c4e276e109917eae06690fe4a2b86c6ec3d2150ff8e296b7",
     "artifacts/paper_benchmark_amendment_a1.json": "self",
-    "artifacts/paper_benchmark_amendment_a2.json": "a679603f0c9581ceeac69a50ab4152b72541b442bd9445996c83862db1a2549b",
-    "artifacts/paper_benchmark_amendment_a2_1.json": "e393e921dfd66bcb7479074f7daf9d2221c1ea60ceab9941d165a05eede71551",
+    "artifacts/paper_benchmark_amendment_a2.json": "927c91228b91fb74326afb6afaed41024ddd1f7dd1c4a36e5874f36c4ea136f7",
+    "artifacts/paper_benchmark_amendment_a2_1.json": "297ae9b8d19b4a24b02cc769cea5afbb2309264f69d5c82056660e999962c615",
     "scripts/pb_30_amendment_a1_integrity.py": "65fda99a629df9203e2c04e2dec7ecaa14f7c061a9989c5c561f4b8c89b6e098",
     "scripts/pb_31_amendment_a2_integrity.py": "6f4deae398de516e8ff87b076b2048f86a0d8cf45fa324779deaa62fa991ce79",
     "scripts/pb_32_amendment_a2_1_integrity.py": "359710e464f61da4cd4adfb4a981c0a0f6766e9b05ebc4b2b9036df7b2bfc62f",
@@ -56,7 +56,7 @@
     "tests/test_paper_benchmark_adequacy.py": "e646c689c10de75548a09b1ab3fa17a1831ccdc69437b3bc6f279e3337aadcc1",
     "tests/test_paper_benchmark_amendment_a2_1_integrity.py": "736ebc44db9646cfab69d934f257b7db065a96322626a5aff58f3ed67b716717",
     "tests/test_paper_benchmark_amendment_a2_integrity.py": "4936283f6802c303e5b180bdac8011e6481a83a79ecfcda87d4c3d18687ac5c5",
-    "tests/test_paper_benchmark_amendment_integrity.py": "6306d1a7b9fdb088bb29b9ae7997b34c5a82ee90449c9541e021101bd052ba93",
+    "tests/test_paper_benchmark_amendment_integrity.py": "ade1272fa3348ddb4217c4ef85cb1f24386bcab984199387a6d0ec52a13ffea8",
     "tests/test_paper_benchmark_f16_combined.py": "ce814ffa1bf6fea9f4fcee87b54e1559d4429c45c8d8bc19b368c051b11043c7"
   },
   "amendment": "A1",
@@ -95,12 +95,20 @@
   },
   "changed_by_rc4_2_delta": [
     {
+      "defect_id": "RC5-MECH-1 (partition-aware preflight)",
+      "ledger": "RC5_A3_5_implementation",
+      "path": "src/muru/paper_benchmark/preflight.py",
+      "semantic_scope": "run_preflight takes a partition, defaulting to \"development\", and reads the expected case count from the frozen registry instead of the literal 80. The default call is unchanged field for field; held_out_accessed reports the truth rather than a constant. No scientific behaviour, no authorisation logic, no threshold."
+    },
+    {
       "defect_id": "R1/DEFECT_A",
+      "ledger": "RC4.2_R1_R4_defect_repair",
       "path": "src/muru/paper_benchmark/protocol.py",
       "semantic_scope": "estimate_one: log_g = clip(residual, *support) replacing clip(-residual, *support) -- removes an anti-monotone sign inversion against the frozen M0 law. Fold-locality, the (-2.0, 2.0) clip range, the estimator domain, and G1's thresholds (0.80 Spearman, 0.70 Wilson lower bound) unchanged."
     },
     {
       "defect_id": "R1/DEFECT_A tests",
+      "ledger": "RC4.2_R1_R4_defect_repair",
       "path": "tests/test_paper_benchmark_protocol.py",
       "semantic_scope": "6 new hand-built canary tests for R1's sign correction; no case_id/registry/generate_case/partition anywhere in the file."
     }
@@ -116,6 +124,7 @@
     "requirements.lock.txt",
     "src/muru/paper_benchmark/analysis.py",
     "src/muru/paper_benchmark/generator.py",
+    "src/muru/paper_benchmark/preflight.py",
     "src/muru/paper_benchmark/protocol.py",
     "tests/test_paper_benchmark_docs.py",
     "tests/test_paper_benchmark_protocol.py"
@@ -161,6 +170,10 @@
       "amended_sha256": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
       "original_sha256": "be026dc88f3f8c0a1eea042a34e7b49d907b499de55280d95621add22823ea48"
     },
+    "src/muru/paper_benchmark/preflight.py": {
+      "amended_sha256": "13b41e02a3715be1733d5f28e5002f6d86085be114cc47634703af1e3be3a8c4",
+      "original_sha256": "4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb"
+    },
     "src/muru/paper_benchmark/protocol.py": {
       "amended_sha256": "cb35289f68767036b8c4e96ce4763ede75b3fa146e5d51a18da704712110ed36",
       "original_sha256": "63c77d5732f0c339b99c20f7d91953324d053d4bb970ec08f10fac4666d85cf5"
@@ -194,7 +207,7 @@
   "integrity_verified": true,
   "original_content_freeze": "d94d2c9",
   "original_freeze_designation": "BENCHMARK CONTENT FREEZE V1",
-  "protected_unchanged_count": 234,
+  "protected_unchanged_count": 233,
   "protected_unchanged_paths": [
     ".gitignore",
     "BACKLOG.md",
@@ -387,7 +400,6 @@
     "src/muru/paper_benchmark/contract.py",
     "src/muru/paper_benchmark/freeze.py",
     "src/muru/paper_benchmark/governance.py",
-    "src/muru/paper_benchmark/preflight.py",
     "src/muru/paper_benchmark/registry.py",
     "src/muru/paper_benchmark/truth.py",
     "src/muru/screen.py",
@@ -623,7 +635,6 @@
     "src/muru/paper_benchmark/contract.py": "2f1262407c63c07d3ddfe0eec9e5f83f55e8325053224e81377864f47ad6d59b",
     "src/muru/paper_benchmark/freeze.py": "d18c807a359d1fb2c458bccae495d61c8b268f4cc6e34bdd27bc3af9a70efb9a",
     "src/muru/paper_benchmark/governance.py": "143c4558754044a6f03b0665589c7082987244c9f1298eeb2588f6eaab639972",
-    "src/muru/paper_benchmark/preflight.py": "4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb",
     "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
     "src/muru/paper_benchmark/truth.py": "b773d458b86390bb63a8f95e54b5d299783acc777ea6134c894d8f227c5d4719",
     "src/muru/screen.py": "ba6c29eb5fd790c2ef5d03f3f1e5b36deb14f9578250c370e95f7c8b9d45ee16",

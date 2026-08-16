@@ -47,6 +47,8 @@ CODE_PROVENANCE_PATHS = (
     "src/muru/paper_benchmark/rc3_ceiling.py",
     "src/muru/paper_benchmark/rc3_record.py",
     "src/muru/paper_benchmark/rc5_adapter.py",
+    "src/muru/paper_benchmark/rc5_adequacy.py",
+    "src/muru/paper_benchmark/rc5_authorization.py",
     "src/muru/paper_benchmark/rc5_case_scoring.py",
     "src/muru/paper_benchmark/rc5_estimate.py",
     "src/muru/paper_benchmark/rc5_falsify.py",

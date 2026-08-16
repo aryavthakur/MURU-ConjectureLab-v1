@@ -479,3 +479,34 @@ def test_null_threshold_digest_is_carried_and_affects_the_digest():
     baseline = make_record().scientific_digest()
     assert make_record(null_threshold_digest="abc123").scientific_digest() != baseline
     assert "null_threshold_digest" in make_record().scientific_payload()
+
+
+def test_winning_class_heterogeneity_diagnostics_are_recorded_and_validated():
+    rec = make_record(
+        winning_class_distinct_expression_strings=3,
+        winning_class_distinct_coefficient_vectors=2,
+    )
+    payload = rec.scientific_payload()
+    assert payload["winning_class_distinct_expression_strings"] == 3
+    assert payload["winning_class_distinct_coefficient_vectors"] == 2
+
+    # Negative values must be rejected in __post_init__
+    with pytest.raises(ValueError, match="winning_class_distinct_expression_strings"):
+        make_record(winning_class_distinct_expression_strings=-1)
+    with pytest.raises(ValueError, match="winning_class_distinct_coefficient_vectors"):
+        make_record(winning_class_distinct_coefficient_vectors=-1)
+
+
+def test_winning_class_heterogeneity_diagnostics_do_not_gate_acceptance():
+    """A3.5 section 7.4: these two fields are non-gating diagnostics only."""
+    rec_base = make_record(
+        winning_class_distinct_expression_strings=1,
+        winning_class_distinct_coefficient_vectors=1,
+    )
+    rec_het = make_record(
+        winning_class_distinct_expression_strings=15,
+        winning_class_distinct_coefficient_vectors=12,
+    )
+    assert rec_base.acceptance_status == rec_het.acceptance_status
+    assert rec_base.acceptance_gate_reached == rec_het.acceptance_gate_reached
+

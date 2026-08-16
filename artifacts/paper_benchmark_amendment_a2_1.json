@@ -29,6 +29,7 @@
     "scripts/pb_30_amendment_a1_integrity.py",
     "scripts/pb_31_amendment_a2_integrity.py",
     "src/muru/paper_benchmark/generator.py",
+    "src/muru/paper_benchmark/preflight.py",
     "src/muru/paper_benchmark/protocol.py",
     "tests/test_paper_benchmark_amendment_a2_integrity.py",
     "tests/test_paper_benchmark_amendment_integrity.py",
@@ -86,6 +87,11 @@
       "a2_sha256": "d306bd9c575ada4d888db3bf202aedc46cfb25855265d00c2dd273d0172434f9",
       "justification": "GENERATOR_VERSION bumped to paper-benchmark-generator-1.1.0; adds scientific_payload_hash helper (byte-neutral refactor)"
     },
+    "src/muru/paper_benchmark/preflight.py": {
+      "a2_1_sha256": "13b41e02a3715be1733d5f28e5002f6d86085be114cc47634703af1e3be3a8c4",
+      "a2_sha256": "4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb",
+      "justification": ""
+    },
     "src/muru/paper_benchmark/protocol.py": {
       "a2_1_sha256": "cb35289f68767036b8c4e96ce4763ede75b3fa146e5d51a18da704712110ed36",
       "a2_sha256": "63c77d5732f0c339b99c20f7d91953324d053d4bb970ec08f10fac4666d85cf5",
@@ -97,7 +103,7 @@
       "justification": "content_hash pins replaced with version-independent scientific_payload_hash pins"
     },
     "tests/test_paper_benchmark_amendment_integrity.py": {
-      "a2_1_sha256": "6306d1a7b9fdb088bb29b9ae7997b34c5a82ee90449c9541e021101bd052ba93",
+      "a2_1_sha256": "ade1272fa3348ddb4217c4ef85cb1f24386bcab984199387a6d0ec52a13ffea8",
       "a2_sha256": "5d39a0d7fa61deb955a7c9192578ddbd18ac9aa380a5330de93ecce8e21573df",
       "justification": "asserts the new three-amendment (A1/A2/A2.1) attribution split"
     },
@@ -197,7 +203,7 @@
     "root_seed": 20260813
   },
   "population_invariants_hold": true,
-  "protected_unchanged_count": 244,
+  "protected_unchanged_count": 243,
   "protected_unchanged_paths": [
     ".gitignore",
     "BACKLOG.md",
@@ -398,7 +404,6 @@
     "src/muru/paper_benchmark/contract.py",
     "src/muru/paper_benchmark/freeze.py",
     "src/muru/paper_benchmark/governance.py",
-    "src/muru/paper_benchmark/preflight.py",
     "src/muru/paper_benchmark/registry.py",
     "src/muru/paper_benchmark/truth.py",
     "src/muru/screen.py",
@@ -446,12 +451,20 @@
   ],
   "rc4_2_authorized_delta": [
     {
+      "defect_id": "RC5-MECH-1 (partition-aware preflight)",
+      "ledger": "RC5_A3_5_implementation",
+      "path": "src/muru/paper_benchmark/preflight.py",
+      "semantic_scope": "run_preflight takes a partition, defaulting to \"development\", and reads the expected case count from the frozen registry instead of the literal 80. The default call is unchanged field for field; held_out_accessed reports the truth rather than a constant. No scientific behaviour, no authorisation logic, no threshold."
+    },
+    {
       "defect_id": "R1/DEFECT_A",
+      "ledger": "RC4.2_R1_R4_defect_repair",
       "path": "src/muru/paper_benchmark/protocol.py",
       "semantic_scope": "estimate_one: log_g = clip(residual, *support) replacing clip(-residual, *support) -- removes an anti-monotone sign inversion against the frozen M0 law. Fold-locality, the (-2.0, 2.0) clip range, the estimator domain, and G1's thresholds (0.80 Spearman, 0.70 Wilson lower bound) unchanged."
     },
     {
       "defect_id": "R1/DEFECT_A tests",
+      "ledger": "RC4.2_R1_R4_defect_repair",
       "path": "tests/test_paper_benchmark_protocol.py",
       "semantic_scope": "6 new hand-built canary tests for R1's sign correction; no case_id/registry/generate_case/partition anywhere in the file."
     }
