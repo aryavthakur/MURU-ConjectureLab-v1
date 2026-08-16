@@ -1,0 +1,77 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "world_id": "V2C|E2|mass_affine_descriptor|c_mid|n_default|r000",
+      "seed_ordinal_k": 0,
+      "seed": 2104501440,
+      "match": true,
+      "e2_expression": "cube((x1 * 0.12769693) + log(log(sqrt(x0)))) / 1.2468768",
+      "prod_expression": "cube((x1 * 0.12769693) + log(log(sqrt(x0)))) / 1.2468768",
+      "e2_complexity": 11,
+      "prod_complexity": 11,
+      "e2_valid_r2": 0.95698458544196,
+      "prod_valid_r2": 0.95698458544196
+    },
+    {
+      "world_id": "V2C|E2|mass_affine_descriptor|c_mid|n_default|r000",
+      "seed_ordinal_k": 1,
+      "seed": 2104501441,
+      "match": true,
+      "e2_expression": "0.062034458 * sqrt(x0)",
+      "prod_expression": "0.062034458 * sqrt(x0)",
+      "e2_complexity": 4,
+      "prod_complexity": 4,
+      "e2_valid_r2": 0.7086147808498771,
+      "prod_valid_r2": 0.7086147808498771
+    },
+    {
+      "world_id": "V2C|E2|mass_power|c_low|n_noiseless|r001",
+      "seed_ordinal_k": 0,
+      "seed": 2104503270,
+      "match": true,
+      "e2_expression": "sqrt(x0) * 0.06316185",
+      "prod_expression": "sqrt(x0) * 0.06316185",
+      "e2_complexity": 4,
+      "prod_complexity": 4,
+      "e2_valid_r2": 0.9770471213787578,
+      "prod_valid_r2": 0.9770471213787578
+    },
+    {
+      "world_id": "V2C|E2|mass_power|c_low|n_noiseless|r001",
+      "seed_ordinal_k": 1,
+      "seed": 2104503271,
+      "match": true,
+      "e2_expression": "sqrt(x0) * 0.0631618",
+      "prod_expression": "sqrt(x0) * 0.0631618",
+      "e2_complexity": 4,
+      "prod_complexity": 4,
+      "e2_valid_r2": 0.9770471998116319,
+      "prod_valid_r2": 0.9770471998116319
+    },
+    {
+      "world_id": "V2C|E2|mass_interaction|c_high|n_strong|r002",
+      "seed_ordinal_k": 0,
+      "seed": 2104512660,
+      "match": true,
+      "e2_expression": "x0 * 0.0038420896",
+      "prod_expression": "x0 * 0.0038420896",
+      "e2_complexity": 3,
+      "prod_complexity": 3,
+      "e2_valid_r2": 0.18157675669740092,
+      "prod_valid_r2": 0.18157675669740092
+    },
+    {
+      "world_id": "V2C|E2|mass_interaction|c_high|n_strong|r002",
+      "seed_ordinal_k": 1,
+      "seed": 2104512661,
+      "match": true,
+      "e2_expression": "x0 * 0.0038421042",
+      "prod_expression": "x0 * 0.0038421042",
+      "e2_complexity": 3,
+      "prod_complexity": 3,
+      "e2_valid_r2": 0.18155763132131664,
+      "prod_valid_r2": 0.18155763132131664
+    }
+  ]
+}
