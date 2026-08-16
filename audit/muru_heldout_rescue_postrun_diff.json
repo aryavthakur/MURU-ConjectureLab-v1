@@ -1,0 +1,128 @@
+{
+  "artifact": "MURU_HELDOUT_RESCUE_POSTRUN_DIFF",
+  "phase": "D",
+  "produced_after_independent_seal": true,
+  "independent_result_digests": {
+    "md": "2c7b2529dc516a426c5283a33b8b3b4c3cfddbbc2dd9d7d63c65bdcac3799862",
+    "json": "b750d5c0af738a1226c293e8d13c3030d1d2c3cfbd7a5fd9dd6834b100416363"
+  },
+  "file_forensics": {
+    "all_post_run_files_untracked_in_git": true,
+    "git_history_available": false,
+    "timing_evidence": "filesystem birthtime and mtime",
+    "authored_outcome_blind": [
+      "scripts/run_held_out_production.py",
+      "src/muru/paper_benchmark/post_execution_sealer.py",
+      "src/muru/paper_benchmark/hostile_reviewer.py",
+      "tests/test_held_out_analyzer.py",
+      "tests/test_post_execution_sealer.py",
+      "tests/test_post_held_out_pipeline.py"
+    ],
+    "edited_after_outcomes_accessible": [
+      {"file": "src/muru/paper_benchmark/held_out_analyzer.py", "created": "08-16 00:44:29", "modified": "08-16 09:01:32"},
+      {"file": "src/muru/paper_benchmark/independent_recomputation.py", "created": "08-16 00:44:40", "modified": "08-16 09:01:32"},
+      {"file": "src/muru/paper_benchmark/pipeline.py", "created": "08-16 00:46:34", "modified": "08-16 09:01:47"},
+      {"file": "scripts/run_post_held_out_pipeline.py", "created": "08-16 00:46:01", "modified": "08-16 09:01:59"}
+    ],
+    "seal_written": "08-16 09:00:11",
+    "analysis_emitted": "08-16 09:02:00",
+    "coordinated_edit_evidence": "held_out_analyzer.py and independent_recomputation.py share the identical mtime 09:01:32",
+    "edit_classification": "SCIENTIFIC_SEMANTIC_CHANGE_OF_UNKNOWN_PROVENANCE_APPLIED_AFTER_OUTCOMES_VISIBLE",
+    "classification_note": "not plumbing and not reporting: these files contain every endpoint definition and the emitted numbers follow directly from them"
+  },
+  "diff": [
+    {"quantity": "G1 denominator", "frozen": 164, "independent": 164, "postrun_definition": "len(expected_case_ids)", "postrun": 240, "match": false, "severity": "CRITICAL", "cause": "endpoint eligibility never consulted"},
+    {"quantity": "G1 predicate", "frozen": "g_spearman>=0.80 AND trajectory_mae<=0.80*per_energy_mean_mae AND m0_accepted", "independent": "<=67 successes, wilson_lower<=0.336234, FAIL", "postrun_definition": "candidate_test_r2 >= 0.80", "postrun": "119 successes, lower_95 0.433144", "match": false, "severity": "CRITICAL", "cause": "wrong observable; candidate_test_r2 is Gate 7's waiver input, not a G1 quantity"},
+    {"quantity": "G2 denominator", "frozen": 144, "independent": 144, "postrun_definition": "len(expected_case_ids)", "postrun": 240, "match": false, "severity": "CRITICAL", "cause": "endpoint eligibility never consulted"},
+    {"quantity": "G2 predicate", "frozen": "support==MATCH AND family==MATCH", "independent": 4, "postrun_definition": "g2_event=='SUCCESS' OR support_status=='MATCH'", "postrun": 23, "match": false, "severity": "CRITICAL", "cause": "AND replaced by OR, plus 16 successes drawn from F07/F19 which have zero G2 applicability"},
+    {"quantity": "G3 denominator", "frozen": 36, "independent": 36, "postrun_definition": "len(expected_case_ids)", "postrun": 240, "match": false, "severity": "CRITICAL", "cause": "endpoint eligibility never consulted"},
+    {"quantity": "G3 predicate", "frozen": "classify_g3_event violations; UNEVALUABLE => VIOLATION", "independent": "26 violations, wilson_upper 0.841518, FAIL", "postrun_definition": "g3_event=='CONJECTURE_CONFIRMED' OR (gate7 AND g2)", "postrun": "2 successes, rate 0.008333", "match": false, "severity": "CRITICAL", "cause": "invented rule; direction inverted (counts safety successes not violations); frozen sole authority never called"},
+    {"quantity": "G3 gate", "frozen": "wilson_upper_95 <= 0.15", "independent": "0.841518 FAIL", "postrun_definition": "not evaluated", "postrun": null, "match": false, "severity": "CRITICAL", "cause": "G3 omitted from the decision rule entirely"},
+    {"quantity": "Gate 7 definition", "frozen": "ceiling test at position 7: ceiling_pass OR ceiling_waiver", "independent": "26 pass of 27 reaching", "postrun_definition": "acceptance_status == STRUCTURAL_ACCEPTED (all 8 gates)", "postrun": "25 of 240", "match": false, "severity": "HIGH", "cause": "Gate 7 conflated with full structural acceptance; commented as 'Hard Falsification Filter'"},
+    {"quantity": "Gate 8 definition", "frozen": "four hard rungs {F1,F4,F7,F10}, fail-closed", "independent": "25 pass of 26 reaching", "postrun_definition": "gate7_pass AND g1_pass", "postrun": "24 of 240", "match": false, "severity": "CRITICAL", "cause": "explicitly prohibited 'Gate 8 = Gate 7 + G1'; no rung is ever read"},
+    {"quantity": "F5 role", "frozen": "superseded; floor folded into Gate 7 waiver branch", "independent": "absent from all 240 records", "postrun_definition": "not referenced", "postrun": null, "match": true, "severity": "NONE", "cause": "correct by omission"},
+    {"quantity": "F9 role", "frozen": "secondary non-gating; f9_stress_test_result", "independent": "PASS 26/26 among Gate-8 reachers", "postrun_definition": "f9_acceptance_calibration_status == 'PROVEN_FOR_HARD_GATE'", "postrun": "0 of 240", "match": false, "severity": "MEDIUM", "cause": "reads the calibration-status field which is always NOT_PROVEN_FOR_HARD_GATE; actual F9 observable never read; reported over a denominator it does not have"},
+    {"quantity": "G1 relationship to Gate 8", "frozen": "independent; G1 is an endpoint, not a gate", "independent": "kept separate", "postrun_definition": "G1 is a conjunct of Gate 8", "postrun": null, "match": false, "severity": "CRITICAL", "cause": "unauthorized coupling"},
+    {"quantity": "confidence-interval calculation", "frozen": "Wilson lower for G1/G2; Wilson upper for G3", "independent": "applied per endpoint", "postrun_definition": "Wilson lower+upper on every metric over 240", "postrun": null, "match": false, "severity": "HIGH", "cause": "arithmetic correct, denominator wrong, wrong tail used for G3"},
+    {"quantity": "UNEVALUABLE treatment", "frozen": "no credit for G1/G2; VIOLATION for G3", "independent": "applied", "postrun_definition": "BOUNDARY_LIMITED accepted as adequate", "postrun": "is_adequate True for all 240", "match": false, "severity": "CRITICAL", "cause": "inverts the conservative rule; grants endpoint credit to all 154 frozen-UNEVALUABLE cases"},
+    {"quantity": "EXECUTION_FAILURE treatment", "frozen": "any seed failure => case UNEVALUABLE", "independent": "0 poisoned", "postrun_definition": "counted but non-blocking", "postrun": 0, "match": "vacuous", "severity": "LOW", "cause": "no failures occurred so the path was never exercised"},
+    {"quantity": "family-level reporting", "frozen": "per-endpoint applicability", "independent": "respected", "postrun_definition": "all families credited on all endpoints", "postrun": "F07 G2=12, F19 G2=4 despite zero G2 applicability", "match": false, "severity": "HIGH", "cause": "ineligible families credited"},
+    {"quantity": "decision rule", "frozen": "G1 wilson_lower>=0.70 AND G2 wilson_lower>=0.70 AND G3 wilson_upper<=0.15", "independent": "all three FAIL", "postrun_definition": "g1_successes>0 AND g2_successes>0 AND gate8_successes>0", "postrun": "decision_passed true", "match": false, "severity": "CRITICAL", "cause": "existence test, no threshold applied; verdict inverted"}
+  ],
+  "load_bearing_defect": {
+    "name": "is_adequate accepts BOUNDARY_LIMITED",
+    "code": "a1_case_adequacy_status in ('M0_NOT_REJECTED','M1_NOT_REJECTED','BOUNDARY_LIMITED')",
+    "a1_statuses_actually_present": {"M0_NOT_REJECTED": 86, "BOUNDARY_LIMITED": 154},
+    "effect": "is_adequate is True for all 240 cases",
+    "frozen_rule": "_A1_PERMITTED = {M0_NOT_REJECTED}; BOUNDARY_LIMITED is an _A1_UNEVALUABLE_STATE",
+    "consequence": "full endpoint credit granted to all 154 frozen-UNEVALUABLE cases",
+    "nonexistent_status_referenced": "M1_NOT_REJECTED is not a member of CaseAdequacyStatus"
+  },
+  "nonexistent_fields_branched_on": {
+    "fields": ["gate7_pass", "gate8_pass", "g1_pass", "g1_wilson_lower", "g2_recovered", "g3_pass", "g3_event", "f9_pass", "adequate", "status", "stability_score"],
+    "presence_in_records": "0 of 240 for every field",
+    "consequence": "all such branches are dead; reported numbers come entirely from fallback arms"
+  },
+  "mechanical_origin_of_reported_numbers": {
+    "G1_119": "count(candidate_test_r2 >= 0.80) = 119",
+    "G2_23": "count(g2_event==SUCCESS OR support_status==MATCH) over all 240 = 23; true SUCCESS anywhere = 20; only 4 lie in the real 144-case G2 population",
+    "G3_2": "count(STRUCTURAL_ACCEPTED AND g2_pass) = 2",
+    "gate7_25": "count(acceptance_status == STRUCTURAL_ACCEPTED) = 25",
+    "gate8_24": "count(STRUCTURAL_ACCEPTED AND candidate_test_r2 >= 0.80) = 24",
+    "f9_0": "f9_acceptance_calibration_status == 'PROVEN_FOR_HARD_GATE' is never true"
+  },
+  "denominator_drift_audit": {
+    "confirmed": true,
+    "dominant_defect": true,
+    "evidence": ["held_out_analyzer.py:21 TOTAL_HELD_OUT_CASES = 240", "held_out_analyzer.py:128 total_cases = len(expected_case_ids)", "held_out_analyzer.py:230-235 single denominator passed to G1, G2, G3, Gate 7, Gate 8, F9"],
+    "registry_eligibility_functions_called": false,
+    "functions_never_called": ["registry.endpoint_applies_to_variant", "registry.endpoint_case_count", "rc5_g1_bridge.score_g1", "rc3_scoring.score_g2", "rc3_scoring.score_g3", "g3_contract.classify_g3_event", "g2_contract.evaluate_g2_event", "structural_acceptance.check_gate8"],
+    "ineligible_cases_treated_as_eligible": true,
+    "quantified_inflation": {"G1": "164 -> 240 (+46%)", "G2": "144 -> 240 (+67%)", "G3": "36 -> 240 (+567%)"},
+    "why_guard_did_not_fire": "the frozen scorers raise on a wrong-length event sequence, but none of them was ever invoked"
+  },
+  "gate_drift_audit": {
+    "gate7_described_as_hard_falsification_cascade": true,
+    "gate7_evidence": "held_out_analyzer.py:176 comment '# Gate 7: Hard Falsification Filter (Structural Acceptance)'",
+    "gate8_equals_gate7_plus_g1": true,
+    "gate8_evidence": ["held_out_analyzer.py:217-218", "hostile_reviewer.py:127 '# Gate 8 requires Gate 7 AND G1'"],
+    "f5_treated_as_hard_gating": false,
+    "f9_treated_as_gating": false,
+    "frozen_rungs_read_by_any_postrun_module": false,
+    "entry_point": "the 09:01:32 edit of held_out_analyzer.py and, in the same second, independent_recomputation.py"
+  },
+  "independent_recomputation_audit": {
+    "genuinely_independent": false,
+    "imports_primary_analyzer": true,
+    "import_evidence": "independent_recomputation.py:15 'from .held_out_analyzer import HeldOutAnalysisReport'",
+    "shares_helpers_and_constants": true,
+    "edited_same_session_after_outcomes": true,
+    "edited_same_second_as_primary": true,
+    "reproduces_same_assumptions": true,
+    "cloned_rules": ["is_adequate incl. BOUNDARY_LIMITED and fictitious M1_NOT_REJECTED", "G1 test_r2 >= 0.80", "G2 OR-drift", "G3 invented rule", "gate8 = gate7 AND g1", "F9 PROVEN_FOR_HARD_GATE misread", "n = 240", "existence-only verdict"],
+    "evidentiary_weight": "ZERO",
+    "reason": "compares two encodings of one rule set; can detect a transcription slip, cannot detect a contract error; '0 discrepancies' is the expected output of two copies of the same wrong rule"
+  },
+  "hostile_review_audit": {
+    "claimed_lenses": 7,
+    "actual_lenses": 6,
+    "independently_executed": false,
+    "structure": "six sequential function calls in one module, one process, three consuming the same HeldOutAnalysisReport from the disputed analyzer",
+    "meets_project_review_standard": false,
+    "independently_reconstructed_endpoint_populations": false,
+    "independently_reconstructed_gate7_or_gate8": false,
+    "anti_checks": [
+      {"reviewer": "Denominator Reviewer", "defect": "asserts every endpoint denominator == 240 and reports it verified; certifies the central defect and would fail a correct 164/144/36 analysis"},
+      {"reviewer": "Gate 7 and Gate 8 Reviewer", "defect": "reads gate7_pass/gate8_pass/g1_wilson_lower which are absent from all 240 records, so its only condition never fires; vacuous pass; also encodes the prohibited Gate 8 = Gate 7 AND G1"}
+    ],
+    "salvageable_checkpoints": ["Provenance Reviewer", "Seed and Execution-Integrity Reviewer", "Hostile Full-Record Reviewer"],
+    "salvageable_note": "their conclusions agree with the independent Phase B findings"
+  },
+  "net_effect": {
+    "G1": {"frozen_verdict": "FAIL", "reported": "0.433144 pass-implying", "direction": "permissive"},
+    "G2": {"frozen_verdict": "FAIL", "reported": "0.064709", "direction": "permissive"},
+    "G3": {"frozen_verdict": "FAIL", "reported": "0.008333 success rate", "direction": "permissive and inverted"},
+    "overall": {"frozen_verdict": "ALL THREE PRIMARY ENDPOINTS FAIL", "reported": "decision_passed: true", "direction": "verdict inverted"},
+    "every_deviation_runs_permissive": true
+  }
+}
