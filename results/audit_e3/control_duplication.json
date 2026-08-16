@@ -1,0 +1,21 @@
+{
+  "total_control_rows": 2000,
+  "distinct_geometries": 400,
+  "identical_seed_groups": 400,
+  "identical_outcome_groups": 400,
+  "groups_total": 400,
+  "pooled_2000": {
+    "k": 190,
+    "n": 2000,
+    "rate": 0.095,
+    "wilson_lo": 0.08291479680735943,
+    "wilson_hi": 0.10863801149045545
+  },
+  "dedup_400": {
+    "k": 38,
+    "n": 400,
+    "rate": 0.095,
+    "wilson_lo": 0.06999661149327466,
+    "wilson_hi": 0.12770834691750552
+  }
+}

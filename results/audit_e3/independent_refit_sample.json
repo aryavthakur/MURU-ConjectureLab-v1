@@ -1,0 +1,10 @@
+{
+  "sample_size": 75,
+  "selection_agreement": 75,
+  "selection_agreement_pct": 100.0,
+  "bic_diff_mean": 3.979508922687576e-09,
+  "bic_diff_max": 2.833289727277588e-07,
+  "bic_diff_median": 2.9558577807620168e-12,
+  "n_mismatches": 0,
+  "mismatches": []
+}

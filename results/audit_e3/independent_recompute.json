@@ -1,0 +1,233 @@
+{
+  "study_validity": {
+    "bic": {
+      "k": 190,
+      "n": 2000,
+      "rate": 0.095,
+      "wilson_upper": 0.10863801149045545,
+      "valid": true
+    },
+    "r2": {
+      "k": 1370,
+      "n": 2000,
+      "rate": 0.685,
+      "wilson_upper": 0.7049868470922042,
+      "valid": false
+    }
+  },
+  "overall_recovery": {
+    "all5_bic": {
+      "n": 10000,
+      "k": 8264,
+      "rate": 0.8264,
+      "wilson_lo": 0.8188513696604273,
+      "wilson_hi": 0.833697956203195
+    },
+    "all5_r2": {
+      "n": 10000,
+      "k": 6312,
+      "rate": 0.6312,
+      "wilson_lo": 0.6216948746811539,
+      "wilson_hi": 0.6406043641463804
+    },
+    "descriptor_only_bic": {
+      "n": 8000,
+      "k": 6454,
+      "rate": 0.80675,
+      "wilson_lo": 0.7979512833017754,
+      "wilson_hi": 0.8152542662148383
+    }
+  },
+  "recovery_by_family": {
+    "mass_affine_descriptor": {
+      "n": 2000,
+      "bic_rate": 0.73,
+      "r2_rate": 0.6065
+    },
+    "mass_exponential_descriptor": {
+      "n": 2000,
+      "bic_rate": 0.6685,
+      "r2_rate": 0.561
+    },
+    "mass_interaction": {
+      "n": 2000,
+      "bic_rate": 0.9855,
+      "r2_rate": 0.9325
+    },
+    "mass_power": {
+      "n": 2000,
+      "bic_rate": 0.905,
+      "r2_rate": 0.31499999999999995
+    },
+    "mass_saturating_descriptor": {
+      "n": 2000,
+      "bic_rate": 0.843,
+      "r2_rate": 0.741
+    }
+  },
+  "recovery_by_coefficient": {
+    "0.25": {
+      "n": 1600,
+      "bic_rate": 0.668125,
+      "r2_rate": 0.576875
+    },
+    "0.4": {
+      "n": 1600,
+      "bic_rate": 0.756875,
+      "r2_rate": 0.658125
+    },
+    "0.55": {
+      "n": 1600,
+      "bic_rate": 0.809375,
+      "r2_rate": 0.694375
+    },
+    "1.1": {
+      "n": 1600,
+      "bic_rate": 0.88125,
+      "r2_rate": 0.785625
+    },
+    "2.2": {
+      "n": 1600,
+      "bic_rate": 0.918125,
+      "r2_rate": 0.83625
+    }
+  },
+  "frozen_operating_point": {
+    "mass_interaction": {
+      "n": 150,
+      "k": 150,
+      "rate": 1.0,
+      "wilson_lo": 0.9750297556319234,
+      "classification": "IDENTIFIABLE"
+    },
+    "mass_saturating_descriptor": {
+      "n": 150,
+      "k": 123,
+      "rate": 0.82,
+      "wilson_lo": 0.7507767216820398,
+      "classification": "IDENTIFIABLE"
+    },
+    "mass_affine_descriptor": {
+      "n": 150,
+      "k": 83,
+      "rate": 0.5533333333333333,
+      "wilson_lo": 0.4734311843491665,
+      "classification": "MARGINAL"
+    },
+    "mass_exponential_descriptor": {
+      "n": 150,
+      "k": 79,
+      "rate": 0.5266666666666666,
+      "wilson_lo": 0.4471005535542383,
+      "classification": "MARGINAL"
+    }
+  },
+  "c_star": {
+    "mass_interaction": {
+      "curve": {
+        "0.25": 1.0,
+        "0.4": 1.0,
+        "0.55": 1.0,
+        "1.1": 1.0,
+        "2.2": 1.0
+      },
+      "c_star": 0.25
+    },
+    "mass_saturating_descriptor": {
+      "curve": {
+        "0.25": 0.68,
+        "0.4": 0.84,
+        "0.55": 0.94,
+        "1.1": 1.0,
+        "2.2": 1.0
+      },
+      "c_star": 0.4
+    },
+    "mass_affine_descriptor": {
+      "curve": {
+        "0.25": 0.44,
+        "0.4": 0.6,
+        "0.55": 0.62,
+        "1.1": 0.96,
+        "2.2": 0.88
+      },
+      "c_star": 1.1
+    },
+    "mass_exponential_descriptor": {
+      "curve": {
+        "0.25": 0.44,
+        "0.4": 0.58,
+        "0.55": 0.56,
+        "1.1": 0.8,
+        "2.2": 0.9
+      },
+      "c_star": 1.1
+    }
+  },
+  "confusion_matrix_frozen_bic": {
+    "mass_power": {
+      "mass_power": 132,
+      "mass_affine_descriptor": 0,
+      "mass_saturating_descriptor": 0,
+      "mass_exponential_descriptor": 3,
+      "mass_interaction": 15
+    },
+    "mass_affine_descriptor": {
+      "mass_power": 0,
+      "mass_affine_descriptor": 83,
+      "mass_saturating_descriptor": 7,
+      "mass_exponential_descriptor": 60,
+      "mass_interaction": 0
+    },
+    "mass_saturating_descriptor": {
+      "mass_power": 0,
+      "mass_affine_descriptor": 20,
+      "mass_saturating_descriptor": 123,
+      "mass_exponential_descriptor": 6,
+      "mass_interaction": 1
+    },
+    "mass_exponential_descriptor": {
+      "mass_power": 2,
+      "mass_affine_descriptor": 38,
+      "mass_saturating_descriptor": 23,
+      "mass_exponential_descriptor": 79,
+      "mass_interaction": 8
+    },
+    "mass_interaction": {
+      "mass_power": 0,
+      "mass_affine_descriptor": 0,
+      "mass_saturating_descriptor": 0,
+      "mass_exponential_descriptor": 0,
+      "mass_interaction": 150
+    }
+  },
+  "confusion_matrix_matches_reported": true,
+  "special_F02_F03_F09_F18": {
+    "F02": {
+      "n": 150,
+      "rate_pct": 48.66666666666667
+    },
+    "F03": {
+      "n": 150,
+      "rate_pct": 36.0
+    },
+    "F09": {
+      "n": 150,
+      "rate_pct": 82.0
+    },
+    "F18": {
+      "n": 150,
+      "rate_pct": 52.666666666666664
+    }
+  },
+  "f18_intended_geometry": {
+    "grid6": {
+      "n": 150,
+      "rate": 0.5266666666666666
+    },
+    "grid12": {
+      "n": 150,
+      "rate": 0.54
+    }
+  }
+}

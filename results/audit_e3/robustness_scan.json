@@ -1,0 +1,27 @@
+{
+  "n_worlds": 10000,
+  "n_fits": 50000,
+  "n_converged": 50000,
+  "n_nonconverged": 0,
+  "n_worlds_any_nonconverged": 0,
+  "n_nan_bic": 0,
+  "n_train_distribution": {
+    "120": 50000
+  },
+  "bic_margin_histogram": {
+    "<6": 2586,
+    "<1": 1368,
+    "<2": 833,
+    "<0.1": 432,
+    "<10": 409,
+    ">=10": 4372
+  },
+  "n_weak_evidence_worlds_margin_lt_2": 2633,
+  "weak_evidence_by_family": {
+    "mass_power": 455,
+    "mass_affine_descriptor": 711,
+    "mass_saturating_descriptor": 454,
+    "mass_interaction": 41,
+    "mass_exponential_descriptor": 972
+  }
+}

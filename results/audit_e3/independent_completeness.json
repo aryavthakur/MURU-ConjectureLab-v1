@@ -1,0 +1,16 @@
+{
+  "expected_total": 10000,
+  "raw_jsonl_line_count": 10000,
+  "executed_unique_world_count": 10000,
+  "duplicate_rows": 0,
+  "n_ok": 10000,
+  "n_non_ok": 0,
+  "missing_worlds": 0,
+  "extra_worlds": 0,
+  "bad_cells": 0,
+  "missing_cells": 0,
+  "extra_cells": 0,
+  "manifest_matches_expected": true,
+  "manifest_matches_executed": true,
+  "overall_pass": true
+}

@@ -1,0 +1,441 @@
+{
+  "audit": "MURU_V2_E3_INDEPENDENT_HOSTILE_AUDIT",
+  "status": "COMPLETE",
+  "object_under_audit": {
+    "branch": "exp/v2-e3-identifiability",
+    "commit": "1d20731",
+    "worktree": ".claude/worktrees/muru-v2-e3-identifiability-b23a7b"
+  },
+  "auditor": {
+    "branch": "audit/v2-e3-independent",
+    "worktree": ".claude/worktrees/audit-v2-e3-independent"
+  },
+  "verdict": {
+    "execution_real_and_complete": true,
+    "headline_arithmetic_correct": true,
+    "f09_remediation_license_survives": true,
+    "conclusions_requiring_weakening": [
+      "STUDY_INVALID gate Wilson-upper-bound framing understates true uncertainty (0.128 correctly, not 0.109 as reported) due to mass_power's control population having only 400 independent draws, not the nominal 2000. Formal point-estimate-based pass (0.095 < 0.10) is unaffected and stands."
+    ],
+    "conclusions_requiring_retraction": []
+  },
+  "q1_10000_worlds_200_cells": {
+    "expected_total": 10000,
+    "raw_jsonl_line_count": 10000,
+    "executed_unique_world_count": 10000,
+    "duplicate_rows": 0,
+    "n_ok": 10000,
+    "n_non_ok": 0,
+    "missing_worlds": 0,
+    "extra_worlds": 0,
+    "bad_cells": 0,
+    "missing_cells": 0,
+    "extra_cells": 0,
+    "manifest_matches_expected": true,
+    "manifest_matches_executed": true,
+    "overall_pass": true
+  },
+  "q8_q9_study_validity_and_sensitivity": {
+    "total_control_rows": 2000,
+    "distinct_geometries": 400,
+    "identical_seed_groups": 400,
+    "identical_outcome_groups": 400,
+    "groups_total": 400,
+    "pooled_2000": {
+      "k": 190,
+      "n": 2000,
+      "rate": 0.095,
+      "wilson_lo": 0.08291479680735943,
+      "wilson_hi": 0.10863801149045545
+    },
+    "dedup_400": {
+      "k": 38,
+      "n": 400,
+      "rate": 0.095,
+      "wilson_lo": 0.06999661149327466,
+      "wilson_hi": 0.12770834691750552
+    }
+  },
+  "q10_q11_q12_q13_recomputation": {
+    "study_validity": {
+      "bic": {
+        "k": 190,
+        "n": 2000,
+        "rate": 0.095,
+        "wilson_upper": 0.10863801149045545,
+        "valid": true
+      },
+      "r2": {
+        "k": 1370,
+        "n": 2000,
+        "rate": 0.685,
+        "wilson_upper": 0.7049868470922042,
+        "valid": false
+      }
+    },
+    "overall_recovery": {
+      "all5_bic": {
+        "n": 10000,
+        "k": 8264,
+        "rate": 0.8264,
+        "wilson_lo": 0.8188513696604273,
+        "wilson_hi": 0.833697956203195
+      },
+      "all5_r2": {
+        "n": 10000,
+        "k": 6312,
+        "rate": 0.6312,
+        "wilson_lo": 0.6216948746811539,
+        "wilson_hi": 0.6406043641463804
+      },
+      "descriptor_only_bic": {
+        "n": 8000,
+        "k": 6454,
+        "rate": 0.80675,
+        "wilson_lo": 0.7979512833017754,
+        "wilson_hi": 0.8152542662148383
+      }
+    },
+    "recovery_by_family": {
+      "mass_affine_descriptor": {
+        "n": 2000,
+        "bic_rate": 0.73,
+        "r2_rate": 0.6065
+      },
+      "mass_exponential_descriptor": {
+        "n": 2000,
+        "bic_rate": 0.6685,
+        "r2_rate": 0.561
+      },
+      "mass_interaction": {
+        "n": 2000,
+        "bic_rate": 0.9855,
+        "r2_rate": 0.9325
+      },
+      "mass_power": {
+        "n": 2000,
+        "bic_rate": 0.905,
+        "r2_rate": 0.31499999999999995
+      },
+      "mass_saturating_descriptor": {
+        "n": 2000,
+        "bic_rate": 0.843,
+        "r2_rate": 0.741
+      }
+    },
+    "recovery_by_coefficient": {
+      "0.25": {
+        "n": 1600,
+        "bic_rate": 0.668125,
+        "r2_rate": 0.576875
+      },
+      "0.4": {
+        "n": 1600,
+        "bic_rate": 0.756875,
+        "r2_rate": 0.658125
+      },
+      "0.55": {
+        "n": 1600,
+        "bic_rate": 0.809375,
+        "r2_rate": 0.694375
+      },
+      "1.1": {
+        "n": 1600,
+        "bic_rate": 0.88125,
+        "r2_rate": 0.785625
+      },
+      "2.2": {
+        "n": 1600,
+        "bic_rate": 0.918125,
+        "r2_rate": 0.83625
+      }
+    },
+    "frozen_operating_point": {
+      "mass_interaction": {
+        "n": 150,
+        "k": 150,
+        "rate": 1.0,
+        "wilson_lo": 0.9750297556319234,
+        "classification": "IDENTIFIABLE"
+      },
+      "mass_saturating_descriptor": {
+        "n": 150,
+        "k": 123,
+        "rate": 0.82,
+        "wilson_lo": 0.7507767216820398,
+        "classification": "IDENTIFIABLE"
+      },
+      "mass_affine_descriptor": {
+        "n": 150,
+        "k": 83,
+        "rate": 0.5533333333333333,
+        "wilson_lo": 0.4734311843491665,
+        "classification": "MARGINAL"
+      },
+      "mass_exponential_descriptor": {
+        "n": 150,
+        "k": 79,
+        "rate": 0.5266666666666666,
+        "wilson_lo": 0.4471005535542383,
+        "classification": "MARGINAL"
+      }
+    },
+    "c_star": {
+      "mass_interaction": {
+        "curve": {
+          "0.25": 1.0,
+          "0.4": 1.0,
+          "0.55": 1.0,
+          "1.1": 1.0,
+          "2.2": 1.0
+        },
+        "c_star": 0.25
+      },
+      "mass_saturating_descriptor": {
+        "curve": {
+          "0.25": 0.68,
+          "0.4": 0.84,
+          "0.55": 0.94,
+          "1.1": 1.0,
+          "2.2": 1.0
+        },
+        "c_star": 0.4
+      },
+      "mass_affine_descriptor": {
+        "curve": {
+          "0.25": 0.44,
+          "0.4": 0.6,
+          "0.55": 0.62,
+          "1.1": 0.96,
+          "2.2": 0.88
+        },
+        "c_star": 1.1
+      },
+      "mass_exponential_descriptor": {
+        "curve": {
+          "0.25": 0.44,
+          "0.4": 0.58,
+          "0.55": 0.56,
+          "1.1": 0.8,
+          "2.2": 0.9
+        },
+        "c_star": 1.1
+      }
+    },
+    "confusion_matrix_frozen_bic": {
+      "mass_power": {
+        "mass_power": 132,
+        "mass_affine_descriptor": 0,
+        "mass_saturating_descriptor": 0,
+        "mass_exponential_descriptor": 3,
+        "mass_interaction": 15
+      },
+      "mass_affine_descriptor": {
+        "mass_power": 0,
+        "mass_affine_descriptor": 83,
+        "mass_saturating_descriptor": 7,
+        "mass_exponential_descriptor": 60,
+        "mass_interaction": 0
+      },
+      "mass_saturating_descriptor": {
+        "mass_power": 0,
+        "mass_affine_descriptor": 20,
+        "mass_saturating_descriptor": 123,
+        "mass_exponential_descriptor": 6,
+        "mass_interaction": 1
+      },
+      "mass_exponential_descriptor": {
+        "mass_power": 2,
+        "mass_affine_descriptor": 38,
+        "mass_saturating_descriptor": 23,
+        "mass_exponential_descriptor": 79,
+        "mass_interaction": 8
+      },
+      "mass_interaction": {
+        "mass_power": 0,
+        "mass_affine_descriptor": 0,
+        "mass_saturating_descriptor": 0,
+        "mass_exponential_descriptor": 0,
+        "mass_interaction": 150
+      }
+    },
+    "confusion_matrix_matches_reported": true,
+    "special_F02_F03_F09_F18": {
+      "F02": {
+        "n": 150,
+        "rate_pct": 48.66666666666667
+      },
+      "F03": {
+        "n": 150,
+        "rate_pct": 36.0
+      },
+      "F09": {
+        "n": 150,
+        "rate_pct": 82.0
+      },
+      "F18": {
+        "n": 150,
+        "rate_pct": 52.666666666666664
+      }
+    },
+    "f18_intended_geometry": {
+      "grid6": {
+        "n": 150,
+        "rate": 0.5266666666666666
+      },
+      "grid12": {
+        "n": 150,
+        "rate": 0.54
+      }
+    }
+  },
+  "robustness_appendix": {
+    "convergence_and_bic_margins": {
+      "n_worlds": 10000,
+      "n_fits": 50000,
+      "n_converged": 50000,
+      "n_nonconverged": 0,
+      "n_worlds_any_nonconverged": 0,
+      "n_nan_bic": 0,
+      "n_train_distribution": {
+        "120": 50000
+      },
+      "bic_margin_histogram": {
+        "<6": 2586,
+        "<1": 1368,
+        "<2": 833,
+        "<0.1": 432,
+        "<10": 409,
+        ">=10": 4372
+      },
+      "n_weak_evidence_worlds_margin_lt_2": 2633,
+      "weak_evidence_by_family": {
+        "mass_power": 455,
+        "mass_affine_descriptor": 711,
+        "mass_saturating_descriptor": 454,
+        "mass_interaction": 41,
+        "mass_exponential_descriptor": 972
+      }
+    },
+    "independent_refit_75_worlds_noise0.02_grid6": {
+      "sample_size": 75,
+      "selection_agreement": 75,
+      "selection_agreement_pct": 100.0,
+      "bic_diff_mean": 3.979508922687576e-09,
+      "bic_diff_max": 2.833289727277588e-07,
+      "bic_diff_median": 2.9558577807620168e-12,
+      "n_mismatches": 0,
+      "mismatches": []
+    },
+    "independent_refit_240_worlds_full_grid": {
+      "sample_size": 240,
+      "agreement": 240,
+      "agreement_pct": 100.0,
+      "max_abs_bic_diff": 0.00018784951362249558,
+      "mismatches": []
+    }
+  },
+  "discrepancy_ledger": [
+    {
+      "id": "D1",
+      "item": "Study validity Wilson upper bound (BIC)",
+      "independent": 0.1277,
+      "reported": 0.109,
+      "status": "DISCREPANCY",
+      "classification": "MATERIAL_NONBLOCKING",
+      "explanation": "mass_power's law ignores c; 400/400 (noise,grid,replicate) groups are byte-identical across their 5 c-labels (verified). True independent n=400, not 2000. Point estimate (0.095) unaffected; only the CI precision claim is wrong."
+    },
+    {
+      "id": "D2",
+      "item": "All other headline rates/tables",
+      "status": "EXACT_MATCH",
+      "classification": "NONE"
+    },
+    {
+      "id": "D3",
+      "item": "Manifest/execution completeness",
+      "status": "EXACT_MATCH",
+      "classification": "NONE"
+    },
+    {
+      "id": "D4",
+      "item": "PySR absence (static+dynamic, broadened)",
+      "status": "CONFIRMED",
+      "classification": "NONE"
+    },
+    {
+      "id": "D5",
+      "item": "Frozen estimator byte-identity vs sealed commit 8d87143",
+      "status": "CONFIRMED",
+      "classification": "NONE"
+    },
+    {
+      "id": "D6",
+      "item": "registry.resolve_case_id static check (design doc section 2.2)",
+      "status": "NOT_IMPLEMENTED",
+      "classification": "MINOR",
+      "explanation": "Practically inert (ID formats structurally incompatible), but the specific check the design document describes was not built in E3's own code."
+    },
+    {
+      "id": "D7",
+      "item": "Confusion matrix at frozen operating point",
+      "status": "EXACT_MATCH",
+      "classification": "NONE"
+    },
+    {
+      "id": "D8",
+      "item": "BIC formula convention",
+      "status": "CONFIRMED_CORRECT",
+      "classification": "NONE"
+    },
+    {
+      "id": "D9",
+      "item": "Fit convergence (50,000 fits)",
+      "status": "100_PERCENT_CONVERGED",
+      "classification": "NONE"
+    },
+    {
+      "id": "D10",
+      "item": "Artifact hashes (e3_hashes.json, 15 files)",
+      "status": "EXACT_MATCH_SHA256",
+      "classification": "NONE"
+    },
+    {
+      "id": "D11",
+      "item": "v1-observed F02/F03/F09/F18 reference counts",
+      "status": "TRACED_EXACT",
+      "classification": "NONE"
+    },
+    {
+      "id": "D12",
+      "item": "Design commit precedes execution commit (git ancestry)",
+      "status": "CONFIRMED",
+      "classification": "NONE"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-1",
+      "classification": "MATERIAL_NONBLOCKING",
+      "summary": "STUDY_INVALID gate's Wilson-interval framing computed on an inflated, non-independent sample size (n=2000 nominal vs n=400 true independent draws for the mass_power control).",
+      "detail": "mass_power's truth law does not consume c, so the 5 c-labeled worlds within each of the 400 (noise,grid,replicate) triples are byte-identical (verified 400/400). Correct Wilson 95% upper bound on k=38/n=400 is 0.1277, not the reported 0.109 (k=190/n=2000). Does not flip the formal VALID verdict (defined on the point estimate 0.095, unaffected), but materially undermines the report's own 'narrow pass, not comfortable' confidence claim -- properly accounted, the pass is even less comfortable. Same inflation affects every other pooled mass_power statistic in the report (concretely verified for the frozen-operating-point confusion matrix's mass_power row: reported 15/150 leak to mass_interaction is 5 independent geometries out of 50, tripled)."
+    },
+    {
+      "id": "F-2",
+      "classification": "MINOR",
+      "summary": "Design doc's registry.resolve_case_id collision check (section 2.2) not implemented in E3's own code.",
+      "detail": "Only the seed-prefix-disjointness half of the design's stated static check exists in v2c_generator.py; no test calls registry.resolve_case_id on a V2C-namespaced id. Practically inert given the structurally incompatible ID formats, but a documented governance mechanism was not built as described."
+    },
+    {
+      "id": "F-3",
+      "classification": "MINOR",
+      "summary": "Section 12's 'DATA-LIMITED' framing for affine/exponential reads more assertive than the frozen decision tree's own 'MARGINAL licenses nothing on its own' language.",
+      "detail": "Substantively earned by the additional noise-free-arm (H_id_noise) evidence the report cites, but should be read as 'not attributable to search from this cell alone,' not as a flat dispositive diagnosis. No numbers are wrong; interpretation/phrasing note only."
+    },
+    {
+      "id": "F-4",
+      "classification": "NONE",
+      "summary": "Every other checked item reproduced exactly under independent, from-scratch recomputation."
+    }
+  ]
+}

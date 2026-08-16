@@ -1,0 +1,7 @@
+{
+  "sample_size": 240,
+  "agreement": 240,
+  "agreement_pct": 100.0,
+  "max_abs_bic_diff": 0.00018784951362249558,
+  "mismatches": []
+}
