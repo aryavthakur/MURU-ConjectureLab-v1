@@ -1,0 +1,15 @@
+quantity,value
+families,20
+held_out cases,240
+seeds per case,30
+total searches,7200
+execution failures,0
+seeds COMPLETED_WITH_CANDIDATES,7136
+seeds COMPLETED_NO_CANDIDATE,64
+sealed files,482
+sealed files re-hashing correctly,482
+acceptance recomputation disagreements,0
+G1 recovery searches run,0
+G1 recovery content-identity mismatches,0
+primary endpoints,3
+primary endpoints passing,0

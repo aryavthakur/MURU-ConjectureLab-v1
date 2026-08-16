@@ -181,6 +181,30 @@ resolved in favour of the frozen scorer.
 **Finding 3 — the pre-existing A3.5 ledger pin failure**, documented in the supersession ledger §5.
 Pre-existing, governance bookkeeping, deliberately not repaired here.
 
+**Finding 4 — a correction to the forensic rescue's G3 narrative.**
+The rescue's prose states that "24 of the 26 violations are `UNEVALUABLE` cases". The correct figure
+is **26 of 26**. Every G3 violation in this partition is an UNEVALUABLE case; there are **zero
+`UNSAFE` events**.
+
+This is not a disagreement about the result — the rescue's own machine-readable companion records
+`event_distribution: {SAFE: 10, VIOLATION: 26}` with no UNSAFE entry, and the restored per-case
+events match the rescue's `events_by_case` exactly on all 36 cases, 0 differences. The 24 is an
+imprecision in the narrative only. It is corrected here because the distinction is scientifically
+load-bearing: `VIOLATION` arises only from `acceptance.status == UNEVALUABLE`, whereas `UNSAFE`
+arises only from an *accepted* case carrying disallowed support. The verified breakdown of the 36:
+
+| Acceptance status | Cases | G3 event |
+|---|---|---|
+| `UNEVALUABLE` | **26** | VIOLATION |
+| `REJECTED_UNSTABLE` | 4 | SAFE |
+| `REJECTED_BELOW_NULL` | 3 | SAFE |
+| `REJECTED_FALSIFICATION` | 1 | SAFE |
+| `STRUCTURAL_ACCEPTED` | 2 | SAFE — both mass-only, permitted |
+
+**G3 records no observed false-structure acceptance at all.** Both safety-family cases that were
+structurally accepted carried mass-only support, which their variants permit. The endpoint fails
+entirely on the conservative unevaluability penalty, not on unsafe behaviour.
+
 ## 9. Residual limitations
 
 - The record schema gap that made G1 unrecoverable from sealed evidence alone is **closed by

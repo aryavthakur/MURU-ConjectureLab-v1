@@ -1,0 +1,22 @@
+family,name,held_out_cases,G1_cases,G2_cases,G3_cases,variant_cycle
+F01,noiseless scalar collapse,12,12,12,0,BASE
+F02,moderate-noise scalar collapse,12,12,12,0,BASE
+F03,stronger realistic noise,12,12,12,0,BASE
+F04,missing-one-energy,12,12,12,0,BASE
+F05,boundary-scale,12,12,12,0,BASE
+F06,no molecule-specific scalar truth,12,0,0,0,BASE
+F07,mass-only g truth,12,12,0,12,BASE
+F08,simple descriptor law,12,12,12,0,BASE
+F09,nonlinear descriptor law,12,12,12,0,BASE
+F10,interaction law,12,12,12,0,BASE
+F11,irrelevant distractors,12,12,12,0,BASE
+F12,correlated distractors,12,12,12,0,BASE
+F13,horizontal-shape violation,12,0,0,0,BASE
+F14,high-energy vertical violation,12,0,0,0,BASE
+F15,low-energy vertical violation,12,0,0,0,BASE
+F16,combined mild non-scalar violation,12,0,0,0,BASE
+F17,equivalent symbolic forms,12,12,12,0,BASE
+F18,algebraically difficult predictively simple,12,12,12,0,BASE
+F19,target-specific null worlds,12,8,0,12,F19A|F19B|F19C
+F20,adversarial worlds,12,0,0,12,F20A|F20B|F20C
+TOTAL,,240,164,144,36,

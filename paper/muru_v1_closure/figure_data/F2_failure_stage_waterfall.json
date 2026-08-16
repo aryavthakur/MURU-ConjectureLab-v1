@@ -1,0 +1,23 @@
+{
+ "counts": {
+  "a1_adequacy": 154,
+  "all_passed": 25,
+  "ceiling": 1,
+  "falsification": 1,
+  "null_threshold": 16,
+  "stability": 43
+ },
+ "note": "the ordered structural-acceptance predicate, cases lost at each stage, in predicate order",
+ "order": [
+  "a1_adequacy",
+  "null_threshold",
+  "stability",
+  "complexity",
+  "invalid_fraction",
+  "effective_support",
+  "ceiling",
+  "falsification",
+  "all_passed"
+ ],
+ "total": 240
+}
