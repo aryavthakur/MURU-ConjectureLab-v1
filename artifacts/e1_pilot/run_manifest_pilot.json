@@ -1,0 +1,10 @@
+{
+  "label": "pilot",
+  "n_fit_units": 5,
+  "n_errors": 0,
+  "elapsed_seconds": 49.22162389755249,
+  "seconds_per_fit_unit": 9.844324779510497,
+  "workers": 5,
+  "pysr_imported": false,
+  "errors": []
+}

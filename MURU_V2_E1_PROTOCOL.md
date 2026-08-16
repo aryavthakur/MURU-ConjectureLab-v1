@@ -414,6 +414,35 @@ downstream of any change E1 licenses, not a part of E1 itself. Held-out and
 Challenge partitions are not read (governance frame §2.1). No PySR import at
 any point.
 
+## 10. Implementation addendum: compound-level sufficient statistics
+
+Written after §5-8 above but before any world was generated, once the
+implementation (`scripts/e1_fit.py`) made the following storage compression
+available; recorded here rather than silently applied, per this project's own
+disclosure discipline (`MURU_V2_E0_ADMISSIBLE_RANGE_RESULTS.md` §3).
+
+Every criterion in §7.1 tests "unresolved iff ANY touched-bound probe, across
+both the M0 and Mk fold fits and across every one of a compound's (up to 6)
+LOEO folds, satisfies condition X" -- and X is monotone in exactly one scalar
+per probe (`probe_gain_rel` for C1; the ratio `gain_abs / (sigma_hat_sq *
+n_fold)` for C2, pre-divided at aggregation time so C2's stored field is
+compared directly against `delta`; `profile_extent / admissible_range` for
+C3). An "any, over a set, of a monotone predicate" is exactly equivalent to
+"the max of the underlying scalar over that set exceeds the threshold". This
+means the fold-level record §5 describes can be losslessly reduced, at
+generation time, to one row per `(world_id, detector, compound_id)` carrying
+only: `mae_m0`, `mae_alt`, `m0_unresolved_c0_any`, `mk_unresolved_c0_any`
+(boolean OR over folds/models), and the three max-over-(fold, model) ratios
+above -- plus, for C4, the compound's relaxed-refit `mae_m0`/`mae_alt` pair
+(itself already an aggregate over folds, since C4's verdict is compound-level
+by construction, §7.1). No fold-level or probe-level detail is discarded that
+any criterion in §7.1 can distinguish; `scripts/test_e1_aggregation.py` proves
+the equivalence by comparing fold-level and compound-level scoring on a
+synthetic record set with adversarially-chosen multi-fold, multi-probe
+patterns. Record volume falls from §5's 6,196,500 fold rows to **1,032,750
+compound rows** (11,475 fit units x 3 detectors x 30 compounds); this is a
+representation change only and alters no criterion's decision.
+
 ---
 
 **Terminal state for this document at commit time:** protocol only. No world
