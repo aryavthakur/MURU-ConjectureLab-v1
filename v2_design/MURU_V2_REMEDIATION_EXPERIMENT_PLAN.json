@@ -1,0 +1,1281 @@
+{
+  "binding_diagnosis": {
+    "G2_ceiling": {
+      "correct_retained_candidate_existed_in": 75,
+      "denominator": 144,
+      "perfect_post_search_selection": "75/144, Wilson lower 0.440, still FAIL against the 0.70 gate"
+    },
+    "RC1": {
+      "largest_triggering_relative_sse_improvement": 0.289,
+      "leverage": "resolving alone takes G1 to 154/164 and G3 to 0/36 violations",
+      "median_triggering_relative_sse_improvement": 0.013,
+      "statement": "A1 unresolved-boundary rule has no magnitude floor; 154/240 cases BOUNDARY_LIMITED; drives all 97 G1 adequacy failures and all 26 G3 violations"
+    },
+    "RC2": {
+      "coupling": "RC1 and RC2 must be solved together",
+      "leverage": "no count leverage; voids the evidential content of the 67 M0_NOT_REJECTED verdicts",
+      "max_practical_wins_observed": {
+        "M1": 18,
+        "M2": 18,
+        "M3": 15
+      },
+      "required_practical_wins": 20,
+      "statement": "A1 M1/M2/M3 detectors fired 0/240, including 0/48 planted positive controls"
+    },
+    "RC3": {
+      "median_complexity_gap": 3.4,
+      "median_valid_r2_gap": 0.121,
+      "observability_bound": "per-seed Pareto fronts were not persisted",
+      "paired_cases_both_more_accurate_and_more_complex": "70 of 75",
+      "statement": "within-seed argmax(score) retention discards more accurate, more complex correct expressions"
+    },
+    "RC4": {
+      "statement": "57 representable cases never had a correct retained candidate; v1 cannot distinguish search failure from weak identifiability"
+    },
+    "RC6": {
+      "cap": "G2 capped at 132/144 before any search runs",
+      "statement": "F18 is impossible under the current grammar: the endpoint requires a literal exp node and discovery/grammar.py excludes exp"
+    },
+    "late_gates_not_bottleneck": {
+      "cases_reaching_gate7": 27,
+      "gate7_passes": "26 of 27",
+      "gate8_passes": "25 of 26",
+      "note": "no experiment in this plan targets Gate 7 or Gate 8, so no change to them is licensed"
+    }
+  },
+  "companion_documents": {
+    "a1_study": "MURU_V2_A1_STUDY_DESIGN.md",
+    "causal_decision_tree": "MURU_V2_CAUSAL_DECISION_TREE.md",
+    "g2_pareto_study": "MURU_V2_G2_PARETO_STUDY_DESIGN.md",
+    "identifiability_study": "MURU_V2_IDENTIFIABILITY_STUDY_DESIGN.md",
+    "master_markdown": "MURU_V2_REMEDIATION_EXPERIMENT_PLAN.md"
+  },
+  "cost_summary": {
+    "basis": "2.30 s per PySR run serial, RUNTIME_BUDGET_P3 measured; every figure is an estimate replaced by a 5-world pilot measurement before the full run is authorised",
+    "recommended_order": [
+      "E0, E3 and E2 concurrently (E3 is cheapest and most decisive; E2 is the longest pole)",
+      "E1 behind E0",
+      "E4 arms behind their prerequisites",
+      "E5 behind E3 and E4d",
+      "E6 against each candidate change as it arises"
+    ],
+    "total_cpu_hours_estimate": "about 100, single pass with three candidate changes through E6",
+    "total_searches_estimate": 99000,
+    "total_storage_estimate": "under 2 GB",
+    "wall_clock": "roughly 13 hours on 8 cores or 4 days on one; every stage checkpointed at the world level and restartable"
+  },
+  "difficulty_guard": {
+    "applies_to_edges": [
+      "E1 outcome H2 route (ii)",
+      "E3 WEAKLY_IDENTIFIABLE route (ii)",
+      "E5 option O6"
+    ],
+    "conditions_all_required": [
+      "an experiment (E1's alpha_star, E3's c_star) measures the identifiability or detection floor above the current planted magnitude",
+      "an external scientific rationale states what deviation or effect magnitude is chemically meaningful, written BEFORE the new magnitude is chosen",
+      "the new magnitude is set from that rationale and not from the measured floor"
+    ],
+    "fallback": "if the rationale cannot be written, keep the magnitude and narrow the endpoint claim to the measured floor, reporting the current magnitude as below it",
+    "principle": "a benchmark that is easier because the planted signal was raised to meet the method is a different and weaker benchmark; a benchmark whose planted signal is set from a stated scientific criterion, with the method's sensitivity floor separately measured and reported, is a stronger one; only the second is licensed"
+  },
+  "evidence_base_frozen": [
+    "MURU_V1_FAILURE_DECOMPOSITION.md",
+    "MURU_V1_FAILURE_DECOMPOSITION.json",
+    "MURU_V1_ROOT_CAUSE_RANKING.md",
+    "MURU_V1_ROOT_CAUSE_RANKING.json",
+    "MURU_V1_G1_FAILURE_TAXONOMY.csv",
+    "MURU_V1_G2_FAILURE_TAXONOMY.csv",
+    "MURU_V1_G3_FAILURE_TAXONOMY.csv"
+  ],
+  "experiments": [
+    {
+      "addresses": [
+        "RC1"
+      ],
+      "case_count": {
+        "cells": 9,
+        "searches": 0,
+        "worlds_per_cell": 60,
+        "worlds_total": 540
+      },
+      "controls": [
+        "true M0 worlds only, so every boundary event observed is false by construction",
+        "shared covariate, mu_inf, phi_p, g and noise seeds across all nine cells (paired at fold level)",
+        "the (1-1e-4, 1-1e-4) cell is the control arm and must reproduce v1 boundary behaviour or the study aborts",
+        "no symbolic search; PySR never imported"
+      ],
+      "cost": {
+        "cpu_hours_estimate": "0.5 to 1.5",
+        "pilot": "5-world pilot replaces the estimate with a measurement",
+        "searches": 0,
+        "storage": "small"
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "boundary_limited_rate_drop_gt_0.50": "H_clip confirmed; re-derive MU_CEIL from an identifiability argument before E1 calibrates any floor",
+        "drop_0.10_to_0.50": "H_clip and H_alias both contribute; E1 runs with the ceiling as an explicit third factor",
+        "drop_lt_0.10": "H_null; MU_CEIL exonerated; E1 proceeds with it fixed"
+      },
+      "hypotheses": {
+        "H_alias": "over a 6-point energy grid the M3 plateau and the M0 scale are partially aliased",
+        "H_clip": "the M3 boundary event is manufactured by the coincidence MU_CEIL == generator response clip == 1 - 1e-4",
+        "H_null": "neither; MU_CEIL is exonerated"
+      },
+      "id": "E0",
+      "independent_variable": {
+        "crossed": true,
+        "fitter_mu_ceil": [
+          "1-1e-4",
+          "1-1e-3",
+          "open (1.0+1e-2)"
+        ],
+        "generator_response_clip": [
+          "1-1e-4",
+          "1-1e-3",
+          "none"
+        ]
+      },
+      "metrics": [
+        "contact_rate",
+        "unresolved_rate",
+        "probe_gain_rel distribution",
+        "evaluable_M3",
+        "boundary_limited_rate",
+        "pin_at_ceiling_share",
+        "mu_max_at_clip_share"
+      ],
+      "motivating_observation": {
+        "g1_cases_with_mu_max_at_clip_0_9999": 72,
+        "g1_denominator": 164,
+        "median_mu_max_boundary_limited": 0.9999,
+        "median_mu_max_m0_not_rejected": 0.9802,
+        "source": "recomputed from MURU_V1_G1_FAILURE_TAXONOMY.csv for this design"
+      },
+      "name": "A1_ADMISSIBLE_RANGE_PROVENANCE",
+      "outcome_support": {
+        "H_alias": "acquisition-geometry finding that no threshold fixes",
+        "H_clip": "RC1's remediation is the removal of a specification coincidence, not a threshold change; introduces no free parameter",
+        "H_null": "RC1 really is a magnitude-floor problem and E1's ladder is the right instrument"
+      },
+      "prerequisite": null
+    },
+    {
+      "addresses": [
+        "RC1",
+        "RC2"
+      ],
+      "case_count": {
+        "cells": 51,
+        "persisted_fold_records": 2020000,
+        "searches": 0,
+        "split": {
+          "CALIBRATE": "80 percent (60 per cell)",
+          "CONFIRM": "20 percent (15 per cell), opened exactly once"
+        },
+        "worlds_per_cell": 75,
+        "worlds_total": 3825
+      },
+      "controls": [
+        "(C0, P0) must reproduce v1's qualitative behaviour at alpha=1.0 (near-zero firing, high BOUNDARY_LIMITED rate) or the study is invalid and aborts",
+        "shared alpha=0 null population across all deviation types",
+        "paired seeds between each cell and its null counterpart at the same replicate index",
+        "wrong-detector firing recorded separately as a failure, not a success",
+        "truth joined only in a separate downstream scoring pass; fitting and rule evaluation never read the planted deviation type",
+        "fit once, score every rule post hoc: every criterion is a pure function of the persisted fold record"
+      ],
+      "cost": {
+        "cpu_hours_estimate": "up to 12",
+        "note": "rule re-scoring over the full criterion x rule grid takes minutes",
+        "searches": 0,
+        "storage": "~400 MB parquet"
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "admissibility_conjunction": [
+          "FRR <= 0.05 with Wilson upper <= 0.10 pooled over the null cells",
+          "indeterminate_rate <= 0.10 with Wilson upper <= 0.15 on the null cells",
+          "power_D >= 0.80 with Wilson lower >= 0.70 for each of M1, M2, M3 at alpha=1.0 and noise 0.02",
+          "misattribution <= 0.05 on every non-null cell at alpha=1.0",
+          "power_D monotone non-decreasing in alpha within every deviation type"
+        ],
+        "confirmation": "the selected pair is evaluated once on CONFIRM and adopted only if criteria 1 to 4 hold again",
+        "if_none_admissible": "outcome H2 or H3; reported as such; never a licence to weaken the criteria",
+        "selection_among_admissible": [
+          "fewest total free parameters",
+          "lowest indeterminate_rate on the null cells",
+          "highest min(power_M1, power_M2, power_M3) at alpha=1.0",
+          "lowest ladder index (most conservative parameter value)"
+        ]
+      },
+      "hypotheses": {
+        "H1": "a boundary criterion and a win rule exist that jointly reach power >= 0.80 at the v1-planted amplitude while holding false rejection <= 0.05 and indeterminate rate <= 0.10",
+        "H2": "the v1 amplitudes lie below the detection floor of a 30-compound 6-energy LOEO contrast",
+        "H3": "evaluability and power trade off with no admissible point at any amplitude"
+      },
+      "id": "E1",
+      "independent_variable": {
+        "analysis_factors": {
+          "boundary_criteria": {
+            "C0": {
+              "free_parameters": 0,
+              "role": "control",
+              "rule": "v1 frozen: unresolved iff probe_obj < best_obj - 1e-12"
+            },
+            "C1": {
+              "free_parameters": 1,
+              "levels": [
+                0.001,
+                0.003,
+                0.01,
+                0.03,
+                0.1
+              ],
+              "rule": "relative-SSE floor"
+            },
+            "C2": {
+              "free_parameters": 1,
+              "levels": [
+                0.25,
+                0.5,
+                1,
+                2,
+                4
+              ],
+              "rule": "noise-scaled floor against a fold-local residual scale"
+            },
+            "C3": {
+              "free_parameters": 1,
+              "levels": [
+                0.05,
+                0.1,
+                0.25
+              ],
+              "rule": "profile-SSE one-standard-error interval crosses the bound and extends outward beyond rho of the admissible range"
+            },
+            "C4": {
+              "free_parameters": 0,
+              "note": "zero magnitude parameters; one declared relaxation margin; preferred candidate, stated so it can be refuted",
+              "rule": "verdict invariance: BOUNDARY_LIMITED only if the constrained and bound-relaxed refits disagree on the compound's LOEO practical-win verdict"
+            }
+          },
+          "secondary_sweep": {
+            "MIN_EVALUABLE_COMPOUNDS": [
+              18,
+              21,
+              24,
+              27
+            ],
+            "note": "labelled secondary because moving it changes the denominator of every other metric"
+          },
+          "win_rules": {
+            "P0": {
+              "free_parameters": 3,
+              "role": "control",
+              "rule": "v1 frozen: ratio 0.90, wins >= 20 of 30, evaluable >= 24"
+            },
+            "P1": {
+              "ratio_levels": [
+                0.8,
+                0.9,
+                0.95,
+                0.98
+              ],
+              "rule": "ratio x win-count grid",
+              "win_levels": [
+                15,
+                18,
+                20,
+                24
+              ]
+            },
+            "P2": {
+              "levels": [
+                0.05,
+                0.01,
+                0.001
+              ],
+              "rule": "paired sign test on per-compound LOEO error differences via directional_null_tail"
+            },
+            "P3": {
+              "f_levels": [
+                0.5,
+                0.6,
+                0.67
+              ],
+              "m_levels": [
+                0.05,
+                0.1
+              ],
+              "rule": "conjunction of median relative error reduction and win fraction"
+            }
+          }
+        },
+        "design_factors": {
+          "alpha_reference": "multiplies the frozen standalone amplitude; alpha=1.0 reproduces the v1-planted amplitude exactly",
+          "deviation_type": [
+            "M0",
+            "M1",
+            "M2",
+            "M3",
+            "M1+M2+M3"
+          ],
+          "effect_size_multiplier_alpha": [
+            0,
+            0.25,
+            0.5,
+            1.0,
+            2.0
+          ],
+          "frozen_amplitudes": {
+            "COMBINED_M1_AMPLITUDE": 0.15,
+            "COMBINED_M2_AMPLITUDE": 0.05,
+            "COMBINED_M3_AMPLITUDE": "11/180",
+            "M1_HORIZONTAL_AMPLITUDE": 0.45,
+            "M2_HIGH_ENERGY_AMPLITUDE": 0.18,
+            "M3_LOW_ENERGY_AMPLITUDE": 0.22
+          },
+          "noise_sd": [
+            0.0,
+            0.02,
+            0.06
+          ]
+        }
+      },
+      "metrics": [
+        "FRR (false rejection on true-M0 worlds)",
+        "power_D per detector",
+        "misattribution (wrong detector fires)",
+        "indeterminate_rate",
+        "evaluable_dist",
+        "monotone_D (power non-decreasing in alpha; a validity check)",
+        "alpha_star_D (smallest alpha at which power >= 0.80 with Wilson lower >= 0.70) -- HEADLINE"
+      ],
+      "name": "A1_JOINT_EVALUABILITY_POWER",
+      "outcome_support": {
+        "H1_with_C4_selected": "the boundary defect was a decision-irrelevance defect; RC1 resolved with no new free parameter",
+        "H1_with_floor_selected": "a floor is genuinely needed and is now prospectively calibrated with a measured false-rejection rate and alpha_star",
+        "H2": "NO THRESHOLD CHANGE LICENSED; either the acquisition geometry changes or the planted amplitudes are re-declared under the difficulty guard",
+        "H3": "no constant in adequacy.py may be edited; escalate to redesigning the adequacy statistic itself",
+        "fails_CONFIRM": "NO CHANGE LICENSED; report the non-replication; do not re-select on CONFIRM"
+      },
+      "prerequisite": "E0"
+    },
+    {
+      "addresses": [
+        "RC3",
+        "RC4",
+        "RC5",
+        "RC7"
+      ],
+      "case_count": {
+        "E2a": {
+          "coefficient_regimes": 3,
+          "families": 5,
+          "noise_levels": 3,
+          "replicates": 12,
+          "searches": 16200,
+          "seeds_per_world": 30,
+          "worlds": 540
+        },
+        "E2b": {
+          "cases": 144,
+          "searches": 4320,
+          "seeds_per_case": 30
+        }
+      },
+      "case_partition": [
+        "SUCCESS",
+        "NEVER_ON_FRONT",
+        "LOST_IN_RETENTION",
+        "LOST_IN_CROSS_SEED"
+      ],
+      "controls": [
+        "retention-identity regression: the instrumented engine's argmax(score) candidate must be byte-identical to the frozen path's for every seed, or the records are unusable",
+        "PYSR_CONFIG, GRAMMAR_VERSION, deterministic=True, parallelism=serial and SEEDS_PER_CASE=30 unchanged",
+        "E2b replayed retention must reproduce the sealed selection_count and representative for all 144 cases; any case that does not is quarantined and reported",
+        "truth-derived columns computed in a separate downstream scoring pass the search never sees"
+      ],
+      "cost": {
+        "cost_risk": "the sympy.simplify scoring pass, not the search; mitigated by memoising on expression string, a per-expression wall-clock cap, and an explicit SIMPLIFY_TIMEOUT status distinguishable from genuine classifier non-coverage",
+        "cpu_hours_estimate": "16 to 19",
+        "search_basis": "2.30 s per PySR run serial, RUNTIME_BUDGET_P3 measured",
+        "searches": 20520,
+        "storage": "under 200 MB"
+      },
+      "decision_admissible": "E2a only",
+      "decision_criterion": {
+        "LOST_IN_CROSS_SEED_dominant": "RC7 larger than the 2 cases v1 showed; licenses E4f voting arms",
+        "LOST_IN_RETENTION_dominant": "RC3 confirmed by direct observation; licenses E4a",
+        "NEVER_ON_FRONT_dominant": "RC4 confirmed; route through E3's verdict before licensing E4b/E4c/E4d",
+        "P_retain_given_front_near_1": "the retention rule is exonerated; RC3 withdrawn; E4a not run",
+        "falsification_hook": "if E2b materially contradicts the decomposition's 69/57 retention-versus-generation split, ALL E4 ablations are suspended until resolved"
+      },
+      "front_record_fields": [
+        "world_id",
+        "cell_id",
+        "replicate",
+        "split",
+        "seed_ordinal_k",
+        "seed",
+        "front_rank",
+        "engine_complexity",
+        "grammar_complexity",
+        "expression_string",
+        "parse_ok",
+        "train_r2",
+        "valid_r2",
+        "test_r2",
+        "loss",
+        "score",
+        "invalid_fraction",
+        "effective_support",
+        "template_key",
+        "retained_by_argmax_score",
+        "admissibility"
+      ],
+      "hypotheses": {
+        "H_generate": "in the majority of GENERATION cases no front row anywhere carries both correct support and correct family",
+        "H_partial": "a material share of the GENERATION cases in fact have correct rows on the front, revising the decomposition's 57/69 split",
+        "H_retain": "in the majority of SELECTION_WITHIN_SEED_RETENTION cases a correct row is on the front and argmax(score) picks a lower-complexity mass-only row over it"
+      },
+      "id": "E2",
+      "independent_variable": {
+        "note": "NONE. E2 is observational by design. Engine, grammar, configuration, seeds, retention and cross-seed rules all frozen at v1 values; the only change is the persistence layer. E2 is not an ablation and must not be read as one.",
+        "value": null
+      },
+      "metrics": [
+        "P_front",
+        "P_retain_given_front",
+        "P_win_given_retain",
+        "rank_of_correct",
+        "score_gap",
+        "complexity_gap",
+        "r2_gap",
+        "front_size"
+      ],
+      "name": "G2_PARETO_INSTRUMENTATION",
+      "outcome_support": {
+        "H_generate": "the failure is upstream of every selection layer; no search-side change is licensed until E3 answers",
+        "H_partial": "the decomposition's 57/69 split is revised and the root-cause ranking is recomputed before E4 proceeds",
+        "H_retain": "RC3 becomes an observation; E4a is a zero-cost re-scoring of E2's own fronts"
+      },
+      "populations": {
+        "E2a": {
+          "decision_admissible": true,
+          "description": "fresh V2C worlds",
+          "role": "calibration"
+        },
+        "E2b": {
+          "decision_admissible": false,
+          "description": "replay of the identical frozen search on the 144 Held-out G2 cases with front persistence",
+          "enforcement": "row-level admissibility=DECISION_INADMISSIBLE plus a static citation checker",
+          "role": "explanatory only"
+        }
+      },
+      "prerequisite": null,
+      "removes_observability_bound": "WITHIN_SEED_PARETO_NOT_OBSERVABLE",
+      "scoring_pass_fields": [
+        "discovered_family",
+        "support_status_vs_truth",
+        "family_status_vs_truth",
+        "g2_correct",
+        "truth_family",
+        "truth_support",
+        "coefficient_regime"
+      ]
+    },
+    {
+      "addresses": [
+        "RC4",
+        "RC6"
+      ],
+      "candidate_models": {
+        "M_affine": "g = a * mass^b * (1 + c*descriptor)",
+        "M_exp": "g = a * mass^b * exp(c*descriptor)",
+        "M_inter": "g = a * mass^b * (1 + c*descriptor*descriptor2)",
+        "M_mass": "g = a * mass^b",
+        "M_sat": "g = a * mass^b * (1 + c*descriptor/(1+descriptor))"
+      },
+      "case_count": {
+        "coefficients": 5,
+        "energy_grids": 2,
+        "families": 5,
+        "noise_levels": 4,
+        "replicates": 50,
+        "searches": 0,
+        "worlds_total": 10000
+      },
+      "controls": [
+        "mass_power negative-control family on which the oracle must not select a descriptor model (the study's own specificity arm)",
+        "noise-free arm separating estimator error from structural closeness",
+        "paired seeds across the c ladder within each cell",
+        "the frozen Phi/g estimation stage (rc5_estimate.fit_case_scalars) used unmodified, so identifiability is measured on the quantity the search actually consumes",
+        "model fitting on training scaffolds only; every statistic on validation or test scaffolds",
+        "no symbolic search anywhere"
+      ],
+      "cost": {
+        "cpu_hours_estimate": "2 to 4",
+        "note": "cheapest experiment in the plan and the highest decision leverage; run first among the G2-side experiments, concurrently with E1",
+        "searches": 0,
+        "storage": "under 100 MB"
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "IDENTIFIABLE": "oracle_selection_rate >= 0.80; G2 failures in this cell are attributable to the search; licenses E4b/E4c/E4d for it",
+        "MARGINAL": "0.50 <= rate < 0.80; no search-side change may be justified from this cell alone",
+        "STUDY_INVALID": "false_structure_oracle > 0.10 on the mass_power control; the oracle itself invents structure and E3 must be redesigned before use",
+        "WEAKLY_IDENTIFIABLE": "rate < 0.50; G2 failures here are NOT attributable to search; no search-side change may cite this cell"
+      },
+      "design_principle": "remove the search from the question; hand a model-selection criterion the five correct parametric families in closed form, so its success rate is a hard ceiling on what any symbolic search could achieve",
+      "design_time_arithmetic": {
+        "mass_exponential_descriptor": {
+          "0.25": {
+            "max_abs_residual": 0.000608,
+            "rms": 0.0002699,
+            "rms_relative": 0.0002588
+          },
+          "0.40": {
+            "max_abs_residual": 0.001605,
+            "rms": 0.0007086,
+            "rms_relative": 0.0006624
+          },
+          "0.55": {
+            "max_abs_residual": 0.003129,
+            "rms": 0.001374,
+            "rms_relative": 0.0012519
+          }
+        },
+        "mass_saturating_descriptor": {
+          "0.25": {
+            "max_abs_residual": 0.01713,
+            "rms": 0.006196,
+            "rms_relative": 0.005755
+          },
+          "0.40": {
+            "max_abs_residual": 0.02741,
+            "rms": 0.009914,
+            "rms_relative": 0.00883
+          },
+          "0.55": {
+            "max_abs_residual": 0.03769,
+            "rms": 0.013631,
+            "rms_relative": 0.011663
+          }
+        },
+        "method": "residual after subtracting the best least-squares affine approximation in descriptor over [0,1]",
+        "reading": "F18's exponent is coefficient*descriptor/3 and never exceeds 0.183 over the whole frozen coefficient support, so exp is affine to within roughly one part in a thousand. Even with exp admitted to the grammar an affine candidate would fit as well at lower complexity, so a parsimony-driven search would still never emit the exponential form and g2_contract._contains_exp_of would still never see a literal exp node. RC6 may therefore be a symptom rather than the binding constraint.",
+        "reference_noise_sd": 0.02,
+        "status": "arithmetic over the frozen generator specification; NOT an experimental result and NOT evidence from any partition; stated to make the hypotheses falsifiable and tested by the experiment itself"
+      },
+      "gates": [
+        "E4b",
+        "E4c",
+        "E4d",
+        "E4e",
+        "E5"
+      ],
+      "hypotheses": {
+        "H_id_affine": "mass_affine_descriptor is identifiable against mass-only at the frozen coefficient range",
+        "H_id_exp": "mass_exponential_descriptor is not distinguishable from mass_affine_descriptor at the frozen range",
+        "H_id_geometry": "doubling the energy grid from 6 to 12 points materially raises identifiability",
+        "H_id_noise": "where a family fails, the failure survives at zero response noise (structural closeness, not measurement error)",
+        "H_id_sat": "mass_saturating_descriptor is not distinguishable from mass_affine_descriptor at the frozen range"
+      },
+      "id": "E3",
+      "independent_variable": {
+        "coefficient_c": [
+          0.25,
+          0.4,
+          0.55,
+          1.1,
+          2.2
+        ],
+        "energy_grid_points": [
+          6,
+          12
+        ],
+        "frozen_coefficient_support": "rng.uniform(0.25, 0.55)",
+        "noise_sd": [
+          0.0,
+          0.02,
+          0.0295,
+          0.06
+        ],
+        "truth_family": [
+          "mass_power (control)",
+          "mass_affine_descriptor",
+          "mass_saturating_descriptor",
+          "mass_interaction",
+          "mass_exponential_descriptor"
+        ]
+      },
+      "metrics": [
+        "oracle_selection_rate (primary)",
+        "false_structure_oracle (primary specificity)",
+        "delta_r2_vs_mass",
+        "delta_r2_vs_rival",
+        "c_hat_over_se",
+        "lrt_p_true_vs_mass",
+        "lrt_p_true_vs_rival",
+        "c_star (smallest c at which oracle selection reaches 0.80) -- HEADLINE per family"
+      ],
+      "name": "DESCRIPTOR_IDENTIFIABILITY",
+      "nearest_rival_declared_in_advance": {
+        "M_affine": "M_mass",
+        "M_exp": "M_affine",
+        "M_inter": "M_affine",
+        "M_sat": "M_affine"
+      },
+      "outcome_support": {
+        "all_identifiable": "the signal is there and the search misses it; RC4 is a genuine search-generation failure and E4b/c/d are fully licensed",
+        "c_star_above_frozen_range": "that family's planted magnitude is below the identifiability floor; the difficulty guard applies",
+        "failures_persist_at_zero_noise": "structural closeness; more energies, more compounds and lower noise will not help",
+        "failures_resolve_at_12_energies": "acquisition geometry is a material constraint; feeds the prospective benchmark's energy-grid design",
+        "some_families_weakly_identifiable": "the G2 ceiling is partly a benchmark-construction fact; RC4's 57 generation failures split into a searchable part and an unreachable part; NO search change licensed for the unreachable cells"
+      },
+      "prerequisite": null,
+      "selection_criteria_reported": [
+        "BIC",
+        "validation R2"
+      ]
+    },
+    {
+      "addresses": [
+        "RC3",
+        "RC4",
+        "RC5",
+        "RC7"
+      ],
+      "arms": [
+        {
+          "case_count": "post hoc on E2a's 540 worlds x 30 seeds; no new worlds",
+          "controls": [
+            "identical fronts, seeds and cross-seed rule across arms"
+          ],
+          "cost": {
+            "cpu_hours_estimate": "under 1",
+            "searches": 0
+          },
+          "decision_criterion": "adopt the simplest arm clearing both the improvement and the E6 ceiling; an arm that drives selection_count below the 20-of-30 stability gate for most cases is rejected, or adopted only with a re-derived stability gate that requires its own experiment",
+          "hypothesis": "an accuracy-aware retention rule recovers correct candidates that argmax(score) discards, without raising false structure",
+          "id": "E4a",
+          "independent_variable": {
+            "factor": "retention policy",
+            "levels_key": "levels"
+          },
+          "levels": {
+            "R0": "argmax(score) (control, frozen v1)",
+            "R1": "argmax(valid_r2)",
+            "R2": "top-k by score, k in {1,2,3,5}",
+            "R3": "whole front, seed votes for its best member by valid_r2",
+            "R4": "accuracy-thresholded parsimony: lowest complexity among rows within eps of max valid_r2, eps in {0.001, 0.005, 0.02}"
+          },
+          "metrics": [
+            "G2 case success",
+            "false_structure_rate",
+            "selection_count distribution"
+          ],
+          "outcome_support": {
+            "adopted": "RC3 remediated at zero search cost",
+            "none_beats_R0": "NO CHANGE LICENSED; the frozen retention rule stands and RC3's attribution is revised downward",
+            "rejected_on_false_structure": "RC3's own stated risk realised: an accuracy-weighted rule biasing toward overfit high-complexity expressions"
+          },
+          "prerequisite": "E2"
+        },
+        {
+          "case_count": {
+            "arms": 3,
+            "searches": 5400,
+            "seeds_per_world": 30,
+            "worlds": 60
+          },
+          "controls": [
+            "populations and population_size held fixed",
+            "restricted to cells E2 labels NEVER_ON_FRONT AND E3 labels IDENTIFIABLE"
+          ],
+          "cost": {
+            "cpu_hours_estimate": 16,
+            "searches": 5400
+          },
+          "decision_criterion": "flat P_front across budgets means no budget increase is licensed; a rise at B1 adopts the smallest sufficient budget; a rise only at B2 is reported with its 10x cost so the trade is explicit",
+          "hypothesis": "the correct structure is absent from the front because the search budget is too small",
+          "id": "E4b",
+          "independent_variable": {
+            "factor": "search budget (niterations)",
+            "levels_key": "levels"
+          },
+          "levels": {
+            "B0": "niterations=40 (control)",
+            "B1": "niterations=120",
+            "B2": "niterations=400"
+          },
+          "metrics": [
+            "P_front (a generation-stage metric, measured at the generation stage)"
+          ],
+          "outcome_support": {
+            "flat": "generation failure is not a budget problem",
+            "rise_at_B1": "adopt the smallest sufficient budget",
+            "rise_only_at_B2": "adoption requires an explicit cost decision, not an automatic one"
+          },
+          "prerequisite": "E2 and E3"
+        },
+        {
+          "case_count": {
+            "non_control_arms": 4,
+            "searches": 7200,
+            "seeds_per_world": 30,
+            "worlds": 60
+          },
+          "controls": [
+            "one sweep at a time; parsimony swept with scaling fixed, then scaling with parsimony fixed"
+          ],
+          "cost": {
+            "cpu_hours_estimate": 4.6,
+            "searches": 7200
+          },
+          "decision_criterion": "licensed only by a rise in P_front (a generation effect); a rise in P_retain_given_front alone is E4a's territory, addressed there at zero cost, and counting it twice would attribute one fix to two factors",
+          "hypothesis": "the parsimony pressure prevents the correct higher-complexity structure from being generated at all",
+          "id": "E4c",
+          "independent_variable": {
+            "factor": "search objective and parsimony",
+            "levels_key": "levels",
+            "note": "two sweeps, each one-factor"
+          },
+          "levels": {
+            "C-i parsimony": [
+              0.0032,
+              0.001,
+              0.01
+            ],
+            "C-ii adaptive_parsimony_scaling": [
+              20.0,
+              5.0,
+              40.0
+            ]
+          },
+          "metrics": [
+            "P_front",
+            "P_retain_given_front",
+            "front complexity distribution",
+            "false_structure_rate"
+          ],
+          "outcome_support": {
+            "P_front_rises": "a genuine generation effect; licensed subject to E6",
+            "only_retention_rises": "NOT LICENSED via E4c"
+          },
+          "prerequisite": "E2 and E3"
+        },
+        {
+          "case_count": {
+            "non_control_arms": 3,
+            "searches": 18000,
+            "seeds_per_world": 30,
+            "worlds": 200
+          },
+          "controls": [
+            "all eleven other families carried through every arm, so a global grammar change is never scored on a single family's benefit",
+            "overflow instrumentation on the actual design-matrix ranges"
+          ],
+          "cost": {
+            "cpu_hours_estimate": 11.5,
+            "searches": 18000
+          },
+          "decision_criterion": "licensed only if F18-analogue P_front rises materially AND no other family's false_structure_rate exceeds the E6 ceiling; G3 is presumptively rejected because it encodes the planted argument form in the grammar, and is measured only so the size of the encoding effect is on the record",
+          "hypothesis": "admitting exp raises F18-analogue front presence without raising false structure elsewhere",
+          "id": "E4d",
+          "independent_variable": {
+            "factor": "grammar and operator availability",
+            "levels_key": "levels"
+          },
+          "levels": {
+            "G0": "frozen: sqrt, log, square, cube, inv (control)",
+            "G1": "+ unguarded exp",
+            "G2": "+ domain-clipped exp_p(x)=exp(clip(x,-B,B)) with NESTED_CONSTRAINTS[exp]={exp:0}",
+            "G3": "+ exp admissible only over a linear argument in one primitive"
+          },
+          "metrics": [
+            "F18-analogue P_front",
+            "every other family's G2 success and false_structure_rate",
+            "finite_mask rejection rate",
+            "MAX_INVALID_FRACTION (0.005) rejection rate",
+            "direct test that invalidity never improves a score"
+          ],
+          "outcome_support": {
+            "G2_arm_passes": "the grammar exclusion was the binding defect; admit guarded exp with permanent overflow instrumentation",
+            "G3_outperforms_G2": "expected, and evidence of encoding rather than merit; stays rejected",
+            "no_arm_passes": "the operator cannot be admitted safely; resolve F18 by O5 or O7"
+          },
+          "prerequisite": "E3"
+        },
+        {
+          "case_count": {
+            "coefficients": 5,
+            "families": 5,
+            "searches": 15000,
+            "seeds_per_world": 30,
+            "worlds_per_cell": 20
+          },
+          "controls": [
+            "same families, seeds and downstream stages as E3, so c*_search and c*_oracle are comparable"
+          ],
+          "cost": {
+            "cpu_hours_estimate": 9.6,
+            "searches": 15000
+          },
+          "decision_criterion": "a large engine_inefficiency licenses search-side work; a gap near zero means the search is already near the statistical limit and NO further search-side change is licensed, leaving the benchmark's signal-to-noise as the binding constraint under the difficulty guard",
+          "hypothesis": "G2 success is a function of the planted coefficient magnitude, and the search requires a materially larger coefficient than an oracle handed the five correct models",
+          "id": "E4e",
+          "independent_variable": {
+            "factor": "planted coefficient magnitude",
+            "levels_key": "levels"
+          },
+          "levels": {
+            "c": [
+              0.25,
+              0.4,
+              0.55,
+              1.1,
+              2.2
+            ]
+          },
+          "metrics": [
+            "G2 success as a function of c per family",
+            "c*_search",
+            "engine_inefficiency = c*_search - c*_oracle"
+          ],
+          "outcome_support": {
+            "large_gap": "search engineering has headroom",
+            "near_zero_gap": "further search engineering is wasted; the constraint is benchmark design"
+          },
+          "prerequisite": "E3"
+        },
+        {
+          "case_count": "post hoc on E2a's fronts; no new worlds",
+          "controls": [
+            "adversarial negative controls constructed by structurally perturbing the truth expression: substitute correlated_distractor for descriptor, substitute descriptor2 for descriptor, replace the descriptor factor with a matched-magnitude constant",
+            "K2 consumes only the candidate's own outputs, never the planted law"
+          ],
+          "cost": {
+            "cpu_hours_estimate": 2,
+            "searches": 0
+          },
+          "decision_criterion": "coverage is NOT the adoption criterion; a classifier arm is adopted only if false_labelling_rate stays under its pre-declared ceiling, and among those the highest coverage wins; a voting arm is adopted only if k_inflation stays within its ceiling",
+          "hypothesis": "a broader classifier or a coarser voting relation recovers cases without mislabelling not-truth-equivalent expressions",
+          "id": "E4f",
+          "independent_variable": {
+            "factor": "family classifier and voting relation",
+            "levels_key": "levels",
+            "note": "two independent sweeps"
+          },
+          "levels": {
+            "F-i classifier": {
+              "K0": "frozen classify_discovered_family (control)",
+              "K1": "K0 plus a canonical structural normal form",
+              "K2": "behavioural identification by fitting the five truth-family forms to the candidate's own predicted values"
+            },
+            "F-ii voting relation": {
+              "V0": "identity_contract.template_key (control)",
+              "V1": "(effective_support, discovered_family)",
+              "V2": "algebraic equivalence"
+            }
+          },
+          "metrics": [
+            "false_labelling_rate on adversarial negatives (PRIMARY)",
+            "coverage, with SIMPLIFY_TIMEOUT reported separately from genuine non-coverage",
+            "k_inflation (median class count per case and selection_count)",
+            "G2 case success"
+          ],
+          "outcome_support": {
+            "V1_repeats_the_v1_pattern": "NO CHANGE LICENSED; v1's counterfactual already measured V1 at 3/144 against the frozen rule's 4/144",
+            "coverage_up_and_false_labelling_controlled": "adopt",
+            "coverage_up_and_false_labelling_up": "REJECTED; RC5's risk realised, in the direction that flatters the result"
+          },
+          "prerequisite": "E2"
+        }
+      ],
+      "case_count": {
+        "searches_total_estimate": 45600,
+        "value": "per arm; see arms[].case_count"
+      },
+      "common_controls": [
+        "the frozen v1 setting is always the control arm",
+        "identical worlds, seeds and downstream stages across arms",
+        "every arm reports its G2 metric and its E6 false-structure metric in the same table; reporting a G2 gain without its safety cost is not permitted"
+      ],
+      "common_decision_rule": "an arm is adopted only if its improvement over control has a Wilson lower bound above 0 AND its false_structure_rate stays under the E6 ceiling; among qualifying arms fewest free parameters wins, then lowest false structure",
+      "cost": {
+        "cpu_hours_estimate": "about 42 of search across E4b, E4c, E4d, E4e; E4a and E4f cost nothing beyond re-scoring"
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "common": "an arm is adopted only if its improvement over control has a Wilson lower bound above 0 AND its false_structure_rate stays under the E6 ceiling; among qualifying arms fewest free parameters wins, then lowest false structure",
+        "value": "per arm; see arms[].decision_criterion"
+      },
+      "discipline": "one factor at a time; no arm changes two factors; any joint study is separately authorised later, may combine only individually admissible factors, and must re-measure false structure jointly because admissibility is not additive",
+      "hypotheses": {
+        "H_ablation": "each of the six named factors independently changes G2 outcome, and at least one does so without raising false structure beyond the E6 ceiling"
+      },
+      "id": "E4",
+      "independent_variable": {
+        "arms": [
+          "retention policy",
+          "search budget",
+          "search objective and parsimony",
+          "grammar and operator availability",
+          "planted coefficient magnitude",
+          "family classifier and voting relation"
+        ],
+        "value": "one factor per arm; see arms[].independent_variable"
+      },
+      "metrics": {
+        "universal": [
+          "G2 case success",
+          "false_structure_rate from E6, reported in the same table"
+        ],
+        "value": "per arm; see arms[].metrics"
+      },
+      "name": "G2_SINGLE_FACTOR_ABLATIONS",
+      "outcome_support": {
+        "note": "every arm has a NO CHANGE LICENSED outcome and several have a REJECTED DESPITE IMPROVEMENT outcome",
+        "value": "per arm; see arms[].outcome_support"
+      },
+      "structure": "container experiment; each of the six arms below carries its own hypothesis, independent variable, controls, metrics, case count, decision criterion, cost and outcome support"
+    },
+    {
+      "addresses": [
+        "RC6"
+      ],
+      "case_count": {
+        "note": "rides on E4d's arms plus a dedicated F18-analogue world set at E3's coefficient ladder",
+        "seeds_per_world": 30,
+        "worlds": 200
+      },
+      "controls": [
+        "all eleven other families carried through every grammar arm",
+        "overflow instrumentation on the actual design-matrix ranges",
+        "the frozen grammar arm is the control"
+      ],
+      "cost": {
+        "cpu_hours_estimate": "3.8 per grammar arm",
+        "searches": 6000
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "excluded_input": "G2 success rate is reported for every option and ranks none of them; this is the operative sense of not choosing based on making scores easier",
+        "test_1_coherence": "does the option remove the contradiction between the endpoint's required operator and the grammar's operator set? O1 fails and is eliminated",
+        "test_2_identifiability": "decided by E3; if the exponential family is WEAKLY IDENTIFIABLE at the frozen coefficient range then O2, O3 and O4 are futile and only O5, O6 and O7 remain live",
+        "test_3_safety": "measured false_structure_rate from E6; any option exceeding the ceiling is eliminated"
+      },
+      "hypothesis": "the RC6 defect as stated is a symptom rather than the binding constraint: even with exp admitted, the planted exponential is numerically indistinguishable from an affine descriptor law at the frozen coefficient magnitude",
+      "id": "E5",
+      "independent_variable": {
+        "O1": "status quo (does not remove the contradiction)",
+        "O2": "admit exp unguarded",
+        "O3": "admit domain-clipped exp_p with NESTED_CONSTRAINTS[exp]={exp:0}",
+        "O4": "admit exp only over a linear argument in one primitive",
+        "O5": "remove F18 from the family-recovery population, denominator 144 to 132",
+        "O6": "re-specify F18's coefficient so exp is separable from affine",
+        "O7": "replace F18's truth with a grammar-expressible but algebraically difficult form preserving the family's scientific question"
+      },
+      "metrics": [
+        "F18-analogue P_front",
+        "every other family's false_structure_rate",
+        "finite_mask rejection rate",
+        "MAX_INVALID_FRACTION rejection rate",
+        "clip activation rate for O3",
+        "empirical test that invalidity never improves a score"
+      ],
+      "name": "F18_EXPONENTIAL_RESOLUTION",
+      "outcome_support": {
+        "E3_identifiable_and_O3_clears_safety": "the grammar exclusion was the binding defect; admit guarded exp with permanent overflow instrumentation",
+        "E3_identifiable_and_no_option_clears_safety": "resolve by O5 or O7",
+        "E3_weakly_identifiable": "DEVIATIONS_P3 D1's exclusion of exp STANDS; the grammar is exonerated; F18's resolution is a governance decision among O5, O6 and O7 about what claim the endpoint should make",
+        "O4_outperforms_O3": "expected; evidence of encoding rather than merit; O4 stays rejected and the margin is reported as the size of the encoding effect"
+      },
+      "prerequisite": "E3, informed by E4d",
+      "specification_contradiction": "discovery/grammar.py UNARY_OPERATORS omits exp (DEVIATIONS_P3 D1); F18's planted truth is sqrt(mass)*exp(coefficient*descriptor/3); g2_contract._contains_exp_of requires a literal sympy.exp node; 12 of 144 G2 cases had success probability exactly zero before any search ran"
+    },
+    {
+      "addresses": [
+        "RC1 risk 2",
+        "RC3 risk 2",
+        "RC4 risk 1",
+        "RC5 risk 1",
+        "RC8"
+      ],
+      "case_count": {
+        "minimum_evaluable_safety_opportunities": 100,
+        "seeds_per_world": 30,
+        "v1_comparison": "v1's safety result rested on 10 evaluable opportunities, which the decomposition calls a genuine absence of observed unsafe acceptance, not a demonstration of safety",
+        "worlds_per_candidate_change": 300
+      },
+      "controls": [
+        "the frozen v1 configuration is the control arm",
+        "identical worlds and seeds across arms",
+        "both v1 diagnostic routes reproduced: the frozen g3_contract classifiers, and an independent direct scan that bypasses them and asks whether any case reached STRUCTURAL_ACCEPTED with non-mass effective support",
+        "agreement between the two routes is itself a check"
+      ],
+      "cost": {
+        "cpu_hours_estimate": "5.8 per candidate change",
+        "searches": 9000
+      },
+      "decision_admissible": true,
+      "decision_criterion": {
+        "ceiling": "unsafe acceptance rate Wilson upper <= 0.15, mirroring G3's own gate, on at least 100 evaluable opportunities",
+        "veto_asymmetry": "E6 holds veto and has no positive power: it can reject a change, it can never license one; a safety experiment that could authorise changes would become a route to justifying looser rules by pointing at an unfired alarm"
+      },
+      "hypothesis": "for each candidate change X, the unsafe structural acceptance rate under X remains within the pre-declared ceiling on fresh worlds",
+      "id": "E6",
+      "independent_variable": "the candidate change X, one at a time",
+      "metrics": [
+        "unsafe structural acceptance rate with Wilson upper bound",
+        "count of EVALUABLE safety opportunities"
+      ],
+      "name": "FALSE_STRUCTURE_SAFETY_COUNTERWEIGHT",
+      "not_a_terminal_stage": "E6 runs against every candidate change from E1, E4 and E5, as that change becomes a candidate",
+      "outcome_support": {
+        "clears": "the change carries a safety argument v1 never had",
+        "fails": "the change is rejected regardless of its G1 or G2 benefit; this is the only mechanism in the plan that can stop a score-improving change"
+      },
+      "prerequisite": "runs against each candidate change",
+      "why_mandatory": "every remediation in this plan pulls against G3; RC1's own risk note requires that G3's safety direction be re-argued from scratch rather than inherited once evaluability is loosened",
+      "world_types": [
+        "mass-only truth (F07 analogue)",
+        "destroyed-link nulls (F19A analogue)",
+        "mass-preserving nulls (F19B analogue)",
+        "destroyed-response worlds (F19C analogue), which must be flagged non-evaluable",
+        "adversarial: F20A latent driver, F20B measurement coupling, F20C out-of-grammar"
+      ]
+    }
+  ],
+  "forbidden_changes": [
+    {
+      "change": "choosing a boundary floor from the Held-out counterfactual table",
+      "reason": "Held-out is spent; the counterfactual is a diagnostic probe, not a proposal"
+    },
+    {
+      "change": "lowering MIN_EVALUABLE_COMPOUNDS to make cases evaluable",
+      "reason": "swept only as a labelled secondary sweep because moving it changes the denominator of every other metric; no edge adopts it alone"
+    },
+    {
+      "change": "lowering MIN_PRACTICAL_WINS to make detectors fire",
+      "reason": "only adoptable inside an admissible pair that simultaneously holds false rejection at or below 0.05; a win-count reduction alone fails criterion 1"
+    },
+    {
+      "change": "retaining the whole Pareto front to raise G2",
+      "reason": "measured as E4a R3, but adoption requires clearing E6 and not collapsing the 20-of-30 stability gate"
+    },
+    {
+      "change": "coarsening the voting relation to raise selection_count",
+      "reason": "RC7's own counterfactual is net negative (3/144 against 4/144) and k_inflation is a gating metric"
+    },
+    {
+      "change": "loosening the family classifier to raise coverage",
+      "reason": "false_labelling_rate on adversarial negatives is primary, not coverage"
+    },
+    {
+      "change": "relaxing Gate 7 or Gate 8",
+      "reason": "late falsification is not the bottleneck: 27 of 240 cases reach Gate 7, which passes 26 of 27, and Gate 8 passes 25 of 26; no experiment targets them so no change to them is licensed"
+    },
+    {
+      "change": "touching the Challenge partition",
+      "reason": "sealed and unopened; v2's only confirmation surface"
+    }
+  ],
+  "governance": {
+    "citation_enforcement": "every proposed v2 design change must cite supporting experiment IDs; a static citation checker rejects any change whose supporting set contains an E2b identifier and no decision-admissible identifier",
+    "internal_replication": "E1's world set is split 80/20 into CALIBRATE and CONFIRM at generation time, both sealed together; CONFIRM is opened exactly once after the rule is selected on CALIBRATE alone; a selected rule that fails CONFIRM is reported as a non-replication and no second selection round is permitted",
+    "namespace_separation": {
+      "benchmark_seed_payload_prefix": "paper-benchmark-v1|",
+      "enforcement": "static check asserts prefix disjointness and that no V2C| id resolves through registry.resolve_case_id",
+      "seed_payload_prefix": "muru-v2-calibration|",
+      "world_id_pattern": "V2C|<experiment>|<cell_id>|r<replicate:03d>"
+    },
+    "partition_discipline": {
+      "challenge": {
+        "cases": 60,
+        "permitted_use": "reserved as v2's confirmation partition; nothing in this plan touches it",
+        "status": "SEALED_UNOPENED"
+      },
+      "development": {
+        "cases": 80,
+        "permitted_use": "not a calibration surface for v2",
+        "status": "CONTAMINATED_BY_V1_TUNING"
+      },
+      "held_out": {
+        "cases": 240,
+        "forbidden_use": "calibrating any v2 rule, threshold, grammar or benchmark change",
+        "permitted_use": "explanatory replay only (E2b), marked DECISION_INADMISSIBLE",
+        "status": "SPENT"
+      },
+      "v2c_calibration_worlds": {
+        "permitted_use": "the only surface on which a v2 rule may be calibrated",
+        "status": "FRESH"
+      }
+    }
+  },
+  "hostile_review": {
+    "declared_residual_risks": 3,
+    "fatal_objections": 0,
+    "findings": [
+      {
+        "attack": "any v2 rule that performs well is suspect of having been chosen because the designer knows what Held-out did",
+        "lens": "1. leakage from spent evidence",
+        "mitigation": "fresh V2C worlds under a disjoint seed namespace are the only calibration surface; E2b marked DECISION_INADMISSIBLE with a static citation checker; Challenge stays sealed; Development excluded as v1-contaminated",
+        "residual_risk": "the space of hypotheses in this plan is Held-out-informed. C4 exists because the decomposition showed the triggering improvements were negligible; E0 exists because a mu_max pattern was visible in the frozen taxonomy. v2's design is Held-out-informed at the hypothesis level and Held-out-blind at the parameter level. That is the strongest available protection and it is not complete protection.",
+        "survives": "partially"
+      },
+      {
+        "attack": "ladders centred on v1's operating point would produce rules tuned to v1's difficulty",
+        "lens": "2. overfitting to v1",
+        "mitigation": "E1's alpha ladder runs 0.25x to 2x the frozen amplitude and E3's c ladder 0.25 to 2.2 against a frozen support of U(0.25,0.55); both locate a threshold rather than verify a verdict, and the located thresholds are the headline results",
+        "residual_risk": "fresh worlds use the same generator machinery, so any defect in it is inherited; descriptor is min-max normalised per sample and correlated_distractor is unrenormalised. A full generator audit is not in this plan and is recorded as an open item.",
+        "survives": "no"
+      },
+      {
+        "attack": "E1 evaluates about 5 criteria against about 20 rule combinations across 51 cells; something will look admissible by chance",
+        "lens": "3. multiple-comparison inflation",
+        "mitigation": "admissibility is a conjunction of pre-declared absolute thresholds rather than a best-of-K ranking; the tie-break is a pre-declared lexicographic order with fewest-free-parameters first; a sealed CONFIRM split opened exactly once provides internal replication",
+        "residual_risk": "a conjunction of five thresholds evaluated at thousands of points still has a non-trivial family-wise error rate, and CONFIRM is only 20 percent so its own power is limited. If the selected pair fails CONFIRM the plan requires reporting non-replication rather than trying the next pair, and that rule must be honoured even when it costs the whole study.",
+        "survives": "partially"
+      },
+      {
+        "attack": "every remediation makes something easier and several would raise the score without improving the science",
+        "lens": "4. changes that merely lower difficulty",
+        "mitigation": "eight enumerated temptations each with a specific guard; see difficulty_guard and forbidden_changes",
+        "residual_risk": "the difficulty guard depends on a scientific rationale being written honestly and in advance. That is a governance control, not a technical one, and its only real protection is that the rationale is committed before the new magnitude is chosen and is therefore auditable after the fact.",
+        "survives": "no"
+      },
+      {
+        "attack": "a rule calibrated against the same code that generates the worlds is tuned to the generator rather than to chemistry",
+        "lens": "5. construct validity of the fresh worlds",
+        "mitigation": "E1's (C0,P0) control arm must reproduce v1's qualitative behaviour, and E2a versus E2b divergence is a blocking finding, so transfer is checked rather than assumed",
+        "residual_risk": "every claim this plan can produce is a claim about this synthetic regime; none transfers to real spectra without external validation",
+        "survives": "no"
+      },
+      {
+        "attack": "persisting the whole front touches the same code path that selects from it",
+        "lens": "6. instrumentation that changes what it measures",
+        "mitigation": "a byte-identity regression gate: the instrumented engine's argmax(score) candidate must be byte-identical to the frozen path's for every seed in a control set, or E2's records are unusable",
+        "residual_risk": "the gate proves identity on the control set, not on every world",
+        "survives": "no"
+      },
+      {
+        "attack": "E4c and E4a can both claim the same improvement, inflating the apparent benefit of both",
+        "lens": "7. attribution exclusivity",
+        "mitigation": "E4c is licensed only by a rise in P_front, a generation metric; a rise in P_retain_given_front alone is explicitly assigned to E4a, which achieves it at zero cost",
+        "residual_risk": "P_front and P_retain_given_front are not perfectly orthogonal, since a front with more high-complexity rows changes both",
+        "survives": "no"
+      },
+      {
+        "attack": "experiments drift into claiming more than they measured and case counts silently fail to reconcile",
+        "lens": "8. claim discipline and denominator closure",
+        "mitigation": "pre-registered predictions in every study document; exact case-count reconciliation carried forward from the v1 hostile review convention; every reported proportion carries a Wilson interval",
+        "residual_risk": "pre-registration is only as strong as the discipline of recording predictions before results are seen; the predictions here are committed before any world exists, the earliest point at which that is possible",
+        "survives": "no"
+      }
+    ],
+    "lenses": 8
+  },
+  "official_v1_result_unchanged": {
+    "G1": "67/164",
+    "G2": "4/144",
+    "G3": "26/36 violations",
+    "note": "nothing in this plan supersedes, reinterprets or re-scores it"
+  },
+  "open_items_not_covered": [
+    "generator audit: per-sample min-max normalisation of descriptor, unrenormalised correlated_distractor, and the response clip's interaction with MU_CEIL beyond what E0 probes; should precede or accompany E0",
+    "acquisition geometry design: E1's alpha_star and E3's H_id_geometry arm both point at the 6-point energy grid and the 30-compound test population; redesigning them is a prospective-benchmark question, out of scope here",
+    "the prospective benchmark itself, not created per the mission's scope boundary",
+    "real-data validation: everything here is synthetic and no claim transfers to real spectra",
+    "the v2 architecture, bounded by the decision tree and chosen by nothing in this plan"
+  ],
+  "pre_registered_predictions": [
+    {
+      "id": "PE0-1",
+      "prediction": "E0's decoupled cells reduce boundary_limited_rate on true-M0 worlds by more than 0.50, confirming H_clip"
+    },
+    {
+      "id": "PE0-2",
+      "prediction": "pin_at_ceiling_share in the v1 control cell exceeds 0.5 of M3 fits"
+    },
+    {
+      "id": "PE1-1",
+      "prediction": "(C0,P0) on alpha=1.0 worlds reproduces near-zero firing, matching v1's 0/48 positive-control result"
+    },
+    {
+      "id": "PE1-2",
+      "prediction": "C4 is admissible and is selected under the lexicographic order"
+    },
+    {
+      "id": "PE1-3",
+      "prediction": "alpha_star_M3 exceeds 1.0, meaning the F15 planted amplitude is at or below the detection floor"
+    },
+    {
+      "id": "PE1-4",
+      "prediction": "alpha_star for the combined family exceeds alpha_star for the standalone families, because F16's components are attenuated to 1/3, 5/18 and 5/18 of standalone"
+    },
+    {
+      "id": "PE2-1",
+      "prediction": "P_front for mass_affine_descriptor at the frozen coefficient range exceeds 0.5 and P_retain_given_front is below 0.5, confirming H_retain for that family"
+    },
+    {
+      "id": "PE2-2",
+      "prediction": "P_front for mass_saturating_descriptor is below 0.1 even with the whole front observed, so F09's 0/12 oracle was a generation or identifiability failure, not a retention failure"
+    },
+    {
+      "id": "PE2-3",
+      "prediction": "within-front r2_gap and complexity_gap reproduce the sign and rough magnitude of the v1 cross-seed values (+0.121, +3.4)"
+    },
+    {
+      "id": "PE2-4",
+      "prediction": "E2b reproduces the decomposition's retention-versus-generation split to within 10 cases of 69/57"
+    },
+    {
+      "id": "PE3-1",
+      "prediction": "mass_affine_descriptor is IDENTIFIABLE at all frozen coefficients and noise levels"
+    },
+    {
+      "id": "PE3-2",
+      "prediction": "mass_exponential_descriptor is WEAKLY IDENTIFIABLE across the whole frozen coefficient range and remains so at zero noise"
+    },
+    {
+      "id": "PE3-3",
+      "prediction": "mass_saturating_descriptor is WEAKLY IDENTIFIABLE or MARGINAL at the frozen range and becomes IDENTIFIABLE at c=2.2"
+    },
+    {
+      "id": "PE3-4",
+      "prediction": "false_structure_oracle on mass_power worlds is below 0.10, so the study is valid"
+    },
+    {
+      "id": "PE3-5",
+      "prediction": "mass_interaction is MARGINAL, because the product of two [0,1] variables has materially lower variance than either"
+    },
+    {
+      "id": "PE3-6",
+      "prediction": "c_star for the exponential family exceeds 2.2, above the top of the tested ladder"
+    },
+    {
+      "id": "PE4a-1",
+      "prediction": "R4 with eps=0.005 raises G2 success over R0 without raising false_structure_rate, and R3 (whole front) raises both"
+    },
+    {
+      "id": "PE4d-1",
+      "prediction": "adding exp does not materially raise F18-analogue P_front, because the planted exponential is numerically indistinguishable from an affine descriptor law at the planted coefficient"
+    },
+    {
+      "id": "PE4e-1",
+      "prediction": "engine_inefficiency is positive and largest for mass_saturating_descriptor and mass_interaction"
+    },
+    {
+      "id": "PE5-1",
+      "prediction": "Test 2 eliminates O2, O3 and O4, and F18's resolution is O5, O6 or O7"
+    }
+  ],
+  "scope": "DESIGN ONLY. No experiment executed, no world generated, no search run, no threshold set, no grammar changed, no prospective benchmark created. The official v1 result stands unchanged at G1 67/164, G2 4/144, G3 26/36 violations.",
+  "terminal_state": [
+    "V2 REMEDIATION EXPERIMENTS PROSPECTIVELY DESIGNED",
+    "NO FINAL V2 SCIENTIFIC ARCHITECTURE CHOSEN"
+  ],
+  "title": "MURU ConjectureLab v2 remediation experiment plan"
+}
