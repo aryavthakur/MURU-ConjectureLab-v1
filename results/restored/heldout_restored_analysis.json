@@ -1,0 +1,181 @@
+{
+ "acceptance_recomputation_disagreements": [],
+ "case_population": 240,
+ "case_population_is_not_a_denominator": true,
+ "decision": {
+  "all_primary_endpoints_pass": false,
+  "g1_gate_passed": false,
+  "g2_gate_passed": false,
+  "g3_gate_passed": false,
+  "rule": "G1 wilson_lower_95 >= 0.70 AND G2 wilson_lower_95 >= 0.70 AND G3 wilson_upper_95 <= 0.15"
+ },
+ "endpoint_denominators": {
+  "family_recovery": 144,
+  "principal_structural_safety": 36,
+  "scalar_competence": 164
+ },
+ "execution_failure_poisoned_by_endpoint": {
+  "family_recovery": 0,
+  "principal_structural_safety": 0,
+  "scalar_competence": 0
+ },
+ "f9": {
+  "acceptance_calibration_status": "NOT_PROVEN_FOR_HARD_GATE",
+  "citation_prohibition": "F9 is a secondary, non-gating stress test with acceptance calibration status NOT_PROVEN_FOR_HARD_GATE. Its PASS/FAIL may NOT be cited in any report or paper as evidence of validated robustness.",
+  "computed_for": 26,
+  "f9_stress_test_metric_max": 0.980383000047505,
+  "f9_stress_test_metric_min": 0.7460224776797273,
+  "fail": 0,
+  "fail_among_gate8_reachers": 0,
+  "gating": false,
+  "null": 214,
+  "pass": 26,
+  "pass_among_gate8_reachers": 26,
+  "role": "secondary_reported_non_gating",
+  "secondary_reported_rungs": [
+   "F9_ENERGY_SUBSET"
+  ]
+ },
+ "failure_stage_distribution": {
+  "a1_adequacy": 154,
+  "all_passed": 25,
+  "ceiling": 1,
+  "falsification": 1,
+  "null_threshold": 16,
+  "stability": 43
+ },
+ "g1": {
+  "a1_distribution": {
+   "BOUNDARY_LIMITED": 97,
+   "M0_NOT_REJECTED": 67
+  },
+  "competent": 67,
+  "competent_is_an_upper_bound": false,
+  "denominator": 164,
+  "gate": "wilson_lower_95 >= 0.70",
+  "gate_passed": false,
+  "m0_accepted_count": 67,
+  "mode": "EXACT",
+  "success_predicate": "g_spearman >= 0.80 AND trajectory_mae <= 0.80 * per_energy_mean_mae AND m0_accepted",
+  "unrecoverable_conjuncts": [],
+  "wilson_lower_95": 0.3362326347636318
+ },
+ "g2": {
+  "denominator": 144,
+  "failures": 103,
+  "gate": "wilson_lower_95 >= 0.70",
+  "gate_passed": false,
+  "success_case_ids": [
+   "PB|held_out|F01|r002",
+   "PB|held_out|F01|r005",
+   "PB|held_out|F11|r010",
+   "PB|held_out|F12|r000"
+  ],
+  "success_predicate": "support_status == MATCH AND family_status == MATCH",
+  "success_rate": 0.027777777777777776,
+  "successes": 4,
+  "unevaluable": 37,
+  "wilson_lower_95": 0.010853942365456266
+ },
+ "g3": {
+  "denominator": 36,
+  "direction": "inverted: low violation rate is good",
+  "event_counts": {
+   "SAFE": 10,
+   "VIOLATION": 26
+  },
+  "gate": "wilson_upper_95 <= 0.15",
+  "gate_passed": false,
+  "unevaluable_counts_as_violation": true,
+  "violation_case_ids": [
+   "PB|held_out|F07|r001",
+   "PB|held_out|F07|r003",
+   "PB|held_out|F07|r004",
+   "PB|held_out|F07|r006",
+   "PB|held_out|F07|r007",
+   "PB|held_out|F07|r008",
+   "PB|held_out|F07|r009",
+   "PB|held_out|F07|r011",
+   "PB|held_out|F19|r000",
+   "PB|held_out|F19|r002",
+   "PB|held_out|F19|r003",
+   "PB|held_out|F19|r004",
+   "PB|held_out|F19|r006",
+   "PB|held_out|F19|r009",
+   "PB|held_out|F20|r000",
+   "PB|held_out|F20|r001",
+   "PB|held_out|F20|r002",
+   "PB|held_out|F20|r003",
+   "PB|held_out|F20|r004",
+   "PB|held_out|F20|r005",
+   "PB|held_out|F20|r006",
+   "PB|held_out|F20|r007",
+   "PB|held_out|F20|r008",
+   "PB|held_out|F20|r009",
+   "PB|held_out|F20|r010",
+   "PB|held_out|F20|r011"
+  ],
+  "violation_rate": 0.7222222222222222,
+  "violations": 26,
+  "wilson_upper_95": 0.841518299741862
+ },
+ "gate7": {
+  "ceiling_fraction_gate": 0.8,
+  "ceiling_waiver_threshold": 0.05,
+  "definition": "ceiling comparison at position 7 of the ordered structural-acceptance predicate: ceiling_pass OR ceiling_waiver. Never structural acceptance; never F7_INFLUENCE_DROP.",
+  "failed": 1,
+  "failed_case_ids": [
+   "PB|held_out|F02|r004"
+  ],
+  "passed": 26,
+  "passed_via_ceiling_pass": 26,
+  "passed_via_ceiling_waiver_only": 0,
+  "reached": 27
+ },
+ "gate8": {
+  "definition": "check_gate8 over REQUIRED_HARD_GATES, fail-closed on missing, FAIL, and stray NOT_APPLICABLE alike. G1 is an endpoint, not a gate, and is not a conjunct of Gate 8.",
+  "failed": 1,
+  "failed_case_ids": [
+   "PB|held_out|F07|r005"
+  ],
+  "g1_is_a_conjunct": false,
+  "passed": 25,
+  "per_rung_fail": {
+   "F10_NEGATIVE_CONTROL": 1
+  },
+  "per_rung_pass": {
+   "F10_NEGATIVE_CONTROL": 25,
+   "F1_REPRODUCIBILITY": 26,
+   "F4_COMPOUND_HOLDOUT": 26,
+   "F7_INFLUENCE_DROP": 26
+  },
+  "reached": 26,
+  "required_hard_gates": [
+   "F10_NEGATIVE_CONTROL",
+   "F1_REPRODUCIBILITY",
+   "F4_COMPOUND_HOLDOUT",
+   "F7_INFLUENCE_DROP"
+  ],
+  "rung_keys_ever_emitted": [
+   "F10_NEGATIVE_CONTROL",
+   "F1_REPRODUCIBILITY",
+   "F4_COMPOUND_HOLDOUT",
+   "F7_INFLUENCE_DROP"
+  ]
+ },
+ "partition": "held_out",
+ "structural_accepted_by_family": {
+  "F02": 1,
+  "F04": 2,
+  "F05": 1,
+  "F07": 1,
+  "F08": 1,
+  "F09": 4,
+  "F10": 6,
+  "F12": 1,
+  "F18": 7,
+  "F19": 1
+ },
+ "structural_accepted_count": 25,
+ "structural_accepted_is_an_acceptance_count_not_an_endpoint_rate": true
+}
