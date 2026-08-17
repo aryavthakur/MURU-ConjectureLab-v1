@@ -1,0 +1,118 @@
+{
+  "reconciliation_id": "muru-v2-master-reconciliation-2026-08-17",
+  "branch": "claude/muru-v2-reconciliation-f69f63",
+  "base_commit": "5049a1a6ba4d355b628dbfff453da6f52a32a895",
+  "method": "Part I orientation performed directly by the orchestrating session (git merge-base/blob-hash/worktree inspection); Parts II-III evidence gathered by 8 parallel, independently-scoped subagents run via the Workflow tool (run id wf_0c0277cb-c9a), each returning structured JSON validated against a fixed schema requiring an explicit files_read list, an explicit e2_boundary_respected boolean + note, and a warnings array.",
+  "results_blindness_certification": {
+    "e2_scientific_outcomes_read": false,
+    "evidence": {
+      "method": "Every one of the 8 subagents self-reported e2_boundary_respected=true with an explanatory note; this was independently cross-checked by the orchestrating session by aggregating every files_read entry across all 8 agents (116 unique files) and regex-matching against the forbidden path patterns below. Zero matches.",
+      "forbidden_path_patterns_checked": [
+        "results/e2/run/",
+        "results/e2/run_PRERESCUE_INVALIDATED",
+        "results/e2/run_poison_world",
+        "e2_blinded_interim/snapshot",
+        "e2_blinded_interim/raw_quarantine",
+        "worlds_shard_*.jsonl",
+        "candidates_shard_*.jsonl",
+        "log_shard_*.txt",
+        "supervisor_shard_*.log",
+        "errors_shard_*.jsonl"
+      ],
+      "violations_found": 0,
+      "permitted_e2_adjacent_reads": [
+        "v2_design_reference/MURU_V2_E2_PREDECLARATION.md (frozen protocol, pre-execution)",
+        "exp-v2-e2-pareto-observability/E2_EXECUTION_DEVIATION.md (infra/rescue-process document, not a scientific outcome; read by the orchestrating session only, not by any subagent)",
+        "analysis/e2_blinded_interim/deliverables/*.{md,json} on branch claude/muru-e2-interim-characterization-3c3445 at commit 3962ed0 -- explicitly pre-verified outcome-blind by that commit's own message ('No E4a run. No A-E first-loss counts computed. No truth retention/recovery computed. No E2b inspected. No scientific E2 outcome revealed anywhere in this commit.'), used only by the retention-E4a-F09 subagent as a directional, non-replicating cross-check, never as a data source for any denominator or headline number"
+      ],
+      "orchestrating_session_own_e2_touches": [
+        {
+          "action": "find/ls directory listing (filenames only, no content read) of exp-v2-e2-pareto-observability/results/e2/run/",
+          "content_read": false,
+          "purpose": "confirm the directory structure matches the E2_EXECUTION_DEVIATION.md description before scoping subagent prompts"
+        },
+        {
+          "action": "Read exp-v2-e2-pareto-observability/E2_EXECUTION_DEVIATION.md (head ~60 lines)",
+          "content_read": true,
+          "classification": "infrastructure/rescue-process document, not a scientific outcome artifact; confirms the run's live/in-progress status, contains no world/candidate/truth data",
+          "purpose": "verify E2 is genuinely live/in-progress per the mission's own stated constraint"
+        }
+      ]
+    }
+  },
+  "e4a_executed": false,
+  "e4a_execution_evidence": {
+    "method": "grepped/globbed for any E4a scoring implementation (R0-R6 policy code, vote-reduction function, McNemar/paired-comparison code) across both retention worktrees (design/v2-retention-remediation, exp/v2-f09-search-remediation) -- none found. Checked for experiments/EXP_V2_RETENTION*/ or any results/e4a*/ directory in every worktree touched -- none found.",
+    "result": "no E4a scoring implementation and no E4a execution artifact exists anywhere in the repository as of this reconciliation"
+  },
+  "e6_executed": false,
+  "e6_execution_evidence": {
+    "method": "checked for experiments/EXP_V2_E6/, LIFECYCLE_STATE.json, sealed/SEAL_INVENTORY.json, EXPERIMENT_REGISTRY.json entry for EXP_V2_E6, MURU_V2_E6_RESULTS.{md,json}, or MURU_V2_E6_HOSTILE_AUDIT.md in the E6 worktree (claude/muru-v2-e6-preregister-e4f010)",
+    "result": "no experiments/ directory exists at all in that worktree; E6 has not been executed, not even at a pilot stage. Additionally discovered and certified: the E6 preregistration documents themselves are UNCOMMITTED (untracked working-tree files), contradicting their own self-declared 'FROZEN_DESIGN_ONLY' status -- see MURU_V2_PRE_E6_GOVERNANCE_AMENDMENT.md Amendment 1."
+  },
+  "new_repair_experiments_run": false,
+  "new_repair_experiments_evidence": "This reconciliation did not run PySR, did not run any Monte Carlo study, and did not execute any of the M1/M2/M3 repair experiments named in MURU_V2_FINAL_REMAINING_PROGRAM.md. All EMP-S (executed) evidence cited in the ledger predates this reconciliation and was discovered by reading already-committed, already-hostile-audited results documents.",
+  "production_scientific_code_altered": false,
+  "production_code_verification": {
+    "method": "Independently verified (not trusted from any document's own claim) via direct git diff/git rev-parse in every worktree touched, both by the orchestrating session and by each of the 8 subagents individually.",
+    "orchestrating_session_checks": [
+      {
+        "files": ["src/muru/paper_benchmark/adequacy.py", "generator.py", "g2_contract.py", "g3_contract.py", "structural_acceptance.py", "rc5_case_scoring.py", "rc5_estimate.py", "rc5_selection.py"],
+        "method": "git rev-parse <branch>:<path> blob hash comparison across 12 branches (exp/v2-e0-admissible-range, exp/v2-a1-signal-absorption, exp/v2-m1-contrast-diagnosis, exp/v2-m1-statistic-repair, exp/v2-a1-m2-loeo-diagnosis, exp/v2-fisher-information, exp/v2-m2-geometry-validation, exp/v2-reparameterization-conditioning, exp/v2-m3-logg-diagnosis, exp/v2-f05-boundary-diagnosis, exp/v2-coefficient-recovery-ceiling, exp/v2-correctness-confidence)",
+        "result": "byte-identical blob hash on every file across every branch checked"
+      },
+      {
+        "worktree": "claude/muru-v2-reconciliation-f69f63 (this session's own worktree)",
+        "method": "git diff --stat (tracked files) after all Write calls",
+        "result": "empty -- only 7 new untracked .md/.json files added, zero existing tracked file modified"
+      }
+    ],
+    "subagent_checks_aggregated": [
+      "governance-baseline: git diff 3056c9a -- src/ tests/ empty in exp-v2-e0-admissible-range and exp-v2-e1-a1-remediation",
+      "M1-reconciliation: git diff against every relevant fork point in exp-v2-m1-statistic-repair, muru-m1-statistic-derivation-96a690, v2-reparameterization-conditioning, exp-v2-fisher-information all empty",
+      "M2-reconciliation: git diff against 6 worktrees' own frozen base commits all empty (explicit verification table included in the subagent's own output)",
+      "M3-reconciliation: git diff against 5 worktrees' own freeze/fork commits all empty (independently re-verified, not merely trusted from each document's own claim)",
+      "retention-E4a-F09: git diff empty across design/v2-retention-remediation, exp/v2-f09-search-remediation, claude/muru-v2-retention-theory-b0a3e4, claude/muru-e2-interim-characterization-3c3445, audit/v2-symbolic-equivalence, audit/v2-mathematical-correctness; adequacy.py's last modifying commit (2ac86c5) predates every branch in this topic",
+      "F05-recoverability-ceiling: git diff a075332 -- src/ tests/ empty in exp-v2-f05-boundary-diagnosis; git diff main -- src/ tests/ empty in muru-v2-recoverability-ceiling-40d379",
+      "correctness-denominator-adversarial: git diff a075332..HEAD -- src/muru/discovery src/muru/paper_benchmark empty on exp/v2-correctness-confidence; the only src/ change on that branch is a wholly new, additive src/muru/v2_evaluation/ module",
+      "E6-and-observability: git diff --stat -- src/ tests/ against E6 worktree HEAD (9940034) empty; 7 in-worktree frozen-source SHA-256 hashes independently recomputed and matched exactly against the document's own section 0.2 table"
+    ],
+    "one_disclosed_exception": "MURU_V2_M2_INFORMATION_SCALING_THEORY.md is an UNTRACKED (uncommitted) file on claude/m2-repair-information-theory-125035 -- its own worktree's git diff against src/ and tests/ is independently confirmed empty, so this is a documentation/provenance gap (the theory document itself was never committed), not a production-code modification. See MURU_V2_PRE_E6_GOVERNANCE_AMENDMENT.md Amendment 7."
+  },
+  "historical_frozen_documents_edited_in_place": false,
+  "historical_frozen_documents_edit_evidence": "Zero Write or Edit tool calls in this reconciliation targeted any file outside claude/muru-v2-reconciliation-f69f63's own new deliverable set (the 8 files listed in the deliverables manifest below). Every correction to a prior document (the 36-vs-90 EVAL count, the E6 freeze-status self-report, the stale 9.5->9.4 cross-reference) is recorded as a new, separate, versioned amendment entry in MURU_V2_PRE_E6_GOVERNANCE_AMENDMENT.md, not applied to the original file.",
+  "subagent_run_summary": {
+    "workflow_run_id": "wf_0c0277cb-c9a",
+    "agents_launched": 8,
+    "agents_completed": 8,
+    "agents_errored": 0,
+    "total_unique_files_read": 116,
+    "total_ledger_entries_produced": 73,
+    "total_open_conflicts_flagged": 22,
+    "total_warnings_flagged": 38
+  },
+  "hostile_review_summary": {
+    "workflow_run_id": "wf_c7055e68-973",
+    "agents_launched": 4,
+    "agents_completed": 4,
+    "total_findings": 17,
+    "material_findings": 8,
+    "minor_findings": 9,
+    "blocking_findings": 0,
+    "clean_checks_returned": 11,
+    "corrections_applied_before_commit": 17,
+    "detail_document": "MURU_V2_RECONCILIATION_HOSTILE_REVIEW.md",
+    "note": "Every MATERIAL and MINOR finding was applied as a correction to the six synthesis documents before this repository commit; MURU_V2_RECONCILIATION_HOSTILE_REVIEW.md records the original finding text, severity, resolution, and each reviewing agent's own disclosed remaining uncertainty verbatim, so the correction trail is auditable rather than silently folded in."
+  },
+  "deliverables_produced_this_reconciliation": [
+    "MURU_V2_MASTER_EVIDENCE_LEDGER.md",
+    "MURU_V2_MASTER_MATHEMATICAL_RECONCILIATION.md",
+    "MURU_V2_MASTER_CAUSAL_ARCHITECTURE.md",
+    "MURU_V2_REPAIR_SPACE_CLOSURE.md",
+    "MURU_V2_PRE_E6_GOVERNANCE_AMENDMENT.md",
+    "MURU_V2_FINAL_REMAINING_PROGRAM.md",
+    "MURU_V2_RECONCILIATION_HOSTILE_REVIEW.md",
+    "MURU_V2_RECONCILIATION_PROVENANCE.json"
+  ],
+  "timestamp_note": "Absolute wall-clock timestamps are not recorded by this JSON (workflow scripts cannot call Date.now()/new Date()); commit dates cited throughout the ledger are taken from `git log` author-date fields, which are authoritative."
+}
