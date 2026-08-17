@@ -41,7 +41,11 @@ ARGS=(scripts/e2_run_shard.py --shard-index "$SHARD_INDEX" --n-shards "$N_SHARDS
 if [[ -n "$ONLY_WORLDS_FILE" ]]; then
   ARGS+=(--only-worlds-file "$ONLY_WORLDS_FILE")
 fi
-ARGS+=("${EXTRA_ARGS[@]}")
+# bash 3.2 (macOS's default /bin/bash) treats "${arr[@]}" on an empty array
+# as an unbound-variable error under `set -u`; guard it.
+if [[ ${#EXTRA_ARGS[@]} -gt 0 ]]; then
+  ARGS+=("${EXTRA_ARGS[@]}")
+fi
 
 attempt=0
 while true; do

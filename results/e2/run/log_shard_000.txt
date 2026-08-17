@@ -1,0 +1,133 @@
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/3: 180 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/6: 90 worlds assigned, 0 already done
+shard 0/1: 89 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r006: stage=C front=16/30 failures=0 wall=208.7s classify_cache=260
+V2C|E2|mass_affine_descriptor|c_low|n_default|r000: stage=B front=16/30 failures=0 wall=201.4s classify_cache=535
+V2C|E2|mass_affine_descriptor|c_low|n_default|r006: stage=B front=19/30 failures=0 wall=223.7s classify_cache=820
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r000: stage=B front=13/30 failures=0 wall=274.4s classify_cache=1174
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r006: stage=B front=15/30 failures=0 wall=205.6s classify_cache=1512
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r000: stage=C front=12/30 failures=0 wall=271.3s classify_cache=1768
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r006: stage=C front=20/30 failures=0 wall=224.7s classify_cache=2030
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r000: stage=B front=15/30 failures=0 wall=298.5s classify_cache=2334
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r006: stage=C front=17/30 failures=0 wall=229.6s classify_cache=2636
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r000: stage=B front=19/30 failures=0 wall=769.6s classify_cache=2939
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r006: stage=B front=13/30 failures=0 wall=316.1s classify_cache=3247
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r000: stage=C front=16/30 failures=0 wall=452.4s classify_cache=3548
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r006: stage=C front=18/30 failures=0 wall=251.6s classify_cache=3824
+V2C|E2|mass_affine_descriptor|c_high|n_default|r000: stage=B front=27/30 failures=0 wall=236.6s classify_cache=4131
+V2C|E2|mass_affine_descriptor|c_high|n_default|r006: stage=C front=14/30 failures=0 wall=277.9s classify_cache=4404
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r000: stage=B front=10/30 failures=0 wall=304.7s classify_cache=4766
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r006: stage=B front=19/30 failures=0 wall=252.2s classify_cache=5096
+V2C|E2|mass_power|c_low|n_noiseless|r000: stage=E front=30/30 failures=0 wall=192.6s classify_cache=5318
+V2C|E2|mass_power|c_low|n_noiseless|r006: stage=E front=30/30 failures=0 wall=214.8s classify_cache=5551
+V2C|E2|mass_power|c_low|n_default|r000: stage=E front=30/30 failures=0 wall=240.5s classify_cache=5838
+V2C|E2|mass_power|c_low|n_default|r006: stage=E front=30/30 failures=0 wall=417.2s classify_cache=6173
+V2C|E2|mass_power|c_low|n_strong|r000: stage=E front=30/30 failures=0 wall=332.2s classify_cache=6517
+V2C|E2|mass_power|c_low|n_strong|r006: stage=E front=30/30 failures=0 wall=314.7s classify_cache=6849
+V2C|E2|mass_power|c_mid|n_noiseless|r000: stage=E front=30/30 failures=0 wall=223.6s classify_cache=7094
+V2C|E2|mass_power|c_mid|n_noiseless|r006: stage=E front=30/30 failures=0 wall=217.1s classify_cache=7301
+V2C|E2|mass_power|c_mid|n_default|r000: stage=E front=30/30 failures=0 wall=229.1s classify_cache=7619
+V2C|E2|mass_power|c_mid|n_default|r006: stage=E front=30/30 failures=0 wall=290.2s classify_cache=7938
+V2C|E2|mass_power|c_mid|n_strong|r000: stage=E front=30/30 failures=0 wall=235.2s classify_cache=8245
+V2C|E2|mass_power|c_mid|n_strong|r006: stage=E front=30/30 failures=0 wall=226.1s classify_cache=8579
+V2C|E2|mass_power|c_high|n_noiseless|r000: stage=E front=30/30 failures=0 wall=613.4s classify_cache=8769
+V2C|E2|mass_power|c_high|n_noiseless|r006: stage=E front=30/30 failures=0 wall=193.4s classify_cache=8969
+V2C|E2|mass_power|c_high|n_default|r000: stage=E front=30/30 failures=0 wall=293.4s classify_cache=9297
+V2C|E2|mass_power|c_high|n_default|r006: stage=E front=30/30 failures=0 wall=247.0s classify_cache=9584
+V2C|E2|mass_power|c_high|n_strong|r000: stage=E front=30/30 failures=0 wall=276.2s classify_cache=9910
+V2C|E2|mass_power|c_high|n_strong|r006: stage=E front=30/30 failures=0 wall=221.7s classify_cache=10290

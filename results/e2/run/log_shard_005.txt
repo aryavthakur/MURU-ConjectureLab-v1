@@ -1,0 +1,5 @@
+shard 5/6: 90 worlds assigned, 1 already done
+shard 5/6: 90 worlds assigned, 1 already done
+shard 5/6: 90 worlds assigned, 1 already done
+shard 5/1: 0 worlds assigned, 0 already done
+shard 5 COMPLETE

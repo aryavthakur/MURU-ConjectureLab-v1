@@ -1,0 +1,40 @@
+shard 1/3: 180 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r001: stage=C front=19/30 failures=0 wall=198.0s classify_cache=268
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r004: stage=C front=19/30 failures=0 wall=307.9s classify_cache=557
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r007: stage=C front=16/30 failures=0 wall=210.1s classify_cache=825
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r010: stage=C front=19/30 failures=0 wall=265.1s classify_cache=1096
+V2C|E2|mass_affine_descriptor|c_low|n_default|r001: stage=B front=19/30 failures=0 wall=201.9s classify_cache=1398
+V2C|E2|mass_affine_descriptor|c_low|n_default|r004: stage=B front=21/30 failures=0 wall=117.7s classify_cache=1675
+V2C|E2|mass_affine_descriptor|c_low|n_default|r007: stage=B front=11/30 failures=0 wall=121.5s classify_cache=1984
+V2C|E2|mass_affine_descriptor|c_low|n_default|r010: stage=B front=11/30 failures=0 wall=246.7s classify_cache=2269
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r001: stage=B front=17/30 failures=0 wall=2763.5s classify_cache=2582
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r004: stage=B front=20/30 failures=0 wall=210.8s classify_cache=2905
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r007: stage=B front=8/30 failures=0 wall=181.7s classify_cache=3241
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r010: stage=B front=7/30 failures=0 wall=205.1s classify_cache=3558
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r001: stage=E front=20/30 failures=0 wall=159.8s classify_cache=3838
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r004: stage=C front=15/30 failures=0 wall=167.9s classify_cache=4097
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r007: stage=C front=17/30 failures=0 wall=181.0s classify_cache=4339
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r010: stage=C front=12/30 failures=0 wall=162.4s classify_cache=4619
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r001: stage=C front=17/30 failures=0 wall=210.1s classify_cache=4924
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r004: stage=E front=13/30 failures=0 wall=158.5s classify_cache=5215
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r007: stage=C front=14/30 failures=0 wall=229.8s classify_cache=5511
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r010: stage=C front=7/30 failures=0 wall=178.4s classify_cache=5837
+shard 1/6: 90 worlds assigned, 10 already done
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r001: stage=B front=13/30 failures=0 wall=155.9s classify_cache=343
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r007: stage=B front=11/30 failures=0 wall=230.8s classify_cache=663
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r001: stage=C front=14/30 failures=0 wall=186.7s classify_cache=960
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r007: stage=C front=18/30 failures=0 wall=201.2s classify_cache=1242
+V2C|E2|mass_affine_descriptor|c_high|n_default|r001: stage=C front=14/30 failures=0 wall=213.9s classify_cache=1542
+V2C|E2|mass_affine_descriptor|c_high|n_default|r007: stage=C front=18/30 failures=0 wall=228.9s classify_cache=1845
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r001: stage=B front=26/30 failures=0 wall=204.5s classify_cache=2171
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r007: stage=B front=25/30 failures=0 wall=245.7s classify_cache=2493
+V2C|E2|mass_power|c_low|n_noiseless|r001: stage=E front=30/30 failures=0 wall=215.2s classify_cache=2724
+V2C|E2|mass_power|c_low|n_noiseless|r007: stage=E front=30/30 failures=0 wall=201.4s classify_cache=2952
+V2C|E2|mass_power|c_low|n_default|r001: stage=E front=30/30 failures=0 wall=217.4s classify_cache=3248
+V2C|E2|mass_power|c_low|n_default|r007: stage=E front=30/30 failures=0 wall=200.0s classify_cache=3544
+V2C|E2|mass_power|c_low|n_strong|r001: stage=E front=29/30 failures=0 wall=763.2s classify_cache=3860
+shard 1/6: 90 worlds assigned, 23 already done
+shard 1/6: 90 worlds assigned, 23 already done
+shard 1/6: 90 worlds assigned, 23 already done
+shard 1/1: 0 worlds assigned, 0 already done
+shard 1 COMPLETE
