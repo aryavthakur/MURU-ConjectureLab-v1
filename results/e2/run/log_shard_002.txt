@@ -1,2 +1,0 @@
-shard 2/5: 108 worlds assigned, 0 already done
-shard 2/3: 180 worlds assigned, 0 already done

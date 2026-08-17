@@ -22,6 +22,7 @@ import sys
 import time
 import traceback
 from pathlib import Path
+from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
@@ -124,7 +125,8 @@ def _already_done(worlds_path: Path) -> set[str]:
     return done
 
 
-def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: int, seed_base: int) -> None:
+def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: int, seed_base: int,
+              only_worlds: Optional[set[str]] = None) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     candidates_path = out_dir / f"candidates_shard_{shard_index:03d}.jsonl"
     worlds_path = out_dir / f"worlds_shard_{shard_index:03d}.jsonl"
@@ -137,6 +139,14 @@ def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: i
         args for args in all_worlds
         if e2w.world_ordinal(*args) % n_shards == shard_index
     ]
+    # Execution-recovery-only restriction (see E2_EXECUTION_DEVIATION.md): when
+    # set, run exactly this world-ID subset regardless of shard assignment --
+    # used only for the rescue replay gate, which must rerun a specific,
+    # pre-existing set of world IDs and nothing else. Does not change world
+    # ordinal assignment, seed derivation, or per-world computation; a world
+    # not in `only_worlds` is simply skipped, same as an already-done world.
+    if only_worlds is not None:
+        my_worlds = [args for args in my_worlds if e2w.world_id(*args) in only_worlds]
 
     with log_path.open("a") as log:
         log.write(f"shard {shard_index}/{n_shards}: {len(my_worlds)} worlds assigned, "
@@ -201,8 +211,20 @@ def main() -> None:
     parser.add_argument("--out-dir", type=str, required=True)
     parser.add_argument("--seeds-per-world", type=int, default=30)
     parser.add_argument("--seed-base", type=int, default=2_104_500_000)
+    parser.add_argument(
+        "--only-worlds-file", type=str, default=None,
+        help="Execution-recovery-only (see E2_EXECUTION_DEVIATION.md): path to a "
+             "JSON list of world IDs. When given, run exactly these world IDs "
+             "(intersected with this shard's normal ordinal assignment) instead "
+             "of this shard's full assignment. Used only for the rescue replay "
+             "gate.",
+    )
     args = parser.parse_args()
-    run_shard(args.shard_index, args.n_shards, Path(args.out_dir), args.seeds_per_world, args.seed_base)
+    only_worlds = None
+    if args.only_worlds_file:
+        only_worlds = set(json.loads(Path(args.only_worlds_file).read_text()))
+    run_shard(args.shard_index, args.n_shards, Path(args.out_dir), args.seeds_per_world, args.seed_base,
+              only_worlds=only_worlds)
 
 
 if __name__ == "__main__":
