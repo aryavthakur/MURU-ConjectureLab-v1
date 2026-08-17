@@ -1,5 +1,5 @@
 {
-  "generated_at_local": "2026-08-17T13:5X-04:00",
+  "generated_at_local": "2026-08-17T13:59:36-04:00",
   "live_e2_production": {
     "worktree": ".claude/worktrees/exp-v2-e2-pareto-observability",
     "branch": "exp/v2-e2-pareto-observability",
@@ -83,5 +83,11 @@
     "scientific_outcome_fields_read_for_this_snapshot": "none",
     "note": "recount taken later than the Part I snapshot (270/540) since the live run continued to progress during this rescue's own execution"
   },
-  "live_e2_untouched_final_recheck": "TRUE -- see FEASIBILITY.md closing section"
+  "live_e2_untouched_final_recheck": "TRUE -- verified 2026-08-17T13:59 via `git status --short`: identical 15 append-only files as at task start, 0 created/edited/deleted by this task; 16 live E2 processes still running, 0 stray processes from this rescue's own session",
+  "real_checkpoint_executed": {
+    "script": "scripts/e2_rescue_v2/checkpoint_live_e2.py",
+    "out_dir": "/tmp/e2_rescue_v2_checkpoint_20260817_135803",
+    "n_unique_world_ids": 318,
+    "n_files_hashed": 41
+  }
 }
