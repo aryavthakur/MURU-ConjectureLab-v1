@@ -81,6 +81,7 @@ __all__ = [
     "SIMPLIFY_TIMEOUT_SECONDS",
     "ClassificationResult",
     "classify_expression",
+    "shutdown",
 ]
 
 #: Per-expression wall-clock cap. Generous relative to the ~tens-of-ms typical
@@ -254,6 +255,15 @@ def _kill_worker() -> None:
         _WORKER_PROC = None
 
 
+def shutdown() -> None:
+    """Public alias for `_kill_worker`: hard-terminate this process's
+    persistent classify worker, if any. Callers (`e2_run_shard.py`) must
+    call this explicitly before their own process exits -- see the
+    EXECUTION-SAFETY note below for why relying on `atexit` alone was tried
+    first and found insufficient."""
+    _kill_worker()
+
+
 # EXECUTION-SAFETY (see E2_EXECUTION_DEVIATION.md, throughput-investigation
 # section): found live -- a shard process that finished all its assigned
 # worlds cleanly never actually exited. `multiprocessing`'s own atexit
@@ -264,15 +274,19 @@ def _kill_worker() -> None:
 # intercepts or delays plain SIGTERM, so the worker never dies from it and
 # the parent blocks in `os_waitpid` forever -- confirmed directly via
 # `sample` on a hung-at-exit process (`_Py_Finalize -> atexit_callfuncs ->
-# os_waitpid`), never observed to recover even after 7+ minutes idle;
-# SIGKILL (this module's own `_kill_worker`, used everywhere else in this
-# file) reaps it immediately every time. Registering `_kill_worker` here
-# runs it before multiprocessing's own atexit handler (atexit handlers run
-# LIFO; `import multiprocessing` above registers multiprocessing's handler
-# first, so anything registered afterward -- this call -- fires first at
-# shutdown), so the worker is always SIGKILLed before the graceful path
-# that hangs ever runs. Only ever kills this process's own worker; no
-# scientific effect.
+# os_waitpid`), never observed to recover even after 7+ minutes idle.
+# SIGKILL (`_kill_worker`, used everywhere else in this file) reaps it
+# immediately every time -- the fix is calling it before shutdown, not the
+# signal itself. `atexit.register(_kill_worker)` here was tried first on
+# the theory that atexit runs LIFO and this registration (at import time)
+# would therefore fire before multiprocessing's own handler; verified live
+# that it did NOT resolve the hang -- multiprocessing registers its
+# cleanup at first `Process` creation, not at `import multiprocessing`,
+# so it actually ends up registered *after* this module-level call and
+# still runs first, blocking forever before this handler ever gets a turn.
+# Kept as a defensive backstop for callers that don't clean up explicitly,
+# but `e2_run_shard.py` calls `shutdown()` directly in a `finally` block,
+# which is the mechanism that actually works.
 atexit.register(_kill_worker)
 
 

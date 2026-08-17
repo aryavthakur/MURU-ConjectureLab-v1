@@ -125,29 +125,9 @@ def _already_done(worlds_path: Path) -> set[str]:
     return done
 
 
-def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: int, seed_base: int,
-              only_worlds: Optional[set[str]] = None) -> None:
-    out_dir.mkdir(parents=True, exist_ok=True)
-    candidates_path = out_dir / f"candidates_shard_{shard_index:03d}.jsonl"
-    worlds_path = out_dir / f"worlds_shard_{shard_index:03d}.jsonl"
-    log_path = out_dir / f"log_shard_{shard_index:03d}.txt"
-    errors_path = out_dir / f"errors_shard_{shard_index:03d}.jsonl"
-
-    done = _already_done(worlds_path)
-    all_worlds = list(e2w.iter_worlds())
-    my_worlds = [
-        args for args in all_worlds
-        if e2w.world_ordinal(*args) % n_shards == shard_index
-    ]
-    # Execution-recovery-only restriction (see E2_EXECUTION_DEVIATION.md): when
-    # set, run exactly this world-ID subset regardless of shard assignment --
-    # used only for the rescue replay gate, which must rerun a specific,
-    # pre-existing set of world IDs and nothing else. Does not change world
-    # ordinal assignment, seed derivation, or per-world computation; a world
-    # not in `only_worlds` is simply skipped, same as an already-done world.
-    if only_worlds is not None:
-        my_worlds = [args for args in my_worlds if e2w.world_id(*args) in only_worlds]
-
+def _run_all_worlds(shard_index: int, n_shards: int, my_worlds: list, done: set[str],
+                     log_path: Path, errors_path: Path, candidates_path: Path, worlds_path: Path,
+                     seeds_per_world: int, seed_base: int) -> None:
     with log_path.open("a") as log:
         log.write(f"shard {shard_index}/{n_shards}: {len(my_worlds)} worlds assigned, "
                    f"{sum(1 for a in my_worlds if e2w.world_id(*a) in done)} already done\n")
@@ -199,6 +179,44 @@ def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: i
                     }) + "\n")
                 log.write(f"{wid}: WORLD-LEVEL EXECUTION FAILURE: {error}\n")
                 log.flush()
+
+
+def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: int, seed_base: int,
+              only_worlds: Optional[set[str]] = None) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    candidates_path = out_dir / f"candidates_shard_{shard_index:03d}.jsonl"
+    worlds_path = out_dir / f"worlds_shard_{shard_index:03d}.jsonl"
+    log_path = out_dir / f"log_shard_{shard_index:03d}.txt"
+    errors_path = out_dir / f"errors_shard_{shard_index:03d}.jsonl"
+
+    done = _already_done(worlds_path)
+    all_worlds = list(e2w.iter_worlds())
+    my_worlds = [
+        args for args in all_worlds
+        if e2w.world_ordinal(*args) % n_shards == shard_index
+    ]
+    # Execution-recovery-only restriction (see E2_EXECUTION_DEVIATION.md): when
+    # set, run exactly this world-ID subset regardless of shard assignment --
+    # used only for the rescue replay gate, which must rerun a specific,
+    # pre-existing set of world IDs and nothing else. Does not change world
+    # ordinal assignment, seed derivation, or per-world computation; a world
+    # not in `only_worlds` is simply skipped, same as an already-done world.
+    if only_worlds is not None:
+        my_worlds = [args for args in my_worlds if e2w.world_id(*args) in only_worlds]
+
+    try:
+        _run_all_worlds(shard_index, n_shards, my_worlds, done, log_path, errors_path,
+                         candidates_path, worlds_path, seeds_per_world, seed_base)
+    finally:
+        # Execution-safety only (see E2_EXECUTION_DEVIATION.md,
+        # throughput-investigation section): without this, a shard process
+        # that finishes all its assigned worlds cleanly never actually
+        # exits -- e2_classify's persistent worker forks after PySR/Julia
+        # is already loaded in this process, and something in that
+        # inherited runtime state defeats multiprocessing's own
+        # SIGTERM-then-wait atexit cleanup, hanging the parent forever.
+        # e2_classify.shutdown() SIGKILLs it directly, which always works.
+        e2_classify.shutdown()
 
     with log_path.open("a") as log:
         log.write(f"shard {shard_index} COMPLETE\n")
