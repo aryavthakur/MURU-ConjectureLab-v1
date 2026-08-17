@@ -110,10 +110,25 @@ def _world_outcome_row(outcome: e2a.WorldOutcome, world: e2w.WorldContent, wall_
     }
 
 
-def _already_done(worlds_path: Path) -> set[str]:
+def _already_done(out_dir: Path) -> set[str]:
+    """World IDs already persisted anywhere under `out_dir`, across every
+    shard's own worlds_shard_*.jsonl -- not just the file this particular
+    shard_index would write to. Execution-safety only (see
+    E2_EXECUTION_DEVIATION.md, throughput-investigation section): a
+    world's `world_ordinal % n_shards` bucket changes when n_shards
+    changes between runs (e.g. resuming with more shards than the
+    original launch), so a world already computed under the old shard
+    count can land on a *different* shard_index -- and therefore a
+    different, previously-empty worlds_shard_NNN.jsonl -- under the new
+    one. Checking only that one file would miss it and recompute (merely
+    wasteful) and then persist a second, duplicate record for the same
+    world_id (a real population-integrity problem: the frozen analysis
+    requires exactly one record per world_id). Scanning every shard's
+    file, not just this shard's own, closes that gap regardless of how
+    many times n_shards has changed across resumes."""
     done = set()
-    if worlds_path.exists():
-        with worlds_path.open() as fh:
+    for path in sorted(out_dir.glob("worlds_shard_*.jsonl")):
+        with path.open() as fh:
             for line in fh:
                 line = line.strip()
                 if not line:
@@ -189,7 +204,7 @@ def run_shard(shard_index: int, n_shards: int, out_dir: Path, seeds_per_world: i
     log_path = out_dir / f"log_shard_{shard_index:03d}.txt"
     errors_path = out_dir / f"errors_shard_{shard_index:03d}.jsonl"
 
-    done = _already_done(worlds_path)
+    done = _already_done(out_dir)
     all_worlds = list(e2w.iter_worlds())
     my_worlds = [
         args for args in all_worlds
