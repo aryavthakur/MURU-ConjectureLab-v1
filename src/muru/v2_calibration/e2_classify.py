@@ -182,7 +182,7 @@ def _classify_compute(expression_string: str) -> ClassificationResult:
     )
 
 
-def _worker_loop(conn) -> None:  # pragma: no cover - runs in child process
+def _worker_loop(conn, parent_conn_to_close) -> None:  # pragma: no cover - runs in child process
     """Persistent classify worker body: receive one expression string, send
     back its computed `ClassificationResult`, repeat, for the process's
     whole life. Running many calls in one long-lived process (rather than
@@ -190,7 +190,18 @@ def _worker_loop(conn) -> None:  # pragma: no cover - runs in child process
     `@cacheit` memoization across calls -- see the module docstring's
     EXECUTION-SAFETY NOTE. Never raises back across the pipe; a broken pipe
     or closed connection just ends the loop, since that only happens when
-    the parent has already given up on (and is about to kill) this worker."""
+    the parent has already given up on (and is about to kill) this worker.
+
+    `fork()` duplicates the whole fd table, so without this the child would
+    hold its own live copy of the *parent's* end of the pipe alongside its
+    own -- and a duplex pipe (a socketpair on POSIX) only reports EOF once
+    every last reference to the peer's end is gone. If the true parent is
+    ever killed outright (SIGKILL -- exactly what happened to shard 0
+    repeatedly during this rescue's restart), the worker would never see
+    that as EOF on its own read and would block on `conn.recv()` forever,
+    orphaned. Found live during the restart (15 such orphans accumulated in
+    ~70 minutes); closing the inherited duplicate here is the fix."""
+    parent_conn_to_close.close()
     while True:
         try:
             expression_string = conn.recv()
@@ -250,7 +261,7 @@ def _get_worker():
         return _WORKER_CONN, _WORKER_PROC
     ctx = multiprocessing.get_context("fork")
     parent_conn, child_conn = ctx.Pipe(duplex=True)
-    proc = ctx.Process(target=_worker_loop, args=(child_conn,), daemon=True)
+    proc = ctx.Process(target=_worker_loop, args=(child_conn, parent_conn), daemon=True)
     proc.start()
     child_conn.close()
     _WORKER_PROC = proc
