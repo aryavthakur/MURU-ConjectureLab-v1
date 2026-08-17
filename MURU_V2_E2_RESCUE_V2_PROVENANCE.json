@@ -1,0 +1,87 @@
+{
+  "generated_at_local": "2026-08-17T13:5X-04:00",
+  "live_e2_production": {
+    "worktree": ".claude/worktrees/exp-v2-e2-pareto-observability",
+    "branch": "exp/v2-e2-pareto-observability",
+    "head_commit": "dc66e27bae1237c8bc21be811d53347a8f5b4058",
+    "head_subject": "E2: commit accumulated production output, fix S15 duplicate-recomputation bug, sync manifest/supervisor",
+    "rescue_authority_commit": "4892c76",
+    "rescue_authority_subject": "E2 execution rescue: fix classify hang + shard-death supervision, invalidate partial 37-world run",
+    "original_predeclaration_commit": "c9d08db",
+    "untouched_verification": "git status inspected read-only throughout; zero writes issued to this worktree at any point in this rescue"
+  },
+  "retention_remediation_design_source": {
+    "worktree": ".claude/worktrees/v2-retention-remediation",
+    "branch": "design/v2-retention-remediation",
+    "head_commit": "f4c11058ff4566a963341fa4fb2c744273722de5",
+    "authority_for": "MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md section 4 (frozen E4a routing gate, quoted verbatim in MURU_V2_E2_ROUTING_LOCK_THEORY.md section 1)"
+  },
+  "this_rescue": {
+    "worktree": ".claude/worktrees/e2-rescue-v2-computational",
+    "branch": "claude/e2-rescue-v2-computational",
+    "forked_from": "dc66e27bae1237c8bc21be811d53347a8f5b4058",
+    "fork_type": "new branch at live E2a HEAD, via git worktree add -b (does not touch the live worktree's branch or working directory)",
+    "files_touched_under_src_muru_paper_benchmark_or_discovery": 0,
+    "files_touched_under_src_muru_v2_calibration_e2_classify_or_e2_scoring_or_e2_search_or_e2_aggregate_or_e2_worlds": 0,
+    "new_files_only": [
+      "src/muru/v2_calibration/e2_rescue_v2/routing_lock.py",
+      "src/muru/v2_calibration/e2_rescue_v2/lazy_classify.py",
+      "src/muru/v2_calibration/e2_rescue_v2/classify_cache.py",
+      "scripts/e2_rescue_v2/routing_lock_monitor.py",
+      "scripts/e2_rescue_v2/replay_parity.py",
+      "scripts/e2_rescue_v2/speed_benchmark.py",
+      "scripts/e2_rescue_v2/balanced_sample.py",
+      "tests/test_routing_lock.py",
+      "tests/test_routing_lock_monitor_synthetic.py",
+      "tests/test_lazy_classify_control_flow.py",
+      "tests/test_classify_cache.py",
+      "tests/test_balanced_sample.py",
+      "v2_design_reference/MURU_V2_E2_ROUTING_LOCK_THEORY.md",
+      "v2_design_reference/MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md",
+      "v2_design_reference/MURU_V2_E2_BALANCED_SAMPLE_DESIGN.md",
+      "v2_design_reference/MURU_V2_E2_RESCUE_V2_PROTOCOL.md",
+      "MURU_V2_E2_RESCUE_V2_FEASIBILITY.md",
+      "MURU_V2_E2_RESCUE_V2_HOSTILE_REVIEW.md",
+      "MURU_V2_E2_RESCUE_V2_PROVENANCE.json",
+      "MURU_V2_E2_REPLAY_PARITY.json",
+      "MURU_V2_E2_SPEED_BENCHMARK.json"
+    ]
+  },
+  "classifier_version": {
+    "sha256": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+    "computed_from_7_files": [
+      "src/muru/v2_calibration/e2_classify.py",
+      "src/muru/v2_calibration/e2_scoring.py",
+      "src/muru/paper_benchmark/g2_contract.py",
+      "src/muru/paper_benchmark/identity_contract.py",
+      "src/muru/paper_benchmark/rc5_selection.py",
+      "src/muru/discovery/equivalence.py",
+      "src/muru/discovery/grammar.py"
+    ],
+    "computed_at_worktree_commit": "216817008566eb91f82536f7e6116dc95c26fb14"
+  },
+  "balanced_sample": {
+    "seed_tag": "MURU_V2_E2_BALANCED_SAMPLE_SEED_V1",
+    "selected_r": 6,
+    "n_total": 270,
+    "n_already_completed_reusable_at_snapshot": 150,
+    "n_additional_worlds_required_at_snapshot": 120,
+    "snapshot_taken_from": "world_id membership only, all 5 live result directories, read-only"
+  },
+  "replay_parity": {
+    "artifact": "MURU_V2_E2_REPLAY_PARITY.json",
+    "N_REPLAY": 16,
+    "N_MATCH": 16,
+    "N_MISMATCH": 0,
+    "PARITY_PASS": true,
+    "DETERMINISM_VERIFIED": true
+  },
+  "current_completed_count_snapshot": {
+    "n_unique_world_ids_with_timing_field": 310,
+    "of_540": "310/540",
+    "measured_fields": ["world_id (membership only)", "wall_seconds (timing only)"],
+    "scientific_outcome_fields_read_for_this_snapshot": "none",
+    "note": "recount taken later than the Part I snapshot (270/540) since the live run continued to progress during this rescue's own execution"
+  },
+  "live_e2_untouched_final_recheck": "TRUE -- see FEASIBILITY.md closing section"
+}

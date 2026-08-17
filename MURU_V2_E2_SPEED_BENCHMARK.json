@@ -1,0 +1,94 @@
+{
+  "N_WORLDS_BENCHMARKED": 3,
+  "sample_size_note": "Deliberately small (n=3 fully completed of an intended n=4) -- two independent benchmark runs (n=8 then n=5) were terminated early on this shared, already-heavily-loaded host after individual worlds exceeded their 45s exhaustive-arm safety budget by wide margins, consistent with algebraically_equivalent (uncapped, see MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md section 3) hitting a slow case; killing rather than waiting indefinitely follows this rescue own stated discipline of not materially consuming shared resources (E2_EXECUTION_DEVIATION.md poison-world precedent). All 3 reported worlds are REAL, complete, unmodified runs against real production data -- none fabricated or extrapolated beyond the lower-bound flag already attached to the exhaustive arm. All 3/3 exhaustive-arm measurements independently hit the 45s safety cap before finishing, which is itself a real, disclosed finding (see hostile review finding F1), not a benchmark defect.",
+  "selection_method": "wall_seconds-stratified even stride (outcome-blind), shared with replay_parity.py",
+  "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+  "lazy_speedup_x": {
+    "median": 17.899789576643283,
+    "p25": 15.07571702524927,
+    "p75": 112.63712360844623,
+    "worst_case_min": 15.07571702524927,
+    "note": "LOWER BOUNDS -- exhaustive wall_seconds is itself a lower bound (both worlds hit the 45s per-world safety cap before finishing); true speedup is at least this large, likely larger"
+  },
+  "lazy_plus_cache_speedup_x": {
+    "median": 24.771174608149188,
+    "p25": 16.094778108935717,
+    "p75": 93.38756297665665,
+    "worst_case_min": 16.094778108935717,
+    "note": "same lower-bound caveat as lazy_speedup_x"
+  },
+  "per_world": [
+    {
+      "opaque_id": "W8022fb5bde12",
+      "exhaustive": {
+        "wall_seconds": 45.08975287491921,
+        "n_rows": 228,
+        "n_classify_calls": 228,
+        "n_timeouts": 0,
+        "exhaustive_timed_out": true
+      },
+      "lazy": {
+        "wall_seconds": 0.40030987502541393,
+        "n_classify_calls": 34,
+        "n_equivalence_calls": 0
+      },
+      "lazy_cached": {
+        "wall_seconds": 0.482823958969675,
+        "n_classify_calls": 34,
+        "n_equivalence_calls": 0,
+        "cache_hits_this_world": 15
+      },
+      "lazy_speedup_x": 112.63712360844623,
+      "lazy_cached_speedup_x": 93.38756297665665,
+      "speedup_is_lower_bound": true
+    },
+    {
+      "opaque_id": "W750f6febd8e5",
+      "exhaustive": {
+        "wall_seconds": 45.07987137499731,
+        "n_rows": 183,
+        "n_classify_calls": 183,
+        "n_timeouts": 0,
+        "exhaustive_timed_out": true
+      },
+      "lazy": {
+        "wall_seconds": 2.990230666939169,
+        "n_classify_calls": 59,
+        "n_equivalence_calls": 0
+      },
+      "lazy_cached": {
+        "wall_seconds": 2.800900457892567,
+        "n_classify_calls": 59,
+        "n_equivalence_calls": 0,
+        "cache_hits_this_world": 50
+      },
+      "lazy_speedup_x": 15.07571702524927,
+      "lazy_cached_speedup_x": 16.094778108935717,
+      "speedup_is_lower_bound": true
+    },
+    {
+      "opaque_id": "W0c18ae3aaa36",
+      "exhaustive": {
+        "wall_seconds": 45.12077300006058,
+        "n_rows": 243,
+        "n_classify_calls": 243,
+        "n_timeouts": 0,
+        "exhaustive_timed_out": true
+      },
+      "lazy": {
+        "wall_seconds": 2.5207432080060244,
+        "n_classify_calls": 30,
+        "n_equivalence_calls": 1
+      },
+      "lazy_cached": {
+        "wall_seconds": 1.821503167040646,
+        "n_classify_calls": 30,
+        "n_equivalence_calls": 1,
+        "cache_hits_this_world": 30
+      },
+      "lazy_speedup_x": 17.899789576643283,
+      "lazy_cached_speedup_x": 24.771174608149188,
+      "speedup_is_lower_bound": true
+    }
+  ]
+}

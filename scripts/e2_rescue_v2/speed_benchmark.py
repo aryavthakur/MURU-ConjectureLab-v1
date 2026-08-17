@@ -63,43 +63,69 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from replay_parity import _load_world_outcomes, _load_candidates, _select_sample, _rebuild_truth, _opaque  # noqa: E402
 
 
-def _run_exhaustive(seed_raw_fronts: dict[int, list[lc.RawFrontRow]], truth) -> dict:
+class _WorldBudgetExceeded(Exception):
+    pass
+
+
+def _run_exhaustive(seed_raw_fronts: dict[int, list[lc.RawFrontRow]], truth, wall_budget_seconds: float = 45.0) -> dict:
     """Mirrors scripts/e2_run_shard.py's real per-row loop exactly:
     classify (as run_seed_search does) then score_row (unmodified,
-    unconditional equivalence attempt) for every row of every seed."""
+    unconditional equivalence attempt) for every row of every seed.
+
+    SAFETY NOTE (added after this benchmark's own shakedown ran long on the
+    shared host): `algebraically_equivalent` -- unlike `classify_expression`
+    -- has no wall-clock cap anywhere in its own call path (see
+    MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md section 3). A per-WORLD wall
+    budget is checked between rows (best-effort -- this is a coarse
+    between-row check, not a per-call interrupt, since interrupting
+    mid-sympy-call reliably is exactly the problem the 2026-08-16 rescue
+    found signal-based caps cannot solve reliably either). If exceeded,
+    the world is abandoned and reported as `exhaustive_timed_out=True`
+    with whatever counts were accumulated so far -- itself a real,
+    disclosed data point (an exhaustive-arm world that does not finish in
+    45s of pure classification time on a row-by-row budget check is
+    exactly the class of risk the lazy design's <=1 equivalence-call-per-
+    world property exists to avoid), not a fabricated result."""
     e2_classify._CACHE.clear()
     n_classify_direct = 0
     n_rows = 0
     n_timeouts = 0
+    timed_out = False
     t0 = time.monotonic()
-    for seed, rows in seed_raw_fronts.items():
-        for raw in rows:
-            n_rows += 1
-            classification = e2_classify.classify_expression(raw.expression_string)  # run_seed_search's own call
-            n_classify_direct += 1
-            if classification.canonicalization_status == "SIMPLIFY_TIMEOUT":
-                n_timeouts += 1
-            front = FrontRow(
-                front_rank=raw.front_rank, engine_complexity=raw.complexity, grammar_complexity=raw.complexity,
-                expression_string=raw.expression_string, parse_ok=classification.parse_ok,
-                canonicalization_status=classification.canonicalization_status,
-                canonical_expression=classification.canonical_expression,
-                train_r2=float("nan"), valid_r2=raw.valid_r2, test_r2=raw.candidate_test_r2,
-                loss=float("nan"), score=float("nan"), invalid_fraction=raw.invalid_fraction,
-                effective_support=(
-                    tuple(sorted(classification.effective_support))
-                    if classification.effective_support is not None else None
-                ),
-                template_key_repr=classification.template_key_repr,
-                coefficient_estimates=classification.coefficient_estimates,
-                retained_by_argmax_score=raw.retained_by_argmax_score,
-            )
-            e2sc.score_row(front, truth)  # unmodified production call; re-classifies internally (cache hit)
+    try:
+        for seed, rows in seed_raw_fronts.items():
+            for raw in rows:
+                if time.monotonic() - t0 > wall_budget_seconds:
+                    raise _WorldBudgetExceeded()
+                n_rows += 1
+                classification = e2_classify.classify_expression(raw.expression_string)  # run_seed_search's own call
+                n_classify_direct += 1
+                if classification.canonicalization_status == "SIMPLIFY_TIMEOUT":
+                    n_timeouts += 1
+                front = FrontRow(
+                    front_rank=raw.front_rank, engine_complexity=raw.complexity, grammar_complexity=raw.complexity,
+                    expression_string=raw.expression_string, parse_ok=classification.parse_ok,
+                    canonicalization_status=classification.canonicalization_status,
+                    canonical_expression=classification.canonical_expression,
+                    train_r2=float("nan"), valid_r2=raw.valid_r2, test_r2=raw.candidate_test_r2,
+                    loss=float("nan"), score=float("nan"), invalid_fraction=raw.invalid_fraction,
+                    effective_support=(
+                        tuple(sorted(classification.effective_support))
+                        if classification.effective_support is not None else None
+                    ),
+                    template_key_repr=classification.template_key_repr,
+                    coefficient_estimates=classification.coefficient_estimates,
+                    retained_by_argmax_score=raw.retained_by_argmax_score,
+                )
+                e2sc.score_row(front, truth)  # unmodified production call; re-classifies internally (cache hit)
+    except _WorldBudgetExceeded:
+        timed_out = True
     elapsed = time.monotonic() - t0
     return {
         "wall_seconds": elapsed, "n_rows": n_rows,
         "n_classify_calls": n_classify_direct,  # the direct calls this loop made; score_row's internal re-call is a cache hit, not counted again here (matches how e2_classify.cache_size() is the metric production itself logs)
         "n_timeouts": n_timeouts,
+        "exhaustive_timed_out": timed_out,
     }
 
 
@@ -122,6 +148,19 @@ _REAL_CLASSIFY_EXPRESSION = e2_classify.classify_expression  # captured once, at
 def _run_lazy_cached(seed_raw_fronts: dict[int, list[lc.RawFrontRow]], truth, cache: cc.PersistentClassifyCache) -> dict:
     import unittest.mock as mock
 
+    # BUG FOUND DURING THIS BENCHMARK'S OWN SHAKEDOWN (real-data run,
+    # 2026-08-17): without this clear, `_REAL_CLASSIFY_EXPRESSION` still
+    # consults `e2_classify`'s own in-process `_CACHE` at call time (it
+    # closes over the live module dict, not a snapshot) -- and `_run_lazy`
+    # runs immediately before this function on the SAME world's SAME
+    # expressions, populating exactly that cache. Without clearing, every
+    # "cold" LAZY+CACHE measurement was silently riding the immediately-
+    # preceding LAZY arm's leftover in-process cache instead of exercising
+    # the persistent (SQLite) cache this arm exists to benchmark -- a
+    # zero-second first-world result that looked like a free win but was
+    # actually measuring nothing. Clearing here isolates the persistent
+    # cache's OWN contribution, exactly like the other two arms already do.
+    e2_classify._CACHE.clear()
     lc.reset_call_counters()
     hits_before = _cache_hits(cache)
 
@@ -154,7 +193,7 @@ def _cache_hits(cache: cc.PersistentClassifyCache) -> int:
     return cache.stats()["classify_rows_current_version"]
 
 
-def run_benchmark(dirs: list[Path], sample_size: int, cache_db: Path) -> dict:
+def run_benchmark(dirs: list[Path], sample_size: int, cache_db: Path, incremental_out: Path | None = None) -> dict:
     outcomes = _load_world_outcomes(dirs)
     sample = _select_sample(outcomes, sample_size)
 
@@ -168,6 +207,12 @@ def run_benchmark(dirs: list[Path], sample_size: int, cache_db: Path) -> dict:
     ru_start = resource.getrusage(resource.RUSAGE_SELF)
     try:
         for wid in sample:
+            if incremental_out is not None:
+                # Written BEFORE processing so a kill mid-world still leaves
+                # a valid, if partial, artifact on disk -- this run's own
+                # predecessor was killed after 4/5 worlds with nothing
+                # persisted; not repeating that.
+                incremental_out.write_text(json.dumps({"N_WORLDS_BENCHMARKED_SO_FAR": len(per_world), "per_world": per_world}, indent=2))
             exhaustive_rec = outcomes[wid]
             truth = _rebuild_truth(exhaustive_rec)
             by_seed = _load_candidates(dirs, wid)
@@ -176,14 +221,27 @@ def run_benchmark(dirs: list[Path], sample_size: int, cache_db: Path) -> dict:
             lazy = _run_lazy(by_seed, truth)
             lazy_cached = _run_lazy_cached(by_seed, truth, cache)
 
-            per_world.append({
+            # If the exhaustive arm hit its wall budget, its measured
+            # wall_seconds is a LOWER BOUND on the true exhaustive cost --
+            # the true speedup ratio is therefore AT LEAST this much, not
+            # exactly this much. Flagged explicitly rather than reported as
+            # a precise number.
+            entry = {
                 "opaque_id": _opaque(wid),
                 "exhaustive": exh, "lazy": lazy, "lazy_cached": lazy_cached,
                 "lazy_speedup_x": (exh["wall_seconds"] / lazy["wall_seconds"]) if lazy["wall_seconds"] > 0 else None,
                 "lazy_cached_speedup_x": (
                     exh["wall_seconds"] / lazy_cached["wall_seconds"] if lazy_cached["wall_seconds"] > 0 else None
                 ),
-            })
+                "speedup_is_lower_bound": bool(exh.get("exhaustive_timed_out")),
+            }
+            per_world.append(entry)
+            print(
+                f"  world done: exhaustive={exh['wall_seconds']:.1f}s"
+                f"{' (TIMED OUT, lower bound)' if exh.get('exhaustive_timed_out') else ''}"
+                f" lazy={lazy['wall_seconds']:.2f}s lazy+cache={lazy_cached['wall_seconds']:.2f}s",
+                flush=True,
+            )
     finally:
         e2_classify.shutdown()
         cache.close()
@@ -227,7 +285,7 @@ def main() -> None:
     args = parser.parse_args()
 
     dirs = [Path(d) for d in args.dirs]
-    result = run_benchmark(dirs, args.sample_size, Path(args.cache_db))
+    result = run_benchmark(dirs, args.sample_size, Path(args.cache_db), incremental_out=Path(args.out))
     Path(args.out).write_text(json.dumps(result, indent=2))
     print(f"N_WORLDS_BENCHMARKED: {result['N_WORLDS_BENCHMARKED']}")
     print(f"LAZY median speedup: {result['lazy_speedup_x']['median']}")
