@@ -26,9 +26,21 @@ log "watchdog started: out_dir=${OUT_DIR} stale_seconds=${STALE_SECONDS} poll_se
 
 while true; do
   now=$(date +%s)
-  for i in 0 1 2; do
-    log_path="${OUT_DIR}/log_shard_00${i}.txt"
+  # Discover shard indices dynamically from whichever log_shard_*.txt files
+  # actually exist, instead of a hardcoded range. Found live: a hardcoded
+  # `for i in 0 1 2` (this script's own earlier version) silently covered
+  # only 3 of the 6 shards after the throughput investigation moved to
+  # 6-way sharding -- shard 5 sat stuck, alive, and completely unwatched
+  # for 6+ hours because its index was simply never in the loop. Globbing
+  # the actual log files makes this correct for any shard count, present
+  # or future, without needing to keep this script's range in sync by hand.
+  for log_path in "${OUT_DIR}"/log_shard_*.txt; do
     [[ -f "$log_path" ]] || continue
+    base=$(basename "$log_path")
+    idx_str="${base#log_shard_}"
+    idx_str="${idx_str%.txt}"
+    i=$((10#$idx_str))
+
     mtime=$(stat -f "%m" "$log_path" 2>/dev/null || stat -c "%Y" "$log_path" 2>/dev/null)
     [[ -z "$mtime" ]] && continue
     age=$((now - mtime))
