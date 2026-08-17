@@ -1,0 +1,39 @@
+{
+  "freeze_version": "1.0.0",
+  "conclusion": "LOCKED_EXECUTE_E4A",
+  "scope": "Gate 2 branch 1 only (B strict plurality of {A, B, C+D}); Gate 1 (E2b falsification hook) is a separate precondition NOT resolved by this freeze -- see MURU_V2_E4A_PREREQUISITE_VERIFICATION.md",
+  "rescue_v2_authority_commit": "c4e75d0ed1c1afc3482ccf3a5d2d89d4e74c5592",
+  "rescue_v2_authority_branch": "claude/e2-rescue-v2-computational",
+  "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+  "routing_lock_module": "src/muru/v2_calibration/e2_rescue_v2/routing_lock.py",
+  "mathematical_lock_proof_version": "ROUTING_LOCK_PROOF_v1.0.0",
+  "mathematical_lock_proof_function": "routing_lock.py::_would_lock_bucket",
+  "proof_kind": "exact necessary-and-sufficient worst-case-margin inequality, no threshold or tolerance parameter",
+  "source_e2_checkpoint": {
+    "old_checkpoint": "/tmp/e2_rescue_v2_checkpoint_TRULY_FINAL_20260817_165554/ (409/540)",
+    "smoke_worlds": "/tmp/e2_rescue_v2_smoke_output/ (2 worlds)",
+    "production_output": "/tmp/e2_rescue_v2_production_out/ (growing)"
+  },
+  "readings": [
+    {
+      "observed_at_local_approx": "2026-08-17T17:16-04:00",
+      "note": "first observation, via background watcher task bmgkv71tz",
+      "ROUTING_LOCK_STATE": "LOCKED_EXECUTE_E4A",
+      "N_CLASSIFIED": 445,
+      "N_TOTAL": 540,
+      "R_REMAINING": 95
+    },
+    {
+      "observed_at_utc": "2026-08-17T21:52:08Z",
+      "note": "independent fresh re-read for this freeze document",
+      "ROUTING_LOCK_STATE": "LOCKED_EXECUTE_E4A",
+      "N_CLASSIFIED": 458,
+      "N_TOTAL": 540,
+      "R_REMAINING": 82
+    }
+  ],
+  "irreversibility_proof_summary": "Once B_n > A_n + r and B_n > CD_n + r hold at any checkpoint, both inequalities are preserved under every possible resolution of the r outstanding cases at every later checkpoint (full proof in MURU_V2_E2_ROUTING_LOCK_FREEZE.md section 3); state cannot revert to FULL_RUN_REQUIRED or any other value once fired",
+  "empirical_corroboration": "state observed identical (LOCKED_EXECUTE_E4A) across two independent readings 13 worlds apart in classification progress (445 -> 458 of 540)",
+  "a_b_c_d_e_counts_exposed": false,
+  "scientific_rates_exposed": false
+}
