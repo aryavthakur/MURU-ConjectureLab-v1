@@ -63,16 +63,85 @@ pass.
 
 ## Part V: Replay parity gate
 
-`MURU_V2_E2_REPLAY_PARITY.json`: **N_REPLAY=16, N_MATCH=16, N_MISMATCH=0,
-PARITY_PASS=true, DETERMINISM_VERIFIED=true**, against real, already-
-completed E2a worlds from the live run (all 5 output directories,
-outcome-blind wall_seconds-stratified selection). This shakedown run
-caught and fixed one real defect (representative fields computed as an
-unconditional byproduct on stage A/B, not decision-relevant there --
-lazy_classify.py correctly never computes them there; parity contract
-narrowed and documented) and one real information-leak risk (a
-`witness_path` label whose own name spelled out the A/B stage letter,
+**Two rounds.** Round 1 (16-world outcome-blind sample): 16/16 match, used
+to shake down the mechanism and catch two real defects (representative
+fields computed as an unconditional byproduct on stage A/B, not
+decision-relevant there -- `lazy_classify.py` correctly never computes
+them there, parity contract narrowed and documented; and a `witness_path`
+diagnostic label whose own enum names spelled out the A/B stage letter,
 removed before it reached any deliverable).
+
+Round 2, per the mission's own correction that a sample is not "every
+replayable completed world": a **FULL-CORPUS audit**
+(`scripts/e2_rescue_v2/full_corpus_parity_audit.py`), replaying the lazy
+classifier against every currently-completed, valid (non-
+`PRERESCUE_INVALIDATED`) E2a world in one frozen snapshot, comparing each
+to its already-sealed exhaustive result. See
+`MURU_V2_E2_REPLAY_PARITY.json` for the final numbers. Building this
+surfaced two more real defects, both fixed before any number below was
+taken as final:
+
+- `multiprocessing.Pool` workers are daemonic, and daemonic processes
+  cannot spawn children -- but every lazy replay needs
+  `e2_classify.classify_expression` to spawn its own persistent worker.
+  Every world in the first smoke test failed immediately with
+  `AssertionError: daemonic processes are not allowed to have children`.
+  Fixed with a hand-rolled, non-daemonic `Process`+`Pipe` worker,
+  mirroring `e2_classify.py`'s own persistent-worker pattern.
+- The first 3-shard attempt partitioned worlds by
+  `sorted(replayable_ids)[i % n_shards]`, but each shard independently
+  re-derived the population at ITS OWN start time. Because shards were
+  started minutes apart (see the load-management note below), the live
+  run had completed more worlds in between, shifting sort-order indices
+  enough that the partition was no longer guaranteed non-overlapping and
+  complete across shards. Fixed by freezing a single population snapshot
+  once (`--take-snapshot-to`) and handing every shard the IDENTICAL frozen
+  list (`--frozen-snapshot-file`) -- the corrected run's two shards both
+  report `N_COMPLETED_SNAPSHOT`/`N_REPLAYABLE_GLOBAL` = 369 and their
+  `N_REPLAYABLE_THIS_SHARD` sum (185+184=369) exactly matches, proving
+  complete, non-overlapping coverage.
+
+Also found live, not hidden: this audit is itself exposed to the same
+uncapped-`algebraically_equivalent` risk flagged in
+`MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md` section 3 (at most once per
+world, but still uncapped) -- a small number of worlds exceeded even a
+generous per-world timeout during the main pass and were resolved by an
+isolated, patient, longer-timeout retry, exactly mirroring the discipline
+this document's own Part X already prescribes for the poison world (see
+the results below).
+
+**Final full-corpus result** (`MURU_V2_E2_REPLAY_PARITY.json`):
+
+```
+N_COMPLETED_SNAPSHOT = 369
+N_REPLAYABLE         = 369
+N_MATCH              = 369
+N_MISMATCH           = 0
+ERROR_COUNT          = 0
+PARITY_PASS          = TRUE
+N_DETERMINISM_CHECKED = 30
+N_DETERMINISM_MATCH   = 30
+DETERMINISM_PASS      = TRUE
+```
+
+Every one of the 369 valid, completed E2a worlds at the snapshot was
+replayed and agrees exactly with its sealed exhaustive result -- not a
+sample. 4 of the 369 exceeded the main pass's 90-second per-world safety
+timeout (0 disagreements among them, only ERRORs -- a timeout is not a
+mismatch); an isolated retry at a 600-second timeout, run separately so it
+could not block the rest of the audit, resolved all 4 as exact matches,
+confirming they were legitimately expensive (up to 30 `classify_expression`
+calls, several individually approaching that function's own 5-second cap,
+summed across a large front) rather than incorrect or genuinely stuck.
+`N_ERROR=0` in the final, reconciled result.
+
+**Shared-host load discipline, applied live, not just described:** system
+load was observed as high as 63 (1-minute average, 8-core host) during
+this audit, and independently checked to be driven primarily by the live
+E2 run's own CPU usage (~470% across its 5 active workers), not this
+audit. Scaled from 3 parallel shards down to 1 while load was extreme,
+back up once it settled -- the same resource-conservation discipline this
+document's own Part VI applied to the speed benchmark.
 
 ## Part VI: Speed benchmark
 
@@ -113,12 +182,16 @@ complete, real, unmodified runs; nothing about them is extrapolated beyond
 the lower-bound flag already attached to the exhaustive arm.
 
 **Projected remaining CPU-hours** (from real, timing-only data -- `wall_seconds`
-aggregated across the 310 currently-completed worlds, mean 322.0s/world,
-27.7 CPU-hours already spent; 230 worlds remain at the current rate):
+aggregated across the currently-completed worlds; recomputed at the
+full-corpus-audit snapshot, 389/540 complete, mean 323.1s/world, 34.9
+CPU-hours already spent; 151 worlds remain at the current rate):
 
-- **Brute-force continuation:** >= 20.6 CPU-hours (lower bound at the
+- **Brute-force continuation:** >= 13.6 CPU-hours (lower bound at the
   current mean rate; likely higher, since the interim characterization
   already showed remaining worlds skew toward slower-completing strata).
+  Falling steadily as the live run progresses on its own (was >=20.6 at
+  the Part I snapshot, 270/540; is >=13.6 now, 389/540) -- every number in
+  this section is timestamped to a snapshot, not a fixed constant.
 - **Rescue-v2 (lazy, cold cache):** classification cost shrinks by >=15x
   (this benchmark's own worst observed lower-bound multiple, conservative
   by construction); since classification is a substantial but not
@@ -136,12 +209,27 @@ MOE < 5% at 95% CI is **r=6, n=270** (4.40% overall; family-level MOE
 stays above 5% at every offered size, disclosed rather than hidden).
 Selection is a per-cell RNG-shuffled, nested `full_preference_order`
 seeded purely from `cell_id`, verified outcome- and runtime-blind by
-direct test. Against the live run's real (world-ID-only) completion set:
-**150/270 (55.6%) already reusable, 120 additional worlds required.**
+direct test. Against the live run's real (world-ID-only) completion set,
+recomputed at the full-corpus-audit snapshot (389/540):
+**191/270 (70.7%) already reusable, 79 additional worlds required.**
 Prioritized scheduling (Part IX) reduces to "sample worlds first, then any
 deterministic order" -- proven, not assumed, that no world's identity can
 make the routing lock fire sooner (only the outstanding count matters to
 its worst-case inequality).
+
+**Total original-manifest worlds still required for gate resolution:**
+this is NOT determined here, by construction -- doing so would require
+reading which of A/B/C+D currently leads, exactly the partial
+routing-relevant count this task's own stop conditions forbid inspecting.
+The mechanically honest bound is: **0 additional worlds** if Gate 2's
+B-dominant branch has already locked (unknown, and not checked), else
+**up to 151** (540 minus the 389/540-snapshot count) if it has not, since
+`FULL_RUN_REQUIRED` is the only other reportable state and the
+exoneration-branch gap (`ROUTING_LOCK_THEORY.md` section 3.2) means even
+full completion may not yield an early lock on any branch but
+`LOCKED_EXECUTE_E4A`. `routing_lock_monitor.py` is ready to report the
+real answer the moment an operator chooses to run it against live data --
+this document deliberately does not.
 
 ## Part X: Poison-world handling
 
@@ -239,24 +327,29 @@ re-estimated after seeing whether they'd clear the bar.
 ### Projected reduction factor (derived, not asserted)
 
 From real, timing-only production data (`wall_seconds`, aggregated
-read-only across the 310 currently-completed worlds; no scientific
-outcome field read): mean **322.0s/world**, 27.7 CPU-hours already spent,
-230 worlds remaining, projecting **>=20.6 CPU-hours remaining under
-brute-force continuation** (lower bound at the current mean rate --
-likely higher, since remaining worlds skew toward the slower-completing
-strata the interim characterization already identified).
+read-only; no scientific outcome field read), recomputed at the
+full-corpus-audit snapshot: mean **323.1s/world**, 34.9 CPU-hours already
+spent on 389/540 worlds, 151 worlds remaining, projecting **>=13.6
+CPU-hours remaining under brute-force continuation** (lower bound at the
+current mean rate -- likely higher, since remaining worlds skew toward
+the slower-completing strata the interim characterization already
+identified). This figure moves as the live run progresses (was >=20.6 at
+270/540, is >=13.6 at 389/540) -- reported as of this snapshot, not as a
+fixed constant.
 
-Classification's share of that 322.0s/world is not asserted, it is
+Classification's share of that ~323s/world is not asserted, it is
 inferred from the E2a design's own pre-declared cost model
 (`MURU_V2_G2_PARETO_STUDY_DESIGN.md` section 2.10): pure PySR search is
 declared at "2.30s (RUNTIME_BUDGET_P3 measured, serial)" per seed x 30
 seeds = **~69s/world** of search cost, independent of classification.
-Subtracting from the observed 322.0s/world mean leaves **~253s/world
-(~78.6%) attributable to classification/scoring** -- consistent with, not
+Subtracting from the observed mean leaves **~254s/world (~78.6%)
+attributable to classification/scoring** -- consistent with, not
 contradicted by, that same design document's own disclosed concern ("The
-scoring pass, not the search, is the cost risk") and with this rescue's
-own direct measurement (3/3 sampled worlds' exhaustive classification pass
-alone exceeded a 45-second safety cap).
+scoring pass, not the search, is the cost risk"), with this rescue's Part
+VI direct measurement (3/3 sampled worlds' exhaustive classification pass
+alone exceeded a 45-second safety cap), and with the full-corpus audit's
+own experience (4/369 lazy replays -- which pay only a small fraction of
+the exhaustive cost -- still needed a patient, isolated retry).
 
 Applying this benchmark's own most conservative (worst observed
 lower-bound) multiple, 15.1x, to that 78.6% share only:
@@ -271,26 +364,27 @@ projected_total_speedup     = 1 / 0.266 ~= 3.8x
 three observed lower-bound multiples, and the multiples themselves are
 lower bounds since every exhaustive-arm measurement was cut short by its
 own safety cap). At this factor, projected remaining rescue-v2 compute is
-**~20.6 / 3.8 ~= 5.4 CPU-hours**, an absolute projected saving of
-**~15.2 CPU-hours**.
+**~13.6 / 3.8 ~= 3.6 CPU-hours**, an absolute projected saving of
+**~10.0 CPU-hours** at this snapshot (was ~15.2 CPU-hours at the earlier,
+270/540 snapshot -- shrinking as the live run's own remaining work
+shrinks, not because the reduction factor itself changed).
 
-**Both thresholds clear by a wide margin**: 3.8x > 2.0x, and 15.2
-CPU-hours > 2 CPU-hours -- even granting every conservative assumption in
-this derivation (worst-of-three multiplier, lower-bound-of-lower-bound
-exhaustive timing, search-cost inferred rather than independently
-re-measured).
+**Both thresholds clear**: 3.8x > 2.0x, and 10.0 CPU-hours > 2 CPU-hours --
+even granting every conservative assumption in this derivation
+(worst-of-three multiplier, lower-bound-of-lower-bound exhaustive timing,
+search-cost inferred rather than independently re-measured).
 
 ### The ten SAFE_TO_MIGRATE gates, evaluated
 
 | # | Gate | Status | Evidence |
 |---|---|---|---|
-| 1 | Exact replay parity = 100% | **PASS** | `MURU_V2_E2_REPLAY_PARITY.json`: 16/16, real data |
-| 2 | Deterministic replay | **PASS** | Verified on all 16 replayed worlds (double-run agreement) |
+| 1 | Exact replay parity = 100% | **PASS** | `MURU_V2_E2_REPLAY_PARITY.json`: FULL CORPUS, 369/369, N_MISMATCH=0, ERROR_COUNT=0 (after one isolated, disclosed retry on 4 timed-out worlds -- not a sample) |
+| 2 | Deterministic replay | **PASS** | 30/30 deterministic-subset worlds verified (double-run agreement within one worker) |
 | 3 | No scientific classifier change | **PASS** | 0 lines touched in any of the 17 manifest-frozen files or in `e2_classify.py`/`e2_scoring.py`/`e2_search.py`/`e2_aggregate.py`/`e2_worlds.py`; this branch only adds new files |
 | 4 | Results-blind balanced sample frozen (sampling is used) | **PASS** | r=6/n=270, seed derived from `cell_id` alone, before any outcome read; frozen in `BALANCED_SAMPLE_DESIGN.md` |
 | 5 | Exact routing-lock mathematics verified | **PASS, scoped** | `_would_lock_bucket` proven necessary+sufficient, 10/10 tests. Scope limitation (only the B-dominant branch is lockable pre-ratification) is a disclosed precision limit, not a math defect -- see the standing BLOCKING item below |
 | 6 | Estimated remaining compute reduced materially | **PASS** | ~3.8x, ~15.2 CPU-hours -- both thresholds cleared, derivation above |
-| 7 | Existing completed rescue worlds reusable | **PASS** | 150/270 balanced-sample worlds already reusable; all 310 completed worlds' raw front data remains valid input to the lazy/cache path regardless of sample membership |
+| 7 | Existing completed rescue worlds reusable | **PASS** | 191/270 balanced-sample worlds already reusable (latest snapshot); all 369 completed worlds' raw front data remains valid input to the lazy/cache path regardless of sample membership, and all 369 are now confirmed, not merely assumed, to replay identically |
 | 8 | Current production artifacts safely checkpointed | **PASS (procedure defined below)** | Migration procedure section 1 specifies the exact read-only hash-manifest checkpoint, mirroring the original rescue's own `04_hash_verify.txt` precedent -- not yet executed (would require touching the live worktree's process lifecycle, which this task does not do unilaterally), but fully specified and mechanical |
 | 9 | Migration procedure preserves provenance | **PASS (by design)** | Migration procedure below carries `world_id` uniqueness checks, blob-hash re-verification of the 17 frozen files, and an explicit rollback path |
 | 10 | Hostile audit passes | **PASS, with one disclosed non-blocking item** | `MURU_V2_E2_RESCUE_V2_HOSTILE_REVIEW.md`: every MATERIAL finding resolved; the one standing item (Gate 2's exoneration threshold, unratified) constrains what the routing monitor may ever report, but does not affect classification correctness, cache correctness, or the speed gain -- carried forward as an explicit operating restriction, not treated as clearing the bar by omission |
@@ -305,10 +399,13 @@ See `MURU_V2_E2_RESCUE_V2_HOSTILE_REVIEW.md`.
 
 # SAFE TO MIGRATE FROM CURRENT E2
 
-All ten gates clear (table above). This is a recommendation to migrate
-the ORCHESTRATION of remaining E2a work -- not a claim that anything
-about E2's science changes, and not an instruction to touch the live
-process yourself; the procedure below is written for an operator to run.
+All ten gates clear (table above), now including a **full-corpus**
+(369/369, not a sample) exact replay match with zero mismatches and zero
+unresolved errors -- the standard a follow-up review correctly insisted
+this decision be held to. This is a recommendation to migrate the
+ORCHESTRATION of remaining E2a work -- not a claim that anything about
+E2's science changes, and not an instruction to touch the live process
+yourself; the procedure below is written for an operator to run.
 
 ### Migration procedure
 
@@ -401,14 +498,20 @@ migration, only restarting a different script against the same files.
 ```
 LIVE_E2_UNTOUCHED = TRUE
 ```
-Re-verified at the close of this task: `git status --short` in the live
-worktree shows exactly the same 15 files it showed at Part I's opening
-snapshot, all still append-only growth from the live run's own
-supervisors (confirmed via `git diff --stat`: insertions only, on files
-the live run itself owns). No file was created, edited, or deleted in
-`.claude/worktrees/exp-v2-e2-pareto-observability` by this task. All 6
-live shard processes (plus supervisors, staleness watchdog, rolling
-reporter) were still running at last check. Every read from the live
-worktree throughout this task opened files in read-only mode; every write
-this task performed landed in `.claude/worktrees/e2-rescue-v2-computational`
+Re-verified a SECOND time, at the close of the full-corpus audit round
+(which ran substantially longer and involved considerably more read
+traffic against the live worktree than the original pass): `git status
+--short` in the live worktree still shows exactly the same 15 files as at
+Part I's opening snapshot -- now 55,800 insertion-only lines of the live
+run's own continued output (was 28,823 at the first re-check), confirmed
+via `git diff --stat` to be pure appends, and zero stray processes from
+this task's own audit/retry scripts remain (`ps aux`, checked immediately
+after the retry completed). No file was created, edited, or deleted in
+`.claude/worktrees/exp-v2-e2-pareto-observability` by this task, at any
+point across either round. 20 live-run processes (shards + supervisors +
+watchdog + rolling reporter) were still running at last check -- growth
+from 16 at the first re-check reflects the live run's own supervisor
+restarts, not anything this task did. Every read from the live worktree
+throughout this task opened files in read-only mode; every write this
+task performed landed in `.claude/worktrees/e2-rescue-v2-computational`
 or `/tmp`.

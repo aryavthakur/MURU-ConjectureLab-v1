@@ -65,10 +65,75 @@ here as a concrete instance of exactly the kind of self-check this
 mission's hostile-review requirement is meant to force -- not swept past
 because it was "only" a measurement bug rather than a classification one.
 
+## Addendum: full-corpus audit round (post-16-world sample)
+
+A follow-up review correctly pointed out that the original Part V gate
+(16/16, an outcome-blind SAMPLE of the completed corpus) does not by
+itself satisfy the mission's own stated standard -- "Use already-completed
+rescue worlds as a replay corpus" and "PARITY_PASS requires 100% agreement
+on **every** replayable completed world" -- when the live corpus already
+had hundreds more completed worlds than were sampled. This is accepted as
+correct and is not disputed: a sample, however clean, is not "every
+world." `scripts/e2_rescue_v2/full_corpus_parity_audit.py` was built and
+run to close this gap -- see `MURU_V2_E2_REPLAY_PARITY.json` for the
+result and `MURU_V2_E2_RESCUE_V2_FEASIBILITY.md` for how it feeds the
+final decision.
+
+**One more real defect found and fixed during this round's own
+shakedown, F3:** the first implementation attempted to isolate each
+world's replay in a `multiprocessing.Pool` worker for hang safety. Pool
+workers are daemonic by default, and Python's multiprocessing explicitly
+forbids a daemonic process from spawning children
+(`AssertionError: daemonic processes are not allowed to have children`)
+-- which every lazy replay does, since `e2_classify.classify_expression`
+itself spawns its own persistent worker. Every one of the first smoke
+test's 19 worlds failed immediately with this error (caught before it
+reached the real audit, not silently absorbed as a false "TIMEOUT" or
+"MATCH"). Fixed by replacing the `Pool` with a hand-rolled single
+long-lived NON-daemonic `Process` + `Pipe`, deliberately mirroring
+`e2_classify.py`'s own persistent-worker pattern rather than inventing a
+new one. Re-verified against real data afterward: the timeout/respawn
+path itself was also exercised live (multiple real per-world timeouts
+observed and correctly recovered from during both the smoke test and the
+full run), not merely unit-tested.
+
+**A second real defect, F4, found and fixed in the same round:** the
+first attempt at 3-way parallelism had each shard independently re-derive
+the world population (`sorted(replayable_ids)[i % n_shards]`) at its OWN
+process-start time. Because one shard was launched, then two more were
+launched several minutes later (after a deliberate pause for shared-host
+load management -- see below), the live run had completed 2 more worlds
+in the interval, shifting sort-order indices enough that the partition
+was no longer guaranteed complete and non-overlapping across shards
+(`N_COMPLETED_SNAPSHOT` disagreed: 355 for the early shard vs 357 for the
+later two). Caught before merging by inspecting each shard's own reported
+snapshot size rather than assuming they'd match; the first attempt's
+results (350/357 matched, 0 mismatches, not licensed as final) were
+discarded and NOT used for the decision below. Fixed by freezing a single
+population snapshot once and handing every shard the IDENTICAL frozen
+list -- the corrected run's per-shard coverage summed exactly to the
+global total, verified programmatically in `merge_shards.py`, not just
+asserted.
+
+**Final full-corpus result, after one disclosed, isolated retry on 4
+worlds that exceeded the main pass's timeout (mirroring Part X's own
+poison-world discipline, not a new one): 369/369 matched, 0 mismatches, 0
+unresolved errors, 30/30 deterministic-subset re-runs agree.** See
+`MURU_V2_E2_REPLAY_PARITY.json`.
+
+**Shared-host load, observed and acted on, not just anticipated:** load
+average reached 63 (1-minute, 8-core host) during this audit. Independently
+checked whether this rescue's own processes or the live E2 run were the
+primary driver (`ps aux` on the live run's own workers showed ~470%
+combined CPU -- effectively 4-5 full cores -- consistent with it being the
+dominant factor); scaled this audit back from 3 parallel shards to 1 while
+load was extreme, restored parallelism once it settled. No process outside
+this task's own scripts was ever touched.
+
 ## Adoption status
 
-Every MATERIAL finding above (rows 4, 5, 6, 7, 9, 10, 11, 15, plus F1 and
-F2) has been resolved before this document is finalized, with one
+Every MATERIAL finding above (rows 4, 5, 6, 7, 9, 10, 11, 15, plus F1, F2,
+F3, and F4) has been resolved before this document is finalized, with one
 standing, disclosed, BLOCKING exception that is **operational, not a
 defect**: Gate 2's exoneration branch has no ratified numeric threshold
 (item 19's underlying source gap, restated in `ROUTING_LOCK_THEORY.md`

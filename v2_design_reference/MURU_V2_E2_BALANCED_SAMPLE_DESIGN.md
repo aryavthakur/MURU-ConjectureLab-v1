@@ -106,17 +106,18 @@ read-only):
 
 | r | n | already completed (reusable) | additional worlds required |
 |---|---|---|---|
-| 4 | 180 | 100 | 80 |
-| 5 | 225 | 121 | 104 |
-| **6** | **270** | **150** | **120** |
-| 7 | 315 | 178 | 137 |
-| 8 | 360 | 202 | 158 |
+| 4 | 180 | 127 | 53 |
+| 5 | 225 | 159 | 66 |
+| **6** | **270** | **191** | **79** |
+| 7 | 315 | 228 | 87 |
+| 8 | 360 | 259 | 101 |
 
-At the selected design (r=6, n=270): **150/270 (55.6%) of the frozen
+At the selected design (r=6, n=270): **191/270 (70.7%) of the frozen
 sample is already complete** and directly reusable from the live run's
-existing output, with **120 additional worlds** needed to finish it. This
-count will keep changing as the live run progresses (it is a snapshot,
-timestamped in `MURU_V2_E2_RESCUE_V2_PROVENANCE.json`), but the SAMPLE
+existing output, with **79 additional worlds** needed to finish it
+(recomputed against the 389/540-world snapshot taken alongside the
+full-corpus parity audit, `MURU_V2_E2_RESCUE_V2_PROVENANCE.json`). This
+count will keep changing as the live run progresses, but the SAMPLE
 ITSELF (which 270 world_ids) is frozen and does not change with it.
 
 Selection is implemented as `select_replicates_for_r(r)` = the first `r`

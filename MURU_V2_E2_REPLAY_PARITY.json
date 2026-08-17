@@ -1,123 +1,21 @@
 {
-  "N_REPLAY": 16,
-  "N_MATCH": 16,
+  "audit_scope": "FULL CORPUS -- every currently-completed, valid (non-PRERESCUE_INVALIDATED) E2a world at the frozen snapshot, not a sample",
+  "snapshot_taken_at_local": "2026-08-17T15:21:00-04:00",
+  "N_COMPLETED_SNAPSHOT": 369,
+  "N_REPLAYABLE": 369,
+  "N_MATCH": 369,
   "N_MISMATCH": 0,
+  "ERROR_COUNT": 0,
   "PARITY_PASS": true,
-  "DETERMINISM_VERIFIED": true,
-  "selection_method": "wall_seconds-stratified even stride (outcome-blind)",
-  "classifier_version": null,
-  "per_world_timing": [
-    {
-      "opaque_id": "W8022fb5bde12",
-      "lazy_wall_seconds": 0.6411304170032963,
-      "lazy_classify_calls": 34,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 117.65656191692688
-    },
-    {
-      "opaque_id": "W3767055ca4a9",
-      "lazy_wall_seconds": 2.332138208905235,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 1,
-      "exhaustive_wall_seconds": 180.97345279098954
-    },
-    {
-      "opaque_id": "W3595d24dadd3",
-      "lazy_wall_seconds": 2.7430066670058295,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 1,
-      "exhaustive_wall_seconds": 193.69585537491366
-    },
-    {
-      "opaque_id": "Wcacfbbd84e2d",
-      "lazy_wall_seconds": 0.7858976669376716,
-      "lazy_classify_calls": 37,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 205.8103294169996
-    },
-    {
-      "opaque_id": "W44e4c5b4f64b",
-      "lazy_wall_seconds": 1.1606357080163434,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 1,
-      "exhaustive_wall_seconds": 213.05072670802474
-    },
-    {
-      "opaque_id": "Wc37080e60a99",
-      "lazy_wall_seconds": 0.6386145839933306,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 220.5349646670511
-    },
-    {
-      "opaque_id": "W38eb5dbea1b5",
-      "lazy_wall_seconds": 38.819560582982376,
-      "lazy_classify_calls": 341,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 228.63657954195514
-    },
-    {
-      "opaque_id": "Wd84d2896f6b6",
-      "lazy_wall_seconds": 0.8997039160458371,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 235.69140620797407
-    },
-    {
-      "opaque_id": "W75b3ce772ed2",
-      "lazy_wall_seconds": 0.9849675840232521,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 1,
-      "exhaustive_wall_seconds": 243.01486554101575
-    },
-    {
-      "opaque_id": "Wef88080c299f",
-      "lazy_wall_seconds": 0.45235687505919486,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 260.6018754170509
-    },
-    {
-      "opaque_id": "W61ce73ceee2d",
-      "lazy_wall_seconds": 2.781377415987663,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 1,
-      "exhaustive_wall_seconds": 271.33218008303083
-    },
-    {
-      "opaque_id": "Wa6816ebd27a7",
-      "lazy_wall_seconds": 0.808951124898158,
-      "lazy_classify_calls": 37,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 283.7094545
-    },
-    {
-      "opaque_id": "Wfc6bac3a4e48",
-      "lazy_wall_seconds": 9.03650775004644,
-      "lazy_classify_calls": 102,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 311.76740266603883
-    },
-    {
-      "opaque_id": "Wd8f05358f849",
-      "lazy_wall_seconds": 21.299628083012067,
-      "lazy_classify_calls": 30,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 349.03737354208715
-    },
-    {
-      "opaque_id": "W511477d2cd84",
-      "lazy_wall_seconds": 96.24792304099537,
-      "lazy_classify_calls": 358,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 407.8086587920552
-    },
-    {
-      "opaque_id": "W57ebb59327a7",
-      "lazy_wall_seconds": 1.6916331659303978,
-      "lazy_classify_calls": 48,
-      "lazy_equivalence_calls": 0,
-      "exhaustive_wall_seconds": 492.42093749996275
-    }
-  ]
+  "N_DETERMINISM_CHECKED": 30,
+  "N_DETERMINISM_MATCH": 30,
+  "DETERMINISM_PASS": true,
+  "methodology": {
+    "selection": "NONE -- every replayable world in the frozen snapshot was replayed, not a sample",
+    "snapshot_synchronization": "a single population snapshot was frozen once (full_corpus_parity_audit.py --take-snapshot-to) and every parallel shard partitioned that IDENTICAL list (--frozen-snapshot-file), guaranteeing complete non-overlapping coverage -- verified directly: shard N_REPLAYABLE_THIS_SHARD values summed to exactly N_REPLAYABLE_GLOBAL",
+    "comparison": "lazy_classify.lazy_evaluate_world replayed against each world's raw candidate rows (classification-derived fields discarded and recomputed via the real, unmodified classifier), compared to the already-sealed exhaustive first_loss_stage / representative_g2_correct / representative_truth_equivalent -- representative fields compared only where decision-relevant (see MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md section 4)",
+    "isolated_retry": "4 of 369 worlds exceeded a 90s per-world safety timeout on the main pass (0 mismatches among them or anywhere else -- these were ERRORs, not disagreements) and were resolved by one isolated, patient retry at a 600s timeout, mirroring this rescue's own Part X poison-world discipline (never mark a slow-but-possibly-correct world permanently failed without a dedicated retry). All 4 matched on retry.",
+    "determinism_check": "30-world deterministic (sorted-ID stride) subset, each replayed twice within the same worker process"
+  },
+  "note": "No stage frequency, A/B/C/D/E count, E2b field, or routing-gate count appears anywhere in this file or was read to produce it beyond the minimum per-world label needed for the match/mismatch boolean, exactly as the mission's own Part V precedent authorizes."
 }
