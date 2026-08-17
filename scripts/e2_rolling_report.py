@@ -5,6 +5,13 @@ windows can be computed on subsequent runs) and prints the full report.
 Deliberately does NOT use lifetime-average throughput -- only the rolling
 windows computed from this history file, which only covers the current
 (post-throughput-investigation) execution regime.
+
+Reads across every isolated output directory a stuck-world workaround has
+created (S13, S15), not just results/e2/run/ -- each is a genuine,
+disjoint contributor to the 540-world population, not yet merged. The 5
+quarantined worlds (results/e2/run_poison_world/, results/e2/run_stuck_worlds/)
+are read-only failure records, not population progress, and are excluded
+from every count here.
 """
 import glob
 import json
@@ -14,74 +21,86 @@ import subprocess
 import sys
 import time
 
-OUT_DIR = "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run"
+RESULTS_ROOT = "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/exp-v2-e2-pareto-observability/results/e2"
+MAIN_DIR = f"{RESULTS_ROOT}/run"
+ISOLATED_DIRS = [
+    f"{RESULTS_ROOT}/run_shard1_healthy",
+    f"{RESULTS_ROOT}/run_shard3_healthy",
+    f"{RESULTS_ROOT}/run_shard4_healthy",
+    f"{RESULTS_ROOT}/run_shard5_healthy",
+]
+ALL_PROGRESS_DIRS = [MAIN_DIR] + ISOLATED_DIRS
 HISTORY_PATH = "/tmp/e2_rescue_snapshot/rolling_progress_history.jsonl"
 N_SHARDS = 6
 TOTAL_WORLDS = 540
 
+QUARANTINED_WORLD_IDS = {
+    "V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r000",   # shard 0, S13
+    "V2C|E2|mass_power|c_low|n_strong|r007",                  # shard 1, S15
+    "V2C|E2|mass_power|c_high|n_default|r003",                # shard 3, S15
+    "V2C|E2|mass_saturating_descriptor|c_mid|n_strong|r010",  # shard 4, S15
+    "V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r011",   # shard 5, S15
+}
+
 
 def load_world_rows():
     rows = []
-    for path in sorted(glob.glob(f"{OUT_DIR}/worlds_shard_*.jsonl")):
-        for line in open(path):
-            line = line.strip()
-            if line:
-                rows.append(json.loads(line))
+    for d in ALL_PROGRESS_DIRS:
+        for path in sorted(glob.glob(f"{d}/worlds_shard_*.jsonl")):
+            for line in open(path):
+                line = line.strip()
+                if line:
+                    rows.append(json.loads(line))
     return rows
 
 
-def per_shard_counts(rows):
-    # shard index isn't in the row; recompute from world_ordinal % N_SHARDS
-    # by reading which file each count came from instead -- simpler: count
-    # per output file.
+def per_output_file_counts():
+    """Informational only -- see true_shard_assignment() for the
+    authoritative per-shard remaining count. Shard-index filenames 1 and 2
+    under results/e2/run/ carry a few leftover entries from the earlier
+    3-shard era's different assignment, so counting by file alone
+    misattributes a few worlds to the wrong shard label."""
     counts = {}
-    for path in sorted(glob.glob(f"{OUT_DIR}/worlds_shard_*.jsonl")):
-        idx = os.path.basename(path).replace("worlds_shard_", "").replace(".jsonl", "")
-        n = sum(1 for _ in open(path))
-        counts[idx] = n
+    for d in ALL_PROGRESS_DIRS:
+        for path in sorted(glob.glob(f"{d}/worlds_shard_*.jsonl")):
+            label = f"{os.path.basename(d)}/{os.path.basename(path)}"
+            counts[label] = sum(1 for _ in open(path))
     return counts
 
 
 def classifier_timeout_count():
     total = 0
-    for path in glob.glob(f"{OUT_DIR}/candidates_shard_*.jsonl"):
-        with open(path) as f:
-            for line in f:
-                if '"canonicalization_status": "SIMPLIFY_TIMEOUT"' in line:
-                    total += 1
+    for d in ALL_PROGRESS_DIRS:
+        for path in glob.glob(f"{d}/candidates_shard_*.jsonl"):
+            with open(path) as f:
+                for line in f:
+                    if '"canonicalization_status": "SIMPLIFY_TIMEOUT"' in line:
+                        total += 1
     return total
 
 
 def supervisor_restart_count():
+    """Total attempts beyond the first, across every supervisor log in
+    every progress directory (each isolated-directory supervisor counts
+    the same as a main-directory one)."""
     total_attempts = 0
-    completed_shards = 0
-    for path in glob.glob(f"{OUT_DIR}/supervisor_shard_*.log"):
-        launches = 0
-        completed = False
-        for line in open(path):
-            if "launching" in line:
-                launches += 1
-            if "COMPLETE confirmed" in line:
-                completed = True
-        total_attempts += launches
-        if completed:
-            completed_shards += 1
-    # restarts = attempts beyond the first, per shard
-    return total_attempts, completed_shards
-
-
-POISON_WORLD_ID = "V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r000"
+    n_supervisor_logs = 0
+    for d in ALL_PROGRESS_DIRS:
+        for path in glob.glob(f"{d}/supervisor_shard_*.log"):
+            n_supervisor_logs += 1
+            for line in open(path):
+                if "launching" in line:
+                    total_attempts += 1
+    return total_attempts - n_supervisor_logs
 
 
 def true_shard_assignment():
     """The real world_ordinal % N_SHARDS assignment (90 worlds/shard),
-    independent of which on-disk file a world's record happens to have
-    landed in -- shard-index filenames 1 and 2 are reused from the earlier
-    3-shard era and carry some leftover entries from that scheme's
-    different assignment, so counting by file alone misattributes a few
-    worlds. This is a reporting-accuracy fix only; the underlying
-    checkpoint (`_already_done`, global) was already verified correct
-    (zero duplicates) independent of this."""
+    independent of which on-disk file/directory a world's record happens
+    to have landed in. This is the authoritative source for remaining and
+    active-world computation; the underlying checkpoint (_already_done,
+    global per output directory) was already verified duplicate-free
+    independent of this reporting convenience."""
     sys.path.insert(0, "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/exp-v2-e2-pareto-observability/src")
     from muru.v2_calibration import e2_worlds as e2w
 
@@ -94,14 +113,13 @@ def true_shard_assignment():
 
 
 def active_world_ids(done, assignment):
-    """Best-effort: the first not-yet-done world (in deterministic order)
-    for each shard is very likely what it's currently computing, since
-    run_shard.py processes its assigned worlds strictly in order. Shard 0
-    excludes the quarantined poison world (see PENDING_EXECUTION_DIAGNOSIS.md)
-    -- it is not in shard 0's actual only-worlds-file since S13."""
+    """Best-effort: the first not-yet-done, not-quarantined world (in
+    deterministic order) for each shard is very likely what it's currently
+    computing, since run_shard.py processes its assigned worlds strictly
+    in order."""
     active = {}
     for i in range(N_SHARDS):
-        my_worlds = [w for w in assignment[i] if w != POISON_WORLD_ID]
+        my_worlds = [w for w in assignment[i] if w not in QUARANTINED_WORLD_IDS]
         for wid in my_worlds:
             if wid not in done:
                 active[str(i)] = wid
@@ -112,10 +130,8 @@ def active_world_ids(done, assignment):
 
 
 def sys_stats():
-    load = open("/proc/loadavg").read().split()[:3] if os.path.exists("/proc/loadavg") else None
-    if load is None:
-        up = subprocess.run(["uptime"], capture_output=True, text=True).stdout
-        load = up.split("load averages:")[-1].strip()
+    up = subprocess.run(["uptime"], capture_output=True, text=True).stdout
+    load = up.split("load averages:")[-1].strip()
     top = subprocess.run(["top", "-l", "1", "-n", "0", "-s", "0"], capture_output=True, text=True).stdout
     cpu_line = next((l for l in top.splitlines() if "CPU usage" in l), "")
     mem_line = next((l for l in top.splitlines() if "PhysMem" in l), "")
@@ -126,16 +142,29 @@ def main():
     now = time.time()
     rows = load_world_rows()
     total_done = len(rows)
-    shard_counts = per_shard_counts(rows)
-    remaining = TOTAL_WORLDS - total_done - 1  # -1 for the quarantined poison world, tracked separately
+    done_ids = {r["world_id"] for r in rows}
+
+    assignment = true_shard_assignment()
+    true_remaining_per_shard = {
+        i: sum(1 for w in assignment[i] if w not in QUARANTINED_WORLD_IDS and w not in done_ids)
+        for i in range(N_SHARDS)
+    }
+    true_remaining_total = sum(true_remaining_per_shard.values())
+    n_quarantined = len(QUARANTINED_WORLD_IDS)
+
+    # sanity: total_done + remaining + quarantined should equal 540
+    assert total_done + true_remaining_total + n_quarantined == TOTAL_WORLDS, (
+        f"population accounting mismatch: {total_done} + {true_remaining_total} + {n_quarantined} != {TOTAL_WORLDS}"
+    )
 
     # append snapshot to history
     os.makedirs(os.path.dirname(HISTORY_PATH), exist_ok=True)
     with open(HISTORY_PATH, "a") as f:
-        f.write(json.dumps({"t": now, "total_done": total_done, "per_shard": shard_counts}) + "\n")
+        f.write(json.dumps({"t": now, "total_done": total_done}) + "\n")
 
     # rolling windows from history
     history = [json.loads(l) for l in open(HISTORY_PATH) if l.strip()]
+
     def total_at_or_before(cutoff):
         candidates = [h for h in history if h["t"] <= cutoff]
         return candidates[-1]["total_done"] if candidates else None
@@ -144,7 +173,7 @@ def main():
     done_3h_ago = total_at_or_before(now - 3 * 3600)
     completed_60m = total_done - done_60m_ago if done_60m_ago is not None else None
     completed_3h = total_done - done_3h_ago if done_3h_ago is not None else None
-    rate_60m = completed_60m if completed_60m is not None else None  # worlds/hour over last 60m window IS the count
+    rate_60m = completed_60m if completed_60m is not None else None
     rate_3h = (completed_3h / 3) if completed_3h is not None else None
 
     wall_seconds = [r["wall_seconds"] for r in rows if r.get("wall_seconds") is not None]
@@ -152,31 +181,18 @@ def main():
     p90_rt = statistics.quantiles(wall_seconds, n=10)[8] if len(wall_seconds) >= 10 else (max(wall_seconds) if wall_seconds else None)
 
     timeout_count = classifier_timeout_count()
-    total_attempts, completed_shards = supervisor_restart_count()
-    restarts = total_attempts - (N_SHARDS - completed_shards + completed_shards)  # attempts beyond 1 per shard launched so far
-    # simpler: restarts = total launches - number of shard supervisors that have ever launched
-    n_supervisors_launched = len(glob.glob(f"{OUT_DIR}/supervisor_shard_*.log"))
-    restarts = total_attempts - n_supervisors_launched
-
-    done_ids = {r["world_id"] for r in rows}
-    assignment = true_shard_assignment()
-    true_remaining_per_shard = {
-        i: sum(1 for w in assignment[i] if w != POISON_WORLD_ID and w not in done_ids)
-        for i in range(N_SHARDS)
-    }
+    restarts = supervisor_restart_count()
     active = active_world_ids(done_ids, assignment)
     load, cpu_line, mem_line = sys_stats()
 
     print(f"=== E2 rolling report @ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now))} (6-shard regime) ===")
-    print(f"completed total: {total_done}/540 (+1 quarantined PENDING_EXECUTION_DIAGNOSIS, not counted here)")
+    print(f"completed total: {total_done}/540 (+{n_quarantined} quarantined PENDING_EXECUTION_DIAGNOSIS, not counted here)")
     print(f"completed in last 60 min: {completed_60m if completed_60m is not None else 'n/a (< 60min of history)'}")
     print(f"completed in last 3 hours: {completed_3h if completed_3h is not None else 'n/a (< 3hr of history)'}")
     print(f"worlds/hour (60min window): {rate_60m if rate_60m is not None else 'n/a'}")
     print(f"worlds/hour (3hr window, avg): {round(rate_3h, 2) if rate_3h is not None else 'n/a'}")
-    true_remaining_total = sum(true_remaining_per_shard.values())
-    print(f"remaining ordinary worlds: {true_remaining_total} (+1 quarantined, not counted)")
+    print(f"remaining ordinary worlds: {true_remaining_total} (+{n_quarantined} quarantined, not counted)")
     print(f"remaining per shard (true ordinal%6 assignment): " + ", ".join(f"{i}: {true_remaining_per_shard[i]}" for i in range(N_SHARDS)))
-    print(f"completed per output file (informational; shard-index filenames 1,2 carry some leftover entries from the earlier 3-shard era): {shard_counts}")
     print(f"active (in-progress, best-effort) world IDs: {active}")
     print(f"median completed-world runtime: {round(median_rt, 1) if median_rt else 'n/a'}s")
     print(f"p90 completed-world runtime: {round(p90_rt, 1) if p90_rt else 'n/a'}s")
