@@ -1,0 +1,172 @@
+{
+  "migration_executed_at_local": "2026-08-17T17:00:00-04:00",
+  "authorizing_user_message": "The full-corpus migration gate has now passed ... SAFE_TO_MIGRATE_FROM_CURRENT_E2 is therefore accepted. Proceed with the already-frozen migration procedure from MURU_V2_E2_RESCUE_V2_FEASIBILITY.md.",
+  "gate_at_authorization": {
+    "N_REPLAYABLE": 369,
+    "N_MATCH": 369,
+    "N_MISMATCH": 0,
+    "ERROR_COUNT": 0,
+    "PARITY_PASS": true,
+    "DETERMINISM_PASS": true
+  },
+  "old_e2_checkpoint": {
+    "worktree": ".claude/worktrees/exp-v2-e2-pareto-observability",
+    "branch": "exp/v2-e2-pareto-observability",
+    "head_commit_at_snapshot": "f271b99f3cd95c5a85aa14c0d1e2b052b02b46ba",
+    "head_subject": "E2: record and recover from a total simultaneous process-group loss",
+    "checkpoint_dir": "/tmp/e2_rescue_v2_checkpoint_TRULY_FINAL_20260817_165554/",
+    "checkpoint_summary": {
+      "n_unique_world_ids": 409,
+      "of_540": "409/540",
+      "n_with_timing_field": 409,
+      "total_wall_seconds_timing_only": 131062.37137555308,
+      "n_files_hashed": 48,
+      "note": "world_id membership and wall_seconds (timing) only -- no scientific outcome field read or recorded"
+    },
+    "preserved_directories": [
+      "results/e2/run",
+      "results/e2/run_shard1_healthy",
+      "results/e2/run_shard3_healthy",
+      "results/e2/run_shard4_healthy",
+      "results/e2/run_shard5_healthy"
+    ],
+    "preserved_directories_immutability": "chmod 444 on every result file, verified before and re-verified after the cross-session incident",
+    "directories_inspected_and_excluded": {
+      "run_poison_world": "diagnostic logs only, no worlds_shard_*.jsonl -- see poison_world_handling",
+      "run_stuck_worlds": "diagnostic text dumps only, no worlds_shard_*.jsonl",
+      "run_PRERESCUE_INVALIDATED_2026-08-16": "explicitly invalidated by its own directory name before this migration began"
+    },
+    "shutdown_method": "SIGTERM only, no SIGKILL required anywhere",
+    "shutdown_verification": "zero worker/supervisor/classify-child processes remained; no file mid-write; no torn final record; completed-world inventory reconciled exactly against the checkpoint taken immediately before shutdown"
+  },
+  "unplanned_cross_session_incident": {
+    "trigger": "a different Claude Code session, same user and repository, held a standing 'recover E2 if all shards stop' instruction and auto-restarted the old run's supervisors within 5 seconds of this migration's own verified-clean shutdown",
+    "data_corruption": false,
+    "corruption_prevention_mechanism": "chmod 444 immutability on all 45 result files, applied before the restart; restarted processes hit Permission denied on every write attempt, confirmed via their own log output",
+    "resolution": "user directed to stand down the other session; re-verified after stand-down: 8 orphaned worker/classify-child processes with PPID=1 found and SIGTERM'd (7 exited directly, 1 had already self-terminated); one additional read-only watcher script (watch_for_genuine_completion.sh) inspected, code-verified as never writing, left running",
+    "post_incident_verification": "every scientific-data-file hash byte-identical to the pre-incident checkpoint; only error/log file hashes changed",
+    "final_authoritative_checkpoint_taken_after_resolution": true
+  },
+  "balanced_sample_manifest": {
+    "path": "/tmp/e2_rescue_v2_out/FROZEN_BALANCED_MANIFEST_n270.json",
+    "r_per_cell": 6,
+    "n_total": 270,
+    "embedded_manifest_sha256": "028b17c5780931a5cc413eaad29cd910800f3e312681adcf052f8159653a20c6",
+    "embedded_hash_note": "content hash computed over the canonical payload at freeze time, before the hash field itself was inserted -- legitimately differs from a whole-file hash taken later; file has only ever been read (never written) by this migration",
+    "reused_verbatim": true,
+    "re_selected": false
+  },
+  "overlap_at_migration": {
+    "N_COMPLETED_TOTAL": 409,
+    "N_ESTIMATION_SAMPLE_ALREADY_COMPLETE": 202,
+    "N_ESTIMATION_SAMPLE_REMAINING": 68
+  },
+  "classification_cache": {
+    "cache_db": "/tmp/e2_rescue_v2_cache/classify_cache.sqlite3",
+    "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+    "seed_source": "scripts/e2_rescue_v2/seed_cache_from_old_run.py against the 5 preserved old healthy directories",
+    "n_candidate_rows_seen": 143232,
+    "n_skipped_row_error": 0,
+    "n_skipped_dup_conflict": 0,
+    "n_cache_put_calls": 143232,
+    "n_distinct_expressions_cached_at_seed_time": 119448,
+    "n_distinct_expressions_cached_after_first_production_worlds": 119959,
+    "stale_version_rows": 0
+  },
+  "production_runner": {
+    "new_files": [
+      "src/muru/v2_calibration/e2_rescue_v2/raw_search.py",
+      "scripts/e2_rescue_v2/e2_run_shard_lazy.py",
+      "scripts/e2_rescue_v2/seed_cache_from_old_run.py",
+      "tests/test_raw_search_identity.py"
+    ],
+    "bug_found_and_fixed_live": {
+      "location": "scripts/e2_rescue_v2/e2_run_shard_lazy.py::_cached_classify_expression",
+      "symptom": "RecursionError: maximum recursion depth exceeded, on 2/2 tested new worlds (genuine cache misses only -- cache hits returned immediately and worked fine)",
+      "root_cause": "cache-miss fallback called the module attribute e2_classify.classify_expression, which is itself monkey-patched to this same wrapper for the duration of _run_one_world's `with` block, so it recursed into itself forever",
+      "same_defect_class_as": "the already-disclosed speed_benchmark.py cache-contamination bug (hostile review finding F2) -- same root cause, same fix",
+      "fix": "capture _REAL_CLASSIFY_EXPRESSION = e2_classify.classify_expression once, at module import time, before any patching; call that captured reference on cache miss, never the module attribute",
+      "reverified": "both previously-failed smoke worlds (mass_affine_descriptor|low|noiseless|r011 stage=C wall=65.8s; mass_saturating_descriptor|high|noiseless|r011 stage=B wall=69.8s) now complete cleanly, zero errors"
+    },
+    "identity_test": "tests/test_raw_search_identity.py -- real PySR fit on mass_power|low|noiseless|r000 seed 0, real e2_search.run_seed_search vs raw_search.run_seed_search_raw, every structural field byte-identical"
+  },
+  "production_launch": {
+    "host_cores": 8,
+    "load_average_immediately_before_launch": [2.67, 3.15, 5.56],
+    "n_shards": 4,
+    "shard_rationale": "old run's 5-6 shards were implicated in an oversubscription episode reaching load average 63; PySR fits are single-threaded (parallelism=serial, required by deterministic=True) so 4 shards nominally uses 4/8 cores, leaving headroom the old configuration did not",
+    "pids": [77974, 77975, 77976, 77977],
+    "out_dir": "/tmp/e2_rescue_v2_production_out",
+    "prior_result_dirs": [
+      ".claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run",
+      ".claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run_shard1_healthy",
+      ".claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run_shard3_healthy",
+      ".claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run_shard4_healthy",
+      ".claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run_shard5_healthy",
+      "/tmp/e2_rescue_v2_smoke_output"
+    ],
+    "world_order_file": "/tmp/e2_rescue_v2_out/WORLD_PRIORITY_ORDER_PRODUCTION.json",
+    "world_order_file_size": 539,
+    "world_order_derivation": "the already-frozen 540-world WORLD_PRIORITY_ORDER.json (sample-priority-first, then rest, both in world_ordinal order) with exactly one entry removed -- the poison world -- no re-selection or reordering of anything else",
+    "seeds_per_world": 30,
+    "seed_base": 2104500000,
+    "n_assigned_per_shard": [134, 135, 135, 135],
+    "n_already_done_per_shard_at_launch": [121, 86, 120, 84],
+    "n_already_done_total_at_launch": 411,
+    "load_average_shortly_after_launch": [9.59, 6.16, 5.86],
+    "first_worlds_completed": 4,
+    "errors_at_first_health_check": 0
+  },
+  "prioritization": {
+    "tier_1": "N_ESTIMATION_SAMPLE_REMAINING worlds (68), world_ordinal order",
+    "tier_2": "remaining original-manifest worlds required to resolve the routing gate -- collapses to the deterministic remainder order per MURU_V2_E2_ROUTING_LOCK_THEORY.md, since which worlds resolve the gate cannot be known without classifying them",
+    "tier_3": "not reached; would be any still-scientifically-required remainder",
+    "outcome_adaptive_scheduling": false
+  },
+  "routing_lock_monitor": {
+    "script": "scripts/e2_rescue_v2/routing_lock_monitor.py",
+    "loop_script": "/tmp/e2_rescue_v2_routing_monitor_loop.sh",
+    "pid": 78088,
+    "log": "/tmp/e2_rescue_v2_routing_monitor.log",
+    "poll_interval_seconds": 300,
+    "opaque_fields_only": ["ROUTING_LOCK_STATE", "N_CLASSIFIED", "R_REMAINING"],
+    "first_reading": {
+      "ROUTING_LOCK_STATE": "FULL_RUN_REQUIRED",
+      "N_CLASSIFIED": "411/540",
+      "R_REMAINING": 129
+    }
+  },
+  "exoneration_threshold": {
+    "ratified": false,
+    "structural_guarantee": "evaluate_gate2/evaluate_gate2_opaque cannot report the exoneration branch (WITHDRAWN) without an explicit ExonerationRatification object; nothing in this codebase constructs one; any route this would otherwise gate reports FULL_RUN_REQUIRED instead",
+    "number_invented": false
+  },
+  "poison_world_handling": {
+    "world_id": "V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r000",
+    "world_ordinal": 0,
+    "prior_diagnosis": "results/e2/run_poison_world/PENDING_EXECUTION_DIAGNOSIS.md (old, preserved worktree)",
+    "prior_attempts": 80,
+    "prior_success_rate": 0.0,
+    "prior_failure_signature": "exit 137 (SIGKILL), ~6-7.5 minutes each, at system load 111 / 100% CPU when retries were stopped -- consistent with an OOM-class condition specific to this world",
+    "excluded_from_production_priority_queue": true,
+    "attempted_during_this_migration": false,
+    "rationale": "the existing diagnosis's own resolution path requires re-attempting it alone in a clean, uncontended one-worker environment; running it concurrently with the 4-shard main launch would recreate the contended conditions already blamed for its 80/80 failure rate",
+    "population_accounting": "539 ordinary (scheduled) + 1 pending (quarantined) = 540, consistent with the old diagnosis's own framing"
+  },
+  "health_verification": {
+    "imported_world_accounting_exact": true,
+    "balanced_sample_manifest_unchanged": true,
+    "lazy_worker_processes_healthy": true,
+    "cache_version_hash_correct": true,
+    "route_monitor_healthy": true,
+    "no_old_e2_process_remains": true,
+    "no_scientific_definition_changed": true,
+    "no_partial_scientific_aggregate_exposed": true
+  },
+  "scientific_definitions_changed": false,
+  "e4a_executed": false,
+  "m2_m3_repairs_executed": false,
+  "e6_executed": false,
+  "rollback_available": true,
+  "rollback_mechanism": "SIGTERM the 4 Rescue-v2 shard PIDs; old run's 5 output directories remain untouched, chmod 444, at their original paths, with a byte-verified final checkpoint; no data was moved, deleted, or overwritten to enable this migration"
+}
