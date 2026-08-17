@@ -60,6 +60,7 @@ a cap-out, and not the classification/equivalence computation itself.
 """
 from __future__ import annotations
 
+import atexit
 import multiprocessing
 import signal
 from dataclasses import dataclass, replace
@@ -251,6 +252,28 @@ def _kill_worker() -> None:
             _WORKER_PROC.kill()
             _WORKER_PROC.join(2.0)
         _WORKER_PROC = None
+
+
+# EXECUTION-SAFETY (see E2_EXECUTION_DEVIATION.md, throughput-investigation
+# section): found live -- a shard process that finished all its assigned
+# worlds cleanly never actually exited. `multiprocessing`'s own atexit
+# cleanup sends the daemon worker SIGTERM, then does an untimed
+# `os.waitpid()` on it; the worker forks *after* this process has already
+# imported PySR/Julia (`e2_search`, imported above `e2_classify` in every
+# caller), and something in that inherited runtime state apparently
+# intercepts or delays plain SIGTERM, so the worker never dies from it and
+# the parent blocks in `os_waitpid` forever -- confirmed directly via
+# `sample` on a hung-at-exit process (`_Py_Finalize -> atexit_callfuncs ->
+# os_waitpid`), never observed to recover even after 7+ minutes idle;
+# SIGKILL (this module's own `_kill_worker`, used everywhere else in this
+# file) reaps it immediately every time. Registering `_kill_worker` here
+# runs it before multiprocessing's own atexit handler (atexit handlers run
+# LIFO; `import multiprocessing` above registers multiprocessing's handler
+# first, so anything registered afterward -- this call -- fires first at
+# shutdown), so the worker is always SIGKILLed before the graceful path
+# that hangs ever runs. Only ever kills this process's own worker; no
+# scientific effect.
+atexit.register(_kill_worker)
 
 
 def _get_worker():
