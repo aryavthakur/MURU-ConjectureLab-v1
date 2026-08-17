@@ -158,25 +158,50 @@ change `algebraically_equivalent` itself, which this rescue does not touch.
 
 ## 4. Parity contract -- exactly what is, and is not, claimed identical
 
-The lazy path reproduces, **field-for-field identically** to
-`e2_aggregate.evaluate_world`, whenever both are run on the same world:
+The lazy path reproduces `first_loss_stage` field-for-field identically to
+`e2_aggregate.evaluate_world`, on every world, with no exception.
 
-- `first_loss_stage`
-- `representative_g2_correct`
-- `representative_truth_equivalent` -- **except** when
-  `first_loss_stage == "E"`. In that one case, `evaluate_world`'s
-  `WorldOutcome.representative_truth_equivalent` still holds whatever
-  `score_row` computed for the representative (since `score_row` always
-  attempts it), while the lazy path deliberately never computes it (it
-  is not needed once `g2_correct` is already known True) and reports
-  `None`. This is a disclosed, intentional narrowing, not a defect: no
-  downstream consumer (Gate 2, the A-E rate, E4a) ever reads
-  `representative_truth_equivalent` when the representative is already
-  `g2_correct`. `MURU_V2_E2_REPLAY_PARITY.json`'s comparison logic
-  excludes this one field on E-stage worlds accordingly (see that
-  document's methodology section) -- everything else, on every stage, is
-  compared with no exclusions.
-- `representative_expression` (when a representative exists)
+`representative_g2_correct` and `representative_truth_equivalent` are
+reproduced identically **only where they are decision-relevant** -- i.e.
+only for stages where `evaluate_world`'s own section-6 decision sequence
+actually consults them:
+
+| Stage | `representative_g2_correct` | `representative_truth_equivalent` |
+|---|---|---|
+| A | not compared (see below) | not compared |
+| B | not compared (see below) | not compared |
+| C | compared, must match | compared, must match |
+| D | compared, must match | compared, must match |
+| E | compared, must match | not compared (see below) |
+
+This table was corrected once, during this rescue's own shakedown of the
+replay-parity harness against real data (section 6 below): the first real
+probe run found a genuine mismatch on `representative_g2_correct` for an
+A/B-stage world. Root cause, traced to `e2_aggregate.evaluate_world`'s own
+code: `cross = group_and_select(selections)` and the representative
+scoring block run **unconditionally**, before the stage decision even
+starts -- so `WorldOutcome.representative_g2_correct` and
+`representative_truth_equivalent` hold real (non-`None`) byproduct values
+for A/B-stage worlds too, computed from whichever class wins the
+cross-seed vote among the 30 retained candidates, even though `A`/`B` is
+decided purely from `n_correct_on_front`/`n_retained_correct` and never
+reads either field. The lazy path (correctly) never computes a
+representative at all for stage A/B -- doing so would cost nothing
+scientifically wrong to fix, but is not required, because "candidate
+equivalence decisions actually needed" (this rescue's own mandate) is
+exactly the C/D/E set, and computing/persisting a byproduct nothing reads
+is exactly the "brute-force census... not intrinsically valuable" the
+mission's background section names. `representative_truth_equivalent` is
+additionally excluded on stage E for the same reason as before (`score_row`
+always attempts it once a row parses; nothing downstream reads it once
+`g2_correct` is already `True`).
+
+`representative_expression` is reproduced whenever a representative exists
+(stages C/D/E; `None` on A/B in both paths whenever there is no
+representative, though the lazy path does not compute or report a
+representative string for A/B even when the exhaustive record's
+`group_and_select` happened to find one from the all-incorrect retained
+set -- excluded for the identical reason).
 
 The lazy path does **not** reproduce (by design, and this is a real,
 disclosed reduction in what gets computed, not an approximation of
