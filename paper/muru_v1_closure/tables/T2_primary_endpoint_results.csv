@@ -1,0 +1,4 @@
+endpoint,registry_name,role,denominator,numerator,numerator_meaning,rate,wilson_bound,wilson_tail,gate,verdict
+G1,scalar_competence,primary_scalar,164,67,competent cases,0.40853658536585363,0.3362326347636318,lower,>= 0.70,FAIL
+G2,family_recovery,primary_symbolic,144,4,successes,0.027777777777777776,0.010853942365456266,lower,>= 0.70,FAIL
+G3,principal_structural_safety,primary_safety,36,26,violations,0.7222222222222222,0.841518299741862,upper,<= 0.15,FAIL

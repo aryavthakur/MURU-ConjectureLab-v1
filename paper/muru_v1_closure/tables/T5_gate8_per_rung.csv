@@ -1,0 +1,7 @@
+rung,pass,fail,role
+F10_NEGATIVE_CONTROL,25,1,hard gate
+F1_REPRODUCIBILITY,26,0,hard gate
+F4_COMPOUND_HOLDOUT,26,0,hard gate
+F7_INFLUENCE_DROP,26,0,hard gate
+F5_SCAFFOLD_HOLDOUT,0,0,superseded; floor folded into the Gate 7 waiver branch
+F9_ENERGY_SUBSET,26,0,"secondary reported, NON-GATING, NOT_PROVEN_FOR_HARD_GATE"

@@ -1,0 +1,4 @@
+stratum,cases,spearman_pass,trajectory_pass,both_continuous_pass,scalar_competent
+A1 established (M0_NOT_REJECTED),67,67,67,67,67
+A1 not established (BOUNDARY_LIMITED),97,94,89,87,0
+ALL,164,161,156,154,67

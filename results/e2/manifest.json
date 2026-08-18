@@ -1,0 +1,102 @@
+{
+  "population": {
+    "n_unique_world_ids": 540,
+    "n_worlds": 540,
+    "per_family_counts": {
+      "mass_affine_descriptor": 108,
+      "mass_exponential_descriptor": 108,
+      "mass_interaction": 108,
+      "mass_power": 108,
+      "mass_saturating_descriptor": 108
+    }
+  },
+  "search_config": {
+    "grammar_assertion": {
+      "binary_operators": [
+        "+",
+        "-",
+        "*",
+        "/"
+      ],
+      "excluded_unary": [
+        "cos",
+        "exp",
+        "sin",
+        "tan"
+      ],
+      "unary_operators": [
+        "sqrt",
+        "log",
+        "square",
+        "cube",
+        "inv"
+      ]
+    },
+    "search_settings": {
+      "adaptive_parsimony_scaling": 20.0,
+      "binary_operators": [
+        "+",
+        "-",
+        "*",
+        "/"
+      ],
+      "deterministic": true,
+      "engine": "PySR",
+      "engine_version": "1.5.10",
+      "excluded_unary": [
+        "exp",
+        "sin",
+        "cos",
+        "tan"
+      ],
+      "julia_package": "SymbolicRegression.jl",
+      "julia_package_version": "1.11.x",
+      "maxsize": 20,
+      "niterations": 40,
+      "parsimony": 0.0032,
+      "population_size": 33,
+      "populations": 15,
+      "procs": 0,
+      "seeds_per_world": 30,
+      "unary_operators": [
+        "sqrt",
+        "log",
+        "square",
+        "cube",
+        "inv"
+      ]
+    }
+  },
+  "seeds": {
+    "n_seeds_total": 16200,
+    "n_unique_seeds": 16200,
+    "seed_base": 2104500000,
+    "seed_capacity": 1000000,
+    "seed_max": 2104516199,
+    "seed_min": 2104500000,
+    "signed_32bit_max": 2147483647
+  },
+  "source_provenance": {
+    "branch": "exp/v2-e2-pareto-observability",
+    "frozen_file_git_blob_hashes": {
+      "src/muru/discovery/engine.py": "16e0372f16b6f4471d5b5d277a98449ef1534fce",
+      "src/muru/discovery/equivalence.py": "45f5c453f8bb6c1c224d809c52ed380a55948118",
+      "src/muru/discovery/estimate.py": "e8b089f46ff08d0f912ddb7fcdd16458ab21e1bc",
+      "src/muru/discovery/grammar.py": "6dc529fef73e2fd7ec364c9dc1a18cc28bfcc0f1",
+      "src/muru/paper_benchmark/calibration_contract.py": "ceeb435bb378f694f51362f81314eea3faa9352f",
+      "src/muru/paper_benchmark/g2_contract.py": "d2ee5ebc77c55498c94cb4c06256b6ab308f1562",
+      "src/muru/paper_benchmark/generator.py": "f26c70a2783718bc178b72ac370373fb976a7908",
+      "src/muru/paper_benchmark/identity_contract.py": "151867cbee4cf60189afc5c393d0c8f3ca77c6a0",
+      "src/muru/paper_benchmark/rc3_calibration_runner.py": "eed2b1f345016779eddb919a7d206eda743834a2",
+      "src/muru/paper_benchmark/rc5_adapter.py": "230e6b440cdc57ee72f7a00d944121078c708952",
+      "src/muru/paper_benchmark/rc5_case_scoring.py": "d77860171f32fda53c9d7527471ebfb15b1d3b22",
+      "src/muru/paper_benchmark/rc5_estimate.py": "3a88f5b5b1386d852a9ac734c3843e64efce108f",
+      "src/muru/paper_benchmark/rc5_selection.py": "ede6e630314b09d2b186178a6199cec393f95f6c",
+      "src/muru/paper_benchmark/registry.py": "59fb2751e81f2aa71bafd872dc1740ad28dbd464",
+      "src/muru/paper_benchmark/seed_band_registry.py": "b6b127ef11fc7f2c46379acd089755057f5ee7cb",
+      "src/muru/paper_benchmark/structural_acceptance.py": "1527004a21aea920629bc84b1f04812bb2a47c95",
+      "src/muru/paper_benchmark/truth.py": "12cfbacd920f40566ecead405d8b33671ce5b5e4"
+    },
+    "head_commit": "4892c760117e460d08681f51a237345738510345"
+  }
+}

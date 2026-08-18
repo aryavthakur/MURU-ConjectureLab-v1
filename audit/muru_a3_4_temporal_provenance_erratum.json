@@ -1,0 +1,66 @@
+{
+  "classification": "TEMPORAL_PROVENANCE_ERRATUM_REQUIRED_OUTCOME_BLIND",
+  "scope": "ADDITIVE_GOVERNANCE_RECORD_ONLY",
+  "scientific_change": "NONE",
+  "outcome_inspection": "NONE",
+  "a3_4_source_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+  "a3_4_document_path": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+  "a3_4_document_sha256": "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada",
+  "frozen_first_durable_seed_definition": "The frozen execution definition is the first non-quarantined PB__NCAL__ durable seed record, durably written at 2026-08-14T10:08:31-04:00 (10:08:31 EDT). Preflight, manifest/directory setup, runner-sidecar start, and the inferred backend.search start interval are provenance stages, not durable seed records; the record identity may not be reselected from later outputs.",
+  "frozen_execution": {
+    "record_family": "PB__NCAL__",
+    "quarantine_status": "NON_QUARANTINED",
+    "first_durable_record_timestamp": "2026-08-14T10:08:31-04:00",
+    "definition": "The frozen execution definition is the first non-quarantined PB__NCAL__ durable seed record, durably written at 2026-08-14T10:08:31-04:00 (10:08:31 EDT). Preflight, manifest/directory setup, runner-sidecar start, and the inferred backend.search start interval are provenance stages, not durable seed records; the record identity may not be reselected from later outputs."
+  },
+  "chronology": {
+    "timezone": "EDT (UTC-04:00)",
+    "provenance_scope": "READ_ONLY_TEMPORAL_METADATA_ONLY_NO_OUTCOME_PAYLOADS",
+    "a3_4_creation_commit": "d0ea5d4b0309e4e95dcab4035b9be66e166765b1",
+    "a3_4_freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+    "a3_4_freeze_tag": {
+      "name": "benchmark-content-freeze-a3-4",
+      "tag_object": "326727d5f17943b22f014262dcf42f5cf043ba42",
+      "target_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
+    },
+    "merge_commit": "5055f69097aa0c6ce2ded6a3e57f0edfaea69faf",
+    "merge_commit_timestamp": "2026-08-14T12:27:08-04:00",
+    "event_order": [
+      "PREFLIGHT_CREATED",
+      "CALIBRATION_DIRECTORY_AND_MANIFEST_SETUP",
+      "RUNNER_SIDECAR_STARTED",
+      "FIRST_BACKEND_SEARCH_START_INFERRED_INTERVAL",
+      "FIRST_NON_QUARANTINED_DURABLE_PB_NCAL_RECORD",
+      "A3_4_CREATED",
+      "A3_4_FREEZE_COMMIT",
+      "A3_4_FREEZE_TAG",
+      "RUNNER_FINISHED",
+      "TERMINAL_SUMMARY_FILES",
+      "A3_4_LINEAGE_MERGED"
+    ],
+    "event_timestamps": {
+      "PREFLIGHT_CREATED": "2026-08-13T23:59:01-04:00",
+      "CALIBRATION_DIRECTORY_AND_MANIFEST_SETUP": "2026-08-14T10:08:17-04:00",
+      "RUNNER_SIDECAR_STARTED": "2026-08-14T10:08:17.932248-04:00",
+      "FIRST_NON_QUARANTINED_DURABLE_PB_NCAL_RECORD": "2026-08-14T10:08:31-04:00",
+      "A3_4_CREATED": "2026-08-14T11:56:17-04:00",
+      "A3_4_FREEZE_COMMIT": "2026-08-14T11:56:23-04:00",
+      "A3_4_FREEZE_TAG": "2026-08-14T11:56:26-04:00",
+      "RUNNER_FINISHED": "2026-08-14T11:58:40.935600-04:00",
+      "TERMINAL_SUMMARY_FILES": "2026-08-14T11:58:41-04:00",
+      "A3_4_LINEAGE_MERGED": "2026-08-14T12:27:08-04:00"
+    },
+    "first_backend_search_start": {
+      "strictly_after": "2026-08-14T10:08:17.932248-04:00",
+      "strictly_before": "2026-08-14T10:08:31-04:00",
+      "epistemic_status": "INFERRED_OPEN_INTERVAL_NOT_AN_EXACT_TIMESTAMP",
+      "source": "RUNNER_SIDECAR_STARTED_UTC_AND_FIRST_NON_QUARANTINED_DURABLE_RECORD"
+    }
+  },
+  "release_control": {
+    "required_tag": "a3-4-temporal-provenance-erratum",
+    "tag_creation_condition": "Create the annotated tag only after this erratum is committed and its regression test is green.",
+    "git_history_is_authoritative_for_commit_and_tag_timestamps": true,
+    "erratum_git_identity_rule": "The annotated required_tag must resolve to the commit that contains this corrected record; this self-contained record does not report later erratum commit or tag timestamps."
+  }
+}

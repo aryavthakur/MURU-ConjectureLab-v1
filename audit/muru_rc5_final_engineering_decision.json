@@ -1,0 +1,27 @@
+{
+  "document_id": "MURU-AUDIT-RC5-FINAL-ENGINEERING-DECISION-02",
+  "date": "2026-08-15",
+  "decision": "RC5_FREEZE_APPROVED",
+  "branch": "eng/muru-rc5-a3-5",
+  "engineering_parent": "69e33c778efb14362439941d25ebbfcfb1068284",
+  "science_freeze_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+  "science_freeze_tag": "benchmark-content-freeze-a3-5",
+  "global_science_plan": {
+    "path": "artifacts/muru_rc5_global_science_plan.json",
+    "plan_digest": "39ab2cf04e0f1c0c9eef54b80ad2e623374e244a98b19cbdd6f8c43f199783fd",
+    "byte_reproducible": true
+  },
+  "freeze_conditions": {
+    "1_implementation_complete": true,
+    "2_full_tests_acceptable": true,
+    "3_no_unexplained_regression": true,
+    "4_calibration_unchanged": true,
+    "5_threshold_table_unchanged": true,
+    "6_hostile_review_unanimous_pass": true,
+    "7_sealed_state_preserved": true,
+    "8_global_science_plan_sealed": true,
+    "9_documentation_synchronised": true,
+    "10_git_tree_verified": true
+  },
+  "tag_authorized": "engineering-rc5-a3-5"
+}

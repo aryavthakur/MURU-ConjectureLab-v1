@@ -1,0 +1,147 @@
+{
+  "preprocessing_robustness": {
+    "scope": "matched subset only -- mixes 499/503/505, positive mode. This is subset preprocessing robustness, NOT full-corpus independent raw replication, and subset agreement is not extrapolated to the corpus.",
+    "n_matched_compounds": 39,
+    "n_curated_corpus_compounds": 549,
+    "coverage_pct": 7.1,
+    "rho_mu_vs_precursor_mz_by_branch": {
+      "curated": {
+        "15": -0.0777,
+        "30": -0.382,
+        "45": -0.5466,
+        "60": -0.5881,
+        "75": -0.6342,
+        "90": -0.6298
+      },
+      "raw": {
+        "15": -0.02,
+        "30": -0.3566,
+        "45": -0.4682,
+        "60": -0.5917,
+        "75": -0.626,
+        "90": -0.5901
+      }
+    },
+    "rho_agreement": {
+      "same_sign_at_every_energy": true,
+      "max_abs_difference": 0.0784
+    },
+    "mu_agreement": {
+      "n_paired_cells": 223,
+      "median_difference_raw_minus_curated": 0.00083,
+      "mean_abs_difference": 0.01992,
+      "spearman": 0.9764,
+      "phase1_intermixture_sd_upper_bound": 0.0295,
+      "note": "the Phase 1 figure is the conservative inter-mixture variability estimate, an upper bound on technical repeatability -- not an instrument noise floor"
+    }
+  },
+  "mixture_confounding": {
+    "question": "does mixture identity materially improve prediction AFTER energy and mass are included",
+    "mass_flex_mae": 0.12548,
+    "mass_flex_plus_mix_mae": 0.12708,
+    "mix_gain_over_mass_flex": {
+      "mae_diff": 0.00159,
+      "ci_scaffold": [
+        -0.00095,
+        0.00264
+      ],
+      "improves": false
+    },
+    "structure_gain_over_mass_flex": {
+      "mae_diff": -0.01322,
+      "ci_scaffold": [
+        -0.02056,
+        -0.00685
+      ]
+    },
+    "leave_one_mixture_out": {
+      "499": {
+        "MASS_FLEX": 0.1227,
+        "TIER_A": 0.13063,
+        "n_compounds": 14,
+        "tier_a_minus_mass_flex": 0.00793
+      },
+      "500": {
+        "MASS_FLEX": 0.09035,
+        "TIER_A": 0.10629,
+        "n_compounds": 14,
+        "tier_a_minus_mass_flex": 0.01594
+      },
+      "501": {
+        "MASS_FLEX": 0.13198,
+        "TIER_A": 0.11329,
+        "n_compounds": 24,
+        "tier_a_minus_mass_flex": -0.01869
+      },
+      "502": {
+        "MASS_FLEX": 0.10713,
+        "TIER_A": 0.08344,
+        "n_compounds": 16,
+        "tier_a_minus_mass_flex": -0.02369
+      },
+      "503": {
+        "MASS_FLEX": 0.13139,
+        "TIER_A": 0.12328,
+        "n_compounds": 47,
+        "tier_a_minus_mass_flex": -0.00811
+      },
+      "504": {
+        "MASS_FLEX": 0.11779,
+        "TIER_A": 0.10347,
+        "n_compounds": 58,
+        "tier_a_minus_mass_flex": -0.01432
+      },
+      "505": {
+        "MASS_FLEX": 0.11579,
+        "TIER_A": 0.11356,
+        "n_compounds": 120,
+        "tier_a_minus_mass_flex": -0.00223
+      },
+      "506": {
+        "MASS_FLEX": 0.13282,
+        "TIER_A": 0.11528,
+        "n_compounds": 135,
+        "tier_a_minus_mass_flex": -0.01754
+      },
+      "508": {
+        "MASS_FLEX": 0.1281,
+        "TIER_A": 0.11412,
+        "n_compounds": 69,
+        "tier_a_minus_mass_flex": -0.01398
+      }
+    },
+    "K8": {
+      "comparable_to_descriptor_effect": false,
+      "fires": false,
+      "rule": "K8 fires if mixture identity improves on MASS FLEX with the scaffold-level interval excluding zero AND its gain is at least half the descriptor gain"
+    }
+  },
+  "negative_mode": {
+    "scope": "bounded by instruction 24: K4A/K4B under S2 only, as a qualitative replication check. The primary Phase 2 experiment remains positive mode.",
+    "n_compounds": 349,
+    "n_rows": 2075,
+    "repeatability": "UNKNOWN -- no negative-mode mzML was acquired (Phase 1 issue I2). No claim requiring a negative-mode noise estimate is made.",
+    "mae": {
+      "B1": 0.15911,
+      "MASS_FLEX": 0.12957,
+      "TIER_A": 0.12707
+    },
+    "K4A_tier_a_vs_B1": {
+      "mae_diff": -0.03204,
+      "ci_scaffold": [
+        -0.04052,
+        -0.01964
+      ],
+      "pass": true
+    },
+    "K4B_tier_a_vs_MASS_FLEX": {
+      "mae_diff": -0.0025,
+      "ci_scaffold": [
+        -0.01572,
+        0.00038
+      ],
+      "rel_reduction_pct": 1.93,
+      "pass": false
+    }
+  }
+}

@@ -1,9 +1,12 @@
 # BACKLOG.md
 
-Issues recorded during Phase 1 under the master plan's bug policy (section
-29.5). BLOCKERs are fixed before Phase 1 closes and therefore do not appear
-here. IMPORTANT items are documented with reproduction and scientific impact.
-MINOR items are recorded and carried.
+Issues recorded under the master plan's bug policy (section 29.5). BLOCKERs are
+fixed before a phase closes and therefore do not appear here. IMPORTANT items
+are documented with reproduction and scientific impact. MINOR items are recorded
+and carried.
+
+Phase 1 items are I1–I3 and M1–M7. Phase 2 items are I4–I6 and M8–M10. Phase 3
+items are I7–I8 and M11–M12.
 
 ## BLOCKERs — all resolved, none open
 
@@ -71,12 +74,182 @@ K5 is live.
 the primary competitor, not a formality. F8 descriptor ablation must report what
 happens when precursor mass is removed.
 
+### I4. No runtime-budget check precedes expensive experiments (Phase 2)
+
+**Observation.** `scripts/t2_05_baselines.py` was launched without any estimate
+of its cost. It ran for **2 h 08 m** on an 8-core machine without completing and
+was terminated, at times
+consuming 600–670% CPU while the system carried a load average of 11.5 and had
+2.34 GB of 3.07 GB swap in use and roughly 68 MB of free pages. A 3-second
+process sample taken mid-run showed **23 stack frames in productive work**
+(`Splitter.find_node_split`, `HistogramBuilder.compute_histograms_brute`)
+against **249 frames in wait primitives** — that is, most of the 18 threads were
+blocked or spinning in OpenMP barriers rather than computing. Measured
+throughput was roughly **4x slower** than a single-fit calibration taken on the
+same machine before launch predicted.
+
+A second, separate defect compounded it: `nested_cv` returns test-fold slices
+that still carry all ~719 Tier B feature columns, and the driver accumulates
+about 30 such frames in a list before trimming columns at write time. Process
+RSS grew from ~290 MB to ~462 MB during the run, with a larger transient
+expected at the final `pd.concat`. On a memory-pressured machine this is
+avoidable waste: the driver only ever needs the identifier, response and
+prediction columns.
+
+**Scientific impact.** **None.** No result, threshold, model definition or
+pre-registered choice was altered because of runtime. Deviation D12 reduced the
+Tier B fingerprint floor and the hyperparameter grid for cost reasons, but that
+was decided and recorded **before** any performance was observed, and both
+reductions weaken the structure-aware model, making K4A and K4B harder to pass.
+
+**Action for Phase 3 and later — binding.** Before launching any expensive
+experiment, produce and record a **runtime budget** covering at minimum:
+
+1. total number of model fits implied by the grid, folds and splits, **stated as
+   an explicit formula** rather than a bare number, so that loop nesting is
+   visible and checkable. The first budget produced under this rule got this
+   wrong by a factor of five by adding the inner and outer loops
+   (`grid × inner + outer`) instead of nesting them
+   (`outer × grid × inner + outer`); see `DEVIATIONS.md` D14,
+2. estimated wall time, derived from a measured single-fit calibration on the
+   target machine and multiplied by an explicit contention factor,
+3. peak memory estimate, including any accumulation across loop iterations,
+4. thread count per fit and expected parallel efficiency given available cores,
+5. whether the job will oversubscribe the machine, and the thread cap that
+   prevents it.
+
+If the estimate exceeds the session budget, **reduce scope before launch and
+record the reduction as a deviation** — never after seeing results. The estimate
+belongs in the pre-registration when it affects a pre-registered quantity.
+
+Two implementation fixes are also carried: cap worker threads explicitly rather
+than letting OpenMP default to the core count under external load, and project
+prediction frames down to their identifier and response columns before
+accumulating them.
+
+### I5. Structure-beyond-mass does not replicate in negative mode
+
+**Observation.** Negative mode (349 compounds, S2 scaffold-disjoint) reproduces
+K4A — Tier A beats the structure-blind B1 by 0.03204, scaffold interval
+[-0.04052, -0.01964] — but **fails K4B**: Tier A beats MASS FLEX by only
+0.00250, a **1.93%** relative reduction against the pre-registered 5% minimum,
+with a scaffold interval of [-0.01572, +0.00038] that spans zero.
+
+Positive mode by contrast gives 20.02% (flexible benchmark) and 10.53%
+(Tier A), both with intervals excluding zero.
+
+**Scientific impact.** The Phase 2 conclusion — that structure predicts beyond
+a strong energy-plus-mass model — is currently a **positive-mode** result. It is
+not established for negative mode. Three readings are consistent with the data
+and Phase 2 cannot distinguish them: genuinely different negative-mode
+fragmentation chemistry; lower statistical power (349 vs 439 compounds); or a
+mass effect that dominates more strongly under deprotonation.
+
+**Action for Phase 3+.** Any claim must carry the positive-mode restriction
+until this is resolved. Resolving it needs at minimum the negative-mode
+repeatability estimate that issue I2 already requires.
+
+### I6. NC7 fired: retention time predicts trajectory shape
+
+**Observation.** Retention time alone improves on B1 by **+0.01006**, above its
+permutation null (95th percentile +0.00021). **0 of 200** permutation replicates
+reached the observed value, giving a finite-sample corrected empirical
+p = **0.00498** = (b+1)/(B+1) — the smallest value attainable with 200
+resamples. Phase 1 anticipated this (`CONFOUNDERS.md` finding 4, |rho| up to
+0.36).
+
+**Explanation, and its limit.** Adding RT to Tier A gains only **+0.00097**,
+2.3% of the Tier A effect. RT therefore carries predictive signal by itself but
+adds little incremental predictive information beyond Tier A descriptors, which
+is consistent with it acting **primarily as a structure-associated surrogate in
+this dataset** — it tracks lipophilicity, itself a structural property. The
+control does not block.
+
+This is an observational association, not an identification result.
+**Independent confounding cannot be completely excluded**: a confounder whose
+effect is largely collinear with the descriptors would produce the same small
+increment. Nor does the explanation separate real lipophilicity-driven chemistry
+from co-elution and matrix effects; those mechanisms are confounded in this
+dataset and no Phase 2 evidence distinguishes them.
+
+**Scientific impact.** No mechanistic reading of the structural effect may lean
+on RT-correlated descriptors.
+
+**Action for Phase 3+.** Carry the restriction. Separating the mechanisms would
+need either chromatography-resolved replicates or an orthogonal
+lipophilicity measurement, neither of which this corpus provides.
+
+---
+
+### I7. The candidate-selection rule discards the planted law on near-degenerate Pareto fronts
+
+**This is the finding that stopped Phase 3**, recorded here because it is the
+one thing a future attempt must solve.
+
+**Reproduction.** `scripts/t3_45_recovery_diagnosis.py`, block `G1`. In every
+one of the 30 G1B worlds at the low and moderate noise regimes, a candidate
+functionally equivalent to the planted law appears somewhere on the 30 seeds'
+Pareto fronts (best relative RMSE 0.0025 against a tolerance of 0.02, at
+complexity 13). The frozen elbow rule selects a complexity-6 expression,
+`sqrt(precursor_mz · (heteroatom_fraction + c))`, whose held-out R² is within
+0.004 of it. Search capability 100%; system report rate 0–10%.
+
+**Scientific impact.** The system can be trusted to report *which* descriptors
+matter and the mass scaling exponent — recovered at a median of exactly 0.500
+against a planted 0.5 — but not the functional form of the law. A Phase 4 run
+under this rule would return a compressed approximation and could present it as
+the conjecture. `GA` (100% reported) and `G3` (62%) show the defect is confined
+to laws whose true form sits above a near-equivalent approximation, which is
+precisely the situation a real search would face.
+
+**Not fixed, deliberately.** Changing the selection rule after seeing that the
+planted recovery failed is the move Phase 3 exists to prevent, and the
+pre-registration's repair allowance is scoped to K6, which did not fire. Any fix
+requires recalibrating the null thresholds, since they are conditioned on the
+complexity the rule selects.
+
+### I8. The null threshold is a point estimate with wide uncertainty
+
+**Reproduction.** `artifacts/p3_null_calibration.json`. At complexity 20 the
+frozen threshold is +0.4889 with a 2000-resample bootstrap interval of
+[+0.2603, +0.6859], because a 95th percentile estimated from 40 null worlds
+rests on its top two or three.
+
+**Scientific impact.** The gate is usable — every G4 null was rejected by a wide
+margin and the accepted G1 candidates cleared it by a wide margin — but a future
+candidate whose R² lands inside that interval is not distinguishable from chance
+at the current calibration size. Enlarging the calibration set is the remedy;
+it costs roughly 30 seconds of compute per additional null world.
+
+### I9. The comparison engine does not corroborate PySR's selected expressions
+
+**Reproduction.** `scripts/t3_46_engine_comparison.py`,
+`artifacts/p3_engine_comparison.json`. On the pre-registered subset the two
+engines select functionally equivalent expressions in 3% of `G1` worlds and 0%
+of `G3` worlds. gplearn never recovers a planted law, including in `G3`, a
+single power law PySR recovers 62% of the time. The 60% agreement on `G4` nulls
+is agreement about noise.
+
+**Scientific impact.** Master plan 13.3 makes convergence between two engines
+with different search dynamics the evidence that an expression is not a search
+artifact. That evidence is absent. This did not decide Phase 3 — no
+engine-agreement gate was pre-registered and the verdict was already
+`STOP BEFORE PHASE 4` — but it points the same way and should be resolved
+before any real search.
+
+**Open question this leaves.** Whether the disagreement reflects a genuine
+non-identifiability of the functional form, or merely that the pre-registered
+gplearn configuration is too weak to be an informative comparator. The two have
+different remedies and the current evidence does not separate them.
+
 ---
 
 ## MINOR — recorded, no action
 
 | # | Issue | Note |
 |---|---|---|
+| M11 | Phase 3 wall time was 1.8× its projection | 2.98 h against 1.69 h. Structured worlds cost more per PySR run than null worlds (2.5–2.7 min vs 2.1–2.2 min per world) because the inner constant optimizer does more work, and the benchmark that set the projection used a single structured world applied uniformly. Compounded by running adjudication and tests while the search was live. No work was lost: every unit is checkpointed. See `RUNTIME_BUDGET_P3.md`. |
+| M12 | `juliacall` does not survive `multiprocessing.Pool` teardown | Pool workers died with `BrokenPipeError` on the result queue and left orphaned processes consuming CPU, which silently halved throughput before it was noticed. Phase 3 replaced the pool with four independent single-process shards; per-seed checkpointing already made the work safe to split. Recorded so a future phase does not reintroduce a pool around a Julia-backed engine. |
 | M1 | Master plan's "zero duplicate InChIKeys in the curated layer" is false at full corpus | 6 of 967 compound-by-mode keys map to two internal IDs. Too few for repeatability; conclusion unaffected. Deviation D3. |
 | M2 | Master plan's "E_com spread under 13%" does not survive the full corpus mass range | The qualitative claim it supports is unaffected. Deviation D2. |
 | M3 | `file(1)` reports Li_2021 PDF as 23 pages, `pypdf` counts 19 | Object-count vs page-tree difference. Document parses and yields text normally. No corruption. |
@@ -93,3 +266,7 @@ Splits of any kind, descriptors beyond identity checking, any model, any
 symbolic search, negative-mode analysis beyond census, neutral losses,
 ClassyFire classes, the falsification ladder beyond Phase-1-relevant checks.
 None of these was built, and no dependency supporting them was installed.
+
+| M8 | Phase 2 baseline ladder needed a full execution redesign after a 2h08m non-completing run | Thread oversubscription, no checkpoints, no visible progress, unbounded prediction-frame accumulation. Fixed; deviation D14 and issue I4. |
+| M9 | The pre-registered negative-control rule conflated two control families and inverted the p-value | A perfectly passing control was reported as a BLOCKER while the one genuine firing control was concealed. Corrected before reporting; deviation D16, pinned by `tests/test_controls_adjudication.py`. |
+| M10 | `PREREGISTRATION.md` §22's GO row omitted the negative-mode replication that §18 pre-registered | Folded into the RESTRICT condition, which can only make the verdict more conservative. Deviation D15. |

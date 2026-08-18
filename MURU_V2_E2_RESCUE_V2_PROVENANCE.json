@@ -1,0 +1,104 @@
+{
+  "generated_at_local": "2026-08-17T13:59:36-04:00",
+  "live_e2_production": {
+    "worktree": ".claude/worktrees/exp-v2-e2-pareto-observability",
+    "branch": "exp/v2-e2-pareto-observability",
+    "head_commit": "dc66e27bae1237c8bc21be811d53347a8f5b4058",
+    "head_subject": "E2: commit accumulated production output, fix S15 duplicate-recomputation bug, sync manifest/supervisor",
+    "rescue_authority_commit": "4892c76",
+    "rescue_authority_subject": "E2 execution rescue: fix classify hang + shard-death supervision, invalidate partial 37-world run",
+    "original_predeclaration_commit": "c9d08db",
+    "untouched_verification": "git status inspected read-only throughout; zero writes issued to this worktree at any point in this rescue"
+  },
+  "retention_remediation_design_source": {
+    "worktree": ".claude/worktrees/v2-retention-remediation",
+    "branch": "design/v2-retention-remediation",
+    "head_commit": "f4c11058ff4566a963341fa4fb2c744273722de5",
+    "authority_for": "MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md section 4 (frozen E4a routing gate, quoted verbatim in MURU_V2_E2_ROUTING_LOCK_THEORY.md section 1)"
+  },
+  "this_rescue": {
+    "worktree": ".claude/worktrees/e2-rescue-v2-computational",
+    "branch": "claude/e2-rescue-v2-computational",
+    "forked_from": "dc66e27bae1237c8bc21be811d53347a8f5b4058",
+    "fork_type": "new branch at live E2a HEAD, via git worktree add -b (does not touch the live worktree's branch or working directory)",
+    "files_touched_under_src_muru_paper_benchmark_or_discovery": 0,
+    "files_touched_under_src_muru_v2_calibration_e2_classify_or_e2_scoring_or_e2_search_or_e2_aggregate_or_e2_worlds": 0,
+    "new_files_only": [
+      "src/muru/v2_calibration/e2_rescue_v2/routing_lock.py",
+      "src/muru/v2_calibration/e2_rescue_v2/lazy_classify.py",
+      "src/muru/v2_calibration/e2_rescue_v2/classify_cache.py",
+      "scripts/e2_rescue_v2/routing_lock_monitor.py",
+      "scripts/e2_rescue_v2/replay_parity.py",
+      "scripts/e2_rescue_v2/speed_benchmark.py",
+      "scripts/e2_rescue_v2/balanced_sample.py",
+      "tests/test_routing_lock.py",
+      "tests/test_routing_lock_monitor_synthetic.py",
+      "tests/test_lazy_classify_control_flow.py",
+      "tests/test_classify_cache.py",
+      "tests/test_balanced_sample.py",
+      "v2_design_reference/MURU_V2_E2_ROUTING_LOCK_THEORY.md",
+      "v2_design_reference/MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md",
+      "v2_design_reference/MURU_V2_E2_BALANCED_SAMPLE_DESIGN.md",
+      "v2_design_reference/MURU_V2_E2_RESCUE_V2_PROTOCOL.md",
+      "MURU_V2_E2_RESCUE_V2_FEASIBILITY.md",
+      "MURU_V2_E2_RESCUE_V2_HOSTILE_REVIEW.md",
+      "MURU_V2_E2_RESCUE_V2_PROVENANCE.json",
+      "MURU_V2_E2_REPLAY_PARITY.json",
+      "MURU_V2_E2_SPEED_BENCHMARK.json"
+    ]
+  },
+  "classifier_version": {
+    "sha256": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+    "computed_from_7_files": [
+      "src/muru/v2_calibration/e2_classify.py",
+      "src/muru/v2_calibration/e2_scoring.py",
+      "src/muru/paper_benchmark/g2_contract.py",
+      "src/muru/paper_benchmark/identity_contract.py",
+      "src/muru/paper_benchmark/rc5_selection.py",
+      "src/muru/discovery/equivalence.py",
+      "src/muru/discovery/grammar.py"
+    ],
+    "computed_at_worktree_commit": "216817008566eb91f82536f7e6116dc95c26fb14"
+  },
+  "balanced_sample": {
+    "seed_tag": "MURU_V2_E2_BALANCED_SAMPLE_SEED_V1",
+    "selected_r": 6,
+    "n_total": 270,
+    "n_already_completed_reusable_at_snapshot": 150,
+    "n_additional_worlds_required_at_snapshot": 120,
+    "snapshot_taken_from": "world_id membership only, all 5 live result directories, read-only"
+  },
+  "replay_parity": {
+    "artifact": "MURU_V2_E2_REPLAY_PARITY.json",
+    "audit_round_1_sample": {
+      "N_REPLAY": 16, "N_MATCH": 16, "N_MISMATCH": 0, "PARITY_PASS": true, "DETERMINISM_VERIFIED": true,
+      "note": "outcome-blind sample; superseded as the licensing basis by round 2's full-corpus audit below, per an explicit follow-up correction that a sample does not satisfy 'every replayable completed world'"
+    },
+    "audit_round_2_full_corpus": {
+      "scope": "FULL CORPUS -- every currently-completed, valid E2a world at a frozen snapshot, not a sample",
+      "N_COMPLETED_SNAPSHOT": 369, "N_REPLAYABLE": 369, "N_MATCH": 369, "N_MISMATCH": 0, "ERROR_COUNT": 0,
+      "PARITY_PASS": true, "N_DETERMINISM_CHECKED": 30, "N_DETERMINISM_MATCH": 30, "DETERMINISM_PASS": true,
+      "note": "4/369 worlds needed an isolated retry at a longer timeout (600s vs the main pass's 90s); all 4 matched -- reconciled into the ERROR_COUNT=0 final figure, full detail in the audit's own error_detail/retry_result (opaque IDs only)",
+      "scripts": ["scripts/e2_rescue_v2/full_corpus_parity_audit.py", "scripts/e2_rescue_v2/merge_shards.py", "scripts/e2_rescue_v2/retry_errors.py"]
+    }
+  },
+  "current_completed_count_snapshot": {
+    "n_unique_world_ids_with_timing_field_at_full_corpus_audit": 389,
+    "of_540": "389/540",
+    "measured_fields": ["world_id (membership only)", "wall_seconds (timing only)"],
+    "scientific_outcome_fields_read_for_this_snapshot": "none",
+    "note": "the live run progressed throughout this task -- 270/540 at Part I open, 310/540 at the first replay-parity round, 369/540 at the full-corpus audit's frozen snapshot, 389/540 by the time timing was last aggregated; every figure in this document is stamped to the snapshot it was computed from, never presented as a fixed constant"
+  },
+  "live_e2_untouched_final_recheck": "TRUE -- re-verified a second time at the close of the full-corpus audit round: identical 15 append-only files as at task start (55,800 insertion-only lines now vs 28,823 at the first recheck), 0 created/edited/deleted by this task across either round; 20 live E2 processes still running (growth from 16 is the live run's own supervisor restarts); 0 stray processes from this rescue's own audit/retry scripts",
+  "real_checkpoint_executed": {
+    "script": "scripts/e2_rescue_v2/checkpoint_live_e2.py",
+    "out_dir": "/tmp/e2_rescue_v2_checkpoint_20260817_135803",
+    "n_unique_world_ids": 318,
+    "n_files_hashed": 41,
+    "note": "taken before the full-corpus audit round; migration procedure step 1 requires a fresh re-run immediately before any actual cutover"
+  },
+  "hang_safety_defects_found_and_fixed_during_full_corpus_audit": [
+    "multiprocessing.Pool workers are daemonic and cannot spawn e2_classify's own persistent worker -- replaced with a hand-rolled non-daemonic Process+Pipe worker",
+    "independently-timed per-shard snapshot derivation allowed the live run's own progress to desynchronize sort-order-based shard partitioning -- fixed with a single frozen population snapshot shared by every shard"
+  ]
+}

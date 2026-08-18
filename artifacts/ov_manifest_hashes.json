@@ -1,0 +1,8 @@
+{
+ "worlds_sha256": "06fb707ac3844b5b58ce664cfab341afbb9880c5013c2be9c73b113af9cdd023",
+ "truth_manifest_sha256": "c2fd02fdfd32785eb2d57b46f0ed4be50b47fec68e9f5a35969f050faf87d657",
+ "seed_manifest_sha256": "49fa7ab38b08f35ecc5db7a40357ad227e6dc3fe7cd6c1e8931382c41f92850f",
+ "n_worlds": 323,
+ "seed_min": 1700907400,
+ "seed_max": 2099175629
+}

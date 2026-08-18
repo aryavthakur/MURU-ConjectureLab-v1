@@ -1,0 +1,5 @@
+shard 2/5: 108 worlds assigned, 0 already done
+shard 2/3: 180 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r002: stage=C front=15/30 failures=0 wall=223.8s classify_cache=263
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r005: stage=C front=22/30 failures=0 wall=272.3s classify_cache=531
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r008: stage=C front=16/30 failures=0 wall=148.4s classify_cache=805

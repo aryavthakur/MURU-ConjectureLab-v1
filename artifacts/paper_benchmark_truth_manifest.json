@@ -1,0 +1,1 @@
+{"case_count":380,"truth_paths":{"challenge":"truth/challenge.jsonl","development":"truth/development.jsonl","held_out":"truth/held_out.jsonl"},"version":"paper-benchmark-truth-manifest-1.0.0"}

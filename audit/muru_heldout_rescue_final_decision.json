@@ -1,0 +1,88 @@
+{
+  "artifact": "MURU_HELDOUT_RESCUE_FINAL_DECISION",
+  "audit_branch": "audit/muru-heldout-forensic-rescue",
+  "rooted_at": "8d87143d4280602323aa33ee0b5481aaef0fb4a8",
+  "rooted_at_tag": "engineering-rc5-1-heldout-authorization",
+  "artifact_digests": {
+    "authority_matrix_md": "2e9b0534ff42fb45ce4e90c8e4854b50c914902c8a0572719be21834ca60a8bf",
+    "authority_matrix_json": "b11af625f72dba3121ec26a2d59cfb8e7ebcf9c0af6aace4922d960bd1f16c5c",
+    "raw_integrity_md": "a8d97a5400b4119212a42db54ceda9cc60f4afe885959aa2a96d2f3a60d30e04",
+    "independent_result_md": "2c7b2529dc516a426c5283a33b8b3b4c3cfddbbc2dd9d7d63c65bdcac3799862",
+    "independent_result_json": "b750d5c0af738a1226c293e8d13c3030d1d2c3cfbd7a5fd9dd6834b100416363"
+  },
+  "classifications": {
+    "A_search_execution": "VALID WITH DISCLOSED OPERATIONAL DEVIATION",
+    "B_raw_sealed_evidence": "VALID",
+    "C_existing_post_run_analysis": "INVALID",
+    "D_existing_hostile_audit": "INVALID",
+    "E_corrected_held_out_analysis": "VALID UNDER FROZEN CONTRACT"
+  },
+  "corrected_outcome": {
+    "G1": {"denominator": 164, "successes_upper_bound": 67, "wilson_lower_at_bound": 0.336234, "gate": ">= 0.70", "verdict": "FAIL", "determinate": true},
+    "G2": {"denominator": 144, "successes": 4, "wilson_lower": 0.010854, "gate": ">= 0.70", "verdict": "FAIL"},
+    "G3": {"denominator": 36, "violations": 26, "wilson_upper": 0.841518, "gate": "<= 0.15", "verdict": "FAIL"},
+    "gate7": {"reached": 27, "pass": 26, "fail": 1, "via_ceiling_pass": 26, "via_waiver": 0},
+    "gate8": {"reached": 26, "pass": 25, "fail": 1, "failing_rung": "F10_NEGATIVE_CONTROL"},
+    "structural_accepted": 25,
+    "f9_secondary": {"pass": 26, "of_gate8_reachers": 26, "gating": false, "calibration_status": "NOT_PROVEN_FOR_HARD_GATE", "citation_forbidden": true},
+    "execution_failure_disclosure": {"G1": 0, "G2": 0, "G3": 0},
+    "overall": "ALL THREE PRIMARY ENDPOINTS FAIL",
+    "dominant_driver": "A1 adequacy: 154 of 240 cases terminate at a1_adequacy; 97 of the 164 G1 cases are BOUNDARY_LIMITED"
+  },
+  "reruns_required": {
+    "held_out_searches": false,
+    "individual_seeds": false,
+    "rationale": "raw execution is cryptographically intact and reproduces the frozen acceptance predicate with 0 disagreements over 240 cases; the defect is entirely downstream",
+    "outstanding_quantity": "G1 exact competent count within its proven <= 67 bound",
+    "outstanding_recompute_cost": "zero searches; G1 inputs are search-independent per A3.5 section 8.2",
+    "outstanding_can_change_verdict": false
+  },
+  "authoritative_artifacts": [
+    "audit/MURU_HELDOUT_RESCUE_AUTHORITY_MATRIX.md",
+    "audit/muru_heldout_rescue_authority_matrix.json",
+    "audit/MURU_HELDOUT_RESCUE_RAW_INTEGRITY.md",
+    "audit/MURU_HELDOUT_RESCUE_INDEPENDENT_RESULT.md",
+    "audit/muru_heldout_rescue_independent_result.json",
+    "audit/MURU_HELDOUT_RESCUE_POSTRUN_DIFF.md",
+    "audit/muru_heldout_rescue_postrun_diff.json",
+    "audit/MURU_HELDOUT_RESCUE_FINAL_DECISION.md",
+    "audit/muru_heldout_rescue_final_decision.json",
+    "results/held_out/records/ (sealed)",
+    "results/held_out/seed_records/ (sealed)",
+    "results/held_out/provenance/case_provenance.jsonl (sealed)",
+    "results/held_out/execution_manifest.json (sealed)",
+    "results/held_out/execution_seal_receipt.json",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_5.md @ 560bf285",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_6.md @ 327b5553",
+    "artifacts/muru_rc5_global_science_plan.json"
+  ],
+  "superseded_artifacts": {
+    "mark": "SUPERSEDED - POST-RUN ANALYSIS CONTRACT DRIFT",
+    "preserved_not_deleted": true,
+    "outside_seal": true,
+    "files": [
+      "results/held_out/held_out_formal_analysis.json",
+      "results/held_out/held_out_hostile_audit_report.md",
+      "src/muru/paper_benchmark/held_out_analyzer.py",
+      "src/muru/paper_benchmark/independent_recomputation.py",
+      "src/muru/paper_benchmark/hostile_reviewer.py",
+      "src/muru/paper_benchmark/pipeline.py",
+      "scripts/run_post_held_out_pipeline.py"
+    ]
+  },
+  "code_repair_required": true,
+  "code_repair_performed_in_this_session": false,
+  "code_repair_spec": "see MURU_HELDOUT_RESCUE_FINAL_DECISION.md section 5; 12 hard requirements; acceptance test is exact reproduction of independent result b750d5c0",
+  "challenge": {
+    "authorized": false,
+    "touched": false,
+    "authorised_partitions_modified": false,
+    "a3_7_created": false,
+    "rc5_2_created": false,
+    "challenge_outcomes_generated": false,
+    "confirmation_opened": false,
+    "safe_to_consider_next": false,
+    "reason": "the Held-out analysis contract must first be repaired, the corrected analysis frozen under review, and three primary-endpoint failures adjudicated scientifically"
+  },
+  "declaration": "HELD-OUT RESCUE COMPLETE - RAW EXECUTION VALID, CORRECTED ANALYSIS FROZEN"
+}

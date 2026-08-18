@@ -1,0 +1,13 @@
+{
+  "artifact_bytes": 8326688,
+  "candidate_count": 0,
+  "case_count": 80,
+  "complete": false,
+  "cpu_seconds": 0.05000600000000001,
+  "engine_failures": 0,
+  "engine_status": "not_run_pending_lock",
+  "held_out_accessed": false,
+  "partition": "development",
+  "peak_rss_bytes": 34766848,
+  "wall_seconds": 0.05012708296999335
+}

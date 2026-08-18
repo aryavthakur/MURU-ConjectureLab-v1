@@ -1,0 +1,898 @@
+{
+ "a1_g1": {
+  "a1_status_distribution_over_164": {
+   "BOUNDARY_LIMITED": 97,
+   "M0_NOT_REJECTED": 67
+  },
+  "a1_status_distribution_over_240": {
+   "BOUNDARY_LIMITED": 154,
+   "M0_NOT_REJECTED": 86
+  },
+  "blocking_detector_sets_over_240": {
+   "M2+M3": 27,
+   "M3": 127,
+   "none": 86
+  },
+  "boundary_mechanism": {
+   "a1_status_by_counterfactual_relative_floor": {
+    "0.0": {
+     "BOUNDARY_LIMITED": 154,
+     "M0_NOT_REJECTED": 86
+    },
+    "0.0001": {
+     "BOUNDARY_LIMITED": 154,
+     "M0_NOT_REJECTED": 86
+    },
+    "0.001": {
+     "BOUNDARY_LIMITED": 151,
+     "M0_NOT_REJECTED": 89
+    },
+    "0.01": {
+     "BOUNDARY_LIMITED": 123,
+     "M0_NOT_REJECTED": 117
+    },
+    "0.1": {
+     "M0_NOT_REJECTED": 240
+    },
+    "1e-06": {
+     "BOUNDARY_LIMITED": 154,
+     "M0_NOT_REJECTED": 86
+    }
+   },
+   "bound_hit_counts": {
+    "M1:log_shape@lower": 44,
+    "M1:log_shape@upper": 7,
+    "M2:high_energy_asymptote@lower": 1309,
+    "M2:high_energy_asymptote@upper": 33,
+    "M3:low_energy_plateau@lower": 24,
+    "M3:low_energy_plateau@upper": 7399
+   },
+   "frozen_rule": "unresolved iff probed_sse < best_sse - 1e-12 (no relative floor)",
+   "largest_relative_improvement_anywhere": 0.28916329046995065,
+   "pooled_median_relative_sse_improvement_that_triggered_the_rule": 0.013157787292134775,
+   "unresolved_compound_fits_by_model_over_240": {
+    "M0": 0,
+    "M1": 31,
+    "M2": 644,
+    "M3": 2542
+   }
+  },
+  "data_geometry_ruled_out": {
+   "cases_with_any_compound_below_the_5_energy_minimum": 0,
+   "cases_with_missing_cells": 12,
+   "insufficient_data_verdicts": 0,
+   "scaffold_and_compound_layout": "identical across all 240 cases: 20 train scaffolds / 5 test scaffolds, 120 train / 30 test compounds"
+  },
+  "denominator": 164,
+  "detector_firing": {
+   "cases_with_any_detector_fired": 0,
+   "dedicated_positive_control_families": {
+    "F13_m1": 12,
+    "F14_m2": 12,
+    "F15_m3": 12,
+    "F16_m1_m2_m3": 12
+   },
+   "max_practical_wins_ever_observed": {
+    "M1": 18,
+    "M2": 18,
+    "M3": 15
+   },
+   "min_practical_wins_required": 20,
+   "of_cases": 240,
+   "positive_control_detections": 0
+  },
+  "every_failure_fails_m0_conjunct": true,
+  "failures": 97,
+  "failures_explained_by_adequacy_alone": 87,
+  "failures_that_would_also_fail_a_continuous_condition": 10,
+  "first_failing_condition": {
+   "NONE": 67,
+   "g_spearman": 3,
+   "m0_accepted": 87,
+   "trajectory_mae_ratio": 7
+  },
+  "successes": 67
+ },
+ "counterfactual_diagnostics": {
+  "G1_if_a1_indeterminacy_were_removed": {
+   "denominator": 164,
+   "residual_failures": 10,
+   "successes": 154,
+   "wilson_lower_95": 0.8914059824578863,
+   "would_pass_0_70_gate": true
+  },
+  "G2_search_versus_selection_versus_representation": {
+   "cases_with_a_correct_majority_at_or_above_15_of_30": 1,
+   "cases_with_a_correct_majority_at_or_above_the_20_of_30_stability_gate": 0,
+   "correct_never_reached_cross_seed_selection": 57,
+   "correct_reached_selection_and_won": 4,
+   "correct_reached_selection_but_lost": 71,
+   "recoverable_by_coarsening_the_equivalence_relation": 2,
+   "representation_infeasible": 12
+  },
+  "G2_upper_bound_under_a_perfect_post_search_selector": {
+   "denominator": 144,
+   "note": "even a selector that always picks the correct retained candidate leaves G2 far below its gate",
+   "successes": 75,
+   "wilson_lower_95": 0.43976151663711593,
+   "would_pass_0_70_gate": false
+  },
+  "G3_if_a1_indeterminacy_were_removed": {
+   "denominator": 36,
+   "violations": 0,
+   "wilson_upper_95": 0.09642183044857634,
+   "would_pass_0_15_gate": true
+  },
+  "disclaimer": "Diagnostic only. The official v1 result stands at G1 67/164, G2 4/144, G3 26/36 violations."
+ },
+ "evidence": {
+  "cases": 240,
+  "execution_failures": 0,
+  "frozen_source_relationship_to_run_commit": "additions only: 7 new analysis files, 3016 insertions, 0 deletions or modifications to any module the run executed",
+  "frozen_source_tree": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/heldout-analysis-restoration/src",
+  "restored_analysis_root": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/heldout-analysis-restoration/results/restored",
+  "run_commit": "8d87143d4280602323aa33ee0b5481aaef0fb4a8",
+  "sealed_evidence_root": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-heldout-a3-6/results/held_out",
+  "searches": 7200
+ },
+ "g2": {
+  "by_family": {
+   "F01": {
+    "cases": 12,
+    "identity": 2,
+    "label": 2,
+    "oracle": 12,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F02": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 3,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F03": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 1,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F04": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 8,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F05": {
+    "cases": 12,
+    "identity": 0,
+    "label": 1,
+    "oracle": 9,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F08": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 9,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F09": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 0,
+    "truth_family": "mass_saturating_descriptor"
+   },
+   "F10": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 6,
+    "truth_family": "mass_interaction"
+   },
+   "F11": {
+    "cases": 12,
+    "identity": 1,
+    "label": 0,
+    "oracle": 8,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F12": {
+    "cases": 12,
+    "identity": 1,
+    "label": 0,
+    "oracle": 10,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F17": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 9,
+    "truth_family": "mass_affine_descriptor"
+   },
+   "F18": {
+    "cases": 12,
+    "identity": 0,
+    "label": 0,
+    "oracle": 0,
+    "truth_family": "mass_exponential_descriptor"
+   }
+  },
+  "classification_coverage": {
+   "cases_whose_winner_was_unlabelable": 37,
+   "consequence": "all 37 G2 UNEVALUABLE cases carry family_status FAMILY_UNRESOLVED",
+   "retained_candidates_the_classifier_could_not_label": 1477,
+   "share": 34.19
+  },
+  "counterfactual_among_representable": {
+   "G2_LABEL": 3,
+   "IDENTITY_frozen_v1": 4,
+   "ORACLE_ANY": 75,
+   "denominator": 132
+  },
+  "counterfactual_arms": {
+   "G2_LABEL": {
+    "note": "group by (effective_support, discovered_family); same tie-break",
+    "of": 144,
+    "successes": 3
+   },
+   "IDENTITY_frozen_v1": {
+    "note": "reproduces the official rule; equals the sealed count",
+    "of": 144,
+    "successes": 4
+   },
+   "ORACLE_ANY": {
+    "note": "upper bound reachable from the persisted retained candidates",
+    "of": 144,
+    "successes": 75
+   }
+  },
+  "counterfactual_stability": {
+   "correct_and_stable_under_label_rule": 0,
+   "identity_winner_passes_stability": 58,
+   "label_winner_passes_stability": 93,
+   "stability_gate": "20/30"
+  },
+  "denominator": 144,
+  "failures": 103,
+  "first_failure_point": {
+   "GENERATION": 45,
+   "GENERATION_FAMILY": 12,
+   "NONE": 4,
+   "REPRESENTATION": 12,
+   "SELECTION_CROSS_SEED_IDENTITY": 2,
+   "SELECTION_WITHIN_SEED_RETENTION": 69
+  },
+  "representability": {
+   "affected_cases": 12,
+   "affected_family_id": "F18",
+   "authority": "discovery/grammar.py excludes exp per DEVIATIONS_P3 D1; g2_contract._contains_exp_of requires a literal sympy.exp node",
+   "consequence": "no grammar-legal expression can ever be labelled mass_exponential_descriptor, so those 12 cases had a structurally zero success probability",
+   "families_needing_an_operator_the_grammar_lacks": [
+    "mass_exponential_descriptor"
+   ],
+   "missing_operator": "exp"
+  },
+  "retention_rule_evidence": {
+   "cases_where_correct_is_both_more_accurate_and_more_complex": 70,
+   "delta_complexity_correct_minus_incorrect": {
+    "fraction_positive": 0.9466666666666667,
+    "mean": 3.323039508134905,
+    "median": 3.4230769230769234,
+    "n": 75,
+    "p05": -0.08409090909090922,
+    "p95": 6.512931034482758
+   },
+   "delta_valid_r2_correct_minus_incorrect": {
+    "fraction_positive": 0.9866666666666667,
+    "mean": 0.1390254298644373,
+    "median": 0.12134118356300172,
+    "n": 75,
+    "p05": 0.018290402544642106,
+    "p95": 0.27159897794688725
+   },
+   "interpretation_guard": "A positive r2 delta paired with a positive complexity delta is consistent with argmax(score) discarding the accurate candidate for the parsimonious one.  It is not proof: the per-seed Pareto fronts are not persisted, so this measures which candidate the rule kept across disagreeing seeds, not what each front held.",
+   "paired_cases": 75
+  },
+  "root_cause_class": {
+   "CANONICALIZATION_EQUIVALENCE_FAILURE": 2,
+   "GRAMMAR_REPRESENTABILITY": 12,
+   "NONE_SUCCESS": 4,
+   "SEARCH_GENERATION_FAILURE": 57,
+   "SELECTION_FAILURE": 69
+  },
+  "seed_level": {
+   "discovered_family_distribution": {
+    "None": 1477,
+    "mass_affine_descriptor": 355,
+    "mass_interaction": 17,
+    "mass_power": 2450,
+    "mass_saturating_descriptor": 21
+   },
+   "g2_event_distribution": {
+    "FAILURE": 2472,
+    "SUCCESS": 371,
+    "UNEVALUABLE": 1477
+   },
+   "retained_candidates": 4320,
+   "seeds_producing_no_candidate": 2,
+   "unparseable_candidates": 2
+  },
+  "successes": 4,
+  "unevaluable": 37
+ },
+ "g3": {
+  "all_violations_are_unevaluable_not_unsafe": true,
+  "denominator": 36,
+  "independent_safety_scan": {
+   "accepted_case_ids": [
+    "PB|held_out|F07|r010",
+    "PB|held_out|F19|r007"
+   ],
+   "accepted_support": {
+    "PB|held_out|F07|r010": [
+     "mass"
+    ],
+    "PB|held_out|F19|r007": [
+     "mass"
+    ]
+   },
+   "accepted_under_a_variant_where_no_acceptance_is_safe": 0,
+   "accepted_with_non_mass_support": 0,
+   "method": "direct scan of sealed acceptance_status and effective_support, bypassing the g3_contract classifiers entirely",
+   "structurally_accepted_cases": 2,
+   "unsafe_acceptances_found": 0
+  },
+  "root_cause_overlap_with_g1": {
+   "note": "16 of the 36 G3 cases (F19C, F20A/B/C) carry no scalar_competence endpoint, so they cannot appear in G1's 164.  They still run A1, and an indeterminate A1 still routes them to UNEVALUABLE.",
+   "violations": 26,
+   "violations_also_in_the_g1_population": 13,
+   "violations_caused_by_a1_indeterminate": 26,
+   "violations_outside_the_g1_population": 13
+  },
+  "safe": 10,
+  "unsafe_structural_acceptances": 0,
+  "violation_cause_counts": {
+   "A1_INDETERMINATE": 26
+  },
+  "violations": 26
+ },
+ "hostile_review": {
+  "checks": 44,
+  "failed": 0,
+  "findings": [
+   {
+    "check": "G1 row count == 164",
+    "detail": "164 rows",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 ids unique",
+    "detail": "0 duplicates",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 ids == frozen manifest eligibility",
+    "detail": "symmetric difference 0",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 denominator matches restored analysis",
+    "detail": "endpoint_denominators agreement",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 row count == 144",
+    "detail": "144 rows",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 ids unique",
+    "detail": "0 duplicates",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 ids == frozen manifest eligibility",
+    "detail": "symmetric difference 0",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 denominator matches restored analysis",
+    "detail": "endpoint_denominators agreement",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 row count == 36",
+    "detail": "36 rows",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 ids unique",
+    "detail": "0 duplicates",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 ids == frozen manifest eligibility",
+    "detail": "symmetric difference 0",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 denominator matches restored analysis",
+    "detail": "endpoint_denominators agreement",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "union of the three populations is a subset of the 240 Held-out cases",
+    "detail": "180 distinct cases covered of 240",
+    "lens": "1_denominator",
+    "status": "PASS"
+   },
+   {
+    "check": "A1 recomputation reproduces every sealed a1_case_adequacy_status",
+    "detail": "240/240 reproduced, 0 mismatches",
+    "lens": "2_seal_fidelity",
+    "status": "PASS"
+   },
+   {
+    "check": "cross-seed replay reproduces every sealed selection_count and representative",
+    "detail": "144/144",
+    "lens": "2_seal_fidelity",
+    "status": "PASS"
+   },
+   {
+    "check": "no case claims more votes than it had voting seeds",
+    "detail": "0 impossible vote counts",
+    "lens": "2_seal_fidelity",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 successes recomputed from CSV == restored analysis",
+    "detail": "csv 67 vs restored 67",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 successes recomputed from CSV == restored analysis",
+    "detail": "csv 4 vs restored 4",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 violations recomputed from CSV == restored analysis",
+    "detail": "csv 26 vs restored 26",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 Wilson lower bound reproduces",
+    "detail": "0.336232635",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 Wilson lower bound reproduces",
+    "detail": "0.010853942",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 Wilson upper bound reproduces",
+    "detail": "0.841518300",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 SUCCESS + FAILURE + UNEVALUABLE == 144",
+    "detail": {
+     "FAILURE": 103,
+     "SUCCESS": 4,
+     "UNEVALUABLE": 37
+    },
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "A1-indeterminate case count matches the restored a1_adequacy failure stage",
+    "detail": "154 vs 154",
+    "lens": "3_arithmetic",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 root-cause classes partition the population",
+    "detail": {
+     "MODEL_ADEQUACY_LIMITATION": 97,
+     "NONE_SUCCESS": 67
+    },
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 every case carries a root-cause class",
+    "detail": "0 blank",
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 root-cause classes partition the population",
+    "detail": {
+     "CANONICALIZATION_EQUIVALENCE_FAILURE": 2,
+     "GRAMMAR_REPRESENTABILITY": 12,
+     "NONE_SUCCESS": 4,
+     "SEARCH_GENERATION_FAILURE": 57,
+     "SELECTION_FAILURE": 69
+    },
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 every case carries a root-cause class",
+    "detail": "0 blank",
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 root-cause classes partition the population",
+    "detail": {
+     "EXPECTED_NEGATIVE_CONTROL": 10,
+     "MODEL_ADEQUACY_LIMITATION": 26
+    },
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G3 every case carries a root-cause class",
+    "detail": "0 blank",
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "every G1 failure fails the m0_accepted conjunct",
+    "detail": "0 failures without m0 in the failing set",
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "G1 failures decompose as 87 m0-only + 10 m0-plus-competence",
+    "detail": "87 m0-only of 97 failures",
+    "lens": "4_attribution",
+    "status": "PASS"
+   },
+   {
+    "check": "no structurally accepted G3 case carries non-mass effective support",
+    "detail": "0 unsafe acceptances found by direct scan",
+    "lens": "5_safety",
+    "status": "PASS"
+   },
+   {
+    "check": "direct scan and G3 classifier agree that zero unsafe acceptances occurred",
+    "detail": "classifier 0, direct scan 0",
+    "lens": "5_safety",
+    "status": "PASS"
+   },
+   {
+    "check": "structural acceptance count across all 240 matches the restored analysis",
+    "detail": "25 accepted",
+    "lens": "5_safety",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 counterfactual control arm reproduces the frozen identity rule",
+    "detail": "control arm 4",
+    "lens": "6_counterfactual",
+    "status": "PASS"
+   },
+   {
+    "check": "A1 counterfactual control arm (floor 0.0) reproduces the frozen A1 result",
+    "detail": {
+     "BOUNDARY_LIMITED": 154,
+     "M0_NOT_REJECTED": 86
+    },
+    "lens": "6_counterfactual",
+    "status": "PASS"
+   },
+   {
+    "check": "A1 decomposition ran zero searches and never imported PySR",
+    "detail": "searches_run=0",
+    "lens": "7_search_free",
+    "status": "PASS"
+   },
+   {
+    "check": "G2 trace ran zero searches and never imported PySR",
+    "detail": "searches_run=0",
+    "lens": "7_search_free",
+    "status": "PASS"
+   },
+   {
+    "check": "PySR is absent from this process",
+    "detail": "sys.modules scan",
+    "lens": "7_search_free",
+    "status": "PASS"
+   },
+   {
+    "check": "the within-seed Pareto observability bound is recorded with the trace",
+    "detail": "WITHIN_SEED_PARETO_NOT_OBSERVABLE",
+    "lens": "8_claim_discipline",
+    "status": "PASS"
+   },
+   {
+    "check": "no SEARCH_GENERATION_FAILURE case had a correct retained candidate",
+    "detail": "0 contradictory rows",
+    "lens": "8_claim_discipline",
+    "status": "PASS"
+   },
+   {
+    "check": "every selection-class failure had at least one correct retained candidate",
+    "detail": "0 contradictory rows",
+    "lens": "8_claim_discipline",
+    "status": "PASS"
+   },
+   {
+    "check": "grammar-representability failures are exactly the exp-family cases",
+    "detail": "12 rows, families ['F18']",
+    "lens": "8_claim_discipline",
+    "status": "PASS"
+   }
+  ],
+  "lenses": 8,
+  "overall": "PASS",
+  "passed": 44
+ },
+ "observability_bounds": [
+  {
+   "id": "WITHIN_SEED_PARETO_NOT_OBSERVABLE",
+   "statement": "rc5_selection retains and persists only argmax(score) per seed.  Per-seed Pareto fronts are not in the seal, so a truth-equivalent expression that lost the within-seed score argmax cannot be distinguished here from one that was never generated.  Every GENERATION verdict below is therefore 'never reached cross-seed selection', not 'never existed anywhere in the search'."
+  },
+  {
+   "id": "A1_PER_COMPOUND_DETAIL_NOT_SEALED",
+   "statement": "The sealed record schema stores only the case-level a1_case_adequacy_status. Per-detector evaluability, per-compound boundary attribution and per-fold parameter values were recomputed from regenerated case content, which reproduced all 240 sealed A1 verdicts exactly."
+  }
+ ],
+ "official_v1_result_unchanged": {
+  "G1": {
+   "denominator": 164,
+   "gate": "wilson_lower_95 >= 0.70",
+   "passed": false,
+   "successes": 67,
+   "wilson_lower_95": 0.3362326347636318
+  },
+  "G2": {
+   "denominator": 144,
+   "gate": "wilson_lower_95 >= 0.70",
+   "passed": false,
+   "successes": 4,
+   "wilson_lower_95": 0.010853942365456266
+  },
+  "G3": {
+   "denominator": 36,
+   "gate": "wilson_upper_95 <= 0.15",
+   "passed": false,
+   "violations": 26,
+   "wilson_upper_95": 0.841518299741862
+  },
+  "gate7": {
+   "passed": 26,
+   "reached": 27
+  },
+  "gate8": {
+   "passed": 25,
+   "reached": 26
+  }
+ },
+ "reconciliation": {
+  "G1_rows": 164,
+  "G1_successes_plus_failures": "67 + 97 = 164",
+  "G2_rows": 144,
+  "G2_success_plus_failure_plus_unevaluable": "4 + 103 + 37 = 144",
+  "G3_rows": 36,
+  "G3_safe_plus_violation": "10 + 26 = 36"
+ },
+ "root_cause_quantification": {
+  "G1": {
+   "by_family": {
+    "F01": {
+     "NONE_SUCCESS": 12
+    },
+    "F02": {
+     "MODEL_ADEQUACY_LIMITATION": 10,
+     "NONE_SUCCESS": 2
+    },
+    "F03": {
+     "MODEL_ADEQUACY_LIMITATION": 12
+    },
+    "F04": {
+     "MODEL_ADEQUACY_LIMITATION": 9,
+     "NONE_SUCCESS": 3
+    },
+    "F05": {
+     "MODEL_ADEQUACY_LIMITATION": 4,
+     "NONE_SUCCESS": 8
+    },
+    "F07": {
+     "MODEL_ADEQUACY_LIMITATION": 8,
+     "NONE_SUCCESS": 4
+    },
+    "F08": {
+     "MODEL_ADEQUACY_LIMITATION": 9,
+     "NONE_SUCCESS": 3
+    },
+    "F09": {
+     "MODEL_ADEQUACY_LIMITATION": 5,
+     "NONE_SUCCESS": 7
+    },
+    "F10": {
+     "MODEL_ADEQUACY_LIMITATION": 6,
+     "NONE_SUCCESS": 6
+    },
+    "F11": {
+     "MODEL_ADEQUACY_LIMITATION": 8,
+     "NONE_SUCCESS": 4
+    },
+    "F12": {
+     "MODEL_ADEQUACY_LIMITATION": 9,
+     "NONE_SUCCESS": 3
+    },
+    "F17": {
+     "MODEL_ADEQUACY_LIMITATION": 7,
+     "NONE_SUCCESS": 5
+    },
+    "F18": {
+     "MODEL_ADEQUACY_LIMITATION": 5,
+     "NONE_SUCCESS": 7
+    },
+    "F19": {
+     "MODEL_ADEQUACY_LIMITATION": 5,
+     "NONE_SUCCESS": 3
+    }
+   },
+   "classes": {
+    "MODEL_ADEQUACY_LIMITATION": {
+     "cases": 97,
+     "percent": 59.15
+    },
+    "NONE_SUCCESS": {
+     "cases": 67,
+     "percent": 40.85
+    }
+   },
+   "denominator": 164
+  },
+  "G2": {
+   "by_family": {
+    "F01": {
+     "CANONICALIZATION_EQUIVALENCE_FAILURE": 1,
+     "NONE_SUCCESS": 2,
+     "SELECTION_FAILURE": 9
+    },
+    "F02": {
+     "SEARCH_GENERATION_FAILURE": 9,
+     "SELECTION_FAILURE": 3
+    },
+    "F03": {
+     "SEARCH_GENERATION_FAILURE": 11,
+     "SELECTION_FAILURE": 1
+    },
+    "F04": {
+     "SEARCH_GENERATION_FAILURE": 4,
+     "SELECTION_FAILURE": 8
+    },
+    "F05": {
+     "CANONICALIZATION_EQUIVALENCE_FAILURE": 1,
+     "SEARCH_GENERATION_FAILURE": 3,
+     "SELECTION_FAILURE": 8
+    },
+    "F08": {
+     "SEARCH_GENERATION_FAILURE": 3,
+     "SELECTION_FAILURE": 9
+    },
+    "F09": {
+     "SEARCH_GENERATION_FAILURE": 12
+    },
+    "F10": {
+     "SEARCH_GENERATION_FAILURE": 6,
+     "SELECTION_FAILURE": 6
+    },
+    "F11": {
+     "NONE_SUCCESS": 1,
+     "SEARCH_GENERATION_FAILURE": 4,
+     "SELECTION_FAILURE": 7
+    },
+    "F12": {
+     "NONE_SUCCESS": 1,
+     "SEARCH_GENERATION_FAILURE": 2,
+     "SELECTION_FAILURE": 9
+    },
+    "F17": {
+     "SEARCH_GENERATION_FAILURE": 3,
+     "SELECTION_FAILURE": 9
+    },
+    "F18": {
+     "GRAMMAR_REPRESENTABILITY": 12
+    }
+   },
+   "classes": {
+    "CANONICALIZATION_EQUIVALENCE_FAILURE": {
+     "cases": 2,
+     "percent": 1.39
+    },
+    "GRAMMAR_REPRESENTABILITY": {
+     "cases": 12,
+     "percent": 8.33
+    },
+    "NONE_SUCCESS": {
+     "cases": 4,
+     "percent": 2.78
+    },
+    "SEARCH_GENERATION_FAILURE": {
+     "cases": 57,
+     "percent": 39.58
+    },
+    "SELECTION_FAILURE": {
+     "cases": 69,
+     "percent": 47.92
+    }
+   },
+   "denominator": 144
+  },
+  "G3": {
+   "by_variant": {
+    "F07": {
+     "SAFE": 4,
+     "VIOLATION": 8
+    },
+    "F19A": {
+     "VIOLATION": 4
+    },
+    "F19B": {
+     "SAFE": 3,
+     "VIOLATION": 1
+    },
+    "F19C": {
+     "SAFE": 3,
+     "VIOLATION": 1
+    },
+    "F20A": {
+     "VIOLATION": 4
+    },
+    "F20B": {
+     "VIOLATION": 4
+    },
+    "F20C": {
+     "VIOLATION": 4
+    }
+   },
+   "classes": {
+    "EXPECTED_NEGATIVE_CONTROL": {
+     "cases": 10,
+     "percent": 27.78
+    },
+    "MODEL_ADEQUACY_LIMITATION": {
+     "cases": 26,
+     "percent": 72.22
+    }
+   },
+   "denominator": 36
+  }
+ },
+ "scope": "DIAGNOSIS ONLY. No scientific code, threshold, grammar, or search setting was changed; no production search was run.",
+ "terminal_state": [
+  "V1 FAILURE MODES EXHAUSTIVELY CHARACTERIZED",
+  "NO V2 SCIENTIFIC CHANGES MADE"
+ ],
+ "title": "MURU ConjectureLab v1 failure decomposition"
+}

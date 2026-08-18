@@ -1,0 +1,384 @@
+{
+  "document_id": "MURU-AUDIT-RC5-POST-A3-5-FREEZE-RECONCILIATION-01",
+  "classification": "PRE_BUILD_AUTHORITY_RECONCILIATION",
+  "status": "RECONCILED_RC5_IMPLEMENTATION_AUTHORIZED",
+  "markdown_companion": "audit/MURU_RC5_POST_A3_5_FREEZE_RECONCILIATION.md",
+  "authorities": {
+    "a3_5_science_freeze": {
+      "tag": "benchmark-content-freeze-a3-5",
+      "tag_object_sha": "533777b73748e3c45dd1ecbda07098ba9837c587",
+      "tag_object_type": "tag",
+      "target_commit": "560bf28568e2762c60edc994aac7f2b6de14081f"
+    },
+    "engineering_parent": {
+      "tag": "engineering-rc4-2-1-integrity-closure",
+      "tag_object_sha": "5bd6d899b26d0eeda0e3db638625ae22128c8a99",
+      "tag_object_type": "tag",
+      "target_commit": "69e33c778efb14362439941d25ebbfcfb1068284",
+      "canonical_citation_rule": "cite the commit 69e33c77...; never write 'commit 5bd6d89'"
+    },
+    "gate8_meta_adjudication_commit": "748eea9b7ebe8c056714237213b644e521ef84f9",
+    "evidence_preservation_commit": "6b56bc4cb9de7b4538a1b87c09c91b83bc708ccf",
+    "prebuild_map": {
+      "path": "audit/MURU_RC5_FINAL_PREBUILD_MAP.md",
+      "source_commit": "7452f32",
+      "blob": "dcda291727c147d3e45ff851a0cc50f1865d5c82",
+      "status": "SUPERSEDED_AS_AUTHORITY_RETAINED_AS_FORENSICS"
+    }
+  },
+  "lineage": {
+    "relationship": "SIBLING_LINEAGES",
+    "merge_base": "a605120242594d23a5fc36d2e622d7d3084356fb",
+    "rc4_2_1_is_ancestor_of_a3_5": false,
+    "a3_5_is_ancestor_of_rc4_2_1": false,
+    "science_branch_merged_into_rc5": false
+  },
+  "sealed_state_at_reconciliation": {
+    "current_contract_development_symbolic_execution": "NOT_RUN",
+    "held_out": "SEALED_NOT_OPENED",
+    "challenge": "NOT_CONSTRUCTED_OR_EXECUTED",
+    "confirmation_real_corpus": "SEALED_NOT_OPENED",
+    "calibration": "NOT_RERUN_THRESHOLD_TABLE_READ_ONLY",
+    "outcome_files_accessed": 0
+  },
+  "baseline_test_state_at_engineering_parent": {
+    "tests": 1210,
+    "failures": 3,
+    "errors": 14,
+    "skipped": 60,
+    "all_failures_traced_to": "artifacts/p2_compounds.parquet (gitignored, never-tracked, locally-regenerable wet-lab artifact)",
+    "matches_rc4_2_1_closure_record": true
+  },
+  "d_items": [
+    {
+      "id": "D1",
+      "item": "Gate 7 ceiling boolean plus folded F5 waiver-regime floor",
+      "classification": "AUTHORIZED_WITH_FINAL_A3_5_CORRECTION",
+      "authority": [
+        "A3.5 \u00a76.9.3",
+        "A3.5 \u00a76.9.2",
+        "A3.5 \u00a711 obligation 17",
+        "A3.5 \u00a79 row 19b"
+      ],
+      "files": [
+        "src/muru/paper_benchmark/structural_acceptance.py"
+      ],
+      "frozen_file_edit": true
+    },
+    {
+      "id": "D2",
+      "item": "candidate_test_r2 provenance, computed exactly once",
+      "classification": "AUTHORIZED_WITH_FINAL_A3_5_CORRECTION",
+      "authority": [
+        "A3.5 \u00a76.3(i)",
+        "A3.5 \u00a76.9.3",
+        "A3.5 \u00a711 obligation 13",
+        "A3.5 \u00a76.0 affine refit"
+      ],
+      "files": [
+        "src/muru/paper_benchmark/rc3_ceiling.py (no edit; caller supplies)"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D3",
+      "item": "Gate 8 hard-rung set and fail-closed acceptance check",
+      "classification": "AUTHORIZED_WITH_FINAL_A3_5_CORRECTION",
+      "authority": [
+        "A3.5 \u00a76.9.4",
+        "A3.5 \u00a711 obligation 14",
+        "A3.5 \u00a711 obligation 18"
+      ],
+      "files": [
+        "src/muru/paper_benchmark/structural_acceptance.py"
+      ],
+      "frozen_file_edit": true,
+      "required_hard_gates": [
+        "F1_REPRODUCIBILITY",
+        "F4_COMPOUND_HOLDOUT",
+        "F7_INFLUENCE_DROP",
+        "F10_NEGATIVE_CONTROL"
+      ]
+    },
+    {
+      "id": "D4",
+      "item": "Execution record rung order, F9 secondary fields, schema version bump",
+      "classification": "AUTHORIZED_WITH_FINAL_A3_5_CORRECTION",
+      "authority": [
+        "A3.5 \u00a76.9.4",
+        "A3.5 \u00a711 obligation 19",
+        "A3.5 \u00a76.0"
+      ],
+      "files": [
+        "src/muru/paper_benchmark/rc3_record.py"
+      ],
+      "frozen_file_edit": true,
+      "frozen_field_names": [
+        "f9_stress_test_result",
+        "f9_stress_test_metric"
+      ]
+    },
+    {
+      "id": "D5",
+      "item": "Positive-scale-invariant cross-seed identity contract",
+      "classification": "ALREADY_IMPLEMENTED_REUSE",
+      "authority": [
+        "A3.5 \u00a714.1",
+        "audit/MURU_A3_5_IDENTITY_FINAL_CONTRACT.md (FROZEN)"
+      ],
+      "files": [
+        "src/muru/paper_benchmark/identity_contract.py"
+      ],
+      "frozen_file_edit": false,
+      "import_from_science_lineage": true
+    },
+    {
+      "id": "D6",
+      "item": "search_seed(case_ordinal, k) and verify_search_seed_invariants()",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a78.1",
+        "A3.5 \u00a711 obligation 9",
+        "A3.5 \u00a711 obligation 10"
+      ],
+      "sub_classifications": {
+        "seed_band_registry.py": "ALREADY_IMPLEMENTED_REUSE",
+        "search_seed arithmetic and case_ordinal helper": "MECHANICAL_ENGINEERING"
+      },
+      "band": {
+        "min_seed": 2100000000,
+        "max_seed": 2100011399,
+        "count": 11400
+      },
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D7",
+      "item": "Per-case falsification executor",
+      "classification": "AUTHORIZED_WITH_FINAL_A3_5_CORRECTION",
+      "authority": [
+        "A3.5 \u00a76.0",
+        "A3.5 \u00a76.1",
+        "A3.5 \u00a76.2",
+        "A3.5 \u00a76.4",
+        "A3.5 \u00a76.5",
+        "A3.5 \u00a76.6",
+        "A3.5 \u00a76.7",
+        "A3.5 \u00a76.8",
+        "A3.5 \u00a76.9.2",
+        "A3.5 \u00a76.9.4"
+      ],
+      "procedures_built": [
+        "F1_REPRODUCIBILITY",
+        "F4_COMPOUND_HOLDOUT",
+        "F7_INFLUENCE_DROP",
+        "F9_ENERGY_SUBSET",
+        "F10_NEGATIVE_CONTROL"
+      ],
+      "f5_disposition": "NOT_A_RUNG; its quantity is candidate_test_r2 (D2)",
+      "f9_disposition": "COMPUTED_AND_REPORTED_NEVER_GATING",
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D8",
+      "item": "G1 leave-one-energy-out trajectory bridge",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a75.1",
+        "A3.5 \u00a75.2",
+        "A3.5 \u00a711 obligation 12"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D9",
+      "item": "Two-layer execution manifest",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a78.4",
+        "A3.5 \u00a71 manifest rule",
+        "A3.5 \u00a711 obligation 15"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D10",
+      "item": "G3 scoring authority guard",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a78.3",
+        "A3.5 \u00a711 obligation 11",
+        "A3.5 \u00a79 row 24"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D11",
+      "item": "Per-seed retention, engine-native score selector",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a77.1",
+        "A3.5 \u00a77.6",
+        "A3.5 \u00a711 obligation 5",
+        "A3.5 \u00a711 obligation 6"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D12",
+      "item": "Gate-2 input provenance (complexity, valid_r2)",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a77.2",
+        "A3.5 \u00a711 obligation 4",
+        "A3.5 \u00a79 rows 9-10"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D13",
+      "item": "Cross-seed grouping, selection_count, representative selection",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a77.4",
+        "A3.5 \u00a77.5",
+        "A3.5 \u00a77.6",
+        "A3.5 \u00a711 obligation 8"
+      ],
+      "frozen_file_edit": false
+    },
+    {
+      "id": "D14",
+      "item": "Phi, per-compound g, search target, invalid_fraction",
+      "classification": "AUTHORIZED_UNCHANGED",
+      "authority": [
+        "A3.5 \u00a74.1",
+        "A3.5 \u00a74.2",
+        "A3.5 \u00a74.3",
+        "A3.5 \u00a74.4",
+        "A3.5 \u00a711 obligations 1-3",
+        "A3.5 \u00a79 rows 1-12"
+      ],
+      "frozen_file_edit": false
+    }
+  ],
+  "differences_frozen_text_vs_prebuild_map": [
+    {
+      "id": "X1",
+      "topic": "identity contract supersedes amendment \u00a77.3",
+      "map_position": "\u00a77.3 recipe still printed in the amendment; map flagged the text-only correction as outstanding",
+      "frozen_resolution": "identity_contract.py governs; MURU_A3_5_IDENTITY_FINAL_CONTRACT.md (FROZEN) declares itself the replacement for \u00a77.3; amendment \u00a714.1 names it as the closed contract",
+      "kind": "DISCLOSED_SUPERSESSION_WITH_RESIDUAL_STALE_PROSE",
+      "creates_new_science": false
+    },
+    {
+      "id": "X2",
+      "topic": "number of falsification procedures",
+      "map_position": "build six per-case procedures including F5",
+      "frozen_resolution": "five rung procedures (F1,F4,F7,F9,F10); F5's quantity survives only as candidate_test_r2",
+      "kind": "FROZEN_TEXT_MORE_SPECIFIC",
+      "creates_new_science": false
+    },
+    {
+      "id": "X3",
+      "topic": "Gate-8 checker name and predicate",
+      "map_position": "narrow REQUIRED_FALSIFICATION_RUNGS, keep check_falsification_harness",
+      "frozen_resolution": "check_gate8 over REQUIRED_HARD_GATES with predicate result != PASS",
+      "kind": "FROZEN_TEXT_NAMES_THE_REPLACEMENT",
+      "creates_new_science": false
+    },
+    {
+      "id": "X4",
+      "topic": "F9 secondary field names",
+      "map_position": "e.g. f9_secondary_result",
+      "frozen_resolution": "f9_stress_test_result and f9_stress_test_metric",
+      "kind": "FROZEN_TEXT_FIXES_THE_NAMES",
+      "creates_new_science": false
+    },
+    {
+      "id": "X5",
+      "topic": "A1.2 fit protocol exists as specification, not executable code",
+      "map_position": "consume adequacy.py's frozen M0 LOEO machinery",
+      "frozen_resolution": "adequacy.py owns the decision contract and contains no fitter; A3.5 \u00a75.2 binds every A1.2 protocol parameter explicitly, so RC5 implements that exact protocol reading every constant from adequacy.py",
+      "kind": "MECHANICAL_ENGINEERING_CONSEQUENCE_RESOLVED_CONSERVATIVELY",
+      "creates_new_science": false
+    },
+    {
+      "id": "X6",
+      "topic": "section 7.4's parameter-sharing merge confirmations",
+      "map_position": "the merge rule merges a*m+a*d with a*m+b*d; five executed confirmations listed",
+      "frozen_resolution": "none of the five holds under the frozen positive-scale-equivalence contract (verified by execution); all five are properties of the superseded section 7.3 TEMPLATE_KEY recipe. The frozen relation merges a candidate with c*candidate for a single c>0 and nothing else. Direction is acceptance-harder: a narrower relation yields more, smaller classes, a smaller selection_count, and a harder Gate 3. Section 7.4's two mandatory non-gating diagnostics survive unchanged and are implemented.",
+      "kind": "CONSEQUENCE_OF_A_DECLARED_SUPERSESSION_CONSERVATIVE_DIRECTION",
+      "creates_new_science": false,
+      "pinned_by": "tests/test_rc5_selection.py::test_the_superseded_template_key_merges_do_not_occur"
+    },
+    {
+      "id": "X7",
+      "topic": "where the ENERGY_SCALE=30.0 leak is actually detectable",
+      "map_position": "reusing estimate.py would rescale every g_hat by 2/3",
+      "frozen_resolution": "correct for the reuse path section 4.1 names (calling estimate._best_log_g verbatim against a 45-scale Phi: executed median ratio exactly 2/3), but a uniform end-to-end E_REF change is absorbed by the refitted isotonic Phi and leaves g_hat unchanged (executed median ratio 1.000; profiles differ by exactly log(45/30) in knot position). The defect is therefore invisible to any case-level integration test, which is why section 4.1's remedy -- parameterise the scale inside the estimator -- is load-bearing at the function boundary.",
+      "kind": "MECHANISM_CLARIFIED_BY_EXECUTION_NO_RULE_CHANGE",
+      "creates_new_science": false,
+      "pinned_by": "tests/test_rc5_estimate.py::test_energy_scale_30_leaks_exactly_where_a3_5_says_and_nowhere_here"
+    }
+  ],
+  "science_lineage_imports": [
+    {
+      "path": "src/muru/paper_benchmark/identity_contract.py",
+      "source_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+      "blob": "151867cbee4cf60189afc5c393d0c8f3ca77c6a0",
+      "bytes": 46602,
+      "byte_identity_verified": true
+    },
+    {
+      "path": "src/muru/paper_benchmark/seed_band_registry.py",
+      "source_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+      "blob": "b6b127ef11fc7f2c46379acd089755057f5ee7cb",
+      "bytes": 15123,
+      "byte_identity_verified": true
+    },
+    {
+      "path": "tests/test_identity_contract.py",
+      "source_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+      "blob": "96b20878fa2583ab318b53393d93b430fbef94f6",
+      "bytes": 52747,
+      "byte_identity_verified": true
+    },
+    {
+      "path": "tests/test_seed_band_separation.py",
+      "source_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+      "blob": "ddd702c081de5d0fe679737f5a78965736906fff",
+      "bytes": 6937,
+      "byte_identity_verified": true
+    }
+  ],
+  "deliberately_not_imported": [
+    {
+      "path": "src/muru/paper_benchmark/falsification_v2_fixtures.py",
+      "blob": "1a617036cfad1793775bf3a82ac0e9982db23dd6",
+      "reason": "qualification harness for the CONSUMED v1/v2 sealed populations; standing prohibition on reuse as fixture material"
+    },
+    {
+      "path": "audit/muru_a3_5_falsification_v2_sealed_raw_results.json",
+      "reason": "sealed v2 raw results; A3.5 \u00a714.1 marks the population CONSUMED permanently"
+    }
+  ],
+  "superseded_do_not_build": [
+    "amendment \u00a77.3 seven/eight-step TEMPLATE_KEY recipe",
+    "63bbcce bucket+stride A3.5 seed band [1905281400, 2104764629]",
+    "50e42c7/9c8d42b five hand-named F9 energy subsets",
+    "falsification_v1 in any role including fixture material",
+    "falsification_v2 single-parameter scale-only refit as production convention",
+    "aec93db per-coefficient-WLS justification for parameter-sharing merge",
+    "dd0d054 inverse-variance weighting channel",
+    "analysis.classify_negative_control as a G3 scoring path",
+    "F5_SCAFFOLD_HOLDOUT as an independent Gate-8 rung",
+    "F9_ENERGY_SUBSET as a hard gate",
+    "discovery/estimate.py ENERGY_SCALE=30.0, LOG_G_GRID, N_ALTERNATIONS as inherited constants",
+    "protocol.estimate_one as the per-compound g estimator",
+    "engine.run_pysr Candidate as any gate input",
+    "Exact Algebra computation (DEFER_AS_UNEXECUTABLE_DESCRIPTIVE_ENDPOINT)"
+  ],
+  "new_scientific_rules_created": 0,
+  "unresolved_blockers": []
+}

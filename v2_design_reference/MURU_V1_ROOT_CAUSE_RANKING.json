@@ -1,0 +1,210 @@
+{
+ "bottleneck_summary": {
+  "failure_stage_distribution_over_240": {
+   "a1_adequacy": 154,
+   "all_passed": 25,
+   "ceiling": 1,
+   "falsification": 1,
+   "null_threshold": 16,
+   "stability": 43
+  },
+  "g2_remains_failing_under_every_counterfactual_tested": true,
+  "late_falsification_is_not_the_bottleneck": {
+   "cases_reaching_gate7_at_all": 27,
+   "gate7": "26 of 27 reached cases pass",
+   "gate8": "25 of 26 reached cases pass",
+   "note": "only 27 of 240 cases ever reach Gate 7, because 154 are stopped at A1 and 43 more at the stability gate"
+  },
+  "single_defect_that_flips_two_of_three_endpoints": "RC1"
+ },
+ "ordering_criterion": "endpoint-verdict leverage first, then affected case count, then confidence of attribution",
+ "root_causes": [
+  {
+   "affected_cases": {
+    "G1": 97,
+    "G3": 26,
+    "all_held_out": 154
+   },
+   "class": "MODEL_ADEQUACY_LIMITATION",
+   "confidence": "HIGH: mechanism reproduced fit by fit, and the control arm of the counterfactual reproduces the frozen result exactly",
+   "endpoint_leverage": {
+    "G1": "67/164 (Wilson lower 0.336) becomes 154/164 (Wilson lower 0.891) if this alone were resolved, crossing the 0.70 gate",
+    "G3": "26/36 violations (Wilson upper 0.842) becomes 0/36 (Wilson upper 0.096), crossing the 0.15 gate"
+   },
+   "evidence": [
+    "154 of 240 cases are BOUNDARY_LIMITED; 0 are INSUFFICIENT_DATA, NUMERICAL_FAILURE, MODEL_FIT_FAILURE, TIMEOUT or CONTRACT_FAILURE",
+    "every one of the 154 is blocked by M3 (127 by M3 alone, 27 by M2 and M3); M1 never blocks and the shared M0 fit is never unresolved on any compound in the partition",
+    "7399 of 8816 recorded bound contacts are the M3 low-energy plateau pinned at its MU_CEIL upper bound",
+    "the median relative sum-of-squares improvement that triggered the rule is 1.3 percent; the largest anywhere in the partition is 28.9 percent",
+    "raising the trigger to a 10 percent relative floor makes all 240 cases M0_NOT_REJECTED",
+    "case geometry is identical across all 240 cases and no compound anywhere falls below the 5-energy minimum, so data sparsity is excluded"
+   ],
+   "id": "RC1_A1_UNRESOLVED_BOUNDARY_RULE",
+   "rank": 1,
+   "remediation_class": "adequacy decision-rule specification: give the boundary test a scale-aware magnitude floor or a proper identifiability criterion, and separate 'the fit sits at a bound' from 'the contrast cannot decide'",
+   "risks": [
+    "any floor is a new free parameter and must be calibrated prospectively, not chosen against Held-out",
+    "loosening evaluability admits cases the current rule conservatively refused, so the safety direction of G3 changes and must be re-argued",
+    "MU_CEIL and MIN_VERTICAL_AMPLITUDE were inherited from the generator clip rather than derived, so the admissible ranges themselves need justification before the floor is tuned"
+   ],
+   "statement": "The A1 unresolved-boundary test has no magnitude floor, so a negligible outward improvement at a parameter bound removes a compound from the evaluable pool. Enough compounds are removed that the M3 contrast falls below its 24-compound evaluability minimum, and the case becomes BOUNDARY_LIMITED."
+  },
+  {
+   "affected_cases": {
+    "positive_controls": 48,
+    "validity_scope": 240
+   },
+   "class": "MODEL_ADEQUACY_LIMITATION",
+   "confidence": "HIGH: direct enumeration over all 240 cases and all three detectors",
+   "endpoint_leverage": "Does not change any v1 count. It removes the evidential content of the 67 M0_NOT_REJECTED verdicts: A1 could not have rejected M0 on this partition regardless of the data, so 'M0 not rejected' carries no discriminating information.",
+   "evidence": [
+    "0 of 240 cases reached any M0_REJECTED_* state",
+    "F13 (M1 truth), F14 (M2 truth), F15 (M3 truth) and F16 (M1+M2+M3 truth) produced 0 detections across 48 cases",
+    "in no case did a detector reach 20 wins while being evaluability-blocked, so the boundary defect and the threshold defect are independent",
+    "at a 10 percent counterfactual boundary floor, where every case is evaluable, the firing count is still 0"
+   ],
+   "id": "RC2_A1_DETECTOR_HAS_NO_DEMONSTRATED_POWER",
+   "rank": 2,
+   "remediation_class": "adequacy test power: re-derive the practical-win ratio, the win count and the leave-one-energy-out loss so the detector has demonstrated sensitivity on its own positive controls before it gates anything",
+   "risks": [
+    "raising sensitivity raises the false-rejection rate on true-M0 families, which directly suppresses G1",
+    "the positive controls are the only power evidence available and they are now spent as diagnostic evidence, so a v2 power argument needs an independent construction"
+   ],
+   "statement": "No A1 detector fired on any of the 240 Held-out cases, including the 48 dedicated positive controls whose planted truth is the deviation the detector is meant to catch. The 20-of-30 practical-win threshold was never approached: the maximum wins ever observed are 18 for M1, 18 for M2 and 15 for M3."
+  },
+  {
+   "affected_cases": {
+    "G2": 69
+   },
+   "class": "SELECTION_FAILURE",
+   "confidence": "MEDIUM-HIGH: the paired within-case comparison is strong, but the direct front-level evidence was not sealed",
+   "endpoint_leverage": "Bounded: even a perfect post-search selector over the persisted candidates yields only 75/144 (Wilson lower 0.440), still far below the 0.70 gate.",
+   "evidence": [
+    "a G2-correct candidate reached cross-seed selection in 75 of 144 cases but was the modal answer in essentially none",
+    "median correct-seed share is 1 of 30; the maximum anywhere is 16 of 30; no case reached the 20-of-30 stability gate with a correct candidate",
+    "in 70 of the 75 paired cases the correct retained candidate is both more accurate and more complex than the incorrect ones",
+    "median within-case accuracy gap is +0.121 valid_r2 (positive in 98.7 percent of paired cases) at a median +3.4 complexity",
+    "2450 of the 4318 actual retained candidates (56.74 percent) are mass-only mass_power expressions, and mass_power is the modal answer in 92 of 144 cases"
+   ],
+   "id": "RC3_WITHIN_SEED_RETENTION_DISCARDS_THE_ACCURATE_CANDIDATE",
+   "rank": 3,
+   "remediation_class": "search objective and retention policy: retain more than one candidate per seed, and make retention accuracy-aware rather than purely parsimony-driven",
+   "risks": [
+    "retaining more candidates weakens the stability gate's meaning and inflates the effective multiple-comparison count",
+    "an accuracy-weighted rule biases toward overfit high-complexity expressions, which is the failure mode the parsimony rule exists to prevent",
+    "the within-seed Pareto fronts were not persisted, so this attribution rests on which candidate the rule kept across disagreeing seeds, not on what each front contained"
+   ],
+   "statement": "Each seed retains argmax(score), PySR's marginal-return-per-unit-complexity heuristic, and only that one candidate is persisted. When seeds disagreed, the seeds that retained a G2-correct expression carry both materially higher accuracy and higher complexity, which is the signature of a parsimony rule discarding the correct answer."
+  },
+  {
+   "affected_cases": {
+    "G2": 57
+   },
+   "class": "SEARCH_GENERATION_FAILURE",
+   "confidence": "HIGH for the counts, MEDIUM for the mechanism: the persisted evidence shows what was retained, not what was searched",
+   "endpoint_leverage": "Sets the ceiling on G2. These cases cannot be rescued by any selection, voting or canonicalization change.",
+   "evidence": [
+    "F09 (mass_saturating_descriptor): 0 of 12 cases had any correct retained candidate across 360 searches",
+    "F03: 1 of 12; F02: 3 of 12",
+    "all 30 seeds of several F03 cases converged on a descriptor-only expression with no mass term at all",
+    "2450 of 4318 retained candidates are mass-only"
+   ],
+   "id": "RC4_SEARCH_NEVER_REACHES_THE_DESCRIPTOR_STRUCTURE",
+   "rank": 4,
+   "remediation_class": "search budget, operator set and objective design; and separately, generator signal-to-noise, since the descriptor term's contribution to the scalar may be too small to be identifiable at the planted coefficient magnitudes",
+   "risks": [
+    "increasing budget or operator richness increases the false-structure rate, which G3 is built to punish",
+    "if the descriptor contribution is genuinely below the identifiability floor at the planted coefficients, this is a benchmark-construction issue and no search change will fix it; that distinction was not resolvable from the sealed evidence and needs its own study"
+   ],
+   "statement": "In 57 representable cases no seed's retained candidate ever carried both the correct support and the correct family. The search collapses onto the mass-only term and never recovers the descriptor structure, completely so for the saturating family."
+  },
+  {
+   "affected_cases": {
+    "G2": 37
+   },
+   "class": "CLASSIFICATION_SCORING_FAILURE",
+   "confidence": "HIGH: measured directly over all 4320 candidates",
+   "endpoint_leverage": "Confounds interpretation rather than the verdict: under the frozen predicate UNEVALUABLE and FAILURE are both non-successes, so relabelling all 37 would not move G2's numerator.",
+   "evidence": [
+    "1475 of the 4318 actual retained candidates (34.16 percent) could not be labelled",
+    "only 2 of the 4320 seed slots produced no candidate at all and only 2 candidates failed to parse, so this is classifier coverage and not a parser or execution defect",
+    "all 37 G2 UNEVALUABLE cases carry family_status FAMILY_UNRESOLVED",
+    "the classifier's family tests are pattern matches on simplified sympy trees, so nested or algebraically rearranged forms fall through to None"
+   ],
+   "id": "RC5_FAMILY_CLASSIFIER_COVERAGE",
+   "rank": 5,
+   "remediation_class": "structural classification: replace pattern matching on simplified trees with a canonical structural normal form, or with behavioural family identification",
+   "risks": [
+    "a more permissive classifier can label a wrong expression with the truth family, converting UNEVALUABLE into false SUCCESS and inflating G2",
+    "classification is downstream of truth, so any change must preserve the truth-blind boundary of the acceptance predicate"
+   ],
+   "statement": "classify_discovered_family returns None for a third of all grammar-legal retained candidates. When the cross-seed winner is one of them, the case is scored UNEVALUABLE rather than as a wrong answer."
+  },
+  {
+   "affected_cases": {
+    "G2": 12
+   },
+   "class": "GRAMMAR_REPRESENTABILITY",
+   "confidence": "HIGH: a static property of the frozen grammar and the frozen classifier, confirmed empirically",
+   "endpoint_leverage": "Caps G2 at 132 of 144 by construction. Removing it cannot by itself change the verdict.",
+   "evidence": [
+    "discovery/grammar.py UNARY_OPERATORS omits exp, per DEVIATIONS_P3 D1",
+    "g2_contract._contains_exp_of requires an actual sympy.exp node in the simplified expression",
+    "F18 oracle recovery is 0 of 12 across 360 searches",
+    "29 of 30 F18 seeds retained a mass-only expression"
+   ],
+   "id": "RC6_GRAMMAR_CANNOT_EXPRESS_THE_EXPONENTIAL_FAMILY",
+   "rank": 6,
+   "remediation_class": "benchmark and grammar alignment: either admit exp to the grammar or remove the exponential family from the family-recovery population; the mismatch itself is the defect",
+   "risks": [
+    "admitting exp reintroduces the overflow pathologies DEVIATIONS_P3 D1 excluded it for",
+    "removing the family shrinks the endpoint population and weakens the claim the endpoint was designed to support"
+   ],
+   "statement": "The frozen grammar excludes exp, while F18's planted truth is sqrt(mass) * exp(coefficient * descriptor / 3) and the family classifier requires a literal exp node. Those 12 cases had a success probability of exactly zero before any search ran."
+  },
+  {
+   "affected_cases": {
+    "G2": 2
+   },
+   "class": "CANONICALIZATION_EQUIVALENCE_FAILURE",
+   "confidence": "HIGH: both arms replayed over the same frozen evidence, with the control arm reproducing the seal exactly",
+   "endpoint_leverage": "Negligible on its own. It matters only after RC3 and RC4 are addressed, since it cannot help when the correct answer is a minority.",
+   "evidence": [
+    "median 11 identity classes per case against a median 3 label classes",
+    "correct answers are split across a median of 5 identity classes but 1 label class",
+    "in 61 of 144 cases the correct answers occupy more than one identity class",
+    "regrouping by the endpoint's own label recovers only 2 cases and loses 3 others, for a net 3 of 144 against the frozen rule's 4"
+   ],
+   "id": "RC7_CROSS_SEED_IDENTITY_IS_FINER_THAN_THE_ENDPOINT",
+   "rank": 7,
+   "remediation_class": "equivalence-relation alignment between the voting layer and the scored endpoint",
+   "risks": [
+    "coarsening the voting relation merges genuinely different expressions and inflates the stability statistic, which is the k-inflating direction the identity contract was written to avoid"
+   ],
+   "statement": "Cross-seed voting groups by template_key while G2 is scored on (effective support, family). The voting relation is strictly finer than the scoring relation, so agreeing answers are split across classes. The effect is real but small."
+  },
+  {
+   "affected_cases": {
+    "G3": 10
+   },
+   "class": "EXPECTED_NEGATIVE_CONTROL",
+   "confidence": "HIGH: verified twice by independent routes",
+   "endpoint_leverage": "None. G3 fails only because UNEVALUABLE is charged as a violation, and every UNEVALUABLE traces to RC1.",
+   "evidence": [
+    "10 of 10 evaluable G3 cases are SAFE",
+    "only 2 of the 36 G3 cases were structurally accepted at all, both with mass-only support under variants where mass-only acceptance is permitted",
+    "an independent scan that bypasses the G3 classifiers finds 0 accepted cases with non-mass support",
+    "Gate 8's F10_NEGATIVE_CONTROL rung failed exactly 1 of 26 cases, and that failure correctly blocked acceptance"
+   ],
+   "id": "RC8_NEGATIVE_CONTROLS_BEHAVED_AS_DESIGNED",
+   "rank": 8,
+   "remediation_class": "none required",
+   "risks": [
+    "the safety evidence rests on 10 evaluable cases, which is far too small to support a safety claim; resolving RC1 is what would make G3 informative"
+   ],
+   "statement": "Not a defect, recorded so it is not mistaken for one. Where G3 was evaluable, the system was safe in every instance, and no unsafe structural claim was accepted anywhere in the partition."
+  }
+ ],
+ "scope": "DIAGNOSIS ONLY. Remediation classes are named, not designed. No v2 implementation is proposed.",
+ "title": "MURU ConjectureLab v1 root-cause ranking"
+}

@@ -1,0 +1,119 @@
+{
+ "by_family": {
+  "F01": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F02": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F03": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F04": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F05": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F06": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "F07": {
+   "family_recovery": 0,
+   "principal_structural_safety": 12,
+   "scalar_competence": 12
+  },
+  "F08": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F09": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F10": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F11": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F12": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F13": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "F14": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "F15": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "F16": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "F17": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F18": {
+   "family_recovery": 12,
+   "principal_structural_safety": 0,
+   "scalar_competence": 12
+  },
+  "F19": {
+   "family_recovery": 0,
+   "principal_structural_safety": 12,
+   "scalar_competence": 8
+  },
+  "F20": {
+   "family_recovery": 0,
+   "principal_structural_safety": 12,
+   "scalar_competence": 0
+  }
+ },
+ "case_population": 240,
+ "denominators": {
+  "family_recovery": 144,
+  "principal_structural_safety": 36,
+  "scalar_competence": 164
+ },
+ "families_with_no_primary_endpoint": [
+  "F06",
+  "F13",
+  "F14",
+  "F15",
+  "F16"
+ ],
+ "note": "endpoint denominators do not partition the 240 cases; they overlap, and five families carry no primary endpoint",
+ "sum_of_denominators": 344
+}

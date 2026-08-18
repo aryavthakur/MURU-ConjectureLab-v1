@@ -1,0 +1,21 @@
+{
+  "audit_scope": "FULL CORPUS -- every currently-completed, valid (non-PRERESCUE_INVALIDATED) E2a world at the frozen snapshot, not a sample",
+  "snapshot_taken_at_local": "2026-08-17T15:21:00-04:00",
+  "N_COMPLETED_SNAPSHOT": 369,
+  "N_REPLAYABLE": 369,
+  "N_MATCH": 369,
+  "N_MISMATCH": 0,
+  "ERROR_COUNT": 0,
+  "PARITY_PASS": true,
+  "N_DETERMINISM_CHECKED": 30,
+  "N_DETERMINISM_MATCH": 30,
+  "DETERMINISM_PASS": true,
+  "methodology": {
+    "selection": "NONE -- every replayable world in the frozen snapshot was replayed, not a sample",
+    "snapshot_synchronization": "a single population snapshot was frozen once (full_corpus_parity_audit.py --take-snapshot-to) and every parallel shard partitioned that IDENTICAL list (--frozen-snapshot-file), guaranteeing complete non-overlapping coverage -- verified directly: shard N_REPLAYABLE_THIS_SHARD values summed to exactly N_REPLAYABLE_GLOBAL",
+    "comparison": "lazy_classify.lazy_evaluate_world replayed against each world's raw candidate rows (classification-derived fields discarded and recomputed via the real, unmodified classifier), compared to the already-sealed exhaustive first_loss_stage / representative_g2_correct / representative_truth_equivalent -- representative fields compared only where decision-relevant (see MURU_V2_E2_LAZY_CLASSIFICATION_SPEC.md section 4)",
+    "isolated_retry": "4 of 369 worlds exceeded a 90s per-world safety timeout on the main pass (0 mismatches among them or anywhere else -- these were ERRORs, not disagreements) and were resolved by one isolated, patient retry at a 600s timeout, mirroring this rescue's own Part X poison-world discipline (never mark a slow-but-possibly-correct world permanently failed without a dedicated retry). All 4 matched on retry.",
+    "determinism_check": "30-world deterministic (sorted-ID stride) subset, each replayed twice within the same worker process"
+  },
+  "note": "No stage frequency, A/B/C/D/E count, E2b field, or routing-gate count appears anywhere in this file or was read to produce it beyond the minimum per-world label needed for the match/mismatch boolean, exactly as the mission's own Part V precedent authorizes."
+}

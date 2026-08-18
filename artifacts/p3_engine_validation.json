@@ -1,0 +1,101 @@
+{
+ "versions": {
+  "python": "3.13.12",
+  "platform": "Darwin 25.1.0 arm64",
+  "cpu_count": 8,
+  "pysr": "1.5.10",
+  "gplearn": "0.4.3",
+  "sympy": "1.14.0",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "scikit_learn": "1.9.0",
+  "scipy": "1.18.0",
+  "julia": "1.12.6",
+  "SymbolicRegression_jl": "1.11.3"
+ },
+ "operators_and_complexity": {
+  "binary_operators": [
+   "+",
+   "-",
+   "*",
+   "/"
+  ],
+  "unary_operators": [
+   "sqrt",
+   "log",
+   "square",
+   "cube",
+   "inv"
+  ],
+  "excluded": [
+   "exp",
+   "trigonometric functions",
+   "free-exponent ^"
+  ],
+  "max_complexity": 20,
+  "nested_constraints": {
+   "sqrt": {
+    "sqrt": 0,
+    "log": 0
+   },
+   "log": {
+    "log": 0,
+    "sqrt": 0
+   },
+   "inv": {
+    "inv": 0
+   },
+   "square": {
+    "square": 0,
+    "cube": 0
+   },
+   "cube": {
+    "cube": 0,
+    "square": 0
+   }
+  },
+  "protected_semantics": {
+   "division": "|denominator| < 1e-12 -> invalid",
+   "inv": "|argument| < 1e-12 -> invalid",
+   "log": "argument <= 0 -> invalid",
+   "sqrt": "argument < 0 -> invalid",
+   "overflow": "|value| >= 1e12 -> invalid",
+   "nan": "NaN or non-finite -> invalid",
+   "scoring": "invalid points are excluded from the fit statistic and counted against the candidate; a candidate with more than 0.5% invalid points on the evaluation domain is rejected outright. Invalidity can never improve a score."
+  },
+  "complexity_metric": "node count over the parsed tree: variable 1, constant 1, binary op 1, unary op 1; an integer or half-integer power is one unary op over its base",
+  "complexity_examples": {
+   "a": 1,
+   "a + b": 3,
+   "sqrt(a)": 2,
+   "a**2": 2,
+   "square(a)": 2,
+   "sqrt(a*b)": 4,
+   "a*b + 1.0": 5
+  }
+ },
+ "checkpointability": {
+  "unit": "(block, world, seed)",
+  "resume_skips_completed": true,
+  "resume_advances": true,
+  "truncated_file_treated_as_incomplete": true,
+  "atomic_write": "tmp file then os.replace"
+ },
+ "determinism": {
+  "same_seed_identical": true,
+  "same_seed_n_equations": 9,
+  "different_seed_differs": true,
+  "note": "PySR is run with deterministic=True and parallelism='serial'; reproducibility is asserted at that setting, which is the one every governed run uses"
+ },
+ "smoke_test": {
+  "planted": "1.5*x0 + 0.5*x1**2",
+  "n_pareto": 6,
+  "seconds": 5.91,
+  "recovered": true,
+  "recovered_expr": "((x0 + square(x1)) / 2.0000467) + x0",
+  "recovered_complexity": 8,
+  "exact_equivalent": false,
+  "best_valid_r2": 0.9999999997447157
+ },
+ "disclaimer": "successful installation is not scientific validation; this file records only that the engine behaves as the protocol assumes"
+}

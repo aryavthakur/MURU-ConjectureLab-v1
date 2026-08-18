@@ -1,0 +1,146 @@
+{
+ "hardware": "2024 MacBook Air, 8 cores, 16 GB",
+ "thread_caps": {
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "VECLIB_MAXIMUM_THREADS": "1",
+  "NUMEXPR_NUM_THREADS": "1"
+ },
+ "workers": 4,
+ "counts": {
+  "plan_version": "ov-plan-1.0.0",
+  "worlds_by_block": {
+   "NCAL": 100,
+   "G4": 100,
+   "G4M": 30,
+   "G1A": 6,
+   "G1B": 40,
+   "G1C": 10,
+   "G2": 8,
+   "G3": 8,
+   "G5": 8,
+   "GC": 9,
+   "GRT": 4
+  },
+  "n_worlds": 323,
+  "n_seeds_per_world": 30,
+  "pysr_runs_by_block": {
+   "NCAL": 3000,
+   "G4": 3000,
+   "G4M": 900,
+   "G1A": 180,
+   "G1B": 1200,
+   "G1C": 300,
+   "G2": 240,
+   "G3": 240,
+   "G5": 240,
+   "GC": 270,
+   "GRT": 120
+  },
+  "pysr_runs_total": 9690,
+  "gplearn_worlds": 88,
+  "gplearn_seeds_per_world": 10,
+  "gplearn_runs_total": 880,
+  "expansion": {
+   "NCAL": "100 worlds x 30 seeds = 3000 runs",
+   "G4": "100 worlds x 30 seeds = 3000 runs",
+   "G4M": "30 worlds x 30 seeds = 900 runs",
+   "G1A": "6 worlds x 30 seeds = 180 runs",
+   "G1B": "40 worlds x 30 seeds = 1200 runs",
+   "G1C": "10 worlds x 30 seeds = 300 runs",
+   "G2": "8 worlds x 30 seeds = 240 runs",
+   "G3": "8 worlds x 30 seeds = 240 runs",
+   "G5": "8 worlds x 30 seeds = 240 runs",
+   "GC": "9 worlds x 30 seeds = 270 runs",
+   "GRT": "4 worlds x 30 seeds = 120 runs"
+  },
+  "gplearn_expansion": "88 worlds x 10 seeds = 880 runs"
+ },
+ "benchmark": [
+  {
+   "family": "G1B",
+   "note": "structured positive control",
+   "world_build_s": 0.0038657188415527344,
+   "collapse_fit_s": 0.11707401275634766,
+   "pysr_s_per_seed_serial": 2.4563951194286346,
+   "gplearn_s_per_seed_serial": 3.2099411487579346
+  },
+  {
+   "family": "G4",
+   "note": "pure null",
+   "world_build_s": 0.0038640499114990234,
+   "collapse_fit_s": 0.11790204048156738,
+   "pysr_s_per_seed_serial": 1.9998042583465576,
+   "gplearn_s_per_seed_serial": 3.2574758529663086
+  },
+  {
+   "family": "G2",
+   "note": "non-collapsing, slowest family in Phase 3",
+   "world_build_s": 0.004395723342895508,
+   "collapse_fit_s": 0.11718010902404785,
+   "pysr_s_per_seed_serial": 2.628325879573822,
+   "gplearn_s_per_seed_serial": 3.196173906326294
+  }
+ ],
+ "covariate_load_s": 0.05144000053405762,
+ "pysr_s_per_seed_serial_mean": 2.3615084191163382,
+ "gplearn_s_per_seed_serial_mean": 3.221196969350179,
+ "world_build_plus_fit_s_mean": 0.12142721811930339,
+ "concurrency": {
+  "workers": 4,
+  "steady_state_s_per_seed_per_worker": [
+   3.4762036204338074,
+   3.4662603735923767,
+   3.6111662685871124,
+   3.434300482273102
+  ],
+  "mean_s_per_seed_per_worker": 3.4969826862215996,
+  "wall_s_per_run": 0.8742456715553999,
+  "speedup_vs_serial": 2.7011954373361657,
+  "seeds_timed_per_worker": 8,
+  "note": "each worker warms Julia up first and then times steady-state runs, so per-process startup \u2014 which the real run pays once per shard \u2014 is excluded"
+ },
+ "concurrency_grid": [
+  {
+   "workers": 4,
+   "steady_state_s_per_seed_per_worker": [
+    3.4762036204338074,
+    3.4662603735923767,
+    3.6111662685871124,
+    3.434300482273102
+   ],
+   "mean_s_per_seed_per_worker": 3.4969826862215996,
+   "wall_s_per_run": 0.8742456715553999,
+   "speedup_vs_serial": 2.7011954373361657,
+   "seeds_timed_per_worker": 8,
+   "note": "each worker warms Julia up first and then times steady-state runs, so per-process startup \u2014 which the real run pays once per shard \u2014 is excluded"
+  }
+ ],
+ "post_processing": {
+  "harness_s_per_world": 0.48668384552001953,
+  "ceiling_s_per_world": 0.016629934310913086,
+  "signature_s_per_candidate": 0.006432628631591797,
+  "selection_s_per_world_measured_in_development": 2.0,
+  "recovery_s_per_world_estimate": 0.5
+ },
+ "projection": {
+  "pysr_runs": 9690,
+  "pysr_wall_s_per_run": 0.8742456715553999,
+  "pysr_hours": 2.353177932603285,
+  "gplearn_runs": 880,
+  "gplearn_hours": 0.1968509259047332,
+  "world_build_hours": 0.002723679961981597,
+  "post_processing_s_per_world": 3.124740997950236,
+  "post_processing_hours": 0.07008967655124487,
+  "total_hours": 2.6228422150212447,
+  "arithmetic": "PySR: 9690 runs x 0.874 s = 2.35 h; gplearn: 880 runs x 3.221 s / 4 = 0.20 h; world build+fit: 323 x 0.12 s / 4 = 0.00 h; select+adjudicate+recover: 323 x 3.12 s / 4 = 0.07 h"
+ },
+ "peak_rss_gb_single_process": 1.1845550537109375,
+ "checkpoint_unit": "one (block, world, seed) symbolic run",
+ "gplearn_scope": {
+  "worlds": 88,
+  "seeds": 10,
+  "pysr_seeds_per_world": 30
+ }
+}

@@ -1,0 +1,37 @@
+shard 3/6: 90 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r003: stage=C front=13/30 failures=0 wall=207.9s classify_cache=285
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r009: stage=C front=17/30 failures=0 wall=274.5s classify_cache=544
+V2C|E2|mass_affine_descriptor|c_low|n_default|r003: stage=B front=15/30 failures=0 wall=236.3s classify_cache=810
+V2C|E2|mass_affine_descriptor|c_low|n_default|r009: stage=B front=14/30 failures=0 wall=262.4s classify_cache=1123
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r003: stage=B front=13/30 failures=0 wall=303.4s classify_cache=1439
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r009: stage=B front=16/30 failures=0 wall=230.8s classify_cache=1763
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r003: stage=C front=16/30 failures=0 wall=183.2s classify_cache=2063
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r009: stage=E front=20/30 failures=0 wall=1955.5s classify_cache=2327
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r003: stage=C front=21/30 failures=0 wall=251.0s classify_cache=2596
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r009: stage=C front=17/30 failures=0 wall=208.7s classify_cache=2882
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r003: stage=B front=14/30 failures=0 wall=987.8s classify_cache=3190
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r009: stage=B front=10/30 failures=0 wall=215.0s classify_cache=3501
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r003: stage=E front=22/30 failures=0 wall=219.0s classify_cache=3787
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r009: stage=C front=15/30 failures=0 wall=486.1s classify_cache=4093
+V2C|E2|mass_affine_descriptor|c_high|n_default|r003: stage=C front=15/30 failures=0 wall=242.3s classify_cache=4418
+V2C|E2|mass_affine_descriptor|c_high|n_default|r009: stage=C front=20/30 failures=0 wall=196.8s classify_cache=4743
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r003: stage=B front=17/30 failures=0 wall=274.3s classify_cache=5039
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r009: stage=B front=18/30 failures=0 wall=242.1s classify_cache=5355
+V2C|E2|mass_power|c_low|n_noiseless|r003: stage=E front=30/30 failures=0 wall=218.2s classify_cache=5601
+V2C|E2|mass_power|c_low|n_noiseless|r009: stage=E front=30/30 failures=0 wall=163.4s classify_cache=5770
+V2C|E2|mass_power|c_low|n_default|r003: stage=E front=30/30 failures=0 wall=235.7s classify_cache=6097
+V2C|E2|mass_power|c_low|n_default|r009: stage=E front=30/30 failures=0 wall=297.3s classify_cache=6376
+V2C|E2|mass_power|c_low|n_strong|r003: stage=E front=30/30 failures=0 wall=337.5s classify_cache=6712
+V2C|E2|mass_power|c_low|n_strong|r009: stage=E front=30/30 failures=0 wall=241.2s classify_cache=7014
+V2C|E2|mass_power|c_mid|n_noiseless|r003: stage=E front=30/30 failures=0 wall=208.6s classify_cache=7222
+V2C|E2|mass_power|c_mid|n_noiseless|r009: stage=E front=30/30 failures=0 wall=180.9s classify_cache=7442
+V2C|E2|mass_power|c_mid|n_default|r003: stage=E front=30/30 failures=0 wall=224.5s classify_cache=7738
+V2C|E2|mass_power|c_mid|n_default|r009: stage=E front=30/30 failures=0 wall=332.0s classify_cache=8048
+V2C|E2|mass_power|c_mid|n_strong|r003: stage=E front=30/30 failures=0 wall=265.9s classify_cache=8377
+V2C|E2|mass_power|c_mid|n_strong|r009: stage=E front=30/30 failures=0 wall=273.0s classify_cache=8724
+V2C|E2|mass_power|c_high|n_noiseless|r003: stage=E front=30/30 failures=0 wall=208.6s classify_cache=8976
+V2C|E2|mass_power|c_high|n_noiseless|r009: stage=E front=30/30 failures=0 wall=164.0s classify_cache=9190
+shard 3/6: 90 worlds assigned, 32 already done
+shard 3/6: 90 worlds assigned, 32 already done
+shard 3/1: 0 worlds assigned, 0 already done
+shard 3 COMPLETE

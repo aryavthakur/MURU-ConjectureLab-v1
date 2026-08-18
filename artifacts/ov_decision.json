@@ -1,0 +1,123 @@
+{
+ "decision_version": "ov-decision-1.0.0",
+ "verdict": "DO NOT AUTHORIZE PHASE 4",
+ "stop_conditions_fired": [
+  "independent-engine corroboration did not meet the frozen claim-relevant standard"
+ ],
+ "blockers": [],
+ "metrics": {
+  "G1A": {
+   "n": 6,
+   "success": 6,
+   "n_gated": 4,
+   "success_gated": 4,
+   "adverse_success": 2
+  },
+  "G1B_low": {
+   "n": 10,
+   "success": 10,
+   "rate": 1.0,
+   "median_selection_fraction": 1.0
+  },
+  "G1B_moderate": {
+   "n": 20,
+   "success": 17,
+   "rate": 0.85,
+   "median_selection_fraction": 1.0
+  },
+  "G1B_adverse": {
+   "n": 10,
+   "success": 3,
+   "rate": 0.3,
+   "median_selection_fraction": 0.9666666666666667
+  },
+  "G1C": {
+   "n": 10,
+   "type2_success": 5,
+   "false_identification_claims": 0,
+   "worlds": []
+  },
+  "G4": {
+   "n": 100,
+   "accepted": 0,
+   "rate": 0.0,
+   "clopper_pearson_95": [
+    0.0,
+    0.03621669264517641
+   ],
+   "accepted_worlds": []
+  },
+  "G2": {
+   "n": 8,
+   "violations": 0,
+   "limit": 1,
+   "worlds": []
+  },
+  "G3": {
+   "n": 8,
+   "violations": 0,
+   "limit": 0,
+   "worlds": []
+  },
+  "G4M": {
+   "n": 30,
+   "violations": 0,
+   "limit": 0,
+   "worlds": []
+  },
+  "GC": {
+   "n": 9,
+   "violations": 0,
+   "limit": 1,
+   "worlds": []
+  },
+  "G5": {
+   "n": 8,
+   "violations": 0,
+   "limit": 2,
+   "worlds": []
+  },
+  "GRT": {
+   "n": 4,
+   "violations": 0,
+   "limit": 1,
+   "worlds": []
+  },
+  "null_calibration": {
+   "n_calibration_worlds": 100,
+   "accepted_g1b_moderate": 19,
+   "clearing_upper_ci": 19,
+   "fraction": 1.0,
+   "requirement": 0.8
+  },
+  "corroboration": {
+   "standard": "on G1B moderate worlds: block-level effective support agrees in >= 50% of worlds AND the mass-block exponent agrees within +/-0.15 in >= 50%",
+   "n_worlds": 20,
+   "block_support_agreement": 0.15,
+   "mass_exponent_agreement": 0.25,
+   "satisfied": false
+  },
+  "seal": {
+   "expected": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
+   "recomputed": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
+   "intact": true,
+   "opened_during_study": false,
+   "real_data_symbolic_search_ran": false
+  }
+ },
+ "provenance": {
+  "branch": "objective-validation-type2",
+  "commit": "d4ba87f74051166a6f202d17512ab835970b43e7",
+  "phase3_commit": "211b500999a6ea0a098cfb87f1a9f4958060f81e",
+  "prereg_sha256": "9ce046294940464343cd74978931fa3fc9ed7bb79541484a9fba7b8c142ee9e7",
+  "amendment_sha256": "b922a3d6763c295a17da019c92ec871e88869158728908e4958736f932e489e2",
+  "truth_manifest_sha256": "c2fd02fdfd32785eb2d57b46f0ed4be50b47fec68e9f5a35969f050faf87d657",
+  "seal": {
+   "expected": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
+   "recomputed": "d6b6b13585978768ade9155d1efb927f9e6067500eda2288653d6257c5461b07",
+   "intact": true,
+   "opened_during_study": false,
+   "real_data_symbolic_search_ran": false
+  }
+ }
+}

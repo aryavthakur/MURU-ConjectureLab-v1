@@ -1,0 +1,69 @@
+{
+ "disagreement_count": 0,
+ "disagreements_vs_primary": [],
+ "result": {
+  "denominators": {
+   "family_recovery": 144,
+   "principal_structural_safety": 36,
+   "scalar_competence": 164
+  },
+  "f5_present_in_any_record": false,
+  "f9_pass_among_gate8_reachers": 26,
+  "g1": {
+   "gate_passed_at_upper_bound": false,
+   "m0_accepted": 67,
+   "upper_bound_wilson_lower": 0.3362326347636318
+  },
+  "g2": {
+   "gate_passed": false,
+   "successes": 4,
+   "unevaluable": 37,
+   "wilson_lower": 0.010853942365456266
+  },
+  "g3": {
+   "gate_passed": false,
+   "violations": 26,
+   "wilson_upper": 0.841518299741862
+  },
+  "gate7": {
+   "passed": 26,
+   "reached": 27
+  },
+  "gate8": {
+   "passed": 25,
+   "reached": 26,
+   "rung_failures": {
+    "F10_NEGATIVE_CONTROL": 1
+   }
+  },
+  "method": "re-derived from the frozen contract text; the primary analyzer is not imported and no object is shared with it",
+  "poisoned_by_endpoint": {
+   "family_recovery": 0,
+   "principal_structural_safety": 0,
+   "scalar_competence": 0
+  },
+  "stage_distribution": {
+   "a1_adequacy": 154,
+   "all_passed": 25,
+   "ceiling": 1,
+   "falsification": 1,
+   "null_threshold": 16,
+   "stability": 43
+  },
+  "structural_accepted": 25,
+  "z_sensitivity": {
+   "g1_upper_bound": {
+    "z_exact_normal": 0.3362338964284562,
+    "z_frozen_1_96": 0.3362326347636318
+   },
+   "g2": {
+    "z_exact_normal": 0.01085411795640967,
+    "z_frozen_1_96": 0.010853942365456266
+   },
+   "g3": {
+    "z_exact_normal": 0.8415166205986538,
+    "z_frozen_1_96": 0.841518299741862
+   }
+  }
+ }
+}

@@ -40,6 +40,22 @@ outputs/
 !artifacts/MANIFEST*.json
 !artifacts/*SHA256*
 !artifacts/replicate_compound_keys.json
+
+# The sealed confirmation set is the seal itself: its SHA-256 is quoted in
+# PREREGISTRATION.md, so the file has to be in the repository for that hash to
+# be checkable. Tracked, and never opened during Phase 2.
+!artifacts/confirmation_set_sealed.json
+
+# Machine-readable Phase 2 results. Every number in every Phase 2 markdown
+# report is generated from these, so they are the reproducibility record rather
+# than regenerable scratch (Phase 2 instruction 28). All are small JSON.
+!artifacts/p2_*.json
+
+# Machine-readable Phase 3 results, on the same principle: every number in every
+# Phase 3 report is generated from these. The checkpoint store underneath is
+# regenerable scratch — thousands of per-seed files — and stays ignored.
+!artifacts/p3_*.json
+artifacts/p3_ckpt/
 *.parquet
 *.feather
 *.h5
@@ -116,3 +132,21 @@ Icon?
 *.swp
 *.swo
 *~
+
+# Objective-alignment validation study (ov-*): machine-readable evidence is
+# tracked; the per-seed checkpoint store and the selection/adjudication stores
+# are regenerable by re-running the study and are not.
+!artifacts/ov_*.json
+artifacts/ov_ckpt/
+artifacts/ov_sel/
+artifacts/ov_adj/
+
+# Prospective paper-benchmark manifests, preflight, and freeze status are the
+# reproducibility record. Generated row-level inputs/truths remain sealed
+# regenerable bytes whose SHA-256 values are committed in the inventory.
+!artifacts/paper_benchmark_*.json
+
+# E0 (v2 calibration): the analysis inputs and outputs are evidence, tracked.
+# The 583k-row fit-level parquet is regenerable from the seeds and is not.
+!artifacts/e0/
+artifacts/e0/*.parquet

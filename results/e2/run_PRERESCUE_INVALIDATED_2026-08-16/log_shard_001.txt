@@ -1,0 +1,37 @@
+shard 1/5: 108 worlds assigned, 0 already done
+shard 1/3: 180 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r001: stage=C front=19/30 failures=0 wall=219.4s classify_cache=268
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r004: stage=C front=19/30 failures=0 wall=165.4s classify_cache=557
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r007: stage=C front=16/30 failures=0 wall=182.1s classify_cache=825
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r010: stage=C front=19/30 failures=0 wall=138.2s classify_cache=1096
+V2C|E2|mass_affine_descriptor|c_low|n_default|r001: stage=B front=19/30 failures=0 wall=154.1s classify_cache=1398
+V2C|E2|mass_affine_descriptor|c_low|n_default|r004: stage=B front=21/30 failures=0 wall=693.5s classify_cache=1675
+V2C|E2|mass_affine_descriptor|c_low|n_default|r007: stage=B front=11/30 failures=0 wall=137.0s classify_cache=1984
+V2C|E2|mass_affine_descriptor|c_low|n_default|r010: stage=B front=11/30 failures=0 wall=240.6s classify_cache=2269
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r001: stage=B front=17/30 failures=0 wall=7305.1s classify_cache=2582
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r004: stage=B front=20/30 failures=0 wall=310.9s classify_cache=2905
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r007: stage=B front=8/30 failures=0 wall=309.4s classify_cache=3241
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r010: stage=B front=7/30 failures=0 wall=348.8s classify_cache=3558
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r001: WORLD-LEVEL EXECUTION FAILURE: [Errno 1] Operation not permitted: '/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/exp-v2-e2-pareto-observability/results/e2/run/candidates_shard_001.jsonl'
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r004: stage=C front=15/30 failures=0 wall=461.9s classify_cache=4097
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r007: stage=C front=17/30 failures=0 wall=289.6s classify_cache=4339
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r010: stage=C front=12/30 failures=0 wall=259.4s classify_cache=4619
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r001: stage=C front=17/30 failures=0 wall=290.2s classify_cache=4924
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r004: stage=E front=13/30 failures=0 wall=279.4s classify_cache=5215
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r007: stage=C front=14/30 failures=0 wall=330.6s classify_cache=5511
+V2C|E2|mass_affine_descriptor|c_mid|n_default|r010: stage=C front=7/30 failures=0 wall=323.4s classify_cache=5837
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r001: stage=B front=13/30 failures=0 wall=256.8s classify_cache=6177
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r004: stage=B front=18/30 failures=0 wall=556.5s classify_cache=6469
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r007: stage=B front=11/30 failures=0 wall=254.6s classify_cache=6789
+V2C|E2|mass_affine_descriptor|c_mid|n_strong|r010: stage=B front=21/30 failures=0 wall=336.3s classify_cache=7086
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r001: stage=C front=14/30 failures=0 wall=287.0s classify_cache=7382
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r004: stage=C front=16/30 failures=0 wall=253.8s classify_cache=7647
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r007: stage=C front=18/30 failures=0 wall=256.1s classify_cache=7929
+V2C|E2|mass_affine_descriptor|c_high|n_noiseless|r010: stage=C front=14/30 failures=0 wall=401.1s classify_cache=8223
+V2C|E2|mass_affine_descriptor|c_high|n_default|r001: stage=C front=14/30 failures=0 wall=391.7s classify_cache=8523
+V2C|E2|mass_affine_descriptor|c_high|n_default|r004: stage=C front=14/30 failures=0 wall=307.1s classify_cache=8867
+V2C|E2|mass_affine_descriptor|c_high|n_default|r007: stage=C front=18/30 failures=0 wall=321.1s classify_cache=9170
+V2C|E2|mass_affine_descriptor|c_high|n_default|r010: stage=B front=22/30 failures=0 wall=722.1s classify_cache=9509
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r001: stage=B front=26/30 failures=0 wall=4489.6s classify_cache=9834
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r004: stage=B front=19/30 failures=0 wall=195.0s classify_cache=10169
+V2C|E2|mass_affine_descriptor|c_high|n_strong|r007: stage=B front=25/30 failures=0 wall=298.5s classify_cache=10491

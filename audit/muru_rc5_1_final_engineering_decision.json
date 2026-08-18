@@ -1,0 +1,16 @@
+{
+  "schema_version": "muru-rc5.1-final-engineering-decision-1.0.0",
+  "document_id": "MURU-AUDIT-RC5-1-FINAL-ENGINEERING-DECISION-01",
+  "date": "2026-08-16",
+  "decision": "RC5.1_FREEZE_APPROVED",
+  "tag": "engineering-rc5-1-heldout-authorization",
+  "parent_engineering": "7cdd5a6b74b1051935ad0eb86c7d8770cd725236",
+  "parent_science": "327b55536b7d6ee8b8693091fa7180491e2c0a38",
+  "authorized_partitions": [
+    "development",
+    "held_out"
+  ],
+  "challenge_status": "UNAUTHORIZED",
+  "confirmation_status": "SEALED",
+  "scientific_byte_identical": true
+}

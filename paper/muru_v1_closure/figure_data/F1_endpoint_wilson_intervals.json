@@ -1,0 +1,35 @@
+{
+ "endpoints": [
+  {
+   "bound": 0.3362326347636318,
+   "denominator": 164,
+   "endpoint": "G1",
+   "gate": 0.7,
+   "numerator": 67,
+   "passed": false,
+   "point": 0.40853658536585363,
+   "tail": "lower"
+  },
+  {
+   "bound": 0.010853942365456266,
+   "denominator": 144,
+   "endpoint": "G2",
+   "gate": 0.7,
+   "numerator": 4,
+   "passed": false,
+   "point": 0.027777777777777776,
+   "tail": "lower"
+  },
+  {
+   "bound": 0.841518299741862,
+   "denominator": 36,
+   "endpoint": "G3",
+   "gate": 0.15,
+   "numerator": 26,
+   "passed": false,
+   "point": 0.7222222222222222,
+   "tail": "upper"
+  }
+ ],
+ "note": "Wilson 95% bounds at the frozen z = 1.96; G1 and G2 are lower bounds against a >= 0.70 gate, G3 is an upper bound against a <= 0.15 gate"
+}

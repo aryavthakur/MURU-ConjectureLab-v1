@@ -1,0 +1,106 @@
+{
+  "identity": "muru-rc5-blocker-closure-ledger-1.0.0",
+  "date": "2026-08-15",
+  "engineering_branch": "eng/muru-rc5-a3-5",
+  "parent_commit": "69e33c778efb14362439941d25ebbfcfb1068284",
+  "science_freeze_tag": "benchmark-content-freeze-a3-5",
+  "science_freeze_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+  "blocker_classes": {
+    "A": {
+      "title": "Independent Re-review of Six Hostile Review Repairs",
+      "status": "PASS",
+      "repairs": [
+        {
+          "id": "A.1",
+          "component": "rc5_falsify.py",
+          "defect": "F1 driver passed raw Phi rather than normalized monotonic response profile",
+          "verdict": "PASS"
+        },
+        {
+          "id": "A.2",
+          "component": "rc5_selection.py",
+          "defect": "PySR symbol binding in identity contract (x0..x4 to primitives)",
+          "verdict": "PASS"
+        },
+        {
+          "id": "A.3",
+          "component": "rc5_store.py",
+          "defect": "Seed-granular resume loaded cases without validating per-seed append invariants",
+          "verdict": "PASS"
+        },
+        {
+          "id": "A.4",
+          "component": "rc5_store.py",
+          "defect": "Duplicate seed append guard missing at write time",
+          "verdict": "PASS"
+        },
+        {
+          "id": "A.5",
+          "component": "rc3_ceiling.py",
+          "defect": "ceiling_satisfied exported acceptance-favoring verdict bypassing Gate 7 floor",
+          "verdict": "PASS"
+        },
+        {
+          "id": "A.6",
+          "component": "rc3_record.py",
+          "defect": "Record schema generation guard did not strictly enforce 2.0.0 vs legacy",
+          "verdict": "PASS"
+        }
+      ]
+    },
+    "B": {
+      "title": "Close Obligation 8 Prospectively",
+      "status": "CLOSED",
+      "fields_added": [
+        "winning_class_distinct_expression_strings",
+        "winning_class_distinct_coefficient_vectors"
+      ],
+      "non_gating_verified": true
+    },
+    "C": {
+      "title": "Resolve A1 M1/M2/M3 Adequacy Engine",
+      "status": "CLOSED",
+      "module": "src/muru/paper_benchmark/rc5_adequacy.py",
+      "models_evaluated": ["M0", "M1", "M2", "M3"],
+      "method": "leave_one_energy_out_cv",
+      "contract_module": "src/muru/paper_benchmark/adequacy.py"
+    },
+    "D": {
+      "title": "Four Prospective Bindings and Disclosures",
+      "status": "BOUND",
+      "bindings": [
+        {
+          "id": "D.1",
+          "open_item": "O3",
+          "subject": "Identity parse fold quantification",
+          "status": "BOUND"
+        },
+        {
+          "id": "D.2",
+          "open_item": "O4",
+          "subject": "A1.2 shrink 10 composition",
+          "status": "BOUND"
+        },
+        {
+          "id": "D.3",
+          "open_item": "O5",
+          "subject": "A_LO / A_HI binding",
+          "status": "BOUND"
+        },
+        {
+          "id": "D.4",
+          "open_item": "O6",
+          "subject": "Section 13 erratum retiring Section 7.4 merge claim",
+          "status": "BOUND"
+        },
+        {
+          "id": "D.5",
+          "open_item": "O7",
+          "subject": "Challenge generation disclosure",
+          "status": "DISCLOSED"
+        }
+      ]
+    }
+  },
+  "overall_verdict": "ALL_BLOCKERS_CLOSED"
+}

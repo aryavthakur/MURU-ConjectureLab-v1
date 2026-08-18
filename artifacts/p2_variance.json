@@ -1,0 +1,102 @@
+{
+  "model_adequacy": {
+    "response_scale": "natural (not logit); see DEVIATIONS D7",
+    "mu_min": 0.09538555361122271,
+    "mu_max": 1.0000008472776405,
+    "n_mu_gt_1": 7,
+    "resid_sd_by_energy": {
+      "15": 0.16881,
+      "30": 0.215,
+      "45": 0.21109,
+      "60": 0.188,
+      "75": 0.17015,
+      "90": 0.15596
+    },
+    "resid_skew_by_energy": {
+      "15": -1.009,
+      "30": -0.19,
+      "45": 0.261,
+      "60": 0.513,
+      "75": 0.668,
+      "90": 0.759
+    },
+    "resid_sd_ratio_max_over_min": 1.379,
+    "spearman_absresid_vs_fitted": 0.1298
+  },
+  "hierarchical": {
+    "implementation": "statsmodels MixedLM (see DEVIATIONS D11 for why not PyMC)",
+    "converged": true,
+    "n_obs": 2610,
+    "n_groups": 439,
+    "var_random_intercept": 0.026456,
+    "var_random_slope": 0.004454,
+    "cov_intercept_slope": 6.6e-05,
+    "corr_intercept_slope": 0.0061,
+    "residual_var": 0.004896,
+    "loglike": 2096.58
+  },
+  "variance_decomposition": {
+    "total_var_mu": 0.055737,
+    "energy_fixed": 0.021164,
+    "energy_fixed_share": 0.3797,
+    "compound_random": 0.028236,
+    "compound_random_share": 0.5066,
+    "residual": 0.004896,
+    "residual_share": 0.0878,
+    "icc_conditional_on_energy": 0.8439
+  },
+  "descriptor_explained_between_compound": {
+    "u_intercept": {
+      "tier_a_full": {
+        "cv_r2_scaffold_grouped": 0.4693,
+        "in_sample_r2": 0.5274,
+        "n_features": 12
+      },
+      "tier_a_no_mass": {
+        "cv_r2_scaffold_grouped": 0.4235,
+        "in_sample_r2": 0.4646,
+        "n_features": 9
+      },
+      "mass_block_only": {
+        "cv_r2_scaffold_grouped": 0.4327,
+        "in_sample_r2": 0.4549,
+        "n_features": 3
+      },
+      "precursor_mz_only": {
+        "cv_r2_scaffold_grouped": 0.3303,
+        "in_sample_r2": 0.3397,
+        "n_features": 1
+      }
+    },
+    "u_slope": {
+      "tier_a_full": {
+        "cv_r2_scaffold_grouped": 0.1869,
+        "in_sample_r2": 0.2558,
+        "n_features": 12
+      },
+      "tier_a_no_mass": {
+        "cv_r2_scaffold_grouped": 0.1697,
+        "in_sample_r2": 0.2341,
+        "n_features": 9
+      },
+      "mass_block_only": {
+        "cv_r2_scaffold_grouped": 0.0489,
+        "in_sample_r2": 0.1239,
+        "n_features": 3
+      },
+      "precursor_mz_only": {
+        "cv_r2_scaffold_grouped": 0.0656,
+        "in_sample_r2": 0.104,
+        "n_features": 1
+      }
+    }
+  },
+  "K5_variance_share": {
+    "metric": "cross-validated R2 of Tier A predicting the compound random intercept, scaffold-grouped out-of-fold",
+    "threshold": 0.2,
+    "tier_a_full": 0.4693,
+    "tier_a_no_mass": 0.4235,
+    "meets_threshold_full": true,
+    "meets_threshold_without_mass": true
+  }
+}

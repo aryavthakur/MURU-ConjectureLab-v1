@@ -1,0 +1,12 @@
+{
+  "verdict": "RESTRICT AND GO TO PHASE 3",
+  "rung": "L3",
+  "K4A": true,
+  "K4B": true,
+  "K5_fires": false,
+  "K8_fires": false,
+  "controls_block": false,
+  "best_structure_model": "FLEX_BENCHMARK",
+  "share": 0.4693,
+  "survives_ablation": true
+}

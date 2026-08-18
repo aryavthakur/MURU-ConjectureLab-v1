@@ -1,0 +1,98 @@
+{
+  "canonical_attestation": {
+    "advisory_conclusion": "The non-object parent literal is an immutable historical provenance-attestation discrepancy. The aggregate values record a historical serialization convention/ambiguity, not a content-integrity defect; neither finding replaces frozen A3.4 content or creates a scientific amendment.",
+    "classification": "IMMUTABLE_HISTORICAL_PROVENANCE_ATTESTATION_DISCREPANCY",
+    "findings": {
+      "parent_a3_3_commit": {
+        "a3_4_creation_commit": "d0ea5d4b0309e4e95dcab4035b9be66e166765b1",
+        "a3_4_creation_commit_git_parent": "71f5369c8aa9e5c47f951bd894d744af70956616",
+        "actual_a3_3_tag": {
+          "name": "benchmark-content-freeze-a3-3",
+          "tag_object": "363e1c5a64cdf235712900fc2a14409fa6ec3e1e",
+          "target_commit": "71f5369c8aa9e5c47f951bd894d744af70956616"
+        },
+        "frozen_locations": [
+          "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+          "artifacts/paper_benchmark_amendment_a3_4.json"
+        ],
+        "frozen_recorded_literal": "71f53697e8894df6469ad0ff7150a049fa531b74",
+        "git_commit_object_check": {
+          "algorithm": "git cat-file -e <literal>^{commit}",
+          "literal_resolves_to_commit": false
+        }
+      },
+      "protected_path_digest": {
+        "a3_4_freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+        "historical_no_terminal_newline_serialization": {
+          "digest": "SHA-256",
+          "encoding": "UTF-8",
+          "entry_format": "{relative_path}:{sha256}",
+          "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+          "record_separator": "\\n",
+          "recomputed_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
+          "terminal_newline": false
+        },
+        "interpretation": "HISTORICAL_SERIALIZATION_CONVENTION_OR_AMBIGUITY_NOT_A_CONTENT_INTEGRITY_DEFECT",
+        "live_blob_identity_verification": {
+          "algorithm": "git ls-tree -r -z <revision> -- <listed protected paths>; compare mode, object type, object ID, and path metadata at the A3.4 freeze commit and test-run HEAD",
+          "all_31_listed_paths_match": true,
+          "materializes_protected_path_bytes": false
+        },
+        "protected_path_count": 31,
+        "recorded_aggregate_sha256": "d24cc91698a562acfe61c8bab65a9f33ccc517b284411c65c66e394fe7a6d1b8",
+        "terminal_newline_alternate_serialization": {
+          "digest": "SHA-256",
+          "encoding": "UTF-8",
+          "entry_format": "{relative_path}:{sha256}\\n",
+          "ordering": "LEXICOGRAPHIC_ASCENDING_RELATIVE_PATH",
+          "recomputed_aggregate_sha256": "55ebd0b92ba07ad828983f4e7add5163f49377255dfcf47bdd9f1af98174f16a",
+          "terminal_newline": true
+        }
+      }
+    },
+    "frozen_a3_4": {
+      "artifact_path": "artifacts/paper_benchmark_amendment_a3_4.json",
+      "creation_commit": "d0ea5d4b0309e4e95dcab4035b9be66e166765b1",
+      "document_path": "MURU_PAPER_BENCHMARK_AMENDMENT_A3_4.md",
+      "document_sha256": "c699230ab8995461b73a6db2b3fecab661f744e937f40ebe2db34fa8c8c11ada",
+      "freeze_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "freeze_tag": {
+        "name": "benchmark-content-freeze-a3-4",
+        "tag_object": "326727d5f17943b22f014262dcf42f5cf043ba42",
+        "target_commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe"
+      },
+      "reference_covariates_sha256": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44"
+    },
+    "frozen_content_changed": false,
+    "human_readable_projection": {
+      "path": "audit/MURU_A3_4_FROZEN_METADATA_ATTESTATION_ADVISORY.md",
+      "sha256": "fcef27933fe4627306c001bdc4f8955ad8c621d4480b6a33f56439d9ee64f2da"
+    },
+    "outcome_boundary": {
+      "calibration_records_opened": "NONE",
+      "confirmation_results_opened": "NONE",
+      "development_results_opened": "NONE",
+      "evidence_sources": "READ_ONLY_GIT_OBJECTS_GIT_TREE_METADATA_AND_FROZEN_A3_4_ARTIFACT_MAP",
+      "held_out_results_opened": "NONE",
+      "outcome_payloads_opened": "NONE"
+    },
+    "outcome_inspection": "NONE",
+    "schema_version": "muru-a3-4-frozen-metadata-attestation-advisory-1.0.0",
+    "scope": "ADDITIVE_OUTCOME_BLIND_ADVISORY_NOT_A_SCIENCE_AMENDMENT",
+    "scientific_amendment": false,
+    "scientific_change": "NONE",
+    "scientific_impact": {
+      "a3_4_reference_digest_changed": false,
+      "a3_4_scientific_definitions_changed": false,
+      "frozen_content_changed": false,
+      "reference_covariates_sha256": "4fef2379ae33a10d089bd66794fdd21418b2b30c656fd801bc619f55c3fe7a44"
+    },
+    "status": "IMMUTABLE_HISTORICAL_PROVENANCE_ATTESTATION_DISCREPANCY"
+  },
+  "canonical_binding": {
+    "algorithm": "SHA-256",
+    "canonicalization": "UTF-8 JSON; recursive lexicographic object-key ordering; compact separators ',' and ':'; ensure_ascii=false; allow_nan=false; no trailing newline",
+    "content_pointer": "/canonical_attestation",
+    "content_sha256": "9d89197979bb39a2ec934b21f99fe38ea7cdeab2a7af0ade35f6f930cf7cbf54"
+  }
+}

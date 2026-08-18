@@ -1,0 +1,90 @@
+{
+ "verdict": "STOP BEFORE PHASE 4",
+ "K6": {
+  "gate": "K6",
+  "criterion": "G4 null false-positive rate <= 5% (nominal point criterion)",
+  "observed_rate": 0.0,
+  "n_accepted": 0,
+  "n_valid_replicates": 100,
+  "ci": [
+   0.0,
+   0.03621669264517641
+  ],
+  "fires": false,
+  "verdict": "K6 does not fire",
+  "uncertainty_note": "the point criterion is adjudicated on the observed rate; the interval is reported so the population rate is not overstated in either direction"
+ },
+ "stop_conditions": {
+  "K6 fires after the permitted repairs": false,
+  "G1 recovery below 80% at the moderate noise regime": true,
+  "more than 1 of 8 G2 worlds yields an accepted compact conjecture": false,
+  "any G3 world yields an accepted non-mass structural conjecture": false,
+  "more than 1 of 9 GC worlds claims non-mass structure": false,
+  "more than 2 of 8 G5 worlds claims non-mass structure": false,
+  "median G1 seed-selection frequency below 20/30": false,
+  "null threshold table not reproducible": false
+ },
+ "stop_conditions_fired": [
+  "G1 recovery below 80% at the moderate noise regime"
+ ],
+ "restrictions": [
+  "**Noise ceiling.** Functional recovery at the adverse regime (SD 0.06) is 0% against 0% at the moderate regime. Phase 4 must report the residual scale of its own fit and treat a candidate found at comparable or worse noise as unconfirmed.",
+  "**Complexity ceiling.** Every accepted G1 recovery sits at complexity \u2264 6, well inside the budget of 20. Recovery was demonstrated only in that range, so a Phase 4 candidate above complexity 6 is outside the validated envelope and must be reported as such.",
+  "**The null threshold is a point estimate with wide uncertainty.** At complexity 20 the frozen threshold is +0.4889 with a bootstrap interval of [+0.2603, +0.6859], because a 95th percentile from 40 null worlds rests on its top two or three. Phase 4 must report any candidate's margin over the threshold, and a candidate whose R\u00b2 falls inside that interval is **not** to be reported as clearing the null \u2014 it is inconclusive and requires an enlarged calibration before any claim.",
+  "**Positive mode only.** Phase 2's structure-beyond-mass result does not replicate in negative mode (K4B FAIL, +1.93%, scaffold interval [-0.01572, 0.00038] spanning zero). Any Phase 4 authorization is for the positive-mode discovery question.",
+  "**No mechanistic reading may lean on RT-correlated descriptors.** NC7 fired in Phase 2 and is explained but restricting; the Phase 3 GRT stress test does not resolve it causally.",
+  "**No full-corpus preprocessing-invariance claim.** The raw branch covers 39 compounds (7.1%)."
+ ],
+ "G1_recovery": {
+  "low": {
+   "n": 10,
+   "n_accepted": 10,
+   "accepted_rate": 1.0,
+   "n_functionally_equivalent": 0,
+   "functional_recovery_rate": 0.0,
+   "n_symbolically_equivalent": 0,
+   "symbolic_recovery_rate": 0.0,
+   "n_exponent_within_0.15": 10,
+   "exponent_within_rate": 1.0,
+   "median_mass_exponent": 0.5,
+   "median_complexity": 6.0,
+   "median_selection_fraction": 1.0
+  },
+  "moderate": {
+   "n": 10,
+   "n_accepted": 9,
+   "accepted_rate": 0.9,
+   "n_functionally_equivalent": 0,
+   "functional_recovery_rate": 0.0,
+   "n_symbolically_equivalent": 0,
+   "symbolic_recovery_rate": 0.0,
+   "n_exponent_within_0.15": 10,
+   "exponent_within_rate": 1.0,
+   "median_mass_exponent": 0.5,
+   "median_complexity": 6.0,
+   "median_selection_fraction": 1.0
+  },
+  "adverse": {
+   "n": 10,
+   "n_accepted": 4,
+   "accepted_rate": 0.4,
+   "n_functionally_equivalent": 0,
+   "functional_recovery_rate": 0.0,
+   "n_symbolically_equivalent": 0,
+   "symbolic_recovery_rate": 0.0,
+   "n_exponent_within_0.15": 9,
+   "exponent_within_rate": 0.9,
+   "median_mass_exponent": 0.5,
+   "median_complexity": 6.0,
+   "median_selection_fraction": 0.7666666666666666
+  }
+ },
+ "G2_accepted": 0,
+ "G3_structural_claims": 0,
+ "GC_structural_claims": 0,
+ "G5_structural_claims": 1,
+ "GRT_accepted": 0,
+ "GA_accepted": 3,
+ "highest_real_data_rung": "L3",
+ "phase4_authorized": false
+}

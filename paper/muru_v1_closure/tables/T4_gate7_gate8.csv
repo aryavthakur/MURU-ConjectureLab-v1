@@ -1,0 +1,4 @@
+gate,definition,reached,passed,failed,detail
+Gate 7,ceiling comparison at position 7: ceiling_pass OR ceiling_waiver,27,26,1,"26 via ceiling_pass, 0 via waiver"
+Gate 8,"check_gate8 over {F1,F4,F7,F10}, fail-closed",26,25,1,sole failure: F10_NEGATIVE_CONTROL
+STRUCTURAL_ACCEPTED,gates 1-8 all pass,240,25,215,"acceptance count, NOT an endpoint rate"

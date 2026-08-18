@@ -1,0 +1,369 @@
+{
+  "n_development_compounds": 439,
+  "n_confirmation_excluded": 110,
+  "tier_a": {
+    "frozen_list": [
+      "precursor_mz",
+      "total_atom_count",
+      "rotatable_bonds",
+      "ring_count",
+      "aromatic_ring_count",
+      "rdbe",
+      "tpsa",
+      "heteroatom_fraction",
+      "n_N",
+      "n_O",
+      "n_S",
+      "n_halogen"
+    ],
+    "n_descriptors": 12,
+    "n_failures": 0,
+    "failed_group_keys": [],
+    "mass_block_for_ablation": [
+      "precursor_mz",
+      "total_atom_count",
+      "rdbe"
+    ]
+  },
+  "tier_a_summary": {
+    "precursor_mz": {
+      "n_missing": 0,
+      "n_distinct": 425,
+      "min": 117.1022,
+      "max": 837.5318,
+      "median": 291.0895,
+      "sd": 104.80504248759173
+    },
+    "total_atom_count": {
+      "n_missing": 0,
+      "n_distinct": 65,
+      "min": 14.0,
+      "max": 134.0,
+      "median": 37.0,
+      "sd": 14.519375514072447
+    },
+    "rotatable_bonds": {
+      "n_missing": 0,
+      "n_distinct": 19,
+      "min": 0.0,
+      "max": 23.0,
+      "median": 4.0,
+      "sd": 3.348814695559907
+    },
+    "ring_count": {
+      "n_missing": 0,
+      "n_distinct": 8,
+      "min": 0.0,
+      "max": 7.0,
+      "median": 2.0,
+      "sd": 1.3218934347900337
+    },
+    "aromatic_ring_count": {
+      "n_missing": 0,
+      "n_distinct": 6,
+      "min": 0.0,
+      "max": 5.0,
+      "median": 2.0,
+      "sd": 1.014718858513401
+    },
+    "rdbe": {
+      "n_missing": 0,
+      "n_distinct": 34,
+      "min": 0.0,
+      "max": 21.5,
+      "median": 8.5,
+      "sd": 3.9076527018853286
+    },
+    "tpsa": {
+      "n_missing": 0,
+      "n_distinct": 311,
+      "min": 3.24,
+      "max": 216.88999999999996,
+      "median": 54.5,
+      "sd": 28.83780397917987
+    },
+    "heteroatom_fraction": {
+      "n_missing": 0,
+      "n_distinct": 130,
+      "min": 0.045454545454545456,
+      "max": 0.6923076923076923,
+      "median": 0.25,
+      "sd": 0.10669426106084996
+    },
+    "n_N": {
+      "n_missing": 0,
+      "n_distinct": 8,
+      "min": 0.0,
+      "max": 7.0,
+      "median": 2.0,
+      "sd": 1.4804383171212514
+    },
+    "n_O": {
+      "n_missing": 0,
+      "n_distinct": 11,
+      "min": 0.0,
+      "max": 15.0,
+      "median": 2.0,
+      "sd": 1.8353106586059311
+    },
+    "n_S": {
+      "n_missing": 0,
+      "n_distinct": 5,
+      "min": 0.0,
+      "max": 4.0,
+      "median": 0.0,
+      "sd": 0.5393763693651604
+    },
+    "n_halogen": {
+      "n_missing": 0,
+      "n_distinct": 7,
+      "min": 0.0,
+      "max": 6.0,
+      "median": 0.0,
+      "sd": 1.0664565378989945
+    }
+  },
+  "tier_a_spearman": {
+    "precursor_mz": {
+      "precursor_mz": 1.0,
+      "total_atom_count": 0.854,
+      "rotatable_bonds": 0.567,
+      "ring_count": 0.604,
+      "aromatic_ring_count": 0.394,
+      "rdbe": 0.631,
+      "tpsa": 0.457,
+      "heteroatom_fraction": 0.056,
+      "n_N": 0.138,
+      "n_O": 0.572,
+      "n_S": 0.156,
+      "n_halogen": 0.425
+    },
+    "total_atom_count": {
+      "precursor_mz": 0.854,
+      "total_atom_count": 1.0,
+      "rotatable_bonds": 0.631,
+      "ring_count": 0.461,
+      "aromatic_ring_count": 0.161,
+      "rdbe": 0.412,
+      "tpsa": 0.308,
+      "heteroatom_fraction": -0.257,
+      "n_N": 0.001,
+      "n_O": 0.485,
+      "n_S": -0.001,
+      "n_halogen": 0.118
+    },
+    "rotatable_bonds": {
+      "precursor_mz": 0.567,
+      "total_atom_count": 0.631,
+      "rotatable_bonds": 1.0,
+      "ring_count": -0.057,
+      "aromatic_ring_count": 0.057,
+      "rdbe": 0.08,
+      "tpsa": 0.282,
+      "heteroatom_fraction": 0.094,
+      "n_N": -0.005,
+      "n_O": 0.494,
+      "n_S": 0.135,
+      "n_halogen": 0.135
+    },
+    "ring_count": {
+      "precursor_mz": 0.604,
+      "total_atom_count": 0.461,
+      "rotatable_bonds": -0.057,
+      "ring_count": 1.0,
+      "aromatic_ring_count": 0.678,
+      "rdbe": 0.872,
+      "tpsa": 0.268,
+      "heteroatom_fraction": -0.225,
+      "n_N": 0.221,
+      "n_O": 0.149,
+      "n_S": -0.057,
+      "n_halogen": 0.229
+    },
+    "aromatic_ring_count": {
+      "precursor_mz": 0.394,
+      "total_atom_count": 0.161,
+      "rotatable_bonds": 0.057,
+      "ring_count": 0.678,
+      "aromatic_ring_count": 1.0,
+      "rdbe": 0.869,
+      "tpsa": 0.175,
+      "heteroatom_fraction": -0.085,
+      "n_N": 0.305,
+      "n_O": -0.009,
+      "n_S": 0.0,
+      "n_halogen": 0.287
+    },
+    "rdbe": {
+      "precursor_mz": 0.631,
+      "total_atom_count": 0.412,
+      "rotatable_bonds": 0.08,
+      "ring_count": 0.872,
+      "aromatic_ring_count": 0.869,
+      "rdbe": 1.0,
+      "tpsa": 0.34,
+      "heteroatom_fraction": -0.136,
+      "n_N": 0.264,
+      "n_O": 0.204,
+      "n_S": 0.008,
+      "n_halogen": 0.266
+    },
+    "tpsa": {
+      "precursor_mz": 0.457,
+      "total_atom_count": 0.308,
+      "rotatable_bonds": 0.282,
+      "ring_count": 0.268,
+      "aromatic_ring_count": 0.175,
+      "rdbe": 0.34,
+      "tpsa": 1.0,
+      "heteroatom_fraction": 0.518,
+      "n_N": 0.43,
+      "n_O": 0.63,
+      "n_S": 0.204,
+      "n_halogen": 0.016
+    },
+    "heteroatom_fraction": {
+      "precursor_mz": 0.056,
+      "total_atom_count": -0.257,
+      "rotatable_bonds": 0.094,
+      "ring_count": -0.225,
+      "aromatic_ring_count": -0.085,
+      "rdbe": -0.136,
+      "tpsa": 0.518,
+      "heteroatom_fraction": 1.0,
+      "n_N": 0.472,
+      "n_O": 0.295,
+      "n_S": 0.443,
+      "n_halogen": 0.303
+    },
+    "n_N": {
+      "precursor_mz": 0.138,
+      "total_atom_count": 0.001,
+      "rotatable_bonds": -0.005,
+      "ring_count": 0.221,
+      "aromatic_ring_count": 0.305,
+      "rdbe": 0.264,
+      "tpsa": 0.43,
+      "heteroatom_fraction": 0.472,
+      "n_N": 1.0,
+      "n_O": -0.22,
+      "n_S": 0.195,
+      "n_halogen": 0.159
+    },
+    "n_O": {
+      "precursor_mz": 0.572,
+      "total_atom_count": 0.485,
+      "rotatable_bonds": 0.494,
+      "ring_count": 0.149,
+      "aromatic_ring_count": -0.009,
+      "rdbe": 0.204,
+      "tpsa": 0.63,
+      "heteroatom_fraction": 0.295,
+      "n_N": -0.22,
+      "n_O": 1.0,
+      "n_S": 0.159,
+      "n_halogen": 0.039
+    },
+    "n_S": {
+      "precursor_mz": 0.156,
+      "total_atom_count": -0.001,
+      "rotatable_bonds": 0.135,
+      "ring_count": -0.057,
+      "aromatic_ring_count": 0.0,
+      "rdbe": 0.008,
+      "tpsa": 0.204,
+      "heteroatom_fraction": 0.443,
+      "n_N": 0.195,
+      "n_O": 0.159,
+      "n_S": 1.0,
+      "n_halogen": -0.003
+    },
+    "n_halogen": {
+      "precursor_mz": 0.425,
+      "total_atom_count": 0.118,
+      "rotatable_bonds": 0.135,
+      "ring_count": 0.229,
+      "aromatic_ring_count": 0.287,
+      "rdbe": 0.266,
+      "tpsa": 0.016,
+      "heteroatom_fraction": 0.303,
+      "n_N": 0.159,
+      "n_O": 0.039,
+      "n_S": -0.003,
+      "n_halogen": 1.0
+    }
+  },
+  "tier_a_collinearity": {
+    "severe_ge_0.90": [],
+    "strong_0.70_to_0.90": [
+      {
+        "a": "precursor_mz",
+        "b": "total_atom_count",
+        "rho": 0.854
+      },
+      {
+        "a": "ring_count",
+        "b": "rdbe",
+        "rho": 0.872
+      },
+      {
+        "a": "aromatic_ring_count",
+        "b": "rdbe",
+        "rho": 0.869
+      }
+    ],
+    "max_abs_offdiagonal": 0.872
+  },
+  "tier_a_vif": {
+    "precursor_mz": 50.99,
+    "total_atom_count": 34.51,
+    "rotatable_bonds": 3.8,
+    "ring_count": 6.87,
+    "aromatic_ring_count": 9.25,
+    "rdbe": 23.21,
+    "tpsa": 6.69,
+    "heteroatom_fraction": 10.12,
+    "n_N": 8.0,
+    "n_O": 12.78,
+    "n_S": 2.36,
+    "n_halogen": 4.57
+  },
+  "tier_b": {
+    "morgan_radius": 2,
+    "morgan_nbits": 2048,
+    "rdkit_block": [
+      "MolWt",
+      "MolLogP",
+      "MolMR",
+      "TPSA",
+      "LabuteASA",
+      "BalabanJ",
+      "BertzCT",
+      "Chi0v",
+      "Chi1v",
+      "Chi2v",
+      "Chi3v",
+      "Chi4v",
+      "HallKierAlpha",
+      "Kappa1",
+      "Kappa2",
+      "Kappa3",
+      "NumHAcceptors",
+      "NumHDonors",
+      "NumHeteroatoms",
+      "NumRotatableBonds",
+      "RingCount",
+      "NumAromaticRings",
+      "NumSaturatedRings",
+      "NumAliphaticRings",
+      "FractionCSP3",
+      "HeavyAtomCount"
+    ],
+    "n_rdkit_descriptors": 26,
+    "n_fingerprint_bits_ever_set": 1823,
+    "n_fingerprint_bits_always_zero": 225,
+    "median_bits_set_per_molecule": 34.0,
+    "n_rdkit_nan_cells": 0,
+    "total_features": 1849
+  }
+}

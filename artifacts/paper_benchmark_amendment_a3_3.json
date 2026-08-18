@@ -1,0 +1,204 @@
+{
+  "added_paths": [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_3.md",
+    "artifacts/paper_benchmark_amendment_a3_3.json"
+  ],
+  "amendment": "A3.3",
+  "amendment_file_sha256": {
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_3.md": "d025d31b0cf2cc13a44ab2baa280e19daff87dbe86319ab4c4a105d24c267650",
+    "artifacts/paper_benchmark_amendment_a3_3.json": "self"
+  },
+  "amendment_reason": "Content freeze V1 named parameter recovery and predictive equivalence as secondary endpoints and assigned them held-out denominators (156 and 144) but did not bind their mathematical evaluation contracts, metrics, tolerances, or failure semantics. Amendment A3.3 prospectively defines complete, deterministic, algebraically invariant evaluation contracts for both secondary endpoints before any calibration execution, Development rerun, or Held-out opening.",
+  "creation_commit": "e91aae67330a590b6c48663190e76973adc3cb02",
+  "governance_form": {
+    "a3_1_scientific_content_otherwise_unchanged": true,
+    "a3_2_calibration_content_unchanged": true,
+    "additive": true,
+    "detected_before_calibration_execution": true,
+    "informed_by_confirmation_results": false,
+    "informed_by_development_results": false,
+    "informed_by_held_out_results": false,
+    "informed_by_threshold_results": false,
+    "prospective": true
+  },
+  "parameter_recovery_contract": {
+    "aggregation": "descriptive rate and 95% Wilson score interval over 156 held-out cases",
+    "applicable_families": [
+      "F01", "F02", "F03", "F04", "F05", "F07", "F08", "F09", "F10", "F11", "F12", "F17", "F18"
+    ],
+    "canonical_anchor": {
+      "correlated_distractor": 0.0,
+      "descriptor": 0.0,
+      "descriptor2": 0.0,
+      "distractor": 0.0,
+      "mass": 250.0
+    },
+    "denominator": 156,
+    "denominator_discipline": "fixed at 156; unparseable, non-finite, missing, or out-of-tolerance candidates score as failure and never reduce denominator",
+    "identifiable_parameters": {
+      "descriptor_coupling_coefficient": {
+        "applicable_cases_count": 84,
+        "applicable_families": [
+          "F08", "F09", "F10", "F11", "F12", "F17", "F18"
+        ],
+        "definition": "normalized sensitivity at neutral anchor x0: (1/g)*(d g / d descriptor) for linear/saturating, (1/g)*(d^2 g / d descriptor d descriptor2) for interaction, (3/g)*(d g / d descriptor) for exponential F18",
+        "generative_range": [0.25, 0.55],
+        "scale": "dimensionless relative",
+        "tolerance": 0.10,
+        "tolerance_metric": "absolute difference |c_discovered - c_truth| <= 0.10"
+      },
+      "mass_scaling_exponent": {
+        "applicable_cases_count": 156,
+        "applicable_families": [
+          "F01", "F02", "F03", "F04", "F05", "F07", "F08", "F09", "F10", "F11", "F12", "F17", "F18"
+        ],
+        "definition": "dimensionless logarithmic elasticity at neutral anchor x0: (mass / g) * (d g / d mass)",
+        "generative_range": [0.45, 0.75],
+        "scale": "dimensionless exponent",
+        "tolerance": 0.15,
+        "tolerance_metric": "absolute difference |p_discovered - p_truth| <= 0.15"
+      }
+    },
+    "per_case_success_rule": "candidate expression present, finite positive base evaluation g(x0) > 0, and all applicable parameter estimates at x0 exist, are finite, and fall within their respective tolerances",
+    "primary_gate_membership": [],
+    "role": "SECONDARY"
+  },
+  "parent_a3_2_commit": "1194fcbc9d9edcb14583eedfdcb0e395028dd93a",
+  "parent_a3_2_tag": "benchmark-content-freeze-a3-2",
+  "parent_amendment": "A3.2",
+  "predictive_equivalence_contract": {
+    "aggregation": "descriptive rate and 95% Wilson score interval over 144 held-out cases",
+    "applicable_families": [
+      "F01", "F02", "F03", "F04", "F05", "F08", "F09", "F10", "F11", "F12", "F17", "F18"
+    ],
+    "denominator": 144,
+    "denominator_discipline": "fixed at 144; unparseable, non-finite, out-of-domain, or out-of-tolerance candidates score as failure and never reduce denominator",
+    "evaluation_domain": {
+      "bounds": {
+        "correlated_distractor": [-2.5, 2.5],
+        "descriptor": [-2.5, 2.5],
+        "descriptor2": [-2.5, 2.5],
+        "distractor": [-2.5, 2.5],
+        "mass": [100.0, 800.0]
+      },
+      "design_type": "deterministic space-filling low-discrepancy lattice",
+      "mass_scale": "log-uniform",
+      "n_points": 2048,
+      "seed_namespace": "PB|PRED_EQUIV|EVAL_GRID_N2048"
+    },
+    "per_case_success_rule": "valid_fraction >= 0.995, optimal scale factor c* > 0, rel_rmse <= 0.05, and Pearson correlation r >= 0.990",
+    "primary_gate_membership": [],
+    "prohibitions": {
+      "affine_additive_intercept_fitting": "strictly forbidden (a + b*g with a != 0 fails)",
+      "coefficient_refitting": "strictly forbidden (discovered parameters remain frozen)",
+      "negative_scale_alignment": "strictly forbidden (c* <= 0 fails)"
+    },
+    "role": "SECONDARY",
+    "scale_alignment": "optimal positive scalar multiplier c* = sum(y_true * y_hat) / sum(y_hat^2)",
+    "thresholds": {
+      "max_rel_rmse": 0.05,
+      "min_pearson_r": 0.99,
+      "min_valid_fraction": 0.995
+    }
+  },
+  "protected_path_count": 29,
+  "protected_path_digest": "62c93863d0643fbbe28a0d6ad33fbbfdc8400c38a8422ca12e4b15785693bca7",
+  "protected_paths": [
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md",
+    "artifacts/paper_benchmark_amendment_a3_1.json",
+    "artifacts/paper_benchmark_amendment_a3_2.json",
+    "artifacts/paper_benchmark_case_manifest.json",
+    "artifacts/paper_benchmark_content_freeze.json",
+    "artifacts/paper_benchmark_hash_inventory.json",
+    "artifacts/paper_benchmark_partition_manifest.json",
+    "artifacts/paper_benchmark_truth_manifest.json",
+    "scripts/pb_33_amendment_a3_1_integrity.py",
+    "src/muru/paper_benchmark/adequacy.py",
+    "src/muru/paper_benchmark/analysis.py",
+    "src/muru/paper_benchmark/artifacts.py",
+    "src/muru/paper_benchmark/calibration_contract.py",
+    "src/muru/paper_benchmark/contract.py",
+    "src/muru/paper_benchmark/freeze.py",
+    "src/muru/paper_benchmark/g2_contract.py",
+    "src/muru/paper_benchmark/g3_contract.py",
+    "src/muru/paper_benchmark/generator.py",
+    "src/muru/paper_benchmark/governance.py",
+    "src/muru/paper_benchmark/preflight.py",
+    "src/muru/paper_benchmark/protocol.py",
+    "src/muru/paper_benchmark/registry.py",
+    "src/muru/paper_benchmark/structural_acceptance.py",
+    "src/muru/paper_benchmark/truth.py",
+    "tests/test_a3_1_calibration_contract.py",
+    "tests/test_a3_1_g2_contract.py",
+    "tests/test_a3_1_g3_contract.py",
+    "tests/test_a3_1_structural_acceptance.py"
+  ],
+  "protected_sha256": {
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md": "ae7cf8268f120bf23c4844ac97613edd43c785440b39dcae788d798d193fb7d7",
+    "MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md": "00f68dffca48b26117170c793ba677c77bc3ce96f1837ee3d537d8e2023a8519",
+    "artifacts/paper_benchmark_amendment_a3_1.json": "f8c6d3ba622b1481b44080a01ce296918564536a46242a821a9114fd158fcbb8",
+    "artifacts/paper_benchmark_amendment_a3_2.json": "2e098863aa9d4fa71eeef845eb5b211a7c067e2a9b3d0cf3b1d9bf5c110373aa",
+    "artifacts/paper_benchmark_case_manifest.json": "c98b426ade1085abd4c87ab2195e358f83cf9ad1e1a77710f9493f5710b5bdba",
+    "artifacts/paper_benchmark_content_freeze.json": "986ce8ef771fa971b8cf41f67718b98c6099d02d6a433d4081c1d464883d116f",
+    "artifacts/paper_benchmark_hash_inventory.json": "3747e56335d49387870e176cb958fa0687d372c932166afc2450f1468f26b0da",
+    "artifacts/paper_benchmark_partition_manifest.json": "8aaebb748af0645de95ef056b934396ff72870852c5d7ca25393dbb7bb3d5f10",
+    "artifacts/paper_benchmark_truth_manifest.json": "c26595a1a34f59adac54b91a1f8c13cccd5ec0fd924d7af81dff2952027ce477",
+    "scripts/pb_33_amendment_a3_1_integrity.py": "d9b40cb6d8fbcfd35cff43dca87190fa1984401508e2f646f2a14043038ebac3",
+    "src/muru/paper_benchmark/adequacy.py": "1a96ef6e450aebba6a1ffac5e1fdc6c4bb9e52f29401745a1fafd73b69a0a6e2",
+    "src/muru/paper_benchmark/analysis.py": "22243eeab1233459e1575b83c69dea781b995fabe1029573af759088d86248d1",
+    "src/muru/paper_benchmark/artifacts.py": "24b7f8adce26f2371aa85c3ee7692a1b4c2f69391242f09b9b9d483b08389a0d",
+    "src/muru/paper_benchmark/calibration_contract.py": "214d403ab0f819841f5003f0b6e8921339fab4246c56f2fddb2a6205e0b6c05a",
+    "src/muru/paper_benchmark/contract.py": "2f1262407c63c07d3ddfe0eec9e5f83f55e8325053224e81377864f47ad6d59b",
+    "src/muru/paper_benchmark/freeze.py": "d18c807a359d1fb2c458bccae495d61c8b268f4cc6e34bdd27bc3af9a70efb9a",
+    "src/muru/paper_benchmark/g2_contract.py": "502b1a65705d9c2d13c7680c3bbc4d307593185e8f60e5706150e6e092727fb5",
+    "src/muru/paper_benchmark/g3_contract.py": "c09d849cf69bae0c183ba793a0ef117e27655defcdcc4145b12f457aee2f5a95",
+    "src/muru/paper_benchmark/generator.py": "f5c167366d598695f732882842eef1c20b3cc2c31a39642d16ab6e01d335f604",
+    "src/muru/paper_benchmark/governance.py": "143c4558754044a6f03b0665589c7082987244c9f1298eeb2588f6eaab639972",
+    "src/muru/paper_benchmark/preflight.py": "4ead750b4fec8990b80745946fa8ee115a08bd05f3d215122fdde87bd58076cb",
+    "src/muru/paper_benchmark/protocol.py": "63c77d5732f0c339b99c20f7d91953324d053d4bb970ec08f10fac4666d85cf5",
+    "src/muru/paper_benchmark/registry.py": "3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9",
+    "src/muru/paper_benchmark/structural_acceptance.py": "ab4a54b11b1012d1f08f09a6fc1bdac4631fb9d486fc409121cc7640ea0c602a",
+    "src/muru/paper_benchmark/truth.py": "b773d458b86390bb63a8f95e54b5d299783acc777ea6134c894d8f227c5d4719",
+    "tests/test_a3_1_calibration_contract.py": "23d859c197e423dff8640cd3c346dd7f47c703c02f11ad67c7e2e1c6eeff37ce",
+    "tests/test_a3_1_g2_contract.py": "a74c6fa08575baf53200501064b9bfac425a0aa62ca1b5f9d696886033b138ba",
+    "tests/test_a3_1_g3_contract.py": "bcbc51afeebd5db93865343fca043a04a7de2bbf62df361f3487b48cd95fc3eb",
+    "tests/test_a3_1_structural_acceptance.py": "f9388034a0ab04b711f79b872bec065162cdd72e254605ca67e7caca2ec87855"
+  },
+  "schema_version": "muru-paper-benchmark-amendment-a3.3-1.0.0",
+  "status": {
+    "calibration": "NOT_EXECUTED",
+    "confirmation": "SEALED_NOT_OPENED",
+    "development": "NOT_OPENED",
+    "held_out": "SEALED_NOT_OPENED"
+  },
+  "triggering_audit_commit": "7f3ca804277db7491bbf5dc3cf5984c8361ffab4",
+  "triggering_audit_file": "audit/MURU_ENDPOINT_CONTRACT_TRACEABILITY_AUDIT.md",
+  "unchanged_from_a3_2": {
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 20260812,
+    "ceiling_fraction_gate": 0.8,
+    "ceiling_waiver_threshold": 0.05,
+    "g1_held_out_denominator": 164,
+    "g1_wilson_lower_gate": 0.7,
+    "g2_held_out_denominator": 144,
+    "g2_wilson_lower_gate": 0.7,
+    "g3_held_out_denominator": 36,
+    "g3_wilson_upper_gate": 0.15,
+    "max_complexity": 20,
+    "max_invalid_fraction": 0.005,
+    "min_valid_worlds": 95,
+    "n_calibration_worlds": 100,
+    "n_seeds_per_world": 30,
+    "null_family_allocation": {
+      "descriptors_permuted_across_compounds": 33,
+      "gaussian_targets_with_observed_variance": 33,
+      "target_permuted_across_compounds": 34
+    },
+    "pb_seed_base": 2110000000,
+    "pb_seed_spread": 370000,
+    "quantile_level": 0.95,
+    "stability_gate": "20/30",
+    "within_compound_energy_permutation_excluded": true
+  }
+}

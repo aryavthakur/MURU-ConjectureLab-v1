@@ -1,0 +1,667 @@
+{
+  "duplicated_group_keys": [
+    "BHAAPTBBJKJZER|POSITIVE",
+    "HSHNITRMYYLLCV|POSITIVE",
+    "VAIZTNZGPYBOGF|POSITIVE",
+    "VEMKTZHHVJILDY|POSITIVE",
+    "WZZLDXDUQPOXNW|POSITIVE",
+    "XUKUURHRXDUEBC|POSITIVE"
+  ],
+  "positive_groups_total": 588,
+  "positive_groups_ge5": 549,
+  "positive_groups_complete": 517,
+  "modelling_rows": 3262,
+  "modelling_compounds": 549,
+  "mu_support": {
+    "min": 0.09538555361122271,
+    "max": 1.0000008472776405,
+    "n_nan": 0,
+    "n_exactly_0": 0,
+    "n_exactly_1": 1,
+    "n_le_1e-6": 0,
+    "n_ge_1_minus_1e-6": 19,
+    "n_gt_1": 9,
+    "frac_in_open_01": 0.996934396076027
+  },
+  "mu_by_energy": {
+    "15": {
+      "n": 546,
+      "mean": 0.8414395585557995,
+      "sd": 0.1719016958755917,
+      "min": 0.3146654187588254,
+      "max": 1.0000008472776405,
+      "q05": 0.4868060192637851,
+      "q95": 0.9999063687717776,
+      "skew": -1.0857845493447043
+    },
+    "30": {
+      "n": 542,
+      "mean": 0.6980103071127923,
+      "sd": 0.2150868233183094,
+      "min": 0.15560524742672197,
+      "max": 1.0000003002320494,
+      "q05": 0.3454970142352093,
+      "q95": 0.9938183723784477,
+      "skew": -0.19535651961500627
+    },
+    "45": {
+      "n": 544,
+      "mean": 0.5710017843509708,
+      "sd": 0.20728555221929726,
+      "min": 0.12041216147006095,
+      "max": 0.9987465980506557,
+      "q05": 0.2759883916176273,
+      "q95": 0.9399632690231524,
+      "skew": 0.30375134475849963
+    },
+    "60": {
+      "n": 540,
+      "mean": 0.4955311836140975,
+      "sd": 0.18319098827316654,
+      "min": 0.1046975251492271,
+      "max": 0.9895655783940108,
+      "q05": 0.24522348283031614,
+      "q95": 0.8588948403938923,
+      "skew": 0.5898964316182871
+    },
+    "75": {
+      "n": 547,
+      "mean": 0.4471316665805274,
+      "sd": 0.1659228632325695,
+      "min": 0.09803717847237595,
+      "max": 0.9672333787895434,
+      "q05": 0.22663486899067994,
+      "q95": 0.7844687353833512,
+      "skew": 0.7622179196430223
+    },
+    "90": {
+      "n": 543,
+      "mean": 0.41333570504964223,
+      "sd": 0.1526802086142495,
+      "min": 0.09538555361122271,
+      "max": 0.9413019082147863,
+      "q05": 0.20747773124532104,
+      "q95": 0.7070297610465157,
+      "skew": 0.855631705486313
+    }
+  },
+  "mu_sd_ratio_max_over_min": 1.4087406958011948,
+  "mu_variance_share_between_compound_marginal": 0.4703867104789915,
+  "logit_linear_in_NCE_fit": {
+    "n_complete": 517,
+    "median_r2": 0.8241158807909573,
+    "q10_r2": 0.6150504367284939,
+    "frac_r2_below_0.9": 0.6982591876208898,
+    "median_slope": -0.033098266123997196
+  },
+  "logit_linear_in_logNCE_fit": {
+    "median_r2": 0.9262818030325813,
+    "frac_r2_below_0.9": 0.402321083172147
+  },
+  "scaffold_audit": {
+    "n_compounds": 549,
+    "n_mol_parse_failures": 0,
+    "n_unique_scaffolds_incl_empty": 337,
+    "n_empty_scaffold": 32,
+    "frac_empty_scaffold": 0.058287795992714025,
+    "n_ringless_molecules": 32,
+    "n_unique_scaffolds_nonempty": 336,
+    "n_singleton_scaffolds": 290,
+    "frac_compounds_in_singleton_scaffolds": 0.5282331511839709,
+    "largest_scaffold_groups": [
+      {
+        "scaffold": "c1ccccc1",
+        "n": 80
+      },
+      {
+        "scaffold": "c1ncncn1",
+        "n": 16
+      },
+      {
+        "scaffold": "c1ccc2ccccc2c1",
+        "n": 7
+      },
+      {
+        "scaffold": "c1ccc(Cc2ccccc2)cc1",
+        "n": 7
+      },
+      {
+        "scaffold": "c1cncnc1",
+        "n": 5
+      },
+      {
+        "scaffold": "O=C1C=C2CC[C@H]3[C@@H]4CCCC4CC[C@@H]3C2CC1",
+        "n": 5
+      },
+      {
+        "scaffold": "c1ccncc1",
+        "n": 4
+      },
+      {
+        "scaffold": "O=c1ccc2ccccc2o1",
+        "n": 4
+      },
+      {
+        "scaffold": "c1ccc(Nc2ccccc2)cc1",
+        "n": 4
+      },
+      {
+        "scaffold": "O=C1C=CC2C(=C1)CC[C@@H]1C2CCC2CCC[C@H]21",
+        "n": 4
+      },
+      {
+        "scaffold": "c1ccc2[nH]cnc2c1",
+        "n": 4
+      },
+      {
+        "scaffold": "c1ccc(CCn2cncn2)cc1",
+        "n": 4
+      }
+    ],
+    "scaffold_size_distribution": {
+      "1": 290,
+      "2": 20,
+      "3": 13,
+      "4": 7,
+      "5": 2,
+      "7": 2,
+      "16": 1,
+      "80": 1
+    },
+    "max_scaffold_group_frac_of_corpus": 0.14571948998178508
+  },
+  "tier_a_candidates": {
+    "heavy_atom_count": {
+      "n_missing": 0,
+      "n_distinct": 41,
+      "min": 7.0,
+      "max": 58.0,
+      "median": 20.0,
+      "zero_variance": false
+    },
+    "total_atom_count": {
+      "n_missing": 0,
+      "n_distinct": 71,
+      "min": 12.0,
+      "max": 134.0,
+      "median": 37.0,
+      "zero_variance": false
+    },
+    "rotatable_bonds": {
+      "n_missing": 0,
+      "n_distinct": 20,
+      "min": 0.0,
+      "max": 23.0,
+      "median": 4.0,
+      "zero_variance": false
+    },
+    "ring_count": {
+      "n_missing": 0,
+      "n_distinct": 8,
+      "min": 0.0,
+      "max": 7.0,
+      "median": 2.0,
+      "zero_variance": false
+    },
+    "aromatic_ring_count": {
+      "n_missing": 0,
+      "n_distinct": 6,
+      "min": 0.0,
+      "max": 5.0,
+      "median": 2.0,
+      "zero_variance": false
+    },
+    "rdbe": {
+      "n_missing": 0,
+      "n_distinct": 37,
+      "min": 0.0,
+      "max": 21.5,
+      "median": 8.5,
+      "zero_variance": false
+    },
+    "tpsa": {
+      "n_missing": 0,
+      "n_distinct": 377,
+      "min": 3.24,
+      "max": 216.88999999999996,
+      "median": 57.01,
+      "zero_variance": false
+    },
+    "n_N": {
+      "n_missing": 0,
+      "n_distinct": 8,
+      "min": 0.0,
+      "max": 7.0,
+      "median": 2.0,
+      "zero_variance": false
+    },
+    "n_O": {
+      "n_missing": 0,
+      "n_distinct": 12,
+      "min": 0.0,
+      "max": 15.0,
+      "median": 2.0,
+      "zero_variance": false
+    },
+    "n_S": {
+      "n_missing": 0,
+      "n_distinct": 5,
+      "min": 0.0,
+      "max": 4.0,
+      "median": 0.0,
+      "zero_variance": false
+    },
+    "n_halogen": {
+      "n_missing": 0,
+      "n_distinct": 7,
+      "min": 0.0,
+      "max": 6.0,
+      "median": 0.0,
+      "zero_variance": false
+    },
+    "heteroatom_fraction": {
+      "n_missing": 0,
+      "n_distinct": 142,
+      "min": 0.045454545454545456,
+      "max": 0.6923076923076923,
+      "median": 0.25,
+      "zero_variance": false
+    },
+    "labute_asa": {
+      "n_missing": 0,
+      "n_distinct": 546,
+      "min": 45.16894006083608,
+      "max": 345.0832347252334,
+      "median": 122.47135307899457,
+      "zero_variance": false
+    },
+    "mol_wt": {
+      "n_missing": 0,
+      "n_distinct": 536,
+      "min": 115.15699999999998,
+      "max": 837.0579999999999,
+      "median": 291.71500000000003,
+      "zero_variance": false
+    },
+    "precursor_mz": {
+      "n_missing": 0,
+      "n_distinct": 529,
+      "min": 116.0165,
+      "max": 837.5318,
+      "median": 292.0864,
+      "zero_variance": false
+    },
+    "exact_mass": {
+      "n_missing": 0,
+      "n_distinct": 529,
+      "min": 115.0092,
+      "max": 836.5246,
+      "median": 291.0791,
+      "zero_variance": false
+    }
+  },
+  "tier_a_spearman_corr": {
+    "heavy_atom_count": {
+      "heavy_atom_count": 1.0,
+      "total_atom_count": 0.903,
+      "rotatable_bonds": 0.521,
+      "ring_count": 0.707,
+      "aromatic_ring_count": 0.455,
+      "rdbe": 0.715,
+      "tpsa": 0.419,
+      "n_N": 0.09,
+      "n_O": 0.538,
+      "n_S": -0.02,
+      "n_halogen": 0.341,
+      "heteroatom_fraction": -0.149,
+      "labute_asa": 0.993,
+      "mol_wt": 0.973,
+      "precursor_mz": 0.974,
+      "exact_mass": 0.974
+    },
+    "total_atom_count": {
+      "heavy_atom_count": 0.903,
+      "total_atom_count": 1.0,
+      "rotatable_bonds": 0.605,
+      "ring_count": 0.527,
+      "aromatic_ring_count": 0.183,
+      "rdbe": 0.444,
+      "tpsa": 0.269,
+      "n_N": -0.04,
+      "n_O": 0.481,
+      "n_S": -0.066,
+      "n_halogen": 0.137,
+      "heteroatom_fraction": -0.315,
+      "labute_asa": 0.912,
+      "mol_wt": 0.865,
+      "precursor_mz": 0.867,
+      "exact_mass": 0.867
+    },
+    "rotatable_bonds": {
+      "heavy_atom_count": 0.521,
+      "total_atom_count": 0.605,
+      "rotatable_bonds": 1.0,
+      "ring_count": -0.036,
+      "aromatic_ring_count": 0.106,
+      "rdbe": 0.116,
+      "tpsa": 0.276,
+      "n_N": 0.029,
+      "n_O": 0.452,
+      "n_S": 0.116,
+      "n_halogen": 0.149,
+      "heteroatom_fraction": 0.072,
+      "labute_asa": 0.544,
+      "mol_wt": 0.565,
+      "precursor_mz": 0.565,
+      "exact_mass": 0.565
+    },
+    "ring_count": {
+      "heavy_atom_count": 0.707,
+      "total_atom_count": 0.527,
+      "rotatable_bonds": -0.036,
+      "ring_count": 1.0,
+      "aromatic_ring_count": 0.617,
+      "rdbe": 0.846,
+      "tpsa": 0.213,
+      "n_N": 0.136,
+      "n_O": 0.186,
+      "n_S": -0.116,
+      "n_halogen": 0.235,
+      "heteroatom_fraction": -0.299,
+      "labute_asa": 0.679,
+      "mol_wt": 0.632,
+      "precursor_mz": 0.633,
+      "exact_mass": 0.633
+    },
+    "aromatic_ring_count": {
+      "heavy_atom_count": 0.455,
+      "total_atom_count": 0.183,
+      "rotatable_bonds": 0.106,
+      "ring_count": 0.617,
+      "aromatic_ring_count": 1.0,
+      "rdbe": 0.86,
+      "tpsa": 0.143,
+      "n_N": 0.295,
+      "n_O": -0.003,
+      "n_S": -0.01,
+      "n_halogen": 0.307,
+      "heteroatom_fraction": -0.106,
+      "labute_asa": 0.422,
+      "mol_wt": 0.402,
+      "precursor_mz": 0.402,
+      "exact_mass": 0.402
+    },
+    "rdbe": {
+      "heavy_atom_count": 0.715,
+      "total_atom_count": 0.444,
+      "rotatable_bonds": 0.116,
+      "ring_count": 0.846,
+      "aromatic_ring_count": 0.86,
+      "rdbe": 1.0,
+      "tpsa": 0.306,
+      "n_N": 0.22,
+      "n_O": 0.233,
+      "n_S": -0.016,
+      "n_halogen": 0.287,
+      "heteroatom_fraction": -0.175,
+      "labute_asa": 0.675,
+      "mol_wt": 0.647,
+      "precursor_mz": 0.648,
+      "exact_mass": 0.648
+    },
+    "tpsa": {
+      "heavy_atom_count": 0.419,
+      "total_atom_count": 0.269,
+      "rotatable_bonds": 0.276,
+      "ring_count": 0.213,
+      "aromatic_ring_count": 0.143,
+      "rdbe": 0.306,
+      "tpsa": 1.0,
+      "n_N": 0.44,
+      "n_O": 0.59,
+      "n_S": 0.215,
+      "n_halogen": 0.041,
+      "heteroatom_fraction": 0.533,
+      "labute_asa": 0.38,
+      "mol_wt": 0.431,
+      "precursor_mz": 0.432,
+      "exact_mass": 0.432
+    },
+    "n_N": {
+      "heavy_atom_count": 0.09,
+      "total_atom_count": -0.04,
+      "rotatable_bonds": 0.029,
+      "ring_count": 0.136,
+      "aromatic_ring_count": 0.295,
+      "rdbe": 0.22,
+      "tpsa": 0.44,
+      "n_N": 1.0,
+      "n_O": -0.257,
+      "n_S": 0.187,
+      "n_halogen": 0.198,
+      "heteroatom_fraction": 0.513,
+      "labute_asa": 0.078,
+      "mol_wt": 0.106,
+      "precursor_mz": 0.105,
+      "exact_mass": 0.105
+    },
+    "n_O": {
+      "heavy_atom_count": 0.538,
+      "total_atom_count": 0.481,
+      "rotatable_bonds": 0.452,
+      "ring_count": 0.186,
+      "aromatic_ring_count": -0.003,
+      "rdbe": 0.233,
+      "tpsa": 0.59,
+      "n_N": -0.257,
+      "n_O": 1.0,
+      "n_S": 0.124,
+      "n_halogen": 0.021,
+      "heteroatom_fraction": 0.218,
+      "labute_asa": 0.519,
+      "mol_wt": 0.567,
+      "precursor_mz": 0.568,
+      "exact_mass": 0.568
+    },
+    "n_S": {
+      "heavy_atom_count": -0.02,
+      "total_atom_count": -0.066,
+      "rotatable_bonds": 0.116,
+      "ring_count": -0.116,
+      "aromatic_ring_count": -0.01,
+      "rdbe": -0.016,
+      "tpsa": 0.215,
+      "n_N": 0.187,
+      "n_O": 0.124,
+      "n_S": 1.0,
+      "n_halogen": -0.043,
+      "heteroatom_fraction": 0.439,
+      "labute_asa": 0.006,
+      "mol_wt": 0.09,
+      "precursor_mz": 0.089,
+      "exact_mass": 0.089
+    },
+    "n_halogen": {
+      "heavy_atom_count": 0.341,
+      "total_atom_count": 0.137,
+      "rotatable_bonds": 0.149,
+      "ring_count": 0.235,
+      "aromatic_ring_count": 0.307,
+      "rdbe": 0.287,
+      "tpsa": 0.041,
+      "n_N": 0.198,
+      "n_O": 0.021,
+      "n_S": -0.043,
+      "n_halogen": 1.0,
+      "heteroatom_fraction": 0.276,
+      "labute_asa": 0.368,
+      "mol_wt": 0.432,
+      "precursor_mz": 0.429,
+      "exact_mass": 0.429
+    },
+    "heteroatom_fraction": {
+      "heavy_atom_count": -0.149,
+      "total_atom_count": -0.315,
+      "rotatable_bonds": 0.072,
+      "ring_count": -0.299,
+      "aromatic_ring_count": -0.106,
+      "rdbe": -0.175,
+      "tpsa": 0.533,
+      "n_N": 0.513,
+      "n_O": 0.218,
+      "n_S": 0.439,
+      "n_halogen": 0.276,
+      "heteroatom_fraction": 1.0,
+      "labute_asa": -0.144,
+      "mol_wt": -0.013,
+      "precursor_mz": -0.015,
+      "exact_mass": -0.015
+    },
+    "labute_asa": {
+      "heavy_atom_count": 0.993,
+      "total_atom_count": 0.912,
+      "rotatable_bonds": 0.544,
+      "ring_count": 0.679,
+      "aromatic_ring_count": 0.422,
+      "rdbe": 0.675,
+      "tpsa": 0.38,
+      "n_N": 0.078,
+      "n_O": 0.519,
+      "n_S": 0.006,
+      "n_halogen": 0.368,
+      "heteroatom_fraction": -0.144,
+      "labute_asa": 1.0,
+      "mol_wt": 0.985,
+      "precursor_mz": 0.985,
+      "exact_mass": 0.985
+    },
+    "mol_wt": {
+      "heavy_atom_count": 0.973,
+      "total_atom_count": 0.865,
+      "rotatable_bonds": 0.565,
+      "ring_count": 0.632,
+      "aromatic_ring_count": 0.402,
+      "rdbe": 0.647,
+      "tpsa": 0.431,
+      "n_N": 0.106,
+      "n_O": 0.567,
+      "n_S": 0.09,
+      "n_halogen": 0.432,
+      "heteroatom_fraction": -0.013,
+      "labute_asa": 0.985,
+      "mol_wt": 1.0,
+      "precursor_mz": 1.0,
+      "exact_mass": 1.0
+    },
+    "precursor_mz": {
+      "heavy_atom_count": 0.974,
+      "total_atom_count": 0.867,
+      "rotatable_bonds": 0.565,
+      "ring_count": 0.633,
+      "aromatic_ring_count": 0.402,
+      "rdbe": 0.648,
+      "tpsa": 0.432,
+      "n_N": 0.105,
+      "n_O": 0.568,
+      "n_S": 0.089,
+      "n_halogen": 0.429,
+      "heteroatom_fraction": -0.015,
+      "labute_asa": 0.985,
+      "mol_wt": 1.0,
+      "precursor_mz": 1.0,
+      "exact_mass": 1.0
+    },
+    "exact_mass": {
+      "heavy_atom_count": 0.974,
+      "total_atom_count": 0.867,
+      "rotatable_bonds": 0.565,
+      "ring_count": 0.633,
+      "aromatic_ring_count": 0.402,
+      "rdbe": 0.648,
+      "tpsa": 0.432,
+      "n_N": 0.105,
+      "n_O": 0.568,
+      "n_S": 0.089,
+      "n_halogen": 0.429,
+      "heteroatom_fraction": -0.015,
+      "labute_asa": 0.985,
+      "mol_wt": 1.0,
+      "precursor_mz": 1.0,
+      "exact_mass": 1.0
+    }
+  },
+  "tier_a_severe_collinearity_ge_0.90": [
+    {
+      "a": "precursor_mz",
+      "b": "exact_mass",
+      "rho": 1.0
+    },
+    {
+      "a": "mol_wt",
+      "b": "precursor_mz",
+      "rho": 1.0
+    },
+    {
+      "a": "mol_wt",
+      "b": "exact_mass",
+      "rho": 1.0
+    },
+    {
+      "a": "heavy_atom_count",
+      "b": "labute_asa",
+      "rho": 0.993
+    },
+    {
+      "a": "labute_asa",
+      "b": "precursor_mz",
+      "rho": 0.985
+    },
+    {
+      "a": "labute_asa",
+      "b": "exact_mass",
+      "rho": 0.985
+    },
+    {
+      "a": "labute_asa",
+      "b": "mol_wt",
+      "rho": 0.985
+    },
+    {
+      "a": "heavy_atom_count",
+      "b": "precursor_mz",
+      "rho": 0.974
+    },
+    {
+      "a": "heavy_atom_count",
+      "b": "exact_mass",
+      "rho": 0.974
+    },
+    {
+      "a": "heavy_atom_count",
+      "b": "mol_wt",
+      "rho": 0.973
+    },
+    {
+      "a": "total_atom_count",
+      "b": "labute_asa",
+      "rho": 0.912
+    },
+    {
+      "a": "heavy_atom_count",
+      "b": "total_atom_count",
+      "rho": 0.903
+    }
+  ],
+  "mixture_distribution": {
+    "499": 12,
+    "500": 18,
+    "501": 29,
+    "502": 17,
+    "503": 33,
+    "504": 73,
+    "505": 125,
+    "506": 172,
+    "507": 9,
+    "508": 61
+  }
+}

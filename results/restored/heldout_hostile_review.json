@@ -1,0 +1,401 @@
+{
+ "all_passed": true,
+ "lens_count": 7,
+ "lenses": [
+  {
+   "checks": 10,
+   "failures": [],
+   "findings": [
+    {
+     "check": "seal_declares_sealed",
+     "detail": "sealed=True declaration='CURRENT-CONTRACT HELD-OUT RAW EXECUTION SEALED'",
+     "ok": true
+    },
+    {
+     "check": "all_sealed_files_rehash",
+     "detail": "482 sealed files; 0 mismatched, 0 missing",
+     "ok": true
+    },
+    {
+     "check": "record_set_is_exactly_the_registry_population",
+     "detail": "240 record files vs 240 registry case ids",
+     "ok": true
+    },
+    {
+     "check": "seed_count_is_cases_times_stability_denominator",
+     "detail": "7200 seeds vs 240 x 30",
+     "ok": true
+    },
+    {
+     "check": "every_seed_matches_its_frozen_derivation",
+     "detail": "0 cases whose seeds differ from case_search_seeds",
+     "ok": true
+    },
+    {
+     "check": "no_duplicate_seeds",
+     "detail": "0 duplicates",
+     "ok": true
+    },
+    {
+     "check": "single_run_commit",
+     "detail": "commits in provenance: ['8d87143d4280602323aa33ee0b5481aaef0fb4a8']",
+     "ok": true
+    },
+    {
+     "check": "calibration_table_identity_matches_every_record",
+     "detail": "record digests=['b9b6148276160ea84f223ff9cba3db0fb93fd974efa3e790bcacab312fe59425'] recomputed=b9b6148276160ea84f223ff9cba3db0fb93fd974efa3e790bcacab312fe59425",
+     "ok": true
+    },
+    {
+     "check": "no_challenge_or_confirmation_records",
+     "detail": "0 challenge/confirmation case ids among the sealed records",
+     "ok": true
+    },
+    {
+     "check": "superseded_outputs_are_outside_the_seal",
+     "detail": "the two superseded outputs are not covered by the seal, so superseding them touches no sealed evidence",
+     "ok": true
+    }
+   ],
+   "lens": "provenance",
+   "passed": true,
+   "question": "Is the evidence the restored analysis read the same sealed evidence the searches produced, and is it intact?"
+  },
+  {
+   "checks": 10,
+   "failures": [],
+   "findings": [
+    {
+     "check": "denominator_reconstructs/scalar_competence",
+     "detail": "rebuilt=164 endpoint_case_count=164 column_sum=164",
+     "ok": true
+    },
+    {
+     "check": "primary_uses_the_reconstructed_denominator/scalar_competence",
+     "detail": "primary reports 164, reconstruction gives 164",
+     "ok": true
+    },
+    {
+     "check": "denominator_reconstructs/family_recovery",
+     "detail": "rebuilt=144 endpoint_case_count=144 column_sum=144",
+     "ok": true
+    },
+    {
+     "check": "primary_uses_the_reconstructed_denominator/family_recovery",
+     "detail": "primary reports 144, reconstruction gives 144",
+     "ok": true
+    },
+    {
+     "check": "denominator_reconstructs/principal_structural_safety",
+     "detail": "rebuilt=36 endpoint_case_count=36 column_sum=36",
+     "ok": true
+    },
+    {
+     "check": "primary_uses_the_reconstructed_denominator/principal_structural_safety",
+     "detail": "primary reports 36, reconstruction gives 36",
+     "ok": true
+    },
+    {
+     "check": "endpoints_overlap_and_do_not_partition_the_cases",
+     "detail": "sum of endpoint denominators = 344, case population = 240; they differ because endpoints overlap and five families carry none",
+     "ok": true
+    },
+    {
+     "check": "no_endpoint_denominator_equals_the_case_population",
+     "detail": "denominators = {'family_recovery': 144, 'principal_structural_safety': 36, 'scalar_competence': 164}",
+     "ok": true
+    },
+    {
+     "check": "families_with_no_primary_endpoint_are_identified",
+     "detail": "barren families = ['F06', 'F13', 'F14', 'F15', 'F16']",
+     "ok": true
+    },
+    {
+     "check": "this_lens_would_reject_a_240_denominator",
+     "detail": "the superseded denominator lens asserted g1/g2/g3 totals == 240 and would have failed the correct 164/144/36; this reconstruction rejects 240 for every endpoint",
+     "ok": true
+    }
+   ],
+   "lens": "populations",
+   "passed": true,
+   "question": "Is each endpoint scored over exactly the case set the frozen registry assigns it?"
+  },
+  {
+   "checks": 11,
+   "failures": [],
+   "findings": [
+    {
+     "check": "denominator_is_the_frozen_164",
+     "detail": "reported 164, frozen 164",
+     "ok": true
+    },
+    {
+     "check": "thresholds_are_the_frozen_values",
+     "detail": "spearman=0.8 trajectory_ratio=0.8 wilson=0.7",
+     "ok": true
+    },
+    {
+     "check": "predicate_is_a_conjunction_of_all_three",
+     "detail": "each conjunct independently denies competence; all three together grant it",
+     "ok": true
+    },
+    {
+     "check": "m0_accepted_count_reconstructs",
+     "detail": "reconstructed 67, primary reports 67",
+     "ok": true
+    },
+    {
+     "check": "reported_count_respects_the_m0_upper_bound",
+     "detail": "competent=67 <= m0_accepted=67; competence requires m0_accepted, so this bound is unconditional",
+     "ok": true
+    },
+    {
+     "check": "gate_verdict_is_determinate_at_the_bound",
+     "detail": "wilson_lower=0.336233 vs gate 0.7; Wilson lower is monotone in successes, so the verdict holds for every value in [0, 67]",
+     "ok": true
+    },
+    {
+     "check": "candidate_test_r2_is_not_used_for_g1",
+     "detail": "the superseded G1 was count(candidate_test_r2 >= 0.80); the restored G1 never reads that field",
+     "ok": true
+    },
+    {
+     "check": "exact_recovery_ran_zero_searches",
+     "detail": "searches_run=0 pysr_imported=False",
+     "ok": true
+    },
+    {
+     "check": "exact_recovery_verified_content_identity_on_every_case",
+     "detail": "164 cases, 0 A1 mismatches against the sealed verdicts",
+     "ok": true
+    },
+    {
+     "check": "exact_count_lies_within_the_previously_proven_bound",
+     "detail": "exact competent=67, bound=67",
+     "ok": true
+    },
+    {
+     "check": "exact_count_agrees_with_the_primary_analysis",
+     "detail": "recovery=67 primary=67",
+     "ok": true
+    }
+   ],
+   "lens": "g1_scalar_competence",
+   "passed": true,
+   "question": "Is G1 the frozen three-conjunct predicate over 164 cases, and is its reported count defensible from the evidence?"
+  },
+  {
+   "checks": 6,
+   "failures": [],
+   "findings": [
+    {
+     "check": "denominator_is_the_frozen_144",
+     "detail": "reported 144, rebuilt 144",
+     "ok": true
+    },
+    {
+     "check": "success_set_reconstructs_exactly",
+     "detail": "rebuilt 4 successes; primary reports 4",
+     "ok": true
+    },
+    {
+     "check": "conjunction_is_strictly_stricter_than_the_superseded_disjunction",
+     "detail": "AND over the eligible 144 gives 4; the superseded OR over all 240 gives 23",
+     "ok": true
+    },
+    {
+     "check": "ineligible_families_are_excluded",
+     "detail": "16 cases the superseded rule credited come from families with no family_recovery endpoint: ['F07', 'F19']",
+     "ok": true
+    },
+    {
+     "check": "unevaluable_remains_in_the_denominator",
+     "detail": "4 + 103 + 37 = 144",
+     "ok": true
+    },
+    {
+     "check": "support_match_alone_is_not_a_success",
+     "detail": "the frozen evaluator returns FAILURE for support MATCH with family MISMATCH",
+     "ok": true
+    }
+   ],
+   "lens": "g2_family_recovery",
+   "passed": true,
+   "question": "Is G2 the conjunction of support and family match over exactly the 144 eligible cases?"
+  },
+  {
+   "checks": 7,
+   "failures": [],
+   "findings": [
+    {
+     "check": "denominator_is_the_frozen_36",
+     "detail": "reported 36, rebuilt 36",
+     "ok": true
+    },
+    {
+     "check": "population_is_exactly_f07_f19_f20",
+     "detail": "families = ['F07', 'F19', 'F20']",
+     "ok": true
+    },
+    {
+     "check": "violation_set_reconstructs_exactly",
+     "detail": "rebuilt 26 violations; primary reports 26",
+     "ok": true
+    },
+    {
+     "check": "direction_is_an_upper_bound_not_a_success_rate",
+     "detail": "gate='wilson_upper_95 <= 0.15' wilson_upper=0.841518 vs 0.15; the superseded rule counted safety successes",
+     "ok": true
+    },
+    {
+     "check": "unevaluable_is_a_violation_for_every_variant",
+     "detail": "the frozen dispatcher maps UNEVALUABLE to VIOLATION in all seven variants",
+     "ok": true
+    },
+    {
+     "check": "unevaluable_drives_the_violation_count",
+     "detail": "26 of the 26 violations are UNEVALUABLE cases counted conservatively",
+     "ok": true
+    },
+    {
+     "check": "classify_negative_control_is_not_used",
+     "detail": "A3.5 \u00a78.3 makes g3_contract the sole G3 authority; the permissive alternative classifier is not imported",
+     "ok": true
+    }
+   ],
+   "lens": "g3_structural_safety",
+   "passed": true,
+   "question": "Is G3 a violation count over 36 with an upper-tail gate, with UNEVALUABLE conservative?"
+  },
+  {
+   "checks": 13,
+   "failures": [],
+   "findings": [
+    {
+     "check": "gate7_reconstructs_from_the_ceiling_predicate",
+     "detail": "rebuilt reached=27 passed=26; primary reports reached=27 passed=26",
+     "ok": true
+    },
+    {
+     "check": "waiver_branch_attribution_reconstructs",
+     "detail": "rebuilt 0 waiver-only passes; primary reports 0",
+     "ok": true
+    },
+    {
+     "check": "gate7_is_not_structural_acceptance",
+     "detail": "Gate 7 passes 26, structural acceptance is 25; the superseded analyzer conflated the two",
+     "ok": true
+    },
+    {
+     "check": "gate8_reconstructs_from_the_rung_results",
+     "detail": "rebuilt reached=26 passed=25; primary reports reached=26 passed=25",
+     "ok": true
+    },
+    {
+     "check": "gate8_has_exactly_four_hard_rungs",
+     "detail": "REQUIRED_HARD_GATES = ['F10_NEGATIVE_CONTROL', 'F1_REPRODUCIBILITY', 'F4_COMPOUND_HOLDOUT', 'F7_INFLUENCE_DROP']",
+     "ok": true
+    },
+    {
+     "check": "the_prohibited_gate8_equals_gate7_and_g1_gives_a_different_answer",
+     "detail": "the frozen Gate 8 passes 25; the prohibited 'Gate 7 AND G1' composition would pass 26",
+     "ok": true
+    },
+    {
+     "check": "g1_is_absent_from_the_gate8_evaluation",
+     "detail": "no G1 symbol is reachable from the Gate 8 code path",
+     "ok": true
+    },
+    {
+     "check": "gate8_is_fail_closed",
+     "detail": "a missing rung and a stray NOT_APPLICABLE both reject; only all-PASS passes",
+     "ok": true
+    },
+    {
+     "check": "f5_never_appears_as_a_rung",
+     "detail": "rung keys ever emitted across all records: ['F10_NEGATIVE_CONTROL', 'F1_REPRODUCIBILITY', 'F4_COMPOUND_HOLDOUT', 'F7_INFLUENCE_DROP']",
+     "ok": true
+    },
+    {
+     "check": "f5_floor_survives_only_inside_the_gate7_waiver",
+     "detail": "candidate_test_r2 appears exactly once in the predicate, in the waiver branch; no case entered that branch, so the A3.5 Gate-7 amendment is outcome-invariant on this partition as a matter of fact",
+     "ok": true
+    },
+    {
+     "check": "f9_is_structurally_barred_from_the_hard_set",
+     "detail": "the module-import guard raises ImportError if F9 ever enters REQUIRED_HARD_GATES",
+     "ok": true
+    },
+    {
+     "check": "f9_fail_cannot_reject_a_case",
+     "detail": "an F9 FAIL alongside four passing hard rungs still passes Gate 8",
+     "ok": true
+    },
+    {
+     "check": "f9_reported_from_its_own_observable",
+     "detail": "F9 PASS among Gate-8 reachers = 26, non-gating, with the \u00a76.9.4 drafting guard attached",
+     "ok": true
+    }
+   ],
+   "lens": "gate7_gate8_f5_f9",
+   "passed": true,
+   "question": "Is Gate 7 the ceiling test, Gate 8 the four hard rungs, F5 superseded and F9 non-gating?"
+  },
+  {
+   "checks": 9,
+   "failures": [],
+   "findings": [
+    {
+     "check": "no_frozen_threshold_or_denominator_changed",
+     "detail": "13 frozen constants checked against their amendment values; drifted={}",
+     "ok": true
+    },
+    {
+     "check": "authorised_partitions_unchanged",
+     "detail": "AUTHORISED_PARTITIONS = ['development', 'held_out']; Challenge and Confirmation remain unauthorised",
+     "ok": true
+    },
+    {
+     "check": "challenge_not_opened",
+     "detail": "no Challenge authorization, no A3.7, no RC5.2, no Challenge records",
+     "ok": true
+    },
+    {
+     "check": "confirmation_not_opened",
+     "detail": "real-data Confirmation remains sealed and unopened",
+     "ok": true
+    },
+    {
+     "check": "restoration_wrote_nothing_into_the_evidence_root",
+     "detail": "no restoration output exists under /Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-heldout-a3-6/results/held_out",
+     "ok": true
+    },
+    {
+     "check": "no_search_was_rerun",
+     "detail": "the only recomputation performed is the search-independent G1 bridge; PySR was never imported",
+     "ok": true
+    },
+    {
+     "check": "restored_numbers_match_the_pre_repair_sealed_forensic_result",
+     "detail": "all 8 determinate forensic quantities reproduce; mismatched={}. The forensic result was sealed before the repair was written, so agreement cannot have been tuned toward.",
+     "ok": true
+    },
+    {
+     "check": "the_repair_changes_the_verdict_against_the_authors_interest",
+     "detail": "the restoration converts a reported pass into a three-way primary endpoint failure; every deviation it corrects ran in the permissive direction",
+     "ok": true
+    },
+    {
+     "check": "independent_recomputation_is_structurally_independent",
+     "detail": "the independent module imports no object from the primary analyzer and agrees with it on every compared quantity",
+     "ok": true
+    }
+   ],
+   "lens": "governance_and_post_hoc_tuning",
+   "passed": true,
+   "question": "Was anything scientific changed, tuned, or re-opened in the course of this restoration?"
+  }
+ ],
+ "total_checks": 66,
+ "total_failures": 0
+}

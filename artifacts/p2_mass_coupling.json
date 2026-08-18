@@ -1,0 +1,125 @@
+{
+  "n_synthetic_compounds": 549,
+  "mass_range": [
+    116.0165,
+    837.5318
+  ],
+  "analytic": {
+    "identity": "mu = SY + (1 - SY) * phi, with phi = <mz_fragment> / mz_precursor",
+    "fractional_regime": "if fragment m/z scales proportionally with precursor m/z and relative intensities are fixed, phi is mass-invariant and mu carries NO mass dependence",
+    "absolute_regime": "if fragment m/z is drawn on an absolute scale, phi ~ 1/mz_precursor, so mu acquires a negative mass association mechanically, with no chemistry"
+  },
+  "regimes": {
+    "A_fractional": {
+      "description": "Purely fractional fragmentation: fragment m/z proportional to precursor m/z. Fractional behaviour held exactly constant across mass.",
+      "rho_mu_vs_precursor_mz_by_energy": {
+        "15": -0.0153,
+        "30": -0.0199,
+        "45": -0.0604,
+        "60": 0.0121,
+        "75": -0.0688,
+        "90": -0.0578
+      },
+      "max_abs_rho": 0.0688,
+      "mu_range": [
+        0.5729,
+        0.8547
+      ]
+    },
+    "B_absolute": {
+      "description": "Absolute-scale fragmentation: fragments at fixed m/z, independent of precursor. Fractional behaviour NOT constant.",
+      "rho_mu_vs_precursor_mz_by_energy": {
+        "15": -1.0,
+        "30": -1.0,
+        "45": -1.0,
+        "60": -1.0,
+        "75": -1.0,
+        "90": -1.0
+      },
+      "max_abs_rho": 1.0,
+      "mu_range": [
+        0.1793,
+        0.9682
+      ]
+    },
+    "C_blend": {
+      "description": "50/50 blend of the two, the realistic middle case.",
+      "rho_mu_vs_precursor_mz_by_energy": {
+        "15": -1.0,
+        "30": -1.0,
+        "45": -1.0,
+        "60": -1.0,
+        "75": -1.0,
+        "90": -1.0
+      },
+      "max_abs_rho": 1.0,
+      "mu_range": [
+        0.3761,
+        0.9377
+      ]
+    },
+    "D_absolute_floor": {
+      "description": "Proportional fragments with a fixed 50 Da low-mass cutoff -- proportional chemistry plus one absolute instrument limit.",
+      "rho_mu_vs_precursor_mz_by_energy": {
+        "15": -0.4554,
+        "30": -0.4561,
+        "45": -0.5183,
+        "60": -0.4972,
+        "75": -0.5309,
+        "90": -0.4791
+      },
+      "max_abs_rho": 0.5309,
+      "mu_range": [
+        0.5729,
+        0.8629
+      ]
+    }
+  },
+  "observed_rho_by_energy": {
+    "15": -0.0913,
+    "30": -0.5094,
+    "45": -0.6088,
+    "60": -0.6401,
+    "75": -0.6588,
+    "90": -0.6759
+  },
+  "observed_max_abs_rho": 0.6759,
+  "comparison": {
+    "observed_at_NCE90": -0.6759,
+    "fractional_at_NCE90": -0.0578,
+    "absolute_at_NCE90": -1.0,
+    "absolute_floor_at_NCE90": -0.4791
+  },
+  "decomposition_of_the_association": {
+    "15": {
+      "rho_mu_mass": -0.0913,
+      "rho_phi_mass": -0.1161,
+      "rho_sy_mass": -0.1034
+    },
+    "30": {
+      "rho_mu_mass": -0.5094,
+      "rho_phi_mass": -0.3416,
+      "rho_sy_mass": -0.5111
+    },
+    "45": {
+      "rho_mu_mass": -0.6088,
+      "rho_phi_mass": -0.5189,
+      "rho_sy_mass": -0.6236
+    },
+    "60": {
+      "rho_mu_mass": -0.6401,
+      "rho_phi_mass": -0.6075,
+      "rho_sy_mass": -0.6404
+    },
+    "75": {
+      "rho_mu_mass": -0.6588,
+      "rho_phi_mass": -0.6497,
+      "rho_sy_mass": -0.5924
+    },
+    "90": {
+      "rho_mu_mass": -0.6759,
+      "rho_phi_mass": -0.6735,
+      "rho_sy_mass": -0.5021
+    }
+  }
+}

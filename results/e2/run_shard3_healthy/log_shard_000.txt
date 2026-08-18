@@ -1,0 +1,9 @@
+shard 0/1: 89 worlds assigned, 0 already done
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r003: stage=C front=13/30 failures=0 wall=304.0s classify_cache=285
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r009: stage=C front=17/30 failures=0 wall=294.2s classify_cache=544
+V2C|E2|mass_affine_descriptor|c_low|n_default|r003: stage=B front=15/30 failures=0 wall=275.3s classify_cache=810
+V2C|E2|mass_affine_descriptor|c_low|n_default|r009: stage=B front=14/30 failures=0 wall=294.2s classify_cache=1123
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r003: stage=B front=13/30 failures=0 wall=374.6s classify_cache=1439
+V2C|E2|mass_affine_descriptor|c_low|n_strong|r009: stage=B front=16/30 failures=0 wall=240.6s classify_cache=1763
+V2C|E2|mass_affine_descriptor|c_mid|n_noiseless|r003: stage=C front=16/30 failures=0 wall=222.9s classify_cache=2063
+shard 0/1: 57 worlds assigned, 0 already done

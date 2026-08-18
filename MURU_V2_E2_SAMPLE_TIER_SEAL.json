@@ -1,0 +1,12 @@
+{
+  "seal_version": "1.0.0",
+  "sealed_at_utc": "2026-08-17T22:21:58Z",
+  "n_sample_total_incl_poison": 270,
+  "n_sample_schedulable": 269,
+  "n_sample_schedulable_covered": 269,
+  "n_sample_schedulable_remaining": 0,
+  "poison_world_excluded": "V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r000",
+  "sample_tier_complete": true,
+  "covered_world_ids_sha256": "91dccd0b1e91842397724521ed9123621a84aace618e10dff43c8edeec2dc958",
+  "note": "world-ID/count/hash fields only -- no scientific first-loss rate computed or exposed by this seal"
+}

@@ -1,0 +1,2 @@
+shard 6/1: 0 worlds assigned, 0 already done
+shard 6 COMPLETE
