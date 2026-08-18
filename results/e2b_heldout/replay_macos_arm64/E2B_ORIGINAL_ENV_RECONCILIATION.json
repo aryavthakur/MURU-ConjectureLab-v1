@@ -1,0 +1,86 @@
+{
+ "schema_version": "e2b_original_environment_reconciliation_v1",
+ "recorded_utc": "2026-08-18T13:05:00Z",
+ "objective": "Execute the authoritative E2b held-out replay on the original macOS/ARM64 environment that produced the sealed v1 evidence, to remove the Linux/x86_64 cross-architecture confound.",
+ "constraints_honoured": [
+  "identity criterion NOT modified",
+  "no coefficient tolerance introduced",
+  "seeds, search settings, group_and_select, representative selection, selection_count definition and exact-string identity requirement all left untouched",
+  "no substitute environment used to manufacture a verdict"
+ ],
+
+ "required_environment_from_sealed_manifest": {
+  "source": "results/e2b_heldout/sealed_evidence/held_out/execution_manifest.json",
+  "machine": "arm64",
+  "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "python_version": "3.13.12",
+  "python_implementation": "CPython",
+  "environment_lock_digest": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+  "run_commit": "8d87143d4280602323aa33ee0b5481aaef0fb4a8",
+  "science_freeze_tag": "benchmark-content-freeze-a3-5",
+  "science_freeze_commit": "560bf28568e2762c60edc994aac7f2b6de14081f",
+  "sealed_evidence_root_original": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-heldout-a3-6/results/held_out"
+ },
+
+ "environment_actually_available_to_this_session": {
+  "hostname": "instance-20260818-004057.us-east4-a.c.muru-compute.internal",
+  "os": "Linux, Ubuntu 26.04 LTS",
+  "kernel": "7.0.0-1008-gcp",
+  "machine": "x86_64",
+  "python": "3.13.5 (venv), 3.14.4 (system)",
+  "is_darwin": false
+ },
+
+ "blocking_mismatches": [
+  {"field": "operating system", "required": "macOS 26.1 (Darwin)", "actual": "Linux (Ubuntu 26.04)", "remediable_on_this_host": false,
+   "why": "an operating system cannot be changed on a running Linux VM; macOS Julia/PySR binaries cannot execute on Linux"},
+  {"field": "architecture", "required": "arm64 (Apple Silicon)", "actual": "x86_64", "remediable_on_this_host": false,
+   "why": "qemu emulation of arm64 would neither be macOS nor bit-faithful to Apple Silicon floating point, and would introduce a NEW confound rather than remove the existing one"},
+  {"field": "python", "required": "3.13.12", "actual": "3.13.5", "remediable_on_this_host": "only as a Linux build, which does not address the OS/arch mismatch",
+   "evidence": "uv python installs present are cpython-3.13-linux-x86_64-gnu and cpython-3.13.5-linux-x86_64-gnu only"}
+ ],
+
+ "prerequisites_that_ARE_satisfied_here": {
+  "python_dependency_lock_digest": {"required": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+   "actual_sha256_of_requirements_lock_txt": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8", "match": true},
+  "v1_run_commit_8d87143d_present_in_repo": true,
+  "sealed_evidence_hash_verification": {"files_in_receipt": 482, "verified_ok": 482, "mismatched": 0, "missing": 0},
+  "sealed_144_case_record": {"cases": 144, "selection_count_present": 144, "representative_present": 144},
+  "seed_identity": "case_search_seeds() reproduces the sealed seeds_used byte-identically for 144/144 cases (verified previously and unchanged)"
+ },
+ "prerequisites_absent_here": {
+  "science_freeze_commit_560bf28": "ABSENT from this repository",
+  "tag_benchmark-content-freeze-a3-5": "ABSENT",
+  "worktree_.claude/worktrees/muru-heldout-a3-6": "ABSENT (this repo has no .claude directory)"
+ },
+
+ "search_for_a_macos_arm64_host": {
+  "local_filesystem": "no /Users tree; no nfs/smb/cifs/sshfs/afp mounts",
+  "ssh": "no ~/.ssh/config; known_hosts empty; no configured route to any macOS host",
+  "peer_sessions_enumerated": 3,
+  "peer_results": [
+   {"name": "aryav-thakur-71", "kind": "interactive", "location": "THIS SAME Linux x86_64 host",
+    "reported": "uname -s -m = Linux x86_64; /Users absent; Python 3.13.12 NOT available; no .claude worktree", "is_macos_arm64": false},
+   {"name": "Write notes to Obsidian vault", "kind": "cloud", "is_macos_arm64": false,
+    "note": "cloud sessions are Linux and cannot reply to messages"},
+   {"name": "Dispatch background conversation", "kind": "Remote Control, another machine",
+    "queried_utc": "2026-08-18T13:00Z", "status_at_record_time": "queried, no response received", "is_macos_arm64": "UNCONFIRMED"}
+  ],
+  "provenance_note": "The recovery recorded in E2B_HELDOUT_RECOVERY_PROVENANCE.md was performed by a session running ON the macOS host (it ran git rev-parse in the source worktree and diff -rq against the copy). That host therefore existed at commit cc6c8b9, but it is not reachable from this session."
+ },
+
+ "what_was_NOT_done_and_why": [
+  "Did not execute the replay on this Linux/x86_64 host: that is the exact run already completed and classified INCONCLUSIVE, and repeating it would not remove the confound it was blocked by.",
+  "Did not emulate arm64: emulation is neither macOS nor Apple-Silicon-faithful and would substitute one confound for another.",
+  "Did not provision a fresh macOS machine: GCP offers no macOS instances, and in any case a different physical mac would not be the original authoritative environment, though see the option below.",
+  "Did not relax the identity criterion or introduce tolerance: explicitly forbidden, and doing so would fabricate a PASS.",
+  "Did not emit E2B_PASS or E2B_FAIL: the frozen criterion was not evaluated under the required environment, so neither verdict is available. Emitting either would be a false statement about work that did not run."
+ ],
+
+ "outcome": "E2B_ORIGINAL_ENVIRONMENT_REPLAY = FAILED_TO_EXECUTE (environment unavailable; no scientific work attempted)",
+
+ "what_would_unblock_this": [
+  "Run this replay from a Claude session ON the macOS/arm64 host at /Users/aryav/Documents/MURU-ConjectureLab-v1 (the machine that produced the seal). scripts/e2_rescue_v2/e2b_replay_shard.py is committed and portable; it needs only that host, its Python 3.13.12 environment, and the already-committed sealed evidence.",
+  "Alternatively, any genuine macOS 26.1 / arm64 / Python 3.13.12 host with the frozen dependency lock and the v1 code would remove the ARCHITECTURE confound even if it is not the original physical machine. That is weaker provenance than the original host and would need its own environment verification, so it is offered as an option for the operator to rule on, not adopted here."
+ ]
+}
