@@ -106,6 +106,30 @@ def _safe_case_dir(case_id: str) -> str:
     return case_id.replace("|", "_")
 
 
+def _to_json_safe(val: Any) -> Any:
+    """Convert a single cell value to a JSON-serialisable Python native.
+
+    PySR equations_ columns:
+      complexity  -> np.int64   -> int
+      loss        -> np.float64 -> float
+      equation    -> str        -> str
+      score       -> np.float64 -> float
+      sympy_format -> sympy.Expr -> str(val)
+      lambda_format -> CallableEquation -> str(val)
+    """
+    if val is None:
+        return None
+    if isinstance(val, (str, int, float, bool)):
+        return val
+    if isinstance(val, (bytes, bytearray)):
+        return val.decode("utf-8", errors="replace")
+    # numpy scalars
+    if hasattr(val, "item"):
+        return val.item()
+    # Everything else (sympy objects, CallableEquation, etc.): str
+    return str(val)
+
+
 def _serialize_front(
     equations: pd.DataFrame,
     case_id: str,
@@ -123,12 +147,7 @@ def _serialize_front(
         row_dict = {}
         for col in equations.columns:
             val = equations[col].iloc[iloc_pos]
-            # Convert numpy types to Python natives for JSON
-            if hasattr(val, "item"):
-                val = val.item()
-            elif isinstance(val, (bytes, bytearray)):
-                val = val.decode("utf-8", errors="replace")
-            row_dict[col] = val
+            row_dict[col] = _to_json_safe(val)
         # Augment with identity fields
         row_dict["_case_id"] = case_id
         row_dict["_case_index"] = case_index
@@ -140,7 +159,7 @@ def _serialize_front(
 
 
 def _json_default(obj: Any) -> Any:
-    """Handle numpy/pandas types that json.dumps cannot serialise natively."""
+    """Handle any remaining non-serialisable types in json.dumps."""
     import numpy as np
     if isinstance(obj, (np.integer,)):
         return int(obj)
@@ -155,7 +174,8 @@ def _json_default(obj: Any) -> Any:
             return None
     except (TypeError, ValueError):
         pass
-    raise TypeError(f"Object of type {type(obj)} is not JSON serializable: {obj!r}")
+    # Fallback: convert to string rather than raising
+    return str(obj)
 
 
 def persist_front_atomic(

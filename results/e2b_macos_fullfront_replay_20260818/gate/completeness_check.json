@@ -1,0 +1,43 @@
+{
+  "report": {
+    "SEARCHES_EXPECTED": 4320,
+    "SEARCHES_STARTED": 1,
+    "SEARCHES_COMPLETED": 0,
+    "SEARCHES_FAILED": 0,
+    "FRONTS_WRITTEN": 0,
+    "FRONTS_VALID": 0,
+    "FRONTS_TORN": 0,
+    "FRONTS_DUPLICATE": 0,
+    "FRONTS_MISSING": 4320,
+    "UNEXPECTED_FILES": 0,
+    "COMPLETENESS_VERDICT": "FAIL"
+  },
+  "details": {
+    "missing": [
+      "fronts/PB_held_out_F01_r000_seed2100002400.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002401.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002402.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002403.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002404.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002405.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002406.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002407.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002408.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002409.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002410.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002411.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002412.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002413.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002414.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002415.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002416.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002417.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002418.jsonl",
+      "fronts/PB_held_out_F01_r000_seed2100002419.jsonl"
+    ],
+    "torn": [],
+    "invalid": [],
+    "unexpected": [],
+    "sha256_registry_size": 0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "HOSTNAME": "Sandeeps-MacBook-Air.local",
+  "OS": "Darwin",
+  "OS_VERSION": "26.1",
+  "ARCH": "arm64",
+  "PYTHON_VERSION": "3.13.12",
+  "PYTHON_EXECUTABLE": "/opt/miniconda3/bin/python3",
+  "PYSR_VERSION": "1.5.10",
+  "JULIA_VERSION": "julia version 1.12.7",
+  "JULIA_EXECUTABLE": "/opt/miniconda3/julia_env/pyjuliapkg/install/bin/julia",
+  "SYMBOLICREGRESSION_VERSION": "1.11.3",
+  "SYMPY_VERSION": "1.14.0",
+  "NUMPY_VERSION": "2.5.2",
+  "SCIPY_VERSION": "1.18.0",
+  "REPO_PATH": "/Users/aryav/Documents/MURU-ConjectureLab-v1",
+  "BRANCH": "audit/muru-rc5-execution-semantics-authority-audit",
+  "START_COMMIT": "dabcb4ba3b8bb32c6a32dc54ae10e34d3d5c41c2",
+  "EXECUTION_COMMIT": "dabcb4ba3b8bb32c6a32dc54ae10e34d3d5c41c2",
+  "AUTHORITATIVE_REFERENCE_COMMIT": "d6f607a",
+  "SCIENCE_CONFIG_SHA256": "8056cb6feefc624dbb85e3312d81494f343cce3f858bd1ec7a2857c34681aeb2",
+  "EVALUATOR_SHA256": "ee285a8bd7e32859c7091973dc515ec0057fd31dbbf01ffbf60950d7e98b9743",
+  "timestamp": "2026-08-18T19:27:34.283070+00:00"
+}
