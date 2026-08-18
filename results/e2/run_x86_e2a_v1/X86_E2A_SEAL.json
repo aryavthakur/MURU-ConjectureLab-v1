@@ -1,0 +1,143 @@
+{
+ "schema_version": "v2_e2a_x86_seal_v1",
+ "corpus": "results/e2/run_x86_e2a_v1",
+ "corpus_is_x86_only": true,
+ "historical_worlds_merged": false,
+ "scheduled": 540,
+ "completed": 539,
+ "duplicates": 0,
+ "duplicate_ids": [],
+ "torn_world_records": 0,
+ "torn_candidate_records": 0,
+ "torn_error_records": 0,
+ "candidate_rows": 189467,
+ "scientific_timeouts_simplify_timeout_rows": 0,
+ "worlds_containing_simplify_timeout": 0,
+ "execution_errors": 0,
+ "execution_error_ids": [],
+ "unresolved": 1,
+ "unresolved_ids": [
+  "V2C|E2|mass_power|c_low|n_default|r000"
+ ],
+ "accounted_for": 540,
+ "all_540_accounted_for": true,
+ "population_matches_frozen_definition": true,
+ "world_id_set_sha256": "cfa4054290a1790b21f8fe4ab929d176111dbfc896a1d974fec2b68d9f1da0e7",
+ "routing": {
+  "n_classified": 420,
+  "r_remaining": 1,
+  "state": "LOCKED_EXECUTE_E4A",
+  "note": "Gate 2 branch 1 (B strict plurality of {A,B,C+D}) is mathematically guaranteed regardless of the remaining worlds' outcomes. This locks Gate 2 only. Gate 1 (E2b falsification hook) is a separate, out-of-scope precondition for actually running E4a -- see PENDING_E2B."
+ },
+ "file_manifest": {
+  "candidates_shard_000.jsonl": {
+   "sha256": "e1f33d337732e22d52f2b3b30e014f0f2a0126cbfa0fa73a1e251afd288eb7d1",
+   "bytes": 7942509
+  },
+  "candidates_shard_001.jsonl": {
+   "sha256": "81437e4e95caa8bfb64f10f554570931bcba6a9075e3ae231f511ef3f49bf033",
+   "bytes": 8027521
+  },
+  "candidates_shard_002.jsonl": {
+   "sha256": "225ae2b55bdd3df8c03c597e18c012d17a579ceac9b3709024f5f66a416bf4f0",
+   "bytes": 8072181
+  },
+  "candidates_shard_003.jsonl": {
+   "sha256": "982e2c5f246cb96b6f00364c5a67aab28d738b501258dcf1d769f063528f686d",
+   "bytes": 8163183
+  },
+  "candidates_shard_004.jsonl": {
+   "sha256": "aaa20452c4811b1fc32dca494b7c27a088b09643d1be65bbac656610a8efba08",
+   "bytes": 8123830
+  },
+  "candidates_shard_005.jsonl": {
+   "sha256": "d6725482460c487a4613248047143fde4dcac813acaf932c67b4c1a45958b86f",
+   "bytes": 8181175
+  },
+  "candidates_shard_006.jsonl": {
+   "sha256": "3662d99454cc26e1ba330474ba6d47dc5ae7fd37973d526fa543298f4bc46dd0",
+   "bytes": 8121047
+  },
+  "candidates_shard_007.jsonl": {
+   "sha256": "48ee34d5d21deebd768bcaed6524257f5de840ac604eefaa5eda28a08d525b54",
+   "bytes": 8096354
+  },
+  "candidates_shard_008.jsonl": {
+   "sha256": "f28b46bd02bf91e61665b07a0790b9368af0595f3ec22c9b20d70c565c95d79f",
+   "bytes": 8227977
+  },
+  "candidates_shard_009.jsonl": {
+   "sha256": "e9ec45fa2376e0a5e711ac726a8da393d7d60c01adf0d70d62c1afb150ba91bf",
+   "bytes": 8126756
+  },
+  "candidates_shard_010.jsonl": {
+   "sha256": "142b5fba8711e3156e4f7e3b81dd7cab22c035d701ece2afbcc2f7af7e52e192",
+   "bytes": 8132200
+  },
+  "candidates_shard_011.jsonl": {
+   "sha256": "5f58beb732080c665a87948867863d1060ecd95dbcbb4a54cab58932d827355f",
+   "bytes": 8072593
+  },
+  "worlds_shard_000.jsonl": {
+   "sha256": "f7b25576a8df55a4268c0159a70babe5dcc64cbae9c1833ecba652755bdffc22",
+   "bytes": 32873
+  },
+  "worlds_shard_001.jsonl": {
+   "sha256": "fb786cce273beb6246e3f76beae8126fef6c90ba64ee64f80f64a32edf121c9f",
+   "bytes": 33677
+  },
+  "worlds_shard_002.jsonl": {
+   "sha256": "33bc1036ead6d1b56c30f1ed5ace7a6f93f9ce9434edaafd5835145e60b3ad3e",
+   "bytes": 33629
+  },
+  "worlds_shard_003.jsonl": {
+   "sha256": "1577b024b7495d3e2bcce2a6d0c5a7b741350e38f7489f78c911151993114008",
+   "bytes": 33732
+  },
+  "worlds_shard_004.jsonl": {
+   "sha256": "48afaca935b0619fd31ec888433e015c45a5ebf44a802a08f0306c60c539509f",
+   "bytes": 33592
+  },
+  "worlds_shard_005.jsonl": {
+   "sha256": "2fcf2a50c87a447fe5c9bbbfb7d04d310594b4ddf257a94e9465d0205d419858",
+   "bytes": 33619
+  },
+  "worlds_shard_006.jsonl": {
+   "sha256": "d45df7e08b3d057bf9a0b44b867686569c4213af1cf13f48ab8ee31034f1b5c0",
+   "bytes": 33680
+  },
+  "worlds_shard_007.jsonl": {
+   "sha256": "bc000de4ad75a05073461da32903e7164ee1c4eb429e6725cc69b0930b390228",
+   "bytes": 33599
+  },
+  "worlds_shard_008.jsonl": {
+   "sha256": "ce14a620f5df6b2a14a4c3a03d3ced491827325f24559ba1bb4b03a9eb4f1ac9",
+   "bytes": 33620
+  },
+  "worlds_shard_009.jsonl": {
+   "sha256": "0f6327af5dadd58c123b593d01d108bdc3229ab4eade3d01bd2c271ffb0e92b1",
+   "bytes": 33663
+  },
+  "worlds_shard_010.jsonl": {
+   "sha256": "8082dfb75463cd64e7b85d167aeae171b0cf8d300311d52fd9d5fd738edf3d02",
+   "bytes": 33597
+  },
+  "worlds_shard_011.jsonl": {
+   "sha256": "11e2a63de16d93cac48440eb80db55819f406e8b2b12d8c289ae58342a320ec9",
+   "bytes": 33596
+  }
+ },
+ "ADDENDUM_scientific_timeout_counter_is_dead": {
+  "added_after_seal_generation": true,
+  "issue": "this seal's own fields `scientific_timeouts_simplify_timeout_rows` and `worlds_containing_simplify_timeout` both report 0, but that 0 is an artifact, not a finding. seal_x86_e2a.py counts SIMPLIFY_TIMEOUT by reading `canonicalization_status` off candidate rows, and e2_run_shard_lazy.py writes NO classification-derived column to any candidate row -- a deliberate, documented property of the rescue-v2 candidate schema. The key is always absent, so the counter can only ever report 0.",
+  "actual_figure": {
+   "simplify_timeout_distinct_expressions": 397,
+   "total_distinct_expressions_classified": 52450,
+   "fraction": 0.007569113441372736,
+   "source": "the PersistentClassifyCache, which stores the whole ClassificationResult including canonicalization_status",
+   "audit_file": "SIMPLIFY_TIMEOUT_AUDIT.json"
+  },
+  "denominator_caveat": "397 counts DISTINCT EXPRESSION STRINGS this run classified, not candidate rows and not worlds. Under the lazy path an expression is classified only if the minimal-witness order reaches it, so this is what the run genuinely evaluated -- it is not the divergence rate under full reclassification.",
+  "routing_impact": "none -- Gate 2 consumes first_loss_stage counts, not canonicalization_status."
+ }
+}

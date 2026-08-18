@@ -1,0 +1,66 @@
+{
+ "schema_version": "v2_e2a_x86_poison_world_determination_v1",
+ "recorded_utc": "2026-08-18T06:50:00Z",
+ "world_id": "V2C|E2|mass_power|c_low|n_default|r000",
+ "world_ordinal": 120,
+ "shard_bucket_at_12_shards": 0,
+ "determination": "POISON_WORLD__UNBOUNDED_MEMORY_GROWTH__CANNOT_COMPLETE_ON_THIS_HOST",
+ "procedure_followed": "E2_EXECUTION_DEVIATION.md section 13 -- a world whose OWN computation repeatedly triggers host-level memory kills is routed around and given an isolated supervisor writing to a SEPARATE output directory, so its failures cannot block or interleave with anything else.",
+
+ "why_this_is_a_determination_and_not_an_assumption": "Section 13 required repeated evidence before declaring a world poison (it took 76 consecutive failed attempts there). This determination rests on FOUR independent OOM kills of the same world, across two different scheduling regimes, with a reproducible terminal footprint.",
+
+ "evidence": [
+  {"attempt": "original run, co-scheduled with 11 other shards",
+   "utc": "2026-08-18T03:11:34Z", "pid": 16082,
+   "anon_rss_kb": 33477720, "total_vm_kb": 49013772,
+   "headroom_available_gib": "~34 (47 total minus ~12.8 held by 11 sibling workers)",
+   "outcome": "kernel global OOM kill; systemd then tore down the whole shared tmux scope, taking 11 healthy shards with it"},
+  {"attempt": "Stage B attempt 1/3, ALONE on the host",
+   "utc": "2026-08-18T06:23:15Z", "pid": 33842,
+   "anon_rss_kb": 47715500, "total_vm_kb": 55185232,
+   "headroom_available_gib": "~46 (whole host)",
+   "outcome": "kernel global OOM kill; exit code 137; ZERO collateral damage"},
+  {"attempt": "Stage B attempt 2/3, ALONE on the host",
+   "utc": "2026-08-18T06:35:00Z", "pid": 35025,
+   "anon_rss_kb": 47712596, "total_vm_kb": 55144852,
+   "outcome": "kernel global OOM kill; exit code 137"},
+  {"attempt": "Stage B attempt 3/3, ALONE on the host",
+   "utc": "2026-08-18T06:46:23Z", "pid": 35865,
+   "anon_rss_kb": 47531992, "total_vm_kb": 54956340,
+   "outcome": "kernel global OOM kill; exit code 137; supervisor exhausted its budget"}
+ ],
+
+ "conclusion_growth_is_unbounded": {
+  "argument": "Given ~34 GiB of headroom it died at 33.4 GiB. Given ~46 GiB it died at 47.7 GiB. Its demand expands to consume whatever is available and still exceeds the entire machine.",
+  "reproducibility": "The three isolated attempts terminated at 47,715,500 / 47,712,596 / 47,531,992 kB anon-RSS -- a spread of 0.4%. That is deterministic memory growth of the same computation, not noise or load sensitivity.",
+  "corollary_for_worker_count": "Reducing the frozen worker count would NOT have prevented the original failure, only delayed it. This retroactively confirms the results-blind decision recorded in RESUME_ENGINEERING_DECISION.json to retain 12 workers, which was made before any of this evidence existed."
+ },
+
+ "no_partial_scientific_state": {
+  "worlds_shard_000.jsonl": "never created",
+  "candidates_shard_000.jsonl": "never created",
+  "errors_shard_000.jsonl": "never created",
+  "why": "e2_run_shard_lazy.py writes candidate rows and then the world row only AFTER _run_one_world returns. Every attempt died inside the computation, so nothing was ever committed. Consistent with the Phase 2 audit, which found 0 orphan candidate rows.",
+  "consequence": "there is nothing to isolate, quarantine or delete -- the world simply has no record"
+ },
+
+ "isolation_worked": {
+  "claim": "The remediation recorded in RESUME_ENGINEERING_DECISION.json is empirically validated.",
+  "before": "1 kernel OOM kill on 2026-08-18T03:11:34Z destroyed 12 shard units (1 killed by the kernel, 11 by systemd DefaultOOMPolicy=stop on the shared tmux scope).",
+  "after": "3 kernel OOM kills on 2026-08-18T06:23-06:46 destroyed 0 units other than the one being killed. e2a-progress.service and e2a-watchdog.service remained running throughout, and the 539-world main corpus was untouched.",
+  "mechanism": "per-shard transient systemd user units with OOMPolicy=continue in app.slice"
+ },
+
+ "handling_under_the_frozen_routing_rule": {
+  "status": "QUARANTINED_AND_REPORTED -- never silently dropped",
+  "counted_as": "r_remaining = 1, i.e. adversarially unknown",
+  "authority": "routing_lock.evaluate_gate2's own docstring: r_remaining 'includes any quarantined-but-unresolved world, e.g. the poison world ... since its eventual stage is exactly as unknown as any other outstanding world's, and must be treated as adversarially unknown, never assumed'",
+  "consequence": "the seal reports 539 completed + 1 unresolved = 540 accounted for, and Gate 2 branch 1 can still lock if and only if B_n > A_n + 1 AND B_n > C_n + D_n + 1"
+ },
+
+ "not_claimed": [
+  "That the root cause inside the computation is identified. The growth is in the shard parent process, not the classify worker, and is consistent with unbounded sympy/equivalence work on this world's expressions -- but no specific defect is named here, because none was proven.",
+  "That this world would fail on any other host. It is a determination about THIS frozen environment on THIS x86_64 host, which is the only environment the authorization permits.",
+  "That the world's scientific outcome is known or can be inferred. It is unresolved, and is treated as adversarially unknown."
+ ]
+}

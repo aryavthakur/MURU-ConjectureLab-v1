@@ -1,0 +1,9 @@
+[2026-08-18 06:11:37] attempt 1/3: launching /home/aryav_thakur/venv/bin/python scripts/e2_rescue_v2/e2_run_shard_lazy.py --shard-index 0 --n-shards 1 --out-dir /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/stage_b_isolated --world-order-file /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/WORLD_ORDER_1_ISOLATED.json --cache-db /home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3
+[2026-08-18 06:23:16] attempt 1 exited with code 137
+[2026-08-18 06:23:16] no COMPLETE marker yet -- restarting (already-done worlds are skipped via the run's own checkpoint)
+[2026-08-18 06:23:18] attempt 2/3: launching /home/aryav_thakur/venv/bin/python scripts/e2_rescue_v2/e2_run_shard_lazy.py --shard-index 0 --n-shards 1 --out-dir /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/stage_b_isolated --world-order-file /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/WORLD_ORDER_1_ISOLATED.json --cache-db /home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3
+[2026-08-18 06:35:02] attempt 2 exited with code 137
+[2026-08-18 06:35:02] no COMPLETE marker yet -- restarting (already-done worlds are skipped via the run's own checkpoint)
+[2026-08-18 06:35:04] attempt 3/3: launching /home/aryav_thakur/venv/bin/python scripts/e2_rescue_v2/e2_run_shard_lazy.py --shard-index 0 --n-shards 1 --out-dir /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/stage_b_isolated --world-order-file /home/aryav_thakur/MURU-ConjectureLab-v1/results/e2/run_x86_e2a_v1/WORLD_ORDER_1_ISOLATED.json --cache-db /home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3
+[2026-08-18 06:46:25] attempt 3 exited with code 137
+[2026-08-18 06:46:25] reached max restarts (3) without a COMPLETE marker -- giving up, needs human attention

@@ -1,0 +1,19 @@
+{
+ "schema_version": "v2_e2a_x86_simplify_timeout_audit_v1",
+ "cache_db": "/home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3",
+ "integrity_check": "ok",
+ "unit_of_count": "DISTINCT EXPRESSION STRINGS classified by this run -- NOT candidate rows, NOT worlds",
+ "why_not_from_candidate_rows": "candidates_shard_*.jsonl carries structural fields only and never a canonicalization_status column, so seal_x86_e2a.py's own SIMPLIFY_TIMEOUT counter is structurally dead and always reports 0",
+ "unparseable_cache_rows": 0,
+ "by_classifier_version": {
+  "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a": {
+   "total_distinct_expressions": 52450,
+   "status_counts": {
+    "OK": 52053,
+    "SIMPLIFY_TIMEOUT": 397
+   },
+   "simplify_timeout": 397,
+   "simplify_timeout_fraction": 0.007569113441372736
+  }
+ }
+}
