@@ -1,0 +1,27 @@
+{
+ "schema_version": "e2b_replay_precondition_check_v1",
+ "checked_utc": "2026-08-18T04:06:12.040668+00:00",
+ "sealed_g2_cases": 144,
+ "sealed_records_present": 144,
+ "cases_with_selection_count": 144,
+ "cases_with_representative": 144,
+ "cases_hash_matches_seal": 144,
+ "seeds_per_case_observed": [
+  30
+ ],
+ "seed_derivation_reproduces_sealed_seeds_used": 144,
+ "total_searches_scheduled": 4320,
+ "host_provenance_of_sealed_reference": {
+  "machine": "arm64",
+  "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "python_version": "3.13.12",
+  "run_commit": "8d87143d4280602323aa33ee0b5481aaef0fb4a8"
+ },
+ "host_provenance_of_this_replay": {
+  "machine": "x86_64",
+  "platform": "Linux (Ubuntu 26.04)",
+  "python_version": "3.13.5"
+ },
+ "cross_host_caveat": "The sealed reference was produced on macOS/arm64 under Python 3.13.12; this replay runs on Linux/x86_64 under Python 3.13.5. group_and_select carries no wall-clock cap, so this comparison does NOT inherit the SIMPLIFY_TIMEOUT host-speed defect that produced NEW_CLOUD_HOST_PARITY_FAILED for the E2 corpus. Cross-host reproduction of the PySR search itself is nonetheless an empirical question, so a non-reproducing case cannot be attributed to v1 being wrong without confounding.",
+ "verdict": "E2B_PRECONDITIONS_SATISFIED"
+}
