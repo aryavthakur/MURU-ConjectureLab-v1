@@ -746,13 +746,13 @@ serially. Frozen search settings: `niterations = 40`, `populations = 15`,
 (`MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md`, search settings).
 
 Environment versions verified operationally in a separate readiness audit:
-PySR 1.5.10, Julia 1.12.6, SymbolicRegression.jl 1.11.3, PythonCall.jl 0.9.26,
-gplearn 0.4.3, SymPy 1.14.0, numpy 2.5.2, scipy 1.18.0, pandas 3.0.5,
-scikit-learn 1.9.0, RDKit 2026.03.5, pyarrow 25.0.1, on Python 3.13.12
-(`MURU_PAPER_EXECUTION_ENVIRONMENT.md` at `c443a7f`). The master plan's stated
-Python target was 3.12; the deviation to 3.13.12 is recorded there, with the
-finding that nothing in the lockfiles or the PySR/Julia stack caps the version
-below 3.13.
+PySR 1.5.10, Julia 1.12.7 (bootstrapped privately by `juliapkg` v0.1.25),
+SymbolicRegression.jl 1.11.3, PythonCall.jl 0.9.26, gplearn 0.4.3, SymPy 1.14.0,
+numpy 2.5.2, scipy 1.18.0, pandas 3.0.5, scikit-learn 1.9.0, RDKit 2026.03.5,
+pyarrow 25.0.1, on Python 3.13.12 (`MURU_PAPER_EXECUTION_ENVIRONMENT.md` at `c443a7f`).
+The master plan's stated Python target was 3.12; the deviation to 3.13.12 is recorded
+there, with the finding that nothing in the lockfiles or the PySR/Julia stack caps the
+version below 3.13. The Julia runtime managed by `juliapkg` is 1.12.7.
 
 The gplearn comparison arm is **not** part of the prospective acceptance
 predicate. Its historical role and the audit that removed its veto inference are

@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "document_title": "MURU External Validation Preregistration Draft JSON",
+  "status": "DRAFT — FROZEN DESIGN ONLY — DO NOT EXECUTE",
+  "freeze_date": "2026-08-14",
+  "protocol_version": "external-validation-draft-1.0",
+  "governing_feasibility_protocol_commit": "705adf8ff50e3038a791491ed19b3f968bdf74e0",
+  "governance_assertions": {
+    "no_muru_symbolic_search_executed": true,
+    "no_public_data_performance_calculated": true,
+    "no_synthetic_prospective_outcomes_inspected": true,
+    "held_out_remains_sealed": true,
+    "confirmation_remains_sealed": true,
+    "real_data_symbolic_search_authorization_status": "REQUIRES_NEW_SCIENTIFIC_AUTHORIZATION"
+  },
+  "governance_gates": {
+    "G_PERM": {
+      "name": "Publication Permission Gate",
+      "status": "PERMISSION_PENDING",
+      "description": "Requires documented written consent from WFSR prior to public dissemination of any WFSR-derived MURU result."
+    },
+    "G_LOCK": {
+      "name": "MURU Implementation Lock Gate",
+      "status": "IMPLEMENTATION_LOCK_PENDING",
+      "description": "Requires binding to a frozen implementation commit hash from the synthetic benchmark before execution."
+    },
+    "G_INTEGRITY": {
+      "name": "Input Integrity Verification Gate",
+      "status": "UNEXECUTED",
+      "description": "Requires verification of retrieval hashes and reproduction of candidate census before any computation."
+    }
+  },
+  "splitting_protocol": {
+    "split_unit": "scaffold_group",
+    "scaffold_algorithm": "RDKit Bemis-Murcko scaffold on representative deposited structure",
+    "seed": 20260813,
+    "proportions": {
+      "train": 0.60,
+      "validation": 0.20,
+      "test": 0.20
+    },
+    "allocation_strategy": "Grouped folds size-balancing (largest scaffold group first, assigned to fold furthest below compound target)",
+    "stratification": "NONE (Stratification on mass or descriptors is prohibited to avoid pre-conditioning mass comparisons)",
+    "minimum_fold_size": {
+      "min_scaffold_groups_per_fold": 25,
+      "min_compounds_per_fold": 100
+    },
+    "timing": "Assigned at Stage S2 prior to any mu calculation"
+  },
+  "input_integrity_gates": {
+    "I1": "Retrieval hash and byte count recorded and non-empty",
+    "I2": "Census reproduction against frozen feasibility reference",
+    "I3": "Spectrum availability for all trajectory cells",
+    "I4": "Six-energy completeness after parsing",
+    "I5": "Identity consistency (InChIKey, SMILES, adduct) across trajectory",
+    "I6": "Precursor m/z consistency within 5 ppm of trajectory median",
+    "I7": "Finite positive m/z <= precursor_mz * (1 + 1e-5) + 1.5 Da",
+    "I8": "Non-negative intensities with sum(intensity) > 0",
+    "I9": "Minimum 3 peaks per spectrum",
+    "I10": "Duplicate spectra deterministic resolution",
+    "I11": "Malformed metadata exclusion and counting",
+    "I12": "Scaffold assignment with drift check",
+    "I13": "Stepped/composite CE exclusion",
+    "I14": "Record count reconciliation",
+    "attrition_floors": {
+      "min_qualifying_trajectories": 400,
+      "min_qualifying_scaffold_groups": 200
+    }
+  },
+  "mass_support_diagnostics": {
+    "U1": {
+      "name": "Energy-Dependent Truncation",
+      "metric": "Within-compound range of min m/z across NCE > 20 Da OR |rho(min m/z, NCE)| >= 0.30",
+      "threshold": 20.0,
+      "rho_threshold": 0.30
+    },
+    "U2": {
+      "name": "Mass-Proportional Truncation",
+      "metric": "Fraction of spectra with min m/z / precursor_mz > 0.25",
+      "threshold": 0.20
+    },
+    "U3": {
+      "name": "Truncation Non-Invariance",
+      "metric": "Median |mu - mu^(c)| > 0.02 OR within-energy Spearman(mu, mu^(c)) < 0.95",
+      "delta_threshold": 0.02,
+      "spearman_threshold": 0.95
+    },
+    "U4": {
+      "name": "Sparse Spectral Support",
+      "metric": "Fraction of spectra with < 3 peaks > 0.05 OR < 5 peaks > 0.20",
+      "sparse_3peak_threshold": 0.05,
+      "sparse_5peak_threshold": 0.20
+    }
+  },
+  "endpoints": {
+    "primary_scalar_gate": {
+      "code": "E1",
+      "composition": "E1a AND E1b AND E1c AND E1d",
+      "components": {
+        "E1a": {
+          "name": "Held-Out Trajectory Prediction",
+          "metric": "MAE(test trajectory vs Phi(E/g)) <= 0.80 * MAE(test trajectory vs training per-energy mean baseline)",
+          "threshold": "Lower bound of Competence Rate >= 0.70 on both scaffold-bootstrap (2000 resamples) and Wilson interval",
+          "denominator": "Held-out test compounds"
+        },
+        "E1b": {
+          "name": "Model Adequacy Ladder (M0)",
+          "metric": "Leave-one-energy-out error ratio vs M1 (shape heterogeneity), M2 (high-energy floor), M3 (low-energy ceiling)",
+          "decision_rule": "M0 not rejected (lower bound of compound-clustered bootstrap error ratio <= 1.0)",
+          "denominator": "Held-out test trajectories"
+        },
+        "E1c": {
+          "name": "Boundary Hit Ceiling",
+          "metric": "Fraction of held-out compounds landing on profile optimization search bounds",
+          "threshold": "Upper 95% bound <= 0.20 on both scaffold-bootstrap and Wilson interval",
+          "denominator": "Held-out test compounds"
+        },
+        "E1d": {
+          "name": "Profile Subsample Stability",
+          "metric": "Pairwise Spearman correlation of log(g) across K=5 scaffold-disjoint training subsamples",
+          "threshold": "Median pairwise Spearman >= 0.80",
+          "denominator": "Paired estimated compounds"
+        }
+      }
+    },
+    "structure_beyond_mass_gate": {
+      "code": "E2",
+      "status_prerequisite": "E1 MUST BE SUPPORTED",
+      "criteria": {
+        "B1": "Selected expression effective support (elasticity > 0.02) contains >= 1 non-mass Tier A block",
+        "B2": "Test fold weighted R2 exceeds strong mass baseline (MASS_SIMPLE or MASS_FLEX) with bootstrap diff lower bound > 0",
+        "B3": "Validation R2 exceeds per-complexity null threshold (N1/N2/N3) and mass-improvement exceeds N4 threshold",
+        "B4": "Non-mass block survives mass-preserving null N4",
+        "B5": "Block-level support stable across >= 20 of 30 search seeds"
+      }
+    }
+  },
+  "null_hypotheses_constructions": {
+    "world_count": 200,
+    "constructions": {
+      "N1": {
+        "name": "Descriptor Permutation Null",
+        "destroys": "Descriptor to g association",
+        "preserves": "Descriptor joint distribution, collinearity, g distribution, trajectories"
+      },
+      "N2": {
+        "name": "Scalar Target Permutation Null",
+        "destroys": "Descriptor to g association (from target side)",
+        "preserves": "Descriptor values in place, g marginal distribution, trajectories"
+      },
+      "N3": {
+        "name": "Scaffold-Aware Permutation Null",
+        "destroys": "Between-scaffold descriptor to g signal not attributable to scaffold group",
+        "preserves": "Within-scaffold structure, group sizes, marginals"
+      },
+      "N4": {
+        "name": "Mass-Preserving Null",
+        "destroys": "Non-mass descriptor signal",
+        "preserves": "Mass to g relation exactly, precursor_mz attached to compound, all marginals"
+      }
+    },
+    "prohibited_null": "Within-compound energy permutation across mu(E) is strictly prohibited as a scalar-target null (destroys trajectory definition)."
+  },
+  "stop_rules_and_terminal_tokens": {
+    "evaluable_states": [
+      "EVALUABLE",
+      "PARTIALLY_EVALUABLE",
+      "NOT_EVALUABLE"
+    ],
+    "terminal_outcome_tokens": [
+      "EXTERNAL INPUT INTEGRITY FAILED",
+      "EXTERNAL ENDPOINT SUPPORT INCONCLUSIVE",
+      "EXTERNAL SCALAR REPRESENTATION NOT SUPPORTED",
+      "EXTERNAL SCALAR REPRESENTATION SUPPORTED",
+      "EXTERNAL STRUCTURE BEYOND MASS NOT SUPPORTED",
+      "EXTERNAL STRUCTURE BEYOND MASS SUPPORTED",
+      "EXTERNAL EVALUATION INCONCLUSIVE"
+    ]
+  },
+  "candidate_priority_hierarchy": {
+    "primary": "wfsr_food_safety_library",
+    "backup_1": "massbank_bafg_csl",
+    "backup_2": "massbank_athens_univ",
+    "supplementary": "massbank_eawag_exploris"
+  }
+}

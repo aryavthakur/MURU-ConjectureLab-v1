@@ -1,0 +1,267 @@
+{
+  "audit_version": "2.0.0",
+  "audit_name": "MURU_EXACT_LINEAGE_REPRODUCIBILITY_AUDIT",
+  "audit_date_utc": "2026-08-14T18:35:00Z",
+  "repository": "/Users/aryav/Documents/MURU-ConjectureLab-v1",
+  "auditor": "Antigravity / Gemini 3.7 Flash (High Reasoning)",
+  "overall_classification": "MIXED_HISTORICAL_VS_PROSPECTIVE_GAPS",
+  "prospective_benchmark_blocked": false,
+  "prospective_results_inspected": false,
+  "scientific_code_modified": false,
+  "lineages_audited": {
+    "lineage_a": {
+      "name": "A3.4 Science Content Freeze",
+      "commit_sha": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "tag": "benchmark-content-freeze-a3-4",
+      "status": "FROZEN_IMMUTABLE_SCIENCE"
+    },
+    "lineage_b": {
+      "name": "A3.4 Temporal Provenance Erratum",
+      "commit_sha": "220c9cb679e03865f1b2a02b975397de9f4c7b46",
+      "tag": "a3-4-temporal-provenance-erratum",
+      "status": "FROZEN_AUDIT_ERRATUM"
+    },
+    "lineage_c": {
+      "name": "Current Engineering RC4 HEAD",
+      "commit_sha": "64ddefc8e03684b2fccf5596a6da241223e4ed49",
+      "prior_evaluated_commit": "b3581d08d322d409fa641d0f52416b10577ec20b",
+      "branch": "eng/muru-rc4-a3-4",
+      "status": "PROVISIONAL"
+    }
+  },
+  "dependency_lock": {
+    "lock_file": "requirements.lock.txt",
+    "sha256": "1a6e61d6e006110e1afd8b2d065332107a8b2d05dec537ee5f4fc570887e13cb",
+    "line_count": 39,
+    "pinned_distributions_count": 39,
+    "pyproject_toml_present": false,
+    "distributions": {
+      "sympy": {
+        "present": false,
+        "pinned_version": null,
+        "required_by": [
+          "src/muru/paper_benchmark/g2_contract.py",
+          "src/muru/paper_benchmark/g3_contract.py",
+          "src/muru/paper_benchmark/secondary_endpoints.py",
+          "src/muru/discovery/grammar.py",
+          "src/muru/discovery/equivalence.py",
+          "src/muru/discovery/falsify.py"
+        ],
+        "classification": "UNPINNED_AT_EXACT_LINEAGE",
+        "branch_divergence": "DIFFERS_BY_BRANCH (pinned in historical engineering/muru-completion at c7c2332 as sympy==1.14.0)"
+      },
+      "mpmath": {
+        "present": false,
+        "pinned_version": null,
+        "required_by": ["sympy"],
+        "classification": "UNPINNED_AT_EXACT_LINEAGE"
+      },
+      "pysr": {
+        "present": false,
+        "pinned_version": null,
+        "required_by": [
+          "src/muru/paper_benchmark/rc3_calibration_runner.py (PySRBackend)",
+          "src/muru/paper_benchmark/runner.py",
+          "src/muru/discovery/engine.py"
+        ],
+        "classification": "UNPINNED_AT_EXACT_LINEAGE"
+      },
+      "gplearn": {
+        "present": false,
+        "pinned_version": null,
+        "required_by": ["scripts/t2_05_baselines.py"],
+        "classification": "UNPINNED_AT_EXACT_LINEAGE"
+      },
+      "numpy": {
+        "present": true,
+        "pinned_version": "2.5.2"
+      },
+      "scipy": {
+        "present": true,
+        "pinned_version": "1.18.0"
+      },
+      "pandas": {
+        "present": true,
+        "pinned_version": "3.0.5"
+      },
+      "scikit-learn": {
+        "present": true,
+        "pinned_version": "1.9.0"
+      },
+      "rdkit": {
+        "present": true,
+        "pinned_version": "2026.3.5"
+      }
+    }
+  },
+  "pysr_julia_usage_trace": {
+    "paper_benchmark_generation": {
+      "requires_pysr": false,
+      "requires_julia": false,
+      "requires_symbolic_regression_jl": false,
+      "modules": ["src/muru/paper_benchmark/generator.py", "scripts/pb_00_build.py"],
+      "details": "Pure numerical calculation from numpy and standard PRNG seeds."
+    },
+    "paper_benchmark_contract_evaluation": {
+      "requires_pysr": false,
+      "requires_julia": false,
+      "requires_symbolic_regression_jl": false,
+      "modules": ["src/muru/paper_benchmark/g2_contract.py", "src/muru/paper_benchmark/g3_contract.py", "src/muru/paper_benchmark/secondary_endpoints.py"],
+      "details": "Evaluates candidate ASTs and equations against ground truth / reference distribution using SymPy."
+    },
+    "symbolic_search": {
+      "requires_pysr": true,
+      "requires_julia": true,
+      "requires_symbolic_regression_jl": true,
+      "modules": ["src/muru/discovery/engine.py", "scripts/t3_20_search.py", "scripts/ov_20_search.py"],
+      "details": "Executes symbolic regression search kernels via PySR and Julia."
+    },
+    "rc3_1_calibration_unit_tests": {
+      "requires_pysr": false,
+      "requires_julia": false,
+      "requires_symbolic_regression_jl": false,
+      "modules": ["tests/test_rc3_*.py"],
+      "details": "Uses mock and synthetic backends (SyntheticBackend, PrecomputedBackend, RaisingBackend) without starting Julia."
+    },
+    "rc3_1_calibration_execution": {
+      "requires_pysr": true,
+      "requires_julia": true,
+      "requires_symbolic_regression_jl": true,
+      "modules": ["src/muru/paper_benchmark/rc3_calibration_runner.py::PySRBackend", "scripts/rc3_smoke.py"],
+      "details": "Executes PySR search across synthetic calibration worlds."
+    },
+    "a3_2_3000_seed_calibration_protocol": {
+      "requires_pysr": true,
+      "requires_julia": true,
+      "requires_symbolic_regression_jl": true,
+      "modules": ["src/muru/paper_benchmark/calibration_contract.py"],
+      "details": "Specifies 100 worlds x 30 seeds with PySR 1.5.10 and SymbolicRegression.jl v1.11.x."
+    },
+    "future_development_execution": {
+      "requires_pysr": true,
+      "requires_julia": true,
+      "requires_symbolic_regression_jl": true,
+      "modules": ["src/muru/paper_benchmark/runner.py", "ops/MURU_DEVELOPMENT_EXECUTION_RUNBOOK.md"],
+      "details": "Executes 80 cases x 30 seeds = 2,400 search runs using PySR."
+    },
+    "future_heldout_execution": {
+      "requires_pysr": true,
+      "requires_julia": true,
+      "requires_symbolic_regression_jl": true,
+      "modules": ["src/muru/paper_benchmark/runner.py", "ops/MURU_HELDOUT_EXECUTION_RUNBOOK.md"],
+      "details": "Executes 240 cases x 30 seeds = 7,200 search runs using PySR."
+    }
+  },
+  "artifact_audit": {
+    "artifact": "artifacts/p2_compounds.parquet",
+    "is_git_tracked": false,
+    "gitignore_pattern": ["artifacts/*", "*.parquet"],
+    "required_for": {
+      "prospective_benchmark_generation": false,
+      "calibration": false,
+      "a3_4_secondary_scoring": false,
+      "development_partition": false,
+      "held_out_partition": false,
+      "historical_phase2_phase3_pipelines": true,
+      "historical_ov_unit_tests": true
+    },
+    "classification": "HISTORICAL_ONLY_REPRODUCIBILITY_GAP",
+    "test_defect_classification": "TEST_FIXTURE_PACKAGING_GAP",
+    "details": "Omission of pytest.skip guards in tests/test_ov_pipeline.py and tests/test_ov_blinding.py causes 17 failures/errors when the intermediate MassBank table is absent in clean clones."
+  },
+  "clean_environment_test_results": {
+    "lineage_a": {
+      "commit": "be23b80d63fbd30227f0ab8f200dddc2121f3bfe",
+      "canonical_lock_strictly": {
+        "status": "COLLECTION_ERROR",
+        "collected": 571,
+        "collection_errors": 7,
+        "error_reason": "ModuleNotFoundError: No module named 'sympy'"
+      },
+      "diagnostic_venv_with_missing_deps": {
+        "paper_benchmark_suite": {
+          "collected": 326,
+          "passed": 326,
+          "skipped": 0,
+          "failed": 0,
+          "errors": 0,
+          "duration_seconds": 34.78
+        },
+        "full_suite": {
+          "collected": 749,
+          "passed": 672,
+          "skipped": 60,
+          "failed": 3,
+          "errors": 14,
+          "failure_root_cause": "Missing artifacts/p2_compounds.parquet in test_ov_*"
+        }
+      }
+    },
+    "lineage_b": {
+      "commit": "220c9cb679e03865f1b2a02b975397de9f4c7b46",
+      "canonical_lock_strictly": {
+        "status": "COLLECTION_ERROR",
+        "collected": 590,
+        "collection_errors": 13,
+        "error_reason": "ModuleNotFoundError: No module named 'sympy'"
+      },
+      "diagnostic_venv_with_missing_deps": {
+        "paper_benchmark_and_calibration_suite": {
+          "collected": 576,
+          "passed": 576,
+          "skipped": 0,
+          "failed": 0,
+          "errors": 0,
+          "duration_seconds": 30.38
+        },
+        "full_suite": {
+          "collected": 999,
+          "passed": 922,
+          "skipped": 60,
+          "failed": 3,
+          "errors": 14,
+          "failure_root_cause": "Missing artifacts/p2_compounds.parquet in test_ov_*"
+        }
+      }
+    },
+    "lineage_c": {
+      "commit": "64ddefc8e03684b2fccf5596a6da241223e4ed49",
+      "status_label": "PROVISIONAL",
+      "canonical_lock_strictly": {
+        "status": "COLLECTION_ERROR",
+        "collected": 610,
+        "collection_errors": 16,
+        "error_reason": "ModuleNotFoundError: No module named 'sympy'"
+      },
+      "diagnostic_venv_with_missing_deps": {
+        "benchmark_calibration_and_rc4_suite": {
+          "collected": 664,
+          "passed": 664,
+          "skipped": 0,
+          "failed": 0,
+          "errors": 0,
+          "duration_seconds": 36.99
+        },
+        "full_suite": {
+          "collected": 1076,
+          "passed": 999,
+          "skipped": 60,
+          "failed": 3,
+          "errors": 14,
+          "failure_root_cause": "Missing artifacts/p2_compounds.parquet in test_ov_*"
+        }
+      }
+    }
+  },
+  "comparison_with_provisional_clean_clone_audit": {
+    "provisional_audit_file": "audit/MURU_CLEAN_CLONE_REPRODUCIBILITY_AUDIT.md",
+    "corrections_and_refinements": [
+      "Separated evaluation across exact lineages A (be23b80), B (220c9cb), and C (64ddefc/b3581d0).",
+      "Corrected exact lockfile distribution count from 40 to 39 (SHA-256 1a6e61d...).",
+      "Explicitly mapped SymPy absence as UNPINNED_AT_EXACT_LINEAGE and DIFFERS_BY_BRANCH.",
+      "Partitioned PySR and Julia execution requirements across generation vs search vs evaluation.",
+      "Confirmed p2_compounds.parquet has 0 dependency across all prospective partitions (Dev, Held-out, Calibration, Secondary)."
+    ]
+  },
+  "final_classification": "MIXED_HISTORICAL_VS_PROSPECTIVE_GAPS"
+}

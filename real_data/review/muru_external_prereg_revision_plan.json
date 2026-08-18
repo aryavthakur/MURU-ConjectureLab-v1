@@ -1,0 +1,311 @@
+{
+  "schema_version": "1.0",
+  "document_title": "MURU External Validation Preregistration Revision Plan JSON",
+  "plan_date": "2026-08-14",
+  "author": "Antigravity Scientific Architecture & Governance Review System",
+  "audit_classification_basis": "REQUIRES_PRE_FREEZE_REVISIONS",
+  "hostile_audit_source": {
+    "markdown": "audit/MURU_EXTERNAL_PREREG_PROVENANCE_AUDIT.md",
+    "json": "audit/muru_external_prereg_provenance_audit.json"
+  },
+  "target_repository": "/Users/aryav/Documents/MURU-ConjectureLab-v1",
+  "target_branch": "design/muru-external-validation-prereg-draft",
+  "target_commit": "b53a65e3b4f6f2eed9910c3296ee0e831bf8c5b3",
+  "governance_assertions": {
+    "draft_edited": false,
+    "draft_frozen": false,
+    "draft_executed": false,
+    "muru_run_on_public_data": false,
+    "sealed_sets_intact": true,
+    "optimization_for_candidate_retention_strictly_prohibited": true
+  },
+  "recommendation_actions_taxonomy": {
+    "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL": "Retain the rule/threshold but explicitly reclassify its provenance as NEW_PREOUTCOME_ANALYSIS_DESIGN or POST_CANDIDATE_SELECTION_RULE.",
+    "REPLACE_WITH_PREEXISTING_JUSTIFIED_RULE": "Replace draft wording with authoritative preexisting frozen rule or historical governance precedent.",
+    "MAKE_DESCRIPTIVE_NOT_GATE": "Remove binary disqualification threshold; retain metric as continuous descriptive reporting endpoint.",
+    "REMOVE": "Excise the rule or requirement entirely due to lack of justification or bias.",
+    "REQUIRE_EXTERNAL_JUSTIFICATION_BEFORE_FREEZE": "Retain as prespecified transfer/sensitivity benchmark, but require documented domain-specific justification before freeze."
+  },
+  "item_recommendations": [
+    {
+      "item_id": "e1a_mae_ratio_080",
+      "rule_or_threshold": "MAE(test trajectory vs Phi(E/g)) <= 0.80 * MAE(test trajectory vs training per-energy mean baseline)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "synthetic_origin": "Gate G1 in MURU_PAPER_BENCHMARK_METRICS.md (c40a184)",
+      "recommended_action": "REQUIRE_EXTERNAL_JUSTIFICATION_BEFORE_FREEZE",
+      "resolution_details": {
+        "benchmark_role": "PRESPECIFIED_SYNTHETIC_TRANSFER_BENCHMARK",
+        "domain_justification": "Requires 20% error reduction over constant per-energy population mean baseline on unseen scaffolds. Accounts for real-data noise by reporting full MAE ratio distribution (mean, median, IQR, 95% bootstrap interval) alongside binary gate.",
+        "failure_consequence": "EXTERNAL_SCALAR_REPRESENTATION_NOT_SUPPORTED"
+      }
+    },
+    {
+      "item_id": "wilson_lower_bound_070",
+      "rule_or_threshold": "Lower bound of 95% Wilson interval for Competence Rate >= 0.70 (evaluated in conjunction with 2000-resample scaffold bootstrap)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "synthetic_origin": "Gate G1 in MURU_PAPER_BENCHMARK_METRICS.md (c40a184)",
+      "recommended_action": "REQUIRE_EXTERNAL_JUSTIFICATION_BEFORE_FREEZE",
+      "resolution_details": {
+        "benchmark_role": "PRESPECIFIED_TRANSFER_BENCHMARK_TARGET",
+        "domain_justification": "Maintains 70% competence standard under conservative binomial uncertainty, accompanied by dual reporting of 2000-resample scaffold bootstrap intervals and descriptive reporting across competence threshold grid [0.50, 0.90].",
+        "failure_consequence": "EXTERNAL_SCALAR_REPRESENTATION_NOT_SUPPORTED"
+      }
+    },
+    {
+      "item_id": "e1d_spearman_stability_080",
+      "rule_or_threshold": "Median pairwise Spearman correlation of log(g) across K=5 scaffold-disjoint training subsamples >= 0.80",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "synthetic_origin": "Gate G1 rank-recovery threshold repurposed into subsampling stability (c40a184 / db70d6d)",
+      "recommended_action": "REQUIRE_EXTERNAL_JUSTIFICATION_BEFORE_FREEZE",
+      "resolution_details": {
+        "benchmark_role": "PARAMETER_IDENTIFIABILITY_DIAGNOSTIC",
+        "domain_justification": "Verifies that profile scale estimation is not pathologically dependent on specific scaffold subsets. Reclassified from model falsification to parameter identifiability check.",
+        "failure_consequence": "EXTERNAL_EVALUATION_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "e1c_boundary_hit_020",
+      "rule_or_threshold": "Upper 95% bound of optimizer boundary hit rate <= 0.20 on both scaffold-bootstrap and Wilson intervals",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "PARAMETER_IDENTIFIABILITY_DIAGNOSTIC",
+        "domain_justification": "Ensures scale parameter g is not accumulating at artificial numerical profile search boundaries [g_min, g_max] in > 20% of compounds.",
+        "failure_consequence": "EXTERNAL_EVALUATION_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "precursor_consistency_5ppm",
+      "rule_or_threshold": "Declared precursor m/z within 5 ppm of trajectory median declared precursor m/z across all records (Rule T10, Gate I6)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "INPUT_INTEGRITY_FILTER",
+        "domain_justification": "Accommodates 0.001-0.003 Da display rounding in public repository exports while strictly rejecting precursor misannotations.",
+        "failure_consequence": "EXTERNAL_INPUT_INTEGRITY_FAILED"
+      }
+    },
+    {
+      "item_id": "scaffold_groups_floor_200",
+      "rule_or_threshold": ">= 200 scaffold groups surviving input integrity (S1 Attrition Floor)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "STATISTICAL_POWER_FLOOR",
+        "domain_justification": "Ensures scaffold-disjoint 60/20/20 splitting retains >= 25-40 independent clusters in the test fold, preventing asymptotic collapse of cluster-bootstrap variance estimators.",
+        "failure_consequence": "EXTERNAL_INPUT_INTEGRITY_FAILED"
+      }
+    },
+    {
+      "item_id": "u1_energy_truncation_20da",
+      "rule_or_threshold": "Median within-compound range of min m/z across NCE > 20 Da OR within-compound |Spearman(min m/z, NCE)| >= 0.30 triggers INCONCLUSIVE",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "MASS_SUPPORT_DATA_QUALITY_GUARDRAIL",
+        "domain_justification": "Prevents dynamic instrument scan-range shifts from creating an artificial energy-dependent mass trend masquerading as fragmentation.",
+        "failure_consequence": "EXTERNAL_ENDPOINT_SUPPORT_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "u2_mass_proportional_truncation_025",
+      "rule_or_threshold": "Fraction of spectra with min m/z / precursor_mz > 0.25 exceeding 20% triggers INCONCLUSIVE",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "MASS_SUPPORT_DATA_QUALITY_GUARDRAIL",
+        "domain_justification": "Prevents mass-proportional low-mass cutoff from artificially pre-loading collinearity between fragment mass moment mu and precursor mass.",
+        "failure_consequence": "EXTERNAL_ENDPOINT_SUPPORT_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "u3_truncation_invariance_002",
+      "rule_or_threshold": "Median |mu - mu^(c)| > 0.02 OR within-energy Spearman(mu, mu^(c)) < 0.95 at any CE triggers INCONCLUSIVE (c = 95th percentile min m/z)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "MASS_SUPPORT_DATA_QUALITY_GUARDRAIL",
+        "domain_justification": "Explicitly calibrated against historical LCSB dynamic range (delta-mu ~ 0.44; 0.02 is < 5% of signal span) to verify mathematical invariance of the fragment moment.",
+        "failure_consequence": "EXTERNAL_ENDPOINT_SUPPORT_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "sparse_peaks_threshold_3",
+      "rule_or_threshold": "Minimum 3 peaks per spectrum (Gate I9); > 5% spectra with < 3 peaks triggers U4 INCONCLUSIVE",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "SPECTRAL_DENSITY_GUARDRAIL",
+        "domain_justification": "Minimum centroid count required to compute a non-degenerate intensity-weighted first mass moment mu.",
+        "failure_consequence": "EXTERNAL_ENDPOINT_SUPPORT_INCONCLUSIVE"
+      }
+    },
+    {
+      "item_id": "bootstrap_resamples_2000",
+      "rule_or_threshold": "2,000 bootstrap resamples for clustered percentile intervals and null threshold calibration",
+      "provenance_classification": "PREEXISTING_HISTORICAL_PRECEDENT_NOT_FROZEN",
+      "recommended_action": "REPLACE_WITH_PREEXISTING_JUSTIFIED_RULE",
+      "resolution_details": {
+        "benchmark_role": "RESAMPLING_INFERENCE_STANDARD",
+        "domain_justification": "Standard Monte Carlo practice ensuring standard error on 2.5th and 97.5th percentiles remains below 0.5%. Lineage tied to Phase 2 PREREGISTRATION.md and Type 2 protocol.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "single_adduct_promotion_rule",
+      "rule_or_threshold": "Promote [M+H]+ if present and qualifying; otherwise lexicographically first qualifying adduct string (Rule T6)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "DETERMINISTIC_ANALYSIS_UNIT_DEFINITION",
+        "domain_justification": "Eliminates adduct-level pseudoreplication while enforcing a fully deterministic, reproducible tie-breaker aligned with historical [M+H]+ focus.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "lexicographic_fallback_resolution",
+      "rule_or_threshold": "Representative structure chosen as lexicographically first deposited SMILES (T8); duplicate records resolved by lexicographically smallest accession (T7)",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "DETERMINISTIC_TIE_BREAKER",
+        "domain_justification": "Automated, deterministic rules eliminating subjective curation or researcher cherry-picking.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "wfsr_primary_dataset_selection",
+      "rule_or_threshold": "WFSR Food Safety Mass Spectral Library selected as Primary External Validation Dataset",
+      "provenance_classification": "POST_CANDIDATE_SELECTION_RULE",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "PRIMARY_DATASET_MANDATE",
+        "domain_justification": "Largest scale (957 groups), Orbitrap IQ-X HCD NCE % match, 100% Level 1 standards, and open licensing. Subject to mandatory co-primary reporting of clean 766-compound non-overlapping subset.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "bafg_athens_eawag_ranking",
+      "rule_or_threshold": "Priority ranking: Primary = WFSR, Backup 1 = BAFG (CSL, N=666), Backup 2 = Athens_Univ (N=544), Supplementary = Eawag (N=326)",
+      "provenance_classification": "POST_CANDIDATE_SELECTION_RULE",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "CANDIDATE_EXECUTION_SEQUENCE",
+        "domain_justification": "Transparently orders evaluation sequence on pre-outcome scale, CE depth (15 voltages in BAFG), multi-injection variance (Athens), and licensing.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "e2_b1_b5_null_definitions",
+      "rule_or_threshold": "Criteria B1-B5 for Structure Beyond Mass; Nulls N1-N4 (200 worlds each); within-compound energy permutation prohibited",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "BEYOND_MASS_NULL_ARCHITECTURE",
+        "domain_justification": "Directly incorporates Type 2 empirical validation learnings: prohibits trajectory-destroying within-compound energy permutation, scales null worlds to 200, and adds mass-preserving null N4 to decouple descriptor associations from molecular mass.",
+        "failure_consequence": "EXTERNAL_STRUCTURE_BEYOND_MASS_NOT_SUPPORTED"
+      }
+    },
+    {
+      "item_id": "chemical_overlap_classification",
+      "rule_or_threshold": "<= 20% overlap: CHEMICALLY_INDEPENDENT; 20-50%: PARTIAL_CHEMICAL_OVERLAP; > 50%: NOT_CHEMICALLY_INDEPENDENT",
+      "provenance_classification": "PREEXISTING_FROZEN_RULE",
+      "recommended_action": "REPLACE_WITH_PREEXISTING_JUSTIFIED_RULE",
+      "resolution_details": {
+        "benchmark_role": "FEASIBILITY_ELIGIBILITY_CRITERION_E9",
+        "domain_justification": "Authoritative frozen criterion established before candidate search at commit 705adf8.",
+        "failure_consequence": "CANDIDATE_DISQUALIFICATION"
+      }
+    },
+    {
+      "item_id": "compound_floor_250",
+      "rule_or_threshold": ">= 250 qualifying compound groups in a single ionization mode (Hard Floor)",
+      "provenance_classification": "PREEXISTING_FROZEN_RULE",
+      "recommended_action": "REPLACE_WITH_PREEXISTING_JUSTIFIED_RULE",
+      "resolution_details": {
+        "benchmark_role": "FEASIBILITY_ELIGIBILITY_CRITERION_E5",
+        "domain_justification": "Master Plan Section 22 Kill Criterion K1 frozen at commit 62ce5e9. Enforces minimum sample size for 60/20/20 test fold power.",
+        "failure_consequence": "CANDIDATE_DISQUALIFICATION"
+      }
+    },
+    {
+      "item_id": "trajectories_target_and_floor_400",
+      "rule_or_threshold": ">= 400 qualifying groups (Comfortable Scale in E5); >= 400 complete trajectories surviving S1 (Attrition Floor)",
+      "provenance_classification": "PREEXISTING_FROZEN_RULE",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "SCALE_TARGET_AND_ATTRITION_FLOOR",
+        "domain_justification": "Comfortable size from Master Plan Section 20; attrition floor ensures post-filtering evaluation operates on statistically powered dataset.",
+        "failure_consequence": "EXTERNAL_INPUT_INTEGRITY_FAILED"
+      }
+    },
+    {
+      "item_id": "split_proportions_60_20_20",
+      "rule_or_threshold": "Train 60% / Validation 20% / Test 20%, scaffold-disjoint, size-balanced on compound counts",
+      "provenance_classification": "PREEXISTING_HISTORICAL_PRECEDENT_NOT_FROZEN",
+      "recommended_action": "REPLACE_WITH_PREEXISTING_JUSTIFIED_RULE",
+      "resolution_details": {
+        "benchmark_role": "PARTITIONING_ARCHITECTURE",
+        "domain_justification": "Standard project convention balancing training profile estimation power with independent validation model selection and uncompromised single-shot test scoring.",
+        "failure_consequence": "N_A"
+      }
+    },
+    {
+      "item_id": "split_seed_20260813",
+      "rule_or_threshold": "Seed 20260813 for deterministic split assignment and subsampling",
+      "provenance_classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN",
+      "recommended_action": "RETAIN_WITH_EXPLICIT_POST_QUALIFICATION_LABEL",
+      "resolution_details": {
+        "benchmark_role": "DETERMINISTIC_REPRODUCIBILITY_SEED",
+        "domain_justification": "Prospectively fixed pseudorandom seed generated from protocol freeze date before any outcome calculation.",
+        "failure_consequence": "N_A"
+      }
+    }
+  ],
+  "focus_areas_resolutions": {
+    "synthetic_threshold_borrowing": {
+      "status": "RESOLVED_WITH_PRESPECIFIED_TRANSFER_STANDARDS",
+      "mae_ratio_080": "Prespecified transfer benchmark requiring 20% MAE reduction over population mean baseline, with continuous distribution reporting mandated.",
+      "wilson_bound_070": "Prespecified transfer benchmark target for lower bound, with dual scaffold-bootstrap reporting and grid sensitivity analysis [0.50, 0.90].",
+      "spearman_080": "Reclassified as parameter identifiability diagnostic where failure routes to INCONCLUSIVE rather than model falsification."
+    },
+    "selection_dependence_operational_rules": {
+      "status": "RESOLVED_WITH_EXPLICIT_POST_QUALIFICATION_LABELS",
+      "precursor_5ppm": "Explicitly labeled NEW_PREOUTCOME_ANALYSIS_DESIGN to cover 3-decimal display rounding on FTMS/QTOF instruments.",
+      "scaffold_floor_200": "Explicitly labeled NEW_PREOUTCOME_ANALYSIS_DESIGN to guarantee >= 25 clusters per fold for cluster-bootstrap stability.",
+      "u1_u4_diagnostics": "Explicitly labeled NEW_PREOUTCOME_ANALYSIS_DESIGN to protect against missing declared acquisition scan bounds."
+    },
+    "wfsr_chemical_overlap_edge_case": {
+      "status": "RESOLVED_WITH_CO_PRIMARY_MANDATE",
+      "observed_overlap": "19.96% (191 / 957 blocks)",
+      "co_primary_requirement": "Mandatory dual-table reporting: Table 1 (Full WFSR corpus, N=957) and Table 2 (Clean non-overlapping subset, N=766). Claim of EXTERNAL SCALAR REPRESENTATION SUPPORTED requires significance on both."
+    }
+  },
+  "external_governance_gates": {
+    "G_PERM": {
+      "name": "Publication Permission Gate",
+      "status": "PERMISSION_PENDING",
+      "requirement": "Documented written consent from WFSR prior to public dissemination of WFSR-derived MURU results. Automatic fallback to MassBank BAFG if unresolved."
+    },
+    "G_LOCK": {
+      "name": "Implementation Commit Lock Gate",
+      "status": "IMPLEMENTATION_LOCK_PENDING",
+      "requirement": "Binding to an immutable git commit hash of the frozen synthetic benchmark implementation."
+    },
+    "G_INTEGRITY": {
+      "name": "Input Integrity Verification Gate",
+      "status": "UNEXECUTED",
+      "requirement": "Cryptographic SHA-256 retrieval hash verification and exact census reproduction prior to mathematical computation."
+    }
+  },
+  "pre_freeze_verification_checklist": {
+    "provenance_tiers_labeled_on_all_rules": true,
+    "synthetic_thresholds_defined_as_transfer_benchmarks": true,
+    "wfsr_766_disjoint_subset_co_primary_mandated": true,
+    "operational_rules_justified_without_presearch_claims": true,
+    "governance_gates_g_perm_and_g_lock_asserted": true,
+    "zero_public_data_muru_execution_confirmed": true,
+    "sealed_benchmark_sets_intact": true
+  },
+  "terminal_status": "EXTERNAL PREREG REVISION PLAN READY — DRAFT REMAINS UNFROZEN"
+}

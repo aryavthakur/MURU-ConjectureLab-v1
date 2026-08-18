@@ -1,0 +1,729 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "muru-a3-5-pre-freeze-review-matrix-1.0.0",
+  "document_id": "MURU-AUDIT-TEMPLATE-A35-PREFREEZE-MATRIX-01",
+  "classification": "HOSTILE_PRE_FREEZE_REVIEW_MATRIX",
+  "status": "TEMPLATE_PREPARATION_ONLY",
+  "mission_scope": {
+    "purpose": "Create the hostile review framework that will later audit Amendment A3.5 before RC5 engineering is authorized.",
+    "explicitly_out_of_scope_for_this_document": [
+      "Drafting Amendment A3.5",
+      "Choosing execution semantics",
+      "Implementing any RC5 code",
+      "Running Development or Held-out"
+    ],
+    "note": "This document is a review FRAMEWORK. Every criterion below defaults to NOT_PROVEN because no A3.5 draft exists yet. Use audit/templates/MURU_A3_5_HOSTILE_REVIEW_TEMPLATE.md to score an actual draft when one is produced."
+  },
+  "governing_authority": {
+    "amendment_a3_1": { "commit": "c8938e86c6a979e21bb23a0d2f317ccb5f22e1a0", "tag": "benchmark-content-freeze-a3-1" },
+    "amendment_a3_2": { "commit": "363b517a4633cc5bea9f5eabd1e4afe401d7b317", "tag": "benchmark-content-freeze-a3-2" },
+    "amendment_a3_3": { "commit": "363e1c5a64cdf235712900fc2a14409fa6ec3e1e", "tag": "benchmark-content-freeze-a3-3" },
+    "amendment_a3_4": { "commit": "326727d5f17943b22f014262dcf42f5cf043ba42", "tag": "benchmark-content-freeze-a3-4" },
+    "engineering_rc4_a3_4": { "commit": "14259f86f0ef10aab08297fcc055870616568339", "tag": "engineering-rc4-a3-4" },
+    "a3_4_temporal_provenance_erratum": { "commit": "3cb26f3a43ff29bd0a12ff7f6ba7ed53a69c43ed", "tag": "a3-4-temporal-provenance-erratum" },
+    "rc5_execution_semantics_authority_audit": {
+      "document": "audit/MURU_RC5_EXECUTION_SEMANTICS_AUTHORITY_AUDIT.md",
+      "headline_finding": "RC4 has no executable production-case path; independently confirmed at commit 6a67982.",
+      "final_conclusion": "RC5 HAS UNFROZEN SCIENTIFIC EXECUTION SEMANTICS",
+      "unfrozen_scientific_decision_count": 12,
+      "note": "This matrix's blocking criteria are grounded one-for-one in the UNFROZEN_SCIENTIFIC_DECISION items this audit found. A3.5's job is to resolve them; this matrix's job is to hostilely check that it actually did."
+    }
+  },
+  "verdict_values": ["PASS", "FAIL", "NOT_PROVEN"],
+  "classification_values": ["BLOCKING", "NONBLOCKING"],
+  "epistemic_categories": {
+    "FROZEN_SCIENTIFIC_REQUIREMENT": "A binding scientific contract already frozen upstream of A3.5 (A1/A3.1/A3.2/A3.3/A3.4, or the governance charter's outcome-blindness clause), which A3.5 must state, preserve, or correctly extend without alteration.",
+    "ENGINEERING_REQUIREMENT": "A valid derived consequence of frozen repository rules or established repository patterns (e.g. atomic writes, amendment self-binding, seed-band disjointness assertions) that A3.5's execution semantics must satisfy, but which is not itself a new scientific claim.",
+    "OPTIONAL_HARDENING": "Legitimate reproducibility hardening that is not a binding pre-freeze gate. Absence must never by itself block A3.5. Included in this matrix only as explicit NONBLOCKING criteria so reviewers do not invent blocking versions of them."
+  },
+  "authorization_rule": "ALL_BLOCKING_CRITERIA_MUST_BE_PASS. A finding of FAIL or NOT_PROVEN on any single BLOCKING criterion prohibits RC5 engineering authorization. NONBLOCKING criteria are recorded but never gate the decision.",
+  "key_blockers": [
+    { "id": "KB-01", "text": "Any required semantic remains undefined.", "primary_domains": ["R2"] },
+    { "id": "KB-02", "text": "Two materially different choices remain but one was selected without prospective scientific rationale.", "primary_domains": ["R10"] },
+    { "id": "KB-03", "text": "Historical performance was used to choose a rule.", "primary_domains": ["R1"] },
+    { "id": "KB-04", "text": "Development or Held-out was inspected.", "primary_domains": ["R1"] },
+    { "id": "KB-05", "text": "Selection semantics are implicitly tuned for G2.", "primary_domains": ["R3"] },
+    { "id": "KB-06", "text": "The symbolic target does not correspond to the stated scientific estimand.", "primary_domains": ["R3"] },
+    { "id": "KB-07", "text": "Validation/test data influence Phi or fitting.", "primary_domains": ["R4"] },
+    { "id": "KB-08", "text": "Seed derivation permits collision or reseeding.", "primary_domains": ["R5"] },
+    { "id": "KB-09", "text": "invalid_fraction is ambiguous.", "primary_domains": ["R6"] },
+    { "id": "KB-10", "text": "Falsification PASS/FAIL semantics remain underspecified.", "primary_domains": ["R7"] },
+    { "id": "KB-11", "text": "A3.2 calibration compatibility is asserted but not demonstrated.", "primary_domains": ["R8"] },
+    { "id": "KB-12", "text": "Development and Held-out could use different scientific behavior.", "primary_domains": ["R9"] }
+  ],
+  "do_not_overreach": {
+    "rule": "A criterion may be scored BLOCKING only if it is FROZEN_SCIENTIFIC_REQUIREMENT or ENGINEERING_REQUIREMENT under the definitions above and is not already satisfied by explicit upstream freeze. OPTIONAL_HARDENING criteria are always NONBLOCKING regardless of how thorough they would be if present.",
+    "precedent": "audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md DEF-08 and DEF-09: OS kernel, LLVM/Clang compiler build, hardware allocation envelope, process-ID monotonicity, and filesystem inode-creation-time monotonicity were all found to have been invented as BLOCKING gates in the held-out preparation pack, with no prospective requirement behind them. This matrix treats the same category of item as NONBLOCKING illustrative criteria (see R1.5, R5.5, R9.4) rather than omitting it, so a future reviewer has an explicit place to record it without being tempted to promote it.",
+    "excluded_unless_already_prospectively_required": [
+      "specific hardware model",
+      "OS kernel version",
+      "compiler build identity",
+      "PID monotonicity",
+      "inode creation-time monotonicity"
+    ]
+  },
+  "domains": [
+    {
+      "id": "R1",
+      "title": "Prospective governance / temporal cleanliness",
+      "criteria": [
+        {
+          "id": "R1.1",
+          "code": "R1-C1-FREEZE-BEFORE-EXECUTION-ORDERING",
+          "title": "A3.5 content is frozen and hashed before any execution artifact that depends on it exists",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5's amendment commit/tag must precede, in immutable git history, the first Development or Held-out execution artifact (manifest, seed record, or case record) that consumes its semantics, mirroring the precedent already established by the A3.4 temporal provenance erratum and the manifest-before-first-seed rule.",
+          "pass_criteria": "Git commit graph shows A3.5's freeze commit strictly precedes the first execution artifact timestamp/commit; no execution artifact exists that predates the freeze.",
+          "fail_criteria": "Any execution artifact, sidecar, or manifest that consumes A3.5 semantics predates the A3.5 freeze commit.",
+          "not_proven_criteria": "A3.5 draft exists without a frozen commit/tag, or no execution artifacts exist yet to check ordering against.",
+          "grounding": {
+            "rc5_semantic_ids": [4, 39],
+            "files": ["audit/MURU_A3_4_TEMPORAL_PROVENANCE_ERRATUM.md"]
+          }
+        },
+        {
+          "id": "R1.2",
+          "code": "R1-C2-NO-HISTORICAL-PERFORMANCE-INFORMED-RULE",
+          "title": "No rule in A3.5 was chosen because of how it would have scored on already-observed results",
+          "key_blocker_ref": "KB-03",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Every semantic choice A3.5 makes (target definition, selection rule, invalid_fraction definition, falsification procedure) must trace to a prospective scientific rationale stated independently of any Development or calibration outcome, per the governance charter's outcome-blindness clause.",
+          "pass_criteria": "Each new semantic in A3.5 carries a stated rationale that does not reference or require knowledge of any run's numeric result; commit history for A3.5 shows no revision keyed to an observed score.",
+          "fail_criteria": "Any A3.5 semantic's stated rationale references, or its revision history shows response to, an observed Development, calibration, or prior-phase numeric result.",
+          "not_proven_criteria": "A3.5 states a choice without a rationale, or the rationale's independence from outcomes cannot be verified from available commit history.",
+          "grounding": {
+            "rc5_semantic_ids": [],
+            "files": ["audit/templates/MURU_PRE_HELDOUT_AUTHORIZATION_MATRIX.md"]
+          }
+        },
+        {
+          "id": "R1.3",
+          "code": "R1-C3-HELDOUT-DEVELOPMENT-UNINSPECTED",
+          "title": "Development and Held-out remain uninspected throughout A3.5 drafting",
+          "key_blocker_ref": "KB-04",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Zero read access to artifacts/inputs/held_out.jsonl, artifacts/inputs/development.jsonl content, or any of their derived outputs occurred while A3.5's semantics were being chosen.",
+          "pass_criteria": "Filesystem access logs, or absence of any development/held-out-derived artifact, show zero inspection during the drafting window; A3.5 defines semantics purely from frozen upstream contracts and generator specification, not from observed content.",
+          "fail_criteria": "Any read, print, or derived-statistic computation over Development or Held-out content occurred before or during A3.5 drafting.",
+          "not_proven_criteria": "No access log or equivalent evidence exists to confirm non-inspection.",
+          "grounding": {
+            "rc5_semantic_ids": [],
+            "files": ["src/muru/paper_benchmark/governance.py"]
+          }
+        },
+        {
+          "id": "R1.4",
+          "code": "R1-C4-AMENDMENT-SELF-BINDS-CREATION-COMMIT",
+          "title": "A3.5 binds its own creation commit into the amendment record",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Following the established pattern for A3.1, A3.2, and A3.3 (each has a distinct 'bind the creation commit into the amendment record' commit), A3.5 must record the exact commit hash it was authored at.",
+          "pass_criteria": "A3.5's amendment document states its own creation commit hash, and that hash matches the commit that introduced the document.",
+          "fail_criteria": "A3.5 references a creation commit hash that does not match its actual introducing commit.",
+          "not_proven_criteria": "A3.5 does not state a creation commit hash at all.",
+          "grounding": {
+            "rc5_semantic_ids": [],
+            "files": ["MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_3.md"]
+          }
+        },
+        {
+          "id": "R1.5",
+          "code": "R1-C5-ENVIRONMENT-METADATA-OPTIONAL",
+          "title": "Environment/hardware footprint of the drafting process is recorded (illustrative NONBLOCKING item)",
+          "key_blocker_ref": null,
+          "epistemic_category": "OPTIONAL_HARDENING",
+          "blocking": false,
+          "requirement": "Recording the OS kernel, compiler build, or hardware model used while drafting or eventually executing A3.5 is desirable reproducibility metadata, never a gate.",
+          "pass_criteria": "Descriptive metadata recorded, if present.",
+          "fail_criteria": "Not applicable; absence never fails this matrix.",
+          "not_proven_criteria": "Metadata not recorded.",
+          "grounding": {
+            "rc5_semantic_ids": [],
+            "files": ["audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "title": "Statistical degrees of freedom",
+      "criteria": [
+        {
+          "id": "R2.1",
+          "code": "R2-C1-VALID-R2-SINGLE-DEFINITION",
+          "title": "valid_r2 has exactly one deterministic definition",
+          "key_blocker_ref": "KB-01",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must state, without alternative readings, the scope (validation-only vs validation+test), formula (sklearn.r2_score vs manual), and aggregation level (per-seed-best vs per-candidate) of valid_r2, since Gate 2 (valid_r2 > null_threshold[complexity]) is only meaningful under one such definition.",
+          "pass_criteria": "A3.5 states one unambiguous valid_r2 definition, and it is the same quantity the calibration digest's null_threshold table was computed against.",
+          "fail_criteria": "A3.5 states or implies two different scopes/formulas for valid_r2, or its definition diverges from what calibration was computed against.",
+          "not_proven_criteria": "valid_r2 remains a bare dataclass field with no computation defined anywhere in A3.5.",
+          "grounding": {
+            "rc5_semantic_ids": [21],
+            "files": ["src/muru/paper_benchmark/rc3_record.py"]
+          }
+        },
+        {
+          "id": "R2.2",
+          "code": "R2-C2-SELECTION-COUNT-PURE-FUNCTION",
+          "title": "selection_count and the cross-seed modal-selection rule are a single pure function",
+          "key_blocker_ref": "KB-01",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must specify the equivalence rule (exact string, SymPy-simplify-equal, or family-taxonomy-equal) used to group 30 seeds into a modal candidate and compute selection_count = k, as a deterministic function with no external tuning input.",
+          "pass_criteria": "A3.5 states one equivalence rule and one selection_count computation, compatible with structural_acceptance.py's k/30 >= 20/30 count-based gate.",
+          "fail_criteria": "A3.5's rule is not count-compatible with the frozen k/30 stability gate, or leaves the equivalence relation configurable.",
+          "not_proven_criteria": "selection_count remains unimplemented or the equivalence rule is stated only informally.",
+          "grounding": {
+            "rc5_semantic_ids": [18, 19],
+            "files": ["src/muru/paper_benchmark/rc3_record.py", "src/muru/objval/select.py", "src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        },
+        {
+          "id": "R2.3",
+          "code": "R2-C3-NO-REMAINING-UNDEFINED-SEMANTIC",
+          "title": "Every UNFROZEN_SCIENTIFIC_DECISION item from the RC5 authority audit is resolved",
+          "key_blocker_ref": "KB-01",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "All 12 items the RC5 execution semantics authority audit classified UNFROZEN_SCIENTIFIC_DECISION (case->execution adapter, exact symbolic target, symbolic covariates, search-seed derivation, prospective seed namespace, seed band, per-seed candidate retention, cross-seed selection, selection_count, valid_r2 definition, invalid_fraction definition, six-rung falsification execution) must each receive a stated, singular resolution in A3.5.",
+          "pass_criteria": "A3.5 resolves all 12 items; a fresh sweep finds zero remaining UNFROZEN_SCIENTIFIC_DECISION classifications among them.",
+          "fail_criteria": "Any of the 12 items is contradicted by code or left with two live readings.",
+          "not_proven_criteria": "Any of the 12 items is not addressed in A3.5 at all.",
+          "grounding": {
+            "rc5_semantic_ids": [1, 9, 10, 13, 14, 15, 16, 18, 19, 21, 23, 27],
+            "files": ["audit/MURU_RC5_EXECUTION_SEMANTICS_AUTHORITY_AUDIT.md"]
+          }
+        },
+        {
+          "id": "R2.4",
+          "code": "R2-C4-NEW-DOF-PRESERVES-CALIBRATED-GATE-MEANING",
+          "title": "Newly introduced degrees of freedom do not silently alter the calibrated meaning of frozen gates",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The Wilson-interval primary gates (G1/G2/G3) and the null-threshold lookup were calibrated against specific quantities; A3.5 must not introduce a new choice point that changes what those quantities measure without re-deriving or explicitly re-justifying the calibration.",
+          "pass_criteria": "A3.5 demonstrates, or explicitly argues, that its newly defined quantities are the same ones the existing calibration and gate thresholds were set against.",
+          "fail_criteria": "A3.5 redefines a quantity feeding G1/G2/G3 or the null threshold in a way inconsistent with how it was calibrated, without re-calibration.",
+          "not_proven_criteria": "The relationship between A3.5's new definitions and the existing calibration is not addressed.",
+          "grounding": {
+            "rc5_semantic_ids": [11, 24],
+            "files": ["src/muru/paper_benchmark/calibration_contract.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R3",
+      "title": "Symbolic-regression target and selection bias",
+      "criteria": [
+        {
+          "id": "R3.1",
+          "code": "R3-C1-TARGET-MATCHES-ESTIMAND",
+          "title": "The exact symbolic search target matches the stated scientific estimand",
+          "key_blocker_ref": "KB-06",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must state exactly what a case's symbolic search fits (raw mu, log_g scalar, per-energy trajectory, or another explicit representation), and that target must be the same quantity the benchmark's scientific claim is about, not a proxy chosen for search convenience.",
+          "pass_criteria": "A3.5 names one target representation and gives a prospective argument that it is the scientific estimand, traceable to the master plan / A1 adequacy framing.",
+          "fail_criteria": "A3.5's stated target diverges from the quantity G1/G2/G3 claims are made about, or two representations are used inconsistently across the document.",
+          "not_proven_criteria": "contract.py continues to validate predictions 'computed elsewhere' without A3.5 stating what is predicted.",
+          "grounding": {
+            "rc5_semantic_ids": [9],
+            "files": ["src/muru/paper_benchmark/contract.py"]
+          }
+        },
+        {
+          "id": "R3.2",
+          "code": "R3-C2-COVARIATES-SINGLE-RULE",
+          "title": "Symbolic covariates (design-matrix columns, order, representation) are bound to one rule",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must state which generator.py descriptor columns enter the PySR design matrix, in what order and representation, distinct from A3.1's calibration-world covariate statement which does not bind case search inputs.",
+          "pass_criteria": "A3.5 states one covariate set/order/representation for real case search, distinguishable from and consistent with the frozen calibration-world covariates.",
+          "fail_criteria": "A3.5 conflates the calibration-world covariate statement with a binding case-search statement, or leaves the column set ambiguous.",
+          "not_proven_criteria": "No covariate rule for case search is stated.",
+          "grounding": {
+            "rc5_semantic_ids": [10],
+            "files": ["src/muru/paper_benchmark/generator.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md"]
+          }
+        },
+        {
+          "id": "R3.3",
+          "code": "R3-C3-SELECTION-NOT-TUNED-FOR-G2",
+          "title": "Per-seed and cross-seed selection rules are independent of G2/G3 outcome",
+          "key_blocker_ref": "KB-05",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The rule for retaining a single candidate per seed and for grouping seeds into a modal candidate must be stated and justified without reference to how it would affect the G2 family-recovery pass rate, and must not have been selected by trying variants against Development.",
+          "pass_criteria": "A3.5's selection rule has a rationale independent of G2 pass-rate effects, stated before any Development execution under A3.5's semantics.",
+          "fail_criteria": "A3.5's selection rule is justified by, or its parameters were swept against, G2 outcomes.",
+          "not_proven_criteria": "The rationale for the selection rule is not stated, so outcome-independence cannot be checked.",
+          "grounding": {
+            "rc5_semantic_ids": [16, 18],
+            "files": ["src/muru/paper_benchmark/rc3_record.py"]
+          }
+        },
+        {
+          "id": "R3.4",
+          "code": "R3-C4-SELECTION-UNIFORM-ACROSS-FAMILIES",
+          "title": "The selection procedure applies uniformly across families and partitions",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "No family- or partition-specific branching may exist in the candidate-retention or cross-seed selection procedure, consistent with the Development/Held-out path-identity requirement extended to family identity.",
+          "pass_criteria": "A3.5's selection procedure text and any pseudocode contain zero conditionals keyed on family ID or partition name.",
+          "fail_criteria": "A3.5 states or implies per-family or per-partition special-casing in selection.",
+          "not_proven_criteria": "Selection procedure not specified in enough detail to check for branching.",
+          "grounding": {
+            "rc5_semantic_ids": [35],
+            "files": ["MURU_PAPER_BENCHMARK_PROTOCOL.md"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R4",
+      "title": "Fold-local / non-transductive construction",
+      "criteria": [
+        {
+          "id": "R4.1",
+          "code": "R4-C1-ADAPTER-TRAIN-FOLD-ONLY",
+          "title": "The case-to-execution adapter builds the design matrix, target, and split from the training fold only",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The still-missing adapter that turns a case into PySRBackend.search's input must reuse fit_training_scalar's train-only, fold-local construction (FM-06), not a transductive shortcut.",
+          "pass_criteria": "A3.5 specifies the adapter as calling training-fold-only fitting, with a non-transductive canary test named as a conformance requirement.",
+          "fail_criteria": "A3.5's adapter description fits any scale curve or normalization across the full compound set rather than train-only.",
+          "not_proven_criteria": "A3.5 does not specify the adapter's fold-locality at all.",
+          "grounding": {
+            "rc5_semantic_ids": [1, 3],
+            "files": ["src/muru/paper_benchmark/protocol.py", "src/muru/paper_benchmark/rc3_calibration_runner.py"]
+          }
+        },
+        {
+          "id": "R4.2",
+          "code": "R4-C2-NO-VAL-TEST-LEAKAGE-INTO-PHI-OR-FITTING",
+          "title": "Validation and test data never influence Phi or any fitting step",
+          "key_blocker_ref": "KB-07",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Neither the scalar-competence fit (Phi/M0-M3) nor the symbolic search fit may read validation- or test-split rows at any stage, per the frozen 20/5/5 scaffold split.",
+          "pass_criteria": "A3.5's adapter and search description show validation/test rows used only for post-hoc evaluation, never for fitting.",
+          "fail_criteria": "Any fitting step in A3.5's description consumes validation or test rows.",
+          "not_proven_criteria": "The split boundary for a fitting step is not stated precisely enough to check.",
+          "grounding": {
+            "rc5_semantic_ids": [2, 3],
+            "files": ["src/muru/paper_benchmark/generator.py", "src/muru/paper_benchmark/protocol.py"]
+          }
+        },
+        {
+          "id": "R4.3",
+          "code": "R4-C3-SPLIT-SCOPE-STATED-PER-COMPUTATION",
+          "title": "A3.5 states the split scope for every new computation it introduces",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "For each newly defined quantity (valid_r2, invalid_fraction, selection_count, falsification rungs), A3.5 must state which split(s) it is computed over, and that must match the frozen train/val/test partition semantics.",
+          "pass_criteria": "Every new computation in A3.5 carries an explicit split-scope statement consistent with generator.py's 20/5/5 scaffold split.",
+          "fail_criteria": "A new computation's split scope contradicts the frozen partition semantics.",
+          "not_proven_criteria": "A new computation's split scope is left unstated.",
+          "grounding": {
+            "rc5_semantic_ids": [2],
+            "files": ["src/muru/paper_benchmark/generator.py"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R5",
+      "title": "Seed identity and randomness",
+      "criteria": [
+        {
+          "id": "R5.1",
+          "code": "R5-C1-SEARCH-SEED-PURE-FUNCTION",
+          "title": "Search-seed derivation is a pure, deterministic function of (partition, case_id, seed_index)",
+          "key_blocker_ref": "KB-08",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must define a Development/Held-out search-seed derivation rule, since only derive_calibration_seeds (world_id-hashed) and derive_smoke_seed exist today and neither reduces to a case-based rule.",
+          "pass_criteria": "A3.5 states one derivation function taking (partition, case_id, seed_index) with no other input, and it is deterministic and reproducible from those inputs alone.",
+          "fail_criteria": "A3.5's derivation depends on wall-clock time, process state, or any input outside (partition, case_id, seed_index).",
+          "not_proven_criteria": "No Development/Held-out seed derivation rule is stated.",
+          "grounding": {
+            "rc5_semantic_ids": [13],
+            "files": ["src/muru/paper_benchmark/calibration_contract.py", "src/muru/paper_benchmark/rc3_provenance.py"]
+          }
+        },
+        {
+          "id": "R5.2",
+          "code": "R5-C2-NAMESPACE-DISJOINT-NO-RESEED",
+          "title": "Prospective seed namespace is declared and disjoint from calibration/smoke bands, with reseeding prohibited",
+          "key_blocker_ref": "KB-08",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must declare a PB|development|... / PB|held_out|... seed namespace, prove its numeric range is disjoint from the existing smoke (1.9e9+) and calibration (2.11e9-2.147e9) bands, and prohibit any reseeding of a case after its first seed assignment.",
+          "pass_criteria": "A3.5 states an explicit numeric seed-band range for Development/Held-out, disjoint from smoke and calibration, and states reseeding is forbidden once a seed record exists.",
+          "fail_criteria": "The declared band overlaps an existing band, or A3.5 permits reseeding under any circumstance (including retries).",
+          "not_proven_criteria": "No band range is declared.",
+          "grounding": {
+            "rc5_semantic_ids": [14, 15],
+            "files": ["src/muru/paper_benchmark/rc3_provenance.py"]
+          }
+        },
+        {
+          "id": "R5.3",
+          "code": "R5-C3-BAND-ASSERTION-IMPORT-TIME-CHECKABLE",
+          "title": "Seed-band disjointness is asserted at import time, following the existing pattern",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Extending assert_seed_band_separation() to cover the new Development/Held-out band is the established pattern for this repository; A3.5 must specify this extension, not merely a documentation-level claim of disjointness.",
+          "pass_criteria": "A3.5 specifies extending the existing assertion function to include the new band, checkable at module import time.",
+          "fail_criteria": "A3.5 relies on a documentation-only disjointness claim with no code-level assertion path specified.",
+          "not_proven_criteria": "A3.5 does not address how disjointness will be enforced in code.",
+          "grounding": {
+            "rc5_semantic_ids": [15],
+            "files": ["src/muru/paper_benchmark/rc3_provenance.py"]
+          }
+        },
+        {
+          "id": "R5.4",
+          "code": "R5-C4-THIRTY-SEEDS-PER-CASE-UNCHANGED",
+          "title": "The 30-seeds-per-case count is inherited unchanged",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "STABILITY_DENOMINATOR = 30 is already frozen and imported into CaseExecutionRecord; A3.5 must not silently redefine the per-case seed count.",
+          "pass_criteria": "A3.5's seed derivation rule produces exactly 30 seeds per case, matching the frozen denominator.",
+          "fail_criteria": "A3.5 states or implies a seed count other than 30 per case without a new amendment revising STABILITY_DENOMINATOR.",
+          "not_proven_criteria": "Seed count per case is not stated.",
+          "grounding": {
+            "rc5_semantic_ids": [12],
+            "files": ["src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        },
+        {
+          "id": "R5.5",
+          "code": "R5-C5-PID-INODE-TELEMETRY-OPTIONAL",
+          "title": "Process-ID and inode-creation-time monotonicity are recorded telemetry only (illustrative NONBLOCKING item)",
+          "key_blocker_ref": null,
+          "epistemic_category": "OPTIONAL_HARDENING",
+          "blocking": false,
+          "requirement": "Following DEF-09 in the held-out preparation audit, PID and inode-creation-time monotonicity must never be promoted to a blocking seed-integrity gate; only the no-reseeding and band-disjointness rules (R5.1-R5.3) are binding.",
+          "pass_criteria": "If recorded, PID/inode telemetry is descriptive only.",
+          "fail_criteria": "Not applicable; absence never fails this matrix.",
+          "not_proven_criteria": "Telemetry not recorded.",
+          "grounding": {
+            "rc5_semantic_ids": [34],
+            "files": ["audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R6",
+      "title": "invalid_fraction and strict-evaluator consistency",
+      "criteria": [
+        {
+          "id": "R6.1",
+          "code": "R6-C1-INVALID-FRACTION-SINGLE-DEFINITION",
+          "title": "invalid_fraction's numerator and denominator are explicitly and singularly defined",
+          "key_blocker_ref": "KB-09",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.5 must state whether invalid_fraction counts invalid seeds, invalid candidates within a seed's Pareto front, or invalid evaluations, and over what denominator, since rc3_record.py declares only a bare dataclass field today.",
+          "pass_criteria": "A3.5 states one numerator/denominator pair for invalid_fraction with no alternative reading left open.",
+          "fail_criteria": "A3.5 states or implies two different numerators/denominators across the document.",
+          "not_proven_criteria": "invalid_fraction remains an unimplemented bare field.",
+          "grounding": {
+            "rc5_semantic_ids": [23],
+            "files": ["src/muru/paper_benchmark/rc3_record.py"]
+          }
+        },
+        {
+          "id": "R6.2",
+          "code": "R6-C2-INVALID-FRACTION-USES-FROZEN-EVALUATOR",
+          "title": "invalid_fraction is computed exclusively through the frozen FM-07 strict evaluator",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Whatever invalid_fraction counts, the validity judgment itself must route through the existing typed-rejection evaluator (contract.py / g2_contract.py), not a separate or looser parsing path.",
+          "pass_criteria": "A3.5 specifies invalid_fraction's validity check as a direct call into the existing strict evaluator, with zero new parsing logic.",
+          "fail_criteria": "A3.5 introduces a second, divergent validity-checking path for invalid_fraction.",
+          "not_proven_criteria": "The validity-checking mechanism for invalid_fraction is not specified.",
+          "grounding": {
+            "rc5_semantic_ids": [23],
+            "files": ["src/muru/paper_benchmark/contract.py", "src/muru/paper_benchmark/g2_contract.py"]
+          }
+        },
+        {
+          "id": "R6.3",
+          "code": "R6-C3-INVALID-FRACTION-THRESHOLD-UNCHANGED",
+          "title": "The frozen 0.005 invalid_fraction gate threshold is consumed unchanged",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Gate 5 of the 8-gate structural acceptance predicate (invalid_fraction <= 0.005) is already frozen; A3.5 may define the numerator/denominator but must not change the threshold value alongside it.",
+          "pass_criteria": "A3.5's invalid_fraction definition is used against the unchanged 0.005 threshold.",
+          "fail_criteria": "A3.5 proposes a different threshold value in the same revision that defines the numerator/denominator.",
+          "not_proven_criteria": "The threshold used is not stated.",
+          "grounding": {
+            "rc5_semantic_ids": [29],
+            "files": ["src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R7",
+      "title": "Falsification-rung completeness",
+      "criteria": [
+        {
+          "id": "R7.1",
+          "code": "R7-C1-ALL-SIX-RUNGS-CONCRETE-PROCEDURE",
+          "title": "All six falsification rungs receive a complete, concrete pass/fail procedure",
+          "key_blocker_ref": "KB-10",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "check_falsification_harness() only aggregates a pre-supplied result mapping; A3.5 must specify, for each of F1_REPRODUCIBILITY, F4_COMPOUND_HOLDOUT, F5_SCAFFOLD_HOLDOUT, F7_INFLUENCE_DROP, F9_ENERGY_SUBSET, and F10_NEGATIVE_CONTROL, the exact tolerance, perturbation magnitude, and pass/fail rule.",
+          "pass_criteria": "Each of the six rungs has a stated, numeric pass/fail procedure with no free parameter left to implementer discretion.",
+          "fail_criteria": "Any rung's procedure is stated with a range or discretionary parameter rather than a fixed value.",
+          "not_proven_criteria": "Any of the six rungs has no stated procedure at all.",
+          "grounding": {
+            "rc5_semantic_ids": [27],
+            "files": ["src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        },
+        {
+          "id": "R7.2",
+          "code": "R7-C2-RUNG-MEMBERSHIP-ORDER-UNCHANGED",
+          "title": "Rung membership and order remain exactly as frozen",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "FALSIFICATION_RUNG_ORDER is already frozen to the six named rungs in that exact order; A3.5 may specify each rung's procedure but must not add, remove, reorder, or rename a rung.",
+          "pass_criteria": "A3.5's rung list matches FALSIFICATION_RUNG_ORDER exactly, including order.",
+          "fail_criteria": "A3.5 adds, drops, reorders, or renames a rung.",
+          "not_proven_criteria": "The rung list is not restated in A3.5, so conformance cannot be checked directly against the document.",
+          "grounding": {
+            "rc5_semantic_ids": [28],
+            "files": ["src/muru/paper_benchmark/rc3_record.py", "src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        },
+        {
+          "id": "R7.3",
+          "code": "R7-C3-NO-VACUOUS-RUNG-PROCEDURE",
+          "title": "No rung procedure is vacuously satisfiable",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "Each rung's pass/fail rule must have a real, reachable failure mode under the stated tolerance; a rung whose default outcome is always PASS regardless of input is not a falsification test.",
+          "pass_criteria": "For each rung, A3.5 or its accompanying spec gives an example input that would fail the rung.",
+          "fail_criteria": "A rung's stated procedure cannot fail under any input consistent with the benchmark's generator.",
+          "not_proven_criteria": "No failure-mode example is given for one or more rungs.",
+          "grounding": {
+            "rc5_semantic_ids": [27],
+            "files": ["src/muru/paper_benchmark/structural_acceptance.py"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R8",
+      "title": "Calibration compatibility",
+      "criteria": [
+        {
+          "id": "R8.1",
+          "code": "R8-C1-SEARCH-SETTINGS-DEMONSTRATED-IDENTICAL",
+          "title": "Real-search settings are demonstrated byte-identical to calibration SEARCH_SETTINGS, not merely asserted",
+          "key_blocker_ref": "KB-11",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "A3.2 restates SEARCH_SETTINGS facts in its 'unchanged' list without the calibration-only qualifier it attaches to seed/split mechanics; Gate 2 is only meaningful if the real search and the calibrating search share settings. A3.5 must demonstrate this sharing (e.g. by having both paths import the same SEARCH_SETTINGS object), not merely assert it in prose.",
+          "pass_criteria": "A3.5 specifies that Development/Held-out search execution imports the identical SEARCH_SETTINGS dict object used by the calibration runner, with a concrete mechanism (shared import, hash check) that would fail if they diverged.",
+          "fail_criteria": "A3.5 asserts settings compatibility in prose without a concrete mechanism, or specifies a separate settings object for real search.",
+          "not_proven_criteria": "A3.5 does not address whether real-search settings equal calibration settings.",
+          "grounding": {
+            "rc5_semantic_ids": [11],
+            "files": ["src/muru/paper_benchmark/calibration_contract.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_2.md"]
+          }
+        },
+        {
+          "id": "R8.2",
+          "code": "R8-C2-COMPLEXITY-DEFINITION-IDENTICAL",
+          "title": "Complexity is computed identically between calibration and real search before null-threshold lookup",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "PySR's default node-count complexity applies uniquely once grammar/version are pinned; A3.5's real-search path must consume equations['complexity'] the same way rc3_calibration_runner.py does, since the null-threshold lookup (null_threshold[min(complexity, 20)]) presumes a shared definition.",
+          "pass_criteria": "A3.5 specifies that real search reads complexity from the same PySR output field, with the same grammar/version pin, as calibration.",
+          "fail_criteria": "A3.5 specifies a custom complexity computation or a different grammar/version for real search.",
+          "not_proven_criteria": "A3.5 does not state where complexity comes from for real search.",
+          "grounding": {
+            "rc5_semantic_ids": [22, 24],
+            "files": ["src/muru/paper_benchmark/rc3_calibration_runner.py", "MURU_PAPER_BENCHMARK_AMENDMENT_A3_1.md"]
+          }
+        },
+        {
+          "id": "R8.3",
+          "code": "R8-C3-NEW-COMPUTATIONS-CALIBRATION-COMPATIBLE",
+          "title": "Newly defined computations are demonstrated compatible with what the calibration digest was calibrated against",
+          "key_blocker_ref": "KB-11",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "valid_r2, invalid_fraction, and selection_count as newly defined by A3.5 must be shown to be the same quantities (or a stated, justified superset/refinement of them) that the 100-world x 30-seed calibration run computed, not new quantities that happen to share a name.",
+          "pass_criteria": "A3.5 includes an explicit compatibility argument or worked example linking each new definition to the calibration run's actual computation.",
+          "fail_criteria": "A new definition is shown to compute a different quantity than what calibration measured, without re-calibration.",
+          "not_proven_criteria": "Compatibility with the calibration run is not addressed for one or more new definitions.",
+          "grounding": {
+            "rc5_semantic_ids": [11, 21, 23],
+            "files": ["src/muru/paper_benchmark/calibration_contract.py"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R9",
+      "title": "Development/Held-out path identity",
+      "criteria": [
+        {
+          "id": "R9.1",
+          "code": "R9-C1-ZERO-PARTITION-CONDITIONAL-BRANCHING",
+          "title": "Zero partition-conditional branching exists in adapter, search, or scoring procedures",
+          "key_blocker_ref": "KB-12",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "MURU_PAPER_BENCHMARK_PROTOCOL.md already binds path identity (same backend/settings/grammar/selection rules/threshold/representation/endpoints/failure semantics across partitions, differing only in partition name and seeds) as a requirement; A3.5 must design every new procedure it introduces to satisfy this literally, with zero conditionals keyed on partition.",
+          "pass_criteria": "A3.5's adapter, search, and scoring descriptions contain no branch keyed on 'development' vs 'held_out'.",
+          "fail_criteria": "A3.5 specifies any behavior difference between Development and Held-out beyond input manifest path and seed values.",
+          "not_proven_criteria": "A3.5's procedures are not specified in enough detail to check for partition branching.",
+          "grounding": {
+            "rc5_semantic_ids": [35],
+            "files": ["MURU_PAPER_BENCHMARK_PROTOCOL.md"]
+          }
+        },
+        {
+          "id": "R9.2",
+          "code": "R9-C2-FAILURE-RESUME-SEMANTICS-PARTITION-INDEPENDENT",
+          "title": "Scientific-failure and resume semantics apply identically regardless of partition",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The calibration runner's SeedStatus handling (any EXECUTION_FAILURE conservative-scores the case) and SeedStore resume pattern (settings-digest-checked, no selective retries) generalize with one sensible reading; A3.5 must specify that this reuse applies identically to Development and Held-out.",
+          "pass_criteria": "A3.5 specifies one failure-handling and resume mechanism shared verbatim across both partitions.",
+          "fail_criteria": "A3.5 specifies different failure-handling or resume behavior for Held-out than for Development.",
+          "not_proven_criteria": "Failure-handling/resume semantics are not specified for one or both partitions.",
+          "grounding": {
+            "rc5_semantic_ids": [33, 34],
+            "files": ["src/muru/paper_benchmark/calibration_contract.py", "src/muru/paper_benchmark/rc3_calibration_runner.py"]
+          }
+        },
+        {
+          "id": "R9.3",
+          "code": "R9-C3-EXECUTION-MANIFEST-LOCKS-IDENTICAL-SETTINGS",
+          "title": "The execution manifest records identical settings/grammar locks across partitions",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "No ExecutionManifest schema exists yet; a manifest that under-specifies what it locks would fail to actually prevent selective retries or partition drift. A3.5 must specify that the manifest records a settings/grammar digest identical in form and content-independent of partition.",
+          "pass_criteria": "A3.5 specifies an execution manifest schema whose settings/grammar digest field is computed the same way for Development and Held-out.",
+          "fail_criteria": "A3.5's manifest schema allows or implies a partition-dependent settings digest.",
+          "not_proven_criteria": "No execution manifest schema is specified.",
+          "grounding": {
+            "rc5_semantic_ids": [39],
+            "files": ["src/muru/paper_benchmark/governance.py"]
+          }
+        },
+        {
+          "id": "R9.4",
+          "code": "R9-C4-HARDWARE-IDENTITY-NOT-REQUIRED",
+          "title": "Identical hardware/OS across partitions is not required (illustrative NONBLOCKING item)",
+          "key_blocker_ref": null,
+          "epistemic_category": "OPTIONAL_HARDENING",
+          "blocking": false,
+          "requirement": "Path identity binds settings, grammar, selection rules, thresholds, representation, endpoints, and failure semantics. It does not require Development and Held-out to run on identical hardware, OS kernel, or compiler build.",
+          "pass_criteria": "If hardware/OS metadata is recorded for both partitions, it is treated as descriptive only.",
+          "fail_criteria": "Not applicable; a hardware/OS difference between partitions never fails this matrix by itself.",
+          "not_proven_criteria": "Hardware/OS metadata not recorded.",
+          "grounding": {
+            "rc5_semantic_ids": [35],
+            "files": ["audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "Exact-algebra endpoint disposition",
+      "criteria": [
+        {
+          "id": "R10.1",
+          "code": "R10-C1-EXACT-ALGEBRA-DESCRIPTIVE-ONLY-PRESERVED",
+          "title": "Exact-algebra endpoint's descriptive-only disposition is explicitly restated and preserved",
+          "key_blocker_ref": null,
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The exact-algebra endpoint (5 families x 12 cases = 60 denominator, per A3.4) is a secondary descriptive endpoint under the existing isolation rule: secondary endpoints can never rescue a failed primary gate. A3.5 must restate this disposition for exact algebra specifically, not leave it implicit.",
+          "pass_criteria": "A3.5 explicitly states exact algebra is descriptive-only and cannot override a G1/G2/G3 rejection.",
+          "fail_criteria": "A3.5 is silent on exact algebra's disposition, or states it can influence a primary gate outcome.",
+          "not_proven_criteria": "Exact algebra's disposition is not addressed in A3.5 at all.",
+          "grounding": {
+            "rc5_semantic_ids": [32],
+            "files": ["audit/MURU_HELDOUT_PREPARATION_SPEC_AUDIT.md"]
+          }
+        },
+        {
+          "id": "R10.2",
+          "code": "R10-C2-NO-SILENT-PROMOTION-WITHOUT-RATIONALE",
+          "title": "Exact algebra is not silently promoted to a primary/blocking gate without prospective rationale",
+          "key_blocker_ref": "KB-02",
+          "epistemic_category": "FROZEN_SCIENTIFIC_REQUIREMENT",
+          "blocking": true,
+          "requirement": "If A3.5 changes exact algebra's role from descriptive to any form of blocking gate, that is a materially different choice from the frozen A3.4 disposition and requires an explicit, prospective scientific rationale stated independently of any outcome.",
+          "pass_criteria": "Either exact algebra remains descriptive-only (satisfies R10.1), or a role change is accompanied by a stated prospective rationale with no reference to observed results.",
+          "fail_criteria": "A3.5 changes exact algebra's role without a stated rationale, or the rationale references an observed result.",
+          "not_proven_criteria": "It is unclear from A3.5 whether a role change occurred.",
+          "grounding": {
+            "rc5_semantic_ids": [32],
+            "files": []
+          }
+        },
+        {
+          "id": "R10.3",
+          "code": "R10-C3-CONSISTENT-LAW-REPRESENTATION",
+          "title": "Exact-algebra checking and primary symbolic search use a consistent representation of 'the law'",
+          "key_blocker_ref": null,
+          "epistemic_category": "ENGINEERING_REQUIREMENT",
+          "blocking": true,
+          "requirement": "The representation exact-algebra scoring compares against must be the same symbolic-target representation A3.5 fixes in R3.1, not a divergent internal representation.",
+          "pass_criteria": "A3.5 states that exact-algebra scoring operates on the same target representation defined for primary search.",
+          "fail_criteria": "A3.5 uses a different target representation (e.g. raw mu vs log_g) for exact-algebra scoring than for primary search without an explicit, justified mapping between them.",
+          "not_proven_criteria": "The representation used for exact-algebra scoring is not stated relative to R3.1's target.",
+          "grounding": {
+            "rc5_semantic_ids": [9, 32],
+            "files": ["src/muru/paper_benchmark/a34_predictive_equivalence.py"]
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_domains": 10,
+    "total_criteria": 37,
+    "blocking_criteria_count": 34,
+    "nonblocking_criteria_count": 3,
+    "current_pass_count": 0,
+    "current_fail_count": 0,
+    "current_not_proven_count": 37,
+    "review_decision": "NOT_APPLICABLE_NO_A3_5_DRAFT_EXISTS"
+  }
+}

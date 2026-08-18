@@ -1,0 +1,118 @@
+{
+  "document_id": "MURU-AUDIT-CORE-DEFECT-CALIBRATION-IMPACT-01",
+  "classification": "CONDITIONAL_ANALYSIS_ONLY",
+  "status": "AUDIT_COMPLETE",
+  "mode": "READ_ONLY",
+  "repository_commit": "07f43d3a44724a4f67c06d878e7d26321be03ac9",
+  "repository_branch": "audit/muru-rc5-execution-semantics-authority-audit",
+  "governing_state": {
+    "science_freeze": "A1-A3.4 frozen; A3.4 = be23b80 (benchmark-content-freeze-a3-4)",
+    "engineering_freeze": "RC4 = c800e7a",
+    "calibration_status": "A3.2 calibration executed VALID and preserved (44e5e36)",
+    "rc5_case_execution_path": "does not exist (independently confirmed, audit/MURU_RC5_EXECUTION_SEMANTICS_AUTHORITY_AUDIT.md)"
+  },
+  "calibration_data_flow_chain": [
+    "rc3_calibration_worlds.build_world -> CalibrationWorld(compounds, target, seeds)",
+    "CalibrationWorld.design_matrix() (plain np.ndarray, CALIBRATION_COVARIATE_ORDER)",
+    "rc3_calibration_runner.PySRBackend.search -> model.fit(design[train], target[train])",
+    "equations['complexity'].iloc[row]  (PySR's own column)",
+    "model.predict(design[validation], index=row) -> _r2(target[validation], predictions)",
+    "SeedResult.best_valid_r2_by_complexity",
+    "calibration_contract.compute_world_null_statistic -> S(w,c)",
+    "calibration_contract.compute_threshold_table -> threshold_table.json"
+  ],
+  "shared_identifier_checked": {
+    "name": "GRAMMAR_PRIMITIVES",
+    "defined_in": "src/muru/paper_benchmark/g2_contract.py:44-53",
+    "consumed_in": "src/muru/paper_benchmark/rc3_calibration_worlds.py:142 (as CALIBRATION_COVARIATE_ORDER)",
+    "role": "column-order label for design_matrix(), not parsing logic",
+    "verdict": "inert for R1-R4 as stated; would only matter if a repair changed the primitive inventory's count/order, which is outside R1-R4's stated scope"
+  },
+  "repairs": [
+    {
+      "id": "R1",
+      "title": "correct orientation/sign of protocol.estimate_one",
+      "location": "src/muru/paper_benchmark/protocol.py:31-38",
+      "questions": {
+        "alters_calibration_world_generation": false,
+        "alters_pysr_target": false,
+        "alters_any_candidate_expression": false,
+        "alters_valid_r2": false,
+        "alters_complexity": false,
+        "alters_per_complexity_S_w_c": false,
+        "alters_threshold_table_json": false,
+        "downstream_case_scoring_only": true,
+        "existing_thresholds_remain_valid_comparator": true
+      },
+      "proof": "grep -n 'estimate_one|fit_training_scalar' across src/ and tests/ shows zero references from calibration_contract.py, rc3_calibration_worlds.py, or rc3_calibration_runner.py; protocol.py imports nothing from and is imported by nothing in the calibration chain. CalibrationWorld.target is built exclusively by rc3_calibration_worlds._base_target (line 276), which calls generator._law and a permutation RNG, never estimate_one. Calibration worlds never undergo A1/G1 case scoring at all (run_calibration never imports adequacy or analysis).",
+      "affected_endpoint_if_repaired": "G1 scalar-competence (g_spearman, analysis.py:47) only",
+      "classification": "CALIBRATION_PROVABLY_UNAFFECTED"
+    },
+    {
+      "id": "R2",
+      "title": "bind/implement F07 G3 event semantics",
+      "location": "src/muru/paper_benchmark/analysis.py:81-90 (legacy classify_negative_control); src/muru/paper_benchmark/g3_contract.py (A3.1 frozen G3 reference contract)",
+      "questions": {
+        "alters_calibration_world_generation": false,
+        "alters_pysr_target": false,
+        "alters_any_candidate_expression": false,
+        "alters_valid_r2": false,
+        "alters_complexity": false,
+        "alters_per_complexity_S_w_c": false,
+        "alters_threshold_table_json": false,
+        "downstream_case_scoring_only": true,
+        "existing_thresholds_remain_valid_comparator": true
+      },
+      "proof": "g3_contract.py imports only .structural_acceptance and .g2_contract (lines 25-26); analysis.py imports only .adequacy and .registry (lines 8-9); structural_acceptance.py imports only .adequacy (line 24). None of these is imported by, or imports, calibration_contract.py, rc3_calibration_worlds.py, or rc3_calibration_runner.py. G3 acts on AcceptanceResult, computed downstream of the threshold table, not upstream of it. Calibration worlds carry no F07/F19/F20 family identity for G3 to classify.",
+      "affected_endpoint_if_repaired": "G3 principal structural safety (F07 component, 12 of 36 opportunities) only",
+      "classification": "CALIBRATION_PROVABLY_UNAFFECTED"
+    },
+    {
+      "id": "R3",
+      "title": "repair parser/support/canonicalization so algebraically cancelled variables do not contribute and PySR feature names map correctly",
+      "location": "src/muru/paper_benchmark/g2_contract.py: _safe_parse (81), extract_effective_support (93), classify_discovered_family (149)",
+      "questions": {
+        "alters_calibration_world_generation": false,
+        "alters_pysr_target": false,
+        "alters_any_candidate_expression": false,
+        "alters_valid_r2": false,
+        "alters_complexity": false,
+        "alters_per_complexity_S_w_c": false,
+        "alters_threshold_table_json": false,
+        "downstream_case_scoring_only": true,
+        "existing_thresholds_remain_valid_comparator": true
+      },
+      "proof": "PySRBackend._make_regressor passes no variable_names to PySRRegressor (rc3_calibration_runner.py:803-825); CalibrationWorld.design_matrix() is a bare np.ndarray with no column names (rc3_calibration_worlds.py:213-217). PySRBackend.search extracts only equations['complexity'] (int, PySR's own column, line 846) and model.predict(...) (numeric, line 856); the discovered expression string is never assigned, stored, or parsed anywhere in the calibration call graph. g2_contract._safe_parse/extract_effective_support are invoked only via rc3_scoring.py (G2 scoring) and rc3_acceptance.candidate_from_record reading record.effective_support, a CaseExecutionRecord field that CalibrationWorld does not have (CalibrationWorld's fields are exactly world_id, construction, index, compounds, target, seeds).",
+      "scope_caveat": "GRAMMAR_PRIMITIVES (the constant tuple, not the parsing logic) is the only shared identifier with the calibration chain, reused as CALIBRATION_COVARIATE_ORDER; R3 as stated repairs parsing/support/feature-mapping logic, not the primitive inventory, so this edge is inert under R3's stated scope.",
+      "affected_endpoint_if_repaired": "G2 family recovery (support/family classification) and Gate 6 (effective support non-empty) of case-level structural acceptance, both for real production cases only",
+      "classification": "CALIBRATION_PROVABLY_UNAFFECTED"
+    },
+    {
+      "id": "R4",
+      "title": "supply the canonical truth-support operand for G2",
+      "location": "rc3_record.py:221 (truth_support field); consumed by g2_contract.classify_support, g2_contract.py:132-141",
+      "questions": {
+        "alters_calibration_world_generation": false,
+        "alters_pysr_target": false,
+        "alters_any_candidate_expression": false,
+        "alters_valid_r2": false,
+        "alters_complexity": false,
+        "alters_per_complexity_S_w_c": false,
+        "alters_threshold_table_json": false,
+        "downstream_case_scoring_only": true,
+        "existing_thresholds_remain_valid_comparator": true
+      },
+      "proof": "rc3_acceptance.py states directly (lines 16-17) that truth_family and truth_support are read nowhere in that module; TRUTH_BLIND_FIELDS (lines 44-48) explicitly excludes both. CalibrationWorld (rc3_calibration_worlds.py:205-212) has no truth-support-shaped field; all three admitted null constructions are defined purely as transformations of target/compounds with no planted-truth relationship (rc3_calibration_worlds.py:388-405), so the concept of a truth support is undefined for calibration data, not merely unsupplied. g2_contract.py self-declares it reads truth only for post-hoc G2 scoring, separated from the acceptance predicate by design (lines 18-20).",
+      "affected_endpoint_if_repaired": "G2 family recovery (support-match comparison against planted truth) only",
+      "classification": "CALIBRATION_PROVABLY_UNAFFECTED"
+    }
+  ],
+  "summary": {
+    "all_classifications": "CALIBRATION_PROVABLY_UNAFFECTED",
+    "recalibration_required": false,
+    "threshold_table_remains_valid_comparator": true,
+    "joint_repair_note": "The four repair sites share no data or import edge with each other inside the calibration chain; repairing all four simultaneously would not compose into any calibration-facing change, since each is confined to a distinct downstream endpoint (R1->G1, R2->G3, R3->G2 support/family, R4->G2 truth comparison).",
+    "scope_note": "This matrix does not adjudicate whether R1-R4 are real defects and does not authorize any repair, Development opening, or Held-out opening. It answers only the calibration-impact question."
+  },
+  "final_line": "CORE-DEFECT CALIBRATION IMPACT MATRIX READY — NO RECALIBRATION EXECUTED"
+}

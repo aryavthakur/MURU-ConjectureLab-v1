@@ -1,0 +1,421 @@
+{
+  "audit": "MURU_RC5_HISTORICAL_ENGINE_COMPATIBILITY_MAP",
+  "mode": "READ_ONLY_ENGINEERING_FORENSICS",
+  "method": "git show <ref>:<path> content read; git rev-parse <ref>:<path> hash comparison for identity; no checkout, no test execution, no merge",
+  "historical_ref": {
+    "commit": "c7c23324d40cd432bdd14bf9d3292b5a2867ef9e",
+    "label": "Engineering RC2",
+    "branch": "engineering/muru-completion"
+  },
+  "current_authority_ref": {
+    "tag": "engineering-rc4-1-environment-closure",
+    "commit": "8c5dd41",
+    "label": "RC4.1 environment closure",
+    "also_compared": [
+      "engineering-rc3-a3-1",
+      "engineering-rc3-1-a3-2",
+      "engineering-rc4-a3-4",
+      "benchmark-content-freeze-a3-1..a3-4"
+    ]
+  },
+  "lineage_finding": {
+    "merge_base_of_historical_and_current": "adf7b3bf2c1fde918c37fc9eb9a2814da02715ba",
+    "historical_is_ancestor_of_current": false,
+    "interpretation": "c7c2332 and the current A3.1-RC4.1 lineage diverged at adf7b3b and were never merged. Everything under src/muru/** shared by both trees is byte-identical except src/muru/__init__.py (docstring only). Historical-only additions (pipeline.py, budget.py, provenance.py, runtime.py, governance.py, cli.py, adequacy/*, estimators/*, symbolic/*, evaluation/*) are entirely absent from current authority. Current-authority-only additions (paper_benchmark/* package, 24 files) are entirely absent from c7c2332.",
+    "byte_identical_shared_files": [
+      "src/muru/discovery/__init__.py", "src/muru/discovery/checkpoint.py", "src/muru/discovery/engine.py",
+      "src/muru/discovery/equivalence.py", "src/muru/discovery/estimate.py", "src/muru/discovery/falsify.py",
+      "src/muru/discovery/grammar.py", "src/muru/discovery/nulls.py", "src/muru/discovery/phase_boundary.py",
+      "src/muru/discovery/protocol.py", "src/muru/energy.py", "src/muru/features.py", "src/muru/identity.py",
+      "src/muru/io/manifest.py", "src/muru/io/massbank.py", "src/muru/io/mzml.py", "src/muru/models.py",
+      "src/muru/molecules.py", "src/muru/objval/__init__.py", "src/muru/objval/adjudicate.py",
+      "src/muru/objval/calibration.py", "src/muru/objval/decision.py", "src/muru/objval/equiv.py",
+      "src/muru/objval/generators2.py", "src/muru/objval/plan2.py", "src/muru/objval/recovery.py",
+      "src/muru/objval/select.py", "src/muru/objval/signature.py", "src/muru/objval/truth2.py",
+      "src/muru/screen.py", "src/muru/spectra.py", "src/muru/splits.py", "src/muru/synth/__init__.py",
+      "src/muru/synth/generators.py", "src/muru/synth/plan.py", "src/muru/synth/truth.py"
+    ]
+  },
+  "components": [
+    {
+      "id": "io-manifest",
+      "symbols": ["sha256_file", "sha256_bytes", "FileRecord", "Manifest"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/io/manifest.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["hashlib", "json", "pathlib", "dataclasses"],
+      "prospective_replacement_interface": "identical file already present at src/muru/io/manifest.py in engineering-rc4-1-environment-closure (hash-equal)",
+      "semantic_equivalence_evidence": "git rev-parse c7c2332:src/muru/io/manifest.py == git rev-parse engineering-rc4-1-environment-closure:src/muru/io/manifest.py",
+      "adapter_required": "none"
+    },
+    {
+      "id": "experiment-manifest",
+      "symbols": ["ExperimentManifest", "capture", "git_state", "source_hash", "environment", "dependency_lock", "stable_hash"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/provenance.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["io/manifest.py", "governance.py (status())"],
+      "prospective_replacement_interface": "no current-authority equivalent object; nearest analog is paper_benchmark/artifacts.py's narrower partition-manifest writer",
+      "semantic_equivalence_evidence": "atomic tmp+os.replace write idiom independently reimplemented in paper_benchmark/artifacts.py:_write_atomic and rc3_calibration_runner.py:SeedRecordStore.append; no scientific content in this module",
+      "adapter_required": "none for direct use; governance.status() call must repoint to whichever governance module RC5 restores (see governance-boundary component)"
+    },
+    {
+      "id": "checkpoint-store",
+      "symbols": ["Store.path", "Store.done", "Store.write", "Store.read", "Store.read_world", "Store.pending", "Store.count"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/checkpoint.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["json", "os", "pathlib"],
+      "prospective_replacement_interface": "rc3_calibration_runner.py: SeedRecordStore (independent, narrower: per-world append-only log vs per-(block,world,unit) file tree)",
+      "semantic_equivalence_evidence": "identical atomic-write idiom (tmp + os.replace); byte-identical file already present unmodified in current authority tree but unwired (used only by tests/test_p3_checkpoint.py); SeedRecordStore's independent convergence on append-only resume validates the general pattern for RC5's not-yet-built Development-case search resume",
+      "adapter_required": "choose per-unit (Store) vs per-world-append (SeedRecordStore) granularity for RC5 Development-case resume; no code change needed if Store is adopted as-is"
+    },
+    {
+      "id": "runtime-seeds-threads-logging",
+      "symbols": ["cap_threads", "derive_seed", "seed_list", "seed_manifest", "get_logger", "setup_logging", "SEED_BASE"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/runtime.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["hashlib", "logging", "os"],
+      "prospective_replacement_interface": "calibration_contract.py: PB_SEED_BASE / PB_SEED_SPREAD use the identical sha256[:4]-mod-spread algorithm on a disjoint band",
+      "semantic_equivalence_evidence": "algorithm identical (hashlib.sha256(key)[:4] as big-endian int, mod spread, offset by a base chosen disjoint from every other historical seed band); no scientific threshold",
+      "adapter_required": "derive a fourth disjoint SEED_BASE for RC5 if this module is adopted directly alongside the existing three historical bands and the paper_benchmark PB_ band"
+    },
+    {
+      "id": "runtime-budget",
+      "symbols": ["RuntimePolicy", "Deadline", "BudgetExceeded", "BUDGETED_OPERATIONS", "DEFAULT_POLICY"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/budget.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["time", "dataclasses"],
+      "prospective_replacement_interface": "rc3_calibration_runner.py: _wall_clock_budget (ad hoc signal.alarm context manager, single-seed scope only, not a general declared-budget object)",
+      "semantic_equivalence_evidence": "no current-authority equivalent of a versioned, serializable, multi-operation runtime policy exists; no scientific content",
+      "adapter_required": "none; direct port recommended for RC5 Development-case execution, which has no declared-budget mechanism today"
+    },
+    {
+      "id": "governance-boundary",
+      "symbols": ["real_data_allowed", "require_real_data", "real_data_authorized", "classifies_as_real_data", "guard_path", "status", "RealDataError"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/governance.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["os", "contextlib", "pathlib"],
+      "prospective_replacement_interface": "paper_benchmark/governance.py: HeldOutAccessRefused, ImplementationLock, assert_held_out_execution_allowed -- narrower, Held-out-lock-specific, NOT a general real-data gate",
+      "semantic_equivalence_evidence": "no src/muru/governance.py exists at top level in current authority (git ls-tree returns empty); the two governance modules answer different questions and are complementary, not substitutable",
+      "adapter_required": "reintroduce as a general top-level module if RC5 reads real measurement data anywhere outside the already-governed Held-out path; must not be merged into paper_benchmark.governance's narrower scope"
+    },
+    {
+      "id": "adequacy-contract-constants",
+      "symbols": ["MIN_EVALUABLE_COMPOUNDS", "MIN_PRACTICAL_WINS", "PRACTICAL_WIN_RATIO", "MIN_OBSERVED_ENERGIES", "LOG_G_BOUNDS", "LOG_SHAPE_BOUNDS", "MU_FLOOR", "MU_CEIL", "MIN_VERTICAL_AMPLITUDE", "E_REF", "COARSE_LOG_G_POINTS", "COARSE_LOG_SHAPE_POINTS", "REFINEMENT_ROUNDS", "REFINEMENT_POINTS", "REFINEMENT_SHRINK", "FIT_OBJECTIVE", "BOUNDARY_CONTACT_TOL", "BOUNDARY_OUTWARD_PROBE", "EFFECTIVE_BENCHMARK_FREEZE"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/contract.py",
+      "classification": "SEMANTICS_CHANGED_DO_NOT_REUSE",
+      "dependencies": [],
+      "prospective_replacement_interface": "paper_benchmark/adequacy.py (module-level constants)",
+      "semantic_equivalence_evidence": "EFFECTIVE_BENCHMARK_FREEZE=80a7803 (tag benchmark-content-freeze-a2-1) is stale; current authority is A3.1 (c8938e8, tag benchmark-content-freeze-a3-1) and beyond through A3.4. HOWEVER every other numeric field diffed identical against paper_benchmark/adequacy.py: MIN_EVALUABLE_COMPOUNDS, MIN_PRACTICAL_WINS, PRACTICAL_WIN_RATIO, MIN_OBSERVED_ENERGIES, LOG_G_BOUNDS, LOG_SHAPE_BOUNDS, MU_FLOOR, MU_CEIL, MIN_VERTICAL_AMPLITUDE, E_REF, COARSE_LOG_G_POINTS, COARSE_LOG_SHAPE_POINTS, REFINEMENT_ROUNDS, REFINEMENT_POINTS, REFINEMENT_SHRINK, FIT_OBJECTIVE, BOUNDARY_CONTACT_TOL, BOUNDARY_OUTWARD_PROBE -- all field-for-field identical",
+      "adapter_required": "do not import this module for its freeze pointer; the numeric values it carries may be cross-checked against paper_benchmark/adequacy.py but should be sourced from there, not re-declared"
+    },
+    {
+      "id": "adequacy-decision-rule",
+      "symbols": ["classify_compound_contrast", "evaluate_contrast", "decide_case_adequacy", "CompoundContrastStatus", "CaseAdequacyStatus", "INDETERMINATE_SEVERITY", "adequacy_satisfies_g1", "is_practical_win", "directional_null_tail"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/decision.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["adequacy/contract.py"],
+      "prospective_replacement_interface": "paper_benchmark/adequacy.py: classify_compound_contrast, evaluate_contrast, decide_case_adequacy, CompoundContrastStatus, CaseAdequacyStatus, INDETERMINATE_SEVERITY, adequacy_satisfies_g1, is_practical_win, directional_null_tail",
+      "semantic_equivalence_evidence": "historical module's own docstring: 'tests/test_eng_adequacy_conformance.py runs identical constructed records through this module and through muru.paper_benchmark.adequacy and requires the same typed verdict on every case in the frozen coverage list' -- direct authorial claim of test-verified behavioral parity with the file that is still, unchanged in this respect, current authority's decision module",
+      "adapter_required": "retarget constant/type imports from adequacy.contract to paper_benchmark.adequacy; current evaluate_contrast requires record count == N_TEST_COMPOUNDS_EXPECTED exactly (raises ContractFailure on mismatch) where historical run_adequacy_stage additionally accepted a population override for engineering fixtures -- drop or fence that override for any paper-capable run; current authority additionally layers new G2/G3 endpoint-scoring functions (EndpointScore, sensitivity_score, m0_specificity_score) with no historical counterpart -- additive, not to be ported from anywhere"
+    },
+    {
+      "id": "adequacy-models",
+      "symbols": ["ParameterSpec", "ModelSpec", "ProfileShape", "model_specs", "profile_argument", "predict"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/models.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["adequacy/contract.py", "estimators/base.py (SharedCurve)"],
+      "prospective_replacement_interface": "no current-authority equivalent exists yet; paper_benchmark/adequacy.py explicitly declares it owns no model/fitter code",
+      "semantic_equivalence_evidence": "paper_benchmark/adequacy.py docstring: 'This module owns the decision contract... contains no fitter, no optimiser, and no numerical model evaluation: the locked engine supplied by Engineering RC 2 performs the leave-one-energy-out fits and reports CompoundContrastRecord values back here' -- names Engineering RC2 as the intended source module family",
+      "adapter_required": "retarget adequacy.contract constant imports to paper_benchmark.adequacy; depends on estimators/base.py SharedCurve for ProfileShape.from_curve"
+    },
+    {
+      "id": "adequacy-fitter",
+      "symbols": ["FitResult", "_grid_objective", "objective_at", "_boundary_flags", "fit_model", "predict_at"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/fit.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["adequacy/contract.py", "adequacy/models.py"],
+      "prospective_replacement_interface": "no current-authority equivalent exists; explicitly awaited (see adequacy-models entry)",
+      "semantic_equivalence_evidence": "A1.2 frozen coarse-to-fine deterministic grid search, closed-form M2/M3 solve, lexicographic tie-break, no random restart, no library optimiser -- all constants (COARSE_LOG_G_POINTS=81, REFINEMENT_ROUNDS=3, etc.) confirmed field-identical between adequacy/contract.py and paper_benchmark/adequacy.py",
+      "adapter_required": "same as adequacy-models"
+    },
+    {
+      "id": "adequacy-loeo",
+      "symbols": ["CompoundContrastRecord", "observed_energies", "evaluate_compound_contrast"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/loeo.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["adequacy/contract.py", "adequacy/models.py", "adequacy/fit.py"],
+      "prospective_replacement_interface": "paper_benchmark/adequacy.py: CompoundContrastRecord (independently re-declared, field-identical dataclass)",
+      "semantic_equivalence_evidence": "field set (compound_id, detector, observed_energy_count, mae_m0, mae_alt, execution_state, boundary_contact, unresolved_boundary) identical between the two independently-authored dataclasses of the same name",
+      "adapter_required": "collapse the two duplicate CompoundContrastRecord definitions to one canonical definition, recommended paper_benchmark.adequacy's since evaluate_contrast already consumes it there"
+    },
+    {
+      "id": "adequacy-stage-orchestration",
+      "symbols": ["run_adequacy_stage", "AdequacyStageResult", "Trajectory", "trajectories_from_long", "not_run"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/adequacy/stage.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["adequacy/contract.py", "adequacy/decision.py", "adequacy/fit.py", "adequacy/loeo.py", "adequacy/models.py", "budget.py"],
+      "prospective_replacement_interface": "no current-authority callable orchestration unit exists yet",
+      "semantic_equivalence_evidence": "wires the frozen-curve-in / typed-verdict-out / budget-aware pattern; TIMEOUT-on-exhausted-deadline behavior matches A1.6's requirement that a timeout can never become M0 acceptance, which is unchanged in current authority's adequacy_satisfies_g1",
+      "adapter_required": "repoint every sub-import per the adequacy-decision-rule, adequacy-models, adequacy-fitter, adequacy-loeo entries; supply a SharedCurve from the ported fold-local estimator"
+    },
+    {
+      "id": "estimators-base",
+      "symbols": ["SharedCurve", "ScaleEstimate", "ScaleTable", "CurvatureUncertainty", "UncertaintyModel", "curvature"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/estimators/base.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["numpy", "pandas", "hashlib", "json"],
+      "prospective_replacement_interface": "paper_benchmark/protocol.py: FrozenScalarObjects (energy, training_mean, support), ScalarEstimate (compound_id, log_g, boundary_hit)",
+      "semantic_equivalence_evidence": "field names correspond directly: FrozenScalarObjects.support <-> SharedCurve.support_log_u/log_g_grid bounds; ScalarEstimate.log_g/boundary_hit <-> ScaleEstimate.log_g/boundary_hit; paper_benchmark/protocol.py module docstring: 'Minimal fold-local scalar adapter boundary for the locked implementation'",
+      "adapter_required": "widen FrozenScalarObjects to the full SharedCurve shape, or construct a narrow view from one; current stub's fit_training_scalar/estimate_one bodies are a placeholder mean-residual implementation with none of SharedCurve's isotonic/grid machinery and must be replaced, not merely wrapped"
+    },
+    {
+      "id": "estimators-foldlocal",
+      "symbols": ["FoldLocalCollapse.fit", "CollapseModel.estimate_one", "CollapseModel.estimate", "fit_fold_local"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/estimators/foldlocal.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["estimators/base.py", "sklearn.isotonic.IsotonicRegression", "numpy", "pandas"],
+      "prospective_replacement_interface": "paper_benchmark/protocol.py: fit_training_scalar, estimate_one (placeholder stub, see estimators-base entry)",
+      "semantic_equivalence_evidence": "this is the executable form of the collapse model mu_i(E) ~ Phi(E/g_i) that the MURU project is built on (per project memory); A3.1-A3.4 amendments changed the acceptance predicate and endpoint structure (G2/G3), not the collapse model itself; no evidence found that the fold-local fitting algorithm was superseded",
+      "adapter_required": "replace paper_benchmark/protocol.py's stub function bodies with calls into this module; non-transductive design (documented measured leakage fix over the historical discovery/estimate.py predecessor: perturbing one compound moved another's g_hat by up to 0.099) is a strict improvement, not a regression, relative to anything in current authority"
+    },
+    {
+      "id": "symbolic-candidate",
+      "symbols": ["Candidate", "pareto_front", "best_by_complexity", "elbow_pick"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/candidate.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["discovery/grammar.py (complexity, variable_support)", "symbolic/problem.py (Score)", "sympy", "numpy"],
+      "prospective_replacement_interface": "none exists; no Development-case candidate search loop has been built in paper_benchmark yet",
+      "semantic_equivalence_evidence": "generic round-trippable candidate type (srepr-based, fixes historical discovery.engine.Candidate's missing to/from_dict inverse); Pareto front and elbow-pick rule (master plan 13.4) have no scientific content beyond master-plan citation, which is unchanged by A3.1-A3.4",
+      "adapter_required": "none for the core logic; complexity()/variable_support() dependency on discovery/grammar.py (frozen Phase 3 evaluator) should be re-pointed to symbolic/protected.py's strict evaluator equivalents if RC5 wants to avoid the constant-folded-complex-number defect documented in symbolic/protected.py"
+    },
+    {
+      "id": "symbolic-canonical",
+      "symbols": ["canonical_form", "rationalize_exponents", "canonical_key", "key_lattice", "numeric_key", "equivalence_key", "group_equivalent", "dedupe", "DuplicateGroup"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/canonical.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["discovery/grammar.py (complexity)", "symbolic/protected.py (evaluate_strict)", "sympy", "numpy"],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "positive-scale-only (not affine) normalization directly encodes the collapse model's own identifiability constraint ('g is identified only up to positive multiplicative constant'), which is the same constraint estimators/base.py's SharedCurve encodes and which A3.1-A3.4 did not change",
+      "adapter_required": "none"
+    },
+    {
+      "id": "symbolic-protected-evaluator",
+      "symbols": ["evaluate_strict", "compile_expr", "apply_compiled", "is_real_valued", "finite_mask", "comparison"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/protected.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["discovery/grammar.py (OVERFLOW constant only)", "sympy", "numpy"],
+      "prospective_replacement_interface": "paper_benchmark/contract.py: StrictCandidate(expression, predictions, grammar_version), validate_candidate",
+      "semantic_equivalence_evidence": "paper_benchmark/contract.py docstring: 'Strict evaluator input contract for a future locked MURU engine'; validate_candidate's checks (non-complex, all-finite) are a strict subset of what evaluate_strict/finite_mask already implement at full strength",
+      "adapter_required": "wire StrictCandidate.predictions as the output of evaluate_strict; validate_candidate can remain a thin post-hoc check or be subsumed"
+    },
+    {
+      "id": "symbolic-engines-registry",
+      "symbols": ["SymbolicEngine", "BaseEngine", "register_engine", "get_engine", "available_engines", "engine_report", "EngineUnavailable"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/engines.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["symbolic/candidate.py", "symbolic/problem.py"],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "generic protocol/registry pattern; availability-as-first-class-answer design (importing never fails on missing PySR/gplearn/Julia) has no scientific content",
+      "adapter_required": "none"
+    },
+    {
+      "id": "symbolic-adapters-pysr",
+      "symbols": ["PySREngine", "GPLearnEngine", "RandomSearchEngine"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/adapters.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["discovery/engine.py (PYSR_CONFIG, run_pysr, run_gplearn)", "symbolic/engines.py", "symbolic/candidate.py"],
+      "prospective_replacement_interface": "rc3_calibration_runner.py: PySRBackend, SEARCH_SETTINGS (calibration_contract.py)",
+      "semantic_equivalence_evidence": "see pysr-invocation entry for full numeric comparison: every scored PySRRegressor hyperparameter matches exactly between PYSR_CONFIG and SEARCH_SETTINGS; RandomSearchEngine has no current-authority analog and is independently useful as a dependency-free CI test double",
+      "adapter_required": "retarget adapter's config source from discovery.engine.PYSR_CONFIG to paper_benchmark.calibration_contract.SEARCH_SETTINGS; GPLearnEngine has no current-authority frozen settings to cross-check (open item)"
+    },
+    {
+      "id": "symbolic-problem",
+      "symbols": ["SearchProblem", "Objective", "WeightedR2Objective", "Score"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/symbolic/problem.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": [],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "generic train/valid/weight/objective contract; replaces an eight-positional-argument ad hoc signature; no benchmark-freeze dependency",
+      "adapter_required": "none"
+    },
+    {
+      "id": "pysr-invocation",
+      "symbols": ["PYSR_CONFIG", "run_pysr", "GPLEARN_CONFIG", "run_gplearn", "weighted_r2", "score_candidate"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/engine.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["discovery/grammar.py", "pysr.PySRRegressor", "gplearn"],
+      "prospective_replacement_interface": "rc3_calibration_runner.py: PySRBackend._make_regressor; calibration_contract.py: SEARCH_SETTINGS",
+      "semantic_equivalence_evidence": "field-by-field comparison: niterations=40/40, populations=15/15, population_size=33/33, parsimony=0.0032/0.0032, adaptive_parsimony_scaling=20.0/20.0, deterministic=True/True, binary_operators identical, unary_operators identical, maxsize identical, parallelism=serial/serial (procs=0). ONE DIFFERENCE FOUND: historical PYSR_CONFIG passes nested_constraints=dict(grammar.NESTED_CONSTRAINTS) to PySRRegressor; current PySRBackend._make_regressor does not pass nested_constraints at all.",
+      "adapter_required": "retarget config source to SEARCH_SETTINGS; resolve the nested_constraints gap as a named decision before treating either as authoritative (open item, not resolved by this audit)"
+    },
+    {
+      "id": "falsification-harness",
+      "symbols": ["run_harness", "affine_refit", "r2_after_refit", "_cluster_holdout", "_influence", "_ablations", "_energy_subsets", "_negative_controls", "_mass_only_reference"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/falsify.py",
+      "classification": "HISTORICAL_ONLY_NO_PROSPECTIVE_AUTHORITY",
+      "dependencies": ["discovery/grammar.py (frozen evaluator)", "discovery/estimate.py (transductive fit_collapse)"],
+      "prospective_replacement_interface": "paper_benchmark/structural_acceptance.py: FalsificationRung enum (F1_REPRODUCIBILITY, F4_COMPOUND_HOLDOUT, F5_SCAFFOLD_HOLDOUT, F7_INFLUENCE_DROP, F9_ENERGY_SUBSET, F10_NEGATIVE_CONTROL), check_falsification_harness -- aggregation only, no rung computation implemented yet",
+      "semantic_equivalence_evidence": "runs against the frozen Phase 3 grammar.evaluate/estimate.fit_collapse path scoped to the immutable 'STOP BEFORE PHASE 4' verdict; adequacy/stage.py's own docstring: 'It is NOT the historical F1-F12 falsification harness... The two are different systems and neither substitutes for the other'. However structural_acceptance.py's FalsificationRung names are a named subset of F1-F12 and its helper-function purposes correspond by evident naming (_cluster_holdout~F5, _influence~F7, _energy_subsets~F9, _negative_controls~F10) -- UNVERIFIED at full function-body level, flagged as an open item",
+      "adapter_required": "if individual rung procedures are reused (not verified by this audit), each must be re-plumbed off the transductive discovery/estimate.py path onto the fold-local estimators/foldlocal.py path first; the harness AS A WHOLE must not be reused, only individually-verified rung procedures"
+    },
+    {
+      "id": "discovery-protocol-legacy",
+      "symbols": ["WorldData", "build_world_data", "run_seed", "aggregate", "accept", "group_split", "seed_list"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/protocol.py",
+      "classification": "HISTORICAL_ONLY_NO_PROSPECTIVE_AUTHORITY",
+      "dependencies": ["discovery/engine.py", "discovery/equivalence.py", "discovery/grammar.py", "discovery/estimate.py"],
+      "prospective_replacement_interface": "already superseded within c7c2332 itself by runtime.py (seed derivation) and evaluation/splits.py (group splitting)",
+      "semantic_equivalence_evidence": "frozen governed Phase 3 protocol, immutably scoped to the 'STOP BEFORE PHASE 4' track; its own successor components already exist in the same historical commit",
+      "adapter_required": "none -- do not resurrect; port runtime.py and evaluation/splits.py instead"
+    },
+    {
+      "id": "discovery-estimate-transductive",
+      "symbols": ["CollapseFit", "fit_collapse", "hmain_adequacy"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/estimate.py",
+      "classification": "HISTORICAL_ONLY_NO_PROSPECTIVE_AUTHORITY",
+      "dependencies": [],
+      "prospective_replacement_interface": "already superseded within c7c2332 itself by estimators/foldlocal.py",
+      "semantic_equivalence_evidence": "estimators/foldlocal.py's own docstring names this module as the transductive predecessor it replaces because of a measured leakage defect: perturbing one compound's trajectory moves other compounds' g_hat by up to 0.099 and weights by up to 1.28",
+      "adapter_required": "none -- do not resurrect; port estimators/foldlocal.py instead"
+    },
+    {
+      "id": "discovery-grammar-constants",
+      "symbols": ["BINARY_OPERATORS", "UNARY_OPERATORS", "NESTED_CONSTRAINTS", "MAX_COMPLEXITY", "complexity", "parse", "variable_support"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/grammar.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": [],
+      "prospective_replacement_interface": "calibration_contract.py: SEARCH_SETTINGS transcribes BINARY_OPERATORS/UNARY_OPERATORS/MAX_COMPLEXITY verbatim (already independently reused)",
+      "semantic_equivalence_evidence": "constants only, no frozen-evaluator behavior; confirmed byte-for-byte value match against SEARCH_SETTINGS in the pysr-invocation entry",
+      "adapter_required": "none for the constants and parse()/complexity()/variable_support(); the module's evaluate() function itself is frozen Phase 3 and superseded by symbolic/protected.py for any new scoring"
+    },
+    {
+      "id": "discovery-grammar-evaluate",
+      "symbols": ["evaluate"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/discovery/grammar.py",
+      "classification": "SEMANTICS_CHANGED_DO_NOT_REUSE",
+      "dependencies": [],
+      "prospective_replacement_interface": "symbolic/protected.py: evaluate_strict",
+      "semantic_equivalence_evidence": "documented defect: np.asarray(..., float) cast silently discards the imaginary part of a sympy-constant-folded complex sub-expression, scoring an expression that left the reals as valid",
+      "adapter_required": "none -- use symbolic/protected.py's evaluate_strict for any new scoring path"
+    },
+    {
+      "id": "evaluation-metrics",
+      "symbols": ["weighted_r2", "weighted_mae", "weighted_rmse", "per_unit_errors", "cluster_bootstrap", "paired_bootstrap"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/evaluation/metrics.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["numpy", "pandas"],
+      "prospective_replacement_interface": "none exists as a single module; rc3_calibration_runner.py has its own local _r2",
+      "semantic_equivalence_evidence": "consolidates three previously-disagreeing-in-location (not in value, per historical conformance test) implementations into one; no scientific threshold",
+      "adapter_required": "none"
+    },
+    {
+      "id": "evaluation-splits",
+      "symbols": ["Split", "greedy_group_assignment", "kfold_by_group", "holdout_by_group", "split_for_scheme", "verify_no_leakage"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/evaluation/splits.py",
+      "classification": "DIRECTLY_REUSABLE_ENGINEERING",
+      "dependencies": ["splits.py (shared substrate, grouped_folds)"],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "kfold_by_group delegates to the byte-identical-shared muru.splits.grouped_folds for bit-identical Phase 2 behavior; holdout_by_group is new scaffold-size-aware greedy assignment, no frozen scientific threshold",
+      "adapter_required": "none"
+    },
+    {
+      "id": "evaluation-compare-ladder",
+      "symbols": ["ModelSpec", "standard_ladder", "ComparisonPlan", "ComparisonResult", "run_comparison"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/evaluation/compare.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["pandas"],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "CAUTION: this is the Phase 2 FLEXIBLE PREDICTIVE BENCHMARK baseline ladder (BASELINES.md), NOT the adequacy M0/M1/M2/M3 generative-model ladder despite the shared 'M0/M1/M2/M3' name -- a genuine name collision risk for reviewers",
+      "adapter_required": "if reused, must be wired as a baseline-comparison utility only, never conflated with or substituted for the adequacy engine (adequacy-decision-rule / adequacy-models / adequacy-fitter / adequacy-loeo entries)"
+    },
+    {
+      "id": "pipeline-orchestrator",
+      "symbols": ["ExperimentConfig", "ExperimentResult", "run_experiment", "_search_contract", "_null_curve", "_rank", "_score_recovery", "_write"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/pipeline.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["governance.py", "nulls.py", "provenance.py", "runtime.py", "sources.py", "adequacy/__init__.py", "budget.py", "estimators/__init__.py", "evaluation/splits.py", "symbolic/__init__.py"],
+      "prospective_replacement_interface": "no current-authority case-level orchestrator exists; rc3_calibration_runner.py orchestrates calibration WORLDS, a narrower and different object than a Development CASE",
+      "semantic_equivalence_evidence": "shape (registry-lookup stages, budget.Deadline checks, single to_dict()/report() source of truth, atomic _write) is generic sound orchestration engineering with no current-authority equivalent; but every science-bearing call site is stale (muru.adequacy import path) or absent (paper_benchmark.structural_acceptance's 8-gate predicate has no historical equivalent; _rank's 4-condition check is a strict subset)",
+      "adapter_required": "use as an architectural reference, not a drop-in import; replace _rank's acceptance logic with paper_benchmark.structural_acceptance.evaluate_structural_acceptance; repoint muru.adequacy imports per the adequacy-* entries; sources.py/nulls.py dependency was out of the mission's named focus areas and requires a separate audit against paper_benchmark/generator.py and registry.py"
+    },
+    {
+      "id": "cli-entrypoint",
+      "symbols": ["build_parser", "cmd_info", "cmd_check", "cmd_run", "cmd_manifest", "main"],
+      "source_commit": "c7c2332",
+      "file": "src/muru/cli.py",
+      "classification": "REUSABLE_AFTER_MECHANICAL_ADAPTER",
+      "dependencies": ["pipeline.py"],
+      "prospective_replacement_interface": "none exists",
+      "semantic_equivalence_evidence": "thin argparse wrapper entirely over pipeline.run_experiment; inherits pipeline-orchestrator's classification exactly",
+      "adapter_required": "same as pipeline-orchestrator; cmd_check's 'resolve every registry name and report authorization without executing anything' pattern is independently worth keeping"
+    },
+    {
+      "id": "ceiling-estimator-dependency-pin",
+      "symbols": ["CEILING_ESTIMATOR_SPEC (provenance field)"],
+      "source_commit": "c7c2332",
+      "file": "requirements.lock.txt",
+      "classification": "UNRELATED",
+      "dependencies": [],
+      "prospective_replacement_interface": "paper_benchmark/structural_acceptance.py: CEILING_ESTIMATOR_SPEC[\"provenance\"] = \"requirements.lock.txt at c7c23324d40cd432bdd14bf9d3292b5a2867ef9e\"",
+      "semantic_equivalence_evidence": "current authority's HistGradientBoostingRegressor-based ceiling estimator (rc3_ceiling.py) is NOT derived from any historical estimators/adequacy code -- it is new code for a different purpose (a black-box ML baseline comparison, not the collapse model). Only its scikit-learn==1.9.0 dependency pin cites c7c2332's lockfile as provenance, confirmed identical in both requirements.lock.txt files. Listed here only to prevent a reviewer from wrongly inferring a functional-code reuse relationship from the citation.",
+      "adapter_required": "none -- no code to port; citation only"
+    }
+  ],
+  "open_items": [
+    {
+      "id": "nested-constraints-gap",
+      "description": "Historical PYSR_CONFIG passes nested_constraints=dict(grammar.NESTED_CONSTRAINTS) to PySRRegressor; current PySRBackend._make_regressor does not pass this kwarg at all. Every other scored hyperparameter matches exactly.",
+      "resolution_required": "named engineering decision by RC5 authors before either search-settings source is treated as authoritative; not resolved by this audit"
+    },
+    {
+      "id": "duplicate-compound-contrast-record",
+      "description": "adequacy/loeo.py (historical) and paper_benchmark/adequacy.py (current) each independently define a field-identical CompoundContrastRecord dataclass.",
+      "resolution_required": "collapse to one canonical definition, recommended paper_benchmark.adequacy's"
+    },
+    {
+      "id": "falsification-rung-reuse-unverified",
+      "description": "structural_acceptance.py's FalsificationRung subset (F1,F4,F5,F7,F9,F10) name-matches historical falsify.py helper functions by evident purpose, but full function-body verification and re-plumbing off the transductive estimate.fit_collapse path was not completed by this audit.",
+      "resolution_required": "dedicated follow-up read of discovery/falsify.py:run_harness body against each FalsificationRung before any reuse claim is finalized"
+    },
+    {
+      "id": "governance-module-absent",
+      "description": "src/muru/governance.py (general real-data gate) has no home in current authority; only the narrower paper_benchmark.governance Held-out-specific lock exists.",
+      "resolution_required": "reintroduce as a general top-level module if RC5 reads real measurement data outside the Held-out path; must not be conflated with paper_benchmark.governance"
+    },
+    {
+      "id": "sources-nulls-models-not-audited",
+      "description": "pipeline.py's sources.load and nulls.get_null dependencies, and evaluation/compare.py's relationship to models.py's Phase 2 baseline ladder, were out of the mission's named focus areas and were not audited against paper_benchmark/generator.py and registry.py.",
+      "resolution_required": "separate follow-up audit before any adapter reusing pipeline.py's shape can actually run"
+    }
+  ],
+  "final_status": "RC5 HISTORICAL ENGINE COMPATIBILITY MAP READY"
+}

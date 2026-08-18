@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "document_title": "MURU External Dataset Qualification JSON",
+  "status": "DRAFT — FROZEN DESIGN ONLY — DO NOT EXECUTE",
+  "freeze_date": "2026-08-14",
+  "criteria_commit": "705adf8ff50e3038a791491ed19b3f968bdf74e0",
+  "governing_feasibility_protocol": "MURU_PUBLIC_DATA_FEASIBILITY_PROTOCOL.md",
+  "governing_feasibility_report": "MURU_PUBLIC_DATA_FEASIBILITY_REPORT.md",
+  "governance_assertions": {
+    "no_muru_symbolic_search_executed": true,
+    "no_public_data_performance_calculated": true,
+    "no_synthetic_prospective_outcomes_inspected": true,
+    "held_out_remains_sealed": true,
+    "confirmation_remains_sealed": true
+  },
+  "exposure_baseline": {
+    "corpus": "MassBank LCSB release 2026.03 (commit 705afb7b) & MassIVE MSV000091754",
+    "unique_inchikey_blocks_count": 781,
+    "inchikey_blocks_fingerprint_sha256": "f808cbda92a228094e7afbe7344967dd6622dd979adf25f5c35d914e8996f271"
+  },
+  "candidate_inventory": [
+    {
+      "candidate_id": "wfsr_food_safety_library",
+      "name": "WFSR Food Safety Mass Spectral Library",
+      "repository": "GNPS2 / MassIVE / WUR",
+      "accession": "GNPS library WFSR-LIBRARY (CCMSLIB00013933782-CCMSLIB00013940774); MassIVE MSV000098571",
+      "publication": "Creation of an Open-Access High-Resolution Tandem Mass Spectral Library of 1000 Food Toxicants, Analytical Chemistry, 2025",
+      "doi": "10.1021/acs.analchem.5c03020",
+      "license": "CC0 (GNPS2); CC-BY 4.0 (Publication); Educational/Research terms (WUR)",
+      "license_status": "VERIFIED",
+      "instrument_family": "Orbitrap Tribrid",
+      "instrument_model": "Thermo Scientific Orbitrap IQ-X Tribrid",
+      "mass_analyzer": "Orbitrap FTMS",
+      "fragmentation_mode": "HCD",
+      "ionization_mode": "Positive ESI",
+      "analysis_polarity": "Positive",
+      "ce_representation": "Class C (In-record NAME suffix _CE15.._CE90; publication-derived NCE % convention)",
+      "ce_units": "Normalized Collision Energy (%)",
+      "n_ce_levels": 6,
+      "ce_grid": [15.0, 30.0, 45.0, 60.0, 75.0, 90.0],
+      "ce_ratio_max_min": 6.0,
+      "qualifying_groups": {
+        "positive_14char_block": 957,
+        "positive_27char_inchikey": 998,
+        "negative": 0
+      },
+      "identity_confidence": "Level 1 Authentic Commercial Reference Standard (1001 compounds)",
+      "identity_status": "VERIFIED",
+      "replicate_structure": "Single DDA injection per compound (0 within-run multi-injection variance; 192 duplicate cells)",
+      "precursor_adduct_handling": "Stratified: [M+H]+ (6764 records), [M+NH4]+ (154), [M+Na]+ (68), [M+2H]+ (7); primary stratum [M+H]+",
+      "spectral_format": "Centroided peak lists in MSP, MGF, JSON; vendor raw on MassIVE MSV000098571",
+      "metadata_completeness": "High (Structure, Adduct, Precursor m/z, CE suffix); scan bounds not recorded",
+      "prior_muru_exposure": "CLEAN / UNEXPOSED",
+      "chemical_overlap_with_development_set": {
+        "overlapping_blocks": 191,
+        "total_blocks": 957,
+        "overlap_fraction": 0.1996,
+        "classification": "CHEMICALLY_INDEPENDENT"
+      },
+      "clean_non_overlapping_subset_size": 766,
+      "known_preprocessing_requirements": "Deterministic regex parsing of NAME field for CE; base cell filtering (relative cutoff 0.0, precursor retained)",
+      "feasibility_verdict": "ELIGIBLE",
+      "priority_tier": "PRIMARY_EXTERNAL_DATASET"
+    },
+    {
+      "candidate_id": "massbank_bafg_csl",
+      "name": "MassBank Contributor BAFG (Collective Spectral Library, CSL)",
+      "repository": "MassBank Europe / GitHub MassBank-data",
+      "accession": "MassBank-data directory BAFG, prefixes BAFG and CSL, release 2026.03 (commit 705afb7b)",
+      "publication": "Federal Institute of Hydrology (BfG), Koblenz; CSL Non-Target Screening literature",
+      "doi": null,
+      "license": "dl-de/by-2-0 (Data licence Germany attribution 2.0; open scientific reuse, modification, redistribution)",
+      "license_status": "VERIFIED",
+      "instrument_family": "QTOF",
+      "instrument_model": "SCIEX TripleTOF 5600 (Primary); TripleTOF 6600 (Secondary); TripleTOF X500R",
+      "mass_analyzer": "Quadrupole-Time-of-Flight",
+      "fragmentation_mode": "Beam-type CID",
+      "ionization_mode": "Positive and Negative ESI",
+      "analysis_polarity": "Positive (Primary); Negative (Secondary)",
+      "ce_representation": "Class A/C (Integer in COLLISION_ENERGY; unit V in RECORD_TITLE)",
+      "ce_units": "Laboratory-frame collision cell potential (V)",
+      "n_ce_levels": 16,
+      "ce_grid": [10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0, 120.0, 130.0, 140.0, 150.0],
+      "ce_ratio_max_min": 15.0,
+      "qualifying_groups": {
+        "positive_5600_14char_block": 666,
+        "positive_5600_27char_inchikey": 670,
+        "positive_6600": 331,
+        "negative_5600": 247,
+        "negative_6600": 105
+      },
+      "identity_confidence": "Level 1 Reference Standard (20658 of 20658 records carry COMMENT: CONFIDENCE Reference Standard (Level 1))",
+      "identity_status": "VERIFIED",
+      "replicate_structure": "Single-injection fast collision energy switching (RT identical across 15 energies in 909/913 groups; 1471 2-replicate cells)",
+      "precursor_adduct_handling": "Stratified: Predominantly [M+H]+ in positive mode and [M-H]- in negative mode",
+      "spectral_format": "MassBank record format with full centroid peak lists",
+      "metadata_completeness": "High (Structure, Adduct, Precursor m/z, CE, Title); data processing method implicit",
+      "prior_muru_exposure": "CLEAN / UNEXPOSED",
+      "chemical_overlap_with_development_set": {
+        "overlapping_blocks": 200,
+        "total_blocks": 1119,
+        "overlap_fraction": 0.179,
+        "classification": "CHEMICALLY_INDEPENDENT"
+      },
+      "clean_non_overlapping_subset_size": 546,
+      "known_preprocessing_requirements": "Deterministic regex parsing of RECORD_TITLE for CE unit V; integer parsing of COLLISION_ENERGY",
+      "feasibility_verdict": "ELIGIBLE",
+      "priority_tier": "BACKUP_EXTERNAL_DATASET_1"
+    },
+    {
+      "candidate_id": "massbank_athens_univ",
+      "name": "MassBank Contributor Athens_Univ",
+      "repository": "MassBank Europe / GitHub MassBank-data",
+      "accession": "MassBank-data directory Athens_Univ, prefix AU, release 2026.03 (commit 705afb7b)",
+      "publication": "University of Athens Analytical Chemistry group (Alygizakis et al., NORMAN network)",
+      "doi": null,
+      "license": "CC BY (3588 records) / CC BY-SA (941 records) in qualifying stratum",
+      "license_status": "VERIFIED",
+      "instrument_family": "QTOF",
+      "instrument_model": "Bruker maXis Impact (Primary LC-ESI-QTOF); Bruker 450 GC coupled to maXis Impact",
+      "mass_analyzer": "Quadrupole-Time-of-Flight",
+      "fragmentation_mode": "Beam-type CID",
+      "ionization_mode": "Positive and Negative ESI",
+      "analysis_polarity": "Positive",
+      "ce_representation": "Class A (Explicit unit-bearing string in COLLISION_ENERGY, e.g., '20 eV'; 628 ramps excluded as Class D)",
+      "ce_units": "Laboratory-frame collision energy (eV)",
+      "n_ce_levels": 5,
+      "ce_grid": [10.0, 20.0, 30.0, 40.0, 50.0],
+      "ce_ratio_max_min": 5.0,
+      "qualifying_groups": {
+        "positive_maxis_14char_block": 544,
+        "positive_maxis_27char_inchikey": 547,
+        "positive_gc_apci": 42,
+        "negative_maxis": 23
+      },
+      "identity_confidence": "Reference standard: standard compound (5520 records) + Reference Standard Level 1 (113 records)",
+      "identity_status": "VERIFIED",
+      "replicate_structure": "Separate chromatographic injections per collision energy (RT differs across energies in 504/567 groups; true inter-injection variance)",
+      "precursor_adduct_handling": "Stratified: Predominantly [M+H]+",
+      "spectral_format": "MassBank record format with full centroid peak lists & RMassBank 1.99-2.10 provenance",
+      "metadata_completeness": "Complete (Structure, Adduct, Precursor m/z, Explicit CE unit, Processing tool)",
+      "prior_muru_exposure": "CLEAN / UNEXPOSED",
+      "chemical_overlap_with_development_set": {
+        "overlapping_blocks": 139,
+        "total_blocks": 589,
+        "overlap_fraction": 0.236,
+        "classification": "PARTIAL_CHEMICAL_OVERLAP"
+      },
+      "clean_non_overlapping_subset_size": 405,
+      "known_preprocessing_requirements": "Explicit string regex parsing ('(\\d+) eV'); exclude Class D ramped records ('Ramp ...')",
+      "feasibility_verdict": "ELIGIBLE",
+      "priority_tier": "BACKUP_EXTERNAL_DATASET_2"
+    },
+    {
+      "candidate_id": "massbank_eawag_exploris",
+      "name": "MassBank Contributor Eawag (Level 1 Reference Standard Stratum)",
+      "repository": "MassBank Europe / GitHub MassBank-data",
+      "accession": "MassBank-data directory Eawag, prefixes EA and EQ, release 2026.03 (commit 705afb7b)",
+      "publication": "Eawag Environmental Reference Library (RMassBank workflow)",
+      "doi": null,
+      "license": "CC BY-SA uniformly inside qualifying Exploris stratum; CC BY across contributor",
+      "license_status": "VERIFIED",
+      "instrument_family": "Orbitrap",
+      "instrument_model": "Thermo Scientific Orbitrap Exploris 240 (Primary); LTQ Orbitrap XL; Q Exactive Plus",
+      "mass_analyzer": "Orbitrap FTMS",
+      "fragmentation_mode": "HCD",
+      "ionization_mode": "Positive and Negative ESI",
+      "analysis_polarity": "Positive",
+      "ce_representation": "Class B (Explicit string '15 % (nominal)', 16180 records) and Class C ('15 (nominal)', 4537 records)",
+      "ce_units": "Normalized Collision Energy (%)",
+      "n_ce_levels": 6,
+      "ce_grid": [15.0, 30.0, 45.0, 60.0, 75.0, 90.0],
+      "ce_ratio_max_min": 6.0,
+      "qualifying_groups": {
+        "positive_exploris240_orbitrap_14char_block": 326,
+        "positive_exploris240_orbitrap_27char_inchikey": 326,
+        "positive_exploris240_normalized_strings": 469,
+        "positive_ltq_orbitrap_xl": 311,
+        "negative_exploris240": 142
+      },
+      "identity_confidence": "Level 1 Reference Standard (18332 records; 1966 annotation-level records strictly filtered out)",
+      "identity_status": "VERIFIED",
+      "replicate_structure": "Single injection per compound (RT constant across energies in 464/468 groups)",
+      "precursor_adduct_handling": "Stratified: Predominantly [M+H]+",
+      "spectral_format": "MassBank record format with full centroid peak lists & RMassBank 3.11-3.16 provenance",
+      "metadata_completeness": "Complete (Structure, Adduct, Precursor m/z, Explicit CE unit, Processing tool)",
+      "prior_muru_exposure": "CLEAN / UNEXPOSED",
+      "chemical_overlap_with_development_set": {
+        "overlapping_blocks": 253,
+        "total_blocks": 1383,
+        "overlap_fraction": 0.183,
+        "classification": "CHEMICALLY_INDEPENDENT"
+      },
+      "clean_non_overlapping_subset_size": 266,
+      "known_preprocessing_requirements": "Filter COMMENT: CONFIDENCE == 'Reference Standard (Level 1)' or 'standard compound'; parse '(\\d+) % (nominal)'",
+      "feasibility_verdict": "ELIGIBLE",
+      "priority_tier": "SUPPLEMENTARY_EXTERNAL_DATASET"
+    },
+    {
+      "candidate_id": "massbank_keio_univ",
+      "name": "MassBank Contributor Keio_Univ",
+      "repository": "MassBank Europe / GitHub MassBank-data",
+      "accession": "MassBank-data directory Keio_Univ, prefix KO, release 2026.03",
+      "publication": null,
+      "doi": null,
+      "license": "CC BY-NC-SA (Non-Commercial, Share-Alike)",
+      "license_status": "VERIFIED",
+      "instrument_family": "Triple Quadrupole & Ion Trap",
+      "instrument_model": "Applied Biosystems API3000 (4265 records) & Agilent LC/MSD Trap XCT (515 records)",
+      "mass_analyzer": "Quadrupole (QQQ) / Ion Trap",
+      "fragmentation_mode": "MISSING",
+      "ionization_mode": "Positive and Negative ESI",
+      "analysis_polarity": "Positive and Negative",
+      "ce_representation": "Class A ('10 V')",
+      "ce_units": "Laboratory-frame collision cell potential (V)",
+      "n_ce_levels": 5,
+      "ce_grid": [10.0, 20.0, 30.0, 40.0, 50.0],
+      "ce_ratio_max_min": 5.0,
+      "qualifying_groups": {
+        "positive_api3000": 419,
+        "negative_api3000": 352
+      },
+      "identity_confidence": "MISSING (No COMMENT: CONFIDENCE field in records)",
+      "identity_status": "UNKNOWN",
+      "replicate_structure": "Variable",
+      "precursor_adduct_handling": "Variable",
+      "spectral_format": "MassBank record format",
+      "metadata_completeness": "Incomplete (Fragmentation mode missing, Confidence tier missing, MS3/MS4 present)",
+      "prior_muru_exposure": "CLEAN / UNEXPOSED",
+      "chemical_overlap_with_development_set": {
+        "overlapping_blocks": null,
+        "total_blocks": null,
+        "overlap_fraction": null,
+        "classification": "UNKNOWN"
+      },
+      "clean_non_overlapping_subset_size": null,
+      "known_preprocessing_requirements": "Requires publication verification of Level 1 identity; filter MS2 only; parse '(\\d+) V'",
+      "feasibility_verdict": "POTENTIALLY_ELIGIBLE_REQUIRES_FURTHER_QUALIFICATION",
+      "priority_tier": "UNRANKED_PENDING_QUALIFICATION"
+    }
+  ],
+  "ineligible_candidates_accounting": [
+    {
+      "candidate_id": "massbank_ufz",
+      "name": "MassBank UFZ",
+      "disqualification_criterion": "E5",
+      "reason": "241 qualifying positive groups < 250 hard floor"
+    },
+    {
+      "candidate_id": "massbank_natoxaq",
+      "name": "MassBank NaToxAq",
+      "disqualification_criterion": "E5",
+      "reason": "117 qualifying positive groups < 250 hard floor"
+    },
+    {
+      "candidate_id": "massbank_hbm4eu",
+      "name": "MassBank HBM4EU",
+      "disqualification_criterion": "E5",
+      "reason": "112 qualifying positive groups < 250 hard floor"
+    },
+    {
+      "candidate_id": "massbank_mfam",
+      "name": "MassBank mFam",
+      "disqualification_criterion": "E5_E8",
+      "reason": "178 groups < 250 floor; mixed unstratified platforms"
+    },
+    {
+      "candidate_id": "massbank_aafc",
+      "name": "MassBank AAFC",
+      "disqualification_criterion": "E5",
+      "reason": "102 groups < 250 floor; 244 biological source records"
+    },
+    {
+      "candidate_id": "massbank_riken",
+      "name": "MassBank RIKEN",
+      "disqualification_criterion": "E4",
+      "reason": "0 qualifying groups; 1015 Class D ramps; NPDepo lacks CE"
+    },
+    {
+      "candidate_id": "massbank_fac_eng_tokyo",
+      "name": "MassBank Fac_Eng_Univ_Tokyo",
+      "disqualification_criterion": "E3_CLASS_F",
+      "reason": "11719 / 12379 records have absent CE metadata"
+    },
+    {
+      "candidate_id": "massbank_aces_su",
+      "name": "MassBank ACES_SU",
+      "disqualification_criterion": "E3_CLASS_D",
+      "reason": "1507 / 1778 records are ramped/stepped acquisitions"
+    },
+    {
+      "candidate_id": "massbank_entact_agilent",
+      "name": "MassBank ENTACT_AGILENT",
+      "disqualification_criterion": "E4_E8",
+      "reason": "0 qualifying groups; AC$INSTRUMENT reads 'N/A'"
+    },
+    {
+      "candidate_id": "massbank_lcsb",
+      "name": "MassBank LCSB",
+      "disqualification_criterion": "E9",
+      "reason": "Contaminated (Historical MURU development training set)"
+    },
+    {
+      "candidate_id": "massive_msv000091754",
+      "name": "MassIVE MSV000091754",
+      "disqualification_criterion": "E9",
+      "reason": "Contaminated (Raw companion mzML files for development set)"
+    },
+    {
+      "candidate_id": "msnlib_zenodo",
+      "name": "MSnLib (Zenodo 10.5281/zenodo.16984129)",
+      "disqualification_criterion": "E4",
+      "reason": "Maximum 4 discrete CE levels per compound (mode: 3) < 5 floor"
+    },
+    {
+      "candidate_id": "bmdms_np",
+      "name": "BMDMS-NP (GNPS)",
+      "disqualification_criterion": "E3_CLASS_F",
+      "reason": "COLLISIONENERGY empty in all 177773 records in GNPS export"
+    },
+    {
+      "candidate_id": "gnps_library_generic",
+      "name": "GNPS Library Generic Route",
+      "disqualification_criterion": "E3",
+      "reason": "GNPS native JSON schema lacks dedicated CE field"
+    }
+  ]
+}

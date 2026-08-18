@@ -33,7 +33,9 @@ from .adequacy import CaseAdequacyStatus
 from .calibration_contract import SeedStatus
 from .g2_contract import FamilyStatus, G2Event, SupportStatus
 from .structural_acceptance import (
-    REQUIRED_FALSIFICATION_RUNGS,
+    F9_ACCEPTANCE_CALIBRATION_STATUS,
+    REQUIRED_HARD_GATES,
+    SECONDARY_REPORTED_RUNGS,
     STABILITY_DENOMINATOR,
     AcceptanceStatus,
     FalsificationResult,
@@ -42,7 +44,13 @@ from .structural_acceptance import (
 
 __all__ = [
     "RECORD_SCHEMA_VERSION",
-    "FALSIFICATION_RUNG_ORDER",
+    "LEGACY_RECORD_SCHEMA_VERSIONS",
+    "LEGACY_FALSIFICATION_RUNG_NAMES",
+    "GATE8_REACHING_GATES",
+    "HARD_GATE_ORDER",
+    "F9_ACCEPTANCE_CALIBRATION_STATUS",
+    "SchemaVersionError",
+    "record_schema_generation",
     "PerSeedStatusEntry",
     "CaseExecutionRecord",
     "ProvenanceSidecar",
@@ -50,26 +58,101 @@ __all__ = [
     "scientific_payload_digest",
 ]
 
-RECORD_SCHEMA_VERSION = "muru-rc3-case-record-1.0.0"
+#: Bumped by A3.5 section 6.9.4 (RC5 obligations 14, 18, 19).  This is a
+#: **breaking** change, and the major version says so: under 1.0.0 a record was
+#: required to carry all six rungs, so a 2.0.0 record -- which legitimately
+#: carries no ``F5_SCAFFOLD_HOLDOUT`` and separates F9 into its own reported
+#: fields -- would have been rejected outright by the old ``__post_init__``.
+#: The two generations are therefore not interchangeable in either direction,
+#: and :func:`record_schema_generation` refuses to guess.
+RECORD_SCHEMA_VERSION = "muru-rc5-case-record-2.0.0"
 
-#: Frozen emission order for the reduced falsification harness.  Serialization
-#: never depends on mapping iteration order.  The ORDER is RC3's (a tuple has
-#: one, a frozenset does not); the MEMBERSHIP is the frozen contract's, and
-#: the assertion below is what keeps the two from drifting apart.
-FALSIFICATION_RUNG_ORDER: tuple[FalsificationRung, ...] = (
+#: Record schema versions written before the A3.5 Gate-8 correction.  Kept so
+#: an old serialized record stays *parseable and identifiable*; it is never
+#: reinterpreted as a current-generation record.
+LEGACY_RECORD_SCHEMA_VERSIONS: frozenset[str] = frozenset({
+    "muru-rc3-case-record-1.0.0",
+})
+
+#: What a legacy record's ``falsification_results`` mapping contained.  Held as
+#: plain strings because two of them are no longer members of
+#: :class:`FalsificationRung`.
+LEGACY_FALSIFICATION_RUNG_NAMES: tuple[str, ...] = (
+    "F1_REPRODUCIBILITY",
+    "F4_COMPOUND_HOLDOUT",
+    "F5_SCAFFOLD_HOLDOUT",
+    "F7_INFLUENCE_DROP",
+    "F9_ENERGY_SUBSET",
+    "F10_NEGATIVE_CONTROL",
+)
+
+#: Frozen emission order for the hard Gate-8 rungs.  Serialization never
+#: depends on mapping iteration order.  The ORDER is RC3's (a tuple has one, a
+#: frozenset does not); the MEMBERSHIP is the frozen contract's, and the
+#: assertion below is what keeps the two from drifting apart.
+HARD_GATE_ORDER: tuple[FalsificationRung, ...] = (
     FalsificationRung.F1_REPRODUCIBILITY,
     FalsificationRung.F4_COMPOUND_HOLDOUT,
-    FalsificationRung.F5_SCAFFOLD_HOLDOUT,
     FalsificationRung.F7_INFLUENCE_DROP,
-    FalsificationRung.F9_ENERGY_SUBSET,
     FalsificationRung.F10_NEGATIVE_CONTROL,
 )
 
-if set(FALSIFICATION_RUNG_ORDER) != set(REQUIRED_FALSIFICATION_RUNGS):
+#: There is deliberately NO ``FALSIFICATION_RUNG_ORDER`` alias.  An RC3-era
+#: importer expecting six rungs must break loudly at import time: silently
+#: handing it a four-member tuple under the old name would move exactly the
+#: reinterpretation this MAJOR version bump exists to prevent from the data
+#: layer to the code layer, and any six-rung completeness check it performs
+#: would then pass vacuously.
+
+if set(HARD_GATE_ORDER) != set(REQUIRED_HARD_GATES):
     raise ImportError(
-        "RC3 falsification rung order has drifted from the frozen "
-        f"REQUIRED_FALSIFICATION_RUNGS: {set(FALSIFICATION_RUNG_ORDER)} != "
-        f"{set(REQUIRED_FALSIFICATION_RUNGS)}"
+        "RC5 hard-gate emission order has drifted from the frozen "
+        f"REQUIRED_HARD_GATES: {set(HARD_GATE_ORDER)} != {set(REQUIRED_HARD_GATES)}"
+    )
+
+if set(HARD_GATE_ORDER) & SECONDARY_REPORTED_RUNGS:
+    raise ImportError(
+        "a secondary reported rung appears in the hard-gate emission order; "
+        "A3.5 section 6.9.4 forbids F9 from ever gating"
+    )
+
+#: The two gates a case can report only after Gate 8 was actually evaluated.
+#: A3.5 obligation 19 requires the F9 secondary fields on every such record.
+GATE8_REACHING_GATES: frozenset[str] = frozenset({"falsification", "all_passed"})
+
+#: A3.5 section 6.0: ``NOT_APPLICABLE`` is "never emitted" by any rung, and
+#: ``EXECUTION_FAILURE`` "resolves to FAIL before entering the mapping Gate 8
+#: consumes".  So the only two values that may ever reach a record are these.
+_EMITTABLE_RESULTS: frozenset[FalsificationResult] = frozenset({
+    FalsificationResult.PASS,
+    FalsificationResult.FAIL,
+})
+
+
+class SchemaVersionError(ValueError):
+    """A serialized record's schema version is unknown or mis-declared."""
+
+
+def record_schema_generation(payload: Mapping[str, Any]) -> str:
+    """Classify a serialized payload's schema generation, without guessing.
+
+    Returns ``"current"`` or ``"legacy"``.  Raises on an absent or unrecognised
+    ``schema_version``: a record whose generation cannot be established is
+    never silently read as either one, because the two disagree about what the
+    same ``falsification_results`` mapping *means*.
+    """
+    version = payload.get("schema_version")
+    if not isinstance(version, str):
+        raise SchemaVersionError(
+            f"record schema_version must be a string, got {type(version).__name__}"
+        )
+    if version == RECORD_SCHEMA_VERSION:
+        return "current"
+    if version in LEGACY_RECORD_SCHEMA_VERSIONS:
+        return "legacy"
+    raise SchemaVersionError(
+        f"unrecognised record schema_version {version!r}; known versions are "
+        f"{RECORD_SCHEMA_VERSION!r} and {sorted(LEGACY_RECORD_SCHEMA_VERSIONS)}"
     )
 
 #: The gate names the frozen acceptance predicate can report.
@@ -242,7 +325,7 @@ class CaseExecutionRecord:
     ceiling_r2: float
     ceiling_fraction: float
 
-    # reduced falsification harness
+    #: The four hard Gate-8 rungs, and only those.  A3.5 section 6.9.4.
     falsification_results: Mapping[FalsificationRung, FalsificationResult]
 
     # acceptance verdict
@@ -259,9 +342,46 @@ class CaseExecutionRecord:
     #: the record alone.
     null_threshold_digest: str = ""
 
+    #: A3.5 section 6.3(i) / 6.9.3: the single ``candidate_test_r2``
+    #: computation, recorded so Gate 7's waiver branch is reproducible from
+    #: the record alone.
+    candidate_test_r2: float = float("-inf")
+
+    #: A3.5 section 6.9.4 / obligation 19.  F9's secondary stress test:
+    #: computed and reported for every case reaching Gate 8, and read by
+    #: neither ``REQUIRED_HARD_GATES`` nor ``check_gate8``.  ``None`` exactly
+    #: when the case never reached Gate 8.
+    f9_stress_test_result: FalsificationResult | None = None
+    f9_stress_test_metric: float | None = None
+    f9_acceptance_calibration_status: str = F9_ACCEPTANCE_CALIBRATION_STATUS
+
+    #: A3.5 section 7.4 / obligation 8.  Winning class heterogeneity diagnostics:
+    #: computed and recorded so class heterogeneity cannot hide behind selection_count,
+    #: and read by no gate.
+    winning_class_distinct_expression_strings: int = 0
+    winning_class_distinct_coefficient_vectors: int = 0
+
     schema_version: str = RECORD_SCHEMA_VERSION
 
     def __post_init__(self) -> None:
+        # A record may only ever stamp itself with the current schema.  Without
+        # this the writer could produce a record its own classifier calls
+        # `legacy`, which is the reinterpretation the bump exists to prevent.
+        if self.schema_version != RECORD_SCHEMA_VERSION:
+            raise SchemaVersionError(
+                f"a record may only be written under {RECORD_SCHEMA_VERSION!r}, "
+                f"not {self.schema_version!r}; the two generations are not "
+                f"interchangeable in either direction"
+            )
+        # A3.5 section 6.9.4 fixes this string; a record that self-declared
+        # PROVEN would launder section 12's promotion prohibition into a report.
+        if self.f9_acceptance_calibration_status != F9_ACCEPTANCE_CALIBRATION_STATUS:
+            raise ValueError(
+                f"f9_acceptance_calibration_status must be "
+                f"{F9_ACCEPTANCE_CALIBRATION_STATUS!r}, not "
+                f"{self.f9_acceptance_calibration_status!r}; promoting F9 requires "
+                f"a new prospective amendment and a fresh F9-specific calibration"
+            )
         if self.selection_denominator != STABILITY_DENOMINATOR:
             raise ValueError(
                 f"selection_denominator must be the frozen "
@@ -274,23 +394,113 @@ class CaseExecutionRecord:
                 f"selection_count {self.selection_count} outside "
                 f"0..{STABILITY_DENOMINATOR}"
             )
+        if self.winning_class_distinct_expression_strings < 0:
+            raise ValueError(
+                f"winning_class_distinct_expression_strings must be >= 0, "
+                f"got {self.winning_class_distinct_expression_strings}"
+            )
+        if self.winning_class_distinct_coefficient_vectors < 0:
+            raise ValueError(
+                f"winning_class_distinct_coefficient_vectors must be >= 0, "
+                f"got {self.winning_class_distinct_coefficient_vectors}"
+            )
         if self.acceptance_gate_reached not in VALID_ACCEPTANCE_GATES:
             raise ValueError(
                 f"acceptance_gate_reached {self.acceptance_gate_reached!r} is not "
                 f"a gate the frozen predicate reports; expected one of "
                 f"{sorted(VALID_ACCEPTANCE_GATES)}"
             )
-        missing = [
-            rung.value for rung in FALSIFICATION_RUNG_ORDER
-            if rung not in self.falsification_results
-        ]
-        if missing:
+        reached_gate8 = self.acceptance_gate_reached in GATE8_REACHING_GATES
+        stray = sorted(
+            str(getattr(rung, "value", rung))
+            for rung in self.falsification_results
+            if rung not in REQUIRED_HARD_GATES
+        )
+        if stray:
             raise ValueError(
-                f"falsification_results is missing required rungs {missing}; "
-                f"a missing rung must fail loudly, not serialize as null"
+                f"falsification_results carries non-hard-gate rungs {stray}; "
+                f"F5 is superseded and F9 is a reported secondary recorded in "
+                f"f9_stress_test_result / f9_stress_test_metric, so neither may "
+                f"enter the Gate-8 mapping"
+            )
+        if reached_gate8:
+            missing = [
+                rung.value for rung in HARD_GATE_ORDER
+                if rung not in self.falsification_results
+            ]
+            if missing:
+                raise ValueError(
+                    f"falsification_results is missing required hard gates "
+                    f"{missing}; a missing rung must fail loudly, not serialize "
+                    f"as null"
+                )
+        elif self.falsification_results:
+            # A3.5 section 6.9.4: a case that stopped before Gate 8 "never
+            # reaches check_gate8 at all" and produced no rung results.  It
+            # cannot carry PASS or FAIL (nothing was evaluated) and section 6.0
+            # forbids NOT_APPLICABLE, so it must carry nothing.
+            raise ValueError(
+                f"{self.case_id} stopped at {self.acceptance_gate_reached!r}, "
+                f"before Gate 8, but carries falsification results "
+                f"{sorted(str(getattr(r, 'value', r)) for r in self.falsification_results)}; "
+                f"a case that never reached Gate 8 produced no rung results"
+            )
+        has_f9 = self.f9_stress_test_result is not None
+        if reached_gate8 and not has_f9:
+            raise ValueError(
+                f"{self.case_id} reached Gate 8 at "
+                f"{self.acceptance_gate_reached!r} but records no "
+                f"f9_stress_test_result; A3.5 obligation 19 requires it on "
+                f"every case record reaching Gate 8"
+            )
+        if reached_gate8 and self.f9_stress_test_metric is None:
+            raise ValueError(
+                f"{self.case_id} records f9_stress_test_result without "
+                f"f9_stress_test_metric; obligation 19 requires both"
+            )
+        # Section 6.0's emission prohibition, enforced by MEMBERSHIP rather than
+        # identity, and on the hard gates too -- not only on F9.  The record is
+        # the artifact that prohibition is about: it is the one place a
+        # forbidden value would survive to disk.
+        for rung, result in self.falsification_results.items():
+            if result not in _EMITTABLE_RESULTS:
+                raise ValueError(
+                    f"{getattr(rung, 'value', rung)} carries "
+                    f"{getattr(result, 'value', result)!r}; A3.5 section 6.0 "
+                    f"permits only PASS or FAIL to be emitted by any rung"
+                )
+        if has_f9 and self.f9_stress_test_result not in _EMITTABLE_RESULTS:
+            raise ValueError(
+                f"f9_stress_test_result is "
+                f"{getattr(self.f9_stress_test_result, 'value', self.f9_stress_test_result)!r}; "
+                f"A3.5 section 6.0 forbids every rung from emitting anything but "
+                f"PASS or FAIL, F9 included"
+            )
+        if not reached_gate8 and has_f9:
+            raise ValueError(
+                f"{self.case_id} did not reach Gate 8 (stopped at "
+                f"{self.acceptance_gate_reached!r}) but records an F9 result; "
+                f"F9 is computed only for cases reaching Gate 8"
             )
 
     # -------------------------------------------------------------------
+    @property
+    def execution_failure_poisoned(self) -> bool:
+        """Whether any of this case's seeds ended in ``EXECUTION_FAILURE``.
+
+        A3.5 section 8.2: one such seed makes the whole case ``UNEVALUABLE``,
+        with no replacement seed and no 29/30 denominator.  Obligation 16 then
+        requires the poisoned count to be disclosed **separately per endpoint**,
+        which is what "makes the conservative rule cost no information".
+
+        Derived from ``per_seed_status`` rather than stored, so it can never
+        disagree with the per-seed record it summarises.
+        """
+        return any(
+            entry.status is SeedStatus.EXECUTION_FAILURE
+            for entry in self.per_seed_status
+        )
+
     @property
     def selection_fraction(self) -> float:
         """k/30, computed rather than stored, so the two cannot disagree."""
@@ -326,11 +536,31 @@ class CaseExecutionRecord:
             "invalid_fraction": _encode_float(self.invalid_fraction),
             "ceiling_r2": _encode_float(self.ceiling_r2),
             "ceiling_fraction": _encode_float(self.ceiling_fraction),
+            "candidate_test_r2": _encode_float(self.candidate_test_r2),
+            "winning_class_distinct_expression_strings": int(
+                self.winning_class_distinct_expression_strings
+            ),
+            "winning_class_distinct_coefficient_vectors": int(
+                self.winning_class_distinct_coefficient_vectors
+            ),
             "falsification_results": {
-                # __post_init__ guarantees every required rung is present.
+                # __post_init__ guarantees every hard gate is present when the
+                # case reached Gate 8, that nothing else ever is, and that a
+                # case which stopped earlier carries none.
                 rung.value: self.falsification_results[rung].value
-                for rung in FALSIFICATION_RUNG_ORDER
+                for rung in HARD_GATE_ORDER
+                if rung in self.falsification_results
             },
+            "f9_stress_test_result": (
+                None if self.f9_stress_test_result is None
+                else self.f9_stress_test_result.value
+            ),
+            "f9_stress_test_metric": (
+                None if self.f9_stress_test_metric is None
+                else _encode_float(self.f9_stress_test_metric)
+            ),
+            "f9_acceptance_calibration_status": self.f9_acceptance_calibration_status,
+            "execution_failure_poisoned": self.execution_failure_poisoned,
             "acceptance_status": self.acceptance_status.value,
             "acceptance_gate_reached": self.acceptance_gate_reached,
             "null_threshold_digest": self.null_threshold_digest,

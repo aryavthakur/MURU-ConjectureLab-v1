@@ -2,8 +2,9 @@
 
 G3 monitors whether the structural acceptance predicate admits unsafe
 structural claims.  It operates on the 36 Held-out G3 opportunities
-(families F19 and F20, 3 variants each, 12 held-out replicates per
-family = 36 total).
+(families F07, F19, and F20: F07 has 12 held-out replicates on its own
+single variant, F19 and F20 each contribute 3 variants x 4 held-out
+replicates = 12; 12 + 12 + 12 = 36 total).
 
 Key rules:
   - Unsafe structural acceptance contributes 1.
@@ -49,6 +50,36 @@ class G3VariantSafety(str, Enum):
     SAFE = "SAFE"
     UNSAFE = "UNSAFE"
     UNEVALUABLE = "UNEVALUABLE"
+
+
+# -----------------------------------------------------------------------
+# F07 semantics
+# -----------------------------------------------------------------------
+
+def classify_f07_event(
+    acceptance: AcceptanceResult,
+    effective_support: frozenset[str] | None,
+) -> G3Event:
+    """F07: mass-only g truth (false extra-structure acceptance).
+
+    Mass-only law; mass-only acceptance permitted.  Accepted unsupported
+    non-mass structure (or a richer family) is unsafe.  Frozen design
+    authority: "F07 errors are false extra-structure acceptance: the system
+    accepts an unsupported non-mass variable or richer family despite a
+    mass-only law." -- structurally identical to the F19A/F19B mass-only-
+    permitted rule below, reused here rather than redefined.
+    """
+    if acceptance.status == AcceptanceStatus.UNEVALUABLE:
+        return G3Event.VIOLATION
+
+    if not acceptance.accepted:
+        return G3Event.SAFE
+
+    # Accepted - check if support is mass-only
+    if effective_support is not None and effective_support <= {"mass"}:
+        return G3Event.SAFE
+
+    return G3Event.UNSAFE
 
 
 # -----------------------------------------------------------------------
@@ -182,7 +213,9 @@ def classify_g3_event(
     effective_support: frozenset[str] | None = None,
 ) -> G3Event:
     """Dispatch to the correct variant-specific G3 classifier."""
-    if variant == "F19A":
+    if variant == "F07":
+        return classify_f07_event(acceptance, effective_support)
+    elif variant == "F19A":
         return classify_f19a_event(acceptance, effective_support)
     elif variant == "F19B":
         return classify_f19b_event(acceptance, effective_support)

@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0",
+  "audit_title": "MURU External Validation Preregistration Provenance Audit",
+  "audit_date": "2026-08-14",
+  "auditor": "Antigravity Automated Scientific Audit System (Gemini 3.7 Flash High Reasoning)",
+  "target_branch": "design/muru-external-validation-prereg-draft",
+  "target_commit": "b53a65e2365a6fc38466b0df2be335502c3ea0df",
+  "audited_documents": [
+    "real_data/MURU_EXTERNAL_VALIDATION_PREREGISTRATION_DRAFT.md",
+    "real_data/muru_external_validation_preregistration_draft.json",
+    "real_data/MURU_EXTERNAL_DATASET_QUALIFICATION_MATRIX.md",
+    "real_data/muru_external_dataset_qualification.json"
+  ],
+  "authoritative_evidence_lineage": {
+    "baseline_master_plan_commit": "62ce5e9",
+    "feasibility_criteria_freeze_commit": "705adf8ff50e3038a791491ed19b3f968bdf74e0",
+    "feasibility_scan_and_report_commit": "86a2428b2f612b13a2cd4f5dbcb5ef027e706a69",
+    "wfsr_preregistration_freeze_commit": "db70d6df130391e3cf83fb3799f71a63abb0224c"
+  },
+  "governance_assertions": {
+    "draft_modified": false,
+    "draft_frozen": false,
+    "draft_executed": false,
+    "muru_run_on_public_data": false,
+    "public_performance_contamination_detected": false
+  },
+  "classification_counts": {
+    "PREEXISTING_FROZEN_RULE": 3,
+    "PREEXISTING_HISTORICAL_PRECEDENT_NOT_FROZEN": 2,
+    "NEW_PREOUTCOME_ANALYSIS_DESIGN": 14,
+    "POST_CANDIDATE_SELECTION_RULE": 2,
+    "UNSUPPORTED_OR_UNTRACEABLE": 0
+  },
+  "audit_items": [
+    {
+      "item_id": "chemical_overlap_classification",
+      "exact_rule_or_threshold": "<= 20% overlap: CHEMICALLY_INDEPENDENT; 20-50%: PARTIAL_CHEMICAL_OVERLAP; > 50%: NOT_CHEMICALLY_INDEPENDENT",
+      "first_appearance_file": "MURU_PUBLIC_DATA_FEASIBILITY_PROTOCOL.md",
+      "first_commit": "705adf8",
+      "source": "Feasibility Protocol Criterion E9",
+      "existed_before_candidate_search": true,
+      "existed_before_candidate_qualification": true,
+      "existed_before_candidate_ranking": true,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Pinned to historical LCSB development set (781 unique InChIKey blocks). Thresholds partition candidates into distinct chemical transfer tiers before search.",
+      "classification": "PREEXISTING_FROZEN_RULE"
+    },
+    {
+      "item_id": "compound_floor_250",
+      "exact_rule_or_threshold": ">= 250 qualifying compound groups in a single ionization mode (Hard Floor)",
+      "first_appearance_file": "MURU_ConjectureLab_v1_Master_Plan.md",
+      "first_commit": "62ce5e9",
+      "source": "Master Plan Section 22 Kill Criterion K1; Feasibility Protocol Criterion E5",
+      "existed_before_candidate_search": true,
+      "existed_before_candidate_qualification": true,
+      "existed_before_candidate_ranking": true,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Minimum sample size ensuring test fold holds at least ~50 compounds (from 60/20/20 split) to maintain statistical power for detecting moderate correlations (rho=0.5) against null.",
+      "classification": "PREEXISTING_FROZEN_RULE"
+    },
+    {
+      "item_id": "trajectories_target_and_floor_400",
+      "exact_rule_or_threshold": ">= 400 qualifying groups (Comfortable Scale in E5); >= 400 complete six-energy trajectories surviving S1 input integrity (Attrition Floor)",
+      "first_appearance_file": "MURU_ConjectureLab_v1_Master_Plan.md (comfortable size) / MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md (attrition floor)",
+      "first_commit": "62ce5e9 (E5 target) / db70d6d (S1 floor)",
+      "source": "Master Plan Section 20 Acceptance Criterion 1; WFSR External Input Contract Section 3",
+      "existed_before_candidate_search": true,
+      "existed_before_candidate_qualification": true,
+      "existed_before_candidate_ranking": true,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Comfortable size matches MURU Phase 1 scale; integrity floor ensures post-attrition evaluation does not operate on a severely degraded dataset residue.",
+      "classification": "PREEXISTING_FROZEN_RULE"
+    },
+    {
+      "item_id": "scaffold_groups_floor_200",
+      "exact_rule_or_threshold": ">= 200 scaffold groups surviving input integrity (S1 Attrition Floor)",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 3",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Designed after candidate qualification census in 86a2428 revealed 551 scaffold groups in WFSR. Ensures scaffold-disjoint splitting retains >= 25 groups per fold after attrition.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "precursor_consistency_5ppm",
+      "exact_rule_or_threshold": "Declared precursor m/z within 5 ppm of trajectory median declared precursor m/z across all records (Rule T10, Gate I6)",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 2 (T10) & Section 3 (I6)",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Designed after feasibility scan in 86a2428 observed 0.001-0.003 Da display rounding in WFSR records. 5 ppm accommodates rounding while rejecting misannotated precursors.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "split_proportions_60_20_20",
+      "exact_rule_or_threshold": "Train 60% / Validation 20% / Test 20%, scaffold-disjoint, size-balanced on compound counts",
+      "first_appearance_file": "MURU_ConjectureLab_v1_Master_Plan.md",
+      "first_commit": "62ce5e9",
+      "source": "Master Plan Section 9.3; Phase 2 PREREGISTRATION.md (ddcdb8d); Amendment A3.2 (5fc7eee)",
+      "existed_before_candidate_search": true,
+      "existed_before_candidate_qualification": true,
+      "existed_before_candidate_ranking": true,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Standard project split convention balancing training profile estimation power with independent validation model selection and uncompromised single-shot test scoring.",
+      "classification": "PREEXISTING_HISTORICAL_PRECEDENT_NOT_FROZEN"
+    },
+    {
+      "item_id": "split_seed_20260813",
+      "exact_rule_or_threshold": "Seed 20260813 for deterministic split assignment and subsampling",
+      "first_appearance_file": "SYNTHETIC_GENERATORS.md / MURU_WFSR_EXTERNAL_DECISION_RULES.md",
+      "first_commit": "c40a184 (synthetic) / db70d6d (external)",
+      "source": "Canonical date seed (August 13, 2026)",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Prospectively fixed pseudorandom seed generated from calendar date before data partitioning or response calculation.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "e1a_mae_ratio_080",
+      "exact_rule_or_threshold": "Held-out trajectory MAE <= 0.80 * training per-energy mean baseline MAE",
+      "first_appearance_file": "MURU_PAPER_BENCHMARK_METRICS.md (synthetic G1) / MURU_WFSR_EXTERNAL_DECISION_RULES.md (external E1a)",
+      "first_commit": "c40a184 (synthetic) / db70d6d (external)",
+      "source": "Synthetic Benchmark Gate G1 definition",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Copied directly from synthetic benchmark Gate G1 without independent empirical justification on real spectra. Requires 20% error reduction relative to population baseline.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "wilson_lower_bound_070",
+      "exact_rule_or_threshold": "Lower bound of 95% Wilson interval for Competence Rate >= 0.70 (evaluated in conjunction with 2,000-resample scaffold bootstrap)",
+      "first_appearance_file": "MURU_PAPER_BENCHMARK_METRICS.md (synthetic G1) / MURU_WFSR_EXTERNAL_DECISION_RULES.md (external E1a)",
+      "first_commit": "c40a184 (synthetic) / db70d6d (external)",
+      "source": "Synthetic Benchmark Gate G1 definition",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Copied directly from synthetic Gate G1. Requires at least 70% of held-out compounds to be competently predicted at the conservative lower interval bound.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "e1c_boundary_hit_020",
+      "exact_rule_or_threshold": "Upper 95% bound of optimizer boundary hit rate <= 0.20 on both scaffold-bootstrap and Wilson intervals",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_DECISION_RULES.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Decision Rules Section 3.3",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Parameter identifiability diagnostic ensuring scale parameter g is not accumulating at artificial numerical profile search boundaries in > 20% of compounds.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "e1d_spearman_stability_080",
+      "exact_rule_or_threshold": "Median pairwise Spearman correlation of log(g) across K=5 scaffold-disjoint training subsamples >= 0.80",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_DECISION_RULES.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Decision Rules Section 3.3",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Subsampling stability metric substituting for synthetic ground-truth rank recovery. Numerical value 0.80 borrowed from synthetic G1 without independent real-data calibration.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "bootstrap_resamples_2000",
+      "exact_rule_or_threshold": "2,000 bootstrap resamples for clustered percentile intervals and null threshold calibration",
+      "first_appearance_file": "PREREGISTRATION.md",
+      "first_commit": "ddcdb8d",
+      "source": "Phase 2 Pre-registration Section 5.3; Type 2 Pre-registration (307e4e0)",
+      "existed_before_candidate_search": true,
+      "existed_before_candidate_qualification": true,
+      "existed_before_candidate_ranking": true,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Standard project resampling count ensuring Monte Carlo error on 2.5th and 97.5th percentiles remains below 0.5%.",
+      "classification": "PREEXISTING_HISTORICAL_PRECEDENT_NOT_FROZEN"
+    },
+    {
+      "item_id": "u1_energy_truncation_20da",
+      "exact_rule_or_threshold": "Median within-compound range of min m/z across NCE > 20 Da OR within-compound |Spearman(min m/z, NCE)| >= 0.30 triggers INCONCLUSIVE",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 4.5",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Formulated after feasibility scan in 86a2428 discovered missing declared scan bounds in WFSR. Prevents dynamic low-mass acquisition truncation from masquerading as an energy trend.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "u2_mass_proportional_truncation_025",
+      "exact_rule_or_threshold": "Fraction of spectra with min m/z / precursor_mz > 0.25 exceeding 20% triggers INCONCLUSIVE",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 4.5",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Prevents mass-proportional scan floor cutoff from creating an artificial collinearity between the fragment moment endpoint mu and precursor mass.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "u3_truncation_invariance_002",
+      "exact_rule_or_threshold": "Median |mu - mu^(c)| > 0.02 OR within-energy Spearman(mu, mu^(c)) < 0.95 at any CE triggers INCONCLUSIVE (c = 95th percentile min m/z)",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 4.5",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Explicitly calibrated against historical LCSB development set signal scale (median mu range ~0.44; 0.02 corresponds to ~5% of dynamic response range).",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "sparse_peaks_threshold_3",
+      "exact_rule_or_threshold": "Minimum 3 peaks per spectrum (Gate I9); > 5% spectra with < 3 peaks triggers U4 INCONCLUSIVE",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Input Contract Section 3 (I9) & Section 4.5 (U4)",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Minimum spectral centroid count required to compute a stable, non-degenerate intensity-weighted fragment mass moment mu.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "single_adduct_promotion_rule",
+      "exact_rule_or_threshold": "Where multiple qualifying adduct series exist for a connectivity key, promote [M+H]+ if present; otherwise lexicographically first qualifying adduct string (Rule T6)",
+      "first_appearance_file": "artifacts/public_data_candidate_manifest.json / MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "86a2428 (manifest scan) / db70d6d (formal rule)",
+      "source": "Feasibility Candidate Scan & WFSR Input Contract Rule T6",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Prevents adduct-level pseudoreplication of the same chemical standard while establishing a fully deterministic, reproducible promotion rule matching historical [M+H]+ focus.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "lexicographic_fallback_resolution",
+      "exact_rule_or_threshold": "Representative structure chosen as lexicographically first deposited SMILES (T8); duplicate records resolved by lexicographically smallest accession (T7)",
+      "first_appearance_file": "artifacts/public_data_candidate_manifest.json / MURU_WFSR_EXTERNAL_INPUT_CONTRACT.md",
+      "first_commit": "86a2428 (manifest scan) / db70d6d (formal rule)",
+      "source": "Feasibility Candidate Scan & WFSR Input Contract Rules T7, T8",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Deterministic, automated tie-breaking eliminating arbitrary manual curation or post-hoc cherry-picking.",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    },
+    {
+      "item_id": "wfsr_primary_dataset_selection",
+      "exact_rule_or_threshold": "WFSR Food Safety Mass Spectral Library selected as Primary External Validation Dataset",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_PREREGISTRATION.md / MURU_EXTERNAL_DATASET_QUALIFICATION_MATRIX.md",
+      "first_commit": "db70d6d / b53a65e",
+      "source": "Feasibility Report 86a2428 & Draft Qualification Matrix b53a65e",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Selected on pre-outcome criteria: largest qualifying scale (957 groups), direct Orbitrap HCD NCE % alignment, high chemical independence (19.96%), 100% Level 1 standards, and open licensing.",
+      "classification": "POST_CANDIDATE_SELECTION_RULE"
+    },
+    {
+      "item_id": "bafg_athens_eawag_ranking",
+      "exact_rule_or_threshold": "Priority ranking: Primary = WFSR, Backup 1 = MassBank BAFG (CSL, N=666), Backup 2 = MassBank Athens_Univ (N=544), Supplementary = MassBank Eawag (N=326)",
+      "first_appearance_file": "MURU_EXTERNAL_DATASET_QUALIFICATION_MATRIX.md",
+      "first_commit": "b53a65e",
+      "source": "Draft Qualification Matrix Section 4",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": false,
+      "scientific_justification": "Ranked prospectively on pre-outcome criteria: BAFG provides 15 collision voltages and QTOF transfer; Athens provides multi-injection experimental variance; Eawag provides cross-lab Orbitrap validation.",
+      "classification": "POST_CANDIDATE_SELECTION_RULE"
+    },
+    {
+      "item_id": "e2_b1_b5_null_definitions",
+      "exact_rule_or_threshold": "Criteria B1-B5 for Structure Beyond Mass (elasticity > 0.02, test R2 > mass baseline with bootstrap diff > 0, val R2 > N1-N3 nulls, mass improvement > N4 null, stability >= 20/30 seeds); Nulls N1 (descriptor permuted, 200 worlds), N2 (target permuted, 200 worlds), N3 (scaffold permuted, 200 worlds), N4 (mass-preserving, 200 worlds); energy permutation prohibited",
+      "first_appearance_file": "MURU_WFSR_EXTERNAL_DECISION_RULES.md",
+      "first_commit": "db70d6d",
+      "source": "WFSR External Decision Rules Sections 6 & 7",
+      "existed_before_candidate_search": false,
+      "existed_before_candidate_qualification": false,
+      "existed_before_candidate_ranking": false,
+      "historical_muru_outcomes_informed": true,
+      "scientific_justification": "Directly informed by historical Phase 3 and Type 2 validation learnings (prohibiting within-compound energy permutation which inflated nulls to 0.72 in Type 2, increasing null worlds to 200, adding mass-preserving null N4 to decouple descriptor association from mass collinearity).",
+      "classification": "NEW_PREOUTCOME_ANALYSIS_DESIGN"
+    }
+  ],
+  "selection_dependence_audit": {
+    "summary": "Core eligibility criteria (E1-E12, >= 250 compound floor, max/min >= 2.0 CE ratio, <= 20% overlap boundary) were frozen before search at commit 705adf8. However, multiple operational analysis rules were designed post-qualification (commit db70d6d / b53a65e) after inspecting candidate metadata.",
+    "specific_findings": [
+      {
+        "item": "250 compound floor (E5)",
+        "finding": "Pre-existing frozen rule from Master Plan K1 (62ce5e9). It strictly caused the disqualification of MassBank UFZ (241 groups) and was not relaxed to retain UFZ."
+      },
+      {
+        "item": "Chemical overlap <= 20% (E9)",
+        "finding": "Frozen in protocol 705adf8 before search. WFSR overlap was found to be 19.96% (191/957 blocks), clearing the threshold by a razor-thin margin (0.04%). Athens_Univ (23.6%) was properly classified as PARTIAL_CHEMICAL_OVERLAP rather than relaxing the 20% threshold."
+      },
+      {
+        "item": "200 scaffold groups attrition floor",
+        "finding": "Selection-dependent design choice formulated after the WFSR candidate census revealed 551 scaffold groups. It was not in protocol 705adf8 and must not be represented as a pre-search frozen criterion."
+      },
+      {
+        "item": "5 ppm precursor consistency",
+        "finding": "Selection-dependent design choice formulated after observing 0.001-0.003 Da rounding in WFSR deposited records. It was not in protocol 705adf8."
+      },
+      {
+        "item": "U1-U4 mass support diagnostics",
+        "finding": "Selection-dependent design choices formulated after discovering missing scan bounds (DECLARED_SCAN_BOUND_UNKNOWN) in WFSR GNPS export records."
+      }
+    ]
+  },
+  "synthetic_threshold_borrowing_audit": {
+    "summary": "Key scalar decision thresholds (0.80 MAE baseline ratio, 0.70 Wilson lower bound, 0.80 Spearman stability) were directly imported from the synthetic G1 benchmark specification without independent scientific derivation for empirical mass spectrometry.",
+    "borrowed_thresholds": [
+      {
+        "threshold": "0.80 MAE baseline ratio (E1a)",
+        "synthetic_origin": "Gate G1 in MURU_PAPER_BENCHMARK_METRICS.md",
+        "draft_status": "Imported without empirical real-data justification. The draft assumes a 20% error reduction relative to population mean is achievable and appropriate on noisy real spectra."
+      },
+      {
+        "threshold": "0.70 Wilson lower bound (E1a)",
+        "synthetic_origin": "Gate G1 in MURU_PAPER_BENCHMARK_METRICS.md",
+        "draft_status": "Imported directly from synthetic G1. Does not account for uncurated experimental noise or instrument-level variance in public repositories."
+      },
+      {
+        "threshold": "0.80 Spearman stability (E1d)",
+        "synthetic_origin": "Gate G1 rank-recovery threshold (rho(true log-g, estimated log-g) >= 0.80)",
+        "draft_status": "Repurposed from synthetic ground-truth recovery to subsampling stability across K=5 training folds. Lacks calibration for real-data fold-to-fold variance."
+      }
+    ]
+  },
+  "pre_freeze_revision_requirements": [
+    "1. Explicitly label the provenance tier of every rule in the protocol: distinguish Pre-Search Frozen Criteria (705adf8), Pre-Existing Historical Precedents (62ce5e9/ddcdb8d), Post-Qualification Analysis Designs (db70d6d), and Post-Candidate Selection Rules (b53a65e).",
+    "2. Remove any claim that post-qualification rules (200 scaffold floor, 5 ppm consistency, U1-U4 support diagnostics) were frozen prior to candidate search.",
+    "3. Provide an independent empirical/physical justification for borrowed synthetic thresholds (0.80 MAE ratio, 0.70 Wilson bound, 0.80 Spearman stability) or explicitly state that they are synthetic transfer standards subject to real-data domain sensitivity.",
+    "4. Mandate that the WFSR 19.96% chemical overlap margin (0.04% below 20%) must be accompanied by the mandatory disjoint non-overlapping sensitivity run (766 compounds) as a primary reporting requirement.",
+    "5. Formally record the dependency on WFSR publication consent (G-PERM) and MURU synthetic implementation freeze (G-LOCK) as pre-execution gating conditions."
+  ],
+  "final_verdict": "REQUIRES_PRE_FREEZE_REVISIONS"
+}
