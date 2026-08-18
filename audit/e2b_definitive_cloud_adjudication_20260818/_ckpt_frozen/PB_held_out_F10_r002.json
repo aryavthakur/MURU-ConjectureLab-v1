@@ -1,0 +1,1 @@
+{"case_id": "PB|held_out|F10|r002", "direct_class": "LOST_IN_RETENTION", "seeds_with_correct_on_front": 29, "seeds_with_retained_correct": 0, "representative_correct": false, "valid": true, "invalid_reason": null, "wall_seconds": 27.597529411315918, "front_rows_total": 357, "seeds_loaded": 30}

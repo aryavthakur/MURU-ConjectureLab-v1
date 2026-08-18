@@ -74,6 +74,18 @@ def _worker_init():
     _install_memo()
 
 
+_REPS_CACHE = {}
+
+
+def _reps():
+    """Sealed cross-seed representatives, read once per process."""
+    if not _REPS_CACHE:
+        report = json.loads((REPLAY / "E2B_FULLFRONT_REPLAY_REPORT.json").read_text())
+        for d in report.get("comparison_details", []):
+            _REPS_CACHE[d["case_id"]] = d.get("representative_replayed")
+    return _REPS_CACHE
+
+
 def _ckpt_path(case_id: str) -> Path:
     return CKPT / (case_id.replace("|", "_") + ".json")
 
@@ -88,6 +100,7 @@ def process_case(args):
             ck.unlink()  # torn checkpoint: recompute
 
     t0 = time.time()
+    print(f"[start] {case_id} pid={os.getpid()}", flush=True)
     from muru.paper_benchmark.generator import generate_case
     from muru.paper_benchmark.g2_contract import TRUTH_FAMILIES, truth_support_for_case
 
@@ -145,8 +158,14 @@ def process_case(args):
     out["wall_seconds"] = time.time() - t0
     out["front_rows_total"] = sum(len(r) for r in case_fronts.values())
     out["seeds_loaded"] = len(case_fronts)
+    try:
+        import resource
+        out["peak_rss_mb"] = round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024, 1)
+    except Exception:
+        pass
     ck.write_text(json.dumps(out))
-    print(f"[done] {case_id} -> {out['direct_class']} ({out['wall_seconds']:.1f}s)", flush=True)
+    print(f"[done] {case_id} -> {out['direct_class']} "
+          f"({out['wall_seconds']:.1f}s, peak_rss={out.get('peak_rss_mb','?')}MB)", flush=True)
     return out
 
 
@@ -171,7 +190,8 @@ def main():
 
     work = [(cid, reps.get(cid)) for cid in case_ids]
     t0 = time.time()
-    with Pool(processes=args.workers, initializer=_worker_init) as pool:
+    with Pool(processes=args.workers, initializer=_worker_init,
+              maxtasksperchild=1) as pool:
         results = pool.map(process_case, work, chunksize=1)
     wall = time.time() - t0
 

@@ -1,0 +1,64 @@
+{
+  "PB|held_out|F18|r000": [
+    {
+      "seed_ordinal": 22,
+      "row_index": 12,
+      "is_argmax_score_row": false,
+      "equation": "cube(cube(cube(cube(cube(sqrt(sqrt(1.0083624 - ((x1 * -0.0024823227) + (inv(x0) + inv(x0))))))))))",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 15.6
+    }
+  ],
+  "PB|held_out|F18|r004": [
+    {
+      "seed_ordinal": 21,
+      "row_index": 8,
+      "is_argmax_score_row": false,
+      "equation": "cube(cube((-64.19542 / (square(x2 + x1) + x0)) - -0.76756954) - -0.8672049)",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 21.8
+    },
+    {
+      "seed_ordinal": 21,
+      "row_index": 10,
+      "is_argmax_score_row": false,
+      "equation": "sqrt(cube(square(cube((-64.19543 / (log(cube(x1)) + x0)) - -0.7666494) - -0.8903465))) / 1.0591137",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 5.5
+    }
+  ],
+  "PB|held_out|F18|r005": [
+    {
+      "seed_ordinal": 17,
+      "row_index": 12,
+      "is_argmax_score_row": false,
+      "equation": "square(square(square(inv(inv((x0 * 0.06483648) + square(square(x1) + x1)) + 0.9305173))))",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 6.2
+    },
+    {
+      "seed_ordinal": 17,
+      "row_index": 13,
+      "is_argmax_score_row": false,
+      "equation": "square(square(square(inv(inv(((x0 * 0.05659262) - -1.0494772) + (x1 + cube(x4))) + 0.92714417))))",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 17.0
+    }
+  ],
+  "PB|held_out|F18|r011": [
+    {
+      "seed_ordinal": 16,
+      "row_index": 10,
+      "is_argmax_score_row": false,
+      "equation": "square(cube(sqrt(cube(cube(inv(x0 / 0.98704463) * ((x0 + x4) - 25.041704))))) - -0.7801672)",
+      "verdict": false,
+      "returncode": 0,
+      "wall_seconds": 8.3
+    }
+  ]
+}

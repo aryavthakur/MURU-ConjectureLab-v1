@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "PB|held_out|F01|r004",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 1056.1,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F03|r008",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 349.5,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F03|r011",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 262.3,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F08|r005",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 2097.6,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F03|r000",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 3765.6,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F03|r004",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 3765.6,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F03|r001",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 3765.6,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  }
+]

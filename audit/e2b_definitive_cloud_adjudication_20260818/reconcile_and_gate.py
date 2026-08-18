@@ -36,6 +36,12 @@ def main() -> None:
 
     frozen_by = {r["CASE_ID"]: r for r in frozen_rows}
     indep_by = {r["case_id"]: r for r in indep_rows}
+    # tolerate either the original or the bounded independent schema
+    for r in indep_rows:
+        r.setdefault("matches_sealed_selection_count", r.get("matches_sealed_selection_count", ""))
+        r.setdefault("matches_sealed_representative_expression",
+                     r.get("matches_sealed_representative_expression", ""))
+        r.setdefault("independent_selection_count", r.get("independent_selection_count", ""))
 
     all_ids = sorted(set(frozen_by) | set(indep_by))
 
@@ -141,6 +147,43 @@ def main() -> None:
             "SELECTION_COUNT_EXACT": f"{sel_match}/{DENOMINATOR}",
             "REPRESENTATIVE_EXACT": f"{rep_match}/{DENOMINATOR}",
             "note": "Independently RECOMPUTED by Agent 4 from raw fronts via the production rc5_selection.group_and_select path, then compared to the sealed replay values -- not read from the replay report.",
+        },
+        "MAPPING_SENSITIVITY_DISCLOSED": {
+            "why": (
+                "v1's root_cause_class maps SEARCH_GENERATION_FAILURE=57 and keeps "
+                "GRAMMAR_REPRESENTABILITY=12 as a separate class, yet a truth that the "
+                "grammar cannot express is by construction NEVER_ON_FRONT. Frozen authority "
+                "never states how the 12 grammar cases map into the 69/57 hook. The frozen "
+                "evaluator compares count(NEVER_ON_FRONT) against 57, and THAT is the "
+                "operative comparison recorded above. This block only discloses the "
+                "alternative reading so it is on the record rather than silently assumed."
+            ),
+            "v1_reference_counts": {
+                "SELECTION_FAILURE": 69, "SEARCH_GENERATION_FAILURE": 57,
+                "GRAMMAR_REPRESENTABILITY": 12,
+                "CANONICALIZATION_EQUIVALENCE_FAILURE": 2, "NONE_SUCCESS": 4,
+            },
+            "v1_first_failure_stage_coarse": {
+                "SELECTION_VOTING": 71, "GENERATION": 45, "GENERATION_FAMILY": 12,
+                "REPRESENTATION": 12, "NONE": 4,
+            },
+            "structural_note": (
+                "v1's SELECTION_VOTING stage holds 71 cases (69 SELECTION_FAILURE + 2 "
+                "CANONICALIZATION_EQUIVALENCE_FAILURE) and CONFLATES within-seed retention "
+                "with cross-seed voting. E2b separates those into LOST_IN_RETENTION and "
+                "LOST_IN_CROSS_SEED. The 69 historical 'retention' figure is therefore a "
+                "retention+voting aggregate being compared against a retention-only direct "
+                "count."
+            ),
+            "alternative_generation_baseline_57_plus_grammar_12": 69,
+            "generation_deviation_under_alternative": abs(direct_generation - 69),
+            "alternative_retention_baseline_69_plus_canon_2": 71,
+            "retention_deviation_under_alternative": abs(direct_retention - 71),
+            "hook_under_alternative_mapping": (
+                "FAIL" if (abs(direct_generation - 69) > FROZEN_MATERIAL_THRESHOLD
+                           or abs(direct_retention - 71) > FROZEN_MATERIAL_THRESHOLD) else "PASS"
+            ),
+            "operative_result_is_the_frozen_one": True,
         },
         "E2B_69_57_HOOK": hook,
         "E2B_IDENTITY": "PASS" if identity else "FAIL",

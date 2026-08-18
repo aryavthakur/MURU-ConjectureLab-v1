@@ -1,0 +1,1 @@
+{"case_id": "PB|held_out|F11|r010", "direct_class": "SUCCESS", "seeds_with_correct_on_front": 22, "seeds_with_retained_correct": 11, "representative_correct": true, "valid": true, "invalid_reason": null, "wall_seconds": 22.359636068344116, "front_rows_total": 369, "seeds_loaded": 30}

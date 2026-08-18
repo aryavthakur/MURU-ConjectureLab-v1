@@ -1,0 +1,85 @@
+{
+  "schema": "muru-e2b-gate1-definitive-1.0.0",
+  "denominator": 144,
+  "agent3_counts": {
+    "SUCCESS": 4,
+    "NEVER_ON_FRONT": 14,
+    "LOST_IN_RETENTION": 55,
+    "LOST_IN_CROSS_SEED": 71
+  },
+  "agent4_counts": {
+    "SUCCESS": 4,
+    "NEVER_ON_FRONT": 14,
+    "LOST_IN_RETENTION": 55,
+    "LOST_IN_CROSS_SEED": 71
+  },
+  "AGENT3_VS_AGENT4_CASE_MATCHES": "144/144",
+  "EVALUATOR_DISAGREEMENTS": 0,
+  "disagreement_detail": [],
+  "SUCCESS": 4,
+  "LOST_IN_CROSS_SEED": 71,
+  "LOST_IN_RETENTION": 55,
+  "NEVER_ON_FRONT": 14,
+  "DIRECT_RETENTION": 55,
+  "DIRECT_GENERATION": 14,
+  "DIRECT_THIRD_CLASS": 75,
+  "INVALID_CASES": 0,
+  "COUNT_SUM": 144,
+  "HISTORICAL_RETENTION": 69,
+  "HISTORICAL_GENERATION": 57,
+  "RETENTION_DEVIATION": 14,
+  "GENERATION_DEVIATION": 43,
+  "FROZEN_THRESHOLD": "more than 10 cases (strict >); deviation of exactly 10 is PASS",
+  "FROZEN_THRESHOLD_VALUE": 10,
+  "THRESHOLD_TRIGGERED": "YES",
+  "PROVISIONAL_RESULT_REPRODUCED": "YES",
+  "identity": {
+    "SELECTION_COUNT_EXACT": "144/144",
+    "REPRESENTATIVE_EXACT": "144/144",
+    "note": "Independently RECOMPUTED by Agent 4 from raw fronts via the production rc5_selection.group_and_select path, then compared to the sealed replay values -- not read from the replay report."
+  },
+  "MAPPING_SENSITIVITY_DISCLOSED": {
+    "why": "v1's root_cause_class maps SEARCH_GENERATION_FAILURE=57 and keeps GRAMMAR_REPRESENTABILITY=12 as a separate class, yet a truth that the grammar cannot express is by construction NEVER_ON_FRONT. Frozen authority never states how the 12 grammar cases map into the 69/57 hook. The frozen evaluator compares count(NEVER_ON_FRONT) against 57, and THAT is the operative comparison recorded above. This block only discloses the alternative reading so it is on the record rather than silently assumed.",
+    "v1_reference_counts": {
+      "SELECTION_FAILURE": 69,
+      "SEARCH_GENERATION_FAILURE": 57,
+      "GRAMMAR_REPRESENTABILITY": 12,
+      "CANONICALIZATION_EQUIVALENCE_FAILURE": 2,
+      "NONE_SUCCESS": 4
+    },
+    "v1_first_failure_stage_coarse": {
+      "SELECTION_VOTING": 71,
+      "GENERATION": 45,
+      "GENERATION_FAMILY": 12,
+      "REPRESENTATION": 12,
+      "NONE": 4
+    },
+    "structural_note": "v1's SELECTION_VOTING stage holds 71 cases (69 SELECTION_FAILURE + 2 CANONICALIZATION_EQUIVALENCE_FAILURE) and CONFLATES within-seed retention with cross-seed voting. E2b separates those into LOST_IN_RETENTION and LOST_IN_CROSS_SEED. The 69 historical 'retention' figure is therefore a retention+voting aggregate being compared against a retention-only direct count.",
+    "alternative_generation_baseline_57_plus_grammar_12": 69,
+    "generation_deviation_under_alternative": 55,
+    "alternative_retention_baseline_69_plus_canon_2": 71,
+    "retention_deviation_under_alternative": 16,
+    "hook_under_alternative_mapping": "FAIL",
+    "operative_result_is_the_frozen_one": true
+  },
+  "E2B_69_57_HOOK": "FAIL",
+  "E2B_IDENTITY": "PASS",
+  "GATE_1": "FAIL",
+  "definitive_preconditions": {
+    "FRONT_CORPUS_ACCEPTABLE": true,
+    "POST_FREEZE_PATCH_SCIENTIFICALLY_NEUTRAL": true,
+    "FROZEN_EVALUATOR_COMPLETE": true,
+    "INDEPENDENT_EVALUATOR_COMPLETE": true,
+    "CASE_LEVEL_AGREEMENT_144_144": true,
+    "COUNT_SUM_144": true
+  },
+  "GATE_1_DEFINITIVE": "PENDING_CRITICS",
+  "primary_authority": {
+    "three_way_attribution": "befca0d:MURU_V2_G2_PARETO_STUDY_DESIGN.md section 2.7",
+    "gate_1_falsification": "f4c1105:v2_design_reference/MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md section 4",
+    "falsification_hook": "MURU_V2_G2_PARETO_STUDY_DESIGN.md section 2.9",
+    "decision_tree": "MURU_V2_CAUSAL_DECISION_TREE.md section B.1",
+    "g2_correct_definition": "src/muru/paper_benchmark/g2_contract.py"
+  },
+  "evaluator_sha256": "ee285a8bd7e32859c7091973dc515ec0057fd31dbbf01ffbf60950d7e98b9743"
+}

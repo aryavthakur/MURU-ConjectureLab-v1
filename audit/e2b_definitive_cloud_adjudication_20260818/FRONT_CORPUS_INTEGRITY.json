@@ -21,5 +21,15 @@
   "MANIFEST_FILES_MISSING_FROM_DISK": [],
   "FRONTS_TORN": 0,
   "torn_detail": [],
-  "FRONT_CORPUS_ACCEPTABLE": true
+  "FRONT_CORPUS_ACCEPTABLE": true,
+  "IN_FILE_IDENTITY_CROSSCHECK": {
+    "why": "load_case_fronts keys its {seed_ordinal: rows} dict off each row's in-file _seed_ordinal, not off the manifest. A duplicated or wrong in-file ordinal would silently collapse two seeds into one; the wrapper always builds exactly SEEDS_PER_CASE entries, so the loss would present as an empty seed rather than as valid=False. This check closes that path.",
+    "FILES_WITH_INCONSISTENT_IDENTITY_FIELDS": 0,
+    "DUPLICATE_SEED_ORDINAL_WITHIN_CASE": 0,
+    "CASE_ORDINAL_PAIRS_NOT_IN_MANIFEST": 0,
+    "IN_FILE_SEED_DISAGREEING_WITH_MANIFEST": 0,
+    "CASES_WHOSE_IN_FILE_ORDINALS_NOT_0_TO_29": 0,
+    "CASES_CHECKED": 144,
+    "VERDICT": "every case loads exactly 30 distinct seeds; no silent collapse possible"
+  }
 }

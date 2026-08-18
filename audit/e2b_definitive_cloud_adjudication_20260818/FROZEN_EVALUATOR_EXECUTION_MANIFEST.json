@@ -1,0 +1,195 @@
+{
+  "schema": "muru-e2b-frozen-evaluator-execution-manifest-2.0.0",
+  "agent": "AGENT_3_FROZEN_EVALUATOR_REPRODUCTION",
+  "FROZEN_EVALUATOR_PATH": "scripts/e2b_direct_evaluator.py",
+  "FROZEN_EVALUATOR_COMMIT": "frozen at dabcb4b; identical blob at 6b18dd8; recovered into worktree",
+  "FROZEN_EVALUATOR_SHA256": "ee285a8bd7e32859c7091973dc515ec0057fd31dbbf01ffbf60950d7e98b9743",
+  "FROZEN_EVALUATOR_SHA256_MATCHES_FROZEN_VALUE": true,
+  "execution_problem_encountered": "The frozen evaluator calls g2_contract's sympy.simplify with no cost cap and DOES NOT TERMINATE on a large minority of the corpus. Observed directly: pool children pegged at 99.9% CPU with under 1 GB RSS for 34-62 minutes with zero completions, and two cases killed by the kernel OOM killer above 25 GB anon-rss. befca0d section 2.10 states the cause: 'simplify is unbounded in the worst case.' This is the root cause of DEFECT B.",
+  "method": "BOUNDED_DETERMINACY_PLUS_EXPRESSION_LEVEL_ESCALATION",
+  "method_description": "Each front row resolves to CORRECT / INCORRECT / UNRESOLVED under a per-expression cap. A case receives a class ONLY IF the frozen four-way decision tree yields the same class under EVERY consistent resolution of its UNRESOLVED rows, enumerated over the at most three booleans the tree reads. A cap is therefore NEVER interpreted as a classification. Cases whose class was not invariant were resolved by evaluating their few decisive expressions individually, to completion, on dedicated subprocesses.",
+  "cap_seconds_for_the_bound": 5,
+  "escalation_budget_seconds": 1500,
+  "timeout_influencing_any_classification": false,
+  "memory_cap_influencing_any_classification": false,
+  "cap_exception_base": "BaseException (deliberately, so g2_contract's six `except Exception: return None` handlers cannot swallow a cap and silently turn it into not-correct)",
+  "VALIDATION_AGAINST_UNCAPPED_GROUND_TRUTH": {
+    "cases_the_uncapped_frozen_evaluator_completed": 101,
+    "bounded_result_agreed": 101,
+    "agreement": "101/101",
+    "note": "Both intermediate seed statistics also reproduced exactly on every case where the bound is tight."
+  },
+  "INDETERMINATE_AFTER_BOUND": 4,
+  "INDETERMINATE_AFTER_ESCALATION": 0,
+  "escalated_expressions": {
+    "PB|held_out|F18|r000": [
+      {
+        "seed_ordinal": 22,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 15.6
+      }
+    ],
+    "PB|held_out|F18|r004": [
+      {
+        "seed_ordinal": 21,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 21.8
+      },
+      {
+        "seed_ordinal": 21,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 5.5
+      }
+    ],
+    "PB|held_out|F18|r005": [
+      {
+        "seed_ordinal": 17,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 6.2
+      },
+      {
+        "seed_ordinal": 17,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 17.0
+      }
+    ],
+    "PB|held_out|F18|r011": [
+      {
+        "seed_ordinal": 16,
+        "is_argmax_score_row": false,
+        "verdict": false,
+        "wall_seconds": 8.3
+      }
+    ]
+  },
+  "GATE_INVARIANCE_BEFORE_ESCALATION": "Evaluated over all 2^4 = 16 resolutions of the 4 indeterminate cases: DIRECT_RETENTION ranged 55-59, DIRECT_GENERATION 10-14, generation deviation 43-47. E2B_69_57_HOOK = FAIL under every assignment.",
+  "resource_kill_audit": {
+    "cases_ever_resource_killed_during_the_abandoned_pool_sweep": [
+      "PB|held_out|F01|r004",
+      "PB|held_out|F03|r000",
+      "PB|held_out|F03|r001",
+      "PB|held_out|F03|r004",
+      "PB|held_out|F03|r008",
+      "PB|held_out|F03|r011",
+      "PB|held_out|F08|r005"
+    ],
+    "how_those_cases_were_finally_classified": {
+      "PB|held_out|F01|r004": {
+        "class": "LOST_IN_CROSS_SEED",
+        "unresolved_rows": 9,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F03|r000": {
+        "class": "LOST_IN_RETENTION",
+        "unresolved_rows": 4,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F03|r001": {
+        "class": "LOST_IN_RETENTION",
+        "unresolved_rows": 2,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F03|r004": {
+        "class": "LOST_IN_RETENTION",
+        "unresolved_rows": 2,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F03|r008": {
+        "class": "LOST_IN_RETENTION",
+        "unresolved_rows": 4,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F03|r011": {
+        "class": "LOST_IN_CROSS_SEED",
+        "unresolved_rows": 9,
+        "determined_by": "determinacy bound"
+      },
+      "PB|held_out|F08|r005": {
+        "class": "LOST_IN_CROSS_SEED",
+        "unresolved_rows": 3,
+        "determined_by": "determinacy bound"
+      }
+    },
+    "assertion": "No classification is derived from a kill, a timeout, or a memory limit. Every one of the 144 classes is either (a) invariant over all resolutions of its unresolved rows, or (b) fixed by evaluating the decisive expressions individually to completion."
+  },
+  "host": {
+    "os": "Linux",
+    "release": "7.0.0-1008-gcp",
+    "arch": "x86_64",
+    "cpu_count": 24,
+    "mem_gb": 47,
+    "swap": "none"
+  },
+  "corpus": {
+    "cases": 144,
+    "searches": 4320,
+    "fronts": 4320,
+    "pareto_rows": 51411,
+    "rows_classified": 51411,
+    "rows_unresolved_at_cap": 152
+  },
+  "slowest_cases": [
+    {
+      "case_id": "PB|held_out|F01|r004",
+      "wall_seconds": 67.3
+    },
+    {
+      "case_id": "PB|held_out|F08|r009",
+      "wall_seconds": 58.7
+    },
+    {
+      "case_id": "PB|held_out|F17|r011",
+      "wall_seconds": 55.7
+    },
+    {
+      "case_id": "PB|held_out|F12|r008",
+      "wall_seconds": 52.6
+    },
+    {
+      "case_id": "PB|held_out|F03|r004",
+      "wall_seconds": 48.2
+    },
+    {
+      "case_id": "PB|held_out|F03|r008",
+      "wall_seconds": 48.0
+    },
+    {
+      "case_id": "PB|held_out|F12|r010",
+      "wall_seconds": 44.4
+    },
+    {
+      "case_id": "PB|held_out|F02|r003",
+      "wall_seconds": 44.1
+    },
+    {
+      "case_id": "PB|held_out|F11|r003",
+      "wall_seconds": 44.0
+    },
+    {
+      "case_id": "PB|held_out|F03|r011",
+      "wall_seconds": 43.4
+    }
+  ],
+  "class_counts": {
+    "LOST_IN_CROSS_SEED": 71,
+    "SUCCESS": 4,
+    "LOST_IN_RETENTION": 55,
+    "NEVER_ON_FRONT": 14
+  },
+  "FROZEN_SUCCESS": 4,
+  "FROZEN_LOST_IN_CROSS_SEED": 71,
+  "FROZEN_LOST_IN_RETENTION": 55,
+  "FROZEN_NEVER_ON_FRONT": 14,
+  "FROZEN_DIRECT_RETENTION": 55,
+  "FROZEN_DIRECT_GENERATION": 14,
+  "FROZEN_DIRECT_THIRD_CLASS": 75,
+  "COUNT_SUM": 144,
+  "COUNT_SUM_EQUALS_144": true,
+  "INVALID_CASES": 0,
+  "FROZEN_EVALUATOR_COMPLETE": true
+}

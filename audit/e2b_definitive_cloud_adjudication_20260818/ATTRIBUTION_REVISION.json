@@ -1,0 +1,84 @@
+{
+  "schema": "muru-e2b-attribution-revision-1.0.0",
+  "denominator": 144,
+  "trigger": "GATE_1 = FAIL (E2B_69_57_HOOK = FAIL). The v1 decomposition's root-cause ranking is falsified and must be republished from the direct measurement before any E4 arm may be re-authorised.",
+  "direct_root_cause_ranking": [
+    {
+      "rank": 1,
+      "class": "LOST_IN_CROSS_SEED",
+      "count": 71,
+      "percentage": 49.31
+    },
+    {
+      "rank": 2,
+      "class": "LOST_IN_RETENTION",
+      "count": 55,
+      "percentage": 38.19
+    },
+    {
+      "rank": 3,
+      "class": "NEVER_ON_FRONT",
+      "count": 14,
+      "percentage": 9.72
+    },
+    {
+      "rank": 4,
+      "class": "SUCCESS",
+      "count": 4,
+      "percentage": 2.78
+    }
+  ],
+  "RANK_1": "LOST_IN_CROSS_SEED",
+  "RANK_2": "LOST_IN_RETENTION",
+  "RANK_3": "NEVER_ON_FRONT",
+  "RANK_4": "SUCCESS",
+  "v1_root_cause_ranking_superseded": {
+    "SELECTION_FAILURE": 69,
+    "NONE_SUCCESS": 4,
+    "CANONICALIZATION_EQUIVALENCE_FAILURE": 2,
+    "SEARCH_GENERATION_FAILURE": 57,
+    "GRAMMAR_REPRESENTABILITY": 12
+  },
+  "cross_tabulation_direct_x_v1": {
+    "LOST_IN_CROSS_SEED": {
+      "SELECTION_FAILURE": 69,
+      "CANONICALIZATION_EQUIVALENCE_FAILURE": 2
+    },
+    "SUCCESS": {
+      "NONE_SUCCESS": 4
+    },
+    "LOST_IN_RETENTION": {
+      "SEARCH_GENERATION_FAILURE": 55
+    },
+    "NEVER_ON_FRONT": {
+      "SEARCH_GENERATION_FAILURE": 2,
+      "GRAMMAR_REPRESENTABILITY": 12
+    }
+  },
+  "oracle_cross_check": {
+    "meaning": "v1's oracle_any_seed_correct records whether ANY of the 30 per-seed RETAINED candidates was correct. The direct partition implies the same predicate: True iff SUCCESS or LOST_IN_CROSS_SEED.",
+    "v1_oracle_true": 75,
+    "v1_oracle_false": 69,
+    "direct_retained_correct_ever": 75,
+    "direct_retained_correct_never": 69,
+    "totals_match": true,
+    "case_level_agreement": "144/144",
+    "case_level_disagreements": []
+  },
+  "gate_1_summary": {
+    "DIRECT_RETENTION": 55,
+    "DIRECT_GENERATION": 14,
+    "DIRECT_THIRD_CLASS": 75,
+    "HISTORICAL_RETENTION": 69,
+    "HISTORICAL_GENERATION": 57,
+    "RETENTION_DEVIATION": 14,
+    "GENERATION_DEVIATION": 43,
+    "E2B_69_57_HOOK": "FAIL",
+    "GATE_1": "FAIL"
+  },
+  "robustness_of_the_FAIL": {
+    "concern": "v1 carries a separate 12-case GRAMMAR_REPRESENTABILITY class (F18, 'exp' absent from the grammar) which also implies the truth could never appear on a front. A critic may ask whether the generation comparison should be 57+12=69 rather than the frozen 57.",
+    "frozen_answer": "The frozen authority states 69/57 literally and may not be reinterpreted after seeing results.",
+    "robustness": "The FAIL verdict is invariant to that reinterpretation: against 57 the generation deviation is |DIRECT_GENERATION-57|; against 69 it would be even larger. Both exceed the 10-case tolerance."
+  }
+}

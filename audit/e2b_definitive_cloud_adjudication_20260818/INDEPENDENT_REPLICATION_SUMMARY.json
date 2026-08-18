@@ -1,0 +1,32 @@
+{
+  "schema": "muru-e2b-independent-replication-2.0.0",
+  "agent": "AGENT_4_INDEPENDENT_ATTRIBUTION_REPLICATION",
+  "implementation": [
+    "audit/e2b_definitive_cloud_adjudication_20260818/agent4_independent_evaluator.py",
+    "scripts/e2b_independent_bounded.py"
+  ],
+  "independent_of_agent3": [
+    "retention via production rc5_selection.select_row_label with its section 7.6 guards",
+    "cross-seed representative RECOMPUTED from raw fronts via production rc5_selection.group_and_select, not read from the replay report",
+    "case population re-enumerated from registry.CASE_FAMILIES",
+    "own four-way classification chain"
+  ],
+  "shares_with_agent3": "src/muru/paper_benchmark/g2_contract.py only -- the frozen definition of G2-correctness itself",
+  "method": "same bounded-determinacy argument, applied through the independent code path",
+  "timeout_influencing_any_classification": false,
+  "cases": 144,
+  "counts": {
+    "LOST_IN_CROSS_SEED": 71,
+    "SUCCESS": 4,
+    "LOST_IN_RETENTION": 55,
+    "NEVER_ON_FRONT": 14
+  },
+  "COUNT_SUM": 144,
+  "DIRECT_RETENTION": 55,
+  "DIRECT_GENERATION": 14,
+  "DIRECT_THIRD_CLASS": 75,
+  "INVALID_CASES": 0,
+  "selection_count_matches_sealed": "144/144",
+  "representative_matches_sealed": "144/144",
+  "AGREEMENT_WITH_FROZEN": "144/144"
+}

@@ -1,0 +1,1 @@
+{"case_id": "PB|held_out|F05|r003", "direct_class": "LOST_IN_CROSS_SEED", "seeds_with_correct_on_front": 13, "seeds_with_retained_correct": 4, "representative_correct": false, "valid": true, "invalid_reason": null, "wall_seconds": 38.203036308288574, "front_rows_total": 363, "seeds_loaded": 30}
