@@ -1,0 +1,1320 @@
+{
+  "schema": "e2b-direct-attribution-1.0.0",
+  "evaluator_sha256": "ee285a8bd7e32859c7091973dc515ec0057fd31dbbf01ffbf60950d7e98b9743",
+  "primary_authority": {
+    "three_way_attribution": "befca0d:MURU_V2_G2_PARETO_STUDY_DESIGN.md section 2.7",
+    "gate_1_falsification": "f4c1105:v2_design_reference/MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md section 4",
+    "g2_correct_definition": "src/muru/paper_benchmark/g2_contract.py"
+  },
+  "cases": [
+    {
+      "case_id": "PB|held_out|F01|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 14,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r002",
+      "direct_class": "SUCCESS",
+      "seeds_with_correct_on_front": 11,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": true,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r003",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 20,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 10,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r005",
+      "direct_class": "SUCCESS",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 16,
+      "representative_correct": true,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r006",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 9,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 12,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r009",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F01|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r000",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r001",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 7,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r005",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r010",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F02|r011",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 11,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r000",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 1,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r001",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r004",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r005",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 26,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r007",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r008",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r010",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F03|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 10,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r005",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r009",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 11,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F04|r011",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 9,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r002",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r003",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r005",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r006",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 11,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 11,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r008",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F05|r011",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r002",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r005",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r006",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r007",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 9,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F08|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r000",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 4,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r001",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 2,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 5,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 7,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r004",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r005",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 6,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 6,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r007",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r008",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 3,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 4,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r010",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 4,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F09|r011",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 4,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 30,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r001",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 28,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 29,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r003",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 27,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r004",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 29,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r005",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 27,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 29,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 30,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 29,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 28,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 30,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F10|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 28,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r000",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r002",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r003",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 9,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r005",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r006",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 13,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r008",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r009",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 16,
+      "seeds_with_retained_correct": 9,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r010",
+      "direct_class": "SUCCESS",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 11,
+      "representative_correct": true,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F11|r011",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r000",
+      "direct_class": "SUCCESS",
+      "seeds_with_correct_on_front": 21,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": true,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r002",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r003",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 14,
+      "seeds_with_retained_correct": 6,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 20,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r005",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r006",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 20,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 21,
+      "seeds_with_retained_correct": 2,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r008",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 7,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r009",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 18,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F12|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r000",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 10,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r001",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r002",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 20,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r003",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 12,
+      "seeds_with_retained_correct": 3,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r004",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r005",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 19,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r006",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 1,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r007",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 17,
+      "seeds_with_retained_correct": 4,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r008",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 22,
+      "seeds_with_retained_correct": 7,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r009",
+      "direct_class": "LOST_IN_RETENTION",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r010",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 15,
+      "seeds_with_retained_correct": 8,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F17|r011",
+      "direct_class": "LOST_IN_CROSS_SEED",
+      "seeds_with_correct_on_front": 11,
+      "seeds_with_retained_correct": 5,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r000",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r001",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r002",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r003",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r004",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r005",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r006",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r007",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r008",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r009",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r010",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    },
+    {
+      "case_id": "PB|held_out|F18|r011",
+      "direct_class": "NEVER_ON_FRONT",
+      "seeds_with_correct_on_front": 0,
+      "seeds_with_retained_correct": 0,
+      "representative_correct": false,
+      "valid": true,
+      "invalid_reason": null
+    }
+  ],
+  "aggregate": {
+    "DIRECT_RETENTION": 55,
+    "DIRECT_GENERATION": 14,
+    "DIRECT_THIRD_CLASS": 75,
+    "INVALID_CASES": 0,
+    "HISTORICAL_RETENTION": 69,
+    "HISTORICAL_GENERATION": 57,
+    "RETENTION_DEVIATION": 14,
+    "GENERATION_DEVIATION": 43,
+    "FROZEN_MATERIAL_THRESHOLD": 10,
+    "THRESHOLD_TRIGGERED": "YES",
+    "E2B_69_57_HOOK": "FAIL"
+  }
+}

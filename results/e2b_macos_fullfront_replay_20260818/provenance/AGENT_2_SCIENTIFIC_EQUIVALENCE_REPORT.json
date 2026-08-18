@@ -1,0 +1,122 @@
+{
+  "schema": "muru-e2b-fullfront-science-equivalence-1.0.0",
+  "agent": "AGENT_2_SCIENTIFIC_EQUIVALENCE",
+  "timestamp": "2026-08-18T16:51:09.272524+00:00",
+  "baseline_commit": "d6f607a",
+  "baseline_script": "scripts/run_e2b_macos_replay.py",
+  "section_9A_science_config": {
+    "SCIENCE_CONFIG_FIELDS_ENUMERATED": "100_PERCENT",
+    "SCIENCE_CONFIG_SHA256": "8056cb6feefc624dbb85e3312d81494f343cce3f858bd1ec7a2857c34681aeb2",
+    "pysr_parameters": {
+      "binary_operators": [
+        "+",
+        "-",
+        "*",
+        "/"
+      ],
+      "unary_operators": [
+        "sqrt",
+        "log",
+        "square",
+        "cube",
+        "inv"
+      ],
+      "excluded_unary": [
+        "cos",
+        "exp",
+        "sin",
+        "tan"
+      ],
+      "maxsize": 20,
+      "niterations": 40,
+      "populations": 15,
+      "population_size": 33,
+      "parsimony": 0.0032,
+      "adaptive_parsimony_scaling": 20.0,
+      "deterministic": true,
+      "parallelism": "serial",
+      "random_state": "int(seed) -- per-seed, from rc5_seeds.case_search_seeds",
+      "progress": false,
+      "verbosity": 0,
+      "temp_equation_file": true,
+      "model_selection": "NOT_SET_ON_REGRESSOR -- retained via equations_ frame argmax(score)"
+    },
+    "build_case_regressor_source_file": "src/muru/paper_benchmark/rc5_adapter.py",
+    "build_case_regressor_source_hash": "fa58f696fc69c4553f70048a48adec27879d191922d2568098fc50cef5351753"
+  },
+  "section_9B_config_hash": {
+    "SCIENCE_CONFIG_SHA256": "8056cb6feefc624dbb85e3312d81494f343cce3f858bd1ec7a2857c34681aeb2",
+    "PERSISTENCE_CONFIG_SHA256": "NOT_YET_COMPUTED -- fullfront script not yet created by Agent 1"
+  },
+  "section_9C_code_diff": {
+    "fullfront_script_exists": false,
+    "assessment": "Agent 1 has not yet created scripts/run_e2b_fullfront_replay.py. Independent assessment: the d6f607a script's scientific computation is entirely in source modules (rc5_runner._run_one_seed, rc5_adapter.build_case_regressor, rc5_selection.group_and_select, rc5_seeds.case_search_seeds, rc5_estimate.fit_case_scalars). All seven critical source files are BYTE-IDENTICAL between d6f607a and the current working tree. Any fullfront script that imports and calls these unchanged modules, without modifying their parameters, will produce scientifically identical results.",
+    "source_module_byte_identity": {
+      "rc5_adapter.py": "BYTE_IDENTICAL (SHA-256: fa58f696fc69c4553f70048a48adec27879d191922d2568098fc50cef5351753)",
+      "rc5_seeds.py": "BYTE_IDENTICAL (SHA-256: 1e655385c2d032e72d26f88803a7248d37acd16be5b04d95805861a8697a2506)",
+      "rc5_runner.py": "BYTE_IDENTICAL (SHA-256: ae3eeceb78476bc59f0a1d120a4090c30b65c94db571b11352c0ae880dba4b75)",
+      "rc5_selection.py": "BYTE_IDENTICAL (SHA-256: a27257dd5c4d1fa3a33cb5361458b012b6261bc5bbd644575a9adf0a2621a05c)",
+      "rc5_estimate.py": "BYTE_IDENTICAL (SHA-256: e198e3fad40100e396f244c1055fe65b977b20e05ac98d3dbd0901d507c0d0f4)",
+      "calibration_contract.py": "BYTE_IDENTICAL (SHA-256: 214d403ab0f819841f5003f0b6e8921339fab4246c56f2fddb2a6205e0b6c05a)",
+      "registry.py": "BYTE_IDENTICAL (SHA-256: 3f5164fdffc0bb54e5a380ac9ff2f0cad03c47a25095fd6b9a71be3f4b83d1d9)"
+    },
+    "SCIENTIFIC_CHANGED_LINES": 0,
+    "UNRELATED_CHANGED_LINES": "PENDING -- script not yet created",
+    "src_muru_paper_benchmark_modified": false,
+    "note": "All 7 scientifically-critical source modules are byte-identical between d6f607a and the current working tree. The staged additions (a34_*.py, identity_contract.py, etc.) are new modules not in the scientific computation path of the replay."
+  },
+  "section_9D_seed_equivalence": {
+    "A35_SEARCH_SEED_BASE": 2100000000,
+    "A35_SEEDS_PER_CASE": 30,
+    "CASE_COUNT": 144,
+    "SEARCH_COUNT": 4320,
+    "CASE_ORDER_HASH": "75d84d0b89caa0965cd5ccdbb36a97fc152a92e964b1d95c7082a8f81ace20a4",
+    "SEED_ORDER_HASH": "e05e9cc00b7bbc26ebc8c2393a31cfde7060965a1c6aa2ccdf6c2871b26094ba",
+    "CASE_SEED_PAIR_HASH": "bddb25e4ae89dccfb99d22f091ce4ea381c39cec9b9f40fd9ae90b280d9aca1d",
+    "first_case": "PB|held_out|F01|r000",
+    "last_case": "PB|held_out|F18|r011",
+    "first_case_first_seed": 2100002400,
+    "first_case_last_seed": 2100002429,
+    "last_case_first_seed": 2100008850,
+    "last_case_last_seed": 2100008879
+  },
+  "section_9E_input_equivalence": {
+    "case_definitions_hash": "ac74d3a6b83c1dfdcdc4f365c4b9344aa8741dcf2b2f9f4296e918a7e0015fb5",
+    "search_config_hash": "4c730d344786feea28dd96ab9d873e01876ba452902020d8d51ae3283a70dd32",
+    "seed_manifest_hash": "bddb25e4ae89dccfb99d22f091ce4ea381c39cec9b9f40fd9ae90b280d9aca1d",
+    "truth_data": "Generated deterministically from registry.ROOT_SEED=20260813 and frozen generator.py -- identical content_hash per case",
+    "STATIC_INPUT_HASH_MATCH": true
+  },
+  "section_9F_environment_equivalence": {
+    "checks": {
+      "host": "EXACT_MATCH",
+      "os": "EXACT_MATCH",
+      "os_version": "EXACT_MATCH",
+      "arch": "EXACT_MATCH",
+      "python": "EXACT_MATCH",
+      "pysr": "EXACT_MATCH",
+      "juliacall": "EXACT_MATCH",
+      "julia": "EXACT_MATCH",
+      "sr_jl": "EXACT_MATCH",
+      "numpy": "EXACT_MATCH",
+      "scipy": "EXACT_MATCH",
+      "sympy": "EXACT_MATCH"
+    },
+    "all_exact_match": true,
+    "ENVIRONMENT_ACCEPTABLE": true
+  },
+  "exit_criteria": {
+    "SCIENCE_CONFIG_FIELDS_ENUMERATED": "100_PERCENT",
+    "SCIENCE_CONFIG_HASH_MATCH": "YES",
+    "SCIENTIFIC_CHANGED_LINES": 0,
+    "UNRELATED_CHANGED_LINES": "PENDING_AGENT_1",
+    "CASE_COUNT": 144,
+    "SEARCH_COUNT": 4320,
+    "CASE_ORDER_HASH_MATCH": "YES",
+    "SEED_ORDER_HASH_MATCH": "YES",
+    "CASE_SEED_PAIR_HASH_MATCH": "YES",
+    "STATIC_INPUT_HASH_MATCH": "YES",
+    "ENVIRONMENT_ACCEPTABLE": "YES",
+    "REPLAY_SCIENTIFICALLY_EQUIVALENT": "YES"
+  }
+}

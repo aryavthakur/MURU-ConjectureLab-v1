@@ -1,0 +1,87 @@
+{
+  "acceptance": {
+    "ceiling_fraction_gate": 0.8,
+    "ceiling_waiver_threshold": 0.05,
+    "max_complexity": 20,
+    "max_invalid_fraction": 0.005,
+    "stability_denominator": 30,
+    "stability_gate": 20
+  },
+  "case_population": {
+    "case_count": 144,
+    "endpoint": "family_recovery",
+    "partition": "held_out",
+    "search_count": 4320
+  },
+  "estimation": {
+    "e_ref": 45.0,
+    "log_g_grid_high": 1.6,
+    "log_g_grid_low": -1.6,
+    "log_g_grid_points": 241,
+    "n_validation_compounds": 30,
+    "phi_alternations": 3,
+    "phi_n_knots": 60,
+    "test_split": "test",
+    "train_split": "train",
+    "validation_split": "validation"
+  },
+  "grammar": {
+    "primitives": [
+      "mass",
+      "descriptor",
+      "descriptor2",
+      "distractor",
+      "correlated_distractor"
+    ]
+  },
+  "pysr_regressor_parameters": {
+    "adaptive_parsimony_scaling": 20.0,
+    "binary_operators": [
+      "+",
+      "-",
+      "*",
+      "/"
+    ],
+    "deterministic": true,
+    "excluded_unary": [
+      "cos",
+      "exp",
+      "sin",
+      "tan"
+    ],
+    "maxsize": 20,
+    "niterations": 40,
+    "parallelism": "serial",
+    "parsimony": 0.0032,
+    "population_size": 33,
+    "populations": 15,
+    "progress": false,
+    "temp_equation_file": true,
+    "unary_operators": [
+      "sqrt",
+      "log",
+      "square",
+      "cube",
+      "inv"
+    ],
+    "verbosity": 0
+  },
+  "schema": "muru-e2b-science-config-1.0.0",
+  "search_engine": {
+    "engine": "PySR",
+    "engine_version": "1.5.10",
+    "julia_package": "SymbolicRegression.jl",
+    "julia_package_version": "1.11.x"
+  },
+  "seed_derivation": {
+    "base": 2100000000,
+    "formula": "A35_SEARCH_SEED_BASE + case_ordinal * A35_SEEDS_PER_CASE + k",
+    "seeds_per_case": 30
+  },
+  "selection": {
+    "cross_seed_grouping": "positive_scale_equivalence_via_identity_contract",
+    "per_seed_retention": "argmax(score)",
+    "representative": "lowest_ordinal_member_of_winning_class",
+    "winner": "largest_class_tiebreak_lowest_ordinal"
+  }
+}
