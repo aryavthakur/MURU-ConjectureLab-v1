@@ -1,0 +1,24 @@
+{
+  "shard_index": 9,
+  "n_shards": 12,
+  "N_COMPLETED_SNAPSHOT": 530,
+  "N_REPLAYABLE_GLOBAL": 530,
+  "N_REPLAYABLE_THIS_SHARD": 44,
+  "N_MATCH": 43,
+  "N_MISMATCH": 1,
+  "ERROR_COUNT": 0,
+  "SHARD_PARITY_PASS": false,
+  "N_DETERMINISM_CHECKED": 0,
+  "N_DETERMINISM_MATCH": 0,
+  "DETERMINISM_PASS": false,
+  "n_excluded_missing_required_fields": 0,
+  "mismatch_detail": [
+    {
+      "opaque_id": "W70620c8f6965",
+      "stage_match": false,
+      "rep_g2_match": true,
+      "rep_te_match": true
+    }
+  ],
+  "error_detail": []
+}

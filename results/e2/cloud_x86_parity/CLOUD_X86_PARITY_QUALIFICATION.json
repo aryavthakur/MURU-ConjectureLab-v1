@@ -1,0 +1,154 @@
+{
+ "schema_version": "v2_e2_cloud_x86_parity_qualification_v1",
+ "verdict": "NEW_CLOUD_HOST_PARITY_FAILED",
+ "generated_utc": "2026-08-18T02:02:00Z",
+ "host": {
+  "architecture": "x86_64",
+  "cpu_model": "Intel Xeon Platinum 8581C @ 2.30GHz",
+  "logical_cpus": 24,
+  "physical_cores": 12,
+  "threads_per_core": 2,
+  "ram_gib": 47,
+  "kernel": "7.0.0-1008-gcp",
+  "os": "Ubuntu 26.04 LTS"
+ },
+ "previously_qualified_host": {
+  "architecture": "aarch64",
+  "cpu_count": 16,
+  "ram_gib": 31.29,
+  "kernel": "6.12.101+deb13-cloud-arm64"
+ },
+ "git": {
+  "head": "ee7026da79619fcf33d31a3185102c2c683eb3d9",
+  "branch": "claude/e2-rescue-v2-computational"
+ },
+ "environment_reconstruction": {
+  "status": "EXACT",
+  "python": "3.13.5",
+  "sympy": "1.14.0",
+  "julia": "1.12.6",
+  "pysr": "1.5.10",
+  "symbolic_regression_jl": "1.11.3",
+  "pythoncall_jl": "0.9.26",
+  "juliacall": "0.9.26",
+  "dependency_lock_sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+  "dependency_lock_entries_checked": 50,
+  "dependency_lock_deviations": 0,
+  "julia_manifest_sha256": "75fc2d89ed104eebeb8a8a77d8cc6582861d3ef123ba0934b5780c8a6b280705",
+  "julia_manifest_unchanged_after_instantiate": true,
+  "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+  "classifier_version_matches_arm_host": true,
+  "cache_seed_rows": 143232,
+  "cache_seed_distinct_expressions": 119448,
+  "cache_seed_matches_arm_host_exactly": true,
+  "threading": {
+   "JULIA_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1"
+  }
+ },
+ "phase_1_reconciliation": {
+  "status": "PASS",
+  "authoritative_files": 31,
+  "files_match": 31,
+  "completed_worlds": 530,
+  "duplicates": 0,
+  "torn_records": 0,
+  "candidate_rows": 186314,
+  "remaining_ordinary": 9,
+  "poison_world": 1,
+  "population_total": 540
+ },
+ "parity_audit": {
+  "harness": "scripts/e2_rescue_v2/full_corpus_parity_audit.py (unmodified)",
+  "scope": "FULL CORPUS -- all 530 completed valid worlds, not a sample",
+  "shards": 12,
+  "snapshot_frozen_once": true,
+  "N_REPLAYABLE": 530,
+  "N_MATCH": 527,
+  "N_MISMATCH": 1,
+  "ERROR_COUNT": 2,
+  "N_DETERMINISM_CHECKED": 30,
+  "N_DETERMINISM_MATCH": 30,
+  "DETERMINISM_PASS": true,
+  "PARITY_PASS": false
+ },
+ "pysr_julia_bridge": {
+  "test": "tests/test_raw_search_identity.py",
+  "result": "PASS",
+  "note": "real PySR fit on mass_power|low|noiseless|r000 seed 0; every structural field byte-identical between e2_search.run_seed_search and raw_search.run_seed_search_raw on x86_64"
+ },
+ "scientific_mismatch": {
+  "count": 1,
+  "world_id": "V2C|E2|mass_saturating_descriptor|c_low|n_default|r007",
+  "opaque_id": "W70620c8f6965",
+  "field": "first_loss_stage",
+  "sealed_value_arm": "A",
+  "observed_value_x86": "B",
+  "representative_g2_correct_match": true,
+  "representative_truth_equivalent_match": true,
+  "x86_internal_determinism": "5/5 identical replays -> stage B (stable, not flaky)",
+  "witness_row": {
+   "seed": 2104507054,
+   "front_rank": 11,
+   "retained_by_argmax_score": false,
+   "expression_string": "square(sqrt(square(cube(square(square(sqrt(1.1143143 - (2.5876136 / (x1 + sqrt(x0 + x1)))))))) + 0.4475443))",
+   "canonical_expression": "(1.1143143 - 2.5876136/(descriptor + sqrt(descriptor + mass)))**12 + 0.4475443",
+   "sealed_canonicalization_status_arm": "SIMPLIFY_TIMEOUT",
+   "sealed_g2_correct_arm": false,
+   "sealed_support_status_arm": "SUPPORT_UNRESOLVED",
+   "sealed_family_status_arm": "FAMILY_UNRESOLVED",
+   "observed_canonicalization_status_x86": "OK",
+   "observed_discovered_family_x86": "mass_saturating_descriptor",
+   "observed_effective_support_x86": [
+    "descriptor",
+    "mass"
+   ],
+   "observed_g2_correct_x86": true,
+   "measured_classify_wall_seconds_x86": 4.8,
+   "frozen_budget_seconds": 5
+  }
+ },
+ "root_cause": {
+  "summary": "SIMPLIFY_TIMEOUT_SECONDS = 5 is a WALL-CLOCK budget. The faster x86_64 host completes a sympy canonicalization that the slower ARM64/macOS host abandoned, so the same unmodified classifier assigns a different scientific label to the same expression purely as a function of host speed.",
+  "mechanism": "The witness expression expands to degree 12 with ~90-digit integer coefficients; its canonicalization is dominated by Python integer GCD reduction (_PyLong_GCD/x_divrem) -- the same cost class as the stalled world V2C|E2|mass_interaction|c_high|n_noiseless|r004. On x86 it lands at 4.80s, 200ms inside the 5.00s budget; on ARM it exceeded the budget and returned SIMPLIFY_TIMEOUT.",
+  "not_floating_point": true,
+  "not_lazy_vs_exhaustive": "The sealed candidate row itself records canonicalization_status=SIMPLIFY_TIMEOUT from the OLD EXHAUSTIVE run. The same unmodified e2_classify.classify_expression returns OK on x86. Same classifier, same input, different outcome -- speed, not algorithm.",
+  "affects": "first_loss_stage, a routing/gate-relevant field consumed by Gate 2 of the frozen E4a routing rule"
+ },
+ "exposure": {
+  "candidate_rows_total": 186314,
+  "rows_with_SIMPLIFY_TIMEOUT": 834,
+  "worlds_containing_at_least_one_SIMPLIFY_TIMEOUT_row": 237,
+  "fraction_of_530_completed_worlds": 0.447,
+  "observed_mismatch_is_a_lower_bound": true,
+  "lower_bound_rationale": "the lazy replay short-circuits on the first correct row, so it never classifies most of the 834 timeout-affected rows; 1/530 measures what this audit reached, not the true divergence rate under full reclassification"
+ },
+ "unresolved_audit_errors": {
+  "count": 2,
+  "category": "TIMEOUT",
+  "worlds": [
+   "V2C|E2|mass_exponential_descriptor|c_mid|n_strong|r008",
+   "V2C|E2|mass_exponential_descriptor|c_mid|n_strong|r011"
+  ],
+  "prescribed_isolated_retry_seconds": 600,
+  "retry_outcome": "STILL_TIMEOUT -- both worlds again exceeded the patient 600s retry on x86, unlike the ARM run where all 4 of its timeout worlds matched on retry",
+  "note": "errors are not disagreements; these 2 worlds are simply unresolved, so conclusive parity coverage is 528/530"
+ },
+ "actions_not_taken": [
+  "E2a execution of the 9 remaining ordinary worlds",
+  "E2b",
+  "poison-world retry",
+  "E2a seal",
+  "E4a gate",
+  "E4a execution",
+  "M2",
+  "M3",
+  "integration",
+  "E6"
+ ],
+ "worlds_executed_on_this_host": 0,
+ "scientific_definitions_modified": false,
+ "frozen_artifacts_modified": false
+}

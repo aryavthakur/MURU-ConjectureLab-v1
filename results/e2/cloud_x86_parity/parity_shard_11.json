@@ -1,0 +1,17 @@
+{
+  "shard_index": 11,
+  "n_shards": 12,
+  "N_COMPLETED_SNAPSHOT": 530,
+  "N_REPLAYABLE_GLOBAL": 530,
+  "N_REPLAYABLE_THIS_SHARD": 44,
+  "N_MATCH": 44,
+  "N_MISMATCH": 0,
+  "ERROR_COUNT": 0,
+  "SHARD_PARITY_PASS": true,
+  "N_DETERMINISM_CHECKED": 0,
+  "N_DETERMINISM_MATCH": 0,
+  "DETERMINISM_PASS": false,
+  "n_excluded_missing_required_fields": 0,
+  "mismatch_detail": [],
+  "error_detail": []
+}

@@ -1,0 +1,22 @@
+{
+  "shard_index": 0,
+  "n_shards": 12,
+  "N_COMPLETED_SNAPSHOT": 530,
+  "N_REPLAYABLE_GLOBAL": 530,
+  "N_REPLAYABLE_THIS_SHARD": 45,
+  "N_MATCH": 44,
+  "N_MISMATCH": 0,
+  "ERROR_COUNT": 1,
+  "SHARD_PARITY_PASS": false,
+  "N_DETERMINISM_CHECKED": 30,
+  "N_DETERMINISM_MATCH": 30,
+  "DETERMINISM_PASS": true,
+  "n_excluded_missing_required_fields": 0,
+  "mismatch_detail": [],
+  "error_detail": [
+    {
+      "opaque_id": "W94ce7829d5ed",
+      "category": "TIMEOUT"
+    }
+  ]
+}

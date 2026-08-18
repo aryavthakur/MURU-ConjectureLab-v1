@@ -1,0 +1,74 @@
+{
+  "note": "Environment closure for the x86_64 cloud host. Recorded for provenance. This host FAILED the results-blind parity qualification (see results/e2/cloud_x86_parity/) and executed ZERO scientific worlds.",
+  "host": {
+    "os": "Linux",
+    "distribution": "Ubuntu 26.04 LTS",
+    "kernel": "7.0.0-1008-gcp",
+    "architecture": "x86_64",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 8581C CPU @ 2.30GHz",
+    "logical_cpus": 24,
+    "physical_cores": 12,
+    "threads_per_core": 2,
+    "ram_total_gib": 47,
+    "swap": "none"
+  },
+  "python": {
+    "version": "3.13.5",
+    "implementation": "CPython",
+    "provenance": "python-build-standalone via uv 0.12.5 (no sudo available for system packages)",
+    "executable": "/home/aryav_thakur/venv/bin/python"
+  },
+  "julia": {
+    "version": "1.12.6",
+    "executable": "/home/aryav_thakur/julia-1.12.6/bin/julia",
+    "project": "/home/aryav_thakur/muru_julia_env",
+    "symbolic_regression_jl_version": "1.11.3",
+    "pythoncall_jl_version": "0.9.26",
+    "manifest_sha256": "75fc2d89ed104eebeb8a8a77d8cc6582861d3ef123ba0934b5780c8a6b280705",
+    "manifest_unchanged_after_instantiate": true,
+    "manifest_identical_to_arm64_host": true
+  },
+  "git": {
+    "commit": "ee7026da79619fcf33d31a3185102c2c683eb3d9",
+    "branch": "claude/e2-rescue-v2-computational"
+  },
+  "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+  "classifier_version_identical_to_arm64_host": true,
+  "dependency_lock": {
+    "file": "requirements.lock.txt",
+    "sha256": "13b21b8ca409b82d1ef8d94aa5e487e2523d5264807f04fc1e65a5553c357fa8",
+    "entries": 50,
+    "deviations_from_lock": 0
+  },
+  "environment_variables": {
+    "PYTHON_JULIAPKG_EXE": "/home/aryav_thakur/julia-1.12.6/bin/julia",
+    "PYTHON_JULIAPKG_PROJECT": "/home/aryav_thakur/muru_julia_env",
+    "PYTHON_JULIAPKG_OFFLINE": "yes",
+    "JULIA_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "corroborations_that_reconstruction_is_faithful": {
+    "classify_cache_seed_rows": 143232,
+    "classify_cache_seed_distinct_expressions": 119448,
+    "classify_cache_counts_identical_to_arm64_host": true,
+    "raw_search_identity_test": "PASS (tests/test_raw_search_identity.py, real PySR fit, byte-identical structural fields)"
+  },
+  "parity_qualification": {
+    "verdict": "NEW_CLOUD_HOST_PARITY_FAILED",
+    "N_REPLAYABLE": 530,
+    "N_MATCH": 527,
+    "N_MISMATCH": 1,
+    "ERROR_COUNT": 2,
+    "determinism": "30/30 PASS",
+    "detail": "results/e2/cloud_x86_parity/CLOUD_X86_PARITY_QUALIFICATION.md"
+  },
+  "worlds_executed_on_this_host": 0,
+  "scientific_definitions_changed": false,
+  "e2b_executed": false,
+  "poison_world_attempted": false,
+  "e4a_executed": false,
+  "m2_m3_executed": false,
+  "e6_executed": false
+}
