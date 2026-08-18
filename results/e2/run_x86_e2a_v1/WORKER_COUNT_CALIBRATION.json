@@ -1,0 +1,29 @@
+{
+  "schema_version": "v2_e2a_x86_worker_calibration_v1",
+  "selected_worker_count": 12,
+  "method": "results-blind operational measurement on this host: per-worker CPU and RSS sampled from the live production runners during startup. Only timing/utilization telemetry was read; no scientific outcome field was inspected to choose this number.",
+  "host_topology": {
+    "logical_cpus": 24, "physical_cores": 12, "threads_per_core": 2, "ram_gib": 47
+  },
+  "measured_at_12_workers": {
+    "workers": 12,
+    "mean_cpu_percent_per_worker": 151,
+    "total_cpu_percent": 1817,
+    "logical_cores_consumed": 18.2,
+    "logical_core_utilisation": 0.76,
+    "mean_rss_gib_per_worker": 0.99,
+    "total_rss_gib": 11.9,
+    "ram_utilisation": 0.25
+  },
+  "why_not_higher": "Measured demand is 1.51 logical cores per worker, not 1.0 -- PySR runs parallelism='serial' (required by deterministic=True) but the process is not strictly single-threaded (Julia runtime/GC and the classifier's SIMPLIFY_TIMEOUT child process both add load). 16 workers would demand 16 x 1.51 = 24.2 logical cores, i.e. full saturation, and 24 workers would demand ~36 -- severe oversubscription. The ARM host's own history records exactly this failure mode: an oversubscription episode reaching load average 63, and later 111, when too many shards were run (E2_EXECUTION_DEVIATION.md sections 10f, 14).",
+  "why_not_lower": "9 workers would leave roughly 30% of logical capacity idle with no safety benefit; memory is nowhere near a constraint at 25%.",
+  "consistency_with_prior_host": "The ARM host measured per-worker CPU of 117-165%. This host measures 151%, inside that band -- the execution profile is the same, so the same conservative sizing logic applies, rescaled to this topology.",
+  "nested_oversubscription_controls": {
+    "JULIA_NUM_THREADS": "1", "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1",
+    "pysr_parallelism": "serial (frozen, required by deterministic=True)",
+    "cap_threads_called_at_import": true
+  },
+  "scientific_inertness": "Worker count cannot affect any result: seed_val = seed_base + world_ordinal * seeds_per_world + k depends only on world identity, and shard assignment is world_ordinal % n_shards, so no seed, budget, or classification depends on how many shards run. Verified in source before launch.",
+  "shard_balance": "540 worlds / 12 shards = exactly 45 worlds per shard"
+}
