@@ -301,15 +301,21 @@ this audit may waive.**
    it, and the second cross-host data point is consistent — E2b reproduced the
    sealed identity criterion for 1 of 144 cases across an ARM→x86 move
    (`E2B_REPLAY_VERDICT.json`).
-4. **The parity procedure structurally cannot validate this particular world,
-   and its merge target no longer exists.** Parity qualification works by
-   replaying *already-completed* worlds against sealed references; the poison
-   world has never completed anywhere, so it has no reference and its own
-   `SIMPLIFY_TIMEOUT`-sensitive labels would be qualified by nothing. Separately,
-   the frozen procedure's merge target is `results/e2/run/`
-   (`PENDING_EXECUTION_DIAGNOSIS.md:27`), the pre-rerun corpus namespace, which
-   governance option 1 superseded and which is now empty; no frozen text
-   redirects that merge into `results/e2/run_x86_e2a_v1/`.
+4. **The only reference for this world lives in the corpus option 1 discarded.**
+   *(Corrected 2026-08-18 — see the correction note below; the original text of
+   this item asserted that the world "has never completed anywhere" and that
+   `results/e2/run/` "is now empty". Both were wrong.)* Parity qualification
+   works by replaying *already-completed* worlds against sealed references. This
+   world has no reference **on this x86 host** — it never completed here — but
+   the superseded ARM-era corpus at `results/e2/run/` does hold a completed
+   front for `V2C|E2|mass_power|c_low|n_default|r000`. Qualifying a new host
+   against that record would re-import the host-dependent labelling that
+   governance option 1 exists to discard. Separately, the frozen procedure's
+   merge target is `results/e2/run/` (`PENDING_EXECUTION_DIAGNOSIS.md:27`), the
+   pre-rerun corpus namespace that option 1 superseded; no frozen text redirects
+   that merge into `results/e2/run_x86_e2a_v1/`, and `X86_E2A_SEAL.json:5`
+   (`historical_worlds_merged: false`) forecloses importing the ARM record
+   directly.
 
 **Consequence.** A higher-memory host could plausibly make the world *run* —
 the failure is memory-bound and deterministic (33.4 GiB with ~34 GiB headroom;
@@ -348,3 +354,27 @@ world it would be used for. **Nothing was run.**
 | Frozen documents amended | None |
 | Waivers created | None |
 | Experiments executed | None |
+
+---
+
+## Correction note (2026-08-18, same day)
+
+Two factual errors in §5 obstacle 4 of this document, found during the
+follow-on blocker-resolution audit and corrected in place above:
+
+1. **"`results/e2/run/` … is now empty" — wrong.** That directory is tracked in
+   git (since `ee7026d`), is present read-only, and holds the ARM-era corpus:
+   18 files, **279 distinct `world_id`s with front data**, whose candidate rows
+   carry `score`, `loss`, and the classification-derived columns. An `ls` of the
+   directory during the original audit returned nothing; the directory content
+   verified here is authoritative and the earlier reading was an artifact.
+2. **"the poison world has never completed anywhere" — wrong.** It never
+   completed *on this x86 host*. `results/e2/run/` contains world and candidate
+   records for `V2C|E2|mass_power|c_low|n_default|r000`.
+
+Neither correction changes this document's verdict
+(`E4A_CONDITION_3B_REQUIRES_LITERAL_540_FRONTS`) or §5's conclusion: the ARM-era
+record is from the corpus governance option 1 discarded, and
+`X86_E2A_SEAL.json:5` forbids merging historical worlds. Obstacles 1-3 of §5 are
+untouched. Full treatment in
+`MURU_V2_E4A_BLOCKER_RESOLUTION_AUDIT.md`.
