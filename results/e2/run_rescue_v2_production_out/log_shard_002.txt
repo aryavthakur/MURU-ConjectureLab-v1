@@ -1,0 +1,17 @@
+shard 2/4: 135 assigned, 120 already done (old or new)
+V2C|E2|mass_interaction|c_high|n_noiseless|r010: stage=C classify_calls=30 wall=104.1s
+V2C|E2|mass_interaction|c_high|n_default|r010: stage=C classify_calls=30 wall=138.5s
+V2C|E2|mass_interaction|c_high|n_strong|r010: stage=B classify_calls=36 wall=145.0s
+V2C|E2|mass_exponential_descriptor|c_low|n_default|r010: stage=A classify_calls=337 wall=155.6s
+V2C|E2|mass_exponential_descriptor|c_low|n_strong|r010: stage=A classify_calls=403 wall=195.8s
+V2C|E2|mass_exponential_descriptor|c_mid|n_strong|r010: stage=A classify_calls=354 wall=228.6s
+V2C|E2|mass_exponential_descriptor|c_high|n_noiseless|r010: stage=A classify_calls=328 wall=207.1s
+V2C|E2|mass_exponential_descriptor|c_high|n_default|r006: stage=A classify_calls=318 wall=190.4s
+V2C|E2|mass_saturating_descriptor|c_mid|n_strong|r010: stage=B classify_calls=34 wall=148.7s
+V2C|E2|mass_exponential_descriptor|c_low|n_noiseless|r010: stage=A classify_calls=311 wall=158.7s
+V2C|E2|mass_exponential_descriptor|c_mid|n_noiseless|r010: stage=A classify_calls=342 wall=170.3s
+V2C|E2|mass_exponential_descriptor|c_mid|n_default|r010: stage=A classify_calls=338 wall=223.8s
+V2C|E2|mass_exponential_descriptor|c_high|n_default|r010: stage=A classify_calls=336 wall=212.7s
+V2C|E2|mass_exponential_descriptor|c_high|n_strong|r006: stage=A classify_calls=405 wall=176.0s
+V2C|E2|mass_exponential_descriptor|c_high|n_strong|r010: stage=A classify_calls=393 wall=163.4s
+shard 2 COMPLETE

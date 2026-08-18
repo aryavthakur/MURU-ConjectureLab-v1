@@ -1,0 +1,4 @@
+shard 0/1: 2 assigned, 0 already done (old or new)
+V2C|E2|mass_affine_descriptor|c_low|n_noiseless|r011: stage=C classify_calls=30 wall=65.8s
+V2C|E2|mass_saturating_descriptor|c_high|n_noiseless|r011: stage=B classify_calls=326 wall=69.8s
+shard 0 COMPLETE

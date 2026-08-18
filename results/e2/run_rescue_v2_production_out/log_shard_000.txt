@@ -1,0 +1,5 @@
+shard 0/4: 134 assigned, 121 already done (old or new)
+V2C|E2|mass_interaction|c_high|n_strong|r004: stage=B classify_calls=45 wall=107.7s
+V2C|E2|mass_exponential_descriptor|c_low|n_noiseless|r004: stage=A classify_calls=311 wall=168.6s
+V2C|E2|mass_exponential_descriptor|c_mid|n_strong|r004: stage=A classify_calls=389 wall=232.0s
+V2C|E2|mass_exponential_descriptor|c_high|n_strong|r004: stage=A classify_calls=388 wall=156.2s
