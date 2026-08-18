@@ -1,0 +1,56 @@
+{
+ "schema_version": "v2_e4a_gate_check_post_x86_resume_v1",
+ "recorded_utc": "2026-08-18T07:45:00Z",
+ "supersedes_live_figures_in": "MURU_V2_E4A_EXECUTION_GATE_CHECK.md (which recorded 481/540 and an unresolved poison world)",
+ "method": "the same 8 frozen conditions, re-checked mechanically against the sealed x86 corpus and the executed E2b replay. No condition waived, no number invented.",
+
+ "conditions": {
+  "1_routing_lock_recorded": {
+   "status": "PASS",
+   "evidence": "X86_E2A_SEAL.json routing.state = LOCKED_EXECUTE_E4A, recomputed from the x86-only corpus (A=122 B=196 C=102 D=0 E=119, r_remaining=1). Branch-1 margins are 73 and 93, so the one quarantined world cannot overturn it. Matches the historical LOCKED_EXECUTE_E4A."
+  },
+  "2_exact_frozen_E2b_prerequisite_satisfied": {
+   "status": "FAIL",
+   "previous_status": "FAIL -- E2b had never been executed anywhere",
+   "what_changed": "E2b HAS now been executed: 144/144 cases, 4320 searches, 0 case-level errors, byte-identical v1 seeds verified for 144/144 before launch.",
+   "why_still_FAIL": "the frozen identity criterion -- reproduce the sealed selection_count AND cross-seed representative for all 144 cases -- was met for 1 of 144. The shortfall is not attributable: it is fully consistent with architecture-induced floating-point divergence between the sealed macOS/arm64/Python-3.13.12 reference and this Linux/x86_64/Python-3.13.5 host. See E2B_REPLAY_VERDICT.json.",
+   "classification": "INCONCLUSIVE, not refuted -- Gate 1 can be cleared neither affirmatively nor negatively on this host"
+  },
+  "3_balanced_estimation_sample": {
+   "status": "PROVEN NOT A PREREQUISITE",
+   "evidence": "unchanged from MURU_V2_E4A_PREREQUISITE_VERIFICATION.md section 3 item 1; the frozen protocol requires the FULL 540 population, tracked as condition 3b"
+  },
+  "3b_full_540_population_complete": {
+   "status": "PARTIAL -- 539/540 completed, 1 quarantined",
+   "previous_status": "FAIL (in progress) -- 481/540, and the quarantined poison world had no scheduled resolution path",
+   "what_changed": "the resume completed 388 worlds; all 540 are now ACCOUNTED FOR (539 completed + 1 quarantined, 0 errors, 0 duplicates, 0 torn records). The poison world now HAS a resolution path -- it was attempted three times in isolation and determined unrunnable on this host (POISON_WORLD_DETERMINATION.json, four independent OOM kills).",
+   "why_not_PASS": "the frozen protocol's condition is the full 540-case population WITH persisted front data. V2C|E2|mass_power|c_low|n_default|r000 has no front data and no world record, so a literal 540/540 is still not reached.",
+   "materiality": "this world cannot affect the routing decision (branch-1 margins 73 and 93 already absorb it adversarially), but condition 3b is a population-completeness condition, not a routing condition, and is not waived on the grounds that routing survives it."
+  },
+  "4_results_blind_amendment_frozen": {"status": "PASS", "evidence": "MURU_V2_E4A_RESULTS_BLIND_AMENDMENT_V1.md, unchanged"},
+  "5_implementation_passes_control_tests": {"status": "PASS (as previously recorded)", "evidence": "tests/test_e4a_scoring_controls.py, 81/81; not re-run by this check and not claimed to have been"},
+  "6_no_unresolved_reachable_equivalence_defect": {"status": "PASS", "evidence": "MURU_V2_E4A_EQUIVALENCE_REACHABILITY_AUDIT.md, unchanged"},
+  "7_dev_eval_split_frozen": {"status": "PASS", "evidence": "MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md section 6, unchanged"},
+  "8_e4a_execution_manifest_frozen": {"status": "NOT PRODUCED", "reason": "deferred while conditions 2 and 3b remain open, per the same discipline the original gate check applied"}
+ },
+
+ "overall": {
+  "E4A_EXECUTION_CURRENTLY_ALLOWED": "NO",
+  "state": "WAITING",
+  "blocking_conditions": ["2 (Gate 1 / E2b identity criterion)", "3b (literal 540/540 with persisted front data)", "8 (manifest, consequent on 2 and 3b)"],
+  "note": "Gate 1 is checked sequentially BEFORE Gate 2 in the frozen predicate. Gate 2's LOCKED_EXECUTE_E4A does not supersede it. E4a was therefore NOT executed."
+ },
+
+ "progress_since_the_previous_check": [
+  "population moved from 481/540 with 59 outstanding to 540/540 accounted for with 1 quarantined",
+  "the poison world moved from 'no scheduled resolution path' to a determined, evidence-backed unrunnable-on-this-host status",
+  "E2b moved from 'never executed anywhere' to executed in full, with its result classified honestly as inconclusive rather than forced to a verdict",
+  "the routing lock was independently recomputed from a clean single-host corpus and agrees with the historical decision"
+ ],
+
+ "what_this_check_does_not_do": [
+  "It does not waive condition 2 on the grounds that the E2b shortfall is probably an artifact. Probably is not a gate.",
+  "It does not waive condition 3b on the grounds that routing already absorbs the missing world.",
+  "It does not re-run condition 5's control tests and does not claim to have."
+ ]
+}

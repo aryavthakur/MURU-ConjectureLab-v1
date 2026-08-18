@@ -1,0 +1,75 @@
+{
+ "schema_version": "e2b_heldout_replay_verdict_v1",
+ "recorded_utc": "2026-08-18T07:40:00Z",
+ "executed_on": {"host": "instance-20260818-004057", "arch": "x86_64", "os": "Ubuntu 26.04 (Linux)", "python": "3.13.5"},
+ "sealed_reference_produced_on": {"arch": "arm64", "platform": "macOS-26.1-arm64-arm-64bit-Mach-O", "python": "3.13.12", "run_commit": "8d87143d4280602323aa33ee0b5481aaef0fb4a8"},
+
+ "verdict": "INCONCLUSIVE__IDENTITY_CRITERION_NOT_EVALUABLE_CROSS_ARCHITECTURE",
+ "verdict_is_not": {
+  "PASS": "the literal identity criterion was met for 1 of 144 cases; claiming PASS would be false",
+  "FAIL": "claiming FAIL would assert that v1's retention result is contradicted, and would fire the frozen consequence that ALL E4 ablations are suspended. The evidence does not support that attribution: it is fully consistent with architecture-induced floating-point divergence, and the confound was known and disclosed BEFORE execution (E2B_REPLAY_PRECONDITION_CHECK.json)."
+ },
+
+ "execution_was_faithful": {
+  "cases_replayed": 144,
+  "searches": 4320,
+  "case_level_execution_errors": 0,
+  "seeds": "case_search_seeds() reproduced the sealed seeds_used for 144/144 cases -- byte-identical, verified before execution",
+  "path": "the frozen rc5_runner.execute_case path up to and including group_and_select, every stage imported unmodified",
+  "total_replay_cpu_time_hours": 10.19,
+  "note": "the replay itself did not fail; only the cross-host COMPARISON is uninterpretable"
+ },
+
+ "headline_counts": {
+  "reproduced_exactly": 1,
+  "mismatch": 143,
+  "unevaluable_execution_failure": 0,
+  "seed_derivation_mismatch": 0
+ },
+
+ "why_this_is_an_architecture_artifact_not_a_scientific_contradiction": {
+  "1_most_mismatches_are_the_same_expression": "92 of 143 mismatched representatives are STRUCTURALLY IDENTICAL to the sealed one -- same expression skeleton, differing only in fitted coefficients.",
+  "2_the_coefficient_differences_are_at_rounding_scale": "among those 92, relative coefficient drift is median 1.09e-06, min 0, max 2.92e-02, with only ONE case above 1e-03. A median of ~1e-6 is floating-point rounding, not a different scientific answer -- but it is more than enough to break the exact-string equality the identity criterion requires.",
+  "3_divergence_tracks_selection_fragility": {
+   "claim": "reproduction fidelity is monotonically governed by how strongly the sealed run selected its winning class -- the signature of a small numerical perturbation amplified through a discrete argmax.",
+   "table_sealed_selection_count_vs_skeleton_identical_rate": {
+    "1-2 (knife-edge)": "1/10 = 10%",
+    "3-5": "6/12 = 50%",
+    "6-10": "12/23 = 52%",
+    "11-20": "35/48 = 73%",
+    "21-30 (dominant)": "39/51 = 76%"
+   },
+   "means": "mean sealed selection_count is 17.29 among skeleton-identical cases vs 12.31 among structurally different ones",
+   "the_single_exact_reproduction": "PB|held_out|F09|r005, selection_count 24/30 -- a dominant, perturbation-robust selection"
+  },
+  "4_the_repository_already_established_this_failure_mode": "CLOUD_X86_PARITY_QUALIFICATION.md recorded NEW_CLOUD_HOST_PARITY_FAILED for the sibling E2 corpus on this very ARM->x86 transition, and governance option 1 required re-running E2a in full on ONE host precisely because cross-host results are not comparable. E2b is the same situation with an even larger environment gap (macOS/arm64/Python 3.13.12 -> Linux/x86_64/Python 3.13.5).",
+  "5_determinism_on_this_host_is_intact": "the same parity audit verified 30/30 determinism checks on x86. The divergence is between hosts, not within this one."
+ },
+
+ "substantive_observation_that_is_NOT_confounded": {
+  "finding": "All 4 of v1's sealed G2 SUCCESS cases had selection_count of 1, 1, 2 and 2 out of 30.",
+  "why_it_is_not_confounded": "this is read directly from the sealed v1 record, not from the replay.",
+  "implication": "v1's held-out G2 successes rested on knife-edge cross-seed selections -- the exact regime this replay measured as only ~10% reproducible under a perturbation of order 1e-6. This is a statement about the fragility of those selections, not a claim that they are wrong, and it is offered as a diagnostic for the governance decision below, not as a result.",
+  "sealed_g2_event_distribution": {"FAILURE": 103, "UNEVALUABLE": 37, "SUCCESS": 4},
+  "integrity_corroboration": "that 4/103/37 split matches results/restored/heldout_*.json's independently restored aggregate exactly, confirming the sealed reference this replay compared against is authentic."
+ },
+
+ "falsification_hook_not_evaluated": {
+  "hook": "if E2b materially contradicts the decomposition's 69/57 retention-versus-generation split, all E4 ablations are suspended",
+  "status": "NOT EVALUATED",
+  "why": "computing a replayed retention/generation split would derive it from representative expressions that are themselves cross-host confounded. Producing such a number and then suspending E4 on it would convert an architecture artifact into a scientific verdict -- the specific error this record exists to avoid."
+ },
+
+ "consequence_for_gate_1": {
+  "gate_1_status": "NOT SATISFIED",
+  "reason": "Gate 1 requires E2b's identity criterion to be met. It was met for 1 of 144 cases. Whether the shortfall is scientific or architectural cannot be resolved on this host, so Gate 1 cannot be cleared here -- neither affirmatively nor negatively.",
+  "effect_on_E4A": "E4a is NOT licensed. Gate 1 is checked sequentially BEFORE Gate 2 in the frozen predicate and is not superseded by Gate 2's LOCKED_EXECUTE_E4A."
+ },
+
+ "what_would_resolve_this": [
+  "Execute E2b on macOS/arm64 under Python 3.13.12 -- the architecture the sealed values were produced on. This is the only option that tests the identity criterion as written, and it is OUTSIDE the current authorization, which requires all scientific execution to remain on this x86_64 host.",
+  "Ratify a tolerance-based identity criterion (structural equality plus a bounded coefficient tolerance) in place of exact string equality. This changes a frozen definition and requires a governance amendment; it is not something to adopt silently because it would make the gate pass.",
+  "Formally accept cross-architecture non-reproducibility and narrow the claim, as option 3 of CLOUD_X86_PARITY_QUALIFICATION.md section 5 proposed for the sibling defect."
+ ],
+ "none_of_the_above_were_taken": "All three are scientific-governance decisions, not execution ones, and are explicitly outside what may be done autonomously."
+}

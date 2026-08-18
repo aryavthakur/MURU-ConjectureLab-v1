@@ -1,0 +1,14 @@
+e2b shard 1/12: 12 assigned, 0 already done
+PB|held_out|F01|r001: MISMATCH wall=173.2s
+PB|held_out|F02|r001: MISMATCH wall=239.5s
+PB|held_out|F03|r001: MISMATCH wall=236.5s
+PB|held_out|F04|r001: MISMATCH wall=244.6s
+PB|held_out|F05|r001: MISMATCH wall=252.2s
+PB|held_out|F08|r001: MISMATCH wall=245.1s
+PB|held_out|F09|r001: MISMATCH wall=238.5s
+PB|held_out|F10|r001: MISMATCH wall=241.1s
+PB|held_out|F11|r001: MISMATCH wall=245.0s
+PB|held_out|F12|r001: MISMATCH wall=244.5s
+PB|held_out|F17|r001: MISMATCH wall=244.2s
+PB|held_out|F18|r001: MISMATCH wall=244.5s
+e2b shard 1 COMPLETE
