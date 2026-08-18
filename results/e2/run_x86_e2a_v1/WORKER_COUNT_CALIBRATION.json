@@ -1,29 +1,62 @@
 {
-  "schema_version": "v2_e2a_x86_worker_calibration_v1",
-  "selected_worker_count": 12,
-  "method": "results-blind operational measurement on this host: per-worker CPU and RSS sampled from the live production runners during startup. Only timing/utilization telemetry was read; no scientific outcome field was inspected to choose this number.",
-  "host_topology": {
-    "logical_cpus": 24, "physical_cores": 12, "threads_per_core": 2, "ram_gib": 47
+ "schema_version": "v2_e2a_x86_worker_calibration_v1",
+ "selected_worker_count": 12,
+ "method": "results-blind operational measurement on this host: per-worker CPU and RSS sampled from the live production runners during startup. Only timing/utilization telemetry was read; no scientific outcome field was inspected to choose this number.",
+ "host_topology": {
+  "logical_cpus": 24,
+  "physical_cores": 12,
+  "threads_per_core": 2,
+  "ram_gib": 47
+ },
+ "measured_at_12_workers": {
+  "workers": 12,
+  "mean_cpu_percent_per_worker": 151,
+  "total_cpu_percent": 1817,
+  "logical_cores_consumed": 18.2,
+  "logical_core_utilisation": 0.76,
+  "mean_rss_gib_per_worker": 0.99,
+  "total_rss_gib": 11.9,
+  "ram_utilisation": 0.25
+ },
+ "why_not_higher": "Measured demand is 1.51 logical cores per worker, not 1.0 -- PySR runs parallelism='serial' (required by deterministic=True) but the process is not strictly single-threaded (Julia runtime/GC and the classifier's SIMPLIFY_TIMEOUT child process both add load). 16 workers would demand 16 x 1.51 = 24.2 logical cores, i.e. full saturation, and 24 workers would demand ~36 -- severe oversubscription. The ARM host's own history records exactly this failure mode: an oversubscription episode reaching load average 63, and later 111, when too many shards were run (E2_EXECUTION_DEVIATION.md sections 10f, 14).",
+ "why_not_lower": "9 workers would leave roughly 30% of logical capacity idle with no safety benefit; memory is nowhere near a constraint at 25%.",
+ "consistency_with_prior_host": "The ARM host measured per-worker CPU of 117-165%. This host measures 151%, inside that band -- the execution profile is the same, so the same conservative sizing logic applies, rescaled to this topology.",
+ "nested_oversubscription_controls": {
+  "JULIA_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "pysr_parallelism": "serial (frozen, required by deterministic=True)",
+  "cap_threads_called_at_import": true
+ },
+ "scientific_inertness": "Worker count cannot affect any result: seed_val = seed_base + world_ordinal * seeds_per_world + k depends only on world identity, and shard assignment is world_ordinal % n_shards, so no seed, budget, or classification depends on how many shards run. Verified in source before launch.",
+ "shard_balance": "540 worlds / 12 shards = exactly 45 worlds per shard",
+ "steady_state_measurement": {
+  "measured_after": "all 12 shards up, staggered 12s apart to avoid a simultaneous Julia JIT storm",
+  "concurrent_processes": "23-24 (12 shard parents + their SIMPLIFY_TIMEOUT classifier children)",
+  "total_cpu_percent": 2369,
+  "logical_cores_consumed": 23.7,
+  "cpu_breakdown": {
+   "user_pct": 89,
+   "sys_pct": 5.5,
+   "idle_pct": 5.5
   },
-  "measured_at_12_workers": {
-    "workers": 12,
-    "mean_cpu_percent_per_worker": 151,
-    "total_cpu_percent": 1817,
-    "logical_cores_consumed": 18.2,
-    "logical_core_utilisation": 0.76,
-    "mean_rss_gib_per_worker": 0.99,
-    "total_rss_gib": 11.9,
-    "ram_utilisation": 0.25
-  },
-  "why_not_higher": "Measured demand is 1.51 logical cores per worker, not 1.0 -- PySR runs parallelism='serial' (required by deterministic=True) but the process is not strictly single-threaded (Julia runtime/GC and the classifier's SIMPLIFY_TIMEOUT child process both add load). 16 workers would demand 16 x 1.51 = 24.2 logical cores, i.e. full saturation, and 24 workers would demand ~36 -- severe oversubscription. The ARM host's own history records exactly this failure mode: an oversubscription episode reaching load average 63, and later 111, when too many shards were run (E2_EXECUTION_DEVIATION.md sections 10f, 14).",
-  "why_not_lower": "9 workers would leave roughly 30% of logical capacity idle with no safety benefit; memory is nowhere near a constraint at 25%.",
-  "consistency_with_prior_host": "The ARM host measured per-worker CPU of 117-165%. This host measures 151%, inside that band -- the execution profile is the same, so the same conservative sizing logic applies, rescaled to this topology.",
-  "nested_oversubscription_controls": {
-    "JULIA_NUM_THREADS": "1", "OMP_NUM_THREADS": "1",
-    "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1",
-    "pysr_parallelism": "serial (frozen, required by deterministic=True)",
-    "cap_threads_called_at_import": true
-  },
-  "scientific_inertness": "Worker count cannot affect any result: seed_val = seed_base + world_ordinal * seeds_per_world + k depends only on world identity, and shard assignment is world_ordinal % n_shards, so no seed, budget, or classification depends on how many shards run. Verified in source before launch.",
-  "shard_balance": "540 worlds / 12 shards = exactly 45 worlds per shard"
+  "run_queue_r": "55-142",
+  "context_switches_per_sec": "~190000-200000",
+  "rss_total_gib": 12,
+  "interpretation": "near-full utilisation with LOW system time. 89% user vs 5.5% sys means the machine is doing real work, not thrashing on scheduling. The elevated run queue is what saturation looks like when many runnable processes share cores, not a pathology."
+ },
+ "first_launch_incident": {
+  "what_happened": "the first launch started all 12 shards simultaneously; 12 concurrent Julia JIT compilations drove load to 87-112 with a run queue of 40-145",
+  "diagnosis": "startup transient, not steady-state demand. Verified directly: at rest a worker has Threads.nthreads()=1, Threads.ngcthreads()=1 and only 2 OS threads, so Julia thread pools were not the cause",
+  "resolution": "stopped the run while 0 worlds and 0 candidate rows had been written (nothing lost), cleared the partial cache, relaunched with 12s-staggered starts",
+  "scientific_impact": "none -- no world record, candidate row, or cache entry from the aborted launch survived"
+ },
+ "ab_test_not_run_and_why": {
+  "intended": "compare measured throughput at 12 shards vs 8 shards and keep the faster",
+  "not_run_because": "the persistent classify cache warms monotonically as the run proceeds, so a later sample benefits from a warmer cache regardless of shard count. Any sequential A/B on a single run is confounded by cache warming and would systematically favour whichever configuration is measured second. Running the two arms concurrently is impossible (they would contend for the same host).",
+  "decision_basis_instead": "the confound-free resource measurement above",
+  "conclusion": "12 retained. At 12 shards the host is already at ~94% logical-CPU occupancy with only 5.5% system time; 8 shards would run ~16 processes on 24 logical cores and leave roughly a third of the machine idle. Going above 12 would add processes to an already-saturated machine.",
+  "honesty_note": "this is a resource-utilisation argument, not a measured throughput comparison; it is not claimed to be one."
+ }
 }

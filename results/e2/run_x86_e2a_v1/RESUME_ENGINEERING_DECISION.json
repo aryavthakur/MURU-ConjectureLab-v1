@@ -1,0 +1,66 @@
+{
+ "schema_version": "v2_e2a_x86_resume_engineering_v1",
+ "recorded_utc": "2026-08-18T03:42:00Z",
+ "recorded_before_any_new_world_outcome_was_observed": true,
+ "authority": "X86_E2A_FREEZE.json (governance option 1) + E2_EXECUTION_DEVIATION.md sections 5/9c/11/13 (orchestration wrappers are outside the frozen scientific manifest)",
+
+ "unchanged_scientific_invariants": {
+  "host": "same x86_64 host instance-20260818-004057 (no reboot; uptime continuous across the interruption)",
+  "git_head_scientific": "4ebf98c2a03012c1642b7d01d6d3ef6ce6bf786c as frozen; only orchestration-only files are touched",
+  "runner": "scripts/e2_rescue_v2/e2_run_shard_lazy.py -- byte-identical, not modified",
+  "seeds": "seed_base=2104500000, seeds_per_world=30, seed_val = seed_base + world_ordinal*30 + k",
+  "world_definitions": "muru.v2_calibration.e2_worlds.build_world, unchanged",
+  "pysr_settings": "unchanged (parallelism=serial, deterministic=True)",
+  "simplification_logic": "unchanged",
+  "SIMPLIFY_TIMEOUT_SECONDS": "5 -- NOT extended, NOT relaxed, NOT recomputed because of the interruption",
+  "classifier_version": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+  "scoring_thresholds_routing": "unchanged",
+  "worker_count": "12 -- the previously frozen/selected value, RETAINED",
+  "classify_cache": "the same x86-only /home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3 is reused; PRAGMA integrity_check = ok, 4003 entries, WAL recovered cleanly. It is part of the frozen Rescue-v2 path and the 151 preserved worlds were computed against it."
+ },
+
+ "worker_count_decision": {
+  "decision": "RETAIN 12",
+  "rule_applied": "change the frozen worker count only if the prior launch was proven to be the cause of the orchestration failure",
+  "proof_status": "NOT PROVEN CAUSAL",
+  "evidence": "The 11 non-runaway workers held ~12.8 GiB combined (~1.16 GiB each), against 47 GiB of RAM -- ~27% utilisation, exactly as WORKER_COUNT_CALIBRATION.json predicted (0.99 GiB/worker, 25%). The OOM was driven by ONE process at 33.4 GiB, i.e. 72% of host RAM in a single world.",
+  "honesty_note": "Fewer workers would have given the runaway marginally more headroom and so would have DELAYED, not prevented, an unbounded balloon; and the true peak demand of that world is unknown and may exceed the whole host. Worker count is therefore not a fix for the primary cause, and reducing it would halve throughput for no established safety benefit. This is stated as a bounded claim, not as proof that 12 is optimal."
+ },
+
+ "remediation_1_unit_isolation": {
+  "change": "Each shard supervisor is launched in its OWN transient systemd user unit (e2a-shard-NN.service) with OOMPolicy=continue, instead of all 12 sharing one tmux-spawn scope with the host default OOMPolicy=stop.",
+  "fixes": "the amplifier cause: a kernel OOM kill of one worker can no longer terminate the other 11.",
+  "scientific_effect": "none -- it changes only which cgroup a process is accounted to and what systemd does when a sibling dies. No world, seed, budget, threshold or classification depends on it.",
+  "verified": "systemctl --user show reports OOMPolicy=continue, MemoryMax=infinity, ControlGroup=/user.slice/user-1001.slice/user@1001.service/app.slice/<unit>. Units sit in app.slice, NOT under any tmux scope."
+ },
+
+ "remediation_2_no_memory_cap": {
+  "decision": "NO MemoryMax and NO RLIMIT_AS is imposed on any shard (MemoryMax=infinity is asserted explicitly).",
+  "why": "A memory cap would convert a world that might legitimately complete into an execution failure. The frozen protocol declares no memory budget, so imposing one would be a per-world scientific definition change. Instead the kernel's own global OOM killer is left to select the highest-oom_score process -- which at 33.4 GiB vs ~1.2 GiB is unambiguously the runaway -- while unit isolation contains the blast radius."
+ },
+
+ "remediation_3_no_swap": {
+  "decision": "NO swap is added, despite swap being the obvious way to survive a 33 GiB balloon on a 47 GiB host.",
+  "why": "SIMPLIFY_TIMEOUT_SECONDS=5 is a WALL-CLOCK budget. Swap thrashing would inflate wall-clock non-uniformly and could manufacture SIMPLIFY_TIMEOUT verdicts that do not occur unswapped -- a real scientific drift, and exactly the drift class already documented in e2_classify.py's own docstring and in commit 4ebf98c (host-speed dependence of this same cap). An infrastructure change must not perturb the wall-clock the frozen protocol measures against."
+ },
+
+ "remediation_4_staleness_watchdog_repaired": {
+  "change": "Fixed the fatal `stat -f` portability bug (GNU form now tried first, with a numeric guard) and widened the PID grep to match e2_run_shard_lazy.py. Both are orchestration-only files outside the frozen scientific manifest.",
+  "threshold": "STALE_SECONDS=10800 UNCHANGED -- the frozen orchestration bound is not relaxed."
+ },
+
+ "remediation_5_two_stage_scheduling": {
+  "change": "The 389 missing worlds are computed in two stages. STAGE A: the 388 worlds other than V2C|E2|mass_power|c_low|n_default|r000, across 12 isolated shards. STAGE B: that one world alone, after Stage A has finished, in its own unit and its own output directory.",
+  "precedent": "E2_EXECUTION_DEVIATION.md section 13 -- the established repository procedure for a world whose OWN computation repeatedly triggers host-level memory kills is to route around it and give it an isolated supervisor and a SEPARATE output directory so its failures cannot block or interleave with anything else.",
+  "why_stage_B_is_serialised_rather_than_concurrent": "This is the scientifically decisive reason, not merely a safety one. If that world balloons again while 12 shards are running, the host approaches OOM and every OTHER worker's wall-clock is perturbed under memory pressure -- which, because SIMPLIFY_TIMEOUT is wall-clock, could manufacture spurious SIMPLIFY_TIMEOUT verdicts in innocent worlds. Running it alone guarantees it cannot contaminate the other 388.",
+  "why_this_is_results_blind": "The world was selected purely from memory forensics (it is the OOM victim's in-flight world) and its own runtime anomaly. No scientific outcome of it is known -- it has NEVER produced a completed record on this host.",
+  "why_this_is_scientifically_inert": "world_ordinal is a pure function of world identity (family/regime/noise indices and replicate), NOT of position in the order file -- verified in src/muru/v2_calibration/e2_worlds.py:137-141. Removing one entry from the order file was verified to leave the world_ordinal of all 539 retained worlds bit-identical, hence every seed unchanged. Shard assignment world_ordinal % 12 is likewise unchanged.",
+  "not_yet_a_poison_determination": "The world is NOT being declared poison. It is scheduled to run in full, under identical frozen definitions. A poison determination would be made only on repeated evidence, as section 13 required (it took 76 consecutive failed attempts there)."
+ },
+
+ "restart_semantics": {
+  "rule": "Any world in flight at the interruption but lacking a completed world record restarts from the beginning under the same frozen definition. This is an orchestration retry, not reuse of partial scientific state.",
+  "mechanism": "e2_run_shard_lazy.py's own unmodified _already_done() keys strictly on world_id present in worlds_shard_*.jsonl, so the 151 completed worlds are skipped and every in-flight world is recomputed whole.",
+  "no_partial_state_exists_to_reuse": "audited: 0 orphan candidate rows, 0 torn records -- see INTERRUPTION_CHECKPOINT_151.json."
+ }
+}

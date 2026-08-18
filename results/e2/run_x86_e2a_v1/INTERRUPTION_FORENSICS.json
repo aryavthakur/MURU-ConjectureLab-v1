@@ -1,0 +1,50 @@
+{
+ "schema_version": "v2_e2a_x86_interruption_forensics_v1",
+ "recorded_utc": "2026-08-18T03:40:00Z",
+ "results_blind": true,
+ "results_blind_statement": "This record was produced by reading ONLY process, kernel, systemd and file-integrity evidence. No first_loss_stage, representative_g2_correct, representative_truth_equivalent, routing, or any other scientific outcome field was inspected or aggregated before classifying the interruption or choosing the remediation.",
+
+ "classification": "INFRASTRUCTURE_FAILURE__KERNEL_OOM_PLUS_SYSTEMD_SCOPE_TEARDOWN",
+ "is_scientific_timeout": false,
+ "why_not_a_scientific_timeout": "The only wall-clock budget in the frozen protocol is SIMPLIFY_TIMEOUT_SECONDS=5, a per-expression cap enforced inside e2_classify at a process boundary and recorded as canonicalization_status. It cannot terminate a shard process. The other bound, scripts/e2_staleness_watchdog.sh STALE_SECONDS=10800, is explicitly declared ORCHESTRATION-ONLY in X86_E2A_FREEZE.json timeout_rules -- and it was in any case already dead (see watchdog_defects) and its 3h threshold was never approached (worst shard staleness at termination was ~16.5 min). The frozen protocol therefore does NOT require, and does not permit, classifying this event as a scientific timeout.",
+
+ "timeline_utc": [
+  {"t": "2026-08-18T02:14:13Z", "event": "shard 0 supervisor launches attempt 1 (12 shards, staggered ~12s, per WORKER_COUNT_CALIBRATION.json)"},
+  {"t": "2026-08-18T02:16:37Z", "event": "staleness watchdog starts and dies 0s later with 'scripts/e2_staleness_watchdog.sh: line 46: File: unbound variable' -- unwatched for the whole run"},
+  {"t": "2026-08-18T02:55Z", "event": "shard 0 writes its 10th and last completed world (mass_power|c_low|n_noiseless|r000); it then enters world mass_power|c_low|n_default|r000 and never emits another line"},
+  {"t": "2026-08-18T03:11:34.833Z", "event": "kernel global OOM killer fires: 'Out of memory: Killed process 16082 (python) total-vm:49013772kB, anon-rss:33477720kB'. constraint=CONSTRAINT_NONE, global_oom. Host has 47 GiB RAM and NO swap."},
+  {"t": "2026-08-18T03:11:35Z", "event": "systemd user manager (PID 1857): 'tmux-spawn-5e24e062-fdb3-4f6d-9112-06d51278a65a.scope: The kernel OOM killer killed some processes in this unit.'"},
+  {"t": "2026-08-18T03:11:35Z", "event": "DefaultOOMPolicy=stop causes systemd to stop the ENTIRE scope -> SIGTERM to all 11 surviving shard workers AND their supervisors. Each of the 11 logged a Julia handler dump headed 'signal 15: Terminated'."},
+  {"t": "2026-08-18T03:13:05Z", "event": "'Stopping timed out. Killing.' -> SIGKILL to stragglers 17113 and 17640. 'Failed with result oom-kill'. Scope consumed 1d 17min 36s CPU over 2h 20min 53s wall, 46.2G memory peak."}
+ ],
+
+ "primary_cause": {
+  "what": "A single world -- V2C|E2|mass_power|c_low|n_default|r000, world_ordinal 120, shard 0 (120 % 12 == 0) -- grew its runner process to 33.4 GiB anon-RSS / 49 GiB virtual over ~16.5 minutes and tripped the kernel's GLOBAL OOM killer on a 47 GiB, swapless host.",
+  "victim_pid": 16082,
+  "victim_identification": "16082 is python, is NOT any of the 11 PIDs that printed 'signal 15' (16193, 16303, 16427, 16498, 16628, 16763, 16873, 16946, 17113, 17220, 17297), and sits exactly one launch-stagger below the lowest of them (16193 - 16082 = 111, against observed inter-shard PID gaps of 71-167). Shard 0 is also the only shard that produced NO SIGTERM handler dump, which is precisely what an uncatchable SIGKILL from the OOM killer produces. Shard 0 is additionally the only shard whose log went silent (02:55) long before the termination time.",
+  "anomaly_magnitude": "WORKER_COUNT_CALIBRATION.json measured 0.99 GiB mean RSS per worker at steady state, and the scope's 46.2 GiB peak minus shard 0's 33.4 GiB leaves ~12.8 GiB across the other 11 workers (~1.16 GiB each, matching the calibration). Shard 0 was therefore ~28x the per-worker norm. This is a single-world event, not generic accumulation: the other shards each completed MORE worlds (12-13 vs 10) at the normal footprint."
+ },
+
+ "amplifier_cause": {
+  "what": "All 12 shard supervisors, all 12 shard workers and the watchdog were launched inside ONE systemd scope, tmux-spawn-5e24e062-fdb3-4f6d-9112-06d51278a65a.scope. systemd's DefaultOOMPolicy on this host is 'stop'. A kernel OOM kill of ANY single process in that unit therefore tears down the WHOLE unit.",
+  "consequence": "The kernel killed exactly 1 process. systemd killed the remaining 11 healthy, progressing shards. 11/12 of the loss was policy amplification, not resource exhaustion.",
+  "verified_by": "systemctl show -p DefaultOOMPolicy => DefaultOOMPolicy=stop; and the user journal lines quoted in timeline_utc."
+ },
+
+ "ruled_out": {
+  "scientific_timeout": "see why_not_a_scientific_timeout",
+  "individual_process_failure": "no traceback, no exception, no errors_shard_*.jsonl file was ever created (0 world-level execution failures across all 12 shards)",
+  "external_SIGTERM_from_a_human_or_Claude": "the SIGTERM is fully accounted for by the systemd scope-stop, which the user journal attributes explicitly to the kernel OOM kill 1 second earlier; no interactive kill occurred",
+  "SIGHUP_or_shell_session_cleanup": "workers were nohup'd; the journal shows a scope stop with result 'oom-kill', not a session teardown, and the tmux server itself survived (session 'muru' still present)",
+  "VM_or_host_event": "uptime is continuous (no reboot; host up 2h45m spanning the whole run), and the load-average decay 0.01/3.05/32.00 at 03:28 is consistent with workers dying ~17 min earlier, not with a host restart",
+  "oversubscription_or_CPU_starvation": "not a termination mechanism; and the calibration's steady-state measurement showed 89% user vs 5.5% sys, i.e. real work, not thrash"
+ },
+
+ "watchdog_defects_found_during_this_investigation": {
+  "defect_1_fatal": "scripts/e2_staleness_watchdog.sh line 46 used the macOS form `stat -f \"%m\"` FIRST with a `||` fallback to the GNU form. On Linux `stat -f` means 'report on the FILE SYSTEM' and EXITS 0 while printing a multi-line block, so the fallback never fired, $mtime became that block, and `$((now - mtime))` made bash evaluate the bare word `File` as a variable -- fatal under `set -u`. Reproduced directly on this host. The watchdog was dead from 02:16:37 for the entire run.",
+  "defect_2_silent": "the same script's PID lookup greps the literal 'e2_run_shard.py --shard-index N ', which does NOT match the rescue-v2 production runner 'e2_run_shard_lazy.py'. Even had it survived defect 1, it would have found no PID and killed nothing -- the same class of silent under-coverage as E2_EXECUTION_DEVIATION.md section 11.",
+  "causal_to_this_interruption": false,
+  "why_not_causal": "its threshold is 10800s; the worst observed staleness at termination was ~990s. It would not have fired even if healthy. Both defects are nevertheless fixed before resuming, because a multi-hour resume must not run unwatched.",
+  "both_files_are_orchestration_only": "E2_EXECUTION_DEVIATION.md section 5 records that the supervisor/watchdog wrappers live entirely outside the 17 frozen scientific files; X86_E2A_FREEZE.json scientific_source does not list either script."
+ }
+}

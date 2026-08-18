@@ -41,11 +41,30 @@ while true; do
     idx_str="${idx_str%.txt}"
     i=$((10#$idx_str))
 
-    mtime=$(stat -f "%m" "$log_path" 2>/dev/null || stat -c "%Y" "$log_path" 2>/dev/null)
+    # PORTABILITY FIX (2026-08-18, x86 resume): the original line tried the
+    # macOS form `stat -f "%m"` FIRST with a `||` fallback to the GNU form.
+    # On Linux `stat -f` is not "format" at all -- it means "report on the
+    # FILE SYSTEM" -- so it EXITS 0 while printing a multi-line filesystem
+    # block ("  File: ...\n  ID: ...\n ..."). The `||` fallback therefore
+    # never fired, $mtime became that block, and `$((now - mtime))` made bash
+    # evaluate the bare word `File` as a variable, which under `set -u` aborts
+    # the whole watchdog with `line 46: File: unbound variable`. That is
+    # exactly how this watchdog died 22 seconds after starting on 2026-08-18
+    # at 02:16:37 UTC and stayed dead for the entire x86 E2a run. Try the GNU
+    # form first and only fall back to the BSD/macOS form.
+    mtime=$(stat -c "%Y" "$log_path" 2>/dev/null || stat -f "%m" "$log_path" 2>/dev/null)
+    # Guard against any future non-numeric return rather than trusting it.
+    case "$mtime" in (''|*[!0-9]*) log "shard ${i}: could not read a numeric mtime -- skipping"; continue ;; esac
     [[ -z "$mtime" ]] && continue
     age=$((now - mtime))
     if [[ "$age" -gt "$STALE_SECONDS" ]]; then
-      pid=$(ps -eo pid,pcpu,command | grep "e2_run_shard.py --shard-index ${i} " | grep -v grep | sort -k2 -rn | head -1 | awk '{print $1}')
+      # COVERAGE FIX (2026-08-18, x86 resume): this pattern was written for
+      # the exhaustive runner `e2_run_shard.py`. Rescue-v2 production runs
+      # `e2_rescue_v2/e2_run_shard_lazy.py`, which this literal pattern does
+      # NOT match -- so even had the watchdog survived the bug above, it
+      # would have found no PID and killed nothing, the same class of silent
+      # under-coverage as E2_EXECUTION_DEVIATION.md section 11. Match both.
+      pid=$(ps -eo pid,pcpu,command | grep -E "e2_run_shard(_lazy)?\.py --shard-index ${i} " | grep -v grep | sort -k2 -rn | head -1 | awk '{print $1}')
       if [[ -n "$pid" ]]; then
         log "shard ${i} log stale for ${age}s (>${STALE_SECONDS}s) -- killing PID ${pid} (supervisor will restart from checkpoint)"
         kill -9 "$pid" 2>>"$WATCHDOG_LOG"

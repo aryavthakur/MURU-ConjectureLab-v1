@@ -1,0 +1,91 @@
+{
+ "schema_version": "v2_e2a_x86_persistence_record_v1",
+ "recorded_utc": "2026-08-18T03:46:15.438841+00:00",
+ "stage": "STAGE A (388 worlds, 12 shards)",
+ "launched_utc": "2026-08-18T03:43:09Z",
+ "mechanism": "transient systemd USER units, one per shard (e2a-shard-00..11.service), plus e2a-watchdog.service and e2a-progress.service",
+ "systemd_user_manager_pid": 1857,
+ "linger_enabled": "Linger=yes",
+ "properties_verified": {
+  "OOMPolicy": "continue",
+  "MemoryMax": "infinity",
+  "Slice": "app.slice",
+  "Restart": "no"
+ },
+ "persistence_proof": {
+  "worker_ancestry": "worker -> supervisor(bash) -> systemd --user (PID 1857) -> PID 1",
+  "passes_through_tmux": false,
+  "passes_through_claude": false,
+  "claude_session_cgroup": "/user.slice/user-1001.slice/user@1001.service/tmux-spawn-ae3ae5fa-ad23-449a-be22-e52f5532ac97.scope",
+  "worker_cgroup_pattern": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-NN.service",
+  "conclusion": "The workers share no cgroup and no process ancestry with the tmux session or the Claude process. SSH disconnect, tmux exit, Claude UI exit and Claude context termination cannot signal them. loginctl Linger=yes keeps user@1001.service (their parent manager) alive across logout.",
+  "root_cause_of_prior_loss_now_removed": "the prior run had all 12 shards inside ONE tmux-spawn scope with DefaultOOMPolicy=stop, so a single kernel OOM kill tore down all 12. Each shard is now its own unit with OOMPolicy=continue."
+ },
+ "monitor": {
+  "unit": "e2a-progress.service",
+  "ownership": "NONE -- read-only; it counts records and samples RSS, never signals any shard",
+  "file": "RESUME_PROGRESS.log"
+ },
+ "shards": {
+  "0": {
+   "worker_pid": 23958,
+   "supervisor_pid": 22778,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-00.service"
+  },
+  "1": {
+   "worker_pid": 22859,
+   "supervisor_pid": 22839,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-01.service"
+  },
+  "2": {
+   "worker_pid": 22940,
+   "supervisor_pid": 22920,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-02.service"
+  },
+  "3": {
+   "worker_pid": 23022,
+   "supervisor_pid": 23002,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-03.service"
+  },
+  "4": {
+   "worker_pid": 23103,
+   "supervisor_pid": 23083,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-04.service"
+  },
+  "5": {
+   "worker_pid": 23184,
+   "supervisor_pid": 23164,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-05.service"
+  },
+  "6": {
+   "worker_pid": 23265,
+   "supervisor_pid": 23245,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-06.service"
+  },
+  "7": {
+   "worker_pid": 23346,
+   "supervisor_pid": 23326,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-07.service"
+  },
+  "8": {
+   "worker_pid": 23427,
+   "supervisor_pid": 23407,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-08.service"
+  },
+  "9": {
+   "worker_pid": 23508,
+   "supervisor_pid": 23488,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-09.service"
+  },
+  "10": {
+   "worker_pid": 23591,
+   "supervisor_pid": 23571,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-10.service"
+  },
+  "11": {
+   "worker_pid": 23697,
+   "supervisor_pid": 23652,
+   "cgroup": "/user.slice/user-1001.slice/user@1001.service/app.slice/e2a-shard-11.service"
+  }
+ }
+}
