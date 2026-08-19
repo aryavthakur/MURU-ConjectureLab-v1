@@ -1,0 +1,35 @@
+{
+  "schema": "muru-e2b-straggler-addendum-correction-1.0.0",
+  "corrects": "E2B_POST_SEAL_STRAGGLER_ADDENDUM.json",
+  "raised_by": "CRITIC_GOVERNANCE_V2_REVIEW.md defect G9",
+  "status_of_the_original_claim": "PARTLY FALSE. The substance holds; the CITATION was fabricated.",
+
+  "the_false_sentence": "that case's final class was established by the determinacy bound, as recorded in the sealed FROZEN_EVALUATOR_EXECUTION_MANIFEST resource-kill audit",
+
+  "why_it_is_false": "PB|held_out|F10|r009 does not appear anywhere in FROZEN_EVALUATOR_EXECUTION_MANIFEST.json. Verified: the string is absent from the whole document. The manifest's resource_kill_audit lists exactly 7 cases (F01|r004, F03|r000, F03|r001, F03|r004, F03|r008, F03|r011, F08|r005). I cited a sealed artifact as the source of a fact it does not contain. That is fabricated provenance, which this programme explicitly prohibits, and it is my error.",
+
+  "what_is_actually_true": {
+    "source": "FROZEN_DIRECT_CLASSES.csv (sealed, hash-verified)",
+    "PB|held_out|F10|r009": {"FROZEN_CLASS": "LOST_IN_RETENTION", "VALID": true, "DETAIL": "seeds_with_correct_on_front=27;seeds_with_retained_correct=0;representative_state=INCORRECT;unresolved_rows=4/341"},
+    "PB|held_out|F08|r007": {"FROZEN_CLASS": "LOST_IN_RETENTION", "VALID": true, "DETAIL": "seeds_with_correct_on_front=12;seeds_with_retained_correct=0;representative_state=INCORRECT;unresolved_rows=2/327"},
+    "conclusion": "Both cases WERE finally classified, with valid classes, by the bounded determinacy evaluator. The substantive claim -- that no sealed count, class, gate or terminal changes -- stands and is re-verified below. Only the citation was wrong."
+  },
+
+  "a_SECOND_and_independent_defect_this_exposed": {
+    "defect": "The sealed resource_kill_audit is INCOMPLETE relative to the sealed _frozen_execution_failures.json in the same directory.",
+    "resource_kill_audit_entries": 7,
+    "frozen_execution_failures_entries": 8,
+    "case_in_failures_but_absent_from_the_audit": "PB|held_out|F08|r007",
+    "case_in_neither": "PB|held_out|F10|r009 (the post-seal straggler)",
+    "severity": "This is a completeness gap in SEALED evidence, not a classification error. Every one of the 144 cases carries a valid class, so no count, gate or terminal is affected. But a reader who audits resource kills via the manifest alone would under-count them, and that is a real defect in the sealed record.",
+    "disposition": "DISCLOSED, NOT REPAIRED. The sealed bytes are not rewritten. This correction is the durable record of the gap. Any future republication of the E2b manifest must reconcile resource_kill_audit against _frozen_execution_failures.json."
+  },
+
+  "re_verification_after_the_correction": {
+    "sealed_class_counts": {"LOST_IN_CROSS_SEED": 71, "LOST_IN_RETENTION": 55, "NEVER_ON_FRONT": 14, "SUCCESS": 4, "total": 144},
+    "all_rows_admissibility": "DECISION_INADMISSIBLE (144/144)",
+    "GATE_1": "FAIL -- unchanged",
+    "attribution_4_71_55_14": "unchanged",
+    "sealed_bytes_modified_by_this_correction": "none"
+  }
+}

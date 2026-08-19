@@ -159,3 +159,34 @@ Stage 0 results are admissible only if produced by tool
 and with a passing preflight line in the run log. Any record with
 `wall_seconds == 0.0` and a reason of `ENVIRONMENT_IMPORT_FAILURE` is inadmissible
 by construction.
+
+## 6. Stage 0 concurrency change, recorded
+
+Stage 0 was started at `--workers 6` and restarted at `--workers 12` after 21 pairs had
+completed. Recorded because a resource parameter changed mid-run and silence about that
+would be exactly the kind of undisclosed operational drift this programme forbids.
+
+**Why it is scientifically inert here.** Each pair is evaluated in its own subprocess under
+identical bounds (`RLIMIT_AS = 6 GiB`, `ESCALATION_SECONDS = 1500`). Concurrency can only
+reach a verdict through host memory pressure, i.e. by causing a kernel OOM kill that would
+otherwise not occur. Measured peak RSS was **1.65 GiB per worker** against **42 GiB free**,
+and **zero** OOM kills occurred at 6 workers. At 12 workers the expected footprint is
+~20 GiB. Had an OOM occurred it would now be typed `KERNEL_OOM_KILL` by the D11 repair and
+routed to `UNRESOLVED`, which widens the LOWER/UPPER bounds but cannot produce a label.
+
+**Why it was necessary.** The archived 22-pair sample suggested a mean cost of ~68 s, but
+that sample was biased: it consisted of the pairs that *finished first* before the run was
+torn down. The live tail (six payloads simultaneously between 188 s and 516 s, against a
+1500 s budget) implied 15-25 h at 6 workers on a 24-core host that was 75% idle.
+
+**Cross-check on the discarded 8 GiB archive.** The 21 pairs re-executed under 6 GiB
+reproduce the 8 GiB archive almost exactly:
+
+    6 GiB : 0.6, 2.8, 2.9, 3.2, 3.2, 3.3, 3.4, 3.4, 3.5, 3.5, 3.9, 4.1, 19.7, 20.0, 20.4, 24.3, 33.3, 105.2, 117.3, 198.6, 266.1
+    8 GiB : 0.6, 2.8, 2.8, 3.1, 3.2, 3.4, 3.5, 3.5, 3.6, 3.6, 3.9, 4.2, 19.8, 19.9, 20.3, 24.3, 33.4, 106.1, 117.0, 196.9, 262.2
+
+with the same verdict multiset (19 INCORRECT/RESOLVED, 1 CORRECT/RESOLVED, and one pair at
+`MEMORY_SIMPLIFY`). This is evidence that the 8 GiB -> 6 GiB tightening was immaterial in
+practice, and it independently demonstrates run-to-run reproducibility of the instrument.
+The archive remains inadmissible on process grounds regardless (section 3); it is used here
+only as a consistency check, never as a count.

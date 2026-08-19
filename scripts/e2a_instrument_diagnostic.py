@@ -29,6 +29,30 @@ changed. See DINST_HOSTILE_REVIEW.md.
   D9 (MED) the sqlite input was unhashed and read without its `version` filter.
      FIX: hashed and version-filtered.
   D10 (MED) UNRESOLVED carried no reason. FIX: reason code recorded.
+
+v3 repairs, from CRITIC_SCIENCE_V2_REVIEW (DEF-C2) and CRITIC_GOVERNANCE_V2_REVIEW (G1, G4):
+
+  G1  (CRITICAL) TERMINAL was keyed on `moved_lo == 0`, computed at the LOWER
+      resolution, while `determinate` was computed and never used. An all-UNRESOLVED
+      run therefore yields moved_lo == 0 and emits the BENIGN terminal. This ALREADY
+      FIRED: the discarded null run recorded 396/396 SUBPROCESS_DIED_rc1,
+      ALL_AFFECTED_WORLDS_DETERMINATE: false, and a pass terminal. FIX: the terminal
+      is keyed on determinacy, and a run in which nothing resolved can never pass.
+  G4  (CRITICAL) the tool emitted `D-INST-NO-WORLD-MOVED` /
+      `D-INST-{n}-WORLDS-RECLASSIFIED`, neither of which is in protocol v2 section
+      22.2's declared terminal set. An analyst would have chosen post hoc what they
+      meant. FIX: the terminal is drawn ONLY from the declared set
+      {D-INST-DETERMINATE, D-INST-INDETERMINATE, D-INST-PLURALITY-NOT-INVARIANT}.
+      `worlds_whose_stage_MOVED` is retained as a DIAGNOSTIC, never as a terminal.
+  C2  (CRITICAL) a 1500 s WALL budget and a 6 GiB address-space cap decided a
+      scientific terminal, on a corpus containing an expression measured at 44.4 GB.
+      That is the wall-clock defect reproduced one level up, inside the diagnostic
+      convened to adjudicate it. FIX: section 25.2's two tiers are implemented --
+      tier 1 is a CPU-time budget (ITIMER_PROF, so it is not a function of host load
+      or co-tenancy), tier 2 escalates every DECISIVE pair with NO cap -- and
+      section 25.4 is implemented: if a decisive pair is still unresolved for a
+      RESOURCE reason, the run emits the OPERATIONAL state
+      RUN_INCOMPLETE_RESOURCE_EXHAUSTION and NO scientific terminal at all.
 """
 from __future__ import annotations
 import argparse, hashlib, json, glob, os, sqlite3, subprocess, sys, collections
@@ -40,8 +64,19 @@ OUT = ROOT / "audit" / "muru_v2_reentry_20260819"
 CKPT = OUT / "_ckpt_dinst"
 CACHE = os.path.expanduser("~/e2_x86_cache/classify_cache.sqlite3")
 
-ESCALATION_SECONDS = 1500        # D6: Gate 1's actual budget
-ADDRESS_SPACE_BYTES = 6 * 1024**3  # D1: hard per-pair memory bound
+# Section 25.2 tier 1: a CPU-time budget, NOT wall clock. Wall clock makes a label a
+# function of host load and co-tenancy, which is the defect under adjudication.
+TIER1_CPU_SECONDS = 60             # FP-2, declared (12x the retired 5 s)
+# Tier 2 is UNCAPPED in time for decisive pairs (section 25.2).
+TIER2_WALL_GUARD = None            # None == no wall cap. Deliberate.
+# Section 25.5's frozen per-worker ceiling. Exceeding it is an OPERATIONAL event
+# (section 25.4), never a label and never a terminal.
+ADDRESS_SPACE_BYTES = 24 * 1024**3
+RESOURCE_REASONS = ("MEMORY_SIMPLIFY", "MEMORY_PARSE", "MEMORY_CLASSIFY",
+                    "RECURSION_SIMPLIFY", "KERNEL_OOM_KILL", "CPU_BUDGET_EXHAUSTED",
+                    "ENVIRONMENT_IMPORT_FAILURE")
+DECLARED_TERMINALS = ("D-INST-DETERMINATE", "D-INST-INDETERMINATE",
+                      "D-INST-PLURALITY-NOT-INVARIANT")
 CORRECT, INCORRECT, UNRESOLVED = "CORRECT", "INCORRECT", "UNRESOLVED"
 
 
@@ -81,8 +116,22 @@ def load_corpus():
 # D1+D2: simplify runs OUTSIDE g2_contract's exception swallow, with typed
 # resource failures, under a hard address-space limit.
 _PAYLOAD = r'''
-import sys,json,time,resource
+import sys,json,time,resource,signal
 resource.setrlimit(resource.RLIMIT_AS,({AS},{AS}))
+
+# Section 25.2: tier 1 is a CPU-TIME budget. ITIMER_PROF charges user+system CPU of
+# this process only, so the bound is not a function of host load, co-tenancy or
+# worker count. `None` means tier 2, which is uncapped by design.
+class _Cap(BaseException):
+    """BaseException DELIBERATELY (section 25.2): g2_contract wraps work in
+    `except Exception: return None` in seven places, and a cap derived from
+    Exception would be swallowed there and silently become SUPPORT_UNRESOLVED
+    -> not-correct, which is the exact prohibited behaviour."""
+_BUDGET = {CPU}
+def _cap(sig, frm): raise _Cap("tier-1 CPU budget exhausted")
+if _BUDGET is not None:
+    signal.signal(signal.SIGPROF, _cap)
+    signal.setitimer(signal.ITIMER_PROF, _BUDGET)
 sys.path.insert(0,{SRC!r})
 from muru.v2_calibration import e2_worlds
 from muru.paper_benchmark.g2_contract import (
@@ -93,12 +142,16 @@ e = {EXPR!r}
 t0 = time.time()
 try:
     parsed = _safe_parse(e)
+except _Cap:
+    print("R"+json.dumps({{"v":"UNRESOLVED","why":"CPU_BUDGET_EXHAUSTED","wall":time.time()-t0}})); raise SystemExit
 except MemoryError:
     print("R"+json.dumps({{"v":"UNRESOLVED","why":"MEMORY_PARSE"}})); raise SystemExit
 if parsed is None:
     print("R"+json.dumps({{"v":"INCORRECT","why":"PARSE_FAIL","wall":time.time()-t0}})); raise SystemExit
 try:
     sympy.simplify(parsed)                      # the call the 5s cap abandoned
+except _Cap:
+    print("R"+json.dumps({{"v":"UNRESOLVED","why":"CPU_BUDGET_EXHAUSTED","wall":time.time()-t0}})); raise SystemExit
 except MemoryError:
     print("R"+json.dumps({{"v":"UNRESOLVED","why":"MEMORY_SIMPLIFY","wall":time.time()-t0}})); raise SystemExit
 except RecursionError:
@@ -110,6 +163,8 @@ try:
     ev = evaluate_g2_event(
         classify_support(extract_effective_support(e), w.truth.support),
         classify_family_match(classify_discovered_family(e), w.truth.family))
+except _Cap:
+    print("R"+json.dumps({{"v":"UNRESOLVED","why":"CPU_BUDGET_EXHAUSTED","wall":time.time()-t0}})); raise SystemExit
 except MemoryError:
     print("R"+json.dumps({{"v":"UNRESOLVED","why":"MEMORY_CLASSIFY","wall":time.time()-t0}})); raise SystemExit
 print("R"+json.dumps({{"v":"CORRECT" if ev==G2Event.SUCCESS else "INCORRECT",
@@ -117,16 +172,19 @@ print("R"+json.dumps({{"v":"CORRECT" if ev==G2Event.SUCCESS else "INCORRECT",
 '''
 
 
-def eval_one(wm: dict, expr: str) -> tuple[str, str, float]:
+def eval_one(wm: dict, expr: str, tier: int = 1) -> tuple[str, str, float]:
+    """tier 1: CPU budget TIER1_CPU_SECONDS. tier 2: UNCAPPED (section 25.2)."""
+    budget = TIER1_CPU_SECONDS if tier == 1 else None
     code = _PAYLOAD.format(AS=ADDRESS_SPACE_BYTES, SRC=str(ROOT / "src"), EXPR=expr,
+                           CPU=repr(budget),
                            FAM=wm["family"], REG=wm["regime"], NOI=wm["noise_level"],
                            REP=int(wm["replicate"]))
     try:
         p = subprocess.run([sys.executable, "-u", "-c", code], capture_output=True, text=True,
-                           timeout=ESCALATION_SECONDS,
+                           timeout=TIER2_WALL_GUARD,
                            env={**os.environ, "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"})
     except subprocess.TimeoutExpired:
-        return UNRESOLVED, "WALL_BUDGET_EXHAUSTED", float(ESCALATION_SECONDS)
+        return UNRESOLVED, "WALL_BUDGET_EXHAUSTED", -1.0
     for line in (p.stdout or "").splitlines():
         if line.startswith("R"):
             d = json.loads(line[1:])
@@ -199,27 +257,64 @@ def main():
              d["expression_string"])
             for w, rs in rows.items() for d in rs if d.get("expression_string") in timeout]
 
-    if not a.analyze_only:
-        from concurrent.futures import ThreadPoolExecutor, as_completed
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    def ckpt_path(w, k, rank):
+        return CKPT / f"{w.replace('|','_')}__{k}_{rank}.json"
+
+    def evaluate(items, tier, label):
+        """Evaluate `items` at `tier`, checkpointing each. Tier 2 ignores an existing
+        tier-1 checkpoint, because escalation is the whole point of tier 2."""
         def run(item):
             w, k, rank, ret, expr = item
-            ck = CKPT / f"{w.replace('|','_')}__{k}_{rank}.json"
+            ck = ckpt_path(w, k, rank)
             if ck.exists():
-                try: return json.loads(ck.read_text())
-                except json.JSONDecodeError: ck.unlink()
-            v, why, wall = eval_one(meta[w], expr)
+                try:
+                    prev = json.loads(ck.read_text())
+                    if tier == 1 or prev.get("tier", 1) >= tier:
+                        return prev
+                except json.JSONDecodeError:
+                    ck.unlink()
+            v, why, wall = eval_one(meta[w], expr, tier=tier)
             rec = {"world_id": w, "seed_ordinal_k": k, "front_rank": rank,
                    "retained_by_argmax_score": ret, "expression_string": expr,
                    "verdict": v, "reason": why, "wall_seconds": round(wall, 1),
-                   "sealed_stage": stage[w]}
+                   "sealed_stage": stage[w], "tier": tier}
             ck.write_text(json.dumps(rec)); return rec
         done = 0
         with ThreadPoolExecutor(max_workers=a.workers) as ex:
-            for fut in as_completed([ex.submit(run, it) for it in work]):
+            for fut in as_completed([ex.submit(run, it) for it in items]):
                 fut.result(); done += 1
                 if done % 20 == 0:      # D3: progress only, no verdicts streamed
-                    print(f"[D-INST] {done}/{len(work)} pairs evaluated", flush=True)
-        print(f"[D-INST] evaluation complete: {done}/{len(work)}", flush=True)
+                    print(f"[D-INST] {label} {done}/{len(items)} pairs", flush=True)
+        print(f"[D-INST] {label} complete: {done}/{len(items)}", flush=True)
+
+    def read_all():
+        recs = [json.loads(q.read_text()) for q in CKPT.glob("*.json")]
+        byw = collections.defaultdict(list)
+        for r in recs: byw[r["world_id"]].append(r)
+        return recs, byw
+
+    def decisive_pairs(byw):
+        """Section 25.2 tier 2: a pair is DECISIVE iff resolving it can change some
+        world's stage, i.e. the world's LOWER and UPPER stages differ. Only decisive
+        pairs are escalated -- the rest cannot move any verdict however they resolve."""
+        out = []
+        for w, sealed in stage.items():
+            v = byw.get(w, [])
+            if recompute_stage(sealed, v, False) != recompute_stage(sealed, v, True):
+                out.extend((w, r["seed_ordinal_k"], r["front_rank"],
+                            r["retained_by_argmax_score"], r["expression_string"])
+                           for r in v if r["verdict"] == UNRESOLVED)
+        return out
+
+    if not a.analyze_only:
+        evaluate(work, tier=1, label="tier-1")
+        _, byw0 = read_all()
+        esc = decisive_pairs(byw0)
+        print(f"[D-INST] tier-2 escalation: {len(esc)} DECISIVE pairs, uncapped", flush=True)
+        if esc:
+            evaluate(esc, tier=2, label="tier-2")
 
     # ------------------------------------------------------------- analysis
     recs = [json.loads(p.read_text()) for p in CKPT.glob("*.json")]
@@ -244,7 +339,8 @@ def main():
         "protocol_sha256": "5b2d2ae549241fbef993b928807a52122a7c8bc7cba73dff4eb63ee9ca71b646",
         "tool_version": "v2 post-hostile-review",
         "cache_provenance": cache_meta,
-        "escalation_seconds": ESCALATION_SECONDS,
+        "tier1_cpu_seconds": TIER1_CPU_SECONDS,
+        "tier2_wall_guard": TIER2_WALL_GUARD,
         "address_space_limit_bytes": ADDRESS_SPACE_BYTES,
         "pairs_total": len(work), "pairs_evaluated": len(recs),
         "verdicts": dict(collections.Counter(r["verdict"] for r in recs)),
@@ -260,16 +356,92 @@ def main():
                            "land on a retained row in only 2 A-worlds, 0 B-worlds. Hence B>=196, "
                            "A<=122, C+D<=104 always, so the Gate 2 predicate is CAP-INVARIANT."),
         "PLURALITY_INVARIANT_lower": plur(lower), "PLURALITY_INVARIANT_upper": plur(upper),
-        "TERMINAL": ("D-INST-NO-WORLD-MOVED" if moved_lo == 0 else
-                     f"D-INST-{moved_lo}-WORLDS-RECLASSIFIED"),
     }
+
+    # ------------------------------------------------------- terminal assignment
+    # G1/G4/C2. Three rules, in this order, and no other terminal may be emitted.
+    #
+    #  (i)  Section 25.4 has ABSOLUTE precedence. If any pair that is DECISIVE is
+    #       still UNRESOLVED for a RESOURCE reason after uncapped tier-2 escalation,
+    #       the run emits an OPERATIONAL state and NO scientific terminal at all.
+    #       A resource envelope must never decide a scientific terminal -- that was
+    #       the wall-clock defect reproduced one level up.
+    #  (ii) Otherwise the terminal is keyed on DETERMINACY, never on `moved_lo`.
+    #       Keying on `moved_lo` let a run in which NOTHING resolved emit the benign
+    #       terminal, which already happened once.
+    # (iii) The terminal is drawn ONLY from section 22.2's declared set.
+    indeterminate_worlds = [w for w, sd in stage.items()
+                            if recompute_stage(sd, byw.get(w, []), False)
+                            != recompute_stage(sd, byw.get(w, []), True)]
+    decisive_unresolved = [r for w in indeterminate_worlds for r in byw.get(w, [])
+                           if r["verdict"] == UNRESOLVED]
+    # After tier 2, which is UNCAPPED IN TIME, there is no legitimate mathematical
+    # route to a residual UNRESOLVED. sympy.simplify either returns or the host
+    # envelope stops it. So EVERY residual decisive-unresolved pair is an envelope
+    # event, whatever its proximate reason, and section 25.4 routes all of them to
+    # the operational state. Classifying only a hard-coded reason list would let an
+    # unexplained `SUBPROCESS_DIED_rc{n}` fall through into a scientific terminal --
+    # which is how the null run passed in the first place.
+    resource_blocked = list(decisive_unresolved)
+
+    res["indeterminate_world_count"] = len(indeterminate_worlds)
+    res["decisive_unresolved_count"] = len(decisive_unresolved)
+    res["resource_blocked_decisive_count"] = len(resource_blocked)
+
+    if resource_blocked:
+        # NOT a member of the section 32 terminal set, and NOT a finding about the
+        # G2 contract, the pipeline, the surface or the instrument.
+        res["TERMINAL"] = None
+        res["OPERATIONAL_STATE"] = "RUN_INCOMPLETE_RESOURCE_EXHAUSTION"
+        res["SCIENTIFIC_CONCLUSION"] = None
+        res["resource_exhaustion_report"] = {
+            "offending_expressions": sorted({r["expression_string"] for r in resource_blocked}),
+            "reasons": collections.Counter(r["reason"].split(":")[0] for r in resource_blocked),
+            "address_space_limit_bytes": ADDRESS_SPACE_BYTES,
+            "tier1_cpu_seconds": TIER1_CPU_SECONDS,
+            "worlds_left_undetermined": len(indeterminate_worlds),
+            "note": ("Section 25.4: execution suspends, no seal is written, no routing "
+                     "verdict is computed, and no scientific label or terminal of any "
+                     "kind is emitted. The run may be resumed on a larger host under "
+                     "the identical frozen protocol hash."),
+        }
+    else:
+        # NOTE, and it is a finding rather than a convenience: with tier 2 uncapped,
+        # `D-INST-INDETERMINATE` is UNREACHABLE BY CONSTRUCTION. A world is
+        # indeterminate iff it still holds an UNRESOLVED row, and after uncapped
+        # escalation an UNRESOLVED row can only be an envelope event, which the
+        # branch above has already claimed. Genuine mathematical indeterminacy does
+        # not survive the removal of the cap; what v1 and v2 called "the instrument
+        # is unbounded" is really "this host is too small", and section 25.4 already
+        # forbids that from being a scientific finding. The terminal is retained in
+        # the declared set, and its unreachability is reported rather than hidden.
+        terminal = "D-INST-DETERMINATE" if determinate else "D-INST-INDETERMINATE"
+        res["D_INST_INDETERMINATE_reachable"] = False
+        res["D_INST_INDETERMINATE_note"] = (
+            "Unreachable by construction under uncapped tier-2 escalation: any residual "
+            "UNRESOLVED row is an envelope event and routes to "
+            "RUN_INCOMPLETE_RESOURCE_EXHAUSTION (section 25.4) before this branch.")
+        # Reported alongside, never instead of: it is a fact about E2a, and D5 has
+        # already invalidated E2a's routing on other grounds.
+        if not (plur(lower) and plur(upper)):
+            terminal = "D-INST-PLURALITY-NOT-INVARIANT"
+        assert terminal in DECLARED_TERMINALS, f"undeclared terminal {terminal}"
+        res["TERMINAL"] = terminal
+        res["OPERATIONAL_STATE"] = None
+
+    # A run in which nothing resolved can never pass. Belt and braces for G1.
+    if res.get("TERMINAL") == "D-INST-DETERMINATE" and len(corr) == 0 and len(unres) == len(recs) > 0:
+        raise SystemExit("[D-INST] REFUSING to emit a pass terminal: every pair is UNRESOLVED.")
     (OUT / "DINST_RESULT.json").write_text(json.dumps(res, indent=2))
     print(json.dumps({k: res[k] for k in
         ("pairs_total","pairs_evaluated","verdicts","sealed_counts",
          "corrected_counts_LOWER_unresolved_as_incorrect",
          "corrected_counts_UPPER_unresolved_as_correct",
          "worlds_whose_stage_MOVED_at_LOWER","ALL_AFFECTED_WORLDS_DETERMINATE",
-         "PLURALITY_INVARIANT_lower","PLURALITY_INVARIANT_upper","TERMINAL")}, indent=2))
+         "indeterminate_world_count","decisive_unresolved_count",
+         "resource_blocked_decisive_count",
+         "PLURALITY_INVARIANT_lower","PLURALITY_INVARIANT_upper",
+         "TERMINAL","OPERATIONAL_STATE")}, indent=2))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1 @@
+{"world_id": "V2C|E2|mass_saturating_descriptor|c_low|n_default|r008", "seed_ordinal_k": 0, "front_rank": 9, "retained_by_argmax_score": false, "expression_string": "square(square(square(square(0.7654172 + (-58.820057 / (x4 + x0)))) + 0.9124532))", "verdict": "INCORRECT", "reason": "RESOLVED", "wall_seconds": 2.7, "sealed_stage": "B"}

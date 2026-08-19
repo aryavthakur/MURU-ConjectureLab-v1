@@ -1,0 +1,1 @@
+{"world_id": "V2C|E2|mass_exponential_descriptor|c_high|n_strong|r006", "seed_ordinal_k": 29, "front_rank": 8, "retained_by_argmax_score": false, "expression_string": "cube(cube(square(inv(sqrt(x0) + square(x2 * x3)) - 1.0623133)))", "verdict": "INCORRECT", "reason": "RESOLVED", "wall_seconds": 6.2, "sealed_stage": "A"}

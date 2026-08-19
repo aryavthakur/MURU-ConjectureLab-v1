@@ -1,0 +1,48 @@
+{
+  "schema": "muru-v2-dinst-1.0.0",
+  "protocol": "MURU_V2_E2A_INSTRUMENT_DIAGNOSTIC_PROTOCOL.md",
+  "protocol_sha256": "5b2d2ae549241fbef993b928807a52122a7c8bc7cba73dff4eb63ee9ca71b646",
+  "tool_version": "v2 post-hostile-review",
+  "cache_provenance": {
+    "classifier_versions": {
+      "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a": 52450
+    },
+    "version_used": "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a",
+    "cache_sha256": "66f30ea1d41d7063b3cb5a481281715011ba54ba897d5d17e058d8bb75273d50"
+  },
+  "escalation_seconds": 1500,
+  "address_space_limit_bytes": 6442450944,
+  "pairs_total": 396,
+  "pairs_evaluated": 396,
+  "verdicts": {
+    "UNRESOLVED": 396
+  },
+  "unresolved_reasons": {
+    "SUBPROCESS_DIED_rc1": 396
+  },
+  "sealed_counts": {
+    "C": 102,
+    "B": 196,
+    "E": 119,
+    "A": 122
+  },
+  "corrected_counts_LOWER_unresolved_as_incorrect": {
+    "C": 102,
+    "B": 196,
+    "E": 119,
+    "A": 122
+  },
+  "corrected_counts_UPPER_unresolved_as_correct": {
+    "C": 104,
+    "B": 267,
+    "E": 119,
+    "A": 49
+  },
+  "worlds_whose_stage_MOVED_at_LOWER": 0,
+  "rows_found_CORRECT_that_the_cap_had_scored_incorrect": 0,
+  "ALL_AFFECTED_WORLDS_DETERMINATE": false,
+  "PLURALITY_note": "Analytic, established BEFORE execution and requiring no computation: A->C/E and B->C/E each need a RETAINED row to flip, and abandoned rows land on a retained row in only 2 A-worlds, 0 B-worlds. Hence B>=196, A<=122, C+D<=104 always, so the Gate 2 predicate is CAP-INVARIANT.",
+  "PLURALITY_INVARIANT_lower": true,
+  "PLURALITY_INVARIANT_upper": true,
+  "TERMINAL": "D-INST-NO-WORLD-MOVED"
+}
