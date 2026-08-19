@@ -1,0 +1,78 @@
+{
+  "schema": "muru-e2b-final-terminal-state-1.0.0",
+  "admissibility": "DECISION_INADMISSIBLE",
+  "TERMINAL_STATE": "A. GATE_1_FAIL_DEFINITIVELY_SEALED_AND_FORWARD_PATH_RESOLVED",
+  "terminal_state_note": "The forward path IS resolved: frozen authority determines it completely -- all E4 ablations suspended, E4a does not execute, republish the attribution first, no v2 architecture proposed, report the non-execution and the divergence, STOP. The republication's CONTENT is computed and sealed here. What remains is ratification and the post-republication re-entry rule, which are protocol-owner acts by construction, not executable work. No prospectively authorized experiment is executable now: E4a-E4f are suspended by the hook, E4f additionally cannot be licensed by E2b (DECISION_INADMISSIBLE) and its E2a predicate is measured false; E0/E1/E3 are already complete; E6 is self-blocked by its own README; E5 is gated by a suspended input.",
+  "GATE_1": "FAIL",
+  "E2B_69_57_HOOK": "FAIL",
+  "E2B_IDENTITY": "PASS",
+  "GATE_1_DEFINITIVE": "YES",
+  "CRITIC_A": "PASS",
+  "CRITIC_B": "PASS",
+  "UNRESOLVED_DEFECTS": 0,
+  "direct_classes": {
+    "SUCCESS": 4,
+    "LOST_IN_CROSS_SEED": 71,
+    "LOST_IN_RETENTION": 55,
+    "NEVER_ON_FRONT": 14,
+    "SUM": 144
+  },
+  "DIRECT_RETENTION": 55,
+  "DIRECT_GENERATION": 14,
+  "DIRECT_THIRD_CLASS": 75,
+  "RETENTION_DEVIATION": 14,
+  "GENERATION_DEVIATION": 43,
+  "AGENT3_VS_AGENT4_CASE_MATCHES": "144/144",
+  "PROVISIONAL_RESULT_REPRODUCED": "YES",
+  "E4A_STATUS": "SUSPENDED -- does not execute (prereg section 4; B.1; design 2.9)",
+  "M2_STATUS": "NOT APPLICABLE -- M0/M1/M2/M3 are the G1 adequacy-ladder models, not G2 pipeline repair families",
+  "M3_STATUS": "NOT APPLICABLE -- same",
+  "NEW_PRIMARY_MECHANISM": "LOST_IN_CROSS_SEED (71, 49.3%)",
+  "OLD_PRIMARY_MECHANISM": "v1 SELECTION_FAILURE / within-seed retention (69) -- refuted: all 69 are cross-seed losses",
+  "PROTOCOL_OWNER_ACTION_REQUIRED": true,
+  "docket": [
+    {
+      "id": "D1",
+      "question": "Ratify the republished root-cause attribution (LOST_IN_CROSS_SEED 71 / LOST_IN_RETENTION 55 / NEVER_ON_FRONT 14 / SUCCESS 4) as the corrected v1 decomposition.",
+      "why": "B.1 orders republication but no commit defines an acceptance rule, adjudicator or template. Content is preregistered (population 2.8, statistic 2.7, freeze discipline 2.5); ratification is not."
+    },
+    {
+      "id": "D2",
+      "question": "Ratify the class-name mapping (retention <- LOST_IN_RETENTION, generation <- NEVER_ON_FRONT) as the operative reading of the 69/57 hook.",
+      "why": "The mapping lives in e2b_direct_evaluator.py:27-28, frozen prospectively at dabcb4b, not in any authority text. The verdict is invariant across the exhaustive mapping space, so this does not gate the result -- but it should be on the record."
+    },
+    {
+      "id": "D2-extended",
+      "question": "Rule on the posture difference: section 2.11 treats this outcome as an anticipated revision the programme continues through; section 2.9/B.1/section 4 treat it as a falsification that halts it.",
+      "why": "Both critics agree the two texts issue the SAME instruction today (republish first; E4a does not execute). The difference governs only the RE-ENTRY path after republication."
+    },
+    {
+      "id": "D3",
+      "question": "Define what discharges 'until the contradiction is resolved', and the re-licensing predicate for the E4 arms.",
+      "why": "Nowhere defined in any commit on any branch."
+    },
+    {
+      "id": "D4",
+      "question": "Rule on E5, which is gated by E3 and informed by E4d (now suspended).",
+      "why": "E5 is registered but its informing input is suspended; it is the sole live experimental gap."
+    },
+    {
+      "id": "D5",
+      "question": "Rule on E2a's status as a calibration surface given the E2a/E2b attribution divergence.",
+      "why": "befca0d section 2.3: divergence 'would mean the fresh worlds do not reproduce the Held-out regime, which invalidates E2a as a calibration surface.' E2b is DECISION_INADMISSIBLE and may not adjudicate this."
+    },
+    {
+      "id": "D6",
+      "question": "Disposition of the corpus-level section 2.3/2.4 omission: E2b front records carry no admissibility column and lack other mandated fields.",
+      "why": "Immaterial to Gate 1, but it means E4a's R1/R4/R5 arms could not have been scored from this corpus in any case."
+    }
+  ],
+  "host": {
+    "os": "Linux",
+    "release": "7.0.0-1008-gcp",
+    "arch": "x86_64",
+    "cpu_count": 24
+  },
+  "no_new_symbolic_search_performed": true,
+  "authoritative_corpus": "results/e2b_macos_fullfront_replay_20260818 (macOS/ARM64, run_commit dabcb4b, 4320 fronts, 51411 rows)"
+}

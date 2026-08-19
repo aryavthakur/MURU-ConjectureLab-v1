@@ -1,5 +1,10 @@
 # ATTRIBUTION REVISION — republished root-cause ranking from direct measurement
 
+> **`DECISION_INADMISSIBLE`** (`befca0d` §2.3/§2.4). E2b outputs may corroborate or
+> contradict a conclusion already reached on E2a. They may **not** license any v2
+> threshold, retention rule, grammar change, classifier change, benchmark change, or
+> forward experiment. `RANK_1 = LOST_IN_CROSS_SEED` does **not** license E4f.
+
 **Trigger.** `GATE_1 = FAIL`. `MURU_V2_CAUSAL_DECISION_TREE.md` §B.1 requires:
 "SUSPEND ALL E4 ABLATIONS until the contradiction is resolved. **Republish the
 root-cause attribution first.**" This document is that republication's *content*.
@@ -92,12 +97,123 @@ The verdict does not depend on any contested reading:
   `rc5_selection` retention rule and a from-scratch recomputation of the cross-seed
   representative reproduces all 144 classes: `AGENT3_VS_AGENT4_CASE_MATCHES = 144/144`.
 
-## 6. What this document is NOT
+## 6. What this document is NOT — and precisely what authority is missing
 
-`MURU_V2_CAUSAL_DECISION_TREE.md` §B.1 orders the attribution "republished" but no
-commit in the frozen corpus defines a republication *protocol*: no population, no
-statistic, no acceptance rule, no freeze discipline, no adjudicator, no template.
-This document therefore supplies the republication's **content** computed from
-sealed evidence under the frozen four-way partition. Ratifying it as *the*
-republished attribution is a protocol-owner act, not an analyst act — see
-`FORWARD_AUTHORITY_MAP.md` and `FINAL_TERMINAL_REPORT.md`.
+`MURU_V2_CAUSAL_DECISION_TREE.md` §B.1 orders the attribution "republished". This
+document supplies that republication's **content**, computed from sealed evidence
+under the frozen four-way partition. It does not claim to be the republication
+*protocol*, and ratifying it is a protocol-owner act, not an analyst act.
+
+An earlier draft of this section claimed the frozen corpus defines *no* population,
+statistic, acceptance rule, freeze discipline, adjudicator or template. **That
+overstated the gap and is corrected here.** Three of those six are in fact
+preregistered, results-blind:
+
+| Element | Status | Frozen source |
+|---|---|---|
+| Population | **FROZEN** | §2.8: "**E2b.** 144 Held-out G2 cases x 30 seeds = **4,320 searches**." |
+| Statistic | **FROZEN** | §2.7: "Every case is assigned exactly one label, forming a partition" |
+| Freeze discipline | **FROZEN** | §2.5.3 replay fidelity (quarantine-not-drop) + the evaluator's own "FROZEN BEFORE REPLAY", SHA-pinned at `dabcb4b` |
+| Mandate and deadline | **FROZEN** | §2.11: "the root-cause ranking's ordering of RC3 and RC4 is recomputed **before E4 proceeds**" |
+| Acceptance rule | **ABSENT** | — |
+| Adjudicator / template | **ABSENT** | — |
+| Definition of "resolved"; re-licensing predicate | **ABSENT** | — |
+
+So the republication's *content* is preregistered and is not an analyst invention.
+What is genuinely missing is an acceptance rule, an adjudicator, and any definition
+of what discharges "until the contradiction is resolved". Those, and the mapping
+conflict in §7, are the protocol-owner boundary.
+
+## 7. The mapping question — raised, adjudicated, and settled
+
+An earlier revision of this section presented three mappings as live alternatives
+"blocking ratification", two of them yielding PASS. **That framing was wrong and is
+corrected here.** The question was raised by the scientific adversary, adjudicated
+against it by the governance adversary, and the scientific adversary withdrew. It
+does not block Gate 1.
+
+### 7.1 What was asked
+
+Frozen authority states the numbers 69 and 57 and the tolerance, but never says
+*which* E2b class is the "retention-class". The mapping used —
+`retention ← LOST_IN_RETENTION`, `generation ← NEVER_ON_FRONT` — lives in
+`e2b_direct_evaluator.py:27-28`, frozen prospectively at `dabcb4b`, not in any
+authority text. That is a real observation and it stays on the record.
+
+### 7.2 Why it does not change the verdict — the exhaustive mapping space
+
+| Mapping | Direct | Baseline | Dev | Hook |
+|---|---:|---:|---:|---|
+| `retention ← LOST_IN_RETENTION` | 55 | 69 | 14 | **FAIL** |
+| `retention ← LOST_IN_RETENTION` | 55 | 71 | 16 | **FAIL** |
+| `retention ← LOST_IN_CROSS_SEED` | 71 | 69 | 2 | PASS — *name inversion* |
+| `retention ← LOST_IN_CROSS_SEED` | 71 | 71 | 0 | PASS — *name inversion* |
+| `retention ← LIR + LICS` | 126 | 69 | 57 | **FAIL** |
+| `generation ← NEVER_ON_FRONT` | 14 | 57 | 43 | **FAIL** |
+| `generation ← NEVER_ON_FRONT` | 14 | 69 | 55 | **FAIL** |
+| `generation ← NOF + LIR` | 69 | 57 | 12 | **FAIL** |
+| `generation ← NOF + LIR` | 69 | 69 | 0 | PASS — *v1 compared to itself* |
+| `generation ← NOF + LIR − 12 grammar` | 57 | 57 | 0 | PASS — *ad-hoc subtraction* |
+
+**Every mapping that uses E2b's new front-level information reads FAIL.** The four
+PASSes are two name-inversions (scoring "reproduced" precisely on the 69 cases where
+the taxonomies disagree about mechanism), one comparison of v1 against itself, and
+one that reaches 57 only by subtracting exactly the 12 grammar cases — a step chosen
+after observing that it lands on 57. Without that subtraction the same mapping reads
+69 vs 57, deviation 12, FAIL.
+
+Note also `retention ← LIR + LICS` = 126 vs 69, deviation 57: even the mapping that
+reads E2b as *vindicating* the retention diagnosis more strongly than v1 claimed
+still trips the threshold. **The v1 attribution is contradicted in both directions.**
+
+### 7.3 Why the PASS mappings are uninformative
+
+The two "reproduced" readings track set identities that already hold:
+v1 `SELECTION_VOTING` is the same 71 case IDs as `LOST_IN_CROSS_SEED`; v1
+oracle-FALSE is the same 69 case IDs as `LIR ∪ NEVER_ON_FRONT`.
+
+**What does *not* pin them: the identity gate.** An earlier draft claimed these
+identities are entailed by `E2B_IDENTITY = PASS` on any dataset — a "theorem". That
+was an overstatement and is withdrawn. `E2B_IDENTITY` (§2.5 control 3) constrains
+only the sealed `selection_count` and the cross-seed representative — properties of
+the **winning class alone**. The four-way partition turns on
+`seeds_with_retained_correct ≥ 1`, a predicate over **all 30 seeds**. A constraint on
+the winner cannot entail a predicate quantified over every seed. Constructibly so:
+**13 `LOST_IN_CROSS_SEED` cases sit at `seeds_with_retained_correct = 1`** (e.g.
+`F04|r000` at `selection_count = 4` of 30). Each such case's single correct-retaining
+seed votes in a *losing* class, so swapping it for another losing expression leaves
+the winning class, its membership and its representative untouched — identity still
+passes 144/144 — while the case moves `LOST_IN_CROSS_SEED → LOST_IN_RETENTION` and
+the set identity breaks by one.
+
+**What does pin them: per-seed retention fidelity — a *separately measured* premise.**
+The operative hypothesis is
+`v1.seeds_with_g2_success == E2b.seeds_with_retained_correct` per case. That is
+*stronger* than the identity gate and is precisely the thing identity does **not**
+check; it is measured here independently, at **144/144**. Under that measured premise
+a genuine conditional result does hold: predeclaration §6 *defines*
+`SUCCESS ∪ LOST_IN_CROSS_SEED ≡ {retained_correct ≥ 1}` and
+`LIR ∪ NEVER_ON_FRONT ≡ {retained_correct = 0}`, while v1's `SELECTION_VOTING` is its
+own oracle-true non-success set — so both alternative deviations are **exactly** zero
+on this corpus, provably, from a measured premise rather than an assumed one.
+
+The conclusion is therefore not that those mappings are tautological in the abstract,
+but that **they measure replay↔seal fidelity in per-seed retention, not attribution
+correctness**. Their reading is fixed by a quantity already confirmed at 144/144, so
+they carry no information about what §2.9 says the hook tests: whether *"the
+decomposition's **attribution** is wrong"*. Only the class-name mapping measures that,
+and it measures it decisively — **124 of 144 cases relabelled**.
+
+### 7.4 §2.9 and §2.11 are the same instruction
+
+An earlier draft read §2.11 as licensing "E4 proceeds" against B.1's suspension.
+That was a mis-paraphrase. The frozen text is *"recomputed **before** E4
+proceeds"* — a precedence constraint, not a licence — and B.1 supplies the interim
+posture: *"SUSPEND ALL E4 ABLATIONS until the contradiction is resolved. Republish
+the root-cause attribution first."* Both issue the **same** instruction today:
+republish first; E4a does not execute. Both adversaries converged on this.
+
+What remains is a difference of *posture* — §2.11 treats this as an anticipated
+revision the programme continues through, §2.9/B.1/§4 as a falsification that halts
+it — which governs only the **re-entry path after republication**, not the present.
+That is docket item D2-extended.

@@ -894,3 +894,52 @@ frozen prospective authority.**
 
 **Terminal state of this document:** governance research only. No experiment designed,
 authorized, or executed. No frozen document amended. No scientific compute run.
+
+---
+
+# APPENDIX A — CORRECTION: E0, E1 and E3 are COMPLETE, and E3 constrains the routing
+
+*Added after CRITIC_B's history sweep. Sections above describe E0/E1/E3/E6 as "remaining
+authorized", implying pending options. That is wrong: three of the four have already run
+and been hostile-audited. Their commits are non-ancestors of HEAD, reachable only from
+`mac-transfer` refs, which is why they were missed — all are now pinned under
+`refs/tags/muru-authority/*`.*
+
+| Experiment | Status | Commit |
+|---|---|---|
+| E0 | **COMPLETE**, hostile audit PASS | `bdbcea6` |
+| E1 | **COMPLETE** — "no pair admissible, H3, no v2 change licensed" | `4841f11` |
+| E3 | **COMPLETE**, executed and audited | `1d20731`, audit `94abf97` |
+| E6 | **SELF-BLOCKED** by `scripts/cloud_e6/README.md`: "Do NOT execute E6 until all upstream scientific prerequisites (E2b falsification hook and E4a candidate proposal) are formally resolved and licensed." | HEAD |
+| E5 | **GENUINE LIVE GAP** — gated by E3, informed by E4d (suspended) | — |
+
+## A.1 E3's verdicts, read directly from `1d20731:E3_RESULTS.json`
+
+```
+frozen_operating_point_disposition
+  mass_affine_descriptor       bic_rate 0.553  c*_bic 1.1   MARGINAL      search_side_attribution_licensed: FALSE
+  mass_exponential_descriptor  bic_rate 0.527  c*_bic 1.1   MARGINAL      search_side_attribution_licensed: FALSE
+  mass_saturating_descriptor   bic_rate 0.820  c*_bic 0.4   IDENTIFIABLE  licensed: true
+  mass_interaction             bic_rate 1.000  c*_bic 0.25  IDENTIFIABLE  licensed: true
+
+study_validity   BIC false_structure_oracle_rate 0.095 -> VALID_NARROW  (clears B.0's >0.10 bar by 0.005)
+                 R2  false_structure_oracle_rate 0.685 -> STUDY_INVALID (excluded from all licensing)
+h_id_noise_result  FALSIFIED -- confusability is response-measurement noise through the g
+                   estimator, not fundamental shape inseparability
+```
+
+## A.2 Why this is load-bearing on the present adjudication
+
+`MURU_V2_CAUSAL_DECISION_TREE.md` §B.1 routes the `NEVER_ON_FRONT` branch **through E3's
+verdict** (`IDENTIFIABLE` → E4b/E4c/E4d licensed; `WEAKLY IDENTIFIABLE` → no search change
+licensed), and §B.0 states `MARGINAL` → *no search-side change may cite this cell alone*.
+
+E2b's 14 `NEVER_ON_FRONT` cases are **12 F18 (exponential) + 2**. E3 has already ruled the
+exponential family **MARGINAL** with `search_side_attribution_licensed: false`. So even in the
+counterfactual where generation had been the dominant mechanism, the search-side repair route
+would already be blocked by a completed experiment. This must be in the protocol-owner package.
+
+Note this compounds rather than relieves the STOP: the two largest direct classes are
+`LOST_IN_CROSS_SEED` (71, whose only registered arm E4f is suspended and unlicensable by E2b)
+and `LOST_IN_RETENTION` (55, whose arm E4a is suspended), while the third, `NEVER_ON_FRONT`
+(14), routes into families E3 has already ruled MARGINAL.

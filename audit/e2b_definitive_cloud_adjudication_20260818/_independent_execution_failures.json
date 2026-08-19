@@ -1,17 +1,9 @@
 [
   {
-    "case_id": "PB|held_out|F01|r004",
+    "case_id": "PB|held_out|F08|r007",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 1056.1,
-    "killed_by_signal": 9,
-    "stderr_tail": ""
-  },
-  {
-    "case_id": "PB|held_out|F03|r008",
-    "ok": false,
-    "returncode": -9,
-    "wall_seconds": 349.5,
+    "wall_seconds": 352.4,
     "killed_by_signal": 9,
     "stderr_tail": ""
   },
@@ -19,7 +11,15 @@
     "case_id": "PB|held_out|F03|r011",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 262.3,
+    "wall_seconds": 352.7,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F08|r009",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 2450.3,
     "killed_by_signal": 9,
     "stderr_tail": ""
   },
@@ -27,7 +27,15 @@
     "case_id": "PB|held_out|F08|r005",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 2097.6,
+    "wall_seconds": 2450.3,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F09|r001",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 2097.5,
     "killed_by_signal": 9,
     "stderr_tail": ""
   },
@@ -35,15 +43,7 @@
     "case_id": "PB|held_out|F03|r000",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 3765.6,
-    "killed_by_signal": 9,
-    "stderr_tail": ""
-  },
-  {
-    "case_id": "PB|held_out|F03|r004",
-    "ok": false,
-    "returncode": -9,
-    "wall_seconds": 3765.6,
+    "wall_seconds": 2450.3,
     "killed_by_signal": 9,
     "stderr_tail": ""
   },
@@ -51,15 +51,31 @@
     "case_id": "PB|held_out|F03|r001",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 3765.6,
+    "wall_seconds": 2450.3,
     "killed_by_signal": 9,
     "stderr_tail": ""
   },
   {
-    "case_id": "PB|held_out|F08|r007",
+    "case_id": "PB|held_out|F08|r010",
     "ok": false,
     "returncode": -9,
-    "wall_seconds": 2365.2,
+    "wall_seconds": 2097.9,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F10|r009",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 269.4,
+    "killed_by_signal": 9,
+    "stderr_tail": ""
+  },
+  {
+    "case_id": "PB|held_out|F12|r008",
+    "ok": false,
+    "returncode": -9,
+    "wall_seconds": 3781.0,
     "killed_by_signal": 9,
     "stderr_tail": ""
   }

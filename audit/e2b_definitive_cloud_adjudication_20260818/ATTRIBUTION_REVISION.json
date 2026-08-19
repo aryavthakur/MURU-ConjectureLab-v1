@@ -1,4 +1,6 @@
 {
+  "admissibility": "DECISION_INADMISSIBLE",
+  "admissibility_authority": "befca0d section 2.3/2.4 -- E2b outputs are DECISION_INADMISSIBLE. This republished ranking may CONTRADICT the v1 attribution but may NOT license any v2 change or any forward experiment. RANK_1=LOST_IN_CROSS_SEED specifically does NOT license E4f; section 2.9's licensing table is keyed to the E2a attribution, where B (retention) is the sealed plurality.",
   "schema": "muru-e2b-attribution-revision-1.0.0",
   "denominator": 144,
   "trigger": "GATE_1 = FAIL (E2B_69_57_HOOK = FAIL). The v1 decomposition's root-cause ranking is falsified and must be republished from the direct measurement before any E4 arm may be re-authorised.",

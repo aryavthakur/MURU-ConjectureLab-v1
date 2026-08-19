@@ -113,6 +113,11 @@ def main() -> None:
         "FRONT_CORPUS_ACCEPTABLE": corpus_ok,
         "POST_FREEZE_PATCH_SCIENTIFICALLY_NEUTRAL": True,  # see POST_FREEZE_SERIALIZATION_EQUIVALENCE.md
         "FROZEN_EVALUATOR_COMPLETE": count_sum_ok and invalid == 0,
+        "FROZEN_EVALUATOR_COMPLETE_basis": (
+            "144/144 classes established and 0 invalid. NOTE: this does NOT mean the "
+            "uncapped frozen evaluator ran to completion on all 144 -- it completed 101; "
+            "the rest were established by a cap-invariant determinacy bound plus "
+            "expression-level escalation. See FROZEN_EVALUATOR_EXECUTION_MANIFEST.json."),
         "INDEPENDENT_EVALUATOR_COMPLETE": sum(c4.values()) == DENOMINATOR,
         "CASE_LEVEL_AGREEMENT_144_144": agreement_full,
         "COUNT_SUM_144": count_sum_ok,
@@ -120,6 +125,14 @@ def main() -> None:
 
     result = {
         "schema": "muru-e2b-gate1-definitive-1.0.0",
+        "admissibility": "DECISION_INADMISSIBLE",
+        "admissibility_authority": (
+            "befca0d MURU_V2_G2_PARETO_STUDY_DESIGN.md section 2.3/2.4: 'E2b outputs are "
+            "DECISION_INADMISSIBLE. No v2 threshold, retention rule, grammar change, classifier "
+            "change or benchmark change may be justified by E2b. E2b may only corroborate or "
+            "contradict a conclusion already reached on E2a.' This artifact may BLOCK "
+            "(a falsification hook can only block) but may NEVER license any v2 change or any "
+            "forward experiment. In particular RANK_1=LOST_IN_CROSS_SEED does NOT license E4f."),
         "denominator": DENOMINATOR,
         "agent3_counts": c3,
         "agent4_counts": c4,
@@ -168,13 +181,32 @@ def main() -> None:
                 "REPRESENTATION": 12, "NONE": 4,
             },
             "structural_note": (
-                "v1's SELECTION_VOTING stage holds 71 cases (69 SELECTION_FAILURE + 2 "
-                "CANONICALIZATION_EQUIVALENCE_FAILURE) and CONFLATES within-seed retention "
-                "with cross-seed voting. E2b separates those into LOST_IN_RETENTION and "
-                "LOST_IN_CROSS_SEED. The 69 historical 'retention' figure is therefore a "
-                "retention+voting aggregate being compared against a retention-only direct "
-                "count."
-            ),
+                "CORRECTED. v1 does NOT conflate the two selection stages: its "
+                "first_failure_point separates SELECTION_WITHIN_SEED_RETENTION (69) from "
+                "SELECTION_CROSS_SEED_IDENTITY (2). What v1 got wrong is the ASSIGNMENT. "
+                "The verified cross-tabulation is: all 69 SELECTION_FAILURE -> "
+                "LOST_IN_CROSS_SEED; 55 of 57 SEARCH_GENERATION_FAILURE -> LOST_IN_RETENTION "
+                "and 2 -> NEVER_ON_FRONT; all 12 GRAMMAR_REPRESENTABILITY -> NEVER_ON_FRONT; "
+                "all 4 NONE_SUCCESS -> SUCCESS. Note also that count(LOST_IN_RETENTION) and "
+                "v1's 69 are DEFINITIONALLY DISJOINT: LOST_IN_RETENTION requires "
+                "retained_correct false for all 30 seeds, while all 69 are oracle-TRUE. So "
+                "RETENTION_DEVIATION=14 is a category-crossing number. The FAIL is carried by "
+                "the generation deviation (43) and, more fundamentally, by the fact that 124 "
+                "of 144 cases are RELABELLED relative to v1's stage attribution."),
+            "vacuity_of_the_alternative_mappings": (
+                "Both alternative mappings that would yield PASS are VACUOUS, verified by set "
+                "identity rather than count identity. (1) v1's SELECTION_VOTING set is "
+                "IDENTICALLY E2b's LOST_IN_CROSS_SEED set (same 71 cases), and both equal v1's "
+                "oracle-true non-success set. (2) v1's oracle-FALSE set is IDENTICALLY E2b's "
+                "LOST_IN_RETENTION u NEVER_ON_FRONT set (same 69 cases). Because the identity "
+                "gate already passed 144/144 -- including v1 seeds_with_g2_success == E2b "
+                "seeds_with_retained_correct on every case -- these deviations are FORCED to 0 "
+                "for any exhaustive partition of the same 144 cases. A falsification hook whose "
+                "value is fixed by a different, already-passing gate tests nothing, and section "
+                "2.9 calls this hook 'the strongest single check in the plan, because it tests "
+                "the diagnosis that the whole remediation rests on'. The class-name mapping is "
+                "the only reading under which the hook is a non-vacuous test of the ATTRIBUTION, "
+                "which is what section 2.9 says it tests."),
             "alternative_generation_baseline_57_plus_grammar_12": 69,
             "generation_deviation_under_alternative": abs(direct_generation - 69),
             "alternative_retention_baseline_69_plus_canon_2": 71,

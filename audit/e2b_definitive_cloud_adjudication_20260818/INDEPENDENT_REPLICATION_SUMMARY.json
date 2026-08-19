@@ -28,5 +28,6 @@
   "INVALID_CASES": 0,
   "selection_count_matches_sealed": "144/144",
   "representative_matches_sealed": "144/144",
-  "AGREEMENT_WITH_FROZEN": "144/144"
+  "AGREEMENT_WITH_FROZEN": "144/144",
+  "admissibility": "DECISION_INADMISSIBLE"
 }
