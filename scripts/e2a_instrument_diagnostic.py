@@ -41,7 +41,7 @@ CKPT = OUT / "_ckpt_dinst"
 CACHE = os.path.expanduser("~/e2_x86_cache/classify_cache.sqlite3")
 
 ESCALATION_SECONDS = 1500        # D6: Gate 1's actual budget
-ADDRESS_SPACE_BYTES = 8 * 1024**3  # D1: hard per-pair memory bound
+ADDRESS_SPACE_BYTES = 6 * 1024**3  # D1: hard per-pair memory bound
 CORRECT, INCORRECT, UNRESOLVED = "CORRECT", "INCORRECT", "UNRESOLVED"
 
 

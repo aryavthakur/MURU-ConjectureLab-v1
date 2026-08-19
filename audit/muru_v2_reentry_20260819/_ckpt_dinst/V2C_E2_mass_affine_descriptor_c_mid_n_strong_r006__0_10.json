@@ -1,0 +1,1 @@
+{"world_id": "V2C|E2|mass_affine_descriptor|c_mid|n_strong|r006", "seed_ordinal_k": 0, "front_rank": 10, "retained_by_argmax_score": false, "expression_string": "square(cube(square(1.1178792 - inv(cube(x1) + sqrt((x0 * 0.295077) - x3)))))", "verdict": "INCORRECT", "reason": "RESOLVED", "wall_seconds": 20.3, "sealed_stage": "B"}
