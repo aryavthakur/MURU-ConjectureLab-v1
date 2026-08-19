@@ -72,6 +72,15 @@ The Dict is what all cost and run-status tracking actually uses now (see
 §4). The Volume is mounted only on `rescue_execute`, for whatever the
 caller's own `command` wants to persist.
 
+A third Volume, `muru-stage1-artifact-bridge` (2026-08-19, §2's "Stage 1
+artifact bridge" subsection below), mirrors local Stage 1 checkpoints into
+Modal one-way so sidecar mechanical work can overlap a live scientific
+search:
+
+```bash
+modal volume create muru-stage1-artifact-bridge
+```
+
 ---
 
 ## 2. Everyday commands
@@ -184,6 +193,64 @@ Fires 50+ concurrent control-ledger writes (see §4.2) and verifies zero
 missing, zero duplicates, and an exact recomputed cost total. Exits
 non-zero on any failure. Safe to re-run any time — it only touches its
 own freshly-generated `run_id`.
+
+### Stage 1 artifact bridge (2026-08-19)
+
+A ONE-WAY mirror from the local Google VM's Stage 1 checkpoint directory
+into a Modal Volume (`muru-stage1-artifact-bridge`), so sidecar mechanical
+work (schema/duplicate/torn/missing checks) can overlap a live Stage 1
+search instead of waiting for it to finish. Modal never writes back to the
+local directory — see `MURU_V2_MODAL_INFRASTRUCTURE.md` §8 for the full
+governance writeup and the adversarial 11-property self-test evidence (including a genuine concurrent-lock test and a containment-guard test, added after a hostile review found the original 9 did not cover them).
+
+**Run the uploader/watcher** (local host, isolated Modal-CLI venv, never
+the scientific venv):
+```bash
+~/.venvs/modal-cli/bin/python3 stage1_bridge_uploader.py \
+    --watch-dir /path/to/results/v2_calibration_surface/_ckpt_worlds \
+    --run-id <stage1-run-id> \
+    --ledger-path /path/to/a/persistent/ledger.json \
+    --poll-interval 20 \
+    --verify-sample-every 20    # 0 disables sampled remote re-verification
+```
+`--once` runs a single pass (for testing) instead of looping. An OS-level
+`flock` on `<ledger-path>.lock` refuses a second concurrent instance
+against the same ledger — the ledger itself is a whole-snapshot JSON file,
+not a merge, so two overlapping writers would otherwise clobber each
+other exactly like the control-ledger Volume bug this branch already
+fixed once (§4).
+
+**Independently re-hash one bridged file from a separate process:**
+```bash
+modal run -q modal_app.py::verify_bridge_file \
+    --remote-path /stage1/<run_id>/<relative_path> --expected-sha256 <sha256>
+```
+
+**Mechanical check over a whole bridged run** (presence/missing/duplicate/
+malformed-JSON only — no scientific aggregation, no routing, no
+qualification statistic):
+```bash
+modal run -q modal_app.py::bridge_mechanical_check --run-id <run_id> \
+    --expected-paths-json /path/to/expected_relative_paths.json
+```
+
+**Adversarial self-test** (synthetic dummy files only, never real Stage 1
+data — properties A-K, see `MURU_V2_MODAL_INFRASTRUCTURE.md` §8):
+```bash
+~/.venvs/modal-cli/bin/python3 stage1_bridge_selftest.py
+```
+
+**Latency measurement** (synthetic dummy data):
+```bash
+~/.venvs/modal-cli/bin/python3 stage1_bridge_latency_measure.py
+```
+
+Note the `-q`/`--quiet` flag on `modal run` above for any command whose
+output your own script needs to parse programmatically — without it,
+Modal's live progress UI can interleave text into stdout mid-JSON-object
+even when stdout is piped/captured, not just when it's an interactive
+terminal. Caught live authoring the self-test; see `stage1_bridge_selftest.py`'s
+`_extract_json_object` docstring.
 
 ---
 

@@ -888,3 +888,139 @@ def inspect_control_ledger(event_type: str = "", limit: int = 50):
         rows.append({"key": key, "event_type": this_event_type, "value": value})
     rows.sort(key=lambda r: r["key"])
     print(json.dumps({"n_total_matching": len(rows), "shown": rows[:limit]}, indent=2, default=str))
+
+
+@sidecar_app.local_entrypoint()
+def run_command(commit_sha: str, command: str, timeout_sec: int = 1700):
+    """CLI wrapper around the pre-existing `sidecar_run_command` -- the
+    README already suggested wrapping generic sidecar jobs with a new
+    local_entrypoint "as needed"; this is that. (A hostile review flagged
+    an earlier version's docstring claiming "not part of the pushed
+    infrastructure" while sitting in the same diff about to be pushed --
+    self-contradicting. Fixed by being honest about what this is: a
+    committed, intentional addition, not scratch work.)"""
+    print(json.dumps(sidecar_run_command.remote(commit_sha, command, timeout_sec), indent=2))
+
+
+# --------------------------------------------------------------------------
+# STAGE 1 ARTIFACT BRIDGE (infrastructure-only, added for one-way local ->
+# Modal mirroring so sidecar mechanical work can overlap live Stage 1
+# search). The bridge Volume is mounted READ-ONLY here by policy -- a write
+# attempt from these functions would fail at the filesystem level, not
+# merely by convention, since the mount itself is opened read-only.
+# --------------------------------------------------------------------------
+
+BRIDGE_VOLUME_NAME = "muru-stage1-artifact-bridge"
+bridge_volume_ro = modal.Volume.from_name(BRIDGE_VOLUME_NAME, create_if_missing=True).read_only()
+
+
+@sidecar_app.function(image=sidecar_image, timeout=120, volumes={"/raw": bridge_volume_ro})
+def sidecar_verify_bridge_file(remote_path: str, expected_sha256: str = "") -> dict:
+    """Independently re-hash ONE file already uploaded to the bridge, from a
+    completely separate process/container than the local uploader. Mounted
+    read-only: this function cannot write to /raw regardless of what it is
+    asked to do."""
+    t0 = time.time()
+    import hashlib
+    rel = remote_path.lstrip("/")
+    full = os.path.join("/raw", rel)
+    if not os.path.exists(full):
+        result = {"remote_path": remote_path, "exists": False}
+    else:
+        h = hashlib.sha256()
+        with open(full, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+        actual = h.hexdigest()
+        result = {"remote_path": remote_path, "exists": True, "actual_sha256": actual,
+                  "expected_sha256": expected_sha256 or None,
+                  "match": (actual == expected_sha256) if expected_sha256 else None}
+    # CRITIC finding (2026-08-19): the three bridge functions never recorded
+    # cost, unlike every other billable sidecar function -- their real spend
+    # was invisible to cost_report/inspect_control_ledger and the $45 soft
+    # cap. Fixed here, matching the existing pattern exactly.
+    _append_cost_ledger("sidecar_verify_bridge_file", cpu=1, mem_gib=1,
+                        seconds=time.time() - t0, extra={"remote_path": remote_path})
+    return result
+
+
+@sidecar_app.function(image=sidecar_image, timeout=600, volumes={"/raw": bridge_volume_ro})
+def sidecar_bridge_mechanical_check(run_id: str, expected_relative_paths: list = None) -> dict:
+    """Mechanical-only pass over already-bridged files: presence/missing
+    accounting against a caller-supplied expected-path list, content-hash
+    duplicate detection, and torn/malformed-JSON detection. Writes NOTHING
+    to /raw (read-only mount) and computes no truth-dependent, routing, or
+    qualification statistic -- only structural facts about the files
+    themselves. The caller is responsible for recording the result under
+    the control ledger's derived: namespace via _record_event, keeping it
+    separate from cost/readiness/started/completed events."""
+    t0 = time.time()
+    import hashlib
+    import json as _json
+    base = f"/raw/stage1/{run_id}"
+    present, bad = {}, []
+    if os.path.isdir(base):
+        for root, _, files in os.walk(base):
+            for fn in files:
+                full = os.path.join(root, fn)
+                rel = os.path.relpath(full, base)
+                try:
+                    with open(full, "rb") as f:
+                        data = f.read()
+                    _json.loads(data)  # torn/malformed-JSON check only
+                    present[rel] = hashlib.sha256(data).hexdigest()
+                except Exception as ex:
+                    bad.append({"rel": rel, "error": f"{type(ex).__name__}: {ex}"})
+    expected = set(expected_relative_paths or [])
+    present_set = set(present)
+    missing = sorted(expected - present_set)
+    unexpected = sorted(present_set - expected) if expected else []
+    dup_by_hash: dict = {}
+    for rel, h in present.items():
+        dup_by_hash.setdefault(h, []).append(rel)
+    duplicates = {h: rels for h, rels in dup_by_hash.items() if len(rels) > 1}
+    result = {"run_id": run_id, "n_present": len(present), "n_expected": len(expected),
+             "n_missing": len(missing), "missing": missing[:200],
+             "n_unexpected": len(unexpected), "unexpected": unexpected[:200],
+             "n_bad": len(bad), "bad": bad[:50],
+             "n_duplicate_groups": len(duplicates),
+             "duplicate_groups": dict(list(duplicates.items())[:20])}
+    _append_cost_ledger("sidecar_bridge_mechanical_check", cpu=1, mem_gib=1,
+                        seconds=time.time() - t0, run_id=run_id,
+                        extra={"n_present": len(present)})
+    return result
+
+
+@sidecar_app.local_entrypoint()
+def verify_bridge_file(remote_path: str, expected_sha256: str = ""):
+    print(json.dumps(sidecar_verify_bridge_file.remote(remote_path, expected_sha256), indent=2))
+
+
+@sidecar_app.local_entrypoint()
+def bridge_mechanical_check(run_id: str, expected_paths_json: str = ""):
+    expected = json.loads(open(expected_paths_json).read()) if expected_paths_json else None
+    print(json.dumps(sidecar_bridge_mechanical_check.remote(run_id, expected), indent=2))
+
+
+@sidecar_app.function(image=sidecar_image, timeout=60, volumes={"/raw": bridge_volume_ro})
+def sidecar_probe_raw_write_blocked() -> dict:
+    """TEST-ONLY: deliberately attempts to write into the read-only /raw
+    mount and reports whether it was blocked. Used by the adversarial
+    bridge self-test (property H) to prove the read-only mount is enforced
+    at the OS/filesystem level, not merely by this codebase's own
+    discipline of never calling a write API."""
+    t0 = time.time()
+    try:
+        with open("/raw/__write_probe_should_fail__.txt", "w") as f:
+            f.write("this should never succeed")
+        result = {"write_blocked": False, "note": "WRITE SUCCEEDED -- read-only mount NOT enforced"}
+    except Exception as ex:
+        result = {"write_blocked": True, "error_type": type(ex).__name__, "error": str(ex)}
+    _append_cost_ledger("sidecar_probe_raw_write_blocked", cpu=1, mem_gib=1,
+                        seconds=time.time() - t0)
+    return result
+
+
+@sidecar_app.local_entrypoint()
+def probe_raw_write_blocked():
+    print(json.dumps(sidecar_probe_raw_write_blocked.remote(), indent=2))

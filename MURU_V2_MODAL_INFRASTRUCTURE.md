@@ -395,3 +395,161 @@ sidecar report, both rescue-readiness runs, the pysr-absence checks, and
 all 55 concurrency-test invocations (50 stress probes + 5 cross-function
 calls), with zero entries lost. Negligible against the $50 budget either
 way.
+
+---
+
+## 8. Stage 1 artifact bridge (2026-08-19)
+
+**Status: BUILT, ADVERSARIALLY SELF-TESTED (11 properties, A-K), TWO
+ROUNDS OF HOSTILE REVIEW, BOTH FIXED-AND-CONFIRMED.** Not yet pointed at
+any real Stage 1 data -- Stage 1 has not launched as of this writing. Uses
+only synthetic dummy files throughout this section's testing.
+
+### 8.1 Why
+
+The Modal sidecar only sees git-tracked state (each function clones the
+public repo fresh). It has no access to the local Google VM's future
+Stage 1 checkpoint output (`results/v2_calibration_surface/_ckpt_worlds/`),
+which is generated at runtime and not committed. Without a bridge, no
+sidecar mechanical work (schema/duplicate/torn/missing-record checking)
+can overlap a live Stage 1 search -- it would have to wait for the whole
+57,960-search run to finish and be committed first.
+
+### 8.2 Design -- ONE-WAY, immutable, namespace-separated
+
+```
+scientific Google VM  --(upload only)-->  Modal Volume  --(read-only mount)-->  sidecar mechanical checks
+```
+
+- **One-way by construction**, not by policy: `stage1_bridge_uploader.py`
+  (runs on the local host, under the isolated Modal-CLI venv, never the
+  scientific venv) only ever calls `Volume.batch_upload()`. The three new
+  sidecar functions (`sidecar_verify_bridge_file`,
+  `sidecar_bridge_mechanical_check`, `sidecar_probe_raw_write_blocked`)
+  mount the bridge Volume via `.read_only()` -- a write attempt fails at
+  the OS/filesystem level inside the container, not merely by convention
+  (actively probed and confirmed, §8.4 property H).
+- **Immutable paths**: every uploaded file lives at
+  `/stage1/<run_id>/<relative_path>`, and `batch_upload(force=False)`
+  (Modal's own API-level guarantee) refuses to overwrite an existing
+  remote object. A local source file that changes content at the same
+  path is refused locally too, before even attempting the upload
+  (`REFUSED_SOURCE_CHANGED`) -- belt and braces, not either/or.
+- **Completion detection reuses the existing atomic-rename guarantee**:
+  `v2_stage1_calibration_run.py`'s `run_world()` writes checkpoints via
+  `tmp.replace(ck)`; a file present at its final name (no `.tmp` suffix)
+  is, by construction, already complete. No new marker, no mtime
+  heuristic.
+- **Persistent local transfer ledger** (JSON, atomically written, keyed by
+  local path): a file is uploaded at most once; duplicate/resumed
+  invocations short-circuit on `status` (not `verified` -- see the
+  caught-and-fixed defect below); an OS-level `flock` on
+  `<ledger-path>.lock` refuses a second, genuinely concurrent uploader
+  instance against the same ledger rather than letting two whole-snapshot
+  writers clobber each other.
+- **Sampled independent remote verification**: `--verify-sample-every N`
+  re-hashes every Nth successful upload via `sidecar_verify_bridge_file`
+  (a real, separate container) and records the result in the ledger. Not
+  exhaustive -- each round trip is a container cold start (~5-25s
+  measured) -- but genuinely wired in and exercised, not aspirational.
+- **No scientific aggregation, ever**: `sidecar_bridge_mechanical_check`
+  reports only structural facts -- presence/missing counts against a
+  caller-supplied expected-path list, content-hash duplicate groups,
+  torn/malformed-JSON detection. No truth read, no class count, no routing
+  or qualification statistic, computed nowhere in this bridge.
+- **No feedback channel**: confirmed by direct grep against the actual
+  scientific branch -- neither `scripts/v2_stage1_calibration_run.py` nor
+  `scripts/v2_stage1_scoring.py` references Modal, the bridge, or anything
+  in `scripts/cloud_modal/` in any way. The scientific execution path
+  cannot be influenced by anything this bridge observes or computes.
+
+### 8.3 A real defect found and fixed during self-testing
+
+The uploader's original re-upload short-circuit required
+`prior.get("verified")`, not just `prior.get("status") == "UPLOADED"`.
+Since independent verification is a deliberately sampled, not-per-file
+step, every unverified upload was resubmitted on every single watcher
+poll -- forever. Modal's own `force=False` meant no data was ever at risk
+(the resubmission was always rejected server-side), but the efficiency
+property genuinely failed. Caught live by the adversarial resume test
+(property I), fixed by keying the short-circuit on upload status instead.
+
+### 8.4 Adversarial self-test -- 11 properties, all on synthetic dummy data
+
+`stage1_bridge_selftest.py`, run live, `ALL 11 PROPERTIES PASSED (A-K)`:
+
+```
+A. local sha256 computed
+B. file uploaded
+C/D. Modal sidecar independently re-hashes it, matching
+E. duplicate invocation creates no duplicate work
+F. an altered same-path source is refused, remote object provably untouched
+G. 25 files upload together, none lost
+H. an ACTIVE write attempt into the read-only mount is blocked at the OS level
+I. resume after a simulated interrupt loses no completed transfers
+J. two GENUINELY concurrent instances (real Popen overlap, not sequential) --
+   one runs, one is refused by the flock lock
+K. a ledger path inside the watch dir is refused at startup
+```
+
+J and K were added after the first hostile review of this section found
+property E only exercised sequential duplicate invocation (the second
+instance started after the first had already exited), leaving the
+concurrency lock itself untested. The re-review confirmed J genuinely
+tests overlap: the lock is acquired before any network call, the first
+process is still alive and blocking in its watch loop when the second is
+launched.
+
+### 8.5 Hostile review -- two rounds
+
+**Round 1: FAIL, 6 defects** -- ledger whole-snapshot-write clobber risk
+(no lock), `mark_verified` dead code, the three new sidecar functions
+missing from cost tracking, README not updated, a `run_command` addition
+with a self-contradicting docstring, no watch-dir/ledger-path containment
+guard.
+
+**Round 2 (after fixes): FAIL, 1 residual** -- the README fix itself
+undersold the very test-count change this diff introduced (said
+"9-property"/"A-I" when the diff shipped 11/"A-K"). Fixed.
+
+All fixes independently re-verified live against the real bridge, not
+just re-read: the lock genuinely blocks true concurrent overlap, sampled
+verification genuinely writes `verified: true` with real remote hashes
+(spot-checked at `--verify-sample-every 1` and `2`, confirmed no
+off-by-one), all three bridge functions now log real elapsed time to the
+cost ledger, and the containment guard has no found false positive or
+false negative (symlinks and trailing slashes checked).
+
+### 8.6 Latency (synthetic dummy data, `stage1_bridge_latency_measure.py`)
+
+8 probes, one file at a time (not batched):
+
+```
+upload_median_s: 1.37    upload_max_s: 1.54
+end_to_end_median_s: 10.34   end_to_end_max_s: 25.04
+```
+
+`end_to_end` includes a fresh sidecar container cold start for
+verification each time -- a production watcher only pays the upload cost
+per file (median 1.37s), well under the ~5.1s DEV-profiled mean Stage 1
+search time, and the watcher runs as a separate process, not inside the
+search Pool, so it does not compete with search workers for CPU slots.
+Per the operator's own stated decision rule, this latency is small enough
+relative to search time to keep the streaming (poll-based, not batched)
+design as built.
+
+### 8.7 Cost
+
+Spend from all bridge testing (self-test + latency measurement + manual
+smoke tests), read from `cost_ledger_total` after this section's testing
+concluded: **$0.0627 total logged spend, 72 events**, against the $50
+budget -- negligible.
+
+### 8.8 Not yet done
+
+The watcher has not been pointed at any real Stage 1 output -- Stage 1
+has not launched. `sidecar_bridge_mechanical_check`'s results are not yet
+wired into any derived-namespace `_record_event` call (the function
+returns its result to the caller; nothing in this bridge decides to
+persist it under the control ledger's `derived:` prefix yet -- that
+wiring is deferred until there is a real run to check).
