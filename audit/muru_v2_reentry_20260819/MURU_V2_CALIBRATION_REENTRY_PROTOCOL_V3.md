@@ -1410,6 +1410,14 @@ below), it finds **zero** call-graph violations: `extract_effective_support` and
 `_resolved_support` internally — never `classify_support` or its siblings — so importing their
 home module carries no call-graph exposure to the banned symbols.
 
+> **Disclosed residual gap (`CRITIC_SCIENCE`, this pass, scored MED — not currently
+> exploited).** The verifier's AST-based import discovery finds `import`/`from...import`
+> statements; it does **not** resolve `importlib.import_module("...")` calls with a
+> dynamically-built module-name string, or `__import__(...)`. `grep` confirms **neither
+> mechanism appears anywhere** in the current entry-point closure or Stage 1 driver, so no
+> live violation exists. But a future edit that introduced one would not be caught. This is
+> recorded as a known limitation of the checker, not silently left implicit.
+
 **Why `P8b` is stricter where it counts.** The leak that matters is `g` being read from
 `truth.g_by_compound` instead of estimated. It is currently clean and `P8b` is what keeps it
 clean: `rc5_adapter.build_case_design(compounds, scalars)` takes
@@ -1427,7 +1435,7 @@ importing `rc5_runner` or `e2_classify`. §12's *"the real v1 production path"* 
 discharged by **control `C-1b`**, which requires the instrumented engine's
 `argmax(score)`-retained candidate to be byte-identical to the frozen `e2_search` module's (the
 one that produced the sealed E2a corpus) on a declared control set. **Executed: 9 compared, 0
-mismatched, PASSED** (`e2c_search.control_c1b`). `C-1b` tests identical search semantics by
+mismatched, PASSED** (`e2c_search_controls.control_c1b` -- moved out of `e2c_search.py` itself so it cannot be part of the search entry point's call graph, CRITIC_SCIENCE NEW-C1). `C-1b` tests identical search semantics by
 measurement; an import path was only ever a proxy that did not imply it.
 
 The check runs in preflight and at seal time and its result is recorded in the manifest.
@@ -2541,7 +2549,7 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
    rules, the tie rules, the schema validator's hard-coded field list, `scripts/v2_reachability_verifier.py` (section 32.1's witness verifier, EXECUTED:
    terminal-set equality PASSED, all 8 arithmetic rules F9-F16 REACHABLE),
    `scripts/v2_truth_blind_verifier.py` (section 16 P8a, EXECUTED: 0 call-graph violations
-   over 16 modules), `scripts/v2_freeze_dinst.py` (generates D-INST's freeze record from the
+   over 21 modules, post-hardening), `scripts/v2_freeze_dinst.py` (generates D-INST's freeze record from the
    live tool, closing the four-times-stale pattern -- N4), the two new modules of §5.2, the
    §25.4/§25.5 resource parameters and **all analysis code** are committed and their SHA-256 hashes recorded in a manifest. The freeze commit
    must be a **strict ancestor** of the first data commit. Verified by
@@ -2599,8 +2607,8 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
      reachability_verifier.py` (exhaustive integer search over per-condition vectors,
      terminal-set equality against the parsed §32 table — none reads a surface, all inputs are
      the frozen `delta`/`z` and integer counts declared here); `scripts/v2_truth_blind_
-     verifier.py` (AST call-graph walk over 16 modules, no execution of search or scoring);
-     control `C-1b` (`e2c_search.control_c1b`, 9 compared against the sealed `e2_search`
+     verifier.py` (AST call-graph walk over 21 modules, no execution of search or scoring);
+     control `C-1b` (`e2c_search_controls.control_c1b`, 9 compared against the sealed `e2_search`
      module's own historical E2a control worlds, 0 mismatched — reuses already-sealed E2a
      evidence, generates no new world); the `e2c_classify` resource-leak regression demos
      (fault-injected `MemoryError`/slow-`simplify`, on the literal strings `"x0 + x1"` and

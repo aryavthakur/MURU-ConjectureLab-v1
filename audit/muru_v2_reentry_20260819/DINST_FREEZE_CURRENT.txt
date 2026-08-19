@@ -1,5 +1,5 @@
 # D-INST freeze record -- GENERATED, do not hand-edit (see v2_freeze_dinst.py)
-# generated_from_commit: b7514e05cef73cc2e209ad47198bc00fe7015f9a
+# generated_from_commit: 0d63591ad3c8841ff81dcbf323b195b0f20f778b
 
 b086fad7923442721588f5987cf92a150d12429a9e833c243f3478d5771a0a82  scripts/e2a_instrument_diagnostic.py
 5b2d2ae549241fbef993b928807a52122a7c8bc7cba73dff4eb63ee9ca71b646  audit/muru_v2_reentry_20260819/MURU_V2_E2A_INSTRUMENT_DIAGNOSTIC_PROTOCOL.md
