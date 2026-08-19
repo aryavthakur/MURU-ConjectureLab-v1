@@ -21,7 +21,7 @@
     "scripts/v2_truth_blind_verifier.py": "adaad140c09769d5e9d17f00b3bb7eecbb76709b5c78a6164064dd6f47d0ba6f",
     "scripts/v2_freeze_dinst.py": "1995791879f594b2ddcdce0527482b6f3ed5ee8f34e31a882bb95de0e0e3eaf6",
     "scripts/v2_stage1_calibration_run.py": "c32e7a11128b4787b19b0ad4d31ff1118e35557d61e94cecba10e5dd21d42674",
-    "scripts/v2_stage1_scoring.py": "1cf2f34fca78e0962e062286c1ae26e179843f302683df3477f7b16b2cd25898",
+    "scripts/v2_stage1_scoring.py": "1cf2f34fca78e0962e062286c1ae26e179843f302683df3477f7b16b2cd25898 -- AT FREEZE TIME ONLY. Superseded by design: this is execution-safety tooling, explicitly authorized to change post-freeze (unlike every other file in this list, which must not move). Current hash after the scoring-isolation fix (commit d6f340a, see gates_closed_since_freeze): 9545b5329395198c587a88fcae497516661ccf02270b5368d2b14db31308bab8. Do not treat a mismatch against the freeze-time value as VOID_CONTROL_FAILURE for this one file.",
     "src/muru/paper_benchmark/calibration_surface.py": "8aa667338b4a22f3acb1429bc30b205adb9b1373d553e4b0ce92710fe251f000",
     "src/muru/paper_benchmark/calibration_seed_band.py": "1b9e097a963757938bc1b13763f381ffd7e96a90474b7768cac001c057620597",
     "src/muru/v2_calibration/e2c_classify.py": "0adb2ad7e1a1f80e61b0282458dab68506901e9d6e83718bced50cdbee56d10d",
