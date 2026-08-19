@@ -131,7 +131,18 @@ def eval_one(wm: dict, expr: str) -> tuple[str, str, float]:
         if line.startswith("R"):
             d = json.loads(line[1:])
             return d["v"], d["why"], float(d.get("wall", 0.0))
-    return UNRESOLVED, f"SUBPROCESS_DIED_rc{p.returncode}", 0.0   # kernel OOM kill etc.
+    # D11: a dead subprocess must say WHY. Without stderr an environment failure
+    # (missing dependency) is indistinguishable from a kernel OOM kill, which is
+    # precisely the attribution this diagnostic exists to make.
+    err = (p.stderr or "").strip().splitlines()
+    tail = err[-1][:200] if err else ""
+    if p.returncode in (-9, 137):
+        why = "KERNEL_OOM_KILL"
+    elif "ModuleNotFoundError" in (p.stderr or "") or "ImportError" in (p.stderr or ""):
+        why = "ENVIRONMENT_IMPORT_FAILURE"
+    else:
+        why = f"SUBPROCESS_DIED_rc{p.returncode}"
+    return UNRESOLVED, f"{why}: {tail}" if tail else why, 0.0
 
 
 # ---------------------------------------------------------------- analysis (D3)
@@ -152,12 +163,35 @@ def recompute_stage(sealed: str, verdicts: list[dict], assume_unresolved_correct
     return sealed                                  # C/D/E cannot move earlier
 
 
+def preflight() -> None:
+    """D12: verify the evaluation interpreter can actually run the payload BEFORE
+    any pair is evaluated. Without this, a missing dependency yields a full run of
+    UNRESOLVED records that look like a scientific result and are not one."""
+    probe = ("import sys,resource\n"
+             f"resource.setrlimit(resource.RLIMIT_AS,({ADDRESS_SPACE_BYTES},{ADDRESS_SPACE_BYTES}))\n"
+             f"sys.path.insert(0,{str(ROOT / 'src')!r})\n"
+             "from muru.v2_calibration import e2_worlds\n"
+             "from muru.paper_benchmark.g2_contract import _safe_parse\n"
+             "import sympy, numpy\n"
+             "print('PREFLIGHT_OK')\n")
+    p = subprocess.run([sys.executable, "-c", probe], capture_output=True, text=True, timeout=600,
+                       env={**os.environ, "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"})
+    if "PREFLIGHT_OK" not in (p.stdout or ""):
+        sys.exit("[D-INST] PREFLIGHT FAILED for interpreter %s (rc=%s).\n"
+                 "Refusing to run: an environment fault would be recorded as %d UNRESOLVED\n"
+                 "pairs indistinguishable from a genuine resource-exhaustion finding.\n%s"
+                 % (sys.executable, p.returncode, 396, (p.stderr or "")[-2000:]))
+    print(f"[D-INST] preflight OK: {sys.executable}, RLIMIT_AS={ADDRESS_SPACE_BYTES/1024**3:.0f}GiB", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=3)   # D1
     ap.add_argument("--analyze-only", action="store_true")
     a = ap.parse_args()
     CKPT.mkdir(parents=True, exist_ok=True)
+    if not a.analyze_only:
+        preflight()
 
     timeout, cache_meta = timed_out_expressions()
     stage, meta, rows = load_corpus()

@@ -1,0 +1,1 @@
+{"world_id": "V2C|E2|mass_saturating_descriptor|c_low|n_strong|r006", "seed_ordinal_k": 9, "front_rank": 12, "retained_by_argmax_score": false, "expression_string": "sqrt(cube(cube(cube(log((x1 * 0.029867478) - -2.8138235) - (inv(x0 - cube(x3)) / 0.10481076)))))", "verdict": "INCORRECT", "reason": "RESOLVED", "wall_seconds": 19.9, "sealed_stage": "B"}

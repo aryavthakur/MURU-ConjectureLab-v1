@@ -1,0 +1,1 @@
+{"world_id": "V2C|E2|mass_interaction|c_low|n_strong|r002", "seed_ordinal_k": 12, "front_rank": 12, "retained_by_argmax_score": false, "expression_string": "sqrt(cube(cube(sqrt(square((inv((cube(x1) - 5.068411) / sqrt(x0)) * -0.044992346) + 0.9584012))))) + -0.5617534", "verdict": "UNRESOLVED", "reason": "SUBPROCESS_DIED_rc1", "wall_seconds": 0.0, "sealed_stage": "A"}
