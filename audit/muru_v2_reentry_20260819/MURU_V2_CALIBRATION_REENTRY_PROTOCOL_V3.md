@@ -154,11 +154,22 @@ falsification opportunity") is therefore **overridden here by R3** ("keeps Held-
 out of positive licensing") and by the plain reading of §2.3's second sentence. That
 override is recorded, not hidden. See `V2_REPAIR_LEDGER.md`, rows `S1`/`D1`/`D13`.
 
-### 0.2 DECISION 2 — Route C+D → E4f family i is now PREREGISTERED (v2 said "EXECUTABLE"; withdrawn, see §2.1 and §21.2 row 3)
+### 0.2 DECISION 2 — E4f is PREREGISTERED but NOT AUTHORIZED TO EXECUTE (v2 said "EXECUTABLE"; v3 narrowed to "family i"; both withdrawn — see §2.1 `N6`)
+
+**Current status, stated first because two earlier versions of this section got it wrong in
+two different directions.** `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` is written, frozen,
+and results-blind — that part of Decision 2 stands and is verified below. **Its execution is
+not authorized today**: `§2.1`/`N6` found no protocol-owner record supports lifting
+ratification §4 (D2-ext)'s suspension of E4 arms for it, so a certified route `C+D`
+**currently** assigns `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` (§22 `F16`), exactly as it would
+have under v1's original §21.2 row 5 disposition — the reasoning below is what makes
+*existence* of the freeze different from v1, not what makes it *executable*.
 
 v1 §21.2 row 5 pre-labelled the `C+D` route `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`, because
 E4f had no operational freeze and *"inventing those ceilings after the route is known is
-prohibited."* **That was correct at the time.** It is no longer the state of the world.
+prohibited."* **That was correct at the time, and it is correct again today, for a different
+reason** (no authority, not no freeze). What changed and remains true: E4f's *text* is no
+longer missing.
 
 `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` now exists:
 
@@ -399,7 +410,7 @@ document.
 | `MURU_V2_E2_PREDECLARATION.md` §4/§5/§6 | world enumeration, seed derivation, the A–E taxonomy and its strict decision order |
 | `f4c1105` (`v2_design_reference/MURU_V2_RETENTION_REMEDIATION_PREREGISTRATION.md`) §4/§5/§6/§7/§8/§9 | materiality tolerance; the Gate-2 branch structure including the exoneration and tie branches; DEV/EVAL discipline; paired statistics; multiplicity; controls |
 | `1d20731` / `94abf97` (E3) | completed identifiability verdicts, binding on the generation branch |
-| `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` @ `8a2ffa50` | the operational freeze for the `C+D` route. **Its authority is the protocol owner's maximum-autonomy delegation, NOT ratification §10 — see the correction below** |
+| `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` @ `8a2ffa50` | a frozen document, **not currently authorized to execute** (§2.1 `N6`: no protocol-owner record supports execution; ratification §4 (D2-ext)'s suspension of all E4 arms governs without exception). A certified `C+D` route assigns `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` (§22 `F16`) today |
 | `MURU_V2_E2A_INSTRUMENT_DIAGNOSTIC_PROTOCOL.md` @ `7e99830` | Stage 0's determinacy standard, subprocess isolation and terminal names |
 | `GATE_1_DEFINITIVE.md`, `FINAL_TERMINAL_REPORT.md`, `ATTRIBUTION_REVISION.md` | the sealed Held-out attribution (ratified D1) and the determinacy-bound precedent |
 | `src/muru/paper_benchmark/registry.py`, `generator.py`, `rc5_seeds.py`, `seed_band_registry.py` | the condition grid, the generator, the seed derivation and the declared-band mechanism — **all read, none mutated** (§5) |
@@ -1756,7 +1767,8 @@ requires none.
 > The `S_1 > 0` guard is required so the branch cannot fire vacuously on a surface that never
 > reaches the front — where "retention is not the loss stage" is true only because nothing
 > ever reached retention. That degenerate path is routed to `SURFACE_DEGENERATE_NO_FRONT`
-> (§22 F14), not to an exoneration.
+> (§22 F9 — corrected from a stale "F14" reference left after the F1..F17 renumbering,
+> `CRITIC_GOVERNANCE` `NEW-C`/`CRITIC_SCIENCE` `NEW-H1`), not to an exoneration.
 
 **Two declared departures from the literal frozen ordering, disclosed rather than called
 verbatim** (`S7`, `S17`):
@@ -2112,7 +2124,7 @@ every denominator** (P2 BC-13).
 | Category | Treatment |
 |---|---|
 | `UNRESOLVED` row | **Its own state. Never folded into any substantive class, never imputed, never dropped, never defaulted to not-correct.** Enters the endpoint through the two-sided determinacy bound of §25 |
-| `INDETERMINATE` world (class not invariant after uncapped escalation) | **Its own state**, counted and sealed. `INDETERMINATE_WORLDS > 0` ⟹ `VOID_INSTRUMENT_INDETERMINATE` (§22 F6). Never silently folded |
+| `INDETERMINATE` world (class not invariant after uncapped escalation) | **Its own state**, counted and sealed. `INDETERMINATE_WORLDS > 0` ⟹ `VOID_INSTRUMENT_INDETERMINATE` (§22 F7). Never silently folded |
 | Parse failure (`parse_ok = false`) | `INCORRECT`. Deterministic, host-invariant, already the frozen semantics. **Not** `UNRESOLVED` |
 | `invalid_fraction > MAX_INVALID_FRACTION = 0.005` | Excluded from the retained set by the frozen rule (`befca0d` §3.4), **plus** the direct check that an invalid candidate never outscores a valid one. REUSED |
 | Search execution failure (world produces no front) | **Regenerate under the same frozen seed.** A missing world breaks `P1`. Count reported |
@@ -2174,6 +2186,29 @@ this section as the strongest in the document.**
 - The cap exception derives from **`BaseException`**, deliberately, so that `g2_contract`'s
   seven `except Exception: return None` handlers cannot swallow it and silently turn a cap
   into `SUPPORT_UNRESOLVED → not-correct`.
+
+> **Disclosed limitation — signal delivery is best-effort, not guaranteed** (`CRITIC_SCIENCE`
+> `NEW-C2`). The tier-1 cap is implemented as `SIGPROF`/`ITIMER_PROF`, and CPython only
+> delivers a pending signal at a bytecode-dispatch checkpoint. A call into a tight C-level
+> loop that does not return control to the Python bytecode loop can therefore run past the
+> declared budget before the signal is delivered — reproduced with a synthetic
+> `hashlib.pbkdf2_hmac` call running ~20s past a 0.5s budget. `sympy.simplify` is
+> predominantly pure-Python and returns to the bytecode loop frequently in practice, so this
+> is not expected to bite often, but it is not a **guarantee**, and `e2c_classify.py` in its
+> current form has no hard backstop if it does.
+>
+> **The correct hard backstop already exists and is proven**: `e2a_instrument_diagnostic.py`'s
+> `_PAYLOAD` runs each canonicalisation in a **separate subprocess** under
+> `subprocess.run(timeout=...)`, which is enforced by the OS/kernel at the process boundary
+> and cannot be defeated by a non-cooperative C call. Stage 0 already has this property.
+> **Stage 1's driver does not yet have it**: `v2_stage1_calibration_run.py`'s per-world search
+> is subprocess-isolated (the `multiprocessing.Pool` workers), but canonicalisation inside
+> `v2_stage1_scoring.py` runs in-process, protected only by `SIGPROF`. **Before Stage 1
+> executes at scale, the scoring pass's canonicalisation calls must be moved into the same
+> subprocess-per-call pattern Stage 0 already uses.** This is recorded here as a required
+> pre-execution change, **not yet implemented and not yet enforced by any preflight check**.
+> `v2_stage1_scoring.py` must not be treated as execution-ready until this is built and its
+> own control demonstrates the same bound the Stage 0 instrument already demonstrates.
 
 ### 25.3 The sealed table — correctly keyed
 
@@ -2514,7 +2549,7 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
    `muru-freeze/e7-protocol-v2` is created.
 2. **Tuning ledger.** A ledger recording every parameter changed after this freeze, with the
    reason and the evidence consulted, is registered at the freeze commit. It **must be empty
-   at execution time**. A non-empty ledger fires §22 F7.
+   at execution time**. A non-empty ledger fires §22 F8.
 3. **Generator ancestry (P2 T-a/T-b/BC-3).** Every generator parameter is either bit-identical
    to a value already fixed in a commit that is a **strict ancestor of the first commit
    containing any E2b front**, or is set by a registered **rule** that provably never reads
@@ -2553,13 +2588,26 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
      manifest, read with an explicit `WHERE version = ?` filter, and re-verified at Stage 0
      seal time.** If it cannot be frozen, Stage 0's determinacy figures are reported as
      **conditional on an unhashed input** and the gate is re-derived from an uncached run.
-   - **Executions performed during the authorship of this document, disclosed exhaustively**
-     (none touches an outcome, none is scientific compute): the `C-0` equivalence check
-     (380/380, §5.2); a single `PBC` case generation to confirm the namespace works; the
-     declared-seed-band enumeration; `pb_33` and `pb_34`; the arithmetic of §10 and the
+   - **Executions performed during the authorship of this document, disclosed exhaustively —
+     updated a further time, because this list itself went stale across v3 and v4 and that
+     recurrence is now on the record** (`CRITIC_GOVERNANCE` `NEW-D`): the `C-0` equivalence
+     check (380/380, §5.2, re-run after every population-module edit); a single `PBC` case
+     generation to confirm the namespace works; the declared-seed-band enumeration and
+     `NO-BAND-COLLISION` (§5.2); `pb_33` and `pb_34`; the arithmetic of §10 and the
      Monte-Carlo operating characteristics of §10.5 and §21.4 (numpy/scipy, 100,000–200,000
-     draws, on synthetic multinomials with no reference to any surface). Read-only `git show`
-     of `befca0d`, `f4c1105`, `1d20731` and the `pb_*` scripts.
+     draws, on synthetic multinomials with no reference to any surface); `scripts/v2_
+     reachability_verifier.py` (exhaustive integer search over per-condition vectors,
+     terminal-set equality against the parsed §32 table — none reads a surface, all inputs are
+     the frozen `delta`/`z` and integer counts declared here); `scripts/v2_truth_blind_
+     verifier.py` (AST call-graph walk over 16 modules, no execution of search or scoring);
+     control `C-1b` (`e2c_search.control_c1b`, 9 compared against the sealed `e2_search`
+     module's own historical E2a control worlds, 0 mismatched — reuses already-sealed E2a
+     evidence, generates no new world); the `e2c_classify` resource-leak regression demos
+     (fault-injected `MemoryError`/slow-`simplify`, on the literal strings `"x0 + x1"` and
+     similar, no surface reference). Read-only `git show` of `befca0d`, `f4c1105`, `1d20731`
+     and the `pb_*` scripts. **None of the above reads a calibration-surface outcome; each is
+     either a control on frozen/historical evidence, a check of this document's own internal
+     consistency, or arithmetic on declared constants.**
 
 ## 32. TERMINAL STATES
 

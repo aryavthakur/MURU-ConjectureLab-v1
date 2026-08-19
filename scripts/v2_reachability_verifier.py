@@ -24,7 +24,8 @@ F1..F8 and F17 are non-arithmetic (freeze/schema/control conditions) and are
 verified by construction, listed here for completeness rather than searched.
 """
 from __future__ import annotations
-import itertools, math, sys
+import itertools, math, re, sys
+from pathlib import Path
 
 DELTA = 10 / 144
 Z = 1.9599640
@@ -52,12 +53,43 @@ RULE_TERMINAL = {
     "F16": "ROUTE_DETERMINED_ARM_NOT_EXECUTABLE",
     "F17": "T1_NO_ADMISSIBLE_QUALIFICATION_EXISTS",
 }
-# section 32's table, transcribed. Must equal RULE_TERMINAL's values, plus the two
-# non-F-assigned terminals (Stage 0's, which is a different set entirely).
-SECTION_32_TERMINALS = {
-    "T-INSTRUMENT-UNBOUNDED-ON-E2A",  # Stage 0, not an F-rule
-    *RULE_TERMINAL.values(),
-}
+PROTOCOL_MD = (Path(__file__).resolve().parent.parent / "audit" / "muru_v2_reentry_20260819"
+              / "MURU_V2_CALIBRATION_REENTRY_PROTOCOL_V3.md")
+
+
+def parse_section_32_terminals() -> dict[str, str]:
+    """PARSE the live protocol document's own section 32 table -- NOT a hand-copied
+    literal, and NOT derived from RULE_TERMINAL above. A prior version of this
+    function built the "section 32 side" of the equality check from the same
+    dict as the "section 22 side", making the check tautological -- it could
+    never fail regardless of what section 32 actually said
+    (CRITIC_GOVERNANCE NEW-B). This reads the actual markdown table between the
+    "## 32. TERMINAL STATES" header and the next "### 32.1" header, and returns
+    {terminal_name: rule_id}.
+    """
+    text = PROTOCOL_MD.read_text()
+    start = text.index("## 32. TERMINAL STATES")
+    end = text.index("### 32.1", start)
+    block = text[start:end]
+    out: dict[str, str] = {}
+    for line in block.splitlines():
+        line = line.strip()
+        if not line.startswith("|") or line.startswith("|---"):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if len(cells) < 2:
+            continue
+        term_cell, rule_cell = cells[0], cells[1]
+        m_term = re.search(r"`([A-Z0-9_-]+)`", term_cell)
+        if not m_term or m_term.group(1) in ("Terminal",):
+            continue
+        rule = rule_cell.strip("`").strip()
+        out[m_term.group(1)] = rule
+    return out
+
+
+SECTION_32_TERMINALS_PARSED = parse_section_32_terminals()
+SECTION_32_TERMINALS = set(SECTION_32_TERMINALS_PARSED.keys())
 
 NON_ARITHMETIC = {"F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F17"}
 
@@ -139,15 +171,26 @@ def search_witness(rule: str, budget: int = 600_000):
 def main() -> dict:
     report = {"schema": "muru-v2-reachability-verifier-1.0.0"}
 
-    # --- terminal-set equality -------------------------------------------------
+    # --- terminal-set equality, against the PARSED section 32 table -----------
     f_terms = set(RULE_TERMINAL.values())
     missing_from_32 = f_terms - SECTION_32_TERMINALS
     extra_in_32 = SECTION_32_TERMINALS - f_terms - {"T-INSTRUMENT-UNBOUNDED-ON-E2A"}
+    # rule-ID cross-check: not just "the name appears somewhere in section 32", but
+    # "section 32 attributes it to the SAME rule ID section 22 does".
+    rule_id_mismatches = []
+    for rule_id, term in RULE_TERMINAL.items():
+        parsed_rule = SECTION_32_TERMINALS_PARSED.get(term)
+        if parsed_rule is not None and parsed_rule != rule_id:
+            rule_id_mismatches.append({"terminal": term, "section_22_rule": rule_id,
+                                       "section_32_rule": parsed_rule})
     report["terminal_set_equality"] = {
         "f_rule_terminals": len(f_terms),
+        "section_32_terminals_parsed": len(SECTION_32_TERMINALS),
         "missing_from_section_32": sorted(missing_from_32),
         "extra_in_section_32": sorted(extra_in_32),
-        "passed": not missing_from_32 and not extra_in_32,
+        "rule_id_mismatches": rule_id_mismatches,
+        "passed": (not missing_from_32 and not extra_in_32 and not rule_id_mismatches
+                  and len(SECTION_32_TERMINALS) >= 15),  # sanity floor: parse did not silently return empty
     }
 
     # --- reachability, arithmetic rules only, in F0 order -----------------------

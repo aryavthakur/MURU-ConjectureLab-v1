@@ -53,7 +53,46 @@ def module_call_targets(mod) -> set[str]:
     return names
 
 
-def transitive_import_closure(module_names: list[str], max_modules: int = 40) -> list:
+def ast_import_targets(mod) -> set[str]:
+    """Every module named in an Import/ImportFrom statement ANYWHERE in this
+    module's AST -- including inside function bodies. `dir()`-based discovery
+    only sees names bound at MODULE level, so a function-local
+    `from . import e2_search` (executed only when that function is CALLED,
+    never at import time) is invisible to it. This is what let CRITIC_SCIENCE's
+    NEW-C1 finding through: control_c1b's function-local import of e2_search
+    was never in the scan set. ast.walk descends into function bodies, so this
+    catches it regardless of nesting."""
+    try:
+        src = inspect.getsource(mod)
+    except (OSError, TypeError):
+        return set()
+    tree = ast.parse(src)
+    pkg = mod.__name__.rsplit(".", 1)[0] if not mod.__name__.endswith("__init__") else mod.__name__
+    targets = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                targets.add(alias.name)
+        elif isinstance(node, ast.ImportFrom):
+            if node.level and node.level > 0:
+                # relative import: resolve against this module's package
+                parts = mod.__name__.split(".")
+                base = ".".join(parts[:-node.level]) if node.level <= len(parts) else ""
+                container = f"{base}.{node.module}" if (base and node.module) else (node.module or base)
+            else:
+                container = node.module
+            if container:
+                targets.add(container)
+                # `from package import submodule` -- submodule may itself be a
+                # module, not just a name inside `container`. Both are queued;
+                # a name that is not actually a module simply fails to import
+                # in transitive_import_closure and is silently skipped there.
+                for alias in node.names:
+                    targets.add(f"{container}.{alias.name}")
+    return targets
+
+
+def transitive_import_closure(module_names: list[str], max_modules: int = 60) -> list:
     seen, queue, mods = set(), list(module_names), []
     while queue and len(mods) < max_modules:
         name = queue.pop(0)
@@ -65,10 +104,15 @@ def transitive_import_closure(module_names: list[str], max_modules: int = 40) ->
         except Exception:
             continue
         mods.append(mod)
+        # (1) module-level attribute discovery (catches re-exported names)
         for attr in dir(mod):
             val = getattr(mod, attr, None)
             sub = getattr(val, "__module__", None)
             if isinstance(sub, str) and sub.startswith("muru") and sub not in seen:
+                queue.append(sub)
+        # (2) AST-based import discovery, INCLUDING function-local imports
+        for sub in ast_import_targets(mod):
+            if sub.startswith("muru") and sub not in seen:
                 queue.append(sub)
     return mods
 

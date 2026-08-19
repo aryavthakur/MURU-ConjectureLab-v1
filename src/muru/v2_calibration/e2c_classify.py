@@ -124,9 +124,20 @@ def canonicalise(expression_string: str, cpu_budget: Optional[float] = TIER1_CPU
     """
     t0 = time.process_time()
 
+    # _safe_parse is typically cheap (tokenising), but it is not GUARANTEED cheap for
+    # a pathological string, and a bare `except Exception` here would swallow a
+    # MemoryError/RecursionError into UNPARSEABLE -- the same defect class as the main
+    # fix below, just smaller in practice. Typed explicitly for the same reason.
     parsed = None
     try:
-        parsed = _safe_parse(expression_string)
+        with _cpu_budget(cpu_budget):
+            parsed = _safe_parse(expression_string)
+    except _Cap:
+        return CanonicalEntry(expression_string, "UNRESOLVED", None, None, None, None,
+                              time.process_time() - t0, tier)
+    except (MemoryError, RecursionError):
+        return CanonicalEntry(expression_string, "UNRESOLVED", None, None, None, None,
+                              time.process_time() - t0, tier)
     except Exception:
         parsed = None
     if parsed is None:

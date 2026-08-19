@@ -60,7 +60,7 @@ from . import e2c_classify
 
 __all__ = ["CalFrontRow", "CalSeedResult", "CalWorldDesign",
            "build_calibration_world_design", "run_calibration_seed_search",
-           "assert_design_truth_blind", "control_c1b"]
+           "assert_design_truth_blind"]
 
 ADMISSIBILITY = "DECISION_ADMISSIBLE"     # section 15: stamped at ROW level, at write time
 
@@ -290,45 +290,3 @@ def run_calibration_seed_search(
                              time.monotonic() - started)
     return CalSeedResult(wd.world_id, k, seed, "COMPLETED_WITH_FRONT", "", tuple(rows),
                          argmax_position, time.monotonic() - started)
-
-
-def control_c1b(n_worlds: int = 3, n_seeds: int = 3) -> dict:
-    """Control `C-1`, evaluated between this module and `e2_search`.
-
-    Duplicating a search path is a risk. It is discharged EXHAUSTIVELY on the control
-    set rather than argued: the `argmax(score)`-retained candidate, its complexity and
-    its valid_r2 must be BYTE-IDENTICAL between the two modules on the same E2a world
-    and seed. Only canonicalisation may differ, and only in the direction section 25
-    requires.
-    """
-    from . import e2_search, e2_worlds
-    mismatches, compared = [], 0
-    for fi, fam in enumerate(e2_worlds.FAMILIES[:n_worlds]):
-        w = e2_worlds.build_world(fam, "low", "default", 6)
-        wid = e2_worlds.world_id(fam, "low", "default", 6)
-        theirs_wd = e2_search.build_world_design(w.compounds, w.trajectories, wid)
-        mine_design = build_case_design(w.compounds, fit_case_scalars(w.compounds, w.trajectories))
-        for k in range(n_seeds):
-            seed = 2_100_011_400 + fi * 100 + k
-            a = e2_search.run_seed_search(theirs_wd, k, seed)
-            wd = CalWorldDesign(wid, wid, theirs_wd.scalars, mine_design,
-                                {"cell_id": wid, "replicate": 6, "partition": "calibration",
-                                 "case_id": wid, "family_code": fam, "variant": fam,
-                                 "condition_kind": fam, "coefficient_value": None,
-                                 "noise_sd": None})
-            b = run_calibration_seed_search(wd, k, seed)
-            compared += 1
-            ra = next((r for r in a.rows if r.retained_by_argmax_score), None)
-            rb = next((r for r in b.rows if r.retained_by_argmax_score), None)
-            if (a.status != b.status
-                    or (ra is None) != (rb is None)
-                    or (ra is not None and (
-                        ra.expression_string != rb.expression_string
-                        or ra.engine_complexity != rb.engine_complexity
-                        or f"{ra.valid_r2:.12g}" != f"{rb.valid_r2:.12g}"
-                        or f"{ra.score:.12g}" != f"{rb.score:.12g}"))):
-                mismatches.append({"world": wid, "k": k,
-                                   "theirs": (a.status, ra.expression_string if ra else None),
-                                   "mine": (b.status, rb.expression_string if rb else None)})
-    return {"control": "C-1b", "compared": compared, "n_mismatched": len(mismatches),
-            "mismatches": mismatches[:10], "passed": compared > 0 and not mismatches}
