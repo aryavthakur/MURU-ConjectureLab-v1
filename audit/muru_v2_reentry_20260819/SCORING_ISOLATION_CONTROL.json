@@ -1,0 +1,30 @@
+{
+  "schema": "muru-v2-scoring-isolation-control-1.0.0",
+  "purpose": "Section 25.2: v2_stage1_scoring.py must not be treated as execution-ready until subprocess isolation is built AND its own control demonstrates the same bound e2a_instrument_diagnostic.py already demonstrated (that instrument's DINST_HOSTILE_REVIEW.md measured a real 44.4 GB / 95 s pathological case). This is that control, run against the real (unmocked) canonicalise_isolated().",
+  "disclosed_scope_difference": "This control does NOT reproduce a naturally-occurring pathological expression at the frozen 23.5 GiB scoring-tier-2 ceiling -- no such case was found in a practical search budget (three expansion/nested-trig candidates were tried and either completed quickly or were CPU-slow without demonstrated memory pressure; not committed, not claimed as evidence). Instead it demonstrates the SAME safety property -- real resource exhaustion, correctly contained and typed as UNRESOLVED, never silently OK, never crashing the caller -- by lowering RLIMIT_AS to a level a REAL sympy/numpy import cannot fit in, which is real memory pressure on a real subprocess, not a mock. This is a narrower-scope control than e2a's and is disclosed as such rather than presented as equivalent.",
+  "host": {
+    "cpus": 24,
+    "total_ram_gib": 47,
+    "swap": "none"
+  },
+  "interpreter": "/home/aryav_thakur/venv/bin/python3",
+  "test_expression": "(sin(x)**2 + cos(x)**2 + exp(x)*exp(-x) + (x+1)**6 - x**6 - 6*x**5 - 15*x**4 - 20*x**3 - 15*x**2 - 6*x)/(1)",
+  "runs": {
+    "normal_at_frozen_ceiling": {
+      "rss_ceiling_gib": 23.5,
+      "wall_s": 0.609,
+      "status": "OK",
+      "reason": null,
+      "note": "demonstrates normal operation is unaffected by the isolation layer"
+    },
+    "induced_resource_pressure": {
+      "rss_ceiling_gib": 0.06,
+      "wall_s": 0.225,
+      "status": "UNRESOLVED",
+      "reason": "SUBPROCESS_DIED_rc1: lost sys.stderr",
+      "note": "a real subprocess died from real memory pressure during sympy/numpy import -- an uncaught SystemError inside CPython's own import machinery, NOT one of canonicalise()'s own typed MemoryError/RecursionError catches -- and the OUTER subprocess-isolation layer still correctly contained it and returned UNRESOLVED, never propagating to crash the caller and never becoming a scientific label. This is the exact property this control exists to demonstrate: the isolation boundary does not depend on the inner failure being a type canonicalise() itself anticipated."
+    }
+  },
+  "reproduced_by": "scripts/v2_stage1_scoring_selftest.py::test_real_resource_exhaustion_via_tiny_rlimit",
+  "produced_by_commit": "PENDING -- filled in at commit time"
+}

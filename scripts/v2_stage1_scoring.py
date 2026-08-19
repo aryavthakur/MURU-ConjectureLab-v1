@@ -54,16 +54,43 @@ CKPT = OUT / "_ckpt_worlds"
 # memory and take the entire scoring pass down with it, silently losing every
 # already-checkpointed world in the same process.
 #
-# FIX: mirror `e2a_instrument_diagnostic.py`'s proven `_PAYLOAD`/`eval_one`
-# pattern exactly. `e2c_classify.canonicalise()` is NOT edited or reimplemented
-# -- it runs byte-identical, just inside a subprocess bounded by FP-3/FP-4's
-# already-frozen scoring-tier-2 envelope (`STAGE1_RESOURCE_PROFILE.json`:
+# FIX: mirror `e2a_instrument_diagnostic.py`'s OUTER CONTRACT -- subprocess +
+# hard RLIMIT_AS + OS process-death detection + preflight -- not its internal
+# structure line-for-line (CRITIC_GOVERNANCE, 2026-08-19: an earlier version of
+# this comment claimed "exactly", which overclaimed). `e2a`'s `_PAYLOAD`
+# reimplements parse/simplify/classify inline with its own per-step typed
+# exception handling; this payload instead makes ONE opaque call to
+# `e2c_classify.canonicalise()`, relying on that function's OWN internal typed
+# MemoryError/RecursionError/_Cap handling (`e2c_classify.py`, unedited, not
+# reimplemented here) plus this module's outer RLIMIT_AS as a second,
+# independent backstop for whatever canonicalise()'s internal handling does not
+# catch (e.g. an import-time failure, or a kernel SIGKILL). Bounded by FP-3/
+# FP-4's already-frozen scoring-tier-2 envelope (`STAGE1_RESOURCE_PROFILE.json`:
 # 23.5 GiB RLIMIT_AS, WORKER_COUNT 1 -- "uncapped in TIME and serial in MEMORY").
 # A worker that OOMs, is kernel-SIGKILLed, hangs, or dies for any reason can only
 # ever surface here as an UNRESOLVED entry with a typed reason (never crash the
 # caller, never silently become a scientific label) -- and per-expression
 # checkpointing means a crash mid-escalation loses at most the one in-flight
-# expression, not already-completed work.
+# expression, not already-completed work. Adversarially self-tested:
+# `v2_stage1_scoring_selftest.py` (committed, re-runnable -- 14 cases including a
+# real, unmocked resource-exhaustion run). Control demonstrating the same bound
+# `e2a_instrument_diagnostic.py`'s own hostile review demonstrated (section
+# 25.2's requirement): `SCORING_ISOLATION_CONTROL.json` -- narrower in scope
+# than e2a's, and disclosed as such there rather than claimed equivalent.
+#
+# KNOWN, DISCLOSED GAP (CRITIC_GOVERNANCE finding, not closed by this change):
+# `STAGE1_RESOURCE_PROFILE.json` separately declares a `scoring_tier1` envelope
+# (4.0 GiB, WORKER_COUNT 9) as its own phase, distinct from search and from
+# scoring-tier-2. No code implements it. Tier-1 canonicalisation currently runs
+# INLINE during search, inside `v2_stage1_calibration_run.py`'s per-world Pool
+# worker, under the SEARCH phase's tighter 2.0 GiB ceiling -- not under its own
+# declared 4.0 GiB/9-worker envelope. This may cause tier-1 canonicalisation to
+# spuriously UNRESOLVE (RESOURCE event, never a wrong label -- so no scientific
+# rule is violated) on expressions that would have fit under the larger,
+# intended tier-1 ceiling. Left unresolved here: closing it means restructuring
+# search to defer canonicalisation into its own pass, which is a materially
+# larger change than this execution-safety fix and is called out for separate
+# owner attention rather than rushed under this review.
 SCORING_TIER2_RSS_GIB = 23.5     # FP-3, frozen, STAGE1_RESOURCE_PROFILE.json
 SCORING_TIER2_WORKERS = 1        # FP-4, frozen, STAGE1_RESOURCE_PROFILE.json
 
@@ -95,11 +122,18 @@ def _unresolved_entry(expr: str, reason: str) -> dict:
 
 
 def canonicalise_isolated(expr: str) -> dict:
-    """Subprocess-isolated tier-2 escalation of one expression. Never raises."""
+    """Subprocess-isolated tier-2 escalation of one expression. Never raises.
+
+    `errors="replace"` (CRITIC_SCIENCE advisory): a subprocess dying mid-write
+    could leave non-UTF-8 bytes on stdout/stderr; without this,
+    `subprocess.run(text=True)` would raise `UnicodeDecodeError` uncaught,
+    letting one pathological expression take the whole scoring pass down --
+    exactly the class of failure this isolation exists to close."""
     as_bytes = int(SCORING_TIER2_RSS_GIB * 1024**3)
     code = _CANON_PAYLOAD.format(AS=as_bytes, SRC=str(ROOT / "src"), EXPR=expr)
     try:
         p = subprocess.run([sys.executable, "-u", "-c", code], capture_output=True, text=True,
+                           errors="replace",
                            env={**os.environ, "OMP_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1"})
     except OSError as ex:
         return _unresolved_entry(expr, f"SUBPROCESS_LAUNCH_FAILED:{type(ex).__name__}")

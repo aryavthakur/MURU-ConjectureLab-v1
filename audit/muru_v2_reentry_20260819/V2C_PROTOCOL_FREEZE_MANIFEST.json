@@ -36,9 +36,24 @@
   "surface_count": 0,
   "surface_count_note": "No calibration world has been generated as of the freeze commit. Q1 preflight PASSED as a dry check (n_worlds=1932, n_searches=57960); Stage 1 execution has not begun.",
   "known_pre_execution_gates_not_yet_satisfied": [
-    "Stage 1 scoring pass (v2_stage1_scoring.py) lacks subprocess isolation for canonicalisation; SIGPROF-only enforcement is disclosed as not execution-ready (section 25.2 disclosed limitation, CRITIC_SCIENCE NEW-C2).",
-    "No protocol-owner ratification record exists for E4f execution (section 2.1, N6); route C+D assigns ROUTE_DETERMINED_ARM_NOT_EXECUTABLE (F16) unconditionally until one does.",
-    "Stage 0 (D-INST) has no admissible single-shot result yet; three prior runs are quarantined under audit/muru_v2_reentry_20260819/_quarantine/ per section 0.7's S0-1..S0-5 rules.",
-    "e2a_instrument_diagnostic.py does not mechanically check its own freeze record (DINST_FREEZE_CURRENT.txt) before running -- CRITIC_GOVERNANCE V6 finding, disclosed here rather than filed as a numbered defect because no false claim depends on it."
+    "Stage 0 (D-INST) has no admissible single-shot result yet; three prior runs are quarantined under audit/muru_v2_reentry_20260819/_quarantine/ per section 0.7's S0-1..S0-5 rules. A fresh single-shot run is in progress as of this update.",
+    "e2a_instrument_diagnostic.py does not mechanically check its own freeze record (DINST_FREEZE_CURRENT.txt) before running -- CRITIC_GOVERNANCE V6 finding, disclosed here rather than filed as a numbered defect because no false claim depends on it.",
+    "Within the now-closed scoring-isolation gate (see CLOSED, below), STAGE1_RESOURCE_PROFILE.json's separately declared scoring_tier1 envelope (4.0 GiB / 9 workers) is not implemented anywhere; tier-1 canonicalisation runs inline during search under the tighter 2.0 GiB search-phase ceiling instead. Disclosed in v2_stage1_scoring.py's module docstring (CRITIC_GOVERNANCE finding) rather than silently left unmentioned. Not blocking (no scientific rule is violated -- the effect, if any, is extra RESOURCE-typed UNRESOLVED rows, never a wrong label) but not closed either."
+  ],
+  "gates_closed_since_freeze": [
+    {
+      "gate": "Stage 1 scoring pass (v2_stage1_scoring.py) lacked subprocess isolation for canonicalisation.",
+      "closed_by_commit": "PENDING -- filled in at commit time",
+      "evidence": ["scripts/v2_stage1_scoring_selftest.py (14 self-tests, committed, re-runnable)",
+                   "audit/muru_v2_reentry_20260819/SCORING_ISOLATION_CONTROL.json (section 25.2 control requirement)"],
+      "hostile_review": "CRITIC_SCIENCE PASS; CRITIC_GOVERNANCE FAILED first pass (unverifiable self-cert claim, an overclaimed 'mirrors exactly', an undisclosed commit-bundling process defect, no demonstrated control, and the scoring_tier1 gap noted above left unflagged) -- all repaired; see git log for the correcting commit."
+    },
+    {
+      "gate": "No protocol-owner ratification record existed for E4f execution (section 2.1, N6).",
+      "closed_by_commit": "61c19da (ratification), a02d998 (log entry)",
+      "evidence": ["audit/muru_v2_reentry_20260819/MURU_V2_E4F_PROSPECTIVE_RATIFICATION_AND_CONTINUATION_AUTHORITY.md",
+                   "tag muru-authority/61c19da-e4f-prospective-ratification"],
+      "note": "Closes the authority-record gap only. Does not license E4f now, does not use E2b, does not predict Stage 1's route, and does not waive E4f's own still-unperformed hostile review before execution."
+    }
   ]
 }
