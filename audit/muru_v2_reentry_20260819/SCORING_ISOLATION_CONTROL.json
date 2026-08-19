@@ -26,5 +26,5 @@
     }
   },
   "reproduced_by": "scripts/v2_stage1_scoring_selftest.py::test_real_resource_exhaustion_via_tiny_rlimit",
-  "produced_by_commit": "PENDING -- filled in at commit time"
+  "produced_by_commit": "d6f340aa09892875dc7ff17faf2d44e2e65c842f"
 }

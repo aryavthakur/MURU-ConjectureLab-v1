@@ -43,7 +43,7 @@
   "gates_closed_since_freeze": [
     {
       "gate": "Stage 1 scoring pass (v2_stage1_scoring.py) lacked subprocess isolation for canonicalisation.",
-      "closed_by_commit": "PENDING -- filled in at commit time",
+      "closed_by_commit": "d6f340aa09892875dc7ff17faf2d44e2e65c842f",
       "evidence": ["scripts/v2_stage1_scoring_selftest.py (14 self-tests, committed, re-runnable)",
                    "audit/muru_v2_reentry_20260819/SCORING_ISOLATION_CONTROL.json (section 25.2 control requirement)"],
       "hostile_review": "CRITIC_SCIENCE PASS; CRITIC_GOVERNANCE FAILED first pass (unverifiable self-cert claim, an overclaimed 'mirrors exactly', an undisclosed commit-bundling process defect, no demonstrated control, and the scoring_tier1 gap noted above left unflagged) -- all repaired; see git log for the correcting commit."
