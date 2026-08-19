@@ -22,6 +22,7 @@ import json
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from unittest import mock
 
@@ -30,7 +31,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "src"))
 import v2_stage1_scoring as S  # noqa: E402
 
-TMP = Path("/home/aryav_thakur/.claude/jobs/d40d7453/tmp/v2_scoring_selftest_ckpt")
+TMP = Path(tempfile.gettempdir()) / "v2_scoring_selftest_ckpt"
 
 
 def _fresh_ckpt() -> Path:
