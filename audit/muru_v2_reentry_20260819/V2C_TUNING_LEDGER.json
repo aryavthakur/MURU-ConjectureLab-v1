@@ -1,0 +1,7 @@
+{
+  "schema": "muru-v2-tuning-ledger-1.0.0",
+  "protocol": "MURU_V2_CALIBRATION_REENTRY_PROTOCOL_V3.md",
+  "freeze_commit": "899d9b0a7337c730dd67a795d65c9313ed2ea71f",
+  "entries": [],
+  "note": "Empty at freeze time, per section 31 item 2. Any parameter changed after the freeze commit is recorded here with its reason and the evidence consulted. A non-empty ledger at Stage 1 execution time fires section 22 F8 (VOID_SINGLE_SHOT_BROKEN)."
+}

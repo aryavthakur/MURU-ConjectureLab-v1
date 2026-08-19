@@ -1,0 +1,44 @@
+{
+  "schema": "muru-v2-protocol-freeze-manifest-1.0.0",
+  "protocol": "MURU_V2_CALIBRATION_REENTRY_PROTOCOL_V3.md (content version: v6)",
+  "freeze_commit": "899d9b0a7337c730dd67a795d65c9313ed2ea71f",
+  "freeze_date_utc": "2026-08-19T15:45:33Z",
+  "hostile_review": {
+    "critic_science": {
+      "file": "audit/muru_v2_reentry_20260819/CRITIC_SCIENCE_V6_REVIEW.md",
+      "verdict": "PASS",
+      "rounds_to_pass": 6
+    },
+    "critic_governance": {
+      "file": "audit/muru_v2_reentry_20260819/CRITIC_GOVERNANCE_V6_REVIEW.md",
+      "verdict": "PASS",
+      "rounds_to_pass": 6
+    }
+  },
+  "file_hashes": {
+    "audit/muru_v2_reentry_20260819/MURU_V2_CALIBRATION_REENTRY_PROTOCOL_V3.md": "566c4810c0870245c744fa4d6277618554c4dfd0e1a8d494aee543fdca49241e",
+    "scripts/v2_reachability_verifier.py": "2484e9cd7800b843462630a624f78c24dbe56a13fcf5b3314b39ac97eb27fa34",
+    "scripts/v2_truth_blind_verifier.py": "adaad140c09769d5e9d17f00b3bb7eecbb76709b5c78a6164064dd6f47d0ba6f",
+    "scripts/v2_freeze_dinst.py": "1995791879f594b2ddcdce0527482b6f3ed5ee8f34e31a882bb95de0e0e3eaf6",
+    "scripts/v2_stage1_calibration_run.py": "c32e7a11128b4787b19b0ad4d31ff1118e35557d61e94cecba10e5dd21d42674",
+    "scripts/v2_stage1_scoring.py": "1cf2f34fca78e0962e062286c1ae26e179843f302683df3477f7b16b2cd25898",
+    "src/muru/paper_benchmark/calibration_surface.py": "8aa667338b4a22f3acb1429bc30b205adb9b1373d553e4b0ce92710fe251f000",
+    "src/muru/paper_benchmark/calibration_seed_band.py": "1b9e097a963757938bc1b13763f381ffd7e96a90474b7768cac001c057620597",
+    "src/muru/v2_calibration/e2c_classify.py": "0adb2ad7e1a1f80e61b0282458dab68506901e9d6e83718bced50cdbee56d10d",
+    "src/muru/v2_calibration/e2c_search.py": "b5f2d1779134d23d32172b6822657ea92801cc0ff021c2c27ef2d1d080ada501",
+    "src/muru/v2_calibration/e2c_search_controls.py": "d570210f6bf0623c745d9cc2be4d56c87972a90e004f4bfd56658098a45370d6",
+    "scripts/e2a_instrument_diagnostic.py": "b086fad7923442721588f5987cf92a150d12429a9e833c243f3478d5771a0a82",
+    "audit/muru_v2_reentry_20260819/MURU_V2_E2A_INSTRUMENT_DIAGNOSTIC_PROTOCOL.md": "5b2d2ae549241fbef993b928807a52122a7c8bc7cba73dff4eb63ee9ca71b646",
+    "audit/muru_v2_reentry_20260819/CRITIC_SCIENCE_V6_REVIEW.md": "2baff1a32d34a68bcf3e2dffc4bbebaff52e5d7de04b1875da5e391c43aecf40",
+    "audit/muru_v2_reentry_20260819/CRITIC_GOVERNANCE_V6_REVIEW.md": "c838fd9d76e243cac7b317ffca7bbad66ad514c410fbf999fa0e8a253789de2d"
+  },
+  "tuning_ledger": "EMPTY -- see V2C_TUNING_LEDGER.json alongside this manifest",
+  "surface_count": 0,
+  "surface_count_note": "No calibration world has been generated as of the freeze commit. Q1 preflight PASSED as a dry check (n_worlds=1932, n_searches=57960); Stage 1 execution has not begun.",
+  "known_pre_execution_gates_not_yet_satisfied": [
+    "Stage 1 scoring pass (v2_stage1_scoring.py) lacks subprocess isolation for canonicalisation; SIGPROF-only enforcement is disclosed as not execution-ready (section 25.2 disclosed limitation, CRITIC_SCIENCE NEW-C2).",
+    "No protocol-owner ratification record exists for E4f execution (section 2.1, N6); route C+D assigns ROUTE_DETERMINED_ARM_NOT_EXECUTABLE (F16) unconditionally until one does.",
+    "Stage 0 (D-INST) has no admissible single-shot result yet; three prior runs are quarantined under audit/muru_v2_reentry_20260819/_quarantine/ per section 0.7's S0-1..S0-5 rules.",
+    "e2a_instrument_diagnostic.py does not mechanically check its own freeze record (DINST_FREEZE_CURRENT.txt) before running -- CRITIC_GOVERNANCE V6 finding, disclosed here rather than filed as a numbered defect because no false claim depends on it."
+  ]
+}
