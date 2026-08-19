@@ -1,0 +1,28 @@
+{
+  "schema": "muru-v2-stage1-search-controls-1.0.0",
+  "module": "src/muru/v2_calibration/e2c_search.py",
+  "why_a_separate_module": "X-3: e2_search calls e2_classify.classify_expression, which enforces SIMPLIFY_TIMEOUT_SECONDS = 5 -- the cap section 13 A2 RETIRES and the defect Gate 1 adjudicated. P8a additionally forbids the search entry point's import graph from binding that symbol, so the entry point cannot import e2_search either. Neither sealed module is edited.",
+  "C-1b_search_equivalence": {
+    "obligation": "The argmax(score)-retained candidate must be BYTE-IDENTICAL between e2c_search and e2_search on the same world and seed. Duplicating a search path is a risk and is discharged by execution, not by argument -- the same pattern control C-0 uses for the generator.",
+    "compared": 9,
+    "worlds": "3 E2a families x 3 seeds, regime low, noise default, replicate r006",
+    "fields_compared": ["status", "expression_string", "engine_complexity", "valid_r2 (12 sig figs)", "score (12 sig figs)"],
+    "n_mismatched": 0,
+    "passed": true
+  },
+  "P8b_truth_blind_dataflow": {
+    "assertion": "assert_design_truth_blind() runs FOR EVERY WORLD, not once in preflight. It fails if the design target is byte-identical to TruthRecord.g_by_compound.",
+    "why_it_matters": "The leak that matters is g being READ from truth rather than ESTIMATED from the observed trajectories. A module-level import ban could never detect that regression; this does.",
+    "status": "passing on every world built so far"
+  },
+  "schema_smoke": {
+    "world": "PBC|calibration|F17|r000",
+    "front_rows_persisted": 10,
+    "all_28_section_14_fields_present": true,
+    "admissibility_stamped_at_row_level": "DECISION_ADMISSIBLE",
+    "canonicalization_status": "OK",
+    "canonicalisation_tier": 1,
+    "note": "The full front is persisted BEFORE retention is applied, which is what removes WITHIN_SEED_PARETO_NOT_OBSERVABLE."
+  },
+  "not_yet_executed": "No calibration world has been generated for the record. This is a control run only. Stage 1 does not execute until protocol v3 passes hostile review and is frozen."
+}
