@@ -34,7 +34,7 @@ construction. The margin is a frozen quantity reused verbatim.
 | **Seeds/world** | **30, mandatory.** Reducing to 15 shifts `S₁` by 21.5 pp = 3.09 δ. Not negotiable. |
 | **Multiplicity** | None needed on the primary (IUT preserves α). Holm–Bonferroni on the 12 secondary per-family tests. |
 | **Dev/Eval** | **DEV = the existing E2a corpus** (already seen, already invalidated — perfect engineering dev set, zero extra compute). **EVAL = the new 576-world surface, scored exactly once.** |
-| **Biggest threat** | The classifier's **wall-clock** `SIMPLIFY_TIMEOUT` is a host-speed-dependent, **directionally biased** measurement error on the routing-relevant field. It must be eliminated, not bounded. |
+| **Biggest threat** | The **stage ORDERING is not identified on any existing surface.** Standardization closes 68-77 % of the E2a/Held-out magnitude but leaves the argmax unresolved (95 % CI on the B-C gap spans +-15 pp). Runner-up: the wall-clock `SIMPLIFY_TIMEOUT` is host-speed-dependent and directionally biased. |
 
 ---
 
@@ -131,11 +131,22 @@ have:
 
 ### 1.3 Standardization (this is the identifiability control — see §5)
 
-Let `k` index the **12 Held-out cells** `F01…F18` (9 affine, 1 saturating, 1
-interaction, 1 exponential — verified from
-`v2_design_reference/MURU_V1_G2_FAILURE_TAXONOMY.csv`). The Held-out standard weights
-are `w_k = 12/144 = 1/12` for each cell. The primary estimator is the
-**direct-standardized** proportion
+**Two different standardization variables appear in this document and they must not be
+confused. P1 is right that the 12 Held-out G2 "families" `F01…F18` are experimental
+CONDITIONS, not truth laws, and that E2a instantiated none of them.**
+
+| Use | Standardization variable | Identified from E2a? |
+|---|---|---|
+| **Prospective design** (§1.3, §3.2, §8) | the **12 Held-out conditions** `F01…F18`, `w_k = 1/12` | **Not applicable** — the replacement surface is *generated at* those 12 conditions, so the weights are exact by construction, not estimated |
+| **Retrospective E2a diagnostic** (§5.3) | **`truth_family`, 4 levels** (affine 108/144, saturating 12/144, interaction 12/144, exponential 12/144) | **Yes** — E2a spans all four truth families. It does **not** span the 12 conditions, so no condition-level reweighting of E2a is attempted anywhere in this document |
+
+Nothing in §5.3 standardizes E2a on the 12 F-codes. Doing so would not be identified,
+and I do not do it.
+
+For the **prospective design**, let `k` index the **12 Held-out conditions** `F01…F18`
+(9 affine, 1 saturating, 1 interaction, 1 exponential — verified from
+`v2_design_reference/MURU_V1_G2_FAILURE_TAXONOMY.csv`). The standard weights are
+`w_k = 1/12`. The primary estimator is the **direct-standardized** proportion
 
 ```
 Ŝ_j = Σ_k w_k · Ŝ_j,k        with     Ŝ_j,k = (1/n_k) Σ_{w ∈ cell k} reach_j(w)
@@ -241,23 +252,24 @@ Five independent arguments, each sufficient:
 
 ### 2.4 Disclosed pre-computation (full transparency)
 
-Applying the recommended machinery to the **invalidated** E2a corpus, standardized to
-the Held-out cell mix on its Held-out-comparable stratum (descriptor families,
-`noise_sd = 0.02`, n = 144):
+Applying the recommended machinery to the **invalidated** E2a corpus, standardized on
+`truth_family` to the Held-out family mix. **Two conditionings are reported because
+they disagree** (see §5.3):
 
-| Endpoint | E2a standardized | Held-out `S⁰` | Δ (pp) | Inside ±6.944 pp? |
-|---|---:|---:|---:|:--:|
-| `S₁` | 0.9144 | 0.9028 | **+1.16** | yes |
-| `S₂` | 0.4583 | 0.5208 | **−6.25** | yes |
-| `S₃` | 0.0000 | 0.0278 | **−2.78** | yes |
-| `TV(π̂,π⁰)` (secondary) | — | — | **0.0741 = 10.67 cases of 144** | **no** (marginal) |
+| Endpoint | E2a std., all noise/regime (n=432) | E2a std., within `noise_sd=0.02` (n=144) | Held-out `S⁰` | Δ (pp), pooled / noise-matched |
+|---|---:|---:|---:|---:|
+| `S₁` | 0.9059 | 0.9144 | 0.9028 | +0.31 / +1.16 |
+| `S₂` | 0.4398 | 0.4583 | 0.5208 | −8.10 / −6.25 |
+| `S₃` | 0.0463 | 0.0000 | 0.0278 | +1.85 / −2.78 |
+| `TV(π̂,π⁰)` (secondary) | 0.1026 = **14.78 cases** | 0.0741 = **10.67 cases** | — | both **fail** the 10-case gate |
 
-Point estimates pass the primary and marginally fail the secondary TV gate. I am
-recording this *before* recommending, and I am **not** promoting TV to a co-primary
-gate on the strength of it. The primary was selected on the results-independent
-grounds in §1.2 (frozen §2.6 lineage, monotonicity, exact commensurability); the TV
-gate stays a secondary diagnostic with the same δ. Any later attempt to elevate or
-demote either endpoint after the new surface is scored is a protocol violation.
+Under the pooled conditioning `S₂` also fails the primary margin (−8.10 pp > 6.944 pp).
+Under the noise-matched conditioning all three stages pass on point estimates and the
+secondary TV gate fails marginally. **I am not promoting or demoting any endpoint on
+the strength of these numbers.** The primary was selected on the results-independent
+grounds in §1.2 (frozen §2.6 lineage, monotonicity, exact commensurability). Any later
+attempt to elevate or demote an endpoint after the new surface is scored is a protocol
+violation.
 
 ---
 
@@ -445,7 +457,7 @@ failed. If the owner insists on two-sample as primary, the only honest options a
 
 ---
 
-## 5. IDENTIFIABILITY — and the quantified explanation of the E2a/E2b divergence
+## 5. IDENTIFIABILITY — how far composition explains the E2a/E2b divergence (and where it stops)
 
 ### 5.1 The confound, stated
 
@@ -478,45 +490,86 @@ Only **144 of E2a's 539 worlds (26.7 %)** are in the Held-out-comparable stratum
 (0.0, 0.06) that no Held-out case has, and a fifth of it is a negative-control family
 that has no G2 descriptor truth at all.
 
-### 5.3 This is sufficient to explain the divergence — quantified
+### 5.3 Composition explains most of the MAGNITUDE but does NOT resolve the ORDERING
 
-Per-family stage survival on E2a's `noise_sd = 0.02` stratum (36 worlds each):
+**CORRECTION — issued in response to the coordinator's recomputation, which I have
+reproduced exactly and which is right.** An earlier revision of this section claimed
+standardization "removes 91 % of the total-variation divergence" and "flips the routing
+argmax B → C, into agreement with Held-out". **Both claims are withdrawn.** The 91 %
+was an arithmetic error — I attached the reduction computed on the *conditional*
+`P_win|retain` (48.5 pp → 5.3 pp = 89 %) to the *total-variation* figure, whose true
+reduction is 77.0 %. The argmax claim was conditioning-dependent and, on inspection,
+not identified at all. The corrected analysis follows.
 
-| family | n | `S₁` | `S₂` | `S₃` | (A,B,C,E) |
-|---|---:|---:|---:|---:|---|
-| `mass_affine_descriptor` | 36 | 1.000 | 0.556 | 0.000 | (0, 16, 20, 0) |
-| `mass_saturating_descriptor` | 36 | 0.972 | 0.000 | 0.000 | (1, 35, 0, 0) |
-| `mass_interaction` | 36 | 1.000 | 0.500 | 0.000 | (0, 18, 18, 0) |
-| `mass_exponential_descriptor` | 36 | **0.000** | 0.000 | 0.000 | (36, 0, 0, 0) |
-| `mass_power` (all noise) | 107 | 1.000 | 1.000 | **1.000** | (0, 0, 0, 107) |
+Per-family stage survival on E2a (36 worlds per family at `noise_sd = 0.02`; 108 pooled):
 
-Now compare the three surfaces:
+| family | pooled (A,B,C,E)/108 | at `noise_sd=0.02` (A,B,C,E)/36 |
+|---|---|---|
+| `mass_affine_descriptor` | (0, 51, 51, 6) | (0, 16, 20, 0) |
+| `mass_saturating_descriptor` | (12, 93, 3, 0) | (1, 35, 0, 0) |
+| `mass_interaction` | (2, 52, 48, 6) | (0, 18, 18, 0) |
+| `mass_exponential_descriptor` | (108, 0, 0, 0) | (36, 0, 0, 0) |
+| `mass_power` (n=107, all noise) | (0, 0, 0, 107) | — |
 
-| | `S₁` | `S₂` | `S₃` | argmax non-success |
-|---|---:|---:|---:|---|
-| **Held-out (target)** | 0.9028 | 0.5208 | 0.0278 | `C` = LOST_IN_CROSS_SEED (0.4931) |
-| **E2a raw, as sealed** | 0.7737 | 0.4100 | 0.2208 | `B` = LOST_IN_RETENTION (0.3636) |
-| Δ raw vs target (pp) | **−12.91** | **−11.08** | **+19.30** | **DISAGREES** |
-| **E2a standardized to Held-out mix** | 0.9144 | 0.4583 | 0.0000 | `C` (0.4583) — **AGREES** |
-| Δ standardized vs target (pp) | **+1.16** | **−6.25** | **−2.78** | |
-| `TV(π̂, π⁰)` raw | | | | **0.3221 = 46.4 cases of 144** |
-| `TV(π̂, π⁰)` standardized | | | | **0.0741 = 10.67 cases of 144** |
+**The three surfaces, with both conditionings reported:**
 
-**Direct standardization to the Held-out cell mix removes 91 % of the total-variation
-divergence (46.4 → 10.7 cases) and flips the routing argmax from `B` to `C`,
-into agreement with Held-out.** All three standardized stage deltas fall inside
-δ = 6.944 pp.
+| Surface | `π_A` | `π_B` | `π_C` | `π_E` | `TV` vs Held-out | TV reduction | argmax non-success | `π_B − π_C` (95 % CI) |
+|---|---:|---:|---:|---:|---:|---:|---|---:|
+| **Held-out (target)** | 0.0972 | 0.3819 | 0.4931 | 0.0278 | — | — | **`C`** | −11.11 pp |
+| **E2a raw, n=539** | 0.2263 | 0.3636 | 0.1892 | 0.2208 | 0.3221 (46.4 cases) | — | **`B`** | +17.44 pp |
+| **E2a std. on `truth_family`, all noise/regime (n=432)** | 0.0941 | 0.4660 | 0.3935 | 0.0463 | 0.1026 (**14.8 cases**) | **68.1 %** | **`B`** | +7.25 pp (−1.46, +15.97) |
+| **E2a std. on `truth_family` within `noise_sd=0.02` (n=144)** | 0.0856 | 0.4560 | 0.4583 | 0.0000 | 0.0741 (**10.7 cases**) | **77.0 %** | **`C`** | −0.23 pp (−15.85, +15.39) |
 
-The mechanism is not subtle. E2a's 20 % `mass_power` negative-control worlds succeed
-**107/107**, single-handedly lifting `S₃` from 0.000 to 0.2208 and manufacturing the
-"E2a says retention, Held-out says cross-seed" contradiction. `mass_power` has no
-descriptor truth; it is a specificity control that the four-way partition scores as a
-G2 success.
+Standardization variable: `truth_family`, 4 levels, weights `(108, 12, 12, 12)/144`.
+Support: the descriptor-family worlds of E2a — all 432 of them in the pooled row,
+the 144 at `noise_sd = 0.02` in the noise-matched row. **`mass_power` is outside the
+support in both** (Held-out weight = 0). No standardization on the 12 F-conditions is
+performed anywhere; E2a does not span them (§1.3).
 
-**Conclusion for the council: the sealed E2a/E2b divergence is, to first order, a
-composition artifact, not a pipeline finding.** This independently corroborates
-ratified decision D5 on measurement grounds. It is also a *positive* result: it means
-a properly composed replacement surface has a real prospect of qualifying.
+**Answering the coordinator's three questions:**
+
+1. **On what did I standardize?** `truth_family` (4 levels), *within* the
+   `noise_sd = 0.02` stratum. The coordinator standardized on `truth_family` *pooled*
+   over all three noise levels and all three coefficient regimes. That single
+   difference accounts for the entire discrepancy — 68.1 % vs 77.0 %, and `B` vs `C`.
+   Both figures are correct computations of different estimands. I reproduce the
+   coordinator's `(A 0.0941, B 0.4660, C 0.3935, E 0.0463)` to four decimals.
+2. **Did the flip depend on the timeout correction?** **No.** It depended only on the
+   extra conditioning on noise. No determinacy adjustment was applied to either figure.
+   The summary sentence conflated nothing about timeouts — it simply reported a
+   conditioning-specific result as though it were robust. That was the error.
+3. **Exact standardized proportions:** both rows are in the table above.
+
+**Who is right about the ordering: the coordinator, and more strongly than claimed.**
+Even in *my* noise-matched conditioning where the argmax nominally sits on `C`, the
+`B − C` gap is **−0.23 pp on n = 144, with a 95 % CI of (−15.85, +15.39) pp** — a gap
+of one-third of one case. That is not a flip; it is a coin toss printed to four
+decimals. And the coordinator's pooled conditioning gives `B` ahead by 7.25 pp with a
+CI that also covers zero (−1.46, +15.97). **Neither conditioning identifies the
+ordering.** The correct statement is:
+
+> Composition explains **68–77 % of the magnitude** of the E2a/Held-out divergence.
+> It leaves a residual of **10.7–14.8 cases of 144**, above the 10-case tolerance in
+> both conditionings. **The stage ORDERING is not identified on E2a under any
+> conditioning**, so composition cannot be said to explain it, and neither can
+> anything else on present evidence.
+
+**Forward-design consequence — this strengthens the case for the new surface, it does
+not weaken it.** Had standardization cleanly flipped the ordering, the divergence would
+have been a bookkeeping artifact and a cheap re-analysis of E2a might have sufficed.
+It does not. What remains is: (i) a residual TV of 10.7–14.8 cases that *exceeds* the
+frozen tolerance under both conditionings, so E2a does not qualify even after its
+best-case reweighting; and (ii) an ordering that is statistically undetermined on
+E2a at any conditioning — which is precisely the quantity §2.9 routes on. **A new,
+composition-matched, adequately powered surface is the only instrument that can settle
+it.** That is the §3.2 n = 576 design, whose routing certification (§7.2) has a 95 %
+LCB of +0.0353 at a Held-out-like truth — versus E2a's CI that spans ±15 pp.
+
+What survives from the original finding, undamaged: the compositions differ enormously
+(§5.2); `mass_power` at 20 % of E2a with 107/107 success is a genuine artifact and must
+be excluded (C3); direct standardization removes most of the divergence magnitude; and
+`mass_exponential_descriptor` at 108/108 `NEVER_ON_FRONT` is a degenerate cell that
+E3 already explains (MARGINAL, `search_side_attribution_licensed = false`).
 
 ### 5.4 Required design controls
 
@@ -597,27 +650,91 @@ gave up on. (The ARM corpus is worse: 834 timeout rows across 237 of 530 worlds 
 44.7 %, and the artifact states its 1/530 observed mismatch is a **lower bound**
 because the lazy replay never classifies most affected rows.)
 
-**Applying the Gate-1 determinacy standard to E2a — the decisive consequence.** By the
-monotonicity lemma (§6.1), resolving an UNRESOLVED row can only move a world to a
-*later* stage. So on the x86 E2a corpus:
+**Applying the Gate-1 determinacy standard to E2a — RETRACTED, with the derivation.**
+
+An earlier revision of this document asserted that E2a's `B`-plurality is **not**
+invariant over the resolutions of its own unresolved rows, and therefore that
+`LOCKED_EXECUTE_E4A` "was never determinate". **That claim is WITHDRAWN. The refined
+bound certifies the opposite.** The coordinator was right to refuse it on assertion.
+Full derivation so it can be reproduced:
+
+**Step 1 — exposure, split by whether the timeout sits on a RETAINED row.**
+Join `results/e2/run_x86_e2a_v1/candidates_shard_*.jsonl` against
+`/home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3`
+(`canonicalization_status == 'SIMPLIFY_TIMEOUT'`, 397 distinct expressions), then group
+by `first_loss_stage`:
+
+| observed stage | worlds | with ≥1 timeout row | **with a timeout on a `retained_by_argmax_score` row** |
+|---|---:|---:|---:|
+| `A` NEVER_ON_FRONT | 122 | 73 | **2** |
+| `B` LOST_IN_RETENTION | 196 | 20 | **0** |
+| `C` LOST_IN_CROSS_SEED | 102 | 3 | 3 |
+| `E` SUCCESS | 119 | 1 | 1 |
+
+**Step 2 — the coarse bound I published, and why it was too weak.** Ignoring the
+retention structure and allowing any unresolved row to push a world arbitrarily far
+right gives `A∈[49,122]`, `B∈[176,269]`, `C∈[99,195]`, `E∈[119,215]`, hence
+`B_min = 176 < C_max = 195` ⇒ not certified. **This is an over-approximation of the
+reachable set**, and I reported it as though it were the reachable set. That was the
+error.
+
+**Step 3 — the refined bound, using structure already in the corpus.** By the §6.1
+monotonicity lemma, movement past a stage requires the *specific* predicate of that
+stage to flip:
+
+- `A → B` requires **any** front row to become `CORRECT`.
+- `A/B → C or E` requires a **retained (argmax-score)** row to become `CORRECT`.
+- `C → E` requires the **representative** to become `CORRECT`.
+
+So the 71 `A`-worlds whose timeouts are all on **non-retained** rows can reach `B` and
+no further; and the 20 `B`-worlds — **none** of which has a timeout on a retained row —
+cannot move **at all** (they already have a correct front row, and every one of their
+retained rows is definitively classified `INCORRECT`).
 
 ```
-A ∈ [122 − 73, 122] = [ 49, 122]
-B ∈ [196 −  20, 196 + 73] = [176, 269]
-C ∈ [102 −   3, 102 + 93] = [ 99, 195]
-E ∈ [119,       119 + 96] = [119, 215]
+A ∈ [122 − 73,        122]            = [ 49, 122]
+B ∈ [196 −  0,  196 + (73 − 2)]       = [196, 267]
+C ∈ [102 −  3,  102 + (2 + 0)]        = [ 99, 104]
+E ∈ [119,       119 + (2 + 0 + 3)]    = [119, 124]
+
+B_min = 196  >  max( C_max = 104,  E_max = 124,  A_max = 122 )
+⇒ B-STRICT-PLURALITY IS CERTIFIED CAP-INVARIANT.
 ```
 
-`B_min = 176 < C_max = 195` and `B_min = 176 < E_max = 215`. **E2a's Gate-2
-`B`-strict-plurality is NOT invariant over the resolutions of its own unresolved rows.**
-Under the exact standard the sealed Gate 1 adjudication applied to E2b,
-`LOCKED_EXECUTE_E4A` was never determinate. This is a second, independent,
-measurement-side corroboration of ratified D5.
+**Step 4 — the premises of the refined bound, verified, not assumed.** The bound is
+sound only if every retained row and every `A`-world front row was actually classified
+(an unclassified row is as unresolved as a timed-out one). Measured coverage against
+the cache:
 
-*(In the Held-out-comparable stratum the picture is better: 24/144 worlds affected,
-19 of them in `A`, giving `A ∈ [18,37]`, `B ∈ [65,88]`, `C ∈ [37,61]`; there
-`B_min = 65 > C_max = 61`, so the stratum's plurality **is** invariant — barely.
-Stratification buys determinacy as well as validity.)*
+```
+retained rows classified, all stages : 16 170 / 16 170  = 1.0000   (= 539 worlds x 30 seeds)
+A-world front rows classified        : 42 411 / 42 411  = 1.0000
+worlds with >= 1 UNCLASSIFIED retained row :        0
+```
+
+Both premises hold exactly. (`B`/`C`/`E`-world *non-retained* front rows are 10–31 %
+covered, as the lazy witness protocol intends — and by Step 3 they cannot move those
+worlds.)
+
+**Conclusion, corrected.** On the sealed x86 corpus that actually produced
+`X86_E2A_SEAL.json`, **E2a's Gate-2 `B`-strict-plurality survives the Gate-1
+determinacy standard.** `LOCKED_EXECUTE_E4A` was determinate on its own corpus. It
+remains stripped of forward-licensing force — but by ratified **D5** (composition /
+role), **not** by any indeterminacy of measurement, and this document must not be cited
+for the latter.
+
+**What survives.** The instrument defect is real and unaffected by this retraction:
+`SIMPLIFY_TIMEOUT_SECONDS = 5` is a wall-clock budget; the label is a function of host
+speed; the bias is one-directional (timeout ⇒ `g2_correct = false` ⇒ earlier-stage
+loss); and it is concentrated where the bias predicts — **59.8 % of `NEVER_ON_FRONT`
+worlds (73/122) rest on at least one abandoned row**. It happens not to have been
+decision-changing here because those 73 worlds' timeouts land on non-retained rows, so
+they can only move `A → B` and cannot reach the plurality contest. **That is luck, not
+design.** The ARM corpus's exposure is 3× worse (834 rows, 237 of 530 worlds = 44.7 %),
+the parity artifact states its 1/530 observed mismatch is a **lower bound**, and no
+equivalent retained-row analysis has been done there. The §5.6 remedies stand
+unchanged: a defect that is decision-neutral by accident on one corpus must still be
+engineered away before it is relied on for a new one.
 
 ### 5.6 How the new design must neutralize it
 
@@ -889,39 +1006,64 @@ ratification §5 item 7.
 
 ## 9. THE SINGLE BIGGEST STATISTICAL THREAT
 
-**Not sampling error. A directionally biased, host-dependent measurement instrument
-sitting on the routing-relevant field.**
+**REVISED after the §5.3 / §5.5 corrections.** My original nomination (the timeout
+instrument) survives as the runner-up; it is displaced by a threat the corrections
+exposed.
 
-`SIMPLIFY_TIMEOUT_SECONDS = 5` is a wall-clock budget, so the *same* classifier assigns
-a *different* scientific label to the *same* expression as a function of CPU speed and
-machine load. Every timeout collapses to `g2_correct = false`, and because
-`reach_front / reach_retain / reach_win` are monotone in the row labels, **every
-timeout biases every stage-survival estimate downward** — it manufactures
-`NEVER_ON_FRONT`. Measured on the sealed x86 E2a corpus: **59.8 % of all
-`NEVER_ON_FRONT` worlds carry at least one row the classifier abandoned** (73 of 122);
-on the ARM corpus the exposure is 44.7 % of worlds, and the artifact states its
-observed mismatch rate is a lower bound. Applying the sealed Gate-1 determinacy
-standard, E2a's `B`-plurality is **not** invariant over its own unresolved rows
-(`B ∈ [176, 269]`, `C ∈ [99, 195]`, `E ∈ [119, 215]`), so `LOCKED_EXECUTE_E4A` was
-never determinate.
+### 9.1 Primary threat — the stage ORDERING is not identified on any existing surface
 
-This threat dominates because it is (i) systematic — it does not shrink with `n`;
-(ii) confounded with the science — it mimics exactly the generation-side failure the
-programme is trying to attribute; (iii) non-reproducible across hosts, so it defeats
-replication as a control; and (iv) it eats the equivalence margin directly, at roughly
-150 extra worlds per percentage point of determinacy gap. **It must be engineered away
-(§5.6 N1–N5: pure-function labels, sealed hashed lookup table, CPU-time tier-1 budget,
-uncapped tier-2 escalation of decisive expressions, two-architecture hash parity), not
-bounded away.** Bounding is the fallback that keeps the result *sound*; only
-elimination keeps it *affordable*.
+§2.9 routes on `argmax` over `{π_A, π_B, π_C}`. That argmax is **statistically
+undetermined on every surface the programme currently holds**:
 
-**Runner-up threat:** the two-sample infeasibility of §4.4. The sealed 144-case
-comparator's own variance on `S₂` exceeds the entire margin budget by 2.2×, so **no**
-surface of **any** size passes a two-sample equivalence test at δ = 10/144. The
-fixed-target framing is therefore load-bearing, it is anti-conservative, and it is
+| Surface | `π_B − π_C` | 95 % CI | identified? |
+|---|---:|---|:--:|
+| E2a raw (n=539) | +17.44 pp | — | composition-confounded (§5.2) |
+| E2a std. on family, pooled (n=432) | +7.25 pp | (−1.46, +15.97) | **no — CI covers 0** |
+| E2a std. on family, noise-matched (n=144) | −0.23 pp | (−15.85, +15.39) | **no — CI covers 0** |
+| Held-out / E2b (n=144) | −11.11 pp | — | `DECISION_INADMISSIBLE` by §2.3/§2.4 and D5 |
+
+The one surface with a clear ordering is the one barred from licensing anything. The
+surfaces that may license are the ones that cannot resolve it. And the two admissible
+conditionings of E2a **point in opposite directions** while each fails to exclude zero.
+
+This threat dominates because it is the *decision* quantity, not a nuisance: an
+unidentified argmax means `ROUTING_INDETERMINATE`, which means no E4 arm is licensed
+regardless of how well the surface qualifies. It also cannot be fixed by analysis —
+only by n. Quantified: certifying a Held-out-like margin (0.1111) at 95 % needs
+n ≥ 288; the recommended n = 576 gives an LCB of **+0.0353**, versus E2a's ±15 pp.
+**This is the load-bearing argument for spending the 42 CPU-hours**, and it is
+*strengthened*, not weakened, by the finding that composition explains only 68–77 % of
+the divergence.
+
+Secondary consequence, already built into the design: because the ordering is fragile,
+§7.2 R2's certified-margin requirement is not optional belt-and-braces. Bare `argmax`
+would have "resolved" the noise-matched E2a stratum at a 0.23 pp separation.
+
+### 9.2 Runner-up — a directionally biased, host-dependent measurement instrument
+
+`SIMPLIFY_TIMEOUT_SECONDS = 5` is a wall-clock budget, so the same classifier assigns a
+different scientific label to the same expression as a function of CPU speed and load.
+Every timeout collapses to `g2_correct = false`, and because `reach_front /
+reach_retain / reach_win` are monotone in the row labels, **every timeout biases every
+stage-survival estimate downward** — it manufactures `NEVER_ON_FRONT`. Measured:
+**59.8 % of E2a's `NEVER_ON_FRONT` worlds (73/122) carry at least one abandoned row**;
+the ARM corpus is 3× worse (237 of 530 worlds) and its observed mismatch rate is stated
+to be a lower bound.
+
+**It was not decision-changing on the x86 E2a corpus** — the refined bound in §5.5
+certifies `B`-plurality — **because those 73 worlds' timeouts happen to sit on
+non-retained rows.** That is an accident of where `simplify` gave up, not a property of
+the design. It is systematic (does not shrink with n), confounded with the science (it
+mimics generation failure), non-reproducible across hosts (so replication does not
+control it), and it eats the equivalence margin at ≈150 worlds per percentage point of
+determinacy gap (§3.1). **Engineer it away (§5.6 N1–N5), do not bound it away.**
+
+### 9.3 Third — the two-sample infeasibility (§4.4)
+
+The sealed 144-case comparator's own variance on `S₂` exceeds the entire margin budget
+by 2.2×, so **no surface of any size** passes a two-sample equivalence test at
+δ = 10/144. The fixed-target framing is load-bearing and anti-conservative, and is
 declared here in advance rather than discovered afterwards.
-
----
 
 ## 10. Numbers appendix — provenance of every figure
 
@@ -935,7 +1077,8 @@ declared here in advance rather than discovered afterwards.
 | E2a `A=122 B=196 C=102 D=0 E=119`, n = 539 | `results/e2/run_x86_e2a_v1/worlds_shard_*.jsonl`, recomputed here |
 | Held-out cell map (9 affine / F09 sat / F10 int / F18 exp) | `v2_design_reference/MURU_V1_G2_FAILURE_TAXONOMY.csv`, recomputed here |
 | Per-family `S_j` at `noise_sd = 0.02`; standardized `S = (0.9144, 0.4583, 0.0000)` | recomputed here from the E2a world records |
-| `TV` raw 0.3221 (46.4/144) and standardized 0.0741 (10.67/144) | recomputed here |
+| `TV` raw 0.3221 (46.4 cases); std. pooled 0.1026 (14.8); std. noise-matched 0.0741 (10.7) | recomputed here; pooled figure independently reproduced from the coordinator's recomputation to 4 dp |
+| Retained-row timeout split (A 73→2, B 20→0, C 3→3, E 1→1) and refined bound | joined here; premises verified at 16 170/16 170 retained rows and 42 411/42 411 A-world front rows classified |
 | E3 family classifications, `search_side_attribution_licensed` | `muru-authority/1d20731-e3-identifiability:E3_RESULTS.json`, `frozen_operating_point_disposition` |
 | E3's `0.10` false-structure bar | ibid. `study_validity.bic_criterion` |
 | `397` timeout expressions; `97/539` worlds; per-stage 73/20/3/1 | joined here: `candidates_shard_*.jsonl` × `/home/aryav_thakur/e2_x86_cache/classify_cache.sqlite3` |
@@ -943,6 +1086,25 @@ declared here in advance rather than discovered afterwards.
 | Gate-1 determinacy method; `158/51 411 = 0.31 %`; 101/101 validation | `GATE_1_DEFINITIVE.md` intro & §6; `FINAL_TERMINAL_REPORT.md` §3 |
 | Wall time 262.5 s/world mean, 39.3 CPU-h for 539 | recomputed here from `wall_seconds` |
 | All power / DEFF / seed-sensitivity / routing-LCB tables | computed here with `scipy 1.18.0` under `/home/aryav_thakur/venv/bin/python` |
+
+---
+
+## 11. Revision record
+
+| # | Change | Trigger |
+|---|---|---|
+| R1 | "91 % of TV divergence removed" → **77.0 %** (noise-matched) / **68.1 %** (pooled). Arithmetic error: a reduction computed on the conditional `P_win\|retain` was attached to the TV figure. | coordinator recomputation |
+| R2 | "Standardization flips the routing argmax B→C, agreeing with Held-out" → **WITHDRAWN.** The flip is conditioning-specific and, at −0.23 pp with a ±15.6 pp CI, not identified. Pooled conditioning leaves `B` ahead by 7.25 pp, also not identified. | coordinator recomputation |
+| R3 | "E2a's `B`-plurality is not cap-invariant; `LOCKED_EXECUTE_E4A` was never determinate" → **WITHDRAWN.** The refined bound using `retained_by_argmax_score` **certifies** invariance (`B∈[196,267]` vs `C∈[99,104]`). The published coarse bound was an over-approximation of the reachable set. | own re-derivation on the coordinator's challenge |
+| R4 | Standardization variable made explicit: `truth_family` (4 levels) for the E2a diagnostic; the 12 `F` **conditions** only for the prospective design, where they are exact by construction. E2a does not span the 12 conditions and is never reweighted on them. | P1 via coordinator |
+| R5 | §9 primary threat changed from the timeout instrument to **non-identification of the stage ordering**. | consequence of R2 |
+
+**Unchanged by this revision:** the primary endpoint, the acceptance predicate, the
+margin δ = 10/144, the sample size n = 576, the multiplicity treatment, the UNRESOLVED
+bound, and the dev/eval posture. The corrections strengthen the case for the
+replacement surface: E2a fails the frozen 10-case tolerance under **both** admissible
+conditionings (10.7 and 14.8 cases), and the routing ordering it would have to supply
+is undetermined at any conditioning.
 
 ---
 
