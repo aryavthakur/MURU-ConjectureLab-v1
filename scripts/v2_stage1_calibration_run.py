@@ -165,7 +165,8 @@ def preflight() -> dict:
 # work from checkpoint state (never from in-memory bookkeeping, so nothing
 # already safely written to disk is redone or lost), and start a fresh pool.
 # Bounded by MAX_POOL_RESTARTS so a persistently-crashing case_id causes a
-# loud, explicit failure naming exactly what didn't finish, never an infinite
+# loud, explicit failure -- a count inline in the exit message, the full,
+# untruncated case_id list in RUN_SUMMARY_INCOMPLETE.json -- never an infinite
 # restart loop.
 #
 # BOTH hostile critics independently caught and reproduced a real defect in the
