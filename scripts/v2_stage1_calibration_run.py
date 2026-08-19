@@ -135,6 +135,113 @@ def preflight() -> dict:
     return checks
 
 
+# ---------------------------------------------------------------------------------
+# STALL-RECOVERY POOL SUPERVISOR (execution-safety, not scientific).
+#
+# Found live, not hypothesised: a control run (--limit 1) segfaulted inside the
+# PySR/Julia/PythonCall bridge (`_pyjl_callmethod`, signal 11), and a synthetic
+# reproduction proved the consequence -- `Pool.imap_unordered` does not raise or
+# time out when a worker dies unexpectedly mid-task; the iterator blocks FOREVER
+# waiting for that one task's result, even though every OTHER task keeps
+# completing normally on replacement workers. For an unattended 57,960-search
+# run, one segfault anywhere would silently hang the entire run with no
+# exception, no checkpoint corruption, and no signal to notice except the run
+# never finishing.
+#
+# `maxtasksperchild=1` is NOT changed here (declining, separately, the earlier
+# "persistent workers" ask precisely because PySR/Julia's cross-call memory
+# behavior makes the current fresh-process-per-world design load-bearing for
+# FP-3's frozen RSS ceiling) -- this fix only changes how the DRIVER notices and
+# recovers from a worker that dies without producing a result. It changes
+# nothing about which function runs, what it computes, or any frozen
+# constant (worker count, RSS ceiling, seeds, niterations, grammar).
+#
+# Mechanism: poll the unordered iterator with a bounded timeout instead of a
+# blocking `for`. If NO result arrives (from ANY of the `a.workers` concurrent
+# workers) for STALL_TIMEOUT_S, that is strong evidence something died silently
+# -- with `a.workers` workers each completing a search every few seconds under
+# normal operation, a multi-minute total silence is not a slow search, it is a
+# missing one. On a stall: terminate the pool, recompute the true remaining
+# work from checkpoint state (never from in-memory bookkeeping, so nothing
+# already safely written to disk is redone or lost), and start a fresh pool.
+# Bounded by MAX_POOL_RESTARTS so a persistently-crashing case_id causes a
+# loud, explicit failure naming exactly what didn't finish, never an infinite
+# restart loop.
+STALL_TIMEOUT_S = 1200      # 20 min of zero global progress; DEV profile max
+                             # single-search wall time was 21.8 s, so this has
+                             # roughly 50x headroom over any legitimate search
+POLL_INTERVAL_S = 15
+MAX_POOL_RESTARTS = 30
+
+
+def _checkpoint_exists(case_id: str) -> bool:
+    return (CKPT / (case_id.replace("|", "_") + ".json")).exists()
+
+
+def run_pool_with_stall_recovery(ids: list[str], workers: int) -> dict:
+    import multiprocessing as mp
+    ctx = mp.get_context("fork")
+    done = {"OK": 0, "CACHED": 0}
+    failures: list[dict] = []
+    remaining = list(ids)
+    restarts = 0
+    stall_events = []
+
+    while remaining:
+        pool = ctx.Pool(workers, initializer=_bound_memory, maxtasksperchild=1)
+        it = pool.imap_unordered(_worker, remaining, chunksize=1)
+        got_this_round = 0
+        last_progress = time.time()
+        stalled = False
+        try:
+            while got_this_round < len(remaining):
+                try:
+                    cid, status = it.next(timeout=POLL_INTERVAL_S)
+                except mp.TimeoutError:
+                    if time.time() - last_progress > STALL_TIMEOUT_S:
+                        stalled = True
+                        break
+                    continue
+                got_this_round += 1
+                last_progress = time.time()
+                if status in done:
+                    done[status] += 1
+                else:
+                    failures.append({"case_id": cid, "status": status})
+                n = done["OK"] + done["CACHED"] + len(failures)
+                if n % 25 == 0:
+                    print(f"[STAGE1] {n}/{len(ids)} worlds  ok={done['OK']} "
+                          f"cached={done['CACHED']} failed={len(failures)}", flush=True)
+        finally:
+            pool.terminate()
+            pool.join()
+
+        # Authoritative: recompute from disk, not from got_this_round bookkeeping.
+        still_missing = [cid for cid in remaining if not _checkpoint_exists(cid)]
+        if stalled:
+            restarts += 1
+            stall_events.append({
+                "restart_number": restarts,
+                "worlds_still_missing_at_stall": len(still_missing),
+                "utc_wall_s_into_round": round(time.time() - last_progress, 1),
+            })
+            print(f"[STAGE1] STALL DETECTED (no result from any of {workers} workers for "
+                  f"{STALL_TIMEOUT_S}s): {len(still_missing)} world(s) still missing. "
+                  f"Recreating the pool (restart {restarts}/{MAX_POOL_RESTARTS}) and "
+                  f"resubmitting only unfinished, uncheckpointed work.", flush=True)
+            if restarts > MAX_POOL_RESTARTS:
+                sys.exit(f"[STAGE1] Exceeded {MAX_POOL_RESTARTS} pool restarts with "
+                         f"{len(still_missing)} world(s) still incomplete: "
+                         f"{still_missing[:20]}{'...' if len(still_missing) > 20 else ''}. "
+                         f"Stopping rather than looping forever -- this needs investigation, "
+                         f"not another automatic restart.")
+        remaining = still_missing
+
+    return {"worlds_requested": len(ids), **done, "failures": failures,
+            "n_failed": len(failures), "pool_restarts": restarts,
+            "stall_events": stall_events}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=SEARCH_WORKER_COUNT)
@@ -159,22 +266,7 @@ def main() -> None:
     if a.limit:
         ids = ids[:a.limit]
 
-    import multiprocessing as mp
-    ctx = mp.get_context("fork")
-    done = {"OK": 0, "CACHED": 0}
-    failures = []
-    with ctx.Pool(a.workers, initializer=_bound_memory, maxtasksperchild=1) as pool:
-        for cid, status in pool.imap_unordered(_worker, ids, chunksize=1):
-            if status in done:
-                done[status] += 1
-            else:
-                failures.append({"case_id": cid, "status": status})
-            n = done["OK"] + done["CACHED"] + len(failures)
-            if n % 25 == 0:
-                print(f"[STAGE1] {n}/{len(ids)} worlds  ok={done['OK']} "
-                      f"cached={done['CACHED']} failed={len(failures)}", flush=True)
-    summary = {"worlds_requested": len(ids), **done, "failures": failures,
-               "n_failed": len(failures)}
+    summary = run_pool_with_stall_recovery(ids, a.workers)
     (OUT / "RUN_SUMMARY.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2)[:1500], flush=True)
 
