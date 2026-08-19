@@ -1,0 +1,38 @@
+MURU v2 E4f OPERATIONAL PREREGISTRATION -- FREEZE RECORD
+=========================================================
+Written per section 12 item 1. This file is a STRICT DESCENDANT of the freeze
+commit and records it; the freeze commit itself could not contain its own SHA.
+
+RESULTS-BLIND ANCESTOR (repository HEAD at authorship):
+  119ba265e16d2fed04cc332b879803b407562a05   2026-08-19 01:44:18 +0000
+  "Both critics FAIL the re-entry protocol: no reachable positive terminal"
+
+FREEZE COMMIT (introduces the protocol text):
+  8a2ffa504f1dafd7b07d85bc6cab2b74be1cbdaa
+
+FROZEN ARTIFACT:
+  sha256  0ce2755d9661d707a48961d11477fd6b793f8567c0e835e058a180d2763a7f61
+  path    audit/muru_v2_reentry_20260819/MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md
+  lines   996
+
+STATE OF THE WORLD AT THE FREEZE COMMIT (each independently checkable):
+  - No qualified calibration surface exists. No E4f front corpus exists.
+  - No routing result exists; the routing protocol is unexecuted text carrying
+    two standing hostile-review FAIL verdicts.
+  - No false_labelling_rate or k_inflation value has ever been computed, for
+    any arm, on any population, by anyone.
+  - No E4f implementation exists:
+      grep -rl 'E4[Ff]' src/ scripts/  ->  routing_lock.py,
+      pb_rc4_2_authorized_delta.py, pb_rc5_a3_5_authorized_delta.py
+    none of which scores an E4f arm.
+
+TUNING LEDGER: EMPTY.
+  Any parameter changed after 8a2ffa50 must be recorded below with its reason
+  and the evidence consulted. A non-empty ledger voids the run
+  (protocol section 13, E4F_VOID_TUNING_LEDGER_NONEMPTY).
+
+  (no entries)
+
+VERIFY:
+  git merge-base --is-ancestor 8a2ffa504f1dafd7b07d85bc6cab2b74be1cbdaa <data-commit>
+  sha256sum audit/muru_v2_reentry_20260819/MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md
