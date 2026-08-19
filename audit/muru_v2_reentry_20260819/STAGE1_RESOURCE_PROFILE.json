@@ -1,0 +1,34 @@
+{
+  "schema": "muru-v2-stage1-resource-profile-1.0.0",
+  "purpose": "Section 13 A4 requires WORKER_COUNT and the RSS ceiling to be profiled on the E2a engineering DEV set, frozen and published BEFORE Stage 0 executes, so that Stage 0's measured cost cannot feed Stage 1's concurrency. CRITIC_SCIENCE DEF-M5 found v2 asserted this profiling without producing a record. This is that record.",
+  "closes": ["DEF-M5", "DEF-H9 (the WORKER_COUNT = 1 infeasibility it created)", "X-2"],
+  "profiled_on": "E2a engineering DEV set (section 26(1)) -- already permitted and already fully seen",
+  "host": {"cpus": 24, "total_ram_gib": 47, "swap": "none"},
+  "interpreter": "/home/aryav_thakur/venv/bin/python3",
+  "threading": "OMP/OPENBLAS/MKL pinned to 1",
+  "search_phase_measurement": {
+    "n_searches": 12,
+    "worlds": "3 families x 2 (regime,noise) cells x 2 seeds, replicate r006",
+    "all_completed": true,
+    "wall_mean_s": 5.1, "wall_median_s": 3.6, "wall_max_s": 21.8,
+    "peak_rss_gib_whole_process": 0.958,
+    "note": "0.958 GiB is the peak for the ENTIRE process including numpy, sympy, PySR and the Julia runtime, not a per-search delta. The search phase is small."
+  },
+  "THE FINDING": "The 24 GiB ceiling was always motivated by the sympy CANONICALISATION tail (one E2a pair measured 44.4 GB), never by PySR search. v2 declared ONE ceiling for both phases, and v3's host-derived repair then computed WORKER_COUNT = floor(0.85*47/23.5) = 1, which would make 57,960 searches infeasible and turn a resource envelope into a de-facto terminal -- exactly what section 25 forbids. The two phases have different memory profiles and must carry different declarations.",
+  "DECLARED, FROZEN BEFORE STAGE 0": {
+    "search_phase":  {"RSS_CEILING_GIB": 2.0,  "rule": "2x measured peak 0.958, rounded up",
+                      "WORKER_COUNT": 19, "rule_wc": "min(floor(0.85*47/2.0), cpus-5) = min(19,19)"},
+    "scoring_tier1": {"RSS_CEILING_GIB": 4.0,  "rule": "declared; tier-1 canonicalisation is bounded by 60 s CPU",
+                      "WORKER_COUNT": 9,  "rule_wc": "floor(0.85*47/4.0)"},
+    "scoring_tier2": {"RSS_CEILING_GIB": 23.5, "rule": "min(0.50*total_gib, 24*scale) with scale=1",
+                      "WORKER_COUNT": 1,  "rule_wc": "floor(0.85*47/23.5); tier 2 is uncapped in TIME and serial in MEMORY"}
+  },
+  "envelope_check_all_phases": "WORKER_COUNT * RSS_CEILING_GIB <= 0.85 * 47 = 39.95 GiB : search 19*2.0=38.0 OK ; tier1 9*4.0=36.0 OK ; tier2 1*23.5=23.5 OK",
+  "projected_stage1_cost": {
+    "searches": 57960,
+    "cpu_hours_at_mean_5.1s": 82.1,
+    "wall_hours_at_19_workers": 4.3,
+    "note": "Scoring is additional and is NOT projected here, because its tail is exactly what Stage 0 measures and section 13 A4 forbids Stage 0's cost from feeding Stage 1's concurrency. The scoring concurrency above is declared from the DEV profile alone."
+  },
+  "binding": "These six numbers are frozen. Changing any of them after Stage 0 reports is a tuning-ledger entry and voids the surface (P10)."
+}

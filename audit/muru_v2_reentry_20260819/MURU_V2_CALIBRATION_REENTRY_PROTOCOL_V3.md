@@ -2165,13 +2165,36 @@ resource envelope:
    >   on this host:  floor(39.95 / 23.5) = 1
    > ```
    >
-   > **This is deliberately conservative and it is slow.** A worker count of 1 on this host is
-   > the honest consequence of demanding that the declared envelope actually fit in the
-   > declared machine. Where the measured per-worker peak is far below the ceiling — Stage 0
-   > measured 1.65 GiB against a 6 GiB bound — the executor MAY declare a **measured** ceiling
-   > in place of the worst-case one, provided the measurement is published, frozen before the
-   > run, and the arithmetic `WORKER_COUNT x RSS_CEILING_GIB <= 0.85 x total_physical_GiB`
-   > still holds. Both numbers go in the freeze manifest either way.
+   > **A single ceiling for both phases is what produced `WORKER_COUNT = 1`, and that was
+   > wrong.** Applied to this host the rule gives `floor(0.85 x 47 / 23.5) = 1`, which would
+   > make 57,960 searches infeasible and turn a **resource envelope into a de-facto terminal**
+   > — precisely what this section forbids. The 24 GiB figure was always motivated by the
+   > sympy **canonicalisation** tail (one E2a pair measured 44.4 GB), never by PySR **search**.
+   > The two phases have different memory profiles and must carry different declarations.
+   >
+   > **Profiled on the E2a engineering DEV set (§26(1), permitted and already fully seen),
+   > published in `STAGE1_RESOURCE_PROFILE.json`, and frozen BEFORE Stage 0 executes**, which
+   > is what §13 `A4` requires and what `DEF-M5` found v2 asserting without a record. Measured:
+   > 12 searches, all completed, wall mean **5.1 s** / median 3.6 s / max 21.8 s, peak RSS for
+   > the **entire** process **0.958 GiB**.
+   >
+   > ```
+   >                    RSS_CEILING_GIB   WORKER_COUNT     envelope (<= 39.95 GiB)
+   >   search phase           2.0              19             38.0   OK
+   >   scoring tier 1         4.0               9             36.0   OK
+   >   scoring tier 2        23.5               1             23.5   OK
+   > ```
+   >
+   > Search: `2.0` is 2x the measured peak; `19 = min(floor(0.85 x 47 / 2.0), cpus - 5)`.
+   > Tier 2 is **uncapped in time and serial in memory**, which is the correct shape for a
+   > tail whose worst observed case is 44.4 GB. Projected Stage 1 search cost: **82.1 CPU-hours,
+   > 4.3 wall-hours at 19 workers**. Scoring cost is deliberately **not** projected, because
+   > its tail is exactly what Stage 0 measures and `A4` forbids Stage 0's cost from feeding
+   > Stage 1's concurrency — the scoring concurrency above is declared from the DEV profile
+   > alone.
+   >
+   > **All six numbers are frozen.** Changing any of them after Stage 0 reports is a
+   > tuning-ledger entry and voids the surface under `P10`.
 4. If no attainable host resolves the expressions, the protocol terminates in
    `RUN_INCOMPLETE_RESOURCE_EXHAUSTION` **and publishes no scientific conclusion whatsoever**
    — not about the contract, not about the pipeline, not about decidability. The published
@@ -2582,8 +2605,8 @@ execution, but not derivable from frozen authority.
 |---|---|---|---|---|
 | FP-1 | Power target in the §10.4 sizing | `0.80` | A sample size cannot be derived without one. It is the conventional default | **Nowhere.** It affects only `n`. `delta` and the certification rule are independent of it |
 | FP-2 | Tier-1 CPU cost bound | `60 s` per distinct expression (12× the retired 5 s, in CPU time) | A cost bound is needed to decide *when to escalate*. No frozen source supplies a multiplier | **Nowhere.** Exceeding it produces `UNRESOLVED`, which is its own state and never a label. Tier 2 is uncapped in time |
-| FP-3 | Per-worker RSS ceiling | `RSS_CEILING_GIB = 24` | A host with 48 GiB and no swap OOM-killed the previous run four times. Some ceiling must exist or the kernel picks one by SIGKILL | **Nowhere** — §25.4 routes exhaustion to an operational non-terminal that emits no scientific state. Chosen below the 25 GiB at which Gate 1 lost cases, so the in-process ceiling fires before the kernel does. **Frozen before Stage 0** (`D7`) |
-| FP-4 | Worker count | `WORKER_COUNT = 8` | Concurrency must be a declared constant or it is a scientific variable (v1 §13 A4) | **Nowhere**, given FP-3's disposition. **Frozen before Stage 0** (`D7`) |
+| FP-3 | Per-worker RSS ceiling, **per phase** (search 2.0 / scoring tier-1 4.0 / scoring tier-2 23.5 GiB), profiled on the E2a DEV set and recorded in `STAGE1_RESOURCE_PROFILE.json` | see §25.5 | A host with 48 GiB and no swap OOM-killed the previous run four times. Some ceiling must exist or the kernel picks one by SIGKILL | **Nowhere** — §25.4 routes exhaustion to an operational non-terminal that emits no scientific state. **`X-2` correction: v2 justified this as "the in-process ceiling fires before the kernel does", which was arithmetically false** — `WORKER_COUNT x RSS_CEILING = 8 x 24 = 192 GiB` on a 47 GiB host, so the kernel fired first and the stated guarantee never held. The per-phase ceilings now satisfy `WORKER_COUNT x RSS_CEILING <= 0.85 x total_physical_GiB` in every phase, which is what makes the guarantee true. **Frozen before Stage 0** (`D7`), profiled record in `STAGE1_RESOURCE_PROFILE.json` |
+| FP-4 | Worker count, **per phase** (19 / 9 / 1), each satisfying `WORKER_COUNT x RSS_CEILING_GIB <= 0.85 x total_physical_GiB` | see §25.5 | Concurrency must be a declared constant or it is a scientific variable (v1 §13 A4) | **Nowhere**, given FP-3's disposition. **Frozen before Stage 0** (`D7`) |
 | FP-5 | `C-2` / `C-3` / `C-6` sample sizes and pass bars | 12 / 12 (+3 planted) / 500, all at 100% | Frozen authority names these controls but gives no sizes. v1 left them to the executor | **Yes, in principle** — a control's power depends on its size. Bars are 100%, so a larger sample can only make them harder; the risk is under-powering, not over-passing. Declared here so it is fixed rather than chosen |
 | FP-6 | The §21.4 bootstrap RNG label | `"E7-CC"` | A label is required by `derive_seed_v2`'s frozen signature | **Nowhere.** The annotation gates nothing |
 
