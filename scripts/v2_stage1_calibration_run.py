@@ -167,6 +167,21 @@ def preflight() -> dict:
 # Bounded by MAX_POOL_RESTARTS so a persistently-crashing case_id causes a
 # loud, explicit failure naming exactly what didn't finish, never an infinite
 # restart loop.
+#
+# BOTH hostile critics independently caught and reproduced a real defect in the
+# first version of this fix: "still needs work" was computed from checkpoint
+# absence ALONE, so `_worker()`'s two DEFINITIVE non-crash failure returns
+# (`RSS_CEILING_EXCEEDED`, `f"ERROR {type}: {e}"` -- neither writes a
+# checkpoint) were resubmitted forever, never tripped MAX_POOL_RESTARTS, and
+# the run never terminated -- strictly worse than the single-pass code this
+# replaced. Reproduced live by both reviewers (thousands of resubmissions in
+# under 20s). FIX: `resolved` now tracks every case_id that returned ANY
+# status this call, not just OK/CACHED; only a case_id with NEITHER a
+# checkpoint NOR an entry in `resolved` is eligible for resubmission. A
+# separate finding (CRITIC_GOVERNANCE): the give-up path's `sys.exit()`
+# skipped `main()`'s RUN_SUMMARY.json write entirely, so section 25.5's
+# "reported" requirement wasn't met -- fixed by writing a dedicated,
+# UNTRUNCATED RUN_SUMMARY_INCOMPLETE.json before raising.
 STALL_TIMEOUT_S = 1200      # 20 min of zero global progress; DEV profile max
                              # single-search wall time was 21.8 s, so this has
                              # roughly 50x headroom over any legitimate search
@@ -186,6 +201,21 @@ def run_pool_with_stall_recovery(ids: list[str], workers: int) -> dict:
     remaining = list(ids)
     restarts = 0
     stall_events = []
+    # DEF-1 (CRITICAL_SCIENCE, 2026-08-19): `_worker()` has THREE outcomes, and only
+    # one of them ("OK") writes a checkpoint. `RSS_CEILING_EXCEEDED` and
+    # `f"ERROR {type}: {e}"` are DEFINITIVE, already-typed final answers from
+    # `_worker()`'s own try/except -- not a sign anything died silently. The
+    # original bug: `still_missing` was computed from checkpoint existence ALONE,
+    # so a case_id that returns a real (non-crash) failure status every time was
+    # resubmitted forever -- reproduced live: ~450 resubmissions/second, 8,975+
+    # duplicate `failures` entries in 20s, no termination, RUN_SUMMARY.json never
+    # written. FIX: `resolved` tracks every case_id that returned ANY status this
+    # call (not just OK/CACHED). Only case_ids with NEITHER a checkpoint NOR an
+    # entry in `resolved` are eligible for resubmission -- preserving the
+    # pre-existing single-pass semantics for `_worker()`'s own definitive
+    # failures (recorded once, exactly as the un-patched code did), while still
+    # catching the case a result never arrives at all (segfault/silent death).
+    resolved: set[str] = set()
 
     while remaining:
         pool = ctx.Pool(workers, initializer=_bound_memory, maxtasksperchild=1)
@@ -204,6 +234,7 @@ def run_pool_with_stall_recovery(ids: list[str], workers: int) -> dict:
                     continue
                 got_this_round += 1
                 last_progress = time.time()
+                resolved.add(cid)
                 if status in done:
                     done[status] += 1
                 else:
@@ -216,8 +247,12 @@ def run_pool_with_stall_recovery(ids: list[str], workers: int) -> dict:
             pool.terminate()
             pool.join()
 
-        # Authoritative: recompute from disk, not from got_this_round bookkeeping.
-        still_missing = [cid for cid in remaining if not _checkpoint_exists(cid)]
+        # Authoritative: recompute from disk/resolved-set, never from
+        # got_this_round bookkeeping alone. A case_id is only eligible for
+        # resubmission if it has NEITHER a checkpoint NOR a recorded definitive
+        # result this call -- i.e. it is genuinely still unaccounted for.
+        still_missing = [cid for cid in remaining
+                         if not _checkpoint_exists(cid) and cid not in resolved]
         if stalled:
             restarts += 1
             stall_events.append({
@@ -225,16 +260,32 @@ def run_pool_with_stall_recovery(ids: list[str], workers: int) -> dict:
                 "worlds_still_missing_at_stall": len(still_missing),
                 "utc_wall_s_into_round": round(time.time() - last_progress, 1),
             })
+            # DEF-3 (CRITIC_GOVERNANCE): check the give-up condition BEFORE
+            # printing "restart N/MAX" -- previously this printed the OVER-limit
+            # count first (e.g. "restart 4/3") because the exit check ran after
+            # the print, confirmed by the give-up selftest's own captured output.
+            if restarts > MAX_POOL_RESTARTS:
+                # DEF-2 (CRITIC_GOVERNANCE): sys.exit() here unwinds before
+                # main()'s RUN_SUMMARY.json write ever runs, so section 25.5's
+                # "reported" requirement was not met on the give-up path -- the
+                # selftest itself proved no RUN_SUMMARY.json existed afterward.
+                # FIX: write an explicit, UNTRUNCATED give-up report to disk
+                # here, unconditionally, before raising.
+                report = {"worlds_requested": len(ids), **done, "failures": failures,
+                          "n_failed": len(failures), "pool_restarts": restarts,
+                          "stall_events": stall_events,
+                          "GAVE_UP": True,
+                          "worlds_never_completed": still_missing}  # full list, not [:20]
+                (OUT / "RUN_SUMMARY_INCOMPLETE.json").write_text(json.dumps(report, indent=2))
+                sys.exit(f"[STAGE1] Exceeded {MAX_POOL_RESTARTS} pool restarts with "
+                         f"{len(still_missing)} world(s) still incomplete. Full list written "
+                         f"to RUN_SUMMARY_INCOMPLETE.json (worlds_never_completed). "
+                         f"Stopping rather than looping forever -- this needs investigation, "
+                         f"not another automatic restart.")
             print(f"[STAGE1] STALL DETECTED (no result from any of {workers} workers for "
                   f"{STALL_TIMEOUT_S}s): {len(still_missing)} world(s) still missing. "
                   f"Recreating the pool (restart {restarts}/{MAX_POOL_RESTARTS}) and "
                   f"resubmitting only unfinished, uncheckpointed work.", flush=True)
-            if restarts > MAX_POOL_RESTARTS:
-                sys.exit(f"[STAGE1] Exceeded {MAX_POOL_RESTARTS} pool restarts with "
-                         f"{len(still_missing)} world(s) still incomplete: "
-                         f"{still_missing[:20]}{'...' if len(still_missing) > 20 else ''}. "
-                         f"Stopping rather than looping forever -- this needs investigation, "
-                         f"not another automatic restart.")
         remaining = still_missing
 
     return {"worlds_requested": len(ids), **done, "failures": failures,
