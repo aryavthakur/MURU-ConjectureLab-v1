@@ -57,14 +57,20 @@ Modal App (`muru-v2-modal-rescue-execute`, see §3 below), so sidecar jobs
 and the rescue *readiness* probe run with no secrets at all. You do not
 need to create this secret to use anything except `rescue_execute`.
 
-### 1.3 Create the checkpoint volume
+### 1.3 The control ledger and the checkpoint volume
 
-Created automatically on first use (`create_if_missing=True` in
-`modal_app.py`), but you can create it explicitly:
+Both are created automatically on first use
+(`create_if_missing=True` in `modal_app.py`), but you can create them
+explicitly:
 
 ```bash
-modal volume create muru-modal-checkpoints
+modal dict create muru-modal-control-ledger    # cost/run-status records
+modal volume create muru-modal-checkpoints     # rescue_execute output only
 ```
+
+The Dict is what all cost and run-status tracking actually uses now (see
+§4). The Volume is mounted only on `rescue_execute`, for whatever the
+caller's own `command` wants to persist.
 
 ---
 
@@ -128,10 +134,10 @@ needed):
 modal run modal_app.py::readiness_check
 ```
 
-Produces and prints a JSON readiness manifest (also written to
-`/checkpoints/rescue_readiness_manifest.json` on the
-`muru-modal-checkpoints` volume). This proves the ~96 GiB environment can
-be scheduled and reports its actual CPU/RAM/arch/Python/NumPy/SymPy/Julia/
+Produces and prints a JSON readiness manifest (also recorded as a
+`readiness` event in the `muru-modal-control-ledger` Dict, under its own
+unique key — see §4.1). This proves the ~96 GiB environment can be
+scheduled and reports its actual CPU/RAM/arch/Python/NumPy/SymPy/Julia/
 PySR versions. **It does not clone the repo or run any repo code.**
 
 ### Rescue execution — gated, do not invoke without explicit sign-off
@@ -150,11 +156,34 @@ wrapper script once those five values are in hand — see
 modal run modal_app.py::cost_report
 ```
 
-Reads the shared JSONL ledger on the checkpoint volume and prints total
-estimated spend against the stated $50 budget and the $45 soft cap.
-`rescue_execute` refuses to start a new run once the ledger shows ≥$45
-spent. This is a best-effort trip-wire, not a hard billing cap — check the
-Modal dashboard (https://modal.com/apps) for authoritative spend.
+Reduces every immutable `cost` entry in the `muru-modal-control-ledger`
+Dict and prints the total against the stated $50 budget and the $45 soft
+cap. `rescue_execute` refuses to start a new run once the ledger shows
+≥$45 spent. This is a best-effort trip-wire, not a hard billing cap —
+check the Modal dashboard (https://modal.com/apps) for authoritative
+spend.
+
+### Inspect the raw control ledger
+
+```bash
+modal run modal_app.py::inspect_control_ledger
+modal run modal_app.py::inspect_control_ledger --event-type cost --limit 20
+```
+
+Dumps entries directly from the Dict (locally, no container needed, no
+cost). Filter by `event_type` (`cost`, `readiness`, `started`,
+`completed`).
+
+### Adversarial concurrency test
+
+```bash
+modal run modal_app.py::concurrency_test --n-workers 50 --n-cross-function-calls 5
+```
+
+Fires 50+ concurrent control-ledger writes (see §4.2) and verifies zero
+missing, zero duplicates, and an exact recomputed cost total. Exits
+non-zero on any failure. Safe to re-run any time — it only touches its
+own freshly-generated `run_id`.
 
 ---
 
@@ -168,7 +197,7 @@ execution" actually true rather than aspirational.
 
 | App | Functions | Image | Secrets |
 |---|---|---|---|
-| `muru-v2-modal-sidecar` | `report_environment_sidecar`, `sidecar_verify_artifact_hashes`, `sidecar_run_tests`, `sidecar_static_analysis`, `sidecar_find_duplicate_records`, `sidecar_run_command`, `cost_ledger_total` | `sidecar_image` | none |
+| `muru-v2-modal-sidecar` | `report_environment_sidecar`, `sidecar_verify_artifact_hashes`, `sidecar_run_tests`, `sidecar_static_analysis`, `sidecar_find_duplicate_records`, `sidecar_run_command`, `cost_ledger_total`, `_ledger_stress_probe` (test-only) | `sidecar_image` | none |
 | `muru-v2-modal-rescue-readiness` | `report_environment_full`, `rescue_readiness_check` | `full_image` | none |
 | `muru-v2-modal-rescue-execute` | `rescue_execute` (only) | `full_image` | `muru-rescue-authorization` |
 
@@ -190,34 +219,100 @@ one narrowly-defined capability, never anything broader.
 
 ---
 
-## 4. Checkpointing / resumability
+## 4. Checkpointing / resumability / concurrency control
 
-All jobs write to the shared `muru-modal-checkpoints` Modal Volume mounted
-at `/checkpoints`:
+**Control records (cost ledger, rescue run-status, readiness audit
+entries) live in a Modal Dict, `muru-modal-control-ledger`, not a file on
+a Volume.** This replaced an earlier Volume-file design after a real
+concurrency defect showed up in live testing (see §4.2) — Volume commits
+are whole-snapshot, not merges, so two containers writing the same file
+concurrently could silently clobber each other. A Dict's `put()` is one
+independent RPC per key with nothing to race on.
 
-- `cost_ledger.jsonl` — append-only cost-accounting log, every job.
-- `rescue_readiness_manifest.json` — latest readiness probe result.
-- `rescue/<run_id>/state.json` — rescue-job state (`started` /
-  `completed`); a call with a `run_id` that already shows `completed`
-  returns the prior result instead of re-running.
+### 4.1 Key schema
 
-**Known limitation, observed live 2026-08-19**: Modal Volume commits are
-whole-snapshot, not merges. Two jobs that write to `/checkpoints`
-concurrently (e.g. two sidecar jobs, or a sidecar job racing the readiness
-probe) can silently clobber each other's writes — during testing, a
-`sidecar_run_command` ledger entry went missing after it ran concurrently
-with `report_environment_sidecar` and `rescue_readiness_check`. Don't rely
-on the volume for exact concurrent accounting; run cost-sensitive jobs
-serially, or treat `cost_ledger_total` and the Modal billing dashboard
-(https://modal.com/apps) as an approximation, not an exact count, whenever
-multiple jobs have run close together in time. `rescue_execute`'s
-`run_id`-based resume check is unaffected in the common case (one rescue
-job at a time), but don't launch two `rescue_execute` calls with different
-`run_id`s concurrently without keeping this in mind.
+Every event is written under its own unique, never-reused key:
 
-True mid-command checkpointing for whatever `rescue_execute` runs depends
-on that command writing its own progress to `/checkpoints` — this wrapper
+```
+<run_id>:<job_id>:<event_type>:<timestamp_ns>:<nonce>
+```
+
+- `run_id` — the caller's `run_id` for `rescue_execute`; an
+  auto-generated UUID12 for everything else (still gives every call its
+  own traceable identity even without one).
+- `job_id` — the function name (`report_environment_sidecar`,
+  `rescue_execute`, ...).
+- `event_type` — `cost` (every job), `readiness` (the readiness probe's
+  audit entry), `started`/`completed` (rescue_execute's audit trail).
+- `timestamp_ns:nonce` — `time.time_ns()` plus an 8-hex-char random
+  nonce, so two events can never collide on a key even under heavy
+  concurrency. `put(..., skip_if_exists=True)` is a second, independent
+  guarantee: if a collision ever did happen, the loser is dropped, never
+  silently merged into or overwriting the winner.
+
+There is **no shared read-modify-write aggregate counter anywhere in this
+file.** The authoritative cost total (`cost_ledger_total`,
+`_read_cost_ledger_total`) is computed by reducing over every immutable
+`cost` entry at read time, from scratch, every call.
+
+`rescue_execute`'s resumability uses one exception to the nonce pattern by
+design: the canonical "is this run_id done" marker is written to a
+**deterministic** key (`<run_id>:rescue_execute:completed:FINAL`) with
+`skip_if_exists=True`, so the first container to finish a given run_id
+wins that key permanently and a second concurrent attempt with the same
+run_id can never overwrite it — it instead reads back and returns the
+winner's own result (`race_lost_locally: true`), so both callers observe
+one truth. The full nonce-keyed `started`/`completed` audit trail is
+still recorded separately for every attempt.
+
+### 4.2 Adversarial concurrency test (executed live)
+
+`modal run modal_app.py::concurrency_test --n-workers 50` fires 50
+concurrent `_ledger_stress_probe` sidecar invocations (via `.spawn()`,
+not `.map()`, so every call is in flight before any result is awaited)
+plus 5 concurrent `report_environment_sidecar` calls — two genuinely
+distinct sidecar functions writing to the ledger in the same overlapping
+window — then independently re-reads the raw Dict and verifies:
+
+```json
+{
+  "n_submitted": 50, "n_persisted": 50,
+  "missing_worker_ids": [], "duplicate_worker_ids": [], "unexpected_worker_ids": [],
+  "expected_total_usd": 0.000196, "persisted_total_usd": 0.000196,
+  "total_matches_exactly": true,
+  "cross_function_calls_ok": true, "cross_function_n_results": 5,
+  "RESULT": "PASS"
+}
+```
+
+50 submitted, 50 persisted, zero missing, zero duplicates, exact
+independently-recomputed total, both functions' concurrent writes intact.
+Run this again any time to re-verify: it only touches its own
+freshly-generated `run_id`, never any other entry.
+
+### 4.3 What the Volume still does
+
+`/checkpoints` (the `muru-modal-checkpoints` Volume) is now mounted **only
+on `rescue_execute`**, purely as an immutable per-run output directory —
+`/checkpoints/rescue/<run_id>/output/` — for whatever the caller's own
+`command` wants to persist. No control record is written there by this
+file anymore. Two different `run_id`s never share a path, so as long as
+`run_id` is unique per rescue attempt (which the Dict-based completion
+marker also depends on), no two containers ever modify the same file
+here. True mid-command checkpointing for whatever `rescue_execute` runs
+still depends on that command writing its own progress — this wrapper
 checkpoints *around* the command, not inside someone else's process.
+
+### 4.4 Residual limitation
+
+None known for the control ledger itself after §4.2's live test. The one
+remaining, explicitly out of this file's control: if a future sidecar or
+rescue job is given a `command` that writes to a *shared* path inside
+`/checkpoints/rescue/<run_id>/output/` from multiple concurrent
+sub-processes of its own, that's the command's own concurrency problem,
+not something this wrapper can prevent — the guidance for any such
+command is the same as §2's rule: give every concurrent writer its own
+immutable output path, never a shared mutable file.
 
 ---
 

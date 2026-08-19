@@ -1,13 +1,20 @@
 # MURU v2 — Modal Infrastructure (Sidecar + Rescue), 2026-08-19
 
-**Status: INFRASTRUCTURE LIVE AND VERIFIED.** Both the sidecar environment
-report and the 96 GiB rescue readiness probe ran live on Modal and
-returned real results (see §5). The rescue-authorization safety gate was
-also verified live: `rescue_execute` still refuses to run with no
-`muru-rescue-authorization` Secret present. No scientific code has run —
-readiness and sidecar jobs are structurally incapable of it (see §3–4).
-This document is operational infrastructure, not a scientific finding, and
-makes no scientific claim.
+**Status: INFRASTRUCTURE LIVE, VERIFIED, AND HARDENED.** Both the sidecar
+environment report and the 96 GiB rescue readiness probe ran live on
+Modal and returned real results (see §5), and were re-confirmed after
+this pass's concurrency-safety rework. The rescue-authorization safety
+gate was verified live both before and after: `rescue_execute` still
+refuses to run with no `muru-rescue-authorization` Secret present. A real
+concurrency defect found in the first pass (Volume-file writes silently
+clobbering each other) was fixed by moving all control records to a
+`modal.Dict` with unique per-event keys, and the fix was adversarially
+retested live with 50 concurrent writers plus a second concurrent
+sidecar function — 50/50 persisted, zero missing, zero duplicates, exact
+cost total (§6.1). No scientific code has run — readiness and sidecar
+jobs are structurally incapable of it (see §3–4). This document is
+operational infrastructure, not a scientific finding, and makes no
+scientific claim.
 
 This was built by an infrastructure-only Claude worker per explicit scope
 constraints: no scientific decisions, no frozen-parameter changes, no
@@ -40,7 +47,7 @@ All files under [`scripts/cloud_modal/`](scripts/cloud_modal/):
 
 | File | Purpose |
 |---|---|
-| [`modal_app.py`](scripts/cloud_modal/modal_app.py) | Three Modal Apps, two images, 10 functions, 6 CLI entrypoints. |
+| [`modal_app.py`](scripts/cloud_modal/modal_app.py) | Three Modal Apps, two images, 11 functions, 9 CLI entrypoints. |
 | [`requirements_sidecar.txt`](scripts/cloud_modal/requirements_sidecar.txt) | Lean pip pin set for the sidecar image — `requirements.lock.txt` minus `juliacall`/`juliapkg`/`pysr`. |
 | [`README.md`](scripts/cloud_modal/README.md) | Operational how-to: setup, commands, cost table. |
 
@@ -88,18 +95,42 @@ credential of any kind.
 | `sidecar_run_command` | sidecar | sidecar | Generic runner for schema validation, critic-bundle construction, report generation, expression-index prep, provenance checks — caller supplies the exact command. |
 | `rescue_readiness_check` | rescue-readiness | full, 96 GiB | Proves the rescue tier schedules; reports resources and versions. **Runs no repo code.** |
 | `rescue_execute` | rescue-execute | full, 96 GiB | The only function that can run an arbitrary command in the full image. Gated — see §4. |
-| `cost_ledger_total` | sidecar | — | Reads the shared cost ledger. |
+| `cost_ledger_total` | sidecar | — | Reduces every immutable `cost` entry in the control ledger. |
+| `_ledger_stress_probe` | sidecar | sidecar | Test-only: writes one deterministic-cost control-ledger event. Used by `concurrency_test` (§6.1). |
 
-### 2.3 Checkpointing
+### 2.3 Control ledger and checkpointing (hardened 2026-08-19)
 
-Shared Modal Volume **`muru-modal-checkpoints`**, mounted at
-`/checkpoints` in every function:
+**All cost/run-status control records live in a Modal Dict,
+`muru-modal-control-ledger`, not a file on a Volume.** This replaced the
+original Volume-file design after a live concurrency defect was found and
+confirmed (a `sidecar_run_command` cost entry was silently lost to a
+concurrent-write clobber — Volume commits are whole-snapshot, not
+merges). See §6.1 for the fix and its adversarial test evidence.
 
-- `cost_ledger.jsonl` — append-only, one line per job invocation.
-- `rescue_readiness_manifest.json` — latest readiness-probe result.
-- `rescue/<run_id>/state.json` — `started`/`completed` state; a repeated
-  call with the same `run_id` that already shows `completed` short-circuits
-  and returns the prior result instead of re-running (resumability).
+Every control-ledger entry is written under a unique, never-reused key:
+
+```
+<run_id>:<job_id>:<event_type>:<timestamp_ns>:<nonce>
+```
+
+- `cost` events — one per job invocation, every function.
+- `readiness` events — the rescue readiness probe's audit trail.
+- `started` / `completed` events — `rescue_execute`'s audit trail.
+- `rescue_execute` additionally uses one deterministic key,
+  `<run_id>:rescue_execute:completed:FINAL`, written with
+  `put(..., skip_if_exists=True)`, as its canonical resumability marker —
+  the first container to finish a given run_id wins that key permanently;
+  a second concurrent attempt with the same run_id reads back and returns
+  the winner's result instead of overwriting it.
+
+No shared read-modify-write counter exists anywhere in the file. The
+authoritative spend total (`cost_ledger_total`) is always a fresh
+reduction over every immutable `cost` entry, computed at read time.
+
+The Modal Volume `muru-modal-checkpoints` still exists, but is now
+mounted **only on `rescue_execute`**, purely as `/checkpoints/rescue/<run_id>/output/`
+— an immutable per-run directory for whatever the caller's own `command`
+wants to persist. No control record is written there anymore.
 
 ---
 
@@ -182,14 +213,16 @@ or act on partial scientific results to decide whether to proceed.
 
 ---
 
-## 5. Readiness status (as of 2026-08-19, live-verified)
+## 5. Readiness status (as of 2026-08-19, live-verified, re-verified after hardening)
 
 - **Modal authentication**: ✅ live — profile `aryav-thakur`, confirmed via
   `modal app list` returning successfully against the real API.
-- **`modal_app.py`**: ✅ imports cleanly, all 10 functions register across
-  the 3 Apps, all Modal SDK calls checked against the installed
-  `modal==1.5.4` client.
-- **Sidecar readiness — PASS.** `modal run modal_app.py::report_env_sidecar`
+- **`modal_app.py`**: ✅ imports cleanly, all 11 functions register across
+  the 3 Apps (10 production + 1 test-only `_ledger_stress_probe`), all
+  Modal SDK calls checked against the installed `modal==1.5.4` client
+  (including `modal.Dict`, added this pass).
+- **Sidecar readiness — PASS (re-confirmed after the Dict migration).**
+  `modal run modal_app.py::report_env_sidecar`
   ran live end-to-end with **no secret required**. Result:
   ```json
   {
@@ -201,15 +234,20 @@ or act on partial scientific results to decide whether to proceed.
     "note": "sidecar image -- Julia/PySR intentionally not installed"
   }
   ```
-  Run: https://modal.com/apps/aryav-thakur/main/ap-fdSPbr4rAIIAQuPLR8ZZwU
-- **`import pysr` fails in the sidecar image — CONFIRMED.** Ran
+  First run: https://modal.com/apps/aryav-thakur/main/ap-fdSPbr4rAIIAQuPLR8ZZwU.
+  Re-run after the hardening pass: https://modal.com/apps/aryav-thakur/main/ap-MxGZeCmWodAEQzruv3jckX
+  (identical shape, confirms the Dict migration changed nothing
+  observable about this function's behavior).
+- **`import pysr` fails in the sidecar image — CONFIRMED (twice).** Ran
   `python -c 'import pysr'` inside `sidecar_image` via `sidecar_run_command`
   (a real, explicit check, not inferred from the report skipping the
   import): `returncode=0` for the wrapper, actual command `RC=1`,
   `ModuleNotFoundError: No module named 'pysr'`. The structural safety
-  property is not just claimed, it is exercised.
-- **Rescue readiness — PASS.** `modal run modal_app.py::readiness_check`
-  ran live, needing **no secret**, and returned:
+  property is not just claimed, it is exercised — re-confirmed after the
+  hardening pass at https://modal.com/apps/aryav-thakur/main/ap-rCxduDNDmuYG8UAXC06OdG.
+- **Rescue readiness — PASS (re-confirmed after the Dict migration).**
+  `modal run modal_app.py::readiness_check` ran live, needing **no
+  secret**, and returned:
   ```json
   {
     "host": {"os": "Linux", "architecture": "x86_64", "cpu_count": 24,
@@ -222,7 +260,10 @@ or act on partial scientific results to decide whether to proceed.
     "scientific_code_executed": false
   }
   ```
-  Run: https://modal.com/apps/aryav-thakur/main/ap-1EZKeKRVxtq1gKzIm1zP7r.
+  First run: https://modal.com/apps/aryav-thakur/main/ap-1EZKeKRVxtq1gKzIm1zP7r.
+  Re-run after the hardening pass: https://modal.com/apps/aryav-thakur/main/ap-CLrrPPmUtcZUAXQCm1awVj
+  (byte-identical shape; Julia 1.11.9 / PySR 1.5.10 / juliacall 0.9.26
+  all still present, `scheduled_ok: true`, `scientific_code_executed: false`).
   **Note on the RAM figure**: `ram_total_gib` reads `/proc/meminfo` inside
   the container, which reports the *physical host's* total memory (Modal
   scheduled this on a host with 755 GiB physically installed), not the 96
@@ -237,16 +278,22 @@ or act on partial scientific results to decide whether to proceed.
   precompilation (`PythonCall`, then `SymbolicRegression` and its ~70
   transitive deps) before the probe itself ran. Budget for this on every
   cold rescue invocation; a warm/kept-alive container would skip it.
-- **`rescue_execute` safety gate — CONFIRMED.** Invoked live with dummy
-  arguments and no `muru-rescue-authorization` Secret created:
+- **`rescue_execute` safety gate — CONFIRMED (twice).** Invoked live with
+  dummy arguments and no `muru-rescue-authorization` Secret created, both
+  before and after the hardening pass:
   ```
   NotFoundError: Secret 'muru-rescue-authorization' not found in
   environment 'main'. ...
   ```
-  Exit code 1. No repository was cloned, no command ran — the App-level
-  Secret check fails before any function body executes, because
-  `rescue_execute` lives alone in `muru-v2-modal-rescue-execute`.
+  Exit code 1 both times. No repository was cloned, no command ran — the
+  App-level Secret check fails before any function body executes, because
+  `rescue_execute` lives alone in `muru-v2-modal-rescue-execute`. The
+  Dict-based resumability rework (§2.3, §6.1) did not touch this gate at
+  all — it is checked first, before the control ledger is even consulted.
 - **Sidecar jobs against real repo content**: ✅ ready — no setup needed.
+- **Concurrency control — PASS, adversarially tested.** See §6.1: 50
+  concurrent writers + 2 distinct concurrent sidecar functions, 50/50
+  persisted, zero missing, zero duplicates, exact cost total.
 - **Rescue execution**: ⬜ still requires the one secret (§6) plus the
   five items in §4.3 from the main scientific session.
 
@@ -265,21 +312,59 @@ modal secret create muru-rescue-authorization PASSPHRASE=<a-passphrase-you-choos
 After that, `rescue_execute` additionally needs the five items in §4.3
 from the main scientific session before it will run anything.
 
-### 6.1 Known limitation — checkpoint volume is not concurrency-safe
+### 6.1 Concurrency defect — found, fixed, adversarially retested
 
-Observed live during this build: Modal Volume commits are whole-snapshot,
-not merges. Running the sidecar report, the pysr-absence check, and the
-rescue readiness probe close together in time caused one ledger entry
-(`sidecar_run_command`) to go missing — a later commit from a different
-container overwrote it rather than merging. `cost_ledger_total` and the
-readiness/rescue-state files on `/checkpoints` should be treated as
-approximate whenever multiple jobs run concurrently; the Modal billing
-dashboard is the authoritative cost source (§7), and `rescue_execute`'s
-own `run_id` resume check is unaffected as long as only one rescue job
-runs at a time. This is a real gap, not a hypothetical one, and worth
-fixing (e.g. moving the ledger to a `modal.Dict` instead of a Volume file)
-before this infrastructure is used for anything where exact concurrent
-accounting matters.
+**Original finding (2026-08-19, first pass):** Modal Volume commits are
+whole-snapshot, not merges. Running the sidecar report, the pysr-absence
+check, and the rescue readiness probe close together in time caused one
+ledger entry (`sidecar_run_command`) to silently disappear — a later
+commit from a different container overwrote it rather than merging. This
+was a real blocker for maximum-parallel sidecar use, not a hypothetical
+one.
+
+**Fix (2026-08-19, hardening pass):** all control records (cost ledger,
+rescue run-status, readiness audit trail) moved off the Volume entirely
+and onto a `modal.Dict` (`muru-modal-control-ledger`), with every event
+written under its own unique key
+(`<run_id>:<job_id>:<event_type>:<timestamp_ns>:<nonce>`) — a `Dict.put()`
+is one independent RPC per key, so there is no shared file for two
+containers to race on, and no read-modify-write aggregate counter
+anywhere. Full design in §2.3.
+
+**Adversarial concurrency test, executed live** —
+`modal run scripts/cloud_modal/modal_app.py::concurrency_test --n-workers 50`:
+50 concurrent `.spawn()`-fired writes from one sidecar function
+(`_ledger_stress_probe`) plus 5 concurrent writes from a second, genuinely
+distinct sidecar function (`report_environment_sidecar`), all in flight
+before any result is awaited. Independently re-read the raw Dict
+afterward and reduced over it:
+
+```json
+{
+  "run_id": "concurrency-test-819e1be37c",
+  "n_submitted": 50, "n_persisted": 50,
+  "missing_worker_ids": [], "duplicate_worker_ids": [], "unexpected_worker_ids": [],
+  "expected_total_usd": 0.000196, "persisted_total_usd": 0.000196,
+  "total_matches_exactly": true,
+  "cross_function_calls_ok": true, "cross_function_n_results": 5,
+  "RESULT": "PASS"
+}
+```
+Run: https://modal.com/apps/aryav-thakur/main/ap-GeERSSkzUYB6ZCavPNciv7
+
+50 submitted, 50 persisted, zero missing, zero duplicates, exact
+independently-recomputed cost total, both functions' concurrent writes
+intact. `cost_ledger_total` and the Modal billing dashboard
+(https://modal.com/apps) can now both be trusted for exact accounting
+even under heavy sidecar parallelism.
+
+**Residual limitation (explicitly scoped, not this file's to fix):** if a
+future `rescue_execute` `command` writes to a *shared* path inside its own
+`/checkpoints/rescue/<run_id>/output/` directory from multiple concurrent
+sub-processes of its own, that is the command's own concurrency problem —
+this wrapper gives every run_id its own immutable directory, but cannot
+enforce concurrency discipline inside a caller-supplied script. No other
+Volume or Dict concurrency gap is known after the test above.
 
 ---
 
@@ -299,12 +384,14 @@ At the rescue rate, the $50 budget buys ~16 hours of rescue-tier compute
 3–10x cheaper per hour, so extensive sidecar use (tests, hashing,
 provenance checks) is not a binding budget concern. The `cost_ledger_total`
 function and the `rescue_execute` soft-cap (refuses at ≥$45 logged spend)
-track this from the Modal side (subject to §6.1's concurrency caveat); the
-Modal billing dashboard (https://modal.com/apps) is the authoritative
-source.
+track this from the Modal side, now backed by the concurrency-safe Dict
+ledger (§6.1); the Modal billing dashboard (https://modal.com/apps)
+remains the authoritative source of record regardless.
 
-**Actual observed spend from this build's live validation** (per the
-ledger, itself subject to §6.1): `report_environment_sidecar` cost
-$0.000009 (0.6s); `rescue_readiness_check` cost $0.0357 (112s, including
-the ~2 minutes of in-container Julia precompilation noted in §5). Total
-logged: **$0.0357** — negligible against the $50 budget.
+**Actual observed spend, whole build to date** (per `cost_ledger_total`
+against the new Dict-based ledger — no longer subject to any known
+concurrency undercount): **$0.0323 across 58 logged events** — every
+sidecar report, both rescue-readiness runs, the pysr-absence checks, and
+all 55 concurrency-test invocations (50 stress probes + 5 cross-function
+calls), with zero entries lost. Negligible against the $50 budget either
+way.
