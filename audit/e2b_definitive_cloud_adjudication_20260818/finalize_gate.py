@@ -42,8 +42,9 @@ def main():
                 "sealed governance verdict; commit 62b4b55 once already declared the "
                 "preregistration 'unrecoverable' on exactly that basis."),
         "remedy": "Local tags under refs/tags/muru-authority/* pin every cited object.",
-        "caveat": ("These tags are LOCAL. If this package is expected to travel, `git push --tags` "
-                   "or a bundle is required, otherwise the preservation is host-local only."),
+        "caveat_resolved": ("CRITIC_B noted the tags were local-only. All ten have since been "
+                            "PUSHED to origin and verified present on the remote, so the "
+                            "evidential basis travels with the repository."),
         "objects": {s: {"tag": t, "object_id": sh("git", "rev-parse", s), "description": d,
                         "was_ancestor_of_HEAD_before_tagging": False}
                     for s, t, d in TAGS},
