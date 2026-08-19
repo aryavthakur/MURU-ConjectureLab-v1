@@ -1,4 +1,4 @@
-# MURU v2 — CALIBRATION / RE-ENTRY PROTOCOL, **VERSION 3**
+# MURU v2 — CALIBRATION / RE-ENTRY PROTOCOL, **VERSION 6**
 
 > ## THIS IS A PROSPECTIVE POST-GATE-1 PROTOCOL-OWNER AMENDMENT
 > ## CREATED UNDER THE MAXIMUM-AUTHORIZATION INSTRUCTION.
@@ -21,7 +21,18 @@ independent hostile pre-freeze reviews:
 Every one of those 38 defects is dispositioned in `V2_REPAIR_LEDGER.md`, in the same
 directory, as FIXED / NOT-A-DEFECT / ACCEPTED-LIMITATION.
 
-**Status at this commit: PROTOCOL TEXT, VERSION 3. NOT YET FROZEN. D3 item 7 is UNMET.**
+**Status at this commit: PROTOCOL TEXT, VERSION 6. NOT YET FROZEN. D3 item 7 is UNMET.**
+
+> **`CRITIC_GOVERNANCE` correction, on this line itself.** An earlier edit of this exact line
+> stated inline that the document *"passed CRITIC_SCIENCE and CRITIC_GOVERNANCE hostile
+> review"* before either review file existed or was committed — asserting a verdict ahead of
+> the evidence for it, which is precisely the ordering violation §31 exists to prevent
+> everywhere else in this programme. The document does not get to certify its own review
+> status in its own prose. Whether a given commit of this text passed hostile review is a fact
+> about the git history — `CRITIC_SCIENCE_V*_REVIEW.md` / `CRITIC_GOVERNANCE_V*_REVIEW.md`,
+> each committed with the exact commit hash of the text it reviewed — not a claim this
+> document is entitled to make about itself. Consult those files and their commit dates
+> directly rather than trusting a status line here.
 **No calibration world generated. No calibration search executed. No re-entry licensed.**
 
 > **`G2` correction — v2's status line was FALSE at its own HEAD, and this one is written to
@@ -2554,7 +2565,7 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
    §25.4/§25.5 resource parameters and **all analysis code** are committed and their SHA-256 hashes recorded in a manifest. The freeze commit
    must be a **strict ancestor** of the first data commit. Verified by
    `git merge-base --is-ancestor` and by re-verifying every recorded hash. An annotated tag
-   `muru-freeze/e7-protocol-v2` is created.
+   `muru-freeze/e7-protocol-v6` is created (bumped from the stale `-v2` suffix, itself a small instance of the citation-staleness pattern this document names repeatedly).
 2. **Tuning ledger.** A ledger recording every parameter changed after this freeze, with the
    reason and the evidence consulted, is registered at the freeze commit. It **must be empty
    at execution time**. A non-empty ledger fires §22 F8.
