@@ -56,7 +56,17 @@ def _band_tuple() -> "seed_band_registry.SeedBand":
 
 
 def verify_band() -> dict:
-    """Disjointness via the frozen registry's own checker, plus the 32-bit bound."""
+    """The protocol v3 section 5.2 `NO-BAND-COLLISION` predicate, exactly.
+
+    v2's Gate Q required `find_overlaps(...)` to be EMPTY. It is never empty: the
+    frozen registry carries one pre-existing, disclosed, ACKNOWLEDGED collision
+    (`objval_plan2` x `rc3_engineering_smoke`). v2's Q1 therefore failed on every
+    dataset and made QUALIFIED unreachable -- CRITIC_SCIENCE DEF-C1.
+
+    The predicate here is about the CALIBRATION band and nothing else, and is
+    STRICTER than v2 intended: it additionally requires the frozen registry's own
+    acknowledged-collision invariant (`unacknowledged_overlaps() == []`) to hold.
+    """
     candidate = _band_tuple()
     combined = tuple(seed_band_registry.DECLARED_BANDS) + (candidate,)
     overlaps = seed_band_registry.find_overlaps(combined)
@@ -74,5 +84,10 @@ def verify_band() -> dict:
                                                 seed_band_registry.unacknowledged_overlaps()],
         "overlaps_involving_calibration_band": [repr(o) for o in ours],
         "within_signed_32bit": CALIBRATION_SEARCH_SEED_MAX <= SIGNED_32BIT_MAX,
-        "passed": not ours and CALIBRATION_SEARCH_SEED_MAX <= SIGNED_32BIT_MAX,
+        "NO_BAND_COLLISION": (not ours
+                              and not seed_band_registry.unacknowledged_overlaps()
+                              and CALIBRATION_SEARCH_SEED_MAX <= SIGNED_32BIT_MAX),
+        "passed": (not ours
+                   and not seed_band_registry.unacknowledged_overlaps()
+                   and CALIBRATION_SEARCH_SEED_MAX <= SIGNED_32BIT_MAX),
     }

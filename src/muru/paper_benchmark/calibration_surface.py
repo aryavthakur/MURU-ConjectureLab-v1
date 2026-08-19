@@ -32,11 +32,58 @@ from .generator import (
 
 # ----------------------------------------------------------------- population
 CALIBRATION_REPLICATES = 138
-CALIBRATION_G2_FAMILIES = ("F01", "F02", "F03", "F04", "F05", "F08",
-                           "F09", "F10", "F11", "F12", "F17", "F18")   # 12
-CALIBRATION_NEG_FAMILIES = ("F07", "F19")                              #  2
-# F06, F13-F16, F20 receive NO calibration case ids.
+
+
+def _g2_families_from_registry() -> tuple[str, ...]:
+    """DEF-M7: DERIVE the twelve G2 families from a predicate over the frozen
+    registry, instead of hand-transcribing a literal tuple under a citation that
+    points at eighteen families.
+
+    A family is in the G2 primary stratum iff EVERY variant it can present declares
+    `symbolic_truth_kind == "defined"` -- i.e. there is a genuine symbolic truth to
+    recover, in every replicate, with no mass-only allowance and no null variant.
+
+    This cleanly separates the three groups the registry actually declares:
+      "defined"             -> a symbolic truth exists                   -> G2 primary
+      "mass_only"           -> F07: mass-only truth, accepting a         -> NEG control
+                               descriptor IS false structure
+      "none" / "mass_only_allowance" (F19A/B/C), or no g_recovery at all
+                            -> null or non-G2-relevant                   -> NEG / excluded
+    """
+    out = []
+    for fam in registry.CASE_FAMILIES:
+        variants = {fam.variant_for_replicate(r) for r in range(CALIBRATION_REPLICATES)}
+        if variants and all(v.symbolic_truth_kind == "defined" for v in variants):
+            out.append(fam.code)
+    return tuple(out)
+
+
+def _neg_families_from_registry() -> tuple[str, ...]:
+    """The negative-control stratum: families for which accepting non-mass structure
+    is by declaration FALSE structure -- either the family carries the
+    `false_null_structure` endpoint (F19A/B/C), or its truth is mass-only so any
+    descriptor acceptance is spurious (F07)."""
+    out = []
+    for fam in registry.CASE_FAMILIES:
+        variants = {fam.variant_for_replicate(r) for r in range(CALIBRATION_REPLICATES)}
+        if not variants:
+            continue
+        if all("false_null_structure" in v.endpoint_names or
+               v.symbolic_truth_kind == "mass_only" for v in variants):
+            out.append(fam.code)
+    return tuple(out)
+
+
+CALIBRATION_G2_FAMILIES = _g2_families_from_registry()
+CALIBRATION_NEG_FAMILIES = _neg_families_from_registry()
 CALIBRATION_FAMILIES = CALIBRATION_G2_FAMILIES + CALIBRATION_NEG_FAMILIES
+
+#: The literals v2 declared, retained ONLY as an assertion target so that the
+#: derived predicate is checked against the intended population rather than
+#: silently replacing it.
+_EXPECTED_G2 = ("F01", "F02", "F03", "F04", "F05", "F08",
+                "F09", "F10", "F11", "F12", "F17", "F18")
+_EXPECTED_NEG = ("F07", "F19")
 
 CALIBRATION_PREFIX = "PBC"
 CALIBRATION_PARTITION = "calibration"
@@ -164,3 +211,16 @@ def control_c0() -> dict:
     return {"control": "C-0", "n_cases": len(ids), "n_mismatched": len(mismatches),
             "mismatches": mismatches[:20], "passed": len(ids) > 0 and not mismatches,
             "generator_version": GENERATOR_VERSION}
+
+
+# DEF-M7: the derived predicate must reproduce the intended population exactly. If the
+# registry ever changes such that it does not, the module refuses to import rather than
+# silently redefining the calibration population.
+if CALIBRATION_G2_FAMILIES != _EXPECTED_G2:
+    raise AssertionError(
+        f"G2 stratum predicate no longer reproduces the declared population:\n"
+        f"  derived  {CALIBRATION_G2_FAMILIES}\n  expected {_EXPECTED_G2}")
+if CALIBRATION_NEG_FAMILIES != _EXPECTED_NEG:
+    raise AssertionError(
+        f"NEG stratum predicate no longer reproduces the declared population:\n"
+        f"  derived  {CALIBRATION_NEG_FAMILIES}\n  expected {_EXPECTED_NEG}")

@@ -77,6 +77,11 @@ RESOURCE_REASONS = ("MEMORY_SIMPLIFY", "MEMORY_PARSE", "MEMORY_CLASSIFY",
                     "ENVIRONMENT_IMPORT_FAILURE")
 DECLARED_TERMINALS = ("D-INST-DETERMINATE", "D-INST-INDETERMINATE",
                       "D-INST-PLURALITY-NOT-INVARIANT")
+# DEF-M3: the classifier version defining Stage 0's population is PINNED, not inferred.
+# v2 picked it by frequency from a mutable out-of-repo file, so a different cache state
+# could silently redefine the population.
+CLASSIFIER_VERSION = "90a3b5ea3a83b0e9587e3b1e4e54e188afb8e893fabc9293d9177bc767089e7a"
+CLASSIFY_CACHE_SHA256 = "66f30ea1d41d7063b3cb5a481281715011ba54ba897d5d17e058d8bb75273d50"
 CORRECT, INCORRECT, UNRESOLVED = "CORRECT", "INCORRECT", "UNRESOLVED"
 
 
@@ -91,7 +96,13 @@ def cache_sha256() -> str:                                   # D9
 def timed_out_expressions() -> tuple[set[str], dict]:        # D9: version-filtered
     con = sqlite3.connect(f"file:{CACHE}?mode=ro", uri=True)
     vers = collections.Counter(v for (v,) in con.execute("select version from classify_cache"))
-    top = vers.most_common(1)[0][0]
+    # DEF-M3: assert the pinned version and cache hash; never infer them.
+    digest = cache_sha256()
+    if digest != CLASSIFY_CACHE_SHA256:
+        sys.exit(f"[D-INST] classify cache sha256 mismatch\n  expected {CLASSIFY_CACHE_SHA256}\n  actual   {digest}")
+    if CLASSIFIER_VERSION not in vers:
+        sys.exit(f"[D-INST] pinned classifier version absent from cache: {CLASSIFIER_VERSION}")
+    top = CLASSIFIER_VERSION
     out = {e for e, rj in con.execute(
         "select expression_string,result_json from classify_cache where version=?", (top,))
         if json.loads(rj).get("canonicalization_status") == "SIMPLIFY_TIMEOUT"}
