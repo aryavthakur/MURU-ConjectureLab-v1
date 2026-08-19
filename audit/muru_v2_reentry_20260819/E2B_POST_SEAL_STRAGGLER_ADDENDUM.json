@@ -1,0 +1,40 @@
+{
+  "schema": "muru-e2b-post-seal-straggler-addendum-1.0.0",
+  "why": "Background processes from the abandoned pool sweeps were torn down without completion records and a straggler wrote to the SEALED E2b audit directory AFTER sealing. This broke the sealed hash manifest for exactly one file. Sealed evidence must not be rewritten, and genuine evidence must not be discarded, so the sealed bytes are RESTORED and the straggler content is preserved here instead.",
+  "sealed_file_restored": "_frozen_execution_failures.json",
+  "entries_appended_post_seal": [
+    {
+      "case_id": "PB|held_out|F10|r009",
+      "ok": false,
+      "returncode": -9,
+      "wall_seconds": 526.1,
+      "killed_by_signal": 9,
+      "stderr_tail": ""
+    }
+  ],
+  "straggler_checkpoints_added_to_sealed_dir": [
+    {
+      "path": "_ckpt_frozen/PB_held_out_F08_r010.json",
+      "case": "PB|held_out|F08|r010",
+      "straggler_class": "LOST_IN_CROSS_SEED",
+      "sealed_bounded_class": "LOST_IN_CROSS_SEED",
+      "agrees": true
+    },
+    {
+      "path": "_ckpt_frozen/PB_held_out_F11_r007.json",
+      "case": "PB|held_out|F11|r007",
+      "straggler_class": "LOST_IN_CROSS_SEED",
+      "sealed_bounded_class": "LOST_IN_CROSS_SEED",
+      "agrees": true
+    },
+    {
+      "path": "_ckpt_independent/PB_held_out_F17_r011.json",
+      "case": "PB|held_out|F17|r011",
+      "straggler_class": "LOST_IN_CROSS_SEED",
+      "sealed_bounded_class": "LOST_IN_CROSS_SEED",
+      "agrees": true
+    }
+  ],
+  "scientific_effect": "NONE. All three straggler checkpoints AGREE with the sealed bounded classification for their cases. The appended failure entry records a case that failed in the ABANDONED pool sweep; that case's final class was established by the determinacy bound, as recorded in the sealed FROZEN_EVALUATOR_EXECUTION_MANIFEST resource-kill audit. No sealed count, class, gate or terminal changes. GATE_1 = FAIL and the 4/71/55/14 attribution are untouched.",
+  "disposition": "Sealed bytes restored; manifest re-verified; straggler content preserved in this addendum."
+}
