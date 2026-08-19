@@ -1,0 +1,59 @@
+{
+  "C-0_generator_equivalence": {
+    "control": "C-0",
+    "n_cases": 380,
+    "n_mismatched": 0,
+    "mismatches": [],
+    "passed": true,
+    "generator_version": "paper-benchmark-generator-1.1.0"
+  },
+  "NO_BAND_COLLISION": {
+    "base_rule": "rc5_seeds.A35_SEARCH_SEED_MAX + 1",
+    "base_value": 2100011400,
+    "band": [
+      2100011400,
+      2100069359
+    ],
+    "n_searches": 57960,
+    "n_worlds": 1932,
+    "declared_bands_mutated": false,
+    "preexisting_unacknowledged_overlaps": [],
+    "overlaps_involving_calibration_band": [],
+    "within_signed_32bit": true,
+    "NO_BAND_COLLISION": true,
+    "passed": true
+  },
+  "population": {
+    "n_worlds": 1932,
+    "n_searches": 57960,
+    "g2_families": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F08",
+      "F09",
+      "F10",
+      "F11",
+      "F12",
+      "F17",
+      "F18"
+    ],
+    "neg_families": [
+      "F07",
+      "F19"
+    ]
+  },
+  "schema": {
+    "status": "COMPLETED_WITH_FRONT",
+    "n_rows": 12,
+    "fields": 32,
+    "missing_or_null": []
+  },
+  "admissibility_row_level": [
+    "DECISION_ADMISSIBLE"
+  ],
+  "select_row_label_runs": true,
+  "PASSED": true
+}
