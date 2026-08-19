@@ -71,7 +71,20 @@ TIER1_CPU_SECONDS = 60             # FP-2, declared (12x the retired 5 s)
 TIER2_WALL_GUARD = None            # None == no wall cap. Deliberate.
 # Section 25.5's frozen per-worker ceiling. Exceeding it is an OPERATIONAL event
 # (section 25.4), never a label and never a terminal.
-ADDRESS_SPACE_BYTES = 24 * 1024**3
+def _host_rss_ceiling_bytes() -> int:
+    """Section 25.4's frozen RULE, evaluated on THIS host -- not a hardcoded
+    constant (CRITIC_SCIENCE V3-H3). The rule: min(0.50 x total_physical, 24 GiB x
+    scale(host)), scale = max(1, floor(total_GiB / 47)). On the 47 GiB reference
+    host this evaluates to 23.5 GiB; on a 2 TB host it scales up, so "resume on a
+    larger host" (section 25.4 item 3) is an actual escape rather than a no-op."""
+    total = os.sysconf("SC_PHYS_PAGES") * os.sysconf("SC_PAGE_SIZE")
+    total_gib = total / 1024**3
+    scale = max(1, int(total_gib // 47))
+    ceiling_gib = min(0.50 * total_gib, 24 * scale)
+    return int(ceiling_gib * 1024**3)
+
+
+ADDRESS_SPACE_BYTES = _host_rss_ceiling_bytes()
 RESOURCE_REASONS = ("MEMORY_SIMPLIFY", "MEMORY_PARSE", "MEMORY_CLASSIFY",
                     "RECURSION_SIMPLIFY", "KERNEL_OOM_KILL", "CPU_BUDGET_EXHAUSTED",
                     "ENVIRONMENT_IMPORT_FAILURE")

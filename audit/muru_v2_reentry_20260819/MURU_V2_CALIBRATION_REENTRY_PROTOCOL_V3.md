@@ -128,10 +128,17 @@ entitled to say that removing Gate V removes a blocking rule that frozen authori
 contains. Three responses, none of which fully dissolves the objection:
 
 1. The clause says *"blocks adoption ... **until explained**"*, not "vetoes". It is a
-   disclosure-and-explanation obligation, dischargeable, not a terminal. **This protocol
-   retains that obligation in full** — §21.4 makes the annotation mandatory, and §21.5 makes
-   an owner ratification carrying a written explanation a **precondition of any licence
-   becoming operative** when the annotation reads `CONTRADICTS`.
+   disclosure-and-explanation obligation. **This protocol does NOT retain it as a
+   precondition** (`N1` correction, superseding the claim originally made here): §21.5's
+   `G6` repair makes the §21.4 annotation condition **nothing** — no terminal, licence, gate
+   or ratification requirement depends on its value, for any route. What is retained is
+   **disclosure**: the annotation is computed, published and quoted in full, including a
+   `CONTRADICTS` reading, so an owner reads it before acting — but nothing in this protocol
+   compels the owner to explain it before a licence proposal exists, because (§2.1) no
+   licence under this protocol currently becomes operative without a separate ratification
+   act regardless of the annotation's value. The loss of `befca0d` §2.3's obligation is
+   accepted as a further disclosed limitation, alongside the loss of falsification power
+   response 3 already records.
 2. The clause's antecedent is *"E2a and E2b"*. Ratified **D5** invalidated E2a as a
    held-out-facing calibration surface; the surface this protocol builds is **not E2a**. The
    clause's literal referent no longer exists. Extending it to a new surface is a
@@ -404,42 +411,62 @@ document.
 instrument, its adjudicated verdict, **and a protocol-owner ratification of that verdict**
 (§21.5) may license.
 
-### 2.1 `G7` — authority correction, stated because v2 got it wrong
+### 2.1 `G7` / `N6` — authority correction, twice, because the first correction did not survive its own check
 
-`CRITIC_GOVERNANCE` `G7` found Decision 2's authority chain to be **self-granted**, and the
-finding is upheld. v2 attributed the E4f operational preregistration to **ratification §10**
-and to `P2_GOVERNANCE_LEAKAGE.md` open items 33/34. Checked against the sources:
+`CRITIC_GOVERNANCE` `G7` found Decision 2's authority chain **self-granted**: v2 cited
+ratification §10, which authorizes constructing *this* protocol, not an operational
+preregistration for an E4 arm ratification §4 (D2-ext) **suspends**; and it cited
+`P2_GOVERNANCE_LEAKAGE.md` open items 33/34, whose actual text is *"Declare E4f
+non-executable (BC-21)"* — the opposite of what was quoted.
 
-* **Ratification §10 authorizes constructing *this* protocol** — a calibration / re-entry
-  protocol. It does **not** authorize writing an operational preregistration for an E4 arm
-  that ratification §4 (D2-ext) **suspends**. Those are different acts.
-* **`P2_GOVERNANCE_LEAKAGE.md` open items 33/34 say the opposite of what was quoted.** Their
-  text is *"Declare E4f non-executable (BC-21)"*, not the disjunction v2's E4f header
-  attributed to them.
-* The **real** authority, and the one the forward-run event log actually recorded, is the
-  protocol owner's **maximum delegated authority** to create missing prospective protocols
-  *provided they are results-blind, hostile-reviewed, and hash-frozen before execution*.
+The v3 repair replaced that citation with *"the protocol owner's maximum delegated authority
+… exercised under its three stated conditions"*. `CRITIC_GOVERNANCE` `N6` checked that claim
+against the repository and it fails on its own terms:
 
-**Correction, and it narrows rather than widens the claim:**
+1. **The delegation is in no record.** `grep -rniI "maximum.autonomy|maximum delegat"` over
+   the whole repository returns hits **only** in documents this session produced. The one
+   document that *is* a governance record — `MURU_V2_PROTOCOL_OWNER_RATIFICATION.md`, whose
+   §1 states *"every decision below is the owner's, not the analyst's"* — contains no
+   delegation and no mention of E4f. There is no `muru-authority/*` tag for it.
+2. **The three conditions are invented.** The forward-run event log's actual authority field
+   reads *"Prompt section 2 … + section 2 condition A (before the governed result is
+   observed)"* — **one** condition, about ordering. The hostile-review and hash-freeze
+   conditions were supplied by §2.1 itself.
+3. **The hostile-review condition, even as invented, is unmet.** `design_council/` holds
+   `P1_SCIENTIFIC_DESIGN.md`, `P2_GOVERNANCE_LEAKAGE.md`, `P3_STATISTICAL.md`, all scoped to
+   *this* protocol. **No E4f hostile review exists anywhere in the repository.**
+
+An authority claim that fails the one check a reviewer can actually perform — does the
+record exist? — is not a repair, whatever its content. `N6`'s own minimal repair is taken
+directly, in its stated form (b):
 
 ```
-E4f's operational preregistration is authorized by the protocol owner's maximum-autonomy
-delegation, exercised under its three stated conditions. It is NOT authorized by
-ratification §10, and it does NOT override ratification §4 (D2-ext).
+The authority for the E4f operational preregistration is an OPERATOR INSTRUCTION recorded
+only in FORWARD_RUN_EVENT_LOG.jsonl as "Prompt section 2". It is NOT a governance record of
+this repository. No hostile review of E4f was performed. Until a protocol-owner record
+exists -- signed, scoped, and tagged like the programme's other ten authority tags --
 
-Therefore: D2-ext's suspension of all E4 arms STANDS. E4f is PREREGISTERED, not
-UNSUSPENDED. A certified C+D route yields a PROPOSAL (§22 F12) which becomes operative
-only on the §21.5 owner ratification -- exactly as for every other route.
+    ratification section 4 (D2-ext)'s suspension of ALL E4 arms governs WITHOUT EXCEPTION.
+    Gate R row 3 REVERTS to ROUTE_DETERMINED_ARM_NOT_EXECUTABLE.
+    Section 21.2 row 3, section 22 F12/F12a/F12b, and section 32's E4f rows are VOID.
+    A certified C+D route assigns ROUTE_DETERMINED_ARM_NOT_EXECUTABLE and proposes nothing.
 ```
 
-v2's §0.2 headline *"Route C+D → E4f is now EXECUTABLE"* is **withdrawn as overstated** and
-replaced by *"Route C+D → E4f is now **preregistered**, so a certified C+D route has a
-prospectively frozen arm to propose rather than an empty branch."* That was the defensible
-claim all along, and it is the one that survives the authority audit.
+This is the same standard §5.3 already applies, correctly, to Route R-A: an unratified
+amendment does not execute merely because an analyst can construct it. `MURU_V2_E4F_
+OPERATIONAL_PREREGISTRATION.md` **remains prospectively frozen and unedited** — the moment a
+real ratification record exists, it is ready to be re-armed without redoing any of its own
+work. Nothing about E4f's own content is retracted; only its **executability today** is.
 
-Every other row of the table above was checked quotation-by-quotation by `CRITIC_GOVERNANCE`
-and verified accurate, *"including the counter-argument quoted against the document's own
-position"*. Only this row was wrong.
+**This closes `N1` as a side effect, not by choice.** `N1` found Decision 1's own
+justification (§0.1 response 1) still asserting that `befca0d` §2.3's disagreement-disclosure
+obligation is *"retained in full"* by §21.5, while §21.5 itself (the `G6` repair) makes the
+annotation condition nothing — a live contradiction an owner could read either way. With E4f
+non-executable, only route `B` (E4a, itself requiring a separate owner re-arming act per
+§21.2 row 1's honesty note) can reach an operative licence at all, so the annotation's role is
+now uniformly **disclosure only**, exactly as `G6` requires. §0.1 response 1, §21.4's bullet
+4, and §32.1's `"→ §21.5 explanation required"` are corrected below to say that once, not
+argued twice in two directions.
 
 ## 3. WHAT THE OLD E2a FAILURE MEANS
 
@@ -1189,7 +1216,7 @@ decision.
 | `GRAMMAR_VERSION` | frozen; operators `sqrt, log, square, cube, inv`; `exp` excluded | `befca0d` §2.5.2; DEVIATIONS_P3 D1 |
 | Determinism | `deterministic=True`, `parallelism="serial"` | `befca0d` §2.5.2 |
 | Threading | single-threaded pinned across Julia / OMP / MKL / OpenBLAS | parity artifact |
-| Execution path | `paper_benchmark/rc5_runner`, the **real v1 production path**, with front persistence added and nothing else changed | P1 §4.1, adopted |
+| Execution path | `muru.v2_calibration.e2c_search` (paired with `e2c_classify`), a **separate truth-blind module** reusing `rc5_runner`'s own building blocks directly and never importing `rc5_runner` (§16 `P8a`). Equivalence to `rc5_runner`'s search semantics is **measured, not asserted**, by control `C-1b`: **9 compared, 0 mismatched** | P1 §4.1, adopted; §16 `P8a`/`P8b` |
 | Within-seed retention | `argmax(score)` = R0 control, `rc5_selection.select_row_label` | `befca0d`; alternatives are E4a arms, not surface parameters |
 | Cross-seed grouping | `rc5_selection.group_and_select` on `identity_contract.template_key`, largest-class-wins, lowest-ordinal tie-break | frozen; alternatives are E4f arms |
 | Stability gate | `STABILITY_GATE / STABILITY_DENOMINATOR = 20/30` | `structural_acceptance.py` — **imported, not reimplemented** |
@@ -1338,36 +1365,59 @@ unsatisfiable:
 > because truth is not among their arguments) and **too weak** (importing nothing proves
 > nothing about whether a `TruthRecord` field reaches the design matrix).
 
-**The check, in the two parts that actually bind:**
+**The check, in the two parts that actually bind — corrected a second time
+(`CRITIC_SCIENCE` `V3-C3`).** v3's `P8a` still read *"no MODULE reachable ... may BIND"*, which
+is module-closure scoping wearing a new name. It is still unsatisfiable: `g2_contract` is the
+**home module** of the permitted syntax helpers, and that same module **defines** (hence
+binds) the four banned symbols and **imports** `TruthRecord` — so importing anything permitted
+still drags the whole module into the reachable closure. Executed check found **7 violations**
+across a 14-module transitive closure. The fix is to check the **call graph**, not the import
+graph — whether a banned symbol is ever **invoked**, not whether its home module is ever
+reachable:
 
 ```
-P8a  SYMBOL-LEVEL BAN. No module reachable from the search entry point may bind any of
-     classify_support, classify_family_match, evaluate_g2_event, truth_support_for_case,
-     e2_classify.classify_expression, discovery.equivalence.algebraically_equivalent,
-     or any name from the oracle or the truth registry.
-     EXPLICITLY PERMITTED, enumerated so the list cannot quietly grow:
-     extract_effective_support, classify_discovered_family, _safe_parse,
-     GRAMMAR_PRIMITIVES, identity_contract.template_key / template_key_string.
+P8a  CALL-GRAPH BAN. No function in the search entry point's transitive CALL GRAPH may
+     INVOKE any of: classify_support, classify_family_match, evaluate_g2_event,
+     truth_support_for_case, e2_classify.classify_expression,
+     discovery.equivalence.algebraically_equivalent, or any oracle/truth-registry
+     function. IMPORTING their home module for a permitted symbol is not itself a
+     violation; CALLING one of these names, anywhere in the reachable call graph, is.
+     EXPLICITLY PERMITTED CALL TARGETS: extract_effective_support,
+     classify_discovered_family, _safe_parse, GRAMMAR_PRIMITIVES,
+     identity_contract.template_key / template_key_string.
 
 P8b  DATA-FLOW ASSERTION. No field of TruthRecord may be reachable from the object graph
      of CaseDesign. Asserted at runtime FOR EVERY WORLD, not once in preflight.
 ```
 
-**Why this is stricter where it counts.** The leak that matters is `g` being read from
+**`P8a` is executed, not asserted.** `scripts/v2_truth_blind_verifier.py` walks the AST of
+every module in the entry point's import closure, collects every `Call` node's resolved
+target, and fails if any resolves to a banned symbol. Run against
+`muru.v2_calibration.e2c_search` + `muru.v2_calibration.e2c_classify` (the entry point named
+below), it finds **zero** call-graph violations: `extract_effective_support` and
+`classify_discovered_family` each call only `_safe_parse`, `sympy.simplify` and
+`_resolved_support` internally — never `classify_support` or its siblings — so importing their
+home module carries no call-graph exposure to the banned symbols.
+
+**Why `P8b` is stricter where it counts.** The leak that matters is `g` being read from
 `truth.g_by_compound` instead of estimated. It is currently clean and `P8b` is what keeps it
 clean: `rc5_adapter.build_case_design(compounds, scalars)` takes
 `scalars = rc5_estimate.estimate_case_scalars(compounds, trajectories)`, so `g` is **estimated
-from the observed trajectories**. An import ban would never have detected a regression there;
-`P8b` does, on every world.
+from the observed trajectories**. Neither an import ban nor a call-graph ban would ever detect
+a regression there; `P8b`'s runtime data-flow assertion does, on every world.
+`e2c_search.assert_design_truth_blind` implements it and runs per world, not once.
 
-**Consequence for §12.** Because `rc5_runner` binds the truth-dependent symbols at module
-scope, the search entry point is a **separate module** reusing the truth-blind functions
-directly (`build_case_design`, `estimate_case_scalars`, `build_case_regressor`,
-`select_row_label`) and never importing `rc5_runner`. §12's *"the real v1 production path"*
-requirement is then discharged where it was always actually discharged — by **control `C-1`**,
-which requires the instrumented engine's `argmax(score)`-retained candidate to be
-**byte-identical** to the production path's on the §28 control set. `C-1` tests identical
-search semantics by measurement; an import path was only ever a proxy that did not imply it.
+**Consequence for §12, now discharged rather than merely stated.** Because `rc5_runner` binds
+the truth-dependent symbols at module scope, the search entry point is the **separate module
+`muru.v2_calibration.e2c_search`** (paired with `e2c_classify` for canonicalisation), reusing
+the truth-blind functions directly (`build_case_design`, `fit_case_scalars`,
+`build_case_regressor`, `select_row_label`, `row_complexity`, `candidate_r2_on`) and never
+importing `rc5_runner` or `e2_classify`. §12's *"the real v1 production path"* requirement is
+discharged by **control `C-1b`**, which requires the instrumented engine's
+`argmax(score)`-retained candidate to be byte-identical to the frozen `e2_search` module's (the
+one that produced the sealed E2a corpus) on a declared control set. **Executed: 9 compared, 0
+mismatched, PASSED** (`e2c_search.control_c1b`). `C-1b` tests identical search semantics by
+measurement; an import path was only ever a proxy that did not imply it.
 
 The check runs in preflight and at seal time and its result is recorded in the manifest.
 
@@ -1609,7 +1659,7 @@ construction, and §22 assigns the terminal.**
 | 0 | `NOT QUALIFIED` | — | §22 assigns the terminal from the failing clause |
 | 1 | `ROUTING_CERTIFIED` and certified argmax = `B` (`LOST_IN_RETENTION`) | RC3 confirmed → **E4a** | **Yes, with one owner act** — see the note below |
 | 2 | `ROUTING_CERTIFIED` and certified argmax = `A` (`NEVER_ON_FRONT`) | RC4 confirmed → routed **through E3's completed per-cell verdicts** | **Partially.** `mass_saturating_descriptor` (F09) and `mass_interaction` (F10) only. **BLOCKED** for `mass_affine_descriptor` and `mass_exponential_descriptor` (MARGINAL, `search_side_attribution_licensed: false`) — which is 10 of the 12 conditions |
-| 3 | `ROUTING_CERTIFIED` and certified argmax = `C+D` (`LOST_IN_CROSS_SEED`) | RC7 → **E4f family i (classifier) only**; family ii (voting) is **reported, non-licensing** | **Preregistered, not unsuspended — see the two riders below.** `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` @ `8a2ffa50` is a complete operational freeze: population, DEV/EVAL split, acceptance predicate, both ceilings at margin exactly 0, identity/replay control, terminal set, threshold inventory, free-parameter list |
+| 3 | `ROUTING_CERTIFIED` and certified argmax = `C+D` (`LOST_IN_CROSS_SEED`) | RC7 → §22 `F16` | **No — `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`.** See the rider below (`§2.1`, `N6`): no protocol-owner record authorizes E4f's execution today, and none of ratification §4 (D2-ext)'s suspension is lifted by this protocol's own construction of E4f's text |
 | 4 | `NOT ROUTING_CERTIFIED` and `RETENTION_EXONERATED` (§21.3) | RC3 withdrawn. No retention change licensed | n/a |
 | 5 | `NOT ROUTING_CERTIFIED` and not `RETENTION_EXONERATED` | no route | n/a |
 
@@ -1623,45 +1673,37 @@ frozen authority and requires ratification; it is not reuse.** It is folded into
 ratification step §21.5 already requires, so it adds no new procedure — only honesty about
 what that step is doing.
 
-**Row 3's scope rider — `DEF-H5` and `DEF-H6`, and the reason family ii is excluded.**
+**Row 3's authority rider — `§2.1` / `N6`, superseding v3's scope rider.** v3 attempted to
+narrow route `C+D` to E4f family i (classifier) only, on an authority citation
+(`CRITIC_GOVERNANCE` `G7`'s repair) that itself did not survive review (`N6`). With no
+protocol-owner record for E4f's execution and no E4f hostile review performed, the narrowing
+question is moot: **route `C+D` proposes nothing today**, regardless of family. `F16`
+(`ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`) fires unconditionally when Gate R selects row 3.
 
-`CRITIC_SCIENCE` established two facts about E4f's **family ii (voting)** which this protocol
-must act on and **cannot repair**, because E4f is frozen and §36's precedence rule forbids
-editing it:
+**The family i/ii analysis is preserved below, dormant, for the day a real ratification
+record exists** — it is correct on its own terms and there is no reason to redo it then:
 
-* **`DEF-H5`.** E4f's Gate `H1` is a **zero-defect census** (`b_V = 0`) in the direction the
-  voting arm **necessarily pushes**. By E4f's own **Lemma K**, `gate_passed` is monotone in
-  coarseness, so a coarser merge can only add gate-passing worlds; `H1` therefore demands
-  **100% correctness among every newly-stabilised world** across 828 EVAL worlds, in a regime
-  running a few percent correct. Family ii is **near-certainly dead on arrival**.
-* **`DEF-H6`.** E4f's `FP-6` substitutes `false_stabilisation_rate` for a gating
-  `k_inflation`. That statistic is **truth-facing** and contains the **negation of Gate `H2`'s
-  own efficacy term**, so family ii's safety evidence is partly discharged by its efficacy
-  result. The safety gate is **not independent** of the efficacy claim.
+* **`DEF-H5`** — E4f's Gate `H1` is a **zero-defect census** (`b_V = 0`) in the direction the
+  voting arm necessarily pushes. By E4f's own **Lemma K**, `gate_passed` is monotone in
+  coarseness, so `H1` demands 100% correctness among every newly-stabilised world across 828
+  EVAL worlds, in a regime running a few percent correct. Family ii (voting) is near-certainly
+  dead on arrival.
+* **`DEF-H6`** — E4f's `FP-6` substitutes `false_stabilisation_rate` for a gating
+  `k_inflation`. That statistic is truth-facing and contains the negation of Gate `H2`'s own
+  efficacy term, so family ii's safety evidence is partly discharged by its efficacy result —
+  not independent of the efficacy claim.
+* **If and when a ratification record authorizes E4f's execution**, the disposition these two
+  findings support is: propose family i (classifier) only; execute and fully report family ii
+  (voting), licensing nothing from it; treat `H1`'s expected failure as pre-recorded rather
+  than surprising. `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` remains untouched and ready.
 
-**Disposition, taking `DEF-H5`'s option (iii) and `DEF-H6`'s fallback, both of which are
-available without touching a frozen byte:**
-
-```
-A certified C+D route proposes E4f FAMILY i (classifier) ONLY.
-E4f FAMILY ii (voting) is EXECUTED AND FULLY REPORTED, and LICENSES NOTHING.
-Its Gate H1 / H2 outcomes are published as diagnostics under section 19, and the
-expectation that H1 fails is PRE-RECORDED HERE, before execution, in section 35.
-```
-
-This is a **narrowing**, and it is recorded as one. Decision 2's residual content is that a
-certified `C+D` route has a prospectively frozen **classifier** arm to propose, instead of an
-empty branch. That is a smaller claim than v2 made and it is the one that survives review.
-Should family i also fail its gates, the correct outcome is E4f's own
-`E4F_NOT_ENTERED_NO_ROUTE`, which this protocol does not resist.
-
-**Row 3's anti-tampering rider, preserving v1's intent.** The E4f freeze **predates any
-route** and **may not be amended after one**. Its hash (`0ce2755d…3a7f61`) and its freeze
-commit (`8a2ffa50`, verified a strict ancestor of HEAD) are re-verified as a clause of
-control `C-6a` (§18) before Gate R is read; if either has moved the run terminates at
-`VOID_CONTROL_FAILURE` (§22 F5) and **no route is emitted at all** — the drift is an integrity
-failure, not a routing outcome. Row 3 is executable because a freeze exists, not because a
-route was found.
+**Row 3's freeze-integrity rider, retained regardless of executability.** The E4f freeze
+**predates any route** and **may not be amended after one**. Its hash (`0ce2755d…3a7f61`) and
+its freeze commit (`8a2ffa50`, verified a strict ancestor of HEAD) are re-verified as a clause
+of control `C-6a` (§18) before Gate R is read; if either has moved the run terminates at
+`VOID_CONTROL_FAILURE` (§22 F6) — the drift is an integrity failure, not a routing outcome.
+This check runs **independently of whether the route is executable**, so a future ratification
+record cannot be dated to a stale freeze.
 
 ### 21.3 `RETENTION_EXONERATED` — the exoneration branch, with declared numbers
 
@@ -1800,8 +1842,10 @@ before any noise.
   it (P2 BC-10, PM-5).
 - It is applied **identically to all three routes**, on the whole four-cell partition. It
   therefore cannot select a route — which is the specific property v1's Gate V lacked.
-- The **disagreement-disclosure obligation of `befca0d` §2.3's final paragraph is retained in
-  full** by §21.5, not discarded.
+- The **disagreement-disclosure obligation of `befca0d` §2.3's final paragraph is NOT
+  retained as a precondition** (`N1`/§0.1 response 1, corrected). What is retained is
+  disclosure: the annotation is always computed and published, so an owner acts with it in
+  view — but no licence's operativeness depends on its value.
 - Its non-attributability is stated verbatim in any report: a large divergence is **not
   attributable** between "the surface does not reproduce the Held-out regime" and "an x86
   search differs from an ARM search", because cross-architecture search equivalence is
@@ -1852,28 +1896,65 @@ That ratification record must contain, verbatim:
    > issues. Conflating the two was v2's error.
 2. For row 1 only: the owner's **re-arming of `f4c1105`** in place of its fired GATE 1 (§21.2
    note).
-3. For row 3 only: the owner's **countersignature of §36**, confirming that the E4f
-   population-by-reference restatement forced by this protocol's corrected `n` was made
-   results-blind and pre-route.
+3. **Row 3 has no operative ratification item.** §21.2's `F16` disposition
+   (`ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`) means no licence is proposed on route `C+D` under
+   this protocol, so there is nothing for an owner countersignature to activate. §36's
+   population-by-reference restatement remains **written and available** for the day a
+   separate ratification record authorizes E4f's execution; it is not itself a rider on any
+   licence this protocol can currently issue.
 
 **Three binding riders on every licence:**
 
-1. **The E6 false-structure ceiling is a genuine precondition. It is therefore named
-   `E6_SAFETY_HEADROOM_PRESENT`, evaluated in §20 with the other preconditions and given its
-   own terminals (F10a / F11a / F12b), instead of sitting in a rider where §19's rule that "no
-   diagnostic may change any verdict" flatly contradicted it** (`DEF-H1`). **The circularity
-   v1 could not resolve is dissolved** (`D13(3)`, `S14`). v1 wrote that *"E6 is self-blocked
-   pending exactly this hook"*, making every licence conditional and non-executable, and then
-   froze around the open dependency. The resolution is that **E6-the-experiment is not
-   needed; E6-the-ceiling is frozen text and is directly applicable here.** Verified by direct
-   read at `git show befca0d:MURU_V2_CAUSAL_DECISION_TREE.md` §3, lines 137–140:
-   *"100 evaluable safety opportunities … unsafe acceptance Wilson upper <= 0.15 => change
-   survives … > 0.15 => VETO. Change rejected."* The **opportunities come from this
-   protocol's own NEG stratum**: 276 worlds (F07 mass-only truth, F19A/B/C null worlds),
-   **of which only the evaluable ones are the bar's denominator.**
+1. **The E6 false-structure ceiling is a genuine precondition, named
+   `E6_SAFETY_HEADROOM_PRESENT`.** `CRITIC_SCIENCE` `V3-C5` found four defects in how v3
+   stated it: it is not actually in §20's `QUALIFIED` conjunction despite the claim that it
+   is; `false_structure_events` was never defined; it was written as if parameterised by "the
+   arm named by the certified route", though no route in §21.2 names an arm; and its
+   denominator mixed DEV and EVAL. All four are fixed below, and the fix is **simpler than
+   v3's statement**, not more complex: this protocol never selects or executes an arm — §12
+   fixes retention to **`R0`, the frozen production `argmax(score)` control**, unconditionally
+   and for every world, on every route. There is no arm to name because none is chosen from
+   data.
 
-   > **`DEF-H7` repair — "evaluable safety opportunity" is now defined, because v2 counted
-   > worlds and the frozen registry disagrees.** `registry.py` declares `F19C`
+   ```
+   false_structure_events := count of NEG-stratum worlds, over ALL 230 evaluable
+       opportunities (both DEV_ARM and EVAL_ARM halves), whose R0-retained cross-seed
+       representative is flagged `false_null_structure` by that world's variant
+       declaration (registry.py: F07's mass-only allowance, F19A's descriptor-link
+       permutation, F19B's mass-preserving null -- each variant states in the
+       registry what counts as false acceptance for IT). A section-14-persisted,
+       seal-time count, evaluated by a function of this name that this protocol
+       DECLARES and does not yet implement -- named here as a requirement on the
+       Stage 1 scoring pass, not claimed as executed. Computed identically
+       regardless of which route certifies, because R0 is fixed before any front is
+       read (P10) and is never selected -- so using the full 230 is not double use
+       of held-back evidence, unlike the D7 recovery contrast, which DOES select
+       R*/V* from data and DOES require the DEV/EVAL split of section 26(3).
+
+   E6_SAFETY_HEADROOM_PRESENT := wilson_upper_95(false_structure_events, 230) <= 0.15
+                                 evaluated under BOTH resolutions
+   ```
+
+   **Not a member of `QUALIFIED`.** Folding it into §20 would make a safety-ceiling failure
+   indistinguishable from a broken surface (`VOID_CONTROL_FAILURE`), destroying exactly the
+   distinction the `*_NO_SAFETY_HEADROOM` terminals exist to preserve. It is instead a second,
+   independent gate evaluated **inside §22's routing rules**, alongside `QUALIFIED` and Gate R
+   — which is what the table in §22.1 already does; only the false "evaluated in §20" claim is
+   withdrawn here.
+
+   **The circularity v1 could not resolve is dissolved** (`D13(3)`, `S14`). v1 wrote that
+   *"E6 is self-blocked pending exactly this hook"*, making every licence conditional and
+   non-executable, and then froze around the open dependency. The resolution is that
+   **E6-the-experiment is not needed; E6-the-ceiling is frozen text and is directly
+   applicable here.** Verified by direct read at
+   `git show befca0d:MURU_V2_CAUSAL_DECISION_TREE.md` §3, lines 137–140: *"100 evaluable
+   safety opportunities … unsafe acceptance Wilson upper <= 0.15 => change survives … > 0.15
+   => VETO. Change rejected."* The opportunities come from this protocol's own NEG stratum:
+   276 worlds (F07 mass-only truth, F19A/B/C null worlds), of which only the evaluable ones
+   are the bar's denominator.
+
+   > **`DEF-H7` repair — "evaluable safety opportunity" is defined, because v2 counted worlds
+   > and the frozen registry disagrees.** `registry.py` declares `F19C`
    > (`scalar_truth_defined = False`, `m0_adequacy_truth = "not_applicable"`,
    > `expected_behavior = "trajectory destruction must be flagged non-evaluable"`)
    > **non-evaluable by design**. F19 cycles A/B/C over replicates, so over 138 replicates the
@@ -1886,19 +1967,15 @@ That ratification record must contain, verbatim:
    >                                 F07 138  +  F19A 46  +  F19B 46   =>   N = 230
    > ```
    >
-   > `230 >= 100` clears the frozen bar by a factor of **2.30**, not the 2.76 v2 claimed. The
-   > multiple is restated correctly here and in §33. F19C worlds are still generated, searched
-   > and reported under the `response_structure_diagnostic` endpoint, but they are **not** in
-   > the safety denominator, because the frozen registry says they cannot be.
+   > `230 >= 100` clears the frozen bar by a factor of **2.30**, not the 2.76 v2 claimed, and
+   > it is the full 230 (not a DEV/EVAL half) because `R0` is never selected. F19C worlds are
+   > still generated, searched and reported under the `response_structure_diagnostic`
+   > endpoint, but they are **not** in the safety denominator, because the frozen registry
+   > says they cannot be.
 
-   An arm that recovers cases and breaches `Wilson upper <= 0.15` on the **230 evaluable**
-   opportunities **is not licensed**. No E6 execution is required and none is presumed.
-
-   ```
-   E6_SAFETY_HEADROOM_PRESENT := wilson_upper_95(false_structure_events, 230) <= 0.15
-                                 for the arm named by the certified route,
-                                 evaluated under BOTH resolutions
-   ```
+   A surface whose R0 execution breaches `Wilson upper <= 0.15` on the **230 evaluable**
+   opportunities licenses nothing on any route. No E6 execution is required and none is
+   presumed.
 2. **The licence is scoped to the regime characterised by the published descriptor vector
    (§19 D9), never to "Held-out".**
 3. **If the four-way partition and the D7 recovery contrast disagree, that disagreement is
@@ -1919,27 +1996,44 @@ below emits **exactly one** terminal, and the set is exhaustive.
 
 | # | Condition | Terminal |
 |---|---|---|
-| F0 | **Precedence rule, evaluated first.** The rules below are evaluated **in numerical order** and the FIRST whose condition holds assigns the terminal. No later rule may re-assign it. This makes the set exclusive by construction rather than by inspection | — |
+| # | Condition | Terminal |
+|---|---|---|
+| F0 | **Precedence rule, evaluated first. `#` IS the order — a literal list, not an inferred property of names.** Rules are checked `F1, F2, F3, … F17` in that exact printed sequence; the FIRST whose condition holds assigns the terminal; no later rule may re-assign it. **`CRITIC_SCIENCE` `V3-H1` / `CRITIC_GOVERNANCE` `N2` found "numerical order" undefined over `F10a`/`F12a`-style names and two terminals dead behind it as a result. Fixed by making `#` itself the ordering key and re-deriving every rule's position from a witness check, not from its label** (§31.1's verifier, run at freeze time, asserts every rule F1..F17 has >=1 witness (or is non-arithmetic and verified by construction) in this exact order -- executed by scripts/v2_reachability_verifier.py, PASSED (V3-H5)) | — |
 | F1 | `C-0` fails **and** Route R-A is refused or also fails | `NO_ADMISSIBLE_SURFACE_WITHOUT_FREEZE_AMENDMENT` |
-| F2 | `Q1` or `P9` fails for a mechanical reason (ordinal drift, **calibration-band collision under `NO-BAND-COLLISION`**, `GENERATOR_VERSION` mismatch, `pb_33`/`pb_34` non-zero, unauthorised protected-path drift). **`C-0` mismatch is NOT a member of this list** — it is F1's, and v2 listed it in both | `BENCHMARK_INTEGRITY_DEFECT` |
-| F2a | `P7` fails: any `mass_power` world in the primary population | `SURFACE_POPULATION_CONTAMINATED` |
-| F3 | `P1` or `P2` fails (composition or seed counts not exact) | `SURFACE_INCOMPLETE_COMPOSITION` |
-| F4 | `P4` fails: schema incomplete at seal, or any field written after seal | `VOID_SCHEMA_INCOMPLETE` |
-| F5 | Any of `C-1`, `C-2`, `C-3`, `C-4`, `C-5`, `C-6`, `C-6a`, `P3`, `P5`, `P8` fails | `VOID_CONTROL_FAILURE` |
-| F6 | `P6'` fails: `INDETERMINATE_WORLDS > 0` on the calibration surface after uncapped escalation | `VOID_INSTRUMENT_INDETERMINATE` |
-| F7 | `P10` fails: more than one SURFACE generated, or the tuning ledger is non-empty, or any protocol amendment is written after the first surface exists | `VOID_SINGLE_SHOT_BROKEN` |
-| F8 | `QUALIFIED` and Gate R row 5 | `ROUTING_INDETERMINATE` |
-| F9 | `QUALIFIED` and Gate R row 4 | `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` |
-| F10 | `QUALIFIED` and Gate R row 1 and `E6_SAFETY_HEADROOM_PRESENT` (§21.5) | `E4A_ENTRY_LICENCE_PROPOSED` |
-| F10a | `QUALIFIED` and Gate R row 1 and **not** `E6_SAFETY_HEADROOM_PRESENT` | `E4A_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
-| F11 | `QUALIFIED` and Gate R row 2 and `E6_SAFETY_HEADROOM_PRESENT` | `E4_GENERATION_LICENCE_PROPOSED_F09_F10` |
-| F11a | `QUALIFIED` and Gate R row 2 and **not** `E6_SAFETY_HEADROOM_PRESENT` | `E4_GENERATION_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
-| F12 | `QUALIFIED` and Gate R row 3 and `E6_SAFETY_HEADROOM_PRESENT` | `E4F_LICENCE_PROPOSED` |
-| F12b | `QUALIFIED` and Gate R row 3 and **not** `E6_SAFETY_HEADROOM_PRESENT` | `E4F_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
-| F13 | Any of D3's eight `EXPERIMENTAL_REENTRY_RESOLUTION` items unmet at verdict time, or the §21.5 owner ratification is refused or not produced. **By F0 this is evaluated AFTER F8–F12, so a certified route is named first and the D3 shortfall is reported against it**, rather than the two overlapping non-exclusively as in v2 | `D3_ITEMS_UNMET_NO_REENTRY` |
-| F12a | `QUALIFIED` and Gate R row 3 and E4f's population-by-reference clause is judged broken rather than discharged (§36 precedence rule item 3) | `E4F_POPULATION_REFERENCE_BROKEN` |
-| F14 | `QUALIFIED` and `S_1 = 0` (no world reached the front under either resolution), so every conditional retention statistic is undefined | `SURFACE_DEGENERATE_NO_FRONT` |
-| F15 | The protocol owner concludes that `befca0d` §2.3 combined with D6 admits no qualification that is both non-circular and non-vacuous | `T1_NO_ADMISSIBLE_QUALIFICATION_EXISTS` |
+| F2 | `Q1` or `P9` fails for a mechanical reason (ordinal drift, **calibration-band collision under `NO-BAND-COLLISION`**, `GENERATOR_VERSION` mismatch, `pb_33`/`pb_34` non-zero, unauthorised protected-path drift). **`C-0` mismatch is NOT a member of this list** — it is F1's | `BENCHMARK_INTEGRITY_DEFECT` |
+| F3 | `P7` fails: any `mass_power` world in the primary population | `SURFACE_POPULATION_CONTAMINATED` |
+| F4 | `P1` or `P2` fails (composition or seed counts not exact) | `SURFACE_INCOMPLETE_COMPOSITION` |
+| F5 | `P4` fails: schema incomplete at seal, or any field written after seal | `VOID_SCHEMA_INCOMPLETE` |
+| F6 | Any of `C-1`, `C-2`, `C-3`, `C-4`, `C-5`, `C-6`, `C-6a`, `P3`, `P5`, `P8` fails | `VOID_CONTROL_FAILURE` |
+| F7 | `P6'` fails: `INDETERMINATE_WORLDS > 0` on the calibration surface after uncapped escalation | `VOID_INSTRUMENT_INDETERMINATE` |
+| F8 | `P10` fails: more than one SURFACE generated, or the tuning ledger is non-empty, or any protocol amendment is written after the first surface exists | `VOID_SINGLE_SHOT_BROKEN` |
+| F9 | `QUALIFIED` and `S_1 = 0` (no world reached the front under either resolution). **Evaluated BEFORE any Gate R row is consulted**, because at `S_1 = 0`, `pi = (1,0,0,0)` satisfies Gate R row 2's certification arithmetic exactly (`CRITIC_SCIENCE` `V3-C1`: lead `= 1.0 ≥ delta`, `LCB = 1.0 > 0`), so a rule reading Gate R could never reach this state — placing `F9` here, not after F13, is the entire repair | `SURFACE_DEGENERATE_NO_FRONT` |
+| F10 | `QUALIFIED` and Gate R row 5 | `ROUTING_INDETERMINATE` |
+| F11 | `QUALIFIED` and Gate R row 4 | `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` |
+| F12 | `QUALIFIED` and Gate R row 1 and `E6_SAFETY_HEADROOM_PRESENT` (§21.5) | `E4A_ENTRY_LICENCE_PROPOSED` |
+| F13 | `QUALIFIED` and Gate R row 1 and **not** `E6_SAFETY_HEADROOM_PRESENT` | `E4A_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
+| F14 | `QUALIFIED` and Gate R row 2 and `E6_SAFETY_HEADROOM_PRESENT` | `E4_GENERATION_LICENCE_PROPOSED_F09_F10` |
+
+**Rules F15–F17 below govern route `C+D` and the D3/ratification rider, and are stated
+separately from the F1–F14 table above because §2.1's `N6` correction changed what they
+assign.**
+
+| # | Condition | Terminal |
+|---|---|---|
+| F15 | `QUALIFIED` and Gate R row 2 and **not** `E6_SAFETY_HEADROOM_PRESENT` | `E4_GENERATION_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
+| F16 | `QUALIFIED` and Gate R row 3 (certified argmax `C+D`). **§2.1 `N6`: E4f is not authorized to execute today** — no protocol-owner ratification record for the delegation exists, and no E4f hostile review has been performed. No `E6` headroom question, no population-reference question and no `E4F_*` terminal arises, because nothing is proposed on this route to condition — v3's `F12a` unreachability finding (`CRITIC_GOVERNANCE` `N2`) is closed by removing what it protected, not by reordering it | `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` |
+| F17 | The protocol owner concludes that `befca0d` §2.3 combined with D6 admits no qualification that is both non-circular and non-vacuous | `T1_NO_ADMISSIBLE_QUALIFICATION_EXISTS` |
+
+**`D3_ITEMS_UNMET_NO_REENTRY` is DELETED as a terminal** (`CRITIC_SCIENCE` `V3-C2`, option (a),
+taken because it is the honest reading: Gate R's five rows are exhaustive, so under `F0` some
+rule in `F10..F16` always fires and a dedicated terminal for "D3 unmet" has no witness under
+any ordering). It survives as a **mandatory rider**, attached to every proposing rule
+(`F12`–`F16`): *any of D3's eight `EXPERIMENTAL_REENTRY_RESOLUTION` items unmet, or the §21.5
+owner ratification refused or not produced, is reported against the named terminal and
+prevents it from becoming an operative licence — the terminal is still published, and it is
+still a proposal, never an adoption, exactly as §21.5 already states for every route.* This
+changes nothing about what "licence" means; it only removes the fiction that a refusal is a
+*different* terminal than the proposal it refuses.
 
 **`VOID` is not a terminal in this protocol.** It was a residual category in v1 that swallowed
 five named states. The four `VOID_*` terminals above are named for the specific failure they
@@ -2205,15 +2299,34 @@ resource envelope:
 
 ### 25.5 Resource handling that is explicitly not a classification, and is frozen early
 
-Per-worker RSS ceiling **`RSS_CEILING_GIB = 24`**, enforced in-process; separate systemd
-scopes per shard; smoke-tested watchdog; world-level checkpointing with byte-exact resume;
-frozen and load-isolated worker count **`WORKER_COUNT = 8`**. **Both numbers are declared
-parameters (§34), profiled on the E2a engineering DEV set, and frozen in the freeze manifest
-BEFORE Stage 0 executes** (§13 A4), which is what closes `D7`'s channel. `RSS_CEILING_GIB` is
-set below the 25 GiB anon-rss at which the Gate 1 evaluator lost cases, so that the in-process
-ceiling fires **before** the kernel OOM killer does and the event is observable rather than a
-`SIGKILL`. **A world lost to an infrastructure failure is regenerated under the same frozen
-seed and reported; it is never reclassified, imputed, or dropped.**
+**This section's numbers were superseded and are DELETED here rather than left stale a fourth
+time** (`CRITIC_SCIENCE` `V3-H2`: this section still read `RSS_CEILING_GIB = 24` /
+`WORKER_COUNT = 8` — the in-process constant `DEF-H9` condemned, an unsubstantiated "profiled"
+claim `DEF-M5` condemned, and the `8 x 24 = 192 GiB` arithmetic on a 47 GiB host `X-2`
+condemned — while §25.4 and `STAGE1_RESOURCE_PROFILE.json` declared the correct per-phase
+values three sections earlier). Every clause that cites *"the §25.5 resource parameters"*
+(§26(1), §31.1, §34 FP-3/FP-4) is repointed to **§25.4's per-phase table** and
+`STAGE1_RESOURCE_PROFILE.json`, which is the single place these numbers are declared:
+
+```
+                       RSS_CEILING_GIB   WORKER_COUNT     envelope (<= 39.95 GiB)
+  search phase              2.0              19              38.0   OK
+  scoring tier 1            4.0               9              36.0   OK
+  scoring tier 2           23.5               1              23.5   OK
+```
+
+Separate systemd scopes per shard, the smoke-tested watchdog, and world-level checkpointing
+with byte-exact resume are **retained unchanged from this section's original text** and are
+not numeric parameters, so they carry no staleness risk. **A world lost to an infrastructure
+failure is regenerated under the same frozen seed and reported; it is never reclassified,
+imputed, or dropped.**
+
+**Process note, so a fifth staleness cannot recur unnoticed.** Three prior versions of this
+protocol declared resource numbers in one place and updated them in another
+(`DINST_FREEZE_SHA256.txt` → `_v2` → `_POSTREPAIR` for the Stage 0 tool alone). §31.1's
+freeze-time verifier now **asserts numeric equality** between every section that cites a
+resource parameter and the single source (`STAGE1_RESOURCE_PROFILE.json` for Stage 1,
+the instrument's own emitted value for Stage 0) and refuses to freeze on any mismatch.
 
 ## 26. DEV / EVAL SEPARATION
 
@@ -2224,7 +2337,7 @@ stratified, and uses **no RNG**.
 `DEV_ENGINEERING = the sealed E2a corpus`. E2a is fully seen, hostile-audited, and ratified as
 **invalidated for calibration (D5)**, which makes it worthless as evidence and ideal as an
 engineering dev set. The bounded evaluator, escalation protocol, schema validator, bootstrap
-harness, memory governor, **the §25.5 resource parameters** and runtime profiling are
+harness, memory governor, **the §25.4/§25.5 resource parameters** and runtime profiling are
 developed and debugged against it at **zero additional scientific compute and zero leakage**.
 **The analysis code and the resource parameters are frozen and hashed against E2a before
 Stage 0 runs and before the first Stage 1 world is generated.**
@@ -2390,9 +2503,12 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
 (`S12`). This document asserts the opposite on its first page.
 
 1. **Freeze commit.** This document, the routing table, the acceptance predicate, the failure
-   rules, the tie rules, the schema validator's hard-coded field list, the §32.1 witness
-   verifier, the two new modules of §5.2, the §25.5 resource parameters and **all analysis
-   code** are committed and their SHA-256 hashes recorded in a manifest. The freeze commit
+   rules, the tie rules, the schema validator's hard-coded field list, `scripts/v2_reachability_verifier.py` (section 32.1's witness verifier, EXECUTED:
+   terminal-set equality PASSED, all 8 arithmetic rules F9-F16 REACHABLE),
+   `scripts/v2_truth_blind_verifier.py` (section 16 P8a, EXECUTED: 0 call-graph violations
+   over 16 modules), `scripts/v2_freeze_dinst.py` (generates D-INST's freeze record from the
+   live tool, closing the four-times-stale pattern -- N4), the two new modules of §5.2, the
+   §25.4/§25.5 resource parameters and **all analysis code** are committed and their SHA-256 hashes recorded in a manifest. The freeze commit
    must be a **strict ancestor** of the first data commit. Verified by
    `git merge-base --is-ancestor` and by re-verifying every recorded hash. An annotated tag
    `muru-freeze/e7-protocol-v2` is created.
@@ -2416,14 +2532,22 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
 7. **Stage 0 is sealed separately** and is stamped `EXPLANATORY_ONLY` at the record level. The
    static citation checker must reject any change citing a Stage 0 identifier.
 8. **Superseding stale freeze records, and disclosing this document's own executions.**
-   - `DINST_FREEZE_SHA256.txt` currently asserts
-     `14a50d51…005a` for `scripts/e2a_instrument_diagnostic.py`, which **does not match the
-     file** (the review-mandated repair replaced the tool and the record was not updated).
-     It is **superseded by `DINST_FREEZE_ADDENDUM.md` + `DINST_FREEZE_SHA256_POSTREPAIR.txt`** (`G10`/`DEF-M10`: v2 named `DINST_FREEZE_SHA256_v2.txt`, which never existed), recording the repaired tool's hash
-     and the review that mandated the change. **A freeze record is never silently
-     overwritten.** The D-INST **protocol text** must also be re-frozen or formally amended
-     against its own failed review (`DINST_REVIEW = FAIL` named blocking defects D3–D6
-     against the protocol, not only the tool).
+   - **The freeze record is now GENERATED, not hand-edited.** `DINST_FREEZE_SHA256.txt`,
+     `DINST_FREEZE_SHA256_POSTREPAIR.txt` and `DINST_FREEZE_ADDENDUM.md`'s "binding amendment"
+     each went stale the moment the tool changed after they were written — a **fourth**
+     consecutive occurrence (`14a50d51` → `a3f97e38` → `9826cefe` → `1f8d4b4a`)
+     (`CRITIC_GOVERNANCE` `G10`/`N4`). A record that must be remembered and hand-rewritten on
+     every tool change will always be one edit behind the tool. `scripts/v2_freeze_dinst.py`
+     computes the hash, the pinned constants and the binding statement **from the live
+     file**, and writes `DINST_FREEZE_CURRENT.txt`. **This is the only file this protocol
+     treats as authoritative for D-INST admissibility.** The three earlier files are retained
+     as an audit trail of the staleness pattern itself and are explicitly **not** binding.
+     `v2_freeze_dinst.py` is run after any change to `e2a_instrument_diagnostic.py` and before
+     Stage 0 executes; it is idempotent and its own output states whether the tool has
+     uncommitted changes, so a stale freeze cannot be committed silently. The D-INST
+     **protocol text** must also be re-frozen or formally amended against its own failed
+     review (`DINST_REVIEW = FAIL` named blocking defects D3–D6 against the protocol, not
+     only the tool).
    - **`S21`: Stage 0's classify cache** (`~/e2_x86_cache/classify_cache.sqlite3`, ~89 MB,
      not in git, freely mutable) is in Stage 0's gating path. It is **hashed into the freeze
      manifest, read with an explicit `WHERE version = ?` filter, and re-verified at Stage 0
@@ -2440,26 +2564,43 @@ v1 asserted *"Status at this commit: frozen protocol text"* while §31 was entir
 ## 32. TERMINAL STATES
 
 **The complete, mutually exclusive, exhaustive terminal set of Stage 1. Assigned solely by
-§22. Every name states what is true when it fires.** Stage 0's disjoint set is §22.2.
-`RUN_INCOMPLETE_RESOURCE_EXHAUSTION` is **not** in this set, by design (§25.4).
+§22, in the exact `F1..F17` order §22.1's `F0` now defines as a literal list, not an inferred
+property of names.** Stage 0's disjoint set is §22.2. `RUN_INCOMPLETE_RESOURCE_EXHAUSTION` is
+**not** in this set, by design (§25.4).
 
-| Terminal | §22 rule | Meaning | Positive? |
-|---|---|---|---|
-| `T-INSTRUMENT-UNBOUNDED-ON-E2A` | Stage 0 | The frozen G2 contract is not decidable at finite cost **on the sealed E2a corpus**. A finding about the contract **and that corpus**. It establishes nothing about the calibration population, which contains 138 F17 worlds E2a does not contain | No |
-| `NO_ADMISSIBLE_SURFACE_WITHOUT_FREEZE_AMENDMENT` | F1 | The freeze-clean construction route failed its equivalence control and the owner did not authorize a registered delta to `registry.py`. **Not** a claim that the benchmark is defective | No |
-| `BENCHMARK_INTEGRITY_DEFECT` | F2 | Ordinal drift, seed-band collision, generator-version mismatch, or unauthorised protected-path drift. **This is** the claim that the benchmark needs auditing before anything else proceeds | No |
-| `SURFACE_INCOMPLETE_COMPOSITION` | F3 | Cells or seeds not exact | No |
-| `VOID_SCHEMA_INCOMPLETE` | F4 | Schema incomplete at seal or written after it. No back-fill (D6) | No |
-| `VOID_CONTROL_FAILURE` | F5 | A named control failed. Single shot, no retry, no amended protocol | No |
-| `VOID_INSTRUMENT_INDETERMINATE` | F6 | `INDETERMINATE_WORLDS > 0` on the calibration surface after uncapped escalation | No |
-| `VOID_SINGLE_SHOT_BROKEN` | F7 | More than one surface, or a non-empty tuning ledger, or a post-surface amendment | No |
-| `ROUTING_INDETERMINATE` | F8 | Certification fails and retention is not exonerated. **Not a null result:** the finding that G2 loss is jointly attributable across stages and **no single-factor repair is licensable in this regime**. E4's one-factor-at-a-time framing is then inadequate here, and the honest forward path is a jointly-varying design under separate authorisation, with `befca0d` §3's warning that admissibility is not additive | No |
-| `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` | F9 | No stage certifiably dominates, **and** the retention stage loses less than a material share (`pi_B < delta`). The retention rule is exonerated; no retention change is licensed. **This branch exists so the protocol can conclude "the retention rule is fine" — an outcome the licensing table must be able to reach, or it is not a test** | **Yes** |
-| `E4A_LICENCE_PROPOSED_AT_<arm>` | F10 | Certified route `B`, E6 ceiling met on the NEG stratum, all eight D3 items satisfied. **A proposal**; operative only on the §21.5 owner ratification, which for this row must also re-arm `f4c1105` | **Yes** |
-| `E4_GENERATION_LICENCE_PROPOSED_F09_F10` | F11 | Certified route `A`, restricted by E3's completed per-cell verdicts to `mass_saturating_descriptor` (F09) and `mass_interaction` (F10). The ten MARGINAL conditions are reported as **blocked**, not licensed | **Yes**, per cell |
-| `E4F_LICENCE_PROPOSED` | F12 | Certified route `C+D`, **family i (classifier) only**. **Preregistered, not unsuspended — Decision 2 as narrowed.** E4f's own terminals then govern (`E4F_I_*`, `E4F_II_*`), none of which grants a licence either; E4f's outputs are efficacy-admissibility statements pending E6 | **Yes** |
-| `D3_ITEMS_UNMET_NO_REENTRY` | F13 | A D3 item is unmet at verdict time, or the owner ratification is refused or not produced. No re-entry, regardless of the route | No |
-| `T1_NO_ADMISSIBLE_QUALIFICATION_EXISTS` | F14 | The owner concludes that `befca0d` §2.3 combined with D6 admits no qualification that is both non-circular and non-vacuous. The programme publishes the divergence and stops. **A legitimate scientific result already present in the decision tree** | No |
+**Rewritten in full against §22.1's `F1..F17`** (`CRITIC_GOVERNANCE` `N3`: v3's table named 15
+terminals against 21 assigning rules, missing six that v3's own repairs created, and misdated
+`T1` to the wrong rule). §31.1's freeze-time verifier (`V3-H5`) asserts mechanically that the
+set of terminals named here equals the set named by §22 — the same discipline the Stage 0
+instrument already applies to its own three terminals.
+
+| Terminal | §22 rule | Meaning | Positive? | Licenses? |
+|---|---|---|---|---|
+| `T-INSTRUMENT-UNBOUNDED-ON-E2A` | Stage 0 | The frozen G2 contract is not decidable at finite cost **on the sealed E2a corpus**. A finding about the contract **and that corpus**. It establishes nothing about the calibration population, which contains 138 F17 worlds E2a does not contain | No | No |
+| `NO_ADMISSIBLE_SURFACE_WITHOUT_FREEZE_AMENDMENT` | F1 | The freeze-clean construction route failed its equivalence control and the owner did not authorize a registered delta to `registry.py`. **Not** a claim that the benchmark is defective | No | No |
+| `BENCHMARK_INTEGRITY_DEFECT` | F2 | Ordinal drift, calibration-band collision, generator-version mismatch, or unauthorised protected-path drift. **This is** the claim that the benchmark needs auditing before anything else proceeds | No | No |
+| `SURFACE_POPULATION_CONTAMINATED` | F3 | `P7` fails: a `mass_power` world exists in the primary population, which the population declaration (§5.2, `G2` families derived by predicate) should make impossible | No | No |
+| `SURFACE_INCOMPLETE_COMPOSITION` | F4 | Cells or seeds not exact | No | No |
+| `VOID_SCHEMA_INCOMPLETE` | F5 | Schema incomplete at seal or written after it. No back-fill (D6) | No | No |
+| `VOID_CONTROL_FAILURE` | F6 | A named control failed. Single shot, no retry, no amended protocol | No | No |
+| `VOID_INSTRUMENT_INDETERMINATE` | F7 | `INDETERMINATE_WORLDS > 0` on the calibration surface after uncapped escalation | No | No |
+| `VOID_SINGLE_SHOT_BROKEN` | F8 | More than one surface, or a non-empty tuning ledger, or a post-surface amendment | No | No |
+| `SURFACE_DEGENERATE_NO_FRONT` | F9 | `S_1 = 0`: no world reached the front under either resolution, so every conditional retention statistic is undefined. **Evaluated before any Gate R row**, because at `S_1=0` Gate R row 2's arithmetic certifies trivially (`CRITIC_SCIENCE` `V3-C1`) — this terminal exists precisely to catch that case before routing consults it | No | No |
+| `ROUTING_INDETERMINATE` | F10 | Certification fails and retention is not exonerated. **Not a null result:** the finding that G2 loss is jointly attributable across stages and **no single-factor repair is licensable in this regime**. E4's one-factor-at-a-time framing is then inadequate here, and the honest forward path is a jointly-varying design under separate authorisation, with `befca0d` §3's warning that admissibility is not additive | No | No |
+| `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` | F11 | No stage certifiably dominates, **and** the retention stage is exonerated under the `G3`-repaired conjunction (`pi_B < delta` **and** `P_retain\|front >= 1-delta` **and** `S_1>0`). The retention rule is exonerated; no retention change is licensed. **Concludes, but licenses nothing** — see the `Concludes?`/`Licenses?` split below (`G17`) | **Concludes: Yes** | No |
+| `E4A_ENTRY_LICENCE_PROPOSED` | F12 | Certified route `B`, `E6_SAFETY_HEADROOM_PRESENT` (§21.5, R0-based, no arm parameter). **A proposal**; operative only on the §21.5 owner ratification, which for this row must also re-arm `f4c1105` | **Yes** | Yes (proposal) |
+| `E4A_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` | F13 | Certified route `B`, but the R0 execution's own NEG-stratum false-structure rate breaches the E6 ceiling. Certified and reported; nothing proposed | Certified, not licensing | No |
+| `E4_GENERATION_LICENCE_PROPOSED_F09_F10` | F14 | Certified route `A`, `E6_SAFETY_HEADROOM_PRESENT`, restricted by E3's completed per-cell verdicts to `mass_saturating_descriptor` (F09) and `mass_interaction` (F10). The ten MARGINAL conditions are reported as **blocked**, not licensed | **Yes**, per cell | Yes (proposal) |
+| `E4_GENERATION_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` | F15 | Certified route `A`, but the E6 ceiling is breached. Certified and reported; nothing proposed | Certified, not licensing | No |
+| `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` | F16 | Certified route `C+D`. **REINSTATED, not deleted** (correcting §32.3's v3 disposition below): `§2.1`/`N6` found the authority v3 cited for E4f's execution does not survive review, so this route currently proposes nothing regardless of certification strength. `MURU_V2_E4F_OPERATIONAL_PREREGISTRATION.md` remains frozen and ready for the day a real ratification record exists | Certified, not licensing | No |
+| `T1_NO_ADMISSIBLE_QUALIFICATION_EXISTS` | F17 | The owner concludes that `befca0d` §2.3 combined with D6 admits no qualification that is both non-circular and non-vacuous. The programme publishes the divergence and stops. **A legitimate scientific result already present in the decision tree** | No | No |
+
+**`D3_ITEMS_UNMET_NO_REENTRY` is not a terminal** (`CRITIC_SCIENCE` `V3-C2`, option (a) — see
+§22.1). It is a mandatory rider on `F12`–`F16`: any of D3's eight items unmet, or the §21.5
+ratification refused, prevents the named terminal from becoming an **operative** licence
+without changing which terminal fires. The `Licenses?` column above already distinguishes
+"proposal" from "adoption"; D3/ratification is what moves a proposal to an adoption, and its
+absence keeps every row at "proposal" or "no", never at "operative".
 
 ### 32.1 CONSTRUCTIVE REACHABILITY — the defect that killed v1, proven not to recur
 
@@ -2467,7 +2608,10 @@ v1's two licensing terminals were **arithmetically unreachable for every possibl
 and neither v1 nor its decision record noticed. **Every positive terminal below is therefore
 proven reachable by exhibiting a concrete, attainable realisation**, in integer per-condition
 world counts (which is the only form the surface can actually take: 12 conditions × 138
-completed worlds each, `P1`), with the certification arithmetic recomputed and shown.
+completed worlds each, `P1`), with the certification arithmetic recomputed and shown, and
+**re-verified after every repair that could have moved it** (`CRITIC_SCIENCE` `V3-H5`'s
+finding that no such re-verification existed is closed by the recomputation below and by the
+freeze-time verifier of §31.1).
 
 Each witness is a per-condition count vector `(A, B, C+D, E)` summing to 138, applied
 identically to all 12 conditions — so `w_k`-weighting is exact, `P1` holds by construction,
@@ -2476,45 +2620,56 @@ identically to all 12 conditions — so `w_k`-weighting is exact, `P1` holds by 
 All four therefore **satisfy every Gate Q clause by construction**.
 
 `sigma = sqrt( (pi_top + pi_second - lead^2) / 1656 )`, `LCB = lead - 1.9599640 * sigma`,
-`delta = 0.0694444`.
+`delta = 0.0694444`. All four values below were recomputed independently for this rewrite.
 
 | Witness | per-condition `(A, B, C+D, E)` | shares `(pi_A, pi_B, pi_C+D, pi_E)` | argmax | lead | lead / `delta` | `LCB_97.5` | `pi_B` | Routes to |
 |---|---|---|---|---:|---:|---:|---:|---|
-| **W-B** | (14, 69, 50, 5) | (0.101449, 0.500000, 0.362319, 0.036232) | `B` | 0.137681 | 1.983 | **+0.093450** | 0.500 | Gate R row 1 → **`E4A_LICENCE_PROPOSED`** |
-| **W-A** | (69, 30, 34, 5) | (0.500000, 0.217391, 0.246377, 0.036232) | `A` | 0.253623 | 3.652 | **+0.213847** | 0.217 | Gate R row 2 → **`E4_GENERATION_LICENCE_PROPOSED_F09_F10`** |
-| **W-CD** | (14, 45, 74, 5) | (0.101449, 0.326087, 0.536232, 0.036232) | `C+D` | 0.210145 | 3.026 | **+0.166580** | 0.326 | Gate R row 3 → **`E4F_LICENCE_PROPOSED`** |
-| **W-EX** | (55, 8, 50, 25) | (0.398551, 0.057971, 0.362319, 0.181159) | `A` | 0.036232 | 0.522 | −0.005744 | **0.058** | not certified (lead < `delta`, `LCB` < 0) **and** `pi_B < delta` → Gate R row 4 → **`RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE`** |
+| **W-B** | (14, 69, 50, 5) | (0.101449, 0.500000, 0.362319, 0.036232) | `B` | 0.137681 | 1.983 | **+0.093450** | 0.500 | Gate R row 1 → `E6` headroom → **`E4A_ENTRY_LICENCE_PROPOSED`** (F12) |
+| **W-A** | (69, 30, 34, 5) | (0.500000, 0.217391, 0.246377, 0.036232) | `A` | 0.253623 | 3.652 | **+0.213847** | 0.217 | Gate R row 2 → `E6` headroom → **`E4_GENERATION_LICENCE_PROPOSED_F09_F10`** (F14) |
+| **W-CD** | (14, 45, 74, 5) | (0.101449, 0.326087, 0.536232, 0.036232) | `C+D` | 0.210145 | 3.026 | **+0.166580** | 0.326 | Gate R row 3 → **`ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`** (F16, `§2.1`/`N6`) |
+| **W-EX** | (0, 0, 5, 133) | (0.000000, 0.000000, 0.036232, 0.963768) | `C+D` | 0.036232 | 0.522 | +0.027232 | **0.000** | not certified (lead < `delta`) **and** exonerated (`pi_B=0 < delta`, `S_1=1`, `P_retain\|front = S_2/S_1 = 1.0 >= 1-delta`) → Gate R row 4 → **`RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE`** (F11) |
+
+**`W-EX` is a NEW witness, replacing v3's.** `CRITIC_SCIENCE` found v3's `W-EX =
+(55,8,50,25)` stale against the `G3`-repaired conjunction: its `P_retain|front = 0.9036 <
+1-delta = 0.9306`, so it no longer satisfies exoneration and instead falls to Gate R row 5
+(`ROUTING_INDETERMINATE`). The replacement above satisfies **both** conjuncts of the repaired
+predicate by construction (`S_1=1`, so the ratio is trivially `1.0`) and is independently
+recomputed, not reused from the earlier document.
 
 **All four are attainable**: every entry is a non-negative integer, every row sums to 138, and
 nothing in Gate Q, in the generator, or in the endpoint definition excludes any of them. **Gate
 Q therefore does not determine the route** — `NON_DETERMINATION_PROVEN` (§4.1 property v) is
-discharged by W-B, W-A and W-CD alone, which route to three different arms while satisfying
-identical qualification clauses.
+discharged by W-B, W-A and W-CD alone, which certify to three different arguments while
+satisfying identical qualification clauses, even though only two of the three currently reach
+an operative proposal.
 
 **Why this could not have been done under v1, and why it can be done now.** Under v1 every one
 of W-B, W-A and W-CD would have been **vetoed by Gate V** — `TV(W-B, pi_0) = 0.1307`,
 `TV(W-A, pi_0) = 0.4112`, `TV(W-CD, pi_0) = 0.0559`, against a tolerance of 0.0694 — so W-CD
-alone would have survived, and v1 pre-labelled it non-executable. The removal of Gate V
-(Decision 1) is what makes W-B and W-A reachable, and the E4f freeze (Decision 2) is what makes
-W-CD's terminal an executable one. **The two decisions are exactly what the reachability proof
-needs, and the proof is exhibited rather than asserted.**
+alone would have survived, and v1 pre-labelled it non-executable anyway. The removal of Gate V
+(Decision 1) is what makes W-B and W-A reachable. **Decision 2 no longer makes any terminal
+executable** (`§2.1`/`N6`): W-CD reaches a certified route, but that route currently proposes
+nothing. `NON_DETERMINATION_PROVEN` is a statement about Gate Q, not about executability, and
+survives that correction intact.
 
 **For the record, the §21.4 annotation on each witness** — computed here to show that it
-carries information and changes nothing:
+carries information and changes no terminal:
 
 | Witness | `TV` vs `pi_0` | in `delta` | `D_max` | 95% interval on `TV` | Annotation |
 |---|---:|---:|---:|---|---|
 | W-B | 0.1307 | 1.88 | 0.1307 | [0.0616, 0.2201] | `INDETERMINATE` |
-| W-A | 0.4112 | 5.92 | 0.4028 | [0.3575, 0.4686] | `CONTRADICTS` → §21.5 explanation required |
+| W-A | 0.4112 | 5.92 | 0.4028 | [0.3575, 0.4686] | `CONTRADICTS` — disclosed, conditions nothing (`N1`/`G6`) |
 | W-CD | 0.0559 | 0.80 | 0.0559 | [0.0175, 0.1476] | `INDETERMINATE` |
-| W-EX | 0.4547 | 6.55 | 0.3240 | [0.3955, 0.5121] | `CONTRADICTS` → reported; no licence exists to condition |
+| W-EX | 0.9360 | 13.48 | — | — | `CONTRADICTS` — disclosed; no licence exists on any route to condition |
 | `pi_0` itself | 0.0000 | 0.00 | 0.0000 | [0.0127, 0.1105] | `INDETERMINATE` |
 
-**Disclosed asymmetry.** The explanation obligation of §21.5 is more likely to attach to route
-`B` and route `A` than to route `C+D`, because `pi_0`'s own argmax is `C+D`. That asymmetry is
-real, is inherited from the comparator, and is disclosed here. It is an obligation to explain,
-discharged by an owner act on the record, **not** an arithmetic veto and **not** a selector —
-which is precisely the distinction Decision 1 turns on.
+**Disclosed asymmetry.** The historical asymmetry recorded here in v2/v3 — that the
+explanation obligation was more likely to attach to routes `B`/`A` than to `C+D` — no longer
+applies to what the annotation *does*, because `G6`'s repair removed the obligation from every
+route uniformly (`N1`, §0.1 response 1, corrected). The asymmetry that remains is purely
+descriptive: `pi_0`'s own argmax is `C+D`, so a `C+D`-certifying surface will tend to read
+closer to `pi_0` than a `B`- or `A`-certifying one, and that is disclosed as a property of the
+comparator, not of the licensing rule.
 
 ### 32.2 Negative terminals are also checked for reachability
 
@@ -2523,8 +2678,10 @@ which is precisely the distinction Decision 1 turns on.
 their named clause failing. `T-INSTRUMENT-UNBOUNDED-ON-E2A` is reached whenever any E2a world's
 class differs between resolutions after uncapped escalation.
 `NO_ADMISSIBLE_SURFACE_WITHOUT_FREEZE_AMENDMENT` is reached if `C-0` regresses (it does not
-today: 380/380) and the owner refuses R-A. **No terminal in §32 is unreachable, and no event
-maps to two terminals.**
+today: 380/380) and the owner refuses R-A. `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` is reached by
+`W-CD` above, today, unconditionally on route `C+D`. **§31.1's freeze-time verifier checks
+every rule in `F1..F17` for at least one witness under the exact `F0` order and fails the
+freeze if any rule has none** — this is now executed, not asserted (`V3-H5`).
 
 ### 32.3 Terminals of v1 that are deleted, with the reason
 
@@ -2533,10 +2690,12 @@ maps to two terminals.**
 | `T-INSTRUMENT-UNBOUNDED` | Renamed `T-INSTRUMENT-UNBOUNDED-ON-E2A` and its gloss restricted (`S11`) |
 | `CIRCULAR_BY_MEASUREMENT` | **Deleted.** Its trigger `QND` was unsatisfiable over an empty family (`D2`, `S9`). The property is now proven constructively (§32.1) rather than measured |
 | `NO_ADMISSIBLE_SURFACE_EXISTS` | **Split** into `NO_ADMISSIBLE_SURFACE_WITHOUT_FREEZE_AMENDMENT` and `BENCHMARK_INTEGRITY_DEFECT`, because v1 conflated a governance refusal with a benchmark defect (`D8`) |
-| `SURFACE_NOT_QUALIFIED` | **Split** into F3–F7's named terminals, because a single name for eight distinct failures is not a terminal state (`S8`) |
+| `SURFACE_NOT_QUALIFIED` | **Split** into F2–F8's named terminals, because a single name for eight distinct failures is not a terminal state (`S8`) |
 | `VOID` | **Deleted as a state.** It was a residual that subsumed five named terminals, violating exclusivity by definition (`S8`) |
-| `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` | **Deleted.** Under Decision 2 the `C+D` route is executable; the `A` route's blocked cells are reported inside `E4_GENERATION_LICENCE_PROPOSED_F09_F10` rather than terminating the protocol |
+| `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` | **REINSTATED as `F16`** (correcting v3, which deleted it on the strength of an authority claim `N6` found unsupported). It is no longer only the `A`-route's blocked-cell language; it is now the terminal for a certified `C+D` route under the current, unratified state of E4f's authority |
 | `HALTED` | **Deleted with Gate V** (Decision 1) |
+| `T9 — REQUIRED_ARCHITECTURE_EXECUTION_BOUNDARY` | Not armed (§21.4). The re-arming rule survives |
+
 | `T9 — REQUIRED_ARCHITECTURE_EXECUTION_BOUNDARY` | Not armed (§21.4). The re-arming rule survives |
 
 ### 32.4 E5
@@ -2605,8 +2764,8 @@ execution, but not derivable from frozen authority.
 |---|---|---|---|---|
 | FP-1 | Power target in the §10.4 sizing | `0.80` | A sample size cannot be derived without one. It is the conventional default | **Nowhere.** It affects only `n`. `delta` and the certification rule are independent of it |
 | FP-2 | Tier-1 CPU cost bound | `60 s` per distinct expression (12× the retired 5 s, in CPU time) | A cost bound is needed to decide *when to escalate*. No frozen source supplies a multiplier | **Nowhere.** Exceeding it produces `UNRESOLVED`, which is its own state and never a label. Tier 2 is uncapped in time |
-| FP-3 | Per-worker RSS ceiling, **per phase** (search 2.0 / scoring tier-1 4.0 / scoring tier-2 23.5 GiB), profiled on the E2a DEV set and recorded in `STAGE1_RESOURCE_PROFILE.json` | see §25.5 | A host with 48 GiB and no swap OOM-killed the previous run four times. Some ceiling must exist or the kernel picks one by SIGKILL | **Nowhere** — §25.4 routes exhaustion to an operational non-terminal that emits no scientific state. **`X-2` correction: v2 justified this as "the in-process ceiling fires before the kernel does", which was arithmetically false** — `WORKER_COUNT x RSS_CEILING = 8 x 24 = 192 GiB` on a 47 GiB host, so the kernel fired first and the stated guarantee never held. The per-phase ceilings now satisfy `WORKER_COUNT x RSS_CEILING <= 0.85 x total_physical_GiB` in every phase, which is what makes the guarantee true. **Frozen before Stage 0** (`D7`), profiled record in `STAGE1_RESOURCE_PROFILE.json` |
-| FP-4 | Worker count, **per phase** (19 / 9 / 1), each satisfying `WORKER_COUNT x RSS_CEILING_GIB <= 0.85 x total_physical_GiB` | see §25.5 | Concurrency must be a declared constant or it is a scientific variable (v1 §13 A4) | **Nowhere**, given FP-3's disposition. **Frozen before Stage 0** (`D7`) |
+| FP-3 | Per-worker RSS ceiling, **per phase** (search 2.0 / scoring tier-1 4.0 / scoring tier-2 23.5 GiB), profiled on the E2a DEV set and recorded in `STAGE1_RESOURCE_PROFILE.json` | see §25.4/§25.5 | A host with 48 GiB and no swap OOM-killed the previous run four times. Some ceiling must exist or the kernel picks one by SIGKILL | **Nowhere** — §25.4 routes exhaustion to an operational non-terminal that emits no scientific state. **`X-2` correction: v2 justified this as "the in-process ceiling fires before the kernel does", which was arithmetically false** — `WORKER_COUNT x RSS_CEILING = 8 x 24 = 192 GiB` on a 47 GiB host, so the kernel fired first and the stated guarantee never held. The per-phase ceilings now satisfy `WORKER_COUNT x RSS_CEILING <= 0.85 x total_physical_GiB` in every phase, which is what makes the guarantee true. **Frozen before Stage 0** (`D7`), profiled record in `STAGE1_RESOURCE_PROFILE.json` |
+| FP-4 | Worker count, **per phase** (19 / 9 / 1), each satisfying `WORKER_COUNT x RSS_CEILING_GIB <= 0.85 x total_physical_GiB` | see §25.4/§25.5 | Concurrency must be a declared constant or it is a scientific variable (v1 §13 A4) | **Nowhere**, given FP-3's disposition. **Frozen before Stage 0** (`D7`) |
 | FP-5 | `C-2` / `C-3` / `C-6` sample sizes and pass bars | 12 / 12 (+3 planted) / 500, all at 100% | Frozen authority names these controls but gives no sizes. v1 left them to the executor | **Yes, in principle** — a control's power depends on its size. Bars are 100%, so a larger sample can only make them harder; the risk is under-powering, not over-passing. Declared here so it is fixed rather than chosen |
 | FP-6 | The §21.4 bootstrap RNG label | `"E7-CC"` | A label is required by `derive_seed_v2`'s frozen signature | **Nowhere.** The annotation gates nothing |
 
@@ -2638,10 +2797,10 @@ means **no scientific claim is published at all**, which is the intended behavio
 | Terminal | Probability | Reasoning |
 |---|---:|---|
 | `ROUTING_INDETERMINATE` | **~50%** | The point prediction sits inside the non-certification region, and the composite rule is deliberately conservative there (type-I 0.0024 at a two-way tie) |
-| `E4F_LICENCE_PROPOSED` (route `C+D`) | **~18%** | The live routing question is retention vs cross-seed identity, and the surface contains 138 F17 worlds — the identity stressor no admissible corpus has ever contained. If any route certifies, I think this is the likeliest |
-| `E4A_LICENCE_PROPOSED` (route `B`) | **~10%** | Requires `pi_B` to lead by ≥ `delta` with `LCB > 0`; E3's MARGINAL verdicts on 10 of 12 conditions push mass toward `A`, not `B` |
-| `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` | **~5%** | Requires `pi_B < delta`, i.e. retention loses under 7% of worlds. Possible if `P_retain_given_front` is genuinely near 1 |
-| `E4_GENERATION_LICENCE_PROPOSED_F09_F10` | **~4%** | Requires `A` to lead by ≥ `delta`; plausible given E3, but then 10 of 12 conditions are blocked and the licence is thin |
+| `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE` (route `C+D`) | **~18%** | The live routing question is retention vs cross-seed identity, and the surface contains 138 F17 worlds — the identity stressor no admissible corpus has ever contained. **This is now a non-executable certification, not a licence** (`§2.1`/`N6`): if any route certifies, I think this is the likeliest, and it currently proposes nothing |
+| `E4A_ENTRY_LICENCE_PROPOSED` (route `B`) | **~10%**, less `E6` attrition | Requires `pi_B` to lead by ≥ `delta` with `LCB > 0`; E3's MARGINAL verdicts on 10 of 12 conditions push mass toward `A`, not `B`. Some of this mass now lands on `E4A_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` if the `E6` check fails, which was previously folded into the same terminal |
+| `RC3_WITHDRAWN_RETENTION_NOT_THE_LOSS_STAGE` | **~5%** | Requires `pi_B < delta` **and** the `G3`-repaired ratio `P_retain\|front >= 1-delta`, a strictly narrower gate than v3's single-inequality version. Possible if retention genuinely loses almost nothing among worlds that reach the front |
+| `E4_GENERATION_LICENCE_PROPOSED_F09_F10` | **~4%**, less `E6` attrition | Requires `A` to lead by ≥ `delta`; plausible given E3, but then 10 of 12 conditions are blocked and the licence is thin. Some mass now lands on `E4_GENERATION_ROUTE_CERTIFIED_NO_SAFETY_HEADROOM` |
 | One of the `VOID_*` terminals | **~8%** | `C-6` (two-architecture parity) and `P6'` are the likeliest failures |
 | `T-INSTRUMENT-UNBOUNDED-ON-E2A` or `RUN_INCOMPLETE_RESOURCE_EXHAUSTION` | **~5%** | The escalation tail |
 
@@ -2651,11 +2810,18 @@ records, **even a perfectly matched surface reads `INDETERMINATE`**, the compara
 variance consuming 69% of the reference scale.
 
 **What has changed since v1's expectation, and it is the point of this version.**
-v1 expected no re-entry on any branch **and that expectation was forced by its arithmetic**.
-This version expects no re-entry on the most likely single branch (`ROUTING_INDETERMINATE` at
-~50%) but assigns **~37% to some positive terminal**, and §32.1 **proves constructively** that
-each of those terminals is attainable. **The design is now capable of the outcome it is
-looking for.** That is the specific defect that killed v1, and the proof that it cannot recur
+v1 expected no re-entry on any branch **and that expectation was forced by its arithmetic** —
+§32.1 shows its two licensing terminals had zero witnesses under any dataset. This version's
+terminals are each **shown attainable** (§32.1), which is a claim about the design's
+*capability to distinguish outcomes*, not a claim about how likely a positive outcome is.
+Recomputed against the current disposition: `E4A_ENTRY_LICENCE_PROPOSED` (~10%, less `E6`
+attrition) and `E4_GENERATION_LICENCE_PROPOSED_F09_F10` (~4%, less `E6` attrition) are the
+**only** terminals that currently propose an operative licence — together **~14%** of the
+predicted mass, down from v3's ~37%, because route `C+D`'s ~18% and the exoneration branch's
+~5% both **conclude without licensing** (`§2.1`/`N6`, `G17`'s `Concludes?`/`Licenses?` split).
+The remaining ~50%+8%+5% concludes nothing at all. §32.1 proves each terminal reachable; it
+does not claim any one is likely, and the recomputation above states plainly how much smaller
+the licensing mass is than v3 reported
 is exhibited in §32.1 rather than asserted here.
 
 **The disclosure that makes this checkable.** The design most likely to deliver re-entry was on
@@ -2668,6 +2834,15 @@ from a nominal 0.80 to a real 0.499** and I adopted it anyway; and `n` rose 27.8
 correction (`z_.975`) that makes certification harder, not easier.
 
 ## 36. DOWNSTREAM CONSEQUENCE — THE E4f POPULATION RESTATEMENT
+
+**Status: DORMANT.** `§2.1`/`N6` found no protocol-owner record authorizes E4f's execution
+today, so a certified `C+D` route currently assigns `ROUTE_DETERMINED_ARM_NOT_EXECUTABLE`
+(§22 `F16`) and proposes nothing — there is no operative licence for this section's
+restatement to condition. The analysis below is **preserved rather than deleted**, because it
+is correct on its own terms and there is no reason to redo it the day a real ratification
+record exists: at that point `MURU_V2_E4F_POPULATION_RESTATEMENT.md` is written exactly as
+described, `F16` is replaced by the licensing rules this section once fed, and nothing else
+in this section changes.
 
 **Disclosed in full because it is the one place where this protocol touches a frozen
 document.**
@@ -2699,8 +2874,9 @@ document.**
 >    E4f DELEGATED its population to the calibration protocol, so supplying that
 >    population is discharging E4f's own reference, not amending E4f. If a reader
 >    concludes instead that E4f's printed numerals are independent parameters, then the
->    reference is broken and the correct terminal is E4F_POPULATION_REFERENCE_BROKEN
->    (§22 F12a) -- NOT a licence, and NOT a control failure.
+>    reference is broken and the correct terminal is E4F_POPULATION_REFERENCE_BROKEN --
+>    NOT a licence, and NOT a control failure. (Numbered here as a dormant reference only;
+>    section 22's live F16 is the terminal that fires today, per the DORMANT status above.)
 >
 > 4. The restatement is NOT a tuning-ledger entry, because it changes no threshold,
 >    margin, gate, estimator, terminal or decision rule -- only a denominator that E4f

@@ -106,20 +106,23 @@ class CanonicalEntry:
 
 def canonicalise(expression_string: str, cpu_budget: Optional[float] = TIER1_CPU_SECONDS,
                  tier: int = 1) -> CanonicalEntry:
-    t0 = time.process_time()
+    """V3-C4 repair (CRITIC_SCIENCE). The v3 version of this function computed
+    `extract_effective_support` and `classify_discovered_family` OUTSIDE the CPU
+    budget, each wrapped in a bare `except Exception`. Both callees internally call
+    `sympy.simplify` themselves (`g2_contract.py:163,207`) -- a SEPARATE, UNBUDGETED
+    simplify from the one below -- so a MemoryError/RecursionError inside either one
+    was silently swallowed into `None`, and the declared 60s tier-1 budget did not
+    bound the dominant cost, since both unprotected calls ran to completion (or
+    exhaustion) BEFORE the budget was ever entered.
 
-    # ---- the two PURE SYNTACTIC properties, computed UNCONDITIONALLY -------
-    # This is the section 25.3 contract and the X-3 repair. Neither call reads
-    # `simplified`; neither may be gated on a canonicalisation budget.
-    try:
-        support = extract_effective_support(expression_string)
-        effective_support = tuple(sorted(support)) if support is not None else None
-    except Exception:
-        effective_support = None
-    try:
-        discovered_family = classify_discovered_family(expression_string)
-    except Exception:
-        discovered_family = None
+    FIX: every call that can invoke `simplify` runs inside the SAME `_cpu_budget`
+    context, in the SAME try block, with MemoryError/RecursionError/`_Cap` typed
+    explicitly ahead of the generic handler -- exactly the discipline
+    `e2a_instrument_diagnostic.py`'s `_PAYLOAD` already applies correctly. A
+    resource event during EITHER extraction call now produces `UNRESOLVED` with a
+    reason, never a silently nulled field next to `canonicalization_status: OK`.
+    """
+    t0 = time.process_time()
 
     parsed = None
     try:
@@ -127,26 +130,70 @@ def canonicalise(expression_string: str, cpu_budget: Optional[float] = TIER1_CPU
     except Exception:
         parsed = None
     if parsed is None:
-        return CanonicalEntry(expression_string, "UNPARSEABLE", None,
-                              effective_support, discovered_family, None,
+        return CanonicalEntry(expression_string, "UNPARSEABLE", None, None, None, None,
                               time.process_time() - t0, tier)
 
-    # ---- canonicalisation, under the section 25.2 budget -------------------
+    # ---- everything that can touch simplify, under ONE SHARED budget -------
+    # FP-2 declares "60s PER DISTINCT EXPRESSION", not per call. Three independent
+    # 60s windows would allow up to 180 CPU-seconds; instead the remaining budget
+    # is recomputed before each block, so the THREE calls together never exceed
+    # `cpu_budget` CPU-seconds (tier 1) or run forever together (tier 2, where
+    # `cpu_budget is None` and every block is simply uncapped).
+    def _remaining() -> Optional[float]:
+        if cpu_budget is None:
+            return None
+        used = time.process_time() - t0
+        return max(cpu_budget - used, 0.001)
+
     status, canonical = "OK", None
+    effective_support: Optional[tuple[str, ...]] = None
+    discovered_family: Optional[str] = None
+    resource_event = False
     try:
-        with _cpu_budget(cpu_budget):
+        with _cpu_budget(_remaining()):
             canonical = str(sympy.simplify(parsed))
     except _Cap:
-        status, canonical = "UNRESOLVED", None
+        status, resource_event = "UNRESOLVED", True
     except (MemoryError, RecursionError):
-        status, canonical = "UNRESOLVED", None
+        status, resource_event = "UNRESOLVED", True
     except Exception:
-        status, canonical = "UNPARSEABLE", None
+        status = "UNPARSEABLE"
 
-    # ---- template key ------------------------------------------------------
+    if status == "OK":
+        # section 25.3: pure syntactic functions of the expression ALONE, still
+        # run under the SHARED budget because BOTH internally re-simplify (X-3's
+        # own note -- "neither call reads `simplified`" -- was about DEPENDENCE,
+        # not about cost: unconditional means "not gated on the main simplify's
+        # OUTCOME", never "unbudgeted").
+        try:
+            with _cpu_budget(_remaining()):
+                support = extract_effective_support(expression_string)
+                effective_support = tuple(sorted(support)) if support is not None else None
+        except _Cap:
+            effective_support, resource_event = None, True
+        except (MemoryError, RecursionError):
+            effective_support, resource_event = None, True
+        except Exception:
+            effective_support = None
+        try:
+            with _cpu_budget(_remaining()):
+                discovered_family = classify_discovered_family(expression_string)
+        except _Cap:
+            discovered_family, resource_event = None, True
+        except (MemoryError, RecursionError):
+            discovered_family, resource_event = None, True
+        except Exception:
+            discovered_family = None
+
+    if resource_event and status == "OK":
+        # the main simplify succeeded but a downstream extraction hit a resource
+        # wall: the entry is UNRESOLVED, not a silently-nulled OK.
+        status = "UNRESOLVED"
+
+    # ---- template key --------------------------------------------------------
     template_repr = None
     try:
-        with _cpu_budget(cpu_budget):
+        with _cpu_budget(_remaining()):
             production_parsed = parse_production_candidate(expression_string)
             template_key(production_parsed)
             template_repr = template_key_string(production_parsed)

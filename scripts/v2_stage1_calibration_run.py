@@ -32,6 +32,14 @@ sys.path.insert(0, str(ROOT / "src"))
 OUT = ROOT / "results" / "v2_calibration_surface"
 CKPT = OUT / "_ckpt_worlds"
 
+
+def _set_out(d: str) -> None:
+    """Redirect output. Used ONLY for control runs, which must never write into the
+    surface directory -- a control is not a surface (P10)."""
+    global OUT, CKPT
+    OUT = Path(d); CKPT = OUT / "_ckpt_worlds"
+    CKPT.mkdir(parents=True, exist_ok=True)
+
 # Frozen in STAGE1_RESOURCE_PROFILE.json, profiled on the E2a DEV set BEFORE Stage 0.
 SEARCH_RSS_CEILING_GIB = 2.0
 SEARCH_WORKER_COUNT = 19
@@ -132,7 +140,10 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=SEARCH_WORKER_COUNT)
     ap.add_argument("--preflight-only", action="store_true")
     ap.add_argument("--limit", type=int, default=0, help="smoke runs only; 0 = full surface")
+    ap.add_argument("--out-dir", default="", help="control runs only; never the surface dir")
     a = ap.parse_args()
+    if a.out_dir:
+        _set_out(a.out_dir)
     CKPT.mkdir(parents=True, exist_ok=True)
 
     pf = preflight()
@@ -149,7 +160,7 @@ def main() -> None:
         ids = ids[:a.limit]
 
     import multiprocessing as mp
-    ctx = mp.get_context("spawn")
+    ctx = mp.get_context("fork")
     done = {"OK": 0, "CACHED": 0}
     failures = []
     with ctx.Pool(a.workers, initializer=_bound_memory, maxtasksperchild=1) as pool:
