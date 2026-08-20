@@ -27,6 +27,7 @@ if str(SCRIPTS) not in sys.path:
 
 import pb_rc4_2_authorized_delta as rc4_2  # noqa: E402
 import pb_rc5_a3_5_authorized_delta as rc5  # noqa: E402
+import pb_v2_calibration_authorized_delta as v2c  # noqa: E402
 
 BASE = "69e33c778efb14362439941d25ebbfcfb1068284"
 
@@ -171,7 +172,11 @@ def test_each_path_is_attributed_to_the_ledger_that_authorizes_it():
             continue  # a later ledger legitimately supersedes an earlier pin
         assert rc4_2.ledger_owner(path) == "RC4.2_R1_R4_defect_repair"
     for path in rc5.RC5_AUTHORIZED_BY_PATH:
+        if path in v2c.V2_CALIBRATION_AUTHORIZED_BY_PATH:
+            continue  # rc5_authorization.py: see test_a_superseded_pin_... below
         assert rc4_2.ledger_owner(path) == "RC5_A3_5_implementation"
+    for path in v2c.V2_CALIBRATION_AUTHORIZED_BY_PATH:
+        assert rc4_2.ledger_owner(path) == "v2_calibration_stage1_launch_remediation"
     assert rc4_2.ledger_owner("no/such/path.py") is None
 
 
@@ -195,6 +200,37 @@ def test_a_superseded_pin_is_shadowed_by_the_later_ledger_not_silently_dropped()
         rc4_2.RC4_2_1_TOOLING_BY_PATH[path].old_sha256
         == rc5.RC5_AUTHORIZED_BY_PATH[path].old_sha256
     )
+
+
+def test_rc5_authorization_pin_is_shadowed_by_the_v2_calibration_ledger():
+    """rc5_authorization.py is pinned by both RC5's own ledger and the
+    v2-calibration ledger; the v2-calibration entry must win in the union (it
+    describes the current, post-A3.6 bytes) while RC5's own entry stays
+    exactly as RC5 froze it -- a record of the pre-A3.6 state, not something
+    this later ledger is allowed to edit.
+
+    This is the documented, disclosed gap named in
+    ``audit/MURU_HELDOUT_SUPERSESSION_LEDGER.md`` section 5: A3.6 changed a
+    file RC5 had pinned without an A3.6 ledger entry ever being written. The
+    v2-calibration ledger is that instrument (see its module docstring), and
+    is why ``test_every_pinned_post_change_hash_matches_the_working_tree``
+    above is a pre-existing, already-disclosed failure for RC5's own tuple in
+    isolation -- RC5's ledger is frozen at its own bytes by design, and only
+    the union (``ALL_AUTHORIZED_BY_PATH``, checked here) describes the
+    current tree.
+    """
+    path = "src/muru/paper_benchmark/rc5_authorization.py"
+    assert path in rc5.RC5_AUTHORIZED_BY_PATH
+    assert path in v2c.V2_CALIBRATION_AUTHORIZED_BY_PATH
+    assert rc4_2.ALL_AUTHORIZED_BY_PATH[path] is v2c.V2_CALIBRATION_AUTHORIZED_BY_PATH[path]
+    assert (
+        rc5.RC5_AUTHORIZED_BY_PATH[path].new_sha256
+        != v2c.V2_CALIBRATION_AUTHORIZED_BY_PATH[path].new_sha256
+    )
+    # The v2-calibration entry's pinned bytes match the current working tree
+    # (this is the entry that actually classifies the file today).
+    report = v2c.verify_ledger_against_tree(ROOT)
+    assert path not in report["mismatched"] and path not in report["missing"]
 
 
 # -----------------------------------------------------------------------

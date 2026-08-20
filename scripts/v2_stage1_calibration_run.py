@@ -28,6 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts"))
 
 OUT = ROOT / "results" / "v2_calibration_surface"
 CKPT = OUT / "_ckpt_worlds"
@@ -104,10 +105,20 @@ def preflight() -> dict:
     from muru.paper_benchmark import calibration_surface as cs, calibration_seed_band as cb
     from muru.v2_calibration import e2c_search
     from muru.paper_benchmark.rc5_selection import select_row_label
+    import pb_37_environment_closure as pb37
 
     checks: dict[str, object] = {}
     checks["C-0_generator_equivalence"] = cs.control_c0()
     checks["NO_BAND_COLLISION"] = cb.verify_band()
+    # Every search world below runs through PySR/Julia. Boot it here, once,
+    # before any world is generated, and refuse to proceed on anything but the
+    # exact frozen stack -- the same check scripts/cloud_e6/preflight_e6.py
+    # already runs for the E6 cloud path, now on Stage 1's own path too.
+    try:
+        julia_stack = pb37.assert_julia_identity()
+        checks["JULIA_IDENTITY"] = {"verified": True, **julia_stack}
+    except Exception as exc:
+        checks["JULIA_IDENTITY"] = {"verified": False, "error": f"{type(exc).__name__}: {exc}"}
     ids = cs.iter_calibration_case_ids()
     checks["population"] = {"n_worlds": len(ids), "n_searches": cb.N_CALIBRATION_SEARCHES,
                             "g2_families": list(cs.CALIBRATION_G2_FAMILIES),
@@ -131,7 +142,8 @@ def preflight() -> dict:
         and checks["NO_BAND_COLLISION"]["NO_BAND_COLLISION"]
         and len(ids) == 1932 and cb.N_CALIBRATION_SEARCHES == 57960
         and r.status == "COMPLETED_WITH_FRONT" and not missing
-        and checks["admissibility_row_level"] == ["DECISION_ADMISSIBLE"])
+        and checks["admissibility_row_level"] == ["DECISION_ADMISSIBLE"]
+        and checks["JULIA_IDENTITY"]["verified"])
     return checks
 
 

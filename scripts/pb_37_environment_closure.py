@@ -149,6 +149,22 @@ def third_party_imports() -> dict[str, list[str]]:
     for base in ("scripts", "tests"):
         for path in (ROOT / base).glob("*.py"):
             local_modules.add(path.stem)
+    # A handful of scripts/tests do their own `sys.path.insert(0, <subdir>)`
+    # to import a same-repo sibling module by its filename stem (not a pip
+    # package). Each such subdir is named explicitly here -- deliberately not
+    # a recursive glob, for the same reason the top-level scan above isn't:
+    # absorbing every nested stem could let a real third-party distribution
+    # that happens to share a filename with some subdirectory script escape
+    # the closure check unnoticed. Extend this tuple only when a new
+    # sys.path-inserted subdirectory is added, and only by naming it, not by
+    # broadening the pattern.
+    _SYS_PATH_INSERTED_SUBDIRS = (
+        "scripts/e2_rescue_v2",
+        "audit/e2b_definitive_cloud_adjudication_20260818",
+    )
+    for subdir in _SYS_PATH_INSERTED_SUBDIRS:
+        for path in (ROOT / subdir).glob("*.py"):
+            local_modules.add(path.stem)
 
     found: dict[str, set[str]] = {}
     for base in ("src", "scripts", "tests"):

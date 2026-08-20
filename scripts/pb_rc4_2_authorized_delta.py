@@ -246,18 +246,41 @@ from pb_rc5_a3_5_authorized_delta import (  # noqa: E402
     RC5_AUTHORIZED_DELTA,
 )
 
+# ---------------------------------------------------------------------------
+# v2-calibration Stage 1 launch-remediation delta
+# ---------------------------------------------------------------------------
+#
+# Ten files under src/muru/paper_benchmark/ postdate RC4.2, RC4.2.1, and RC5,
+# so none of the three ledgers above was ever built to recognize them; pb_37
+# flagging them as SCIENCE_DRIFT_VS_RC4_PARENT was correct detection, not a
+# bug. This ledger is composed in HERE, at the one point every consuming
+# script already imports from, exactly like RC5's own ledger was -- so all
+# seven learn about it by construction. See pb_v2_calibration_authorized_delta
+# for the full provenance record, owner-instruction citation, and per-file
+# adjudication this ledger transcribes.
+from pb_v2_calibration_authorized_delta import (  # noqa: E402
+    V2_CALIBRATION_AUTHORIZED_BY_PATH,
+    V2_CALIBRATION_AUTHORIZED_DELTA,
+)
+
 #: Union view for callers that want to recognize any ledger by path+hash
-#: without caring which one authorized the change.
+#: without caring which one authorized the change. Later ledgers win on a
+#: duplicate path key (rc5_authorization.py: the v2-calibration ledger's
+#: entry composes RC5's own addition with the subsequent A3.6/RC5.1 edit, so
+#: it correctly supersedes RC5's now-stale pin for current-tree
+#: classification -- see that entry's semantic_scope).
 ALL_AUTHORIZED_BY_PATH: dict[str, AuthorizedChange] = {
     **AUTHORIZED_BY_PATH,
     **RC4_2_1_TOOLING_BY_PATH,
     **RC5_AUTHORIZED_BY_PATH,
+    **V2_CALIBRATION_AUTHORIZED_BY_PATH,
 }
 
 _LEDGER_OWNER: dict[str, str] = {
     **{c.path: "RC4.2_R1_R4_defect_repair" for c in AUTHORIZED_DELTA},
     **{c.path: "RC4.2.1_integrity_tooling" for c in RC4_2_1_TOOLING_DELTA},
     **{c.path: "RC5_A3_5_implementation" for c in RC5_AUTHORIZED_DELTA},
+    **{c.path: "v2_calibration_stage1_launch_remediation" for c in V2_CALIBRATION_AUTHORIZED_DELTA},
 }
 
 

@@ -164,15 +164,28 @@ def test_the_manifest_does_not_claim_the_julia_identity_was_verified():
     )
 
 
-def test_the_julia_identity_gate_has_no_prospective_caller_yet():
+def test_the_julia_identity_gate_has_the_expected_prospective_callers():
     """Pins reviewer finding B1 so it cannot be forgotten by RC5.
 
-    assert_julia_identity() fails closed WHEN CALLED, but nothing on a
-    prospective execution path calls it, because RC4 has no prospective case
-    execution path at all.  When that path is built it MUST call this before
-    the first search seed.  If a caller appears in src/, this test should be
-    updated to assert the caller exists rather than deleted.
+    assert_julia_identity() fails closed WHEN CALLED, but originally nothing
+    on a prospective execution path called it, because RC4 had no prospective
+    case execution path at all. This test used to assert `callers == []` for
+    exactly that reason, with its own docstring instructing that it be
+    updated -- not deleted -- once a real caller appeared.
+
+    Two have appeared since, both correctly: `scripts/cloud_e6/preflight_e6.py`
+    (the E6 cloud path) and, as of the owner's 2026-08-20 "CLOSE PB_37 FAST,
+    THEN LAUNCH STAGE 1" remediation, `scripts/v2_stage1_calibration_run.py`
+    itself -- Stage 1's actual driver, wired into its own `preflight()` so a
+    non-frozen Julia stack halts before the first search seed, exactly what
+    this test's original docstring required. This is now a closed trip-wire:
+    it fails if a caller disappears OR if an unexpected new one appears
+    without this list being updated to name it.
     """
+    EXPECTED_CALLERS = frozenset({
+        "scripts/cloud_e6/preflight_e6.py",
+        "scripts/v2_stage1_calibration_run.py",
+    })
     callers = []
     for base in ("src", "scripts"):
         for path in sorted((ROOT / base).rglob("*.py")):
@@ -180,9 +193,9 @@ def test_the_julia_identity_gate_has_no_prospective_caller_yet():
                 continue
             if "assert_julia_identity" in path.read_text(encoding="utf-8"):
                 callers.append(str(path.relative_to(ROOT)))
-    assert callers == [], (
-        "a caller appeared; update this test to assert the prospective "
-        f"execution path calls the gate: {callers}"
+    assert set(callers) == EXPECTED_CALLERS, (
+        "the set of callers changed; update EXPECTED_CALLERS (and this "
+        f"docstring) to name the new one deliberately: got {sorted(callers)}"
     )
 
 
