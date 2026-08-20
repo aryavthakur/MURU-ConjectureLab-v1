@@ -150,3 +150,7 @@ artifacts/ov_adj/
 # The 583k-row fit-level parquet is regenerable from the seeds and is not.
 !artifacts/e0/
 artifacts/e0/*.parquet
+
+# fresh holdout: reference symlinks into the primary repo artifacts
+artifacts/p2_*.parquet
+artifacts/ov_ckpt
