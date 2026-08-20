@@ -1,0 +1,3116 @@
+{
+ "QUARANTINE": "Opened only after fresh_holdout_predictions_frozen.json exists and is hashed.",
+ "generator_version": "ov-gen-1.0.0",
+ "n_worlds": 96,
+ "truth_version": "ov-truth-1.0.0",
+ "worlds": [
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.4090171129761428,
+     4.987239448663624
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "low",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.6802228172030051,
+    "a1": 0.6589514008423452,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6057320048921837,
+    "mu_inf": 0.2643933266689247,
+    "noise_sd": 0.01,
+    "phi_p": 1.2117886908817364
+   },
+   "planted_expr": "1.680223*v0 + 0.658951*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700000|low"
+  },
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.5215106712015509,
+     4.679523051681583
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "low",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.8033316323199002,
+    "a1": 0.5424698493269011,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.986017496328758,
+    "mu_inf": 0.2305811475985219,
+    "noise_sd": 0.01,
+    "phi_p": 1.5139127558680738
+   },
+   "planted_expr": "1.803332*v0 + 0.542470*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700001|low"
+  },
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.3256789279679232,
+     3.981332970425405
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "moderate",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.3831855851911263,
+    "a1": 0.5733498459197361,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8351024424039668,
+    "mu_inf": 0.20152209893876633,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6483871209477992
+   },
+   "planted_expr": "1.383186*v0 + 0.573350*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700002|moderate"
+  },
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.4161005355249572,
+     4.105680217974466
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "moderate",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.6540018169897797,
+    "a1": 0.41984826784635376,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8928567594709582,
+    "mu_inf": 0.21817684535114545,
+    "noise_sd": 0.0295,
+    "phi_p": 1.659996809904162
+   },
+   "planted_expr": "1.654002*v0 + 0.419848*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700003|moderate"
+  },
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.35060771090456383,
+     4.2937657424136715
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "adverse",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.438344218690296,
+    "a1": 0.5669054449392237,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6120132772661444,
+    "mu_inf": 0.2716811100918256,
+    "noise_sd": 0.06,
+    "phi_p": 1.4121121081438421
+   },
+   "planted_expr": "1.438344*v0 + 0.566905*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700004|adverse"
+  },
+  {
+   "block": "G1A",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.40979611214761247,
+     4.216616106246472
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1A",
+   "noise_regime": "adverse",
+   "notes": "i.i.d. covariates, transparent law, low complexity. Proves the complete pipeline works and isolates it from any property of the real descriptor matrix. Constants are drawn, not the Phase 3 GA literals.",
+   "params": {
+    "a0": 1.7248832705669062,
+    "a1": 0.36496426451340885,
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.759421770053449,
+    "mu_inf": 0.24063826219519108,
+    "noise_sd": 0.06,
+    "phi_p": 1.7178214044637239
+   },
+   "planted_expr": "1.724883*v0 + 0.364964*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "role": "positive control \u2014 analytically simple conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1A|r700005|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7786232613878434,
+     3.982487921668238
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5955950820816094,
+    "mu_inf": 0.27922956315138103,
+    "noise_sd": 0.01,
+    "phi_p": 1.6794309079583198,
+    "struct_coef": 0.28568750429743617
+   },
+   "planted_expr": "1.595595*sqrt(precursor_mz)*(1 + 0.285688*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700000|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9160956343880561,
+     10.292262978220876
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8773105832217256,
+    "mu_inf": 0.2402157399559186,
+    "noise_sd": 0.01,
+    "phi_p": 1.5731530148820114,
+    "struct_coef": 0.43147075521860206
+   },
+   "planted_expr": "1.877311*sqrt(precursor_mz)*(1 + 0.431471*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700001|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9409113292304023,
+     2.9098238900437337
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5300144521272996,
+    "mu_inf": 0.2887582873093876,
+    "noise_sd": 0.01,
+    "phi_p": 1.6335498583229893,
+    "struct_coef": 0.4004152792663155
+   },
+   "planted_expr": "1.530014*sqrt(precursor_mz)*(1 + 0.400415*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700002|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8266744300966004,
+     5.930856643212059
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.694064023714957,
+    "mu_inf": 0.18614307090802196,
+    "noise_sd": 0.01,
+    "phi_p": 1.790763853215009,
+    "struct_coef": 0.47863550123699916
+   },
+   "planted_expr": "1.694064*sqrt(precursor_mz)*(1 + 0.478636*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700003|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9601027697244152,
+     12.448469789814112
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.9674922823839576,
+    "mu_inf": 0.22646444098812496,
+    "noise_sd": 0.01,
+    "phi_p": 1.6609746250695085,
+    "struct_coef": 0.5184841695825209
+   },
+   "planted_expr": "1.967492*sqrt(precursor_mz)*(1 + 0.518484*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700004|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.919149707146277,
+     2.7361067916018538
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.531596912757398,
+    "mu_inf": 0.18298418112699188,
+    "noise_sd": 0.01,
+    "phi_p": 1.591336342946912,
+    "struct_coef": 0.32437196581574385
+   },
+   "planted_expr": "1.531597*sqrt(precursor_mz)*(1 + 0.324372*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700005|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9066396335049789,
+     5.730123369508108
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.857932856850818,
+    "mu_inf": 0.29113439512140865,
+    "noise_sd": 0.01,
+    "phi_p": 1.4397056738679832,
+    "struct_coef": 0.4009430982005018
+   },
+   "planted_expr": "1.857933*sqrt(precursor_mz)*(1 + 0.400943*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700006|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9062292275445859,
+     11.941354945030811
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8570918317176965,
+    "mu_inf": 0.23526821987812535,
+    "noise_sd": 0.01,
+    "phi_p": 1.313107038138657,
+    "struct_coef": 0.529101732550709
+   },
+   "planted_expr": "1.857092*sqrt(precursor_mz)*(1 + 0.529102*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700007|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.055894222916113,
+     3.356725440124805
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6852673333318409,
+    "mu_inf": 0.28149974452453125,
+    "noise_sd": 0.01,
+    "phi_p": 1.3222212626073888,
+    "struct_coef": 0.4597133714936884
+   },
+   "planted_expr": "1.685267*sqrt(precursor_mz)*(1 + 0.459713*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700008|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.906404988084882,
+     7.142357341147025
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "low",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8574520093127258,
+    "mu_inf": 0.27252432711558766,
+    "noise_sd": 0.01,
+    "phi_p": 1.4450529118781938,
+    "struct_coef": 0.5428064081343666
+   },
+   "planted_expr": "1.857452*sqrt(precursor_mz)*(1 + 0.542806*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700009|low"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7544169809582251,
+     7.340488689390031
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5459903195162787,
+    "mu_inf": 0.20727151698020307,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4583813873297429,
+    "struct_coef": 0.3558158013692152
+   },
+   "planted_expr": "1.545990*sqrt(precursor_mz)*(1 + 0.355816*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700010|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.0078450914703678,
+     2.915047411976147
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7089501525489288,
+    "mu_inf": 0.2511709116914646,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4252563118807475,
+    "struct_coef": 0.2711968984936384
+   },
+   "planted_expr": "1.708950*sqrt(precursor_mz)*(1 + 0.271197*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700011|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9533003811388461,
+     5.2075741140989456
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.953552475661261,
+    "mu_inf": 0.29067648297088783,
+    "noise_sd": 0.0295,
+    "phi_p": 1.629813093045632,
+    "struct_coef": 0.3229487427382701
+   },
+   "planted_expr": "1.953552*sqrt(precursor_mz)*(1 + 0.322949*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700012|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8795237260599827,
+     10.807019022223457
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8023655360282969,
+    "mu_inf": 0.20640655969329164,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4290130063067503,
+    "struct_coef": 0.48437879352392765
+   },
+   "planted_expr": "1.802366*sqrt(precursor_mz)*(1 + 0.484379*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700013|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.050382542302577,
+     3.191244813961756
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.727870413082635,
+    "mu_inf": 0.18752647328157654,
+    "noise_sd": 0.0295,
+    "phi_p": 1.685984687382147,
+    "struct_coef": 0.3642320312169567
+   },
+   "planted_expr": "1.727870*sqrt(precursor_mz)*(1 + 0.364232*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700014|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.750347062827217,
+     4.974432993691111
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5376500326582465,
+    "mu_inf": 0.21791833798890792,
+    "noise_sd": 0.0295,
+    "phi_p": 1.5704088501830424,
+    "struct_coef": 0.42907861147592297
+   },
+   "planted_expr": "1.537650*sqrt(precursor_mz)*(1 + 0.429079*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700015|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8152062081293299,
+     8.764199434748958
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6705627497630575,
+    "mu_inf": 0.19684404231690372,
+    "noise_sd": 0.0295,
+    "phi_p": 1.7151225241538144,
+    "struct_coef": 0.4071378512416216
+   },
+   "planted_expr": "1.670563*sqrt(precursor_mz)*(1 + 0.407138*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700016|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9996018603376542,
+     2.9002355216774496
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6918354024126336,
+    "mu_inf": 0.20564833152022802,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2542782755211348,
+    "struct_coef": 0.276799040185919
+   },
+   "planted_expr": "1.691835*sqrt(precursor_mz)*(1 + 0.276799*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700017|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.866544389456575,
+     4.682234700552078
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7757676077617235,
+    "mu_inf": 0.24358879019794755,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3499246407589651,
+    "struct_coef": 0.31755158677331696
+   },
+   "planted_expr": "1.775768*sqrt(precursor_mz)*(1 + 0.317552*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700018|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8382249352805258,
+     11.053168338298578
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7177339166926975,
+    "mu_inf": 0.2217176712785845,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4221678087010063,
+    "struct_coef": 0.5295757645515998
+   },
+   "planted_expr": "1.717734*sqrt(precursor_mz)*(1 + 0.529576*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700019|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.152577444946834,
+     3.6305220930103625
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.851238774544542,
+    "mu_inf": 0.22649500643503068,
+    "noise_sd": 0.0295,
+    "phi_p": 1.505060669909557,
+    "struct_coef": 0.43949788741994084
+   },
+   "planted_expr": "1.851239*sqrt(precursor_mz)*(1 + 0.439498*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700020|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.6914166187525722,
+     5.415384812750945
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4168867169273653,
+    "mu_inf": 0.20312208417046235,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2701537393714626,
+    "struct_coef": 0.5384795771681798
+   },
+   "planted_expr": "1.416887*sqrt(precursor_mz)*(1 + 0.538480*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700021|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.960188557413169,
+     8.966713677701515
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.967668082955385,
+    "mu_inf": 0.2892280133322653,
+    "noise_sd": 0.0295,
+    "phi_p": 1.5978045043920317,
+    "struct_coef": 0.33613310136786717
+   },
+   "planted_expr": "1.967668*sqrt(precursor_mz)*(1 + 0.336133*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700022|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.048661741913483,
+     3.2529144252388185
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "moderate",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7017998335645115,
+    "mu_inf": 0.28056352800674067,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4342185744853928,
+    "struct_coef": 0.40676016478326077
+   },
+   "planted_expr": "1.701800*sqrt(precursor_mz)*(1 + 0.406760*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700023|moderate"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8248693251313053,
+     5.72109434356816
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.690364909203361,
+    "mu_inf": 0.2710474195992475,
+    "noise_sd": 0.06,
+    "phi_p": 1.5358195448731211,
+    "struct_coef": 0.4569336911661401
+   },
+   "planted_expr": "1.690365*sqrt(precursor_mz)*(1 + 0.456934*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700024|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7325385180779137,
+     8.331818635010535
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5011558411408106,
+    "mu_inf": 0.2333137354126344,
+    "noise_sd": 0.06,
+    "phi_p": 1.3458254080641312,
+    "struct_coef": 0.43845740068847844
+   },
+   "planted_expr": "1.501156*sqrt(precursor_mz)*(1 + 0.438457*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700025|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9239371696082285,
+     3.016596065248881
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4470847849840525,
+    "mu_inf": 0.26261833213198454,
+    "noise_sd": 0.06,
+    "phi_p": 1.7916297087482624,
+    "struct_coef": 0.5208686333771759
+   },
+   "planted_expr": "1.447085*sqrt(precursor_mz)*(1 + 0.520869*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700026|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.793586379131236,
+     4.212016546353774
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6262582773236955,
+    "mu_inf": 0.21347646781605698,
+    "noise_sd": 0.06,
+    "phi_p": 1.6670345414936762,
+    "struct_coef": 0.30805360391440784
+   },
+   "planted_expr": "1.626258*sqrt(precursor_mz)*(1 + 0.308054*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700027|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9016123111610552,
+     10.63090623909558
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8476306077326685,
+    "mu_inf": 0.2304779533100114,
+    "noise_sd": 0.06,
+    "phi_p": 1.3361786374767453,
+    "struct_coef": 0.4594257608167135
+   },
+   "planted_expr": "1.847631*sqrt(precursor_mz)*(1 + 0.459426*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700028|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9757505773480315,
+     2.8032758768484025
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.661109769658644,
+    "mu_inf": 0.2292613683604941,
+    "noise_sd": 0.06,
+    "phi_p": 1.281141604088033,
+    "struct_coef": 0.25922821247270955
+   },
+   "planted_expr": "1.661110*sqrt(precursor_mz)*(1 + 0.259228*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700029|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7195910158184707,
+     4.231856539636381
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4746231494593618,
+    "mu_inf": 0.28922710999579354,
+    "noise_sd": 0.06,
+    "phi_p": 1.3097030233654925,
+    "struct_coef": 0.36099004761643266
+   },
+   "planted_expr": "1.474623*sqrt(precursor_mz)*(1 + 0.360990*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700030|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.8083754757376844,
+     10.155199024364508
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6565648594461178,
+    "mu_inf": 0.2655998597208361,
+    "noise_sd": 0.06,
+    "phi_p": 1.2332790568955125,
+    "struct_coef": 0.49820989197979
+   },
+   "planted_expr": "1.656565*sqrt(precursor_mz)*(1 + 0.498210*n_O)",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700031|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     1.1861530635464999,
+     3.9186047370146593
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8418293184649552,
+    "mu_inf": 0.18213503549375784,
+    "noise_sd": 0.06,
+    "phi_p": 1.6938457420238997,
+    "struct_coef": 0.5491798674218198
+   },
+   "planted_expr": "1.841829*sqrt(precursor_mz)*(1 + 0.549180*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700032|adverse"
+  },
+  {
+   "block": "G1B",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9065173797695567,
+     5.839044745151458
+    ]
+   },
+   "exactly_representable": true,
+   "family": "G1B",
+   "noise_regime": "adverse",
+   "notes": "shared trajectory family with molecule-specific scaling predicted by more than mass alone; the actual MURU claim. Mass exponent is exactly 0.5, the master plan 18.3 target.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8576823281693886,
+    "mu_inf": 0.2521210248326535,
+    "noise_sd": 0.06,
+    "phi_p": 1.446964210044514,
+    "struct_coef": 0.4119492830892682
+   },
+   "planted_expr": "1.857682*sqrt(precursor_mz)*(1 + 0.411949*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 realistic molecule-conditional law",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1B|r700033|adverse"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.5733925652514921,
+     8.681254466539144
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7379467275645242,
+    "mu_inf": 0.19067538297473113,
+    "noise_sd": 0.0295,
+    "phi_p": 1.287564058115737,
+    "struct_coef": 0.35985527737632317
+   },
+   "planted_expr": "1.737947*sqrt(precursor_mz)*exp(0.359855*(rotatable_bonds - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700000|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.43610389547747375,
+     22.98798106237214
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4493086726981195,
+    "mu_inf": 0.25061653923674077,
+    "noise_sd": 0.0295,
+    "phi_p": 1.737077018932396,
+    "struct_coef": 0.3985927991896394
+   },
+   "planted_expr": "1.449309*sqrt(precursor_mz)*exp(0.398593*(n_O - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700001|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.856189780437194,
+     2.561898783344474
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.9100787920961688,
+    "mu_inf": 0.2786277573395664,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6173030473051706,
+    "struct_coef": 0.2670319661841026
+   },
+   "planted_expr": "1.910079*sqrt(precursor_mz)*exp(0.267032*(heteroatom_fraction - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700002|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.48557959400214884,
+     7.452283233296287
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4755727278106292,
+    "mu_inf": 0.28942759999442846,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4602533537289961,
+    "struct_coef": 0.362217327522985
+   },
+   "planted_expr": "1.475573*sqrt(precursor_mz)*exp(0.362217*(rotatable_bonds - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700003|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.6078378135948553,
+     24.639385278287826
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.9360214684460104,
+    "mu_inf": 0.20913136455145606,
+    "noise_sd": 0.0295,
+    "phi_p": 1.762093846980889,
+    "struct_coef": 0.36357241096413584
+   },
+   "planted_expr": "1.936021*sqrt(precursor_mz)*exp(0.363572*(n_O - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700004|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.724937103103292,
+     2.1630932188575107
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.613487500699743,
+    "mu_inf": 0.2588755685553073,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4333359756863318,
+    "struct_coef": 0.26356711701649754
+   },
+   "planted_expr": "1.613488*sqrt(precursor_mz)*exp(0.263567*(heteroatom_fraction - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700005|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.662015783570452,
+     6.406499225671526
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8436701060437288,
+    "mu_inf": 0.2568325441737148,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2037038462040623,
+    "struct_coef": 0.28201669067387886
+   },
+   "planted_expr": "1.843670*sqrt(precursor_mz)*exp(0.282017*(rotatable_bonds - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700006|moderate"
+  },
+  {
+   "block": "G1C",
+   "category": "positive",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.46576672607792563,
+     23.852660398086954
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G1C",
+   "noise_regime": "moderate",
+   "notes": "the generating form is not representable in the frozen grammar, so several simpler forms are near-equivalent on the observed domain. The correct output may be: family and scaling identified, exact algebraic form NOT identified.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5406744171778823,
+    "mu_inf": 0.282701039961734,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4252338568898184,
+    "struct_coef": 0.39474210955365696
+   },
+   "planted_expr": "1.540674*sqrt(precursor_mz)*exp(0.394742*(n_O - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "role": "positive control \u2014 near-degenerate family challenge",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G1C|r700007|moderate"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700000"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700001"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700002"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700003"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_energy_within_compound",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700004"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_energy_within_compound",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700005"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_energy_within_compound",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700006"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "target_permuted_across_energy_within_compound",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700007"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "descriptors_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700008"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "descriptors_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700009"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "descriptors_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700010"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "descriptors_permuted_across_compounds",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700011"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "gaussian_targets_with_observed_variance",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700012"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "gaussian_targets_with_observed_variance",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700013"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "gaussian_targets_with_observed_variance",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700014"
+  },
+  {
+   "block": "NCAL",
+   "category": "null",
+   "collapses": false,
+   "diagnostics": {},
+   "exactly_representable": false,
+   "family": "NULL",
+   "noise_regime": "moderate",
+   "notes": "",
+   "params": {
+    "base_family": "G1B",
+    "construction": "gaussian_targets_with_observed_variance",
+    "noise_regime": "moderate"
+   },
+   "planted_expr": "NO DESCRIPTOR-LEVEL CONJECTURE EXISTS",
+   "planted_support": [],
+   "role": "null calibration",
+   "structural_beyond_mass": false,
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700015"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.6679751425371726,
+     2.920811448336606
+    ],
+    "max_abs_corr_offset_descriptor": 0.0624654417069695
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.41901075244099,
+    "mu_inf": 0.22565781611183913,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2030445809526502,
+    "sigma_g": 0.2257341498686479
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700000|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.9953778264052306,
+     3.627600932971408
+    ],
+    "max_abs_corr_offset_descriptor": 0.12342381625915366
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8518236367741583,
+    "mu_inf": 0.1875067036418261,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3480350824977863,
+    "sigma_g": 0.23697569294590748
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700001|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.8583317389839029,
+     2.9224698467005963
+    ],
+    "max_abs_corr_offset_descriptor": 0.056657948704133085
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5614417921853052,
+    "mu_inf": 0.2077300685666901,
+    "noise_sd": 0.0295,
+    "phi_p": 1.731628389353451,
+    "sigma_g": 0.2410010875554966
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700002|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.7846706681843946,
+     3.0255431891135682
+    ],
+    "max_abs_corr_offset_descriptor": 0.04260173135084358
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7375225268711536,
+    "mu_inf": 0.2452163310346097,
+    "noise_sd": 0.0295,
+    "phi_p": 1.5726887332642459,
+    "sigma_g": 0.20125171758315066
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700003|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.9933137659689201,
+     4.535556259660828
+    ],
+    "max_abs_corr_offset_descriptor": 0.08208659482597133
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.9928684582619185,
+    "mu_inf": 0.2221624511902104,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3705550510199997,
+    "sigma_g": 0.22861458229576495
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700004|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     1.0357257400592421,
+     3.7385647707967586
+    ],
+    "max_abs_corr_offset_descriptor": 0.08209955252732465
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8467812257578886,
+    "mu_inf": 0.25001413787819143,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4340704480070103,
+    "sigma_g": 0.20461639280385516
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700005|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     1.0371574346272787,
+     3.6653659347849423
+    ],
+    "max_abs_corr_offset_descriptor": 0.10816524491309411
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.9142108391133674,
+    "mu_inf": 0.23593572387099818,
+    "noise_sd": 0.0295,
+    "phi_p": 1.7971366770228776,
+    "sigma_g": 0.21609111638646814
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700006|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.9139037278531077,
+     4.85038157404205
+    ],
+    "max_abs_corr_offset_descriptor": 0.06980804243963659
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.955267350079657,
+    "mu_inf": 0.2108495973891151,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4713249419867553,
+    "sigma_g": 0.23667878496514472
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700007|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     1.130219250300972,
+     3.53249352893453
+    ],
+    "max_abs_corr_offset_descriptor": 0.08304740198579931
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.943134530923115,
+    "mu_inf": 0.20720828499511046,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2168587484174345,
+    "sigma_g": 0.18586403286033976
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700008|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.7068316909978739,
+     2.817698027339924
+    ],
+    "max_abs_corr_offset_descriptor": 0.05792256617206316
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4785912847816687,
+    "mu_inf": 0.2749069992080798,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3734473767930504,
+    "sigma_g": 0.241533501283304
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700009|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.8449541457048051,
+     3.1293192772045284
+    ],
+    "max_abs_corr_offset_descriptor": 0.050370761606983845
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7122333118774697,
+    "mu_inf": 0.2097396731932996,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2908504347931349,
+    "sigma_g": 0.2211387116240454
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700010|moderate"
+  },
+  {
+   "block": "G4",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.7437197363905441,
+     2.8091087078511525
+    ],
+    "max_abs_corr_offset_descriptor": 0.1257618035124684
+   },
+   "exactly_representable": false,
+   "family": "G4",
+   "noise_regime": "moderate",
+   "notes": "no descriptor-level conjecture exists; the offsets are added by the generator.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.468527547724169,
+    "mu_inf": 0.1943531458376223,
+    "noise_sd": 0.0295,
+    "phi_p": 1.7436638112333087,
+    "sigma_g": 0.21434047991955948
+   },
+   "planted_expr": "g = c * exp(sigma * eps_i), eps_i independent of all descriptors",
+   "planted_support": [],
+   "role": "refusal \u2014 pure null; the false-positive basis",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4|r700011|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.7291128091654894,
+     3.1221581762857284
+    ],
+    "max_abs_corr_offset_descriptor": 0.05920313809595561
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7870492886658556,
+    "mu_inf": 0.2685301583778683,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3030058230681956,
+    "sigma_g": 0.1579627263731104
+   },
+   "planted_expr": "1.787049*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700000|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.5166799676871549,
+     2.340469178164398
+    ],
+    "max_abs_corr_offset_descriptor": 0.04047030787927672
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5293087594629968,
+    "mu_inf": 0.27515213360107893,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6249217583130586,
+    "sigma_g": 0.1706212260001306
+   },
+   "planted_expr": "1.529309*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700001|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.6198713511036692,
+     2.9404645017381204
+    ],
+    "max_abs_corr_offset_descriptor": 0.0805955959048135
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8013366875104402,
+    "mu_inf": 0.23087883270038703,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6110607230875653,
+    "sigma_g": 0.22809665916097446
+   },
+   "planted_expr": "1.801337*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700002|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.534230677021898,
+     3.470529923136384
+    ],
+    "max_abs_corr_offset_descriptor": 0.10205406727227044
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6644382634227555,
+    "mu_inf": 0.24487478159775924,
+    "noise_sd": 0.0295,
+    "phi_p": 1.613623404232719,
+    "sigma_g": 0.2248402131325166
+   },
+   "planted_expr": "1.664438*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700003|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.6284604637911997,
+     2.600130726253796
+    ],
+    "max_abs_corr_offset_descriptor": 0.11574258750050251
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4916318988245998,
+    "mu_inf": 0.2653058449817577,
+    "noise_sd": 0.0295,
+    "phi_p": 1.7817990565572583,
+    "sigma_g": 0.18947218682589984
+   },
+   "planted_expr": "1.491632*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700004|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.4732779829698237,
+     3.210083607565107
+    ],
+    "max_abs_corr_offset_descriptor": 0.12173154769438356
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7463027432657687,
+    "mu_inf": 0.26870075131017335,
+    "noise_sd": 0.0295,
+    "phi_p": 1.667263366495494,
+    "sigma_g": 0.23572975827153092
+   },
+   "planted_expr": "1.746303*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700005|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.41602512548351955,
+     2.7905827723434204
+    ],
+    "max_abs_corr_offset_descriptor": 0.10076116488693637
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5671070178960338,
+    "mu_inf": 0.24362396374622522,
+    "noise_sd": 0.0295,
+    "phi_p": 1.3464821543824759,
+    "sigma_g": 0.2395101644786275
+   },
+   "planted_expr": "1.567107*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700006|moderate"
+  },
+  {
+   "block": "G4M",
+   "category": "null",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.489472091546264,
+     4.299447439232108
+    ],
+    "max_abs_corr_offset_descriptor": 0.11038535026195483
+   },
+   "exactly_representable": false,
+   "family": "G4M",
+   "noise_regime": "moderate",
+   "notes": "mass dependence is real; structure beyond mass must not be invented.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.6813328025663552,
+    "mu_inf": 0.2752284115153267,
+    "noise_sd": 0.0295,
+    "phi_p": 1.5640804065740253,
+    "sigma_g": 0.22947889169659075
+   },
+   "planted_expr": "1.681333*sqrt(precursor_mz) * exp(sigma*eps_i)",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-conditional null",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G4M|r700007|moderate"
+  },
+  {
+   "block": "G2",
+   "category": "refusal",
+   "collapses": false,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.6836982261714125,
+     4.959334332131736
+    ],
+    "p_i_range": [
+     0.3379479823859655,
+     2.685659073502537
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G2",
+   "noise_regime": "moderate",
+   "notes": "scale AND shape depend on descriptors, with a regime switch, so H-MAIN is false. Refusal, or a restricted regime-specific conclusion, is the correct behaviour.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4010697874124134,
+    "mu_inf": 0.24517175706507927,
+    "noise_sd": 0.0295,
+    "phi_p": 1.5563215537940938,
+    "second_carrier": "heteroatom_fraction",
+    "shape_modulation": 0.5008726435550659,
+    "struct_coef": 0.4725225546997131,
+    "switch_variable": "aromatic_ring_count"
+   },
+   "planted_expr": "NO COMPACT UNIVERSAL LAW EXISTS",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds",
+    "aromatic_ring_count",
+    "heteroatom_fraction"
+   ],
+   "role": "refusal \u2014 predictable but no compact universal collapse",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G2|r700000|moderate"
+  },
+  {
+   "block": "G2",
+   "category": "refusal",
+   "collapses": false,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.704361589254911,
+     10.79460644427042
+    ],
+    "p_i_range": [
+     0.48253620462048347,
+     2.217609220476928
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G2",
+   "noise_regime": "moderate",
+   "notes": "scale AND shape depend on descriptors, with a regime switch, so H-MAIN is false. Refusal, or a restricted regime-specific conclusion, is the correct behaviour.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.4434142204011342,
+    "mu_inf": 0.25978459222626415,
+    "noise_sd": 0.0295,
+    "phi_p": 1.361820996592513,
+    "second_carrier": "rotatable_bonds",
+    "shape_modulation": 0.35864372532209393,
+    "struct_coef": 0.5287735053920837,
+    "switch_variable": "ring_count"
+   },
+   "planted_expr": "NO COMPACT UNIVERSAL LAW EXISTS",
+   "planted_support": [
+    "precursor_mz",
+    "n_O",
+    "ring_count",
+    "rotatable_bonds"
+   ],
+   "role": "refusal \u2014 predictable but no compact universal collapse",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G2|r700001|moderate"
+  },
+  {
+   "block": "G2",
+   "category": "refusal",
+   "collapses": false,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.9232594910413805,
+     4.090792553213153
+    ],
+    "p_i_range": [
+     0.46616115220812077,
+     2.3331255222839418
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G2",
+   "noise_regime": "moderate",
+   "notes": "scale AND shape depend on descriptors, with a regime switch, so H-MAIN is false. Refusal, or a restricted regime-specific conclusion, is the correct behaviour.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5460365668233762,
+    "mu_inf": 0.18588313192319955,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4429325925082692,
+    "second_carrier": "rotatable_bonds",
+    "shape_modulation": 0.4128045693768982,
+    "struct_coef": 0.30927599961399876,
+    "switch_variable": "aromatic_ring_count"
+   },
+   "planted_expr": "NO COMPACT UNIVERSAL LAW EXISTS",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction",
+    "aromatic_ring_count",
+    "rotatable_bonds"
+   ],
+   "role": "refusal \u2014 predictable but no compact universal collapse",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G2|r700002|moderate"
+  },
+  {
+   "block": "G3",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7710265061043231,
+     2.524695701348503
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G3",
+   "noise_regime": "moderate",
+   "notes": "energy and precursor mass only; other descriptors stay mass-correlated because the covariates are real. Any accepted non-mass structural claim here is the K5 threat realized.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8498671428245028,
+    "mass_exponent": 0.6029001361082216,
+    "mu_inf": 0.22984869815939904,
+    "noise_sd": 0.0295,
+    "phi_p": 1.301574727307843
+   },
+   "planted_expr": "1.849867*precursor_mz**0.602900",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-only world",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G3|r700000|moderate"
+  },
+  {
+   "block": "G3",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.7483412093584481,
+     2.3339560344226156
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G3",
+   "noise_regime": "moderate",
+   "notes": "energy and precursor mass only; other descriptors stay mass-correlated because the covariates are real. Any accepted non-mass structural claim here is the K5 threat realized.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7320833736286592,
+    "mass_exponent": 0.5781508083107397,
+    "mu_inf": 0.19452451656614625,
+    "noise_sd": 0.0295,
+    "phi_p": 1.57003705300277
+   },
+   "planted_expr": "1.732083*precursor_mz**0.578151",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-only world",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G3|r700001|moderate"
+  },
+  {
+   "block": "G3",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "carrier_mass_spearman": {
+     "heteroatom_fraction": 0.055871189013497004,
+     "n_O": 0.5717629559583887,
+     "rotatable_bonds": 0.5665013912597996
+    },
+    "g_range": [
+     0.6621883281476271,
+     2.43920294558237
+    ]
+   },
+   "exactly_representable": false,
+   "family": "G3",
+   "noise_regime": "moderate",
+   "notes": "energy and precursor mass only; other descriptors stay mass-correlated because the covariates are real. Any accepted non-mass structural claim here is the K5 threat realized.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.7329025087963694,
+    "mass_exponent": 0.6627368786941803,
+    "mu_inf": 0.2579229267482845,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2282872725884553
+   },
+   "planted_expr": "1.732903*precursor_mz**0.662737",
+   "planted_support": [
+    "precursor_mz"
+   ],
+   "role": "refusal \u2014 mass-only world",
+   "structural_beyond_mass": false,
+   "world_id": "FH|G3|r700002|moderate"
+  },
+  {
+   "block": "G5",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     -0.08908653241936691,
+     4.704151103950826
+    ],
+    "latent_max_abs_corr_observed": 0.55304318964369
+   },
+   "exactly_representable": false,
+   "family": "G5",
+   "noise_regime": "moderate",
+   "notes": "observed descriptors are proxies; a proxy expression must not be promoted.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.8936086466730513,
+    "latent_rho": 0.6800080166555916,
+    "mu_inf": 0.18490494642097935,
+    "noise_sd": 0.0295,
+    "phi_p": 1.434500931774198,
+    "struct_coef": 0.34466310891553387
+   },
+   "planted_expr": "1.893609*sqrt(precursor_mz)*(1 + 0.344663*LATENT)   [LATENT never supplied]",
+   "planted_support": [
+    "precursor_mz",
+    "__latent__"
+   ],
+   "role": "refusal \u2014 confounded, true driver unobserved",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G5|r700000|moderate"
+  },
+  {
+   "block": "G5",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.05235470551280307,
+     3.6092068506120314
+    ],
+    "latent_max_abs_corr_observed": 0.6072231421741086
+   },
+   "exactly_representable": false,
+   "family": "G5",
+   "noise_regime": "moderate",
+   "notes": "observed descriptors are proxies; a proxy expression must not be promoted.",
+   "params": {
+    "carrier": "n_O",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.5109610940324867,
+    "latent_rho": 0.676999188188591,
+    "mu_inf": 0.22973008895678648,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6845725695630591,
+    "struct_coef": 0.3192862756859188
+   },
+   "planted_expr": "1.510961*sqrt(precursor_mz)*(1 + 0.319286*LATENT)   [LATENT never supplied]",
+   "planted_support": [
+    "precursor_mz",
+    "__latent__"
+   ],
+   "role": "refusal \u2014 confounded, true driver unobserved",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G5|r700001|moderate"
+  },
+  {
+   "block": "G5",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     -0.3914286371143545,
+     5.163356353031148
+    ],
+    "latent_max_abs_corr_observed": 0.581254269967476
+   },
+   "exactly_representable": false,
+   "family": "G5",
+   "noise_regime": "moderate",
+   "notes": "observed descriptors are proxies; a proxy expression must not be promoted.",
+   "params": {
+    "carrier": "heteroatom_fraction",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.648824644597813,
+    "latent_rho": 0.6823388423618896,
+    "mu_inf": 0.20563952220762916,
+    "noise_sd": 0.0295,
+    "phi_p": 1.509386758285695,
+    "struct_coef": 0.5284123310873788
+   },
+   "planted_expr": "1.648825*sqrt(precursor_mz)*(1 + 0.528412*LATENT)   [LATENT never supplied]",
+   "planted_support": [
+    "precursor_mz",
+    "__latent__"
+   ],
+   "role": "refusal \u2014 confounded, true driver unobserved",
+   "structural_beyond_mass": true,
+   "world_id": "FH|G5|r700002|moderate"
+  },
+  {
+   "block": "GC",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "cutoff_da": 30.0,
+    "n_fragments": 24,
+    "rho_mu_mass_by_energy": [
+     -0.11409059895095258,
+     -0.30187088259848527,
+     -0.37708638120846044,
+     -0.39772327146709135,
+     -0.412632278279607,
+     -0.42779418085857246
+    ]
+   },
+   "exactly_representable": false,
+   "family": "GC",
+   "noise_regime": "moderate",
+   "notes": "fractional fragmentation held fixed as a law; an absolute low-mass cutoff manufactures a mass association with no chemistry. Does NOT identify the mechanism of the real association.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "cutoff_da": 30.0,
+    "g_scale": 1.4116817756204725,
+    "mu_inf": 0.29909009216521754,
+    "noise_sd": 0.0295,
+    "phi_p": 1.6960653959377554
+   },
+   "planted_expr": "NO DESCRIPTOR LAW; mass association induced by an absolute m/z cutoff",
+   "planted_support": [],
+   "role": "refusal \u2014 measurement-coupling adversary",
+   "structural_beyond_mass": false,
+   "world_id": "FH|GC|r700000|moderate|cut30"
+  },
+  {
+   "block": "GC",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "cutoff_da": 80.0,
+    "n_fragments": 24,
+    "rho_mu_mass_by_energy": [
+     -0.26903258717267936,
+     -0.6543423359074102,
+     -0.7405631973118249,
+     -0.762931352699612,
+     -0.7744178273503597,
+     -0.7829332377162935
+    ]
+   },
+   "exactly_representable": false,
+   "family": "GC",
+   "noise_regime": "moderate",
+   "notes": "fractional fragmentation held fixed as a law; an absolute low-mass cutoff manufactures a mass association with no chemistry. Does NOT identify the mechanism of the real association.",
+   "params": {
+    "cell_dropout_rate": 0.0097,
+    "cutoff_da": 80.0,
+    "g_scale": 1.7765074960175395,
+    "mu_inf": 0.25230142444507975,
+    "noise_sd": 0.0295,
+    "phi_p": 1.2309881119782964
+   },
+   "planted_expr": "NO DESCRIPTOR LAW; mass association induced by an absolute m/z cutoff",
+   "planted_support": [],
+   "role": "refusal \u2014 measurement-coupling adversary",
+   "structural_beyond_mass": false,
+   "world_id": "FH|GC|r700001|moderate|cut80"
+  },
+  {
+   "block": "GRT",
+   "category": "refusal",
+   "collapses": true,
+   "diagnostics": {
+    "g_range": [
+     0.3474505220194818,
+     3.705521609713738
+    ]
+   },
+   "exactly_representable": false,
+   "family": "GRT",
+   "noise_regime": "moderate",
+   "notes": "RT is a downstream marker of a latent property, never the cause. Bounded stress test; does not resolve the real NC7 finding causally.",
+   "params": {
+    "carrier": "rotatable_bonds",
+    "cell_dropout_rate": 0.0097,
+    "g_scale": 1.768525327624032,
+    "mu_inf": 0.26419247385647676,
+    "noise_sd": 0.0295,
+    "phi_p": 1.4512526459594801,
+    "rt_noise": 0.43667964358161904,
+    "struct_coef": 0.22421332816058875
+   },
+   "planted_expr": "1.768525*sqrt(precursor_mz)*(1 + 0.224213*LIPO);  RT = f(LIPO) + noise",
+   "planted_support": [
+    "precursor_mz",
+    "__lipo__"
+   ],
+   "role": "refusal \u2014 retention-time surrogate",
+   "structural_beyond_mass": true,
+   "world_id": "FH|GRT|r700000|moderate"
+  }
+ ]
+}

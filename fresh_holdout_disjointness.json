@@ -1,0 +1,112 @@
+{
+ "VERDICT": "DISJOINT",
+ "checks": {
+  "duplicate_new_generator_seeds": 0,
+  "duplicate_new_output_hashes": 0,
+  "duplicate_new_symbolic_seeds": 0,
+  "duplicate_new_world_ids": 0,
+  "n_ov_output_hashes_compared": 323,
+  "n_overlapping_generator_seeds": 0,
+  "n_overlapping_output_hashes_with_ov": 0,
+  "n_overlapping_symbolic_seeds": 0,
+  "overlapping_symbolic_seeds": [],
+  "overlapping_world_ids": [],
+  "symbolic_band_above_ov_max": true,
+  "symbolic_band_above_p3_max": true,
+  "symbolic_band_within_int32": true,
+  "symbolic_seed_max": 2146825305,
+  "symbolic_seed_min": 2110807400
+ },
+ "n_historical_generator_seeds_compared": 423,
+ "n_historical_symbolic_seeds_compared": 9690,
+ "n_historical_world_ids_compared": 646,
+ "n_new_worlds": 96,
+ "sources_compared": [
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 323,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/ov_worlds.json"
+  },
+  {
+   "kind": "seeds",
+   "n": 9690,
+   "new_union": 9690,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/ov_seed_manifest.json"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/ov_truth_manifest.json"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/artifacts/ov_worlds.json"
+  },
+  {
+   "kind": "seeds",
+   "n": 9690,
+   "new_union": 9690,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/artifacts/ov_seed_manifest.json"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/artifacts/ov_truth_manifest.json"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/sprint/outer_fold_predictions.json::A_CURRENT_FINAL"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/sprint/outer_fold_predictions.json::B_CONSTANT_REFIT"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/sprint/outer_fold_predictions.json::C_ROBUST_GENERALIZATION"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/sprint/outer_fold_predictions.json::D_SMALL_FAMILY_RANKER"
+  },
+  {
+   "kind": "checkpoint_dir_names",
+   "n": 323,
+   "note": "sha1-hashed dir names",
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-final-holdout-experiment-d75e7d/artifacts/ov_ckpt"
+  },
+  {
+   "kind": "checkpoint_dir_names",
+   "n": 323,
+   "note": "sha1-hashed dir names",
+   "source": "/Users/aryav/Documents/MURU-ConjectureLab-v1/artifacts/ov_ckpt"
+  },
+  {
+   "kind": "world_ids",
+   "n": 323,
+   "new_union": 0,
+   "source": "muru.objval.plan2.all_worlds2()"
+  },
+  {
+   "kind": "seeds",
+   "n": 9690,
+   "new_union": 9690,
+   "source": "muru.objval.plan2.seed_list2()"
+  }
+ ],
+ "truth_manifest_sha256": "12a506c971bdb6d7c2f70ca8d38808198f736a36c98107b8aaac422c1fcbae82",
+ "world_manifest_sha256": "5849bcc856ee633a18c52853cd51dacf339593423b4abdbcf9f010de986dda01"
+}
