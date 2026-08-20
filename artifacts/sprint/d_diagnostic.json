@@ -1,0 +1,48 @@
+{
+ "positives_n_clusters": {
+  "median": 11.5,
+  "min": 1,
+  "max": 37
+ },
+ "positives_with_a_label_positive_cluster": [
+  50,
+  56
+ ],
+ "as_frozen_all_scorable": {
+  "family": [
+   1,
+   56
+  ],
+  "support": [
+   27,
+   56
+  ]
+ },
+ "diagnostic_positives_only": {
+  "family": [
+   3,
+   56
+  ],
+  "support": [
+   28,
+   56
+  ]
+ },
+ "full_data_coefficients": {
+  "n_seeds_f": 0.36538421668766474,
+  "selection_fraction": 0.3653842166876666,
+  "sum_seed_best_raw_r2": 0.14420939939387561,
+  "median_raw_r2": 0.0030829983355878513,
+  "sd_raw_r2": 0.11403847129309899,
+  "sum_seed_best_refit_r2": 0.1443446424872294,
+  "median_refit_r2": 0.004954931751059806,
+  "median_strat_median_r2": -0.11370649496020252,
+  "median_strat_min_r2": 0.3015395378347732,
+  "median_strat_sd_r2": -0.03518378370779444,
+  "median_resid_max_abs_spearman": -0.15536314527206616,
+  "min_complexity": -0.8590260498211879,
+  "median_complexity": 0.05770200763042053
+ },
+ "training_rows": 1275,
+ "training_positive_rate": 0.0792156862745098
+}

@@ -1,0 +1,152 @@
+{
+ "all_positive": {
+  "n": 56,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 56,
+   "family": 54,
+   "exact": 45
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 56,
+   "family": 53,
+   "exact": 44
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 56,
+   "family": 54,
+   "exact": 45
+  },
+  "worlds_where_refit_rescues_family": [],
+  "worlds_where_refit_loses_family": [
+   "OV|G1C|r005|moderate"
+  ],
+  "total_members_rescued": 28,
+  "total_members_lost": 117,
+  "total_members_family_raw": 6589,
+  "total_members_family_refit": 6500
+ },
+ "G1A": {
+  "n": 6,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 6,
+   "family": 6,
+   "exact": 5
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 6,
+   "family": 6,
+   "exact": 5
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 6,
+   "family": 6,
+   "exact": 5
+  },
+  "worlds_where_refit_rescues_family": [],
+  "worlds_where_refit_loses_family": [],
+  "total_members_rescued": 3,
+  "total_members_lost": 12,
+  "total_members_family_raw": 1158,
+  "total_members_family_refit": 1149
+ },
+ "G1B": {
+  "n": 40,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 40,
+   "family": 40,
+   "exact": 34
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 40,
+   "family": 40,
+   "exact": 34
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 40,
+   "family": 40,
+   "exact": 34
+  },
+  "worlds_where_refit_rescues_family": [],
+  "worlds_where_refit_loses_family": [],
+  "total_members_rescued": 22,
+  "total_members_lost": 98,
+  "total_members_family_raw": 4626,
+  "total_members_family_refit": 4550
+ },
+ "G1C": {
+  "n": 10,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 10,
+   "family": 8,
+   "exact": 6
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 10,
+   "family": 7,
+   "exact": 5
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 10,
+   "family": 8,
+   "exact": 6
+  },
+  "worlds_where_refit_rescues_family": [],
+  "worlds_where_refit_loses_family": [
+   "OV|G1C|r005|moderate"
+  ],
+  "total_members_rescued": 3,
+  "total_members_lost": 7,
+  "total_members_family_raw": 805,
+  "total_members_family_refit": 801
+ },
+ "G3": {
+  "n": 8,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 8,
+   "family": 8,
+   "exact": 8
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 8,
+   "family": 8,
+   "exact": 8
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 8,
+   "family": 8,
+   "exact": 8
+  },
+  "worlds_where_refit_rescues_family": [],
+  "worlds_where_refit_loses_family": [],
+  "total_members_rescued": 8,
+  "total_members_lost": 30,
+  "total_members_family_raw": 1072,
+  "total_members_family_refit": 1050
+ },
+ "G4M": {
+  "n": 30,
+  "RAW_CANDIDATE_ORACLE": {
+   "support": 30,
+   "family": 22,
+   "exact": 16
+  },
+  "CONSTANT_REFIT_ORACLE": {
+   "support": 30,
+   "family": 23,
+   "exact": 16
+  },
+  "CURRENT_GRAMMAR_ORACLE": {
+   "support": 30,
+   "family": 23,
+   "exact": 16
+  },
+  "worlds_where_refit_rescues_family": [
+   "OV|G4M|r020|moderate"
+  ],
+  "worlds_where_refit_loses_family": [],
+  "total_members_rescued": 6,
+  "total_members_lost": 5,
+  "total_members_family_raw": 707,
+  "total_members_family_refit": 708
+ }
+}

@@ -1,0 +1,186 @@
+{
+ "all_positive": {
+  "n_worlds_with_both_classes": 53,
+  "valid_r2": {
+   "mean_auc": 0.6817099943080984,
+   "median_auc": 0.7666666666666667,
+   "n": 53
+  },
+  "refit_valid_r2_eff": {
+   "mean_auc": 0.6862744556946475,
+   "median_auc": 0.7638190954773869,
+   "n": 53
+  },
+  "refit_minus_orig_r2": {
+   "mean_auc": 0.5089643216115481,
+   "median_auc": 0.4995408631772268,
+   "n": 53
+  },
+  "strat_median_r2": {
+   "mean_auc": 0.4614792536233848,
+   "median_auc": 0.4374112396023534,
+   "n": 53
+  },
+  "strat_min_r2": {
+   "mean_auc": 0.7084944683370211,
+   "median_auc": 0.7844827586206896,
+   "n": 53
+  },
+  "strat_sd_r2": {
+   "mean_auc": 0.6042307050927527,
+   "median_auc": 0.6469104665825978,
+   "n": 53
+  },
+  "strat_worst_norm_rmse": {
+   "mean_auc": 0.6994115038235069,
+   "median_auc": 0.764775413711584,
+   "n": 53
+  },
+  "resid_max_abs_spearman": {
+   "mean_auc": 0.6112011766847929,
+   "median_auc": 0.648030888030888,
+   "n": 53
+  },
+  "resid_med_abs_spearman": {
+   "mean_auc": 0.5921239631477061,
+   "median_auc": 0.6578321440706761,
+   "n": 53
+  },
+  "resid_interaction_spearman": {
+   "mean_auc": 0.6060918203614233,
+   "median_auc": 0.6907894736842105,
+   "n": 53
+  },
+  "complexity": {
+   "mean_auc": 0.7000184803246225,
+   "median_auc": 0.7666666666666667,
+   "n": 53
+  }
+ },
+ "G1B": {
+  "n_worlds_with_both_classes": 40,
+  "valid_r2": {
+   "mean_auc": 0.6720293248213349,
+   "median_auc": 0.7844073390389887,
+   "n": 40
+  },
+  "refit_valid_r2_eff": {
+   "mean_auc": 0.6784649686053436,
+   "median_auc": 0.7955235614087698,
+   "n": 40
+  },
+  "refit_minus_orig_r2": {
+   "mean_auc": 0.5265459548046387,
+   "median_auc": 0.5003241515107308,
+   "n": 40
+  },
+  "strat_median_r2": {
+   "mean_auc": 0.4364487710679638,
+   "median_auc": 0.3933624886321083,
+   "n": 40
+  },
+  "strat_min_r2": {
+   "mean_auc": 0.7118699183120982,
+   "median_auc": 0.8035692401960783,
+   "n": 40
+  },
+  "strat_sd_r2": {
+   "mean_auc": 0.6008019759025724,
+   "median_auc": 0.6447171525446971,
+   "n": 40
+  },
+  "strat_worst_norm_rmse": {
+   "mean_auc": 0.6982179510310493,
+   "median_auc": 0.7671916284244195,
+   "n": 40
+  },
+  "resid_max_abs_spearman": {
+   "mean_auc": 0.639057357315154,
+   "median_auc": 0.727828839869281,
+   "n": 40
+  },
+  "resid_med_abs_spearman": {
+   "mean_auc": 0.6350796860901241,
+   "median_auc": 0.7288670104558918,
+   "n": 40
+  },
+  "resid_interaction_spearman": {
+   "mean_auc": 0.6113657919710885,
+   "median_auc": 0.7065513674900139,
+   "n": 40
+  },
+  "complexity": {
+   "mean_auc": 0.7244925042855879,
+   "median_auc": 0.8194908071795511,
+   "n": 40
+  }
+ },
+ "G1C": {
+  "n_worlds_with_both_classes": 8,
+  "valid_r2": {
+   "mean_auc": 0.6793842857062116,
+   "median_auc": 0.6694057673745174,
+   "n": 8
+  },
+  "refit_valid_r2_eff": {
+   "mean_auc": 0.6878885472518566,
+   "median_auc": 0.6673423423423424,
+   "n": 8
+  },
+  "refit_minus_orig_r2": {
+   "mean_auc": 0.44331696078679605,
+   "median_auc": 0.4828043788981289,
+   "n": 8
+  },
+  "strat_median_r2": {
+   "mean_auc": 0.6697929317710065,
+   "median_auc": 0.6702457600502513,
+   "n": 8
+  },
+  "strat_min_r2": {
+   "mean_auc": 0.6600300805059957,
+   "median_auc": 0.6587129987129987,
+   "n": 8
+  },
+  "strat_sd_r2": {
+   "mean_auc": 0.6784512871284312,
+   "median_auc": 0.74144142610748,
+   "n": 8
+  },
+  "strat_worst_norm_rmse": {
+   "mean_auc": 0.6684772330156481,
+   "median_auc": 0.659106342523428,
+   "n": 8
+  },
+  "resid_max_abs_spearman": {
+   "mean_auc": 0.5506206790350684,
+   "median_auc": 0.5961650445964172,
+   "n": 8
+  },
+  "resid_med_abs_spearman": {
+   "mean_auc": 0.49917131949068705,
+   "median_auc": 0.555047204066812,
+   "n": 8
+  },
+  "resid_interaction_spearman": {
+   "mean_auc": 0.5874835633457896,
+   "median_auc": 0.5996573324024305,
+   "n": 8
+  },
+  "complexity": {
+   "mean_auc": 0.5614870013316331,
+   "median_auc": 0.5840624999999999,
+   "n": 8
+  }
+ },
+ "refit_delta_valid_r2": {
+  "n": 9588,
+  "mean": -7.943844393034923e-05,
+  "median": 3.6105385348150776e-10,
+  "p05": -0.0005976757645697382,
+  "p95": 0.0005079034289081952,
+  "frac_improved": 0.504276178556529,
+  "frac_worse": 0.495723821443471,
+  "frac_abs_gt_0.001": 0.05944931163954944
+ }
+}

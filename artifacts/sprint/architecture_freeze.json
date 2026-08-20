@@ -1,0 +1,130 @@
+{
+ "sprint": "MURU_FINAL_ACCURACY_SPRINT",
+ "decision": "RETAIN_CURRENT_FINAL",
+ "frozen_architecture": {
+  "family_aggregation": "B2 validation-quality-weighted family vote",
+  "representative": "R1 highest-validation-R2 representative",
+  "null_gate": "CURRENT_GATE \u2014 median_seed_best_r2 >= t1 AND selection_fraction >= t2",
+  "recovery": "corrected production parser (unchanged)",
+  "grammar": "frozen p3-grammar-1.0.0, SAFE_EXP NOT adopted",
+  "cas": "SymPy only (unchanged)",
+  "constant_refit": "NOT adopted as a runtime quality signal",
+  "cross_stratum_score": "NOT adopted",
+  "family_ranker": "NOT adopted",
+  "code": "muru.objval.select + scripts/accopt_selectors.py (CONSENSUS_PLUS_REPRESENTATIVE_PLUS_REFUSAL_GATE, B2, R1)"
+ },
+ "unchanged_frozen_constants": {
+  "EXPONENT_TOL": 0.15,
+  "BAND_TOL": 0.01,
+  "MAX_COMPLEXITY": 20,
+  "MAX_INVALID_FRACTION": 0.005,
+  "MIN_SELECTION_FRACTION": "20/30",
+  "SHAPE_REL_RMSE_TOL": 0.05
+ },
+ "ship_criterion": {
+  "required_family_gain_pp": 3.0,
+  "baseline_family": [
+   47,
+   56
+  ],
+  "candidates": [
+   {
+    "architecture": "B_CONSTANT_REFIT",
+    "family": [
+     46,
+     56
+    ],
+    "family_gain_pp": -1.79,
+    "meets_3pp": false
+   },
+   {
+    "architecture": "C_ROBUST_GENERALIZATION",
+    "family": [
+     45,
+     56
+    ],
+    "family_gain_pp": -3.57,
+    "meets_3pp": false
+   },
+   {
+    "architecture": "D_SMALL_FAMILY_RANKER",
+    "family": [
+     1,
+     56
+    ],
+    "family_gain_pp": -82.14,
+    "meets_3pp": false
+   }
+  ],
+  "met_by_any": false
+ },
+ "gate_head_to_head": {
+  "CURRENT_GATE": {
+   "sensitivity": 0.9642857142857143,
+   "false_positive_rate": 0.030434782608695653,
+   "specificity": 0.9695652173913043,
+   "balanced_accuracy": 0.9669254658385094,
+   "roc_auc": 0.9990683229813665,
+   "pr_auc": 0.9968487394957983
+  },
+  "MONOTONIC_LINEAR_GATE": {
+   "sensitivity": 0.9642857142857143,
+   "false_positive_rate": 0.02608695652173913,
+   "specificity": 0.9739130434782609,
+   "balanced_accuracy": 0.9690993788819876,
+   "roc_auc": 0.9990683229813665,
+   "pr_auc": 0.9968487394957983
+  }
+ },
+ "selected_gate": "CURRENT_GATE",
+ "held_out_cv": {
+  "support_ungated": [
+   55,
+   56
+  ],
+  "support_end_to_end": [
+   54,
+   56
+  ],
+  "family_ungated": [
+   47,
+   56
+  ],
+  "family_end_to_end": [
+   47,
+   56
+  ],
+  "family_ci": [
+   0.7219354555032431,
+   0.9130743035941074
+  ],
+  "support_ci": [
+   0.9055414182080672,
+   0.9968408710355361
+  ],
+  "sensitivity": 0.9642857142857143,
+  "specificity": 0.9695652173913043,
+  "false_positive_rate": 0.030434782608695653,
+  "false_negative_rate": 0.0357142857142857,
+  "balanced_accuracy": 0.9669254658385094,
+  "roc_auc": 0.9990683229813665,
+  "pr_auc": 0.9968487394957983
+ },
+ "computational_failure_rate": 0.0,
+ "artifact_hashes": {
+  "candidate_feature_cache.json": "9de8abfe22842f3a2bad81953e508343df985a9ba9b55dd7b21b545e28964f1e",
+  "d_diagnostic.json": "394ac649a63c806c74fc50709db78e60db227ce7cfd8dcb76c1009177d0e5865",
+  "development_replay.json": "60e419b2e3a233ad41bafbf5c35810d443d5291a1519ba00359c30973b8fb0d0",
+  "error_decomposition.json": "1c618deaf7716bef4e1ad41d13d0bec5a04a4232553a250f0ce6cf2d14631f8b",
+  "feature_signal.json": "f8b8dc4efd28d7e1018023a36e69858a6d1edc14f5a4f347c7ff36e5d516fc8a",
+  "final_held_out.json": "c86c7207256d7dcde3c50ca570f39b849e7b16a105018459184d85ca61846e1c",
+  "gate_comparison.json": "dc31c566efe1b57d09dc11668dbaa7706918d4bd612557b8cd2d01e9333757fd",
+  "headroom_members.json": "5c2ca4fa2366f41a732d7a812923d4d44501b9f1143646f78439bc9863c2dbb3",
+  "headroom_summary.json": "839eb368d7dc1a13b7a359f90ffed31366b897a990c0e58c5f682265ee5d8094",
+  "nested_cv_results.json": "5b809ebfcfb09b226496f6fe4f9baab7b6e2eb95c4cd3065ec712c2ff25522d8",
+  "outer_fold_predictions.json": "bb8b1df411d14a9fc81fb26cced774d80ba59e91b84e7ad9a63491b8d24a25cc",
+  "safeexp_runs.json": "4007c83a9376edf37f28001c59ad13c4cdba44e38c35a433161354675f8cedd8",
+  "safeexp_score.json": "343f35f31843f43f80ffbaa7222ef63ab6efa45d946df9a7acc0c77bd72d947f"
+ },
+ "git_head": "88bf22d29035fb18cf7be165db979d9d47dbad30"
+}
