@@ -1,0 +1,15 @@
+[fh20] shard=6/7 worlds=13 units=78
+[s6   1/13] FH|G1B|r700000|low                           ran=6 skip=0 el=  1.3m eta= 15.2m
+[s6   2/13] FH|G1B|r700007|low                           ran=6 skip=0 el=  2.5m eta= 13.6m
+[s6   3/13] FH|G1B|r700014|moderate                      ran=6 skip=0 el=  3.5m eta= 11.8m
+[s6   4/13] FH|G1B|r700021|moderate                      ran=6 skip=0 el=  4.7m eta= 10.6m
+[s6   5/13] FH|G1B|r700028|adverse                       ran=6 skip=0 el=  5.8m eta=  9.4m
+[s6   6/13] FH|G1C|r700001|moderate                      ran=6 skip=0 el=  7.0m eta=  8.2m
+[s6   7/13] FH|NULL|target_permuted_across_compounds|r700000 ran=6 skip=0 el=  8.0m eta=  6.8m
+[s6   8/13] FH|NULL|target_permuted_across_energy_within_compound|r700007 ran=6 skip=0 el=  9.2m eta=  5.7m
+[s6   9/13] FH|NULL|gaussian_targets_with_observed_variance|r700014 ran=6 skip=0 el= 10.0m eta=  4.4m
+[s6  10/13] FH|G4|r700005|moderate                       ran=6 skip=0 el= 10.8m eta=  3.2m
+[s6  11/13] FH|G4M|r700000|moderate                      ran=6 skip=0 el= 11.9m eta=  2.2m
+[s6  12/13] FH|G4M|r700007|moderate                      ran=6 skip=0 el= 13.0m eta=  1.1m
+[s6  13/13] FH|G5|r700000|moderate                       ran=6 skip=0 el= 14.0m eta=  0.0m
+[fh20] shard 6 done: 78 run, 0 present, 14.0 min

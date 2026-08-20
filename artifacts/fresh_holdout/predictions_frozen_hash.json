@@ -1,0 +1,6 @@
+{
+ "file": "fresh_holdout_predictions_frozen.json",
+ "sha256": "fe6416d92032341a11a0de4a89d535c2c06cf331b4b11986076b083c5c388193",
+ "n_worlds": 96,
+ "frozen_at_utc": "2026-08-20T22:48:20Z"
+}

@@ -1,0 +1,248 @@
+{
+ "scope": "positive worlds only, diagnostic",
+ "rule": "scripts/sprint_gate.py decomposition, arch-A branches only",
+ "counts": {
+  "OK": 39,
+  "FAMILY_AGGREGATION_FAILURE": 3,
+  "SEARCH_FAILURE": 4,
+  "FAMILY_TOLERANCE_BOUNDARY": 2
+ },
+ "rows": [
+  {
+   "world_id": "FH|G1A|r700005|adverse",
+   "block": "G1A",
+   "noise": "adverse",
+   "code": "FAMILY_AGGREGATION_FAILURE",
+   "expr": "square((((-0.06507276 / (n_N / rdbe)) + 0.17979375) + heteroatom_fraction) * -0.4053805) + (precursor_mz * 0.8260125)",
+   "complexity": 17,
+   "valid_r2": 0.91466565014201,
+   "rel_rmse_vs_truth": 0.025669520667496917,
+   "planted_expr": "1.724883*v0 + 0.364964*v1**2",
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "heteroatom_fraction",
+    "n_N"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": true,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 40,
+   "best_rel_rmse_in_pool": 0.004820747683618054,
+   "n_members": 53,
+   "n_clusters": 3
+  },
+  {
+   "world_id": "FH|G1B|r700024|adverse",
+   "block": "G1B",
+   "noise": "adverse",
+   "code": "SEARCH_FAILURE",
+   "expr": "sqrt((square(precursor_mz) + 0.33160195) * ((rotatable_bonds + 0.65027726) / 1.0679576))",
+   "complexity": 11,
+   "valid_r2": 0.9128512004193174,
+   "rel_rmse_vs_truth": 0.10616723025271046,
+   "planted_expr": "1.690365*sqrt(precursor_mz)*(1 + 0.456934*rotatable_bonds)",
+   "planted_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": false,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 0,
+   "best_rel_rmse_in_pool": 0.07105185044490356,
+   "n_members": 30,
+   "n_clusters": 17
+  },
+  {
+   "world_id": "FH|G1B|r700025|adverse",
+   "block": "G1B",
+   "noise": "adverse",
+   "code": "FAMILY_AGGREGATION_FAILURE",
+   "expr": "sqrt(precursor_mz) * (((((heteroatom_fraction - -0.15176515) * -0.084950656) + 0.50381315) * n_O) + 0.9080303)",
+   "complexity": 12,
+   "valid_r2": 0.8830516413966264,
+   "rel_rmse_vs_truth": 0.11146441694166197,
+   "planted_expr": "1.501156*sqrt(precursor_mz)*(1 + 0.438457*n_O)",
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "heteroatom_fraction",
+    "n_O"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": true,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 12,
+   "best_rel_rmse_in_pool": 0.0038768279572251644,
+   "n_members": 28,
+   "n_clusters": 13
+  },
+  {
+   "world_id": "FH|G1B|r700027|adverse",
+   "block": "G1B",
+   "noise": "adverse",
+   "code": "FAMILY_TOLERANCE_BOUNDARY",
+   "expr": "sqrt(square((rotatable_bonds * 0.2833262) + precursor_mz) + 0.2711991)",
+   "complexity": 9,
+   "valid_r2": 0.9001625288768407,
+   "rel_rmse_vs_truth": 0.07135066717995074,
+   "planted_expr": "1.626258*sqrt(precursor_mz)*(1 + 0.308054*rotatable_bonds)",
+   "planted_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": true,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 9,
+   "best_rel_rmse_in_pool": 0.006633800911513667,
+   "n_members": 16,
+   "n_clusters": 2
+  },
+  {
+   "world_id": "FH|G1B|r700028|adverse",
+   "block": "G1B",
+   "noise": "adverse",
+   "code": "FAMILY_TOLERANCE_BOUNDARY",
+   "expr": "sqrt(precursor_mz * (n_O + 0.7444817))",
+   "complexity": 6,
+   "valid_r2": 0.8480703482914322,
+   "rel_rmse_vs_truth": 0.09567675302629851,
+   "planted_expr": "1.847631*sqrt(precursor_mz)*(1 + 0.459426*n_O)",
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": true,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 8,
+   "best_rel_rmse_in_pool": 0.005533276005745691,
+   "n_members": 18,
+   "n_clusters": 6
+  },
+  {
+   "world_id": "FH|G1C|r700000|moderate",
+   "block": "G1C",
+   "noise": "moderate",
+   "code": "FAMILY_AGGREGATION_FAILURE",
+   "expr": "(precursor_mz * (rotatable_bonds / 1.4207358)) + 0.5705153",
+   "complexity": 7,
+   "valid_r2": 0.9726708418358594,
+   "rel_rmse_vs_truth": 0.19324024419392352,
+   "planted_expr": "1.737947*sqrt(precursor_mz)*exp(0.359855*(rotatable_bonds - cbar))",
+   "planted_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": true,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 14,
+   "best_rel_rmse_in_pool": 0.04298891827562129,
+   "n_members": 33,
+   "n_clusters": 5
+  },
+  {
+   "world_id": "FH|G1C|r700001|moderate",
+   "block": "G1C",
+   "noise": "moderate",
+   "code": "SEARCH_FAILURE",
+   "expr": "precursor_mz + (n_O * 0.42798886)",
+   "complexity": 5,
+   "valid_r2": 0.8813943373894674,
+   "rel_rmse_vs_truth": 0.3814767519875132,
+   "planted_expr": "1.449309*sqrt(precursor_mz)*exp(0.398593*(n_O - cbar))",
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": false,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 0,
+   "best_rel_rmse_in_pool": 0.3814767519875132,
+   "n_members": 6,
+   "n_clusters": 2
+  },
+  {
+   "world_id": "FH|G1C|r700004|moderate",
+   "block": "G1C",
+   "noise": "moderate",
+   "code": "SEARCH_FAILURE",
+   "expr": "cube(sqrt(precursor_mz * 0.3889185) - ((n_O * -0.1672693) + -0.1773283)) - -0.37870848",
+   "complexity": 13,
+   "valid_r2": 0.960787865873741,
+   "rel_rmse_vs_truth": 0.12086565718293808,
+   "planted_expr": "1.936021*sqrt(precursor_mz)*exp(0.363572*(n_O - cbar))",
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": false,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 0,
+   "best_rel_rmse_in_pool": 0.06858534901684822,
+   "n_members": 18,
+   "n_clusters": 7
+  },
+  {
+   "world_id": "FH|G1C|r700007|moderate",
+   "block": "G1C",
+   "noise": "moderate",
+   "code": "SEARCH_FAILURE",
+   "expr": "(((((n_O * 0.29083845) + -0.47364688) + precursor_mz) * (n_O + 1.8083642)) / 3.1995509) - -0.57952654",
+   "complexity": 15,
+   "valid_r2": 0.9808865264941116,
+   "rel_rmse_vs_truth": 0.19469633750547935,
+   "planted_expr": "1.540674*sqrt(precursor_mz)*exp(0.394742*(n_O - cbar))",
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "oracle_support_in_pool": true,
+   "oracle_family_in_pool": false,
+   "family_correct_members_in_chosen_cluster": 0,
+   "family_correct_members_in_pool": 0,
+   "best_rel_rmse_in_pool": 0.10615841434884955,
+   "n_members": 36,
+   "n_clusters": 7
+  }
+ ]
+}

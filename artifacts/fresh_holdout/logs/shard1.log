@@ -1,0 +1,16 @@
+[fh20] shard=1/7 worlds=14 units=84
+[s1   1/14] FH|G1A|r700001|low                           ran=6 skip=0 el=  1.3m eta= 17.0m
+[s1   2/14] FH|G1B|r700002|low                           ran=6 skip=0 el=  2.5m eta= 14.8m
+[s1   3/14] FH|G1B|r700009|low                           ran=6 skip=0 el=  3.6m eta= 13.1m
+[s1   4/14] FH|G1B|r700016|moderate                      ran=6 skip=0 el=  4.8m eta= 11.9m
+[s1   5/14] FH|G1B|r700023|moderate                      ran=6 skip=0 el=  5.8m eta= 10.4m
+[s1   6/14] FH|G1B|r700030|adverse                       ran=6 skip=0 el=  7.0m eta=  9.3m
+[s1   7/14] FH|G1C|r700003|moderate                      ran=6 skip=0 el=  8.1m eta=  8.1m
+[s1   8/14] FH|NULL|target_permuted_across_compounds|r700002 ran=6 skip=0 el=  9.0m eta=  6.8m
+[s1   9/14] FH|NULL|descriptors_permuted_across_compounds|r700009 ran=6 skip=0 el=  9.9m eta=  5.5m
+[s1  10/14] FH|G4|r700000|moderate                       ran=6 skip=0 el= 10.7m eta=  4.3m
+[s1  11/14] FH|G4|r700007|moderate                       ran=6 skip=0 el= 11.6m eta=  3.2m
+[s1  12/14] FH|G4M|r700002|moderate                      ran=6 skip=0 el= 12.6m eta=  2.1m
+[s1  13/14] FH|G2|r700001|moderate                       ran=6 skip=0 el= 13.6m eta=  1.0m
+[s1  14/14] FH|G5|r700002|moderate                       ran=6 skip=0 el= 14.3m eta=  0.0m
+[fh20] shard 1 done: 84 run, 0 present, 14.3 min

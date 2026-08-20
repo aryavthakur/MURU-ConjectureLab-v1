@@ -154,3 +154,10 @@ artifacts/e0/*.parquet
 # fresh holdout: reference symlinks into the primary repo artifacts
 artifacts/p2_*.parquet
 artifacts/ov_ckpt
+
+# fresh holdout: raw search outputs and scored evidence are the one-shot
+# experiment's primary record, not regenerable-by-convenience artifacts.
+!artifacts/fh_ckpt/
+!artifacts/fh_ckpt/**
+!artifacts/fresh_holdout/
+!artifacts/fresh_holdout/**

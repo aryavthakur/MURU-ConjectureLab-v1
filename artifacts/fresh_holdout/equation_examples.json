@@ -1,0 +1,289 @@
+{
+ "policy": "FRESH HOLDOUT \u2014 deterministic equation-example selection policy.\n\nDeclared before the reveal is scored. Selection depends only on the frozen\nworld identity (sha256 tie-break) and on the stratum, never on how pretty an\nequation looks.\n\nSUCCESSES: one world from each stratum in the fixed order\n    [G1A, G1B_low, G1B_moderate, G1B_adverse, G1C]\nqualifying = positive, scorable, t_family True, report True. Within a stratum,\nthe qualifying world with the smallest sha256(\"fh-example|\" + world_id). If a\nstratum has no qualifying world it contributes none, and the shortfall is made\nup by continuing round-robin through the same stratum order.\n\nFAILURES: 3 rows, one per distinct failure class in alphabetical class order,\nsmallest sha256 within class; if fewer than 3 classes exist, continue\nround-robin through the classes.\n",
+ "rows": [
+  {
+   "kind": "success",
+   "stratum": "G1A",
+   "world_id": "FH|G1A|r700000|low",
+   "block": "G1A",
+   "noise_regime": "low",
+   "planted_expr": "1.680223*v0 + 0.658951*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "discovered_raw": "(0.30153295 / square(inv(heteroatom_fraction) + (log(precursor_mz) * -0.008007576))) + (precursor_mz * 0.7554258)",
+   "discovered_canonical": "4711452343750000*heteroatom_fraction**2/(1000947*heteroatom_fraction*log(precursor_mz) - 125000000)**2 + 3777129*precursor_mz/5000000",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "precursor_mz"
+   ],
+   "t_support": true,
+   "t_family": true,
+   "t_exact": true,
+   "t_rel_rmse": 0.004722746353636021,
+   "valid_r2": 0.9971304229131555,
+   "median_seed_best_r2": 0.9970745880809555,
+   "selection_fraction": 1.0,
+   "complexity": 14,
+   "reported": true
+  },
+  {
+   "kind": "success",
+   "stratum": "G1B_low",
+   "world_id": "FH|G1B|r700000|low",
+   "block": "G1B",
+   "noise_regime": "low",
+   "planted_expr": "1.595595*sqrt(precursor_mz)*(1 + 0.285688*rotatable_bonds)",
+   "planted_support": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "discovered_raw": "sqrt(precursor_mz - 0.012096496) * ((rotatable_bonds * 0.30085197) + 1.0429659)",
+   "discovered_canonical": "sqrt(625000000*precursor_mz - 7560310)*(30085197*rotatable_bonds/2500000000000 + 10429659/250000000000)",
+   "recovered_support": [
+    "MASS",
+    "rotatable_bonds"
+   ],
+   "recovered_variables": [
+    "precursor_mz",
+    "rotatable_bonds"
+   ],
+   "t_support": true,
+   "t_family": true,
+   "t_exact": true,
+   "t_rel_rmse": 0.00378020087594906,
+   "valid_r2": 0.9965743918981453,
+   "median_seed_best_r2": 0.996548853291543,
+   "selection_fraction": 1.0,
+   "complexity": 10,
+   "reported": true
+  },
+  {
+   "kind": "success",
+   "stratum": "G1B_moderate",
+   "world_id": "FH|G1B|r700017|moderate",
+   "block": "G1B",
+   "noise_regime": "moderate",
+   "planted_expr": "1.691835*sqrt(precursor_mz)*(1 + 0.276799*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "discovered_raw": "sqrt((precursor_mz * ((heteroatom_fraction * 0.81232345) + 0.9569865)) + 0.011441198)",
+   "discovered_canonical": "sqrt(5)*sqrt(25*precursor_mz*(16246469*heteroatom_fraction + 19139730) + 5720599)/50000",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "precursor_mz"
+   ],
+   "t_support": true,
+   "t_family": true,
+   "t_exact": true,
+   "t_rel_rmse": 0.00991723020588885,
+   "valid_r2": 0.8714383217651196,
+   "median_seed_best_r2": 0.8712416016500595,
+   "selection_fraction": 1.0,
+   "complexity": 10,
+   "reported": true
+  },
+  {
+   "kind": "success",
+   "stratum": "G1B_adverse",
+   "world_id": "FH|G1B|r700026|adverse",
+   "block": "G1B",
+   "noise_regime": "adverse",
+   "planted_expr": "1.447085*sqrt(precursor_mz)*(1 + 0.520869*heteroatom_fraction)",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "discovered_raw": "sqrt(((precursor_mz + -0.14481384) * (heteroatom_fraction * 1.7138597)) + 0.31250682)",
+   "discovered_canonical": "sqrt(5)*sqrt(17138597*heteroatom_fraction*(12500000*precursor_mz - 1810173) + 39063352500000)/25000000",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "precursor_mz"
+   ],
+   "t_support": true,
+   "t_family": true,
+   "t_exact": false,
+   "t_rel_rmse": 0.03965407894411205,
+   "valid_r2": 0.7226442558422626,
+   "median_seed_best_r2": 0.7236476542176242,
+   "selection_fraction": 0.8333333333333334,
+   "complexity": 10,
+   "reported": true
+  },
+  {
+   "kind": "success",
+   "stratum": "G1C",
+   "world_id": "FH|G1C|r700002|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "planted_expr": "1.910079*sqrt(precursor_mz)*exp(0.267032*(heteroatom_fraction - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "heteroatom_fraction"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "discovered_raw": "sqrt(((precursor_mz * (heteroatom_fraction - -0.7493951)) / 1.0156984) - -0.03146072)",
+   "discovered_canonical": "sqrt(5)*sqrt(12306802885581*precursor_mz*(10000000*heteroatom_fraction + 7493951) + 3932590000000000000)/25000000000",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "precursor_mz"
+   ],
+   "t_support": true,
+   "t_family": true,
+   "t_exact": false,
+   "t_rel_rmse": 0.03973352226473026,
+   "valid_r2": 0.9401702555132501,
+   "median_seed_best_r2": 0.9393332733525788,
+   "selection_fraction": 1.0,
+   "complexity": 10,
+   "reported": true
+  },
+  {
+   "kind": "failure",
+   "failure_class": "FAMILY_AGGREGATION_ERROR",
+   "world_id": "FH|G1C|r700001|moderate",
+   "block": "G1C",
+   "noise_regime": "moderate",
+   "planted_expr": "1.449309*sqrt(precursor_mz)*exp(0.398593*(n_O - cbar))",
+   "planted_support": [
+    "precursor_mz",
+    "n_O"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "n_O"
+   ],
+   "discovered_raw": "precursor_mz + (n_O * 0.42798886)",
+   "discovered_canonical": "21399443*n_O/50000000 + precursor_mz",
+   "recovered_support": [
+    "MASS",
+    "n_O"
+   ],
+   "recovered_variables": [
+    "n_O",
+    "precursor_mz"
+   ],
+   "t_support": true,
+   "t_family": false,
+   "t_exact": false,
+   "t_rel_rmse": 0.3814767519875132,
+   "valid_r2": 0.8813943373894674,
+   "median_seed_best_r2": 0.8813904070731875,
+   "selection_fraction": 0.8333333333333334,
+   "complexity": 5,
+   "reported": true
+  },
+  {
+   "kind": "failure",
+   "failure_class": "REFUSAL_REPORTED",
+   "world_id": "FH|G5|r700001|moderate",
+   "block": "G5",
+   "noise_regime": "moderate",
+   "planted_expr": "1.510961*sqrt(precursor_mz)*(1 + 0.319286*LATENT)   [LATENT never supplied]",
+   "planted_support": [
+    "precursor_mz",
+    "__latent__"
+   ],
+   "planted_blocks": null,
+   "discovered_raw": "sqrt(((precursor_mz * 0.7193625) * ((tpsa + rotatable_bonds) + heteroatom_fraction)) - (rotatable_bonds * 0.08716421))",
+   "discovered_canonical": "sqrt(71936250*precursor_mz*(heteroatom_fraction + rotatable_bonds + tpsa) - 8716421*rotatable_bonds)/10000",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction",
+    "rotatable_bonds",
+    "tpsa"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "precursor_mz",
+    "rotatable_bonds",
+    "tpsa"
+   ],
+   "t_support": false,
+   "t_family": false,
+   "t_exact": false,
+   "t_rel_rmse": NaN,
+   "valid_r2": 0.7708155978628622,
+   "median_seed_best_r2": 0.7678665818843098,
+   "selection_fraction": 0.8333333333333334,
+   "complexity": 14,
+   "reported": true
+  },
+  {
+   "kind": "failure",
+   "failure_class": "SUPPORT_ERROR",
+   "world_id": "FH|G1A|r700005|adverse",
+   "block": "G1A",
+   "noise_regime": "adverse",
+   "planted_expr": "1.724883*v0 + 0.364964*v1**2",
+   "planted_support": [
+    "v0",
+    "v1"
+   ],
+   "planted_blocks": [
+    "MASS",
+    "heteroatom_fraction"
+   ],
+   "discovered_raw": "square((((-0.06507276 / (n_N / rdbe)) + 0.17979375) + heteroatom_fraction) * -0.4053805) + (precursor_mz * 0.8260125)",
+   "discovered_canonical": "66081*precursor_mz/80000 + 657333399121*(100000000*heteroatom_fraction*n_N + 17979375*n_N - 6507276*rdbe)**2/(40000000000000000000000000000*n_N**2)",
+   "recovered_support": [
+    "MASS",
+    "heteroatom_fraction",
+    "n_N"
+   ],
+   "recovered_variables": [
+    "heteroatom_fraction",
+    "n_N",
+    "precursor_mz",
+    "rdbe"
+   ],
+   "t_support": false,
+   "t_family": false,
+   "t_exact": false,
+   "t_rel_rmse": 0.025669520667496917,
+   "valid_r2": 0.91466565014201,
+   "median_seed_best_r2": 0.9147565781900919,
+   "selection_fraction": 1.0,
+   "complexity": 17,
+   "reported": true
+  }
+ ]
+}

@@ -1,0 +1,1359 @@
+{
+ "n_worlds": 96,
+ "n_seeds_per_world_intended": 6,
+ "n_units_intended": 576,
+ "n_units_present": 576,
+ "worlds_with_full_seed_set": 96,
+ "duplicate_seed_identities": 0,
+ "duplicate_world_seed_pairs": 0,
+ "missing_units": [],
+ "torn_or_corrupt_units": [],
+ "n_recorded_search_exceptions": 0,
+ "per_world": [
+  {
+   "world_id": "FH|G1A|r700000|low",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2118397100,
+    2118397101,
+    2118397102,
+    2118397103,
+    2118397104,
+    2118397105
+   ]
+  },
+  {
+   "world_id": "FH|G1A|r700001|low",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2144559800,
+    2144559801,
+    2144559802,
+    2144559803,
+    2144559804,
+    2144559805
+   ]
+  },
+  {
+   "world_id": "FH|G1A|r700002|moderate",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124158300,
+    2124158301,
+    2124158302,
+    2124158303,
+    2124158304,
+    2124158305
+   ]
+  },
+  {
+   "world_id": "FH|G1A|r700003|moderate",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2125712300,
+    2125712301,
+    2125712302,
+    2125712303,
+    2125712304,
+    2125712305
+   ]
+  },
+  {
+   "world_id": "FH|G1A|r700004|adverse",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2132794200,
+    2132794201,
+    2132794202,
+    2132794203,
+    2132794204,
+    2132794205
+   ]
+  },
+  {
+   "world_id": "FH|G1A|r700005|adverse",
+   "block": "G1A",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2134520300,
+    2134520301,
+    2134520302,
+    2134520303,
+    2134520304,
+    2134520305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700000|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2132598600,
+    2132598601,
+    2132598602,
+    2132598603,
+    2132598604,
+    2132598605
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700001|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2146825300,
+    2146825301,
+    2146825302,
+    2146825303,
+    2146825304,
+    2146825305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700002|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2144980300,
+    2144980301,
+    2144980302,
+    2144980303,
+    2144980304,
+    2144980305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700003|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2143139700,
+    2143139701,
+    2143139702,
+    2143139703,
+    2143139704,
+    2143139705
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700004|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2133826000,
+    2133826001,
+    2133826002,
+    2133826003,
+    2133826004,
+    2133826005
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700005|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124343300,
+    2124343301,
+    2124343302,
+    2124343303,
+    2124343304,
+    2124343305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700006|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2125477400,
+    2125477401,
+    2125477402,
+    2125477403,
+    2125477404,
+    2125477405
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700007|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2130803500,
+    2130803501,
+    2130803502,
+    2130803503,
+    2130803504,
+    2130803505
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700008|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2146410400,
+    2146410401,
+    2146410402,
+    2146410403,
+    2146410404,
+    2146410405
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700009|low",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2138133400,
+    2138133401,
+    2138133402,
+    2138133403,
+    2138133404,
+    2138133405
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700010|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2121779200,
+    2121779201,
+    2121779202,
+    2121779203,
+    2121779204,
+    2121779205
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700011|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2129121000,
+    2129121001,
+    2129121002,
+    2129121003,
+    2129121004,
+    2129121005
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700012|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120909000,
+    2120909001,
+    2120909002,
+    2120909003,
+    2120909004,
+    2120909005
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700013|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2128474300,
+    2128474301,
+    2128474302,
+    2128474303,
+    2128474304,
+    2128474305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700014|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2128089400,
+    2128089401,
+    2128089402,
+    2128089403,
+    2128089404,
+    2128089405
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700015|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2118840100,
+    2118840101,
+    2118840102,
+    2118840103,
+    2118840104,
+    2118840105
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700016|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120595700,
+    2120595701,
+    2120595702,
+    2120595703,
+    2120595704,
+    2120595705
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700017|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2141226500,
+    2141226501,
+    2141226502,
+    2141226503,
+    2141226504,
+    2141226505
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700018|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2136626300,
+    2136626301,
+    2136626302,
+    2136626303,
+    2136626304,
+    2136626305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700019|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2140500300,
+    2140500301,
+    2140500302,
+    2140500303,
+    2140500304,
+    2140500305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700020|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2137584700,
+    2137584701,
+    2137584702,
+    2137584703,
+    2137584704,
+    2137584705
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700021|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2131953800,
+    2131953801,
+    2131953802,
+    2131953803,
+    2131953804,
+    2131953805
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700022|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2117171800,
+    2117171801,
+    2117171802,
+    2117171803,
+    2117171804,
+    2117171805
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700023|moderate",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2123452400,
+    2123452401,
+    2123452402,
+    2123452403,
+    2123452404,
+    2123452405
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700024|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2115389200,
+    2115389201,
+    2115389202,
+    2115389203,
+    2115389204,
+    2115389205
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700025|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2127482000,
+    2127482001,
+    2127482002,
+    2127482003,
+    2127482004,
+    2127482005
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700026|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120370300,
+    2120370301,
+    2120370302,
+    2120370303,
+    2120370304,
+    2120370305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700027|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2121294900,
+    2121294901,
+    2121294902,
+    2121294903,
+    2121294904,
+    2121294905
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700028|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2144765700,
+    2144765701,
+    2144765702,
+    2144765703,
+    2144765704,
+    2144765705
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700029|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124903100,
+    2124903101,
+    2124903102,
+    2124903103,
+    2124903104,
+    2124903105
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700030|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2119447200,
+    2119447201,
+    2119447202,
+    2119447203,
+    2119447204,
+    2119447205
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700031|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120528500,
+    2120528501,
+    2120528502,
+    2120528503,
+    2120528504,
+    2120528505
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700032|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2118064300,
+    2118064301,
+    2118064302,
+    2118064303,
+    2118064304,
+    2118064305
+   ]
+  },
+  {
+   "world_id": "FH|G1B|r700033|adverse",
+   "block": "G1B",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2125765100,
+    2125765101,
+    2125765102,
+    2125765103,
+    2125765104,
+    2125765105
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700000|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2118134400,
+    2118134401,
+    2118134402,
+    2118134403,
+    2118134404,
+    2118134405
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700001|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2134556900,
+    2134556901,
+    2134556902,
+    2134556903,
+    2134556904,
+    2134556905
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700002|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2146289000,
+    2146289001,
+    2146289002,
+    2146289003,
+    2146289004,
+    2146289005
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700003|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2111793400,
+    2111793401,
+    2111793402,
+    2111793403,
+    2111793404,
+    2111793405
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700004|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2144103100,
+    2144103101,
+    2144103102,
+    2144103103,
+    2144103104,
+    2144103105
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700005|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2142767200,
+    2142767201,
+    2142767202,
+    2142767203,
+    2142767204,
+    2142767205
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700006|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2123098600,
+    2123098601,
+    2123098602,
+    2123098603,
+    2123098604,
+    2123098605
+   ]
+  },
+  {
+   "world_id": "FH|G1C|r700007|moderate",
+   "block": "G1C",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2130705500,
+    2130705501,
+    2130705502,
+    2130705503,
+    2130705504,
+    2130705505
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700000",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2130119200,
+    2130119201,
+    2130119202,
+    2130119203,
+    2130119204,
+    2130119205
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700001",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2130885300,
+    2130885301,
+    2130885302,
+    2130885303,
+    2130885304,
+    2130885305
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700002",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2142457400,
+    2142457401,
+    2142457402,
+    2142457403,
+    2142457404,
+    2142457405
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_compounds|r700003",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2119447900,
+    2119447901,
+    2119447902,
+    2119447903,
+    2119447904,
+    2119447905
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700004",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2119573700,
+    2119573701,
+    2119573702,
+    2119573703,
+    2119573704,
+    2119573705
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700005",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2133615700,
+    2133615701,
+    2133615702,
+    2133615703,
+    2133615704,
+    2133615705
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700006",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2143707500,
+    2143707501,
+    2143707502,
+    2143707503,
+    2143707504,
+    2143707505
+   ]
+  },
+  {
+   "world_id": "FH|NULL|target_permuted_across_energy_within_compound|r700007",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2116411700,
+    2116411701,
+    2116411702,
+    2116411703,
+    2116411704,
+    2116411705
+   ]
+  },
+  {
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700008",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2112803200,
+    2112803201,
+    2112803202,
+    2112803203,
+    2112803204,
+    2112803205
+   ]
+  },
+  {
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700009",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2142339800,
+    2142339801,
+    2142339802,
+    2142339803,
+    2142339804,
+    2142339805
+   ]
+  },
+  {
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700010",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2138418100,
+    2138418101,
+    2138418102,
+    2138418103,
+    2138418104,
+    2138418105
+   ]
+  },
+  {
+   "world_id": "FH|NULL|descriptors_permuted_across_compounds|r700011",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120881700,
+    2120881701,
+    2120881702,
+    2120881703,
+    2120881704,
+    2120881705
+   ]
+  },
+  {
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700012",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2129005900,
+    2129005901,
+    2129005902,
+    2129005903,
+    2129005904,
+    2129005905
+   ]
+  },
+  {
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700013",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2117389100,
+    2117389101,
+    2117389102,
+    2117389103,
+    2117389104,
+    2117389105
+   ]
+  },
+  {
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700014",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2142142700,
+    2142142701,
+    2142142702,
+    2142142703,
+    2142142704,
+    2142142705
+   ]
+  },
+  {
+   "world_id": "FH|NULL|gaussian_targets_with_observed_variance|r700015",
+   "block": "NCAL",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2138812000,
+    2138812001,
+    2138812002,
+    2138812003,
+    2138812004,
+    2138812005
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700000|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120043900,
+    2120043901,
+    2120043902,
+    2120043903,
+    2120043904,
+    2120043905
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700001|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2145478000,
+    2145478001,
+    2145478002,
+    2145478003,
+    2145478004,
+    2145478005
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700002|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124860300,
+    2124860301,
+    2124860302,
+    2124860303,
+    2124860304,
+    2124860305
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700003|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2117535500,
+    2117535501,
+    2117535502,
+    2117535503,
+    2117535504,
+    2117535505
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700004|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2121870800,
+    2121870801,
+    2121870802,
+    2121870803,
+    2121870804,
+    2121870805
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700005|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2111458000,
+    2111458001,
+    2111458002,
+    2111458003,
+    2111458004,
+    2111458005
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700006|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2113200000,
+    2113200001,
+    2113200002,
+    2113200003,
+    2113200004,
+    2113200005
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700007|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2139559700,
+    2139559701,
+    2139559702,
+    2139559703,
+    2139559704,
+    2139559705
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700008|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2114532200,
+    2114532201,
+    2114532202,
+    2114532203,
+    2114532204,
+    2114532205
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700009|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2146141000,
+    2146141001,
+    2146141002,
+    2146141003,
+    2146141004,
+    2146141005
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700010|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2139452800,
+    2139452801,
+    2139452802,
+    2139452803,
+    2139452804,
+    2139452805
+   ]
+  },
+  {
+   "world_id": "FH|G4|r700011|moderate",
+   "block": "G4",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2139355700,
+    2139355701,
+    2139355702,
+    2139355703,
+    2139355704,
+    2139355705
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700000|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2139949400,
+    2139949401,
+    2139949402,
+    2139949403,
+    2139949404,
+    2139949405
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700001|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2123665800,
+    2123665801,
+    2123665802,
+    2123665803,
+    2123665804,
+    2123665805
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700002|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2117502300,
+    2117502301,
+    2117502302,
+    2117502303,
+    2117502304,
+    2117502305
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700003|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2134198300,
+    2134198301,
+    2134198302,
+    2134198303,
+    2134198304,
+    2134198305
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700004|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2135916800,
+    2135916801,
+    2135916802,
+    2135916803,
+    2135916804,
+    2135916805
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700005|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2132792100,
+    2132792101,
+    2132792102,
+    2132792103,
+    2132792104,
+    2132792105
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700006|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124126900,
+    2124126901,
+    2124126902,
+    2124126903,
+    2124126904,
+    2124126905
+   ]
+  },
+  {
+   "world_id": "FH|G4M|r700007|moderate",
+   "block": "G4M",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2111222200,
+    2111222201,
+    2111222202,
+    2111222203,
+    2111222204,
+    2111222205
+   ]
+  },
+  {
+   "world_id": "FH|G2|r700000|moderate",
+   "block": "G2",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2124477700,
+    2124477701,
+    2124477702,
+    2124477703,
+    2124477704,
+    2124477705
+   ]
+  },
+  {
+   "world_id": "FH|G2|r700001|moderate",
+   "block": "G2",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2120032800,
+    2120032801,
+    2120032802,
+    2120032803,
+    2120032804,
+    2120032805
+   ]
+  },
+  {
+   "world_id": "FH|G2|r700002|moderate",
+   "block": "G2",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2119625200,
+    2119625201,
+    2119625202,
+    2119625203,
+    2119625204,
+    2119625205
+   ]
+  },
+  {
+   "world_id": "FH|G3|r700000|moderate",
+   "block": "G3",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2134020100,
+    2134020101,
+    2134020102,
+    2134020103,
+    2134020104,
+    2134020105
+   ]
+  },
+  {
+   "world_id": "FH|G3|r700001|moderate",
+   "block": "G3",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2127127500,
+    2127127501,
+    2127127502,
+    2127127503,
+    2127127504,
+    2127127505
+   ]
+  },
+  {
+   "world_id": "FH|G3|r700002|moderate",
+   "block": "G3",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2111409800,
+    2111409801,
+    2111409802,
+    2111409803,
+    2111409804,
+    2111409805
+   ]
+  },
+  {
+   "world_id": "FH|G5|r700000|moderate",
+   "block": "G5",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2144366400,
+    2144366401,
+    2144366402,
+    2144366403,
+    2144366404,
+    2144366405
+   ]
+  },
+  {
+   "world_id": "FH|G5|r700001|moderate",
+   "block": "G5",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2133566900,
+    2133566901,
+    2133566902,
+    2133566903,
+    2133566904,
+    2133566905
+   ]
+  },
+  {
+   "world_id": "FH|G5|r700002|moderate",
+   "block": "G5",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2138971000,
+    2138971001,
+    2138971002,
+    2138971003,
+    2138971004,
+    2138971005
+   ]
+  },
+  {
+   "world_id": "FH|GC|r700000|moderate|cut30",
+   "block": "GC",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2142001500,
+    2142001501,
+    2142001502,
+    2142001503,
+    2142001504,
+    2142001505
+   ]
+  },
+  {
+   "world_id": "FH|GC|r700001|moderate|cut80",
+   "block": "GC",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2137319700,
+    2137319701,
+    2137319702,
+    2137319703,
+    2137319704,
+    2137319705
+   ]
+  },
+  {
+   "world_id": "FH|GRT|r700000|moderate",
+   "block": "GRT",
+   "n_seeds_planned": 6,
+   "n_seeds_done": 6,
+   "seeds": [
+    2110807400,
+    2110807401,
+    2110807402,
+    2110807403,
+    2110807404,
+    2110807405
+   ]
+  }
+ ],
+ "COMPLETE": true
+}

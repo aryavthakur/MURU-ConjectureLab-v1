@@ -1,0 +1,16 @@
+[fh20] shard=3/7 worlds=14 units=84
+[s3   1/14] FH|G1A|r700003|moderate                      ran=6 skip=0 el=  1.3m eta= 17.0m
+[s3   2/14] FH|G1B|r700004|low                           ran=6 skip=0 el=  2.5m eta= 15.2m
+[s3   3/14] FH|G1B|r700011|moderate                      ran=6 skip=0 el=  3.6m eta= 13.2m
+[s3   4/14] FH|G1B|r700018|moderate                      ran=6 skip=0 el=  4.8m eta= 12.0m
+[s3   5/14] FH|G1B|r700025|adverse                       ran=6 skip=0 el=  5.9m eta= 10.6m
+[s3   6/14] FH|G1B|r700032|adverse                       ran=6 skip=0 el=  7.0m eta=  9.3m
+[s3   7/14] FH|G1C|r700005|moderate                      ran=6 skip=0 el=  8.1m eta=  8.1m
+[s3   8/14] FH|NULL|target_permuted_across_energy_within_compound|r700004 ran=6 skip=0 el=  9.2m eta=  6.9m
+[s3   9/14] FH|NULL|descriptors_permuted_across_compounds|r700011 ran=6 skip=0 el= 10.1m eta=  5.6m
+[s3  10/14] FH|G4|r700002|moderate                       ran=6 skip=0 el= 10.9m eta=  4.4m
+[s3  11/14] FH|G4|r700009|moderate                       ran=6 skip=0 el= 11.8m eta=  3.2m
+[s3  12/14] FH|G4M|r700004|moderate                      ran=6 skip=0 el= 12.9m eta=  2.1m
+[s3  13/14] FH|G3|r700000|moderate                       ran=6 skip=0 el= 13.8m eta=  1.1m
+[s3  14/14] FH|GC|r700001|moderate|cut80                 ran=6 skip=0 el= 14.4m eta=  0.0m
+[fh20] shard 3 done: 84 run, 0 present, 14.4 min
