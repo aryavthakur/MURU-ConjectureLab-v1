@@ -1,0 +1,119 @@
+{
+ "deployment_gate": {
+  "dev_fit_fpr": 0.043478260869565216,
+  "dev_fit_sensitivity": 1.0,
+  "fit_population": "full development population, architecture A_CURRENT_FINAL",
+  "fitting_rule": "accopt_selectors.fit_gate \u2014 maximise positive sensitivity subject to null FPR <= 5%",
+  "form": "CURRENT_GATE",
+  "frozen_before_holdout_exists": true,
+  "n_null": 230,
+  "n_positive": 56,
+  "t1": 0.595,
+  "t2": 0.2
+ },
+ "development_reference_numbers": {
+  "G1A_family": [
+   6,
+   6
+  ],
+  "G1B_family": [
+   35,
+   40
+  ],
+  "G1C_family": [
+   6,
+   10
+  ],
+  "balanced_accuracy": 0.9669254658385094,
+  "family_recovery": [
+   47,
+   56
+  ],
+  "null_fpr": 0.030434782608695653,
+  "provenance": "DEVELOPMENT cross-validation, NOT fresh-holdout performance.",
+  "roc_auc": 0.9990683229813665,
+  "sensitivity": 0.9642857142857143,
+  "specificity": 0.9695652173913043,
+  "support_end_to_end": [
+   54,
+   56
+  ],
+  "support_ungated": [
+   55,
+   56
+  ]
+ },
+ "file_sha256": {
+  "artifacts/sprint/architecture_freeze.json": "2f8bbf7e883b7360d208c5058e4525beba76bac1401c8cdef3e9c7306888fd9d",
+  "scripts/accopt_build_cache.py": "db5fcf4bf5c0e5f766c6026de43daf32beb13712ff01bd4c0c7423e1fd22b6e5",
+  "scripts/accopt_selectors.py": "fbf0b8bcaa3c4cd3cd32a6010f0f599c9988d00768bbe668137160117fbad82e",
+  "src/muru/discovery/checkpoint.py": "16aa822ebd00b81c322ce8f6c4045e8d5c69e02288788c62e321e1b170b967c2",
+  "src/muru/discovery/engine.py": "936c94c9145bccc1e014ac7fe87f1a24313a19ec4d77efb523d4ad1be7316c6e",
+  "src/muru/discovery/grammar.py": "5e422c7530cb049d7f4dc90c7de82e3920f30ca116844bb8fd1900ee07929296",
+  "src/muru/discovery/protocol.py": "535628c72b1f0105e971fe6dfbd609a218f8393237f6d4c6c24bfe603890a189",
+  "src/muru/objval/equiv.py": "ca1d8e25fe13e3b09da6f418124f9fa32749eb134dd4b25cb9658cf47c7c3180",
+  "src/muru/objval/generators2.py": "1f36295be9a9ae61bb6b94946fe9eaaa33056628ef6d25757f9fdac76a5591a2",
+  "src/muru/objval/plan2.py": "b4b1d53108da0608fc37f26b9a1dc89a3b6226e6f50c3cc4169877e00aeac614",
+  "src/muru/objval/recovery.py": "cbea06a5529cd4da738b9cab3432d4e4b3c5cea02af0bc86ec051fc0ea5b6276",
+  "src/muru/objval/select.py": "7e47ae2c72d379a29ec5020ea64617c1baee91902982291a948ec4a04317f3ec",
+  "src/muru/objval/signature.py": "8d414250d72d2284b4d2bd3fb71f4ec771ace2f94105331152b89e7c80f1301d",
+  "src/muru/objval/truth2.py": "45a2581a8a758ff340538755efc15a4633663200957e23bb026e654668411246",
+  "src/muru/synth/generators.py": "934257d443d2712fed427a935df90cf411a7745011f3f30a48685b96da5abea1"
+ },
+ "frozen_architecture": {
+  "cas": "SymPy only",
+  "excluded": [
+   "STRUCTURAL_MODAL",
+   "CONSTANT_REFIT",
+   "ROBUST_GENERALIZATION",
+   "SMALL_FAMILY_RANKER",
+   "MONOTONIC_LINEAR_GATE",
+   "SAFE_EXP",
+   "Maxima",
+   "Giac",
+   "Wolfram"
+  ],
+  "family_aggregation": "B2 validation-quality-weighted family vote",
+  "grammar": "frozen p3 grammar, SAFE_EXP NOT adopted",
+  "null_gate": "CURRENT_GATE: REPORT iff median_seed_best_r2 >= t1 AND selection_fraction >= t2",
+  "recovery": "corrected production parser (muru.objval.recovery)",
+  "representative": "R1 highest-validation-R2 representative"
+ },
+ "frozen_constants": {
+  "BAND_TOL": 0.01,
+  "ENGINE_VERSION": "p3-engine-1.0.0",
+  "EXPONENT_TOL": null,
+  "MAX_COMPLEXITY": 20,
+  "PLAN2_VERSION": "ov-plan-1.0.0",
+  "PYSR_CONFIG": {
+   "adaptive_parsimony_scaling": 20.0,
+   "binary_operators": "['+', '-', '*', '/']",
+   "deterministic": true,
+   "maxsize": 20,
+   "nested_constraints": "{'sqrt': {'sqrt': 0, 'log': 0}, 'log': {'log': 0, 'sqrt': 0}, 'inv': {'inv': 0}, 'square': {'square': 0, 'cube': 0}, 'cube': {'cube': 0, 'square': 0}}",
+   "niterations": 40,
+   "parallelism": "serial",
+   "parsimony": 0.0032,
+   "population_size": 33,
+   "populations": 15,
+   "progress": false,
+   "unary_operators": "['sqrt', 'log', 'square', 'cube', 'inv']",
+   "verbosity": 0
+  }
+ },
+ "git": {
+  "branch": "claude/muru-final-holdout-experiment-d75e7d",
+  "clean": false,
+  "head": "57bf5c86f37ad89e5f63c4d834dfbe2ba56629a2",
+  "status_porcelain": "?? scripts/fh_00_freeze.py"
+ },
+ "phase": "A_METHOD_FREEZE",
+ "purpose": "Frozen-method identity recorded BEFORE the fresh holdout population exists.",
+ "versions": {
+  "julia": "not on PATH (juliacall-managed)",
+  "numpy": "2.5.2",
+  "pysr": "1.5.10",
+  "python": "3.13.12",
+  "sympy": "1.14.0"
+ }
+}

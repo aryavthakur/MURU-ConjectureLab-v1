@@ -1,0 +1,158 @@
+{
+ "declared_before": "any fresh-holdout world data or search output exists",
+ "deployment_gate": {
+  "dev_fit_fpr": 0.043478260869565216,
+  "dev_fit_sensitivity": 1.0,
+  "fit_population": "full development population, architecture A_CURRENT_FINAL",
+  "fitting_rule": "accopt_selectors.fit_gate \u2014 maximise positive sensitivity subject to null FPR <= 5%",
+  "form": "CURRENT_GATE",
+  "frozen_before_holdout_exists": true,
+  "n_null": 230,
+  "n_positive": 56,
+  "t1": 0.595,
+  "t2": 0.2
+ },
+ "frozen_architecture_identity": {
+  "cas": "SymPy only",
+  "excluded": [
+   "STRUCTURAL_MODAL",
+   "CONSTANT_REFIT",
+   "ROBUST_GENERALIZATION",
+   "SMALL_FAMILY_RANKER",
+   "MONOTONIC_LINEAR_GATE",
+   "SAFE_EXP",
+   "Maxima",
+   "Giac",
+   "Wolfram"
+  ],
+  "family_aggregation": "B2 validation-quality-weighted family vote",
+  "grammar": "frozen p3 grammar, SAFE_EXP NOT adopted",
+  "null_gate": "CURRENT_GATE: REPORT iff median_seed_best_r2 >= t1 AND selection_fraction >= t2",
+  "recovery": "corrected production parser (muru.objval.recovery)",
+  "representative": "R1 highest-validation-R2 representative"
+ },
+ "generation_namespace": {
+  "generator": "muru.objval.generators2 (ov-gen-1.0.0), UNCHANGED",
+  "note": "Fresh generator seeds arise because world_seed2 hashes the replicate index; the FH replicate namespace has never been used.",
+  "replicate_base": 700000,
+  "truth": "muru.objval.truth2, UNCHANGED",
+  "world_id_prefix": "FH|"
+ },
+ "method_freeze_sha256": "dcd9cba1847344ca06c84e883d8912858b79c578006f5ba856e2be132170d987",
+ "no_post_holdout_tuning_rule": "Once any holdout scientific outcome is visible: no model, selector, gate, threshold, tolerance, grammar, operator or search-budget change; no special handling of failed worlds; no second holdout; no rerun of poor-looking worlds. The only permissible rerun is a same world/seed identity that failed for an objective computational reason.",
+ "phase": "B_PREDECLARED_PLAN",
+ "plan_version": "fh-plan-1.0.0",
+ "primary_metrics": [
+  "positive support recovery \u2014 ungated",
+  "positive support recovery \u2014 end-to-end after report gate",
+  "positive family recovery \u2014 ungated",
+  "positive family recovery \u2014 end-to-end",
+  "G1A family recovery",
+  "G1B family recovery",
+  "G1C family recovery",
+  "null false-positive rate",
+  "sensitivity",
+  "specificity",
+  "balanced accuracy",
+  "positive-vs-null ROC AUC",
+  "computational failure rate"
+ ],
+ "sample_composition": {
+  "by_block": {
+   "G1A": 6,
+   "G1B": 34,
+   "G1C": 8,
+   "G2": 3,
+   "G3": 3,
+   "G4": 12,
+   "G4M": 8,
+   "G5": 3,
+   "GC": 2,
+   "GRT": 1,
+   "NCAL": 16
+  },
+  "by_category": {
+   "null": 36,
+   "positive": 48,
+   "refusal": 12
+  },
+  "n_worlds": 96,
+  "null_detail": {
+   "G4": 12,
+   "G4M": 8,
+   "NCAL_constructions": [
+    "target_permuted_across_compounds",
+    "target_permuted_across_energy_within_compound",
+    "descriptors_permuted_across_compounds",
+    "gaussian_targets_with_observed_variance"
+   ],
+   "NCAL_per_construction": 4
+  },
+  "positive_detail": {
+   "G1A": {
+    "adverse": 2,
+    "low": 2,
+    "moderate": 2
+   },
+   "G1B": {
+    "adverse": 10,
+    "low": 10,
+    "moderate": 14
+   },
+   "G1C": {
+    "moderate": 8
+   }
+  },
+  "refusal_detail": {
+   "G2": 3,
+   "G3": 3,
+   "G5": 3,
+   "GC_cutoffs_da": [
+    30.0,
+    80.0
+   ],
+   "GC_per_cutoff": 1,
+   "GRT": 1
+  }
+ },
+ "search_configuration": "frozen PYSR_CONFIG, unmodified",
+ "search_seed_policy": {
+  "band_min": 2110000000,
+  "band_theoretical_max": 2146999905,
+  "base": 2110000000,
+  "derivation": "FH_SEED_BASE + (sha256(world_id)[:4] mod FH_SEED_SPREAD) * 100 + k, k = 0..5",
+  "int32_max": 2147483647,
+  "n_seeds_per_world": 6,
+  "ov_band_theoretical_max": 2100000029,
+  "p3_band_theoretical_max": 1678621529,
+  "spread": 370000
+ },
+ "searches_per_world": 6,
+ "secondary_metrics": [
+  "G1B low / moderate / adverse family recovery",
+  "exact / form recovery",
+  "refusal-challenge behaviour",
+  "representative validation R2 distributions",
+  "positive vs null R2 distributions",
+  "recovered equations",
+  "failure taxonomy"
+ ],
+ "success_rubric": {
+  "MODERATE_GENERALIZATION_EVIDENCE": "broad signal and general discrimination clearly remain but at least one strong criterion fails",
+  "NO_EVIDENCE_OF_GENERALIZATION": "both symbolic recovery and null discrimination materially collapse",
+  "STRONG_GENERALIZATION_EVIDENCE": {
+   "G1B_family_ge": 0.75,
+   "and": "no major unexplained catastrophic collapse in a scientifically important stratum",
+   "computational_failure_rate_le": 0.02,
+   "family_recovery_ge": 0.7,
+   "null_fpr_le": 0.05,
+   "roc_auc_ge": 0.95,
+   "support_end_to_end_ge": 0.9
+  },
+  "WEAK_UNSTABLE_GENERALIZATION_EVIDENCE": "performance becomes strongly regime-dependent or deteriorates substantially relative to development",
+  "status": "descriptive exploratory labels, not confirmatory criteria"
+ },
+ "time_budget_fallback": "If, BEFORE any scoring, 96x6 cannot finish inside the 120-minute ceiling, reduce the WORLD population to 84 then 72 using fh_lib.reduction_rank (sha256 of the frozen world id) within each block, preserving all 6 seeds per retained world and the block proportions. Never driven by any scientific output.",
+ "total_planned_searches": 576,
+ "truth_quarantine": "fresh_holdout_truth_manifest.json is written at generation time and is not opened by any discovery, selection, gating or prediction code. It is opened once, after fresh_holdout_predictions_frozen.json is written and hashed."
+}
