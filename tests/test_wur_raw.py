@@ -1,5 +1,14 @@
+import pytest
+
 from muru.io.wur_raw import LIBRARY_DB_FILES, RAW_COLUMNS, read_mzvault_db
 from fixtures.wur_db import make_fixture_db
+
+
+def test_read_mzvault_db_raises_on_missing_file(tmp_path):
+    """A missing release file should raise FileNotFoundError, not create an empty .db."""
+    missing_path = tmp_path / "nonexistent.db"
+    with pytest.raises(FileNotFoundError):
+        read_mzvault_db(missing_path, "WUR", "POS")
 
 
 def test_read_mzvault_db_returns_one_row_per_spectrum(tmp_path):

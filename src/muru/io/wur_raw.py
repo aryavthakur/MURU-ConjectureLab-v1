@@ -39,6 +39,8 @@ LIBRARY_DB_FILES = {
 
 def read_mzvault_db(path: Path, source_library: str,
                      source_polarity_file: str) -> pd.DataFrame:
+    if not path.exists():
+        raise FileNotFoundError(f"WUR release file missing: {path}")
     con = sqlite3.connect(str(path))
     try:
         df = pd.read_sql_query(
