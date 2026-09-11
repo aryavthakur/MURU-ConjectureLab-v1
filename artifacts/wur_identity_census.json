@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-09-11T23:05:37.012651+00:00",
+  "polarities": {
+    "POS": {
+      "n_trajectories": 1010,
+      "n_scaffold_groups": 610,
+      "n_from_wfsr_food_safety": 947,
+      "n_in_lcsb_dev": 165,
+      "n_in_lcsb_sealed": 41,
+      "adduct_counts": {
+        "[M+H]+": 972,
+        "[M+NH4]+": 22,
+        "[M+Na]+": 8,
+        "[M]+": 8
+      }
+    },
+    "NEG": {
+      "n_trajectories": 241,
+      "n_scaffold_groups": 178,
+      "n_from_wfsr_food_safety": 220,
+      "n_in_lcsb_dev": 10,
+      "n_in_lcsb_sealed": 1,
+      "adduct_counts": {
+        "[M-H]-": 241
+      }
+    }
+  }
+}

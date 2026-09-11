@@ -1,5 +1,6 @@
 """Identity-only gates for WUR spectra, per the known defects recorded in
 spec §3.2 -- gated here rather than discovered downstream."""
+import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Descriptors, inchi
 
@@ -85,3 +86,61 @@ def infer_adduct(smiles: str, precursor_mass: float,
         if ppm <= ADDUCT_PPM_TOL:
             matches.append(adduct)
     return matches[0] if len(matches) == 1 else None
+
+
+def build_qualifying_trajectories(raw: pd.DataFrame, polarity: str) -> pd.DataFrame:
+    """Reduce raw per-spectrum rows (any number of source libraries, one
+    nominal polarity) to one row per qualifying trajectory.
+
+    A trajectory qualifies if its HCD spectra, on the compound's own
+    Polarity field (not the source file name), cover the full six-point
+    ladder with no stepped or off-ladder residue, its deposited SMILES
+    verifies against its own InChIKey, and exactly one adduct explains its
+    precursor mass. Duplicate/cross-library deposits of the same connectivity
+    key are merged into one row here, not dropped -- this is where defect
+    "62/61 duplicate combos" (spec §3.2) is resolved.
+
+    Returns: connectivity_key, smiles (lexicographically first deposited
+    SMILES for that key -- design rule D1), adduct, polarity, n_source_rows,
+    source_libraries (sorted tuple).
+    """
+    df = raw[
+        (raw["fragmentation_mode"] == "HCD")
+        & (raw["polarity"] == polarity)
+        & raw["smiles"].notna()
+        & raw["inchikey"].notna()
+    ].copy()
+
+    df["energy"] = (
+        df["collision_energy_raw"].map(normalize_collision_energy).map(snap_to_ladder)
+    )
+    df = df[df["energy"].notna()].copy()
+
+    df["identity_ok"] = pd.array(
+        [verify_identity(s, k) for s, k in zip(df["smiles"], df["inchikey"])],
+        dtype=bool,
+    )
+    df = df[df["identity_ok"]].copy()
+    df["connectivity_key"] = df["inchikey"].map(connectivity_key)
+
+    df["adduct"] = [
+        infer_adduct(s, m, polarity)
+        for s, m in zip(df["smiles"], df["precursor_mass"])
+    ]
+    df = df[df["adduct"].notna()]
+
+    columns = ["connectivity_key", "smiles", "adduct", "polarity",
+               "n_source_rows", "source_libraries"]
+    rows = []
+    for key, grp in df.groupby("connectivity_key"):
+        if set(grp["energy"]) != set(LADDER_ENERGIES):
+            continue
+        rows.append({
+            "connectivity_key": key,
+            "smiles": min(grp["smiles"]),
+            "adduct": grp["adduct"].value_counts().idxmax(),
+            "polarity": polarity,
+            "n_source_rows": len(grp),
+            "source_libraries": tuple(sorted(grp["source_library"].unique())),
+        })
+    return pd.DataFrame(rows, columns=columns)
