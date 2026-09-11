@@ -2,6 +2,8 @@
 lexicographically-first deposited SMILES) is already applied upstream, in
 wur_census.load_annotated_trajectories -- this module applies D2-D5 to the
 result."""
+from datetime import datetime, timezone
+
 import numpy as np
 import pandas as pd
 
@@ -58,3 +60,41 @@ def partition(annotated: dict[str, pd.DataFrame],
     neg = annotated["NEG"].copy()
     neg["side"] = "WUR-DEV"                            # D5
     return {"POS": pos, "NEG": neg}
+
+
+def build_split_manifest(partitioned: dict[str, pd.DataFrame]) -> dict:
+    manifest = {"seed": SEED, "created_utc": datetime.now(timezone.utc).isoformat(),
+                "polarities": {}}
+    for polarity_file, df in partitioned.items():
+        entry = {
+            "n_trajectories": int(len(df)),
+            "n_scaffold_groups": int(df["scaffold_group"].nunique()) if len(df) else 0,
+        }
+        for side in ("WUR-DEV", "WUR-SEALED"):
+            sub = df[df["side"] == side]
+            entry[side] = {
+                "n_trajectories": int(len(sub)),
+                "n_scaffold_groups": int(sub["scaffold_group"].nunique()) if len(sub) else 0,
+            }
+        if polarity_file == "POS":
+            entry["sealed_floor_check"] = check_sealed_floor(
+                df[df["side"] == "WUR-SEALED"])
+        manifest["polarities"][polarity_file] = entry
+    return manifest
+
+
+def build_sealed_partition(pos_partitioned: pd.DataFrame) -> dict:
+    sealed = pos_partitioned[pos_partitioned["side"] == "WUR-SEALED"]
+    return {
+        "purpose": "SEALED WUR external-validation partition. Do not open "
+                   "during Stage 2 development fitting.",
+        "constructed_utc": datetime.now(timezone.utc).isoformat(),
+        "seed": SEED,
+        "selection_unit": "bemis_murcko_scaffold_group",
+        "n_scaffold_groups": int(sealed["scaffold_group"].nunique()),
+        "n_compounds": int(len(sealed)),
+        "connectivity_keys": sorted(sealed["connectivity_key"].tolist()),
+        "disclosure": "These WUR compounds are reserved for one look at a "
+                      "candidate frozen on development (Stage 3). Not read "
+                      "for any mu or descriptor value before that freeze.",
+    }
