@@ -1,0 +1,52 @@
+{
+ "energy_map": {
+  "a": -5.95552603907965,
+  "b": 0.8618030610784555,
+  "direction": "T(E) = a + b*E, applied to the LCSB nominal energy to give the WUR nominal energy at which WUR is read",
+  "mapped_targets": {
+   "30.0": 19.898565793274013,
+   "45.0": 32.82561170945085,
+   "60.0": 45.75265762562768,
+   "75.0": 58.67970354180451,
+   "90.0": 71.60674945798135
+  },
+  "pooled_rungs": [
+   30.0,
+   45.0,
+   60.0,
+   75.0,
+   90.0
+  ]
+ },
+ "lcsb_dev": {
+  "keys_sha256": "6bc8eeeb3d0c768cd9e346e34bc201d5bc87b0fe19dcd0599c150c712984c82c",
+  "n_keys": 439,
+  "n_scaffold_groups": 286,
+  "rungs_per_key": {
+   "5": 24,
+   "6": 415
+  }
+ },
+ "pooled": {
+  "n_both_lcsb_kept": 124,
+  "n_lcsb_keys": 439,
+  "n_pooled_keys": 791,
+  "n_wur_keys": 476
+ },
+ "population_b_in_analysis": 124,
+ "wur_dev_analysis": {
+  "descriptor_failures": [],
+  "keys_sha256": "6601a696ed89bbd80370ecc67bd252ff9a2fd47265c1f78c5f04626358f22b28",
+  "n_cells": 2856,
+  "n_keys": 476,
+  "n_scaffold_groups": 241,
+  "n_spectra": 5800,
+  "spectra_per_cell": {
+   "1": 66,
+   "2": 2710,
+   "3": 18,
+   "4": 56,
+   "6": 6
+  }
+ }
+}
