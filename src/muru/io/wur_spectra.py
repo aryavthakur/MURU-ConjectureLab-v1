@@ -13,6 +13,8 @@ import sqlite3
 from collections import Counter
 from pathlib import Path
 
+import json
+
 import numpy as np
 import pandas as pd
 
@@ -197,10 +199,52 @@ def spectrum_mu(mz: np.ndarray, intensity: np.ndarray,
     return float(value)
 
 
+class SealedReadError(RuntimeError):
+    """A sealed connectivity key was about to have its peaks decoded."""
+
+
+def sealed_keys_on_disk() -> set[str]:
+    """The WUR sealed key list, read from the tracked artifact if present.
+
+    Identity only. An absent artifact (unit tests on synthetic fixtures, a
+    clone before Stage 0) yields an empty set, which guards nothing and
+    hides nothing: the artifact's presence is asserted by every Stage 2
+    population loader before this function is relied upon.
+    """
+    path = Path(__file__).resolve().parents[3] / "artifacts" / "wur_sealed_partition.json"
+    if not path.exists():
+        return set()
+    return set(json.loads(path.read_text())["connectivity_keys"])
+
+
+def assert_no_sealed_key(accepted: pd.DataFrame, *, allow_sealed: bool = False,
+                         sealed: set[str] | None = None) -> None:
+    """Raise before any blob is read if `accepted` carries a sealed key.
+
+    `allow_sealed=True` is the single, explicit Stage 3 override; nothing in
+    Stage 2 passes it.
+    """
+    if allow_sealed:
+        return
+    sealed = sealed_keys_on_disk() if sealed is None else sealed
+    if not sealed:
+        return
+    hit = sorted(set(accepted["connectivity_key"]) & sealed)
+    if hit:
+        raise SealedReadError(
+            f"{len(hit)} sealed connectivity key(s) reached the mu builder; "
+            f"refusing to decode any peak. Stage 3 must pass allow_sealed=True "
+            f"explicitly.")
+
+
 def build_mu_table(accepted: pd.DataFrame,
-                   data_dir: Path) -> tuple[pd.DataFrame, list[dict]]:
+                   data_dir: Path, *, allow_sealed: bool = False
+                   ) -> tuple[pd.DataFrame, list[dict]]:
     """One base-cell mu per (connectivity_key, ce_numeric), over exactly the
     spectra in `accepted`.
+
+    Refuses to run if a WUR-SEALED key is present unless `allow_sealed` is
+    passed explicitly (Stage 3 only). The check precedes every blob read.
 
     Duplicate deposits at the same (key, energy) collapse by the
     preregistered aggregator, the median. The contributing spectrum ids and
@@ -211,6 +255,7 @@ def build_mu_table(accepted: pd.DataFrame,
     (key, energy) whose every spectrum is defective yields no row, and its
     absence is visible both in the census and in the per-energy n.
     """
+    assert_no_sealed_key(accepted, allow_sealed=allow_sealed)
     census: list[dict] = []
     per_spectrum = []
 
