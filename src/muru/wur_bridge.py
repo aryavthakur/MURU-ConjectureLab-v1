@@ -13,11 +13,15 @@ from collections.abc import Iterable
 
 import numpy as np
 import pandas as pd
+from scipy.interpolate import PchipInterpolator
+from scipy.optimize import differential_evolution
 from scipy.stats import spearmanr
 
 from muru.wur_bridge_constants import (
-    LADDER_ENERGIES, MEDIAN_ABS_DELTA_MAX, MIN_PAIRS_FOR_CORRELATION,
-    MIN_PASSING_ENERGIES, SPEARMAN_MIN,
+    ALIGNMENT_A_BOUNDS, ALIGNMENT_B_BOUNDS, ALIGNMENT_MAXITER,
+    ALIGNMENT_POLISH, ALIGNMENT_TOL, LADDER_ENERGIES, MEDIAN_ABS_DELTA_MAX,
+    MIN_PAIRS_FOR_CORRELATION, MIN_PASSING_ENERGIES, OFFSET_MAX, SEED,
+    SPEARMAN_MIN,
 )
 
 
@@ -97,3 +101,116 @@ def per_energy_statistics(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
 def rule_passes(stats: list[dict]) -> bool:
     """The frozen rule: both conditions on at least 5 of the 6 energies."""
     return sum(1 for s in stats if s["passes"]) >= MIN_PASSING_ENERGIES
+
+
+def alignment_branch_applies(stats: list[dict]) -> bool:
+    """Whether the base rule failed *only* through a consistent offset.
+
+    Every condition is read off the raw pre-alignment statistics, before any
+    map is fitted. All four must hold: the base rule failed; the median
+    signed delta has the same sign at every energy; its magnitude is within
+    OFFSET_MAX everywhere; and the correlation is at or above SPEARMAN_MIN
+    everywhere. Anything else is NO_POOL and no map is fitted at all.
+    """
+    if rule_passes(stats):
+        return False
+    signed = [s["median_signed_delta"] for s in stats]
+    rhos = [s["spearman_rho"] for s in stats]
+    if any(v is None for v in signed) or any(r is None for r in rhos):
+        return False
+    if not (all(v > 0 for v in signed) or all(v < 0 for v in signed)):
+        return False
+    if any(abs(v) > OFFSET_MAX for v in signed):
+        return False
+    return all(r >= SPEARMAN_MIN for r in rhos)
+
+
+def interpolate_ladder(energies: np.ndarray, values: np.ndarray,
+                       targets: np.ndarray) -> np.ndarray:
+    """Read a measured ladder at arbitrary energies, by PCHIP.
+
+    Shape-preserving piecewise cubic Hermite interpolation, knots at the
+    measured energies exactly. There is no knot selection and nothing here
+    is fitted: this is a deterministic readout rule for a curve that has
+    already been measured, which is why it can sit alongside the fitted
+    affine map without the two being the same kind of object.
+
+    Targets outside the measured range are CLAMPED to the end knots. The
+    interpolator never extrapolates.
+    """
+    order = np.argsort(energies)
+    x, y = np.asarray(energies)[order], np.asarray(values)[order]
+    interpolator = PchipInterpolator(x, y, extrapolate=False)
+    clamped = np.clip(np.asarray(targets, dtype=float), x[0], x[-1])
+    return interpolator(clamped)
+
+
+def apply_energy_map(wur_mu: pd.DataFrame, a: float,
+                     b: float) -> tuple[pd.DataFrame, int]:
+    """Re-read every WUR ladder at T(E) = a + b*E, for E on the ladder.
+
+    Returns the re-read table, keyed by the LCSB energy E it is to be
+    compared at, and the number of (compound, energy) cells whose mapped
+    energy fell outside the ladder and was clamped.
+    """
+    targets = a + b * np.asarray(LADDER_ENERGIES, dtype=float)
+    n_clamped = 0
+    rows = []
+    for key, grp in wur_mu.groupby("connectivity_key", sort=True):
+        grp = grp.sort_values("ce_numeric")
+        energies = grp["ce_numeric"].to_numpy()
+        values = interpolate_ladder(energies, grp["mu"].to_numpy(), targets)
+        n_clamped += int(np.sum((targets < energies[0]) | (targets > energies[-1])))
+        rows += [{"connectivity_key": key, "ce_numeric": float(e), "mu": float(v)}
+                 for e, v in zip(LADDER_ENERGIES, values)]
+    return pd.DataFrame(rows, columns=["connectivity_key", "ce_numeric", "mu"]), n_clamped
+
+
+def _alignment_objective(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
+                         population_b: list[str], a: float, b: float) -> float:
+    """Sum over the six energies of |per-energy median signed delta|.
+
+    This targets exactly the failure the branch exists for, a consistent
+    offset, rather than overall scatter, which no energy map can fix.
+    """
+    mapped, _ = apply_energy_map(wur_mu, a, b)
+    total = 0.0
+    for stat in per_energy_statistics(mapped, lcsb_mu, population_b):
+        if stat["median_signed_delta"] is None:
+            return float("inf")
+        total += abs(stat["median_signed_delta"])
+    return total
+
+
+def fit_energy_map(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
+                   population_b: list[str]) -> dict:
+    """The single monotone affine energy map T(E) = a + b*E, b > 0.
+
+    Fitted on population B alone, which is already exposed on both sides, by
+    differential evolution at the frozen seed inside the frozen box. Two
+    parameters, one fit, no restarts. Deterministic.
+    """
+    result = differential_evolution(
+        lambda p: _alignment_objective(wur_mu, lcsb_mu, population_b, p[0], p[1]),
+        bounds=[ALIGNMENT_A_BOUNDS, ALIGNMENT_B_BOUNDS],
+        seed=SEED, tol=ALIGNMENT_TOL, maxiter=ALIGNMENT_MAXITER,
+        polish=ALIGNMENT_POLISH,
+    )
+    a, b = float(result.x[0]), float(result.x[1])
+    return {
+        "form": "T(E) = a + b*E, applied to the LCSB nominal energy to give "
+                "the WUR nominal energy at which WUR is read",
+        "a": a,
+        "b": b,
+        "objective": float(result.fun),
+        "objective_definition": "sum over the six ladder energies of the "
+                                "absolute per-energy median signed delta",
+        "interpolation": "PCHIP on each compound's own six-point WUR ladder, "
+                         "knots at the ladder rungs, clamped at the ends, "
+                         "never extrapolated",
+        "optimizer": "scipy.optimize.differential_evolution",
+        "seed": SEED,
+        "polish": ALIGNMENT_POLISH,
+        "bounds": {"a": list(ALIGNMENT_A_BOUNDS), "b": list(ALIGNMENT_B_BOUNDS)},
+        "converged": bool(result.success),
+    }

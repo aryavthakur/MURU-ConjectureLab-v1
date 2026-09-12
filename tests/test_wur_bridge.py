@@ -3,7 +3,8 @@ import pandas as pd
 import pytest
 
 from muru.wur_bridge import (
-    build_population_b, per_energy_statistics, rule_passes,
+    alignment_branch_applies, apply_energy_map, build_population_b,
+    fit_energy_map, interpolate_ladder, per_energy_statistics, rule_passes,
 )
 
 LADDER = [15.0, 30.0, 45.0, 60.0, 75.0, 90.0]
@@ -204,3 +205,140 @@ def test_a_constant_mu_vector_gives_a_null_correlation_not_a_number():
         assert s["passes"] is False
         assert s["median_abs_delta"] is not None
     assert rule_passes(stats) is False
+
+
+def _stat(energy, signed, rho):
+    return {"ce_numeric": energy, "n": 30, "median_signed_delta": signed,
+            "median_abs_delta": abs(signed), "spearman_rho": rho,
+            "passes": abs(signed) <= 0.05 and rho >= 0.80}
+
+
+def test_branch_applies_to_a_consistent_within_tolerance_offset():
+    stats = [_stat(e, 0.09, 0.95) for e in LADDER]
+    assert alignment_branch_applies(stats) is True
+
+
+def test_branch_does_not_apply_when_signs_disagree():
+    stats = [_stat(e, 0.09, 0.95) for e in LADDER[:5]] + [_stat(90.0, -0.09, 0.95)]
+    assert alignment_branch_applies(stats) is False
+
+
+def test_branch_does_not_apply_when_an_offset_exceeds_the_cap():
+    stats = [_stat(e, 0.09, 0.95) for e in LADDER[:5]] + [_stat(90.0, 0.16, 0.95)]
+    assert alignment_branch_applies(stats) is False
+
+
+def test_branch_does_not_apply_when_correlation_is_weak_anywhere():
+    stats = [_stat(e, 0.09, 0.95) for e in LADDER[:5]] + [_stat(90.0, 0.09, 0.79)]
+    assert alignment_branch_applies(stats) is False
+
+
+def test_branch_does_not_apply_when_the_base_rule_already_passed():
+    stats = [_stat(e, 0.01, 0.99) for e in LADDER]
+    assert alignment_branch_applies(stats) is False
+
+
+def test_branch_does_not_apply_when_an_energy_has_no_pairs():
+    stats = [_stat(e, 0.09, 0.95) for e in LADDER[:5]] + [
+        {"ce_numeric": 90.0, "n": 0, "median_signed_delta": None,
+         "median_abs_delta": None, "spearman_rho": None, "passes": False}]
+    assert alignment_branch_applies(stats) is False
+
+
+# -- interpolation ---------------------------------------------------------
+
+def test_interpolate_ladder_reproduces_the_knots_exactly():
+    values = np.array([1.0, 0.9, 0.7, 0.5, 0.35, 0.25])
+    out = interpolate_ladder(np.array(LADDER), values, np.array(LADDER))
+    assert np.allclose(out, values)
+
+
+def test_interpolate_ladder_is_monotone_between_monotone_knots():
+    values = np.array([1.0, 0.9, 0.7, 0.5, 0.35, 0.25])
+    targets = np.linspace(15.0, 90.0, 200)
+    out = interpolate_ladder(np.array(LADDER), values, targets)
+    assert np.all(np.diff(out) <= 1e-12)
+
+
+def test_interpolate_ladder_never_overshoots_its_knots():
+    values = np.array([1.0, 0.9, 0.7, 0.5, 0.35, 0.25])
+    out = interpolate_ladder(np.array(LADDER), values,
+                             np.linspace(15.0, 90.0, 200))
+    assert out.max() <= values.max() + 1e-12
+    assert out.min() >= values.min() - 1e-12
+
+
+def test_interpolate_ladder_clamps_instead_of_extrapolating():
+    values = np.array([1.0, 0.9, 0.7, 0.5, 0.35, 0.25])
+    out = interpolate_ladder(np.array(LADDER), values, np.array([-5.0, 200.0]))
+    assert out[0] == pytest.approx(values[0])
+    assert out[1] == pytest.approx(values[-1])
+
+
+# -- the map ---------------------------------------------------------------
+
+def test_apply_energy_map_counts_cells_clamped_at_the_ladder_ends():
+    keys = _keys(5)
+    mapped, n_clamped = apply_energy_map(_mu_frame(keys), a=20.0, b=1.0)
+    # T(90) = 110 and T(75) = 95 are above the ladder for all 5 compounds.
+    assert n_clamped == 10
+
+
+def test_apply_energy_map_with_the_identity_changes_nothing():
+    keys = _keys(5)
+    frame = _mu_frame(keys)
+    mapped, n_clamped = apply_energy_map(frame, a=0.0, b=1.0)
+    assert n_clamped == 0
+    merged = frame.merge(mapped, on=["connectivity_key", "ce_numeric"],
+                         suffixes=("_in", "_out"))
+    assert np.allclose(merged["mu_in"], merged["mu_out"])
+
+
+def test_fit_energy_map_recovers_the_identity_when_the_corpora_match():
+    """With identical corpora the global optimum is T(E) = E exactly, and it
+    sits interior to the frozen box, so this pins that the fitter finds a
+    known reachable optimum rather than merely improving on its start point.
+    mu is strictly decreasing in E here, so J = 0 forces T(E) = E at all six
+    rungs, which forces a = 0 and b = 1: the minimiser is unique."""
+    keys = _keys(30)
+    frame = _mu_frame(keys, seed=13)
+    fit = fit_energy_map(frame, frame, keys)
+    assert fit["objective"] < 1e-6
+    assert fit["a"] == pytest.approx(0.0, abs=0.5)
+    assert fit["b"] == pytest.approx(1.0, abs=0.02)
+    assert fit["converged"] is True
+
+
+def test_the_fitted_map_is_never_worse_than_doing_nothing():
+    """The honest property of any fit: whatever it returns, it must not score
+    worse on its own objective than the identity map, which is always
+    available to it because a = 0, b = 1 is interior to the frozen box."""
+    keys = _keys(30)
+    lcsb = _mu_frame(keys, seed=17)
+    wur = _mu_frame(keys, seed=17, offsets={e: 0.08 for e in LADDER})
+    fit = fit_energy_map(wur, lcsb, keys)
+    identity_objective = sum(
+        abs(s["median_signed_delta"])
+        for s in per_energy_statistics(wur, lcsb, keys)
+    )
+    assert fit["objective"] <= identity_objective + 1e-9
+
+
+def test_fit_energy_map_is_deterministic_at_the_frozen_seed():
+    keys = _keys(20)
+    lcsb = _mu_frame(keys, seed=5)
+    wur = _mu_frame(keys, seed=5, offsets={e: 0.08 for e in LADDER})
+    first = fit_energy_map(wur, lcsb, keys)
+    second = fit_energy_map(wur, lcsb, keys)
+    assert first["a"] == second["a"]
+    assert first["b"] == second["b"]
+
+
+def test_fit_energy_map_stays_inside_the_frozen_box():
+    from muru.wur_bridge_constants import ALIGNMENT_A_BOUNDS, ALIGNMENT_B_BOUNDS
+    keys = _keys(20)
+    lcsb = _mu_frame(keys, seed=7)
+    wur = _mu_frame(keys, seed=7, offsets={e: 0.12 for e in LADDER})
+    fit = fit_energy_map(wur, lcsb, keys)
+    assert ALIGNMENT_A_BOUNDS[0] <= fit["a"] <= ALIGNMENT_A_BOUNDS[1]
+    assert ALIGNMENT_B_BOUNDS[0] <= fit["b"] <= ALIGNMENT_B_BOUNDS[1]
