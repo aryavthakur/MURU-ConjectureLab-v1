@@ -7,6 +7,7 @@ from muru.wur_bridge import (
     decide, fit_energy_map, interpolate_ladder, per_energy_statistics,
     rule_passes,
 )
+from muru.wur_bridge_constants import MEDIAN_ABS_DELTA_MAX
 
 LADDER = [15.0, 30.0, 45.0, 60.0, 75.0, 90.0]
 
@@ -460,3 +461,61 @@ def test_decide_is_json_serializable():
     keys = _keys(20)
     frame = _mu_frame(keys, seed=71)
     json.dumps(decide(frame, frame, keys))
+
+
+def test_a_genuine_energy_shift_reaches_pool_after_energy_alignment():
+    """The only end-to-end exercise of the alignment branch.
+
+    A constant additive offset on mu cannot be closed by a map on the energy
+    axis, so the other branch test can only reach NO_POOL. This plants a real
+    axis shift instead: WUR fragments as though its dial read 15 NCE lower.
+    The pre-alignment delta is about 0.072 at every energy, above
+    MEDIAN_ABS_DELTA_MAX so the base rule fails, below OFFSET_MAX and at
+    rho = 1.0 so the branch is entered. T(E) = E + 15 closes five rungs
+    exactly; the sixth maps off the top of the ladder and clamps, so it still
+    fails. Five of six is exactly MIN_PASSING_ENERGIES, which is the first
+    place in this suite where that allowance does real work.
+    """
+    keys = _keys(30)
+    rng = np.random.default_rng(29)
+    levels = {k: 0.3 + 0.6 * rng.random() for k in keys}
+
+    def _shifted(shift):
+        return pd.DataFrame([
+            {"connectivity_key": k, "ce_numeric": e,
+             "mu": levels[k] * (1.0 - 0.008 * (e - shift - 15.0))}
+            for k in keys for e in LADDER
+        ])
+
+    lcsb = _shifted(0.0)
+    wur = _shifted(15.0)
+    result = decide(wur, lcsb, keys)
+
+    assert result["outcome"] == "POOL_AFTER_ENERGY_ALIGNMENT"
+
+    # The raw statistics survive the transform, as the preregistration
+    # requires, and they still show the failure that triggered the branch.
+    pre = result["pre_alignment"]
+    assert pre["rule_passes"] is False
+    assert all(s["median_signed_delta"] > MEDIAN_ABS_DELTA_MAX
+               for s in pre["per_energy"])
+    assert all(s["spearman_rho"] == pytest.approx(1.0)
+               for s in pre["per_energy"])
+
+    # One fit, in the direction that closes the gap, with the clamped cells
+    # counted over population B.
+    fit = result["alignment"]
+    assert fit is not None
+    assert fit["a"] > 5.0
+    assert fit["n_clamped_cells"] == len(keys)   # E = 90 only, one per compound
+
+    # The single permitted re-evaluation passes, on exactly five of six.
+    post = result["post_alignment"]
+    assert post["rule_passes"] is True
+    assert sum(1 for s in post["per_energy"] if s["passes"]) == 5
+    assert post["per_energy"][-1]["passes"] is False   # E = 90 clamped
+
+    # This branch is the one the artifact task has never serialized.
+    import json
+    text = json.dumps(result)
+    assert "NaN" not in text and "Infinity" not in text

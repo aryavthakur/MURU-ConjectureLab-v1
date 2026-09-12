@@ -24,6 +24,16 @@ from muru.wur_bridge_constants import (
     SPEARMAN_MIN,
 )
 
+# Tolerance, in NCE units, for calling a mapped energy "outside the ladder"
+# when COUNTING clamped cells. It affects the reported count only. The clamp
+# itself is unconditional and unchanged, and no outcome depends on this
+# value: a target 1e-9 past the last rung is clipped by 1e-9, which moves the
+# interpolated mu by nothing. Without it the count reports float noise in the
+# fitted map as real clamping. 1e-6 NCE is four orders of magnitude below the
+# 0.01 tolerance Stage 0 uses to snap deposited energies, and three orders
+# above the ~1e-9 residual differential evolution leaves at its optimum.
+CLAMP_COUNT_TOL = 1e-6
+
 
 def build_population_b(wur_dev_keys: Iterable[str],
                        lcsb_dev_keys: Iterable[str],
@@ -174,7 +184,9 @@ def apply_energy_map(wur_mu: pd.DataFrame, a: float, b: float,
                 f"ladder; an incomplete one would be silently filled by the "
                 f"end clamp.")
         values = interpolate_ladder(energies, grp["mu"].to_numpy(), targets)
-        n_clamped += int(np.sum((targets < energies[0]) | (targets > energies[-1])))
+        n_clamped += int(np.sum(
+            (targets < energies[0] - CLAMP_COUNT_TOL)
+            | (targets > energies[-1] + CLAMP_COUNT_TOL)))
         rows += [{"connectivity_key": key, "ce_numeric": float(e), "mu": float(v)}
                  for e, v in zip(LADDER_ENERGIES, values)]
     return pd.DataFrame(rows, columns=["connectivity_key", "ce_numeric", "mu"]), n_clamped

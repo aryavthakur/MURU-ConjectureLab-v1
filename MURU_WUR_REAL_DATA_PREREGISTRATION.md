@@ -246,7 +246,9 @@ has all six rungs by construction, and this is asserted.
 
 **End behaviour.** `T(E)` is clamped to [15, 90] before interpolation. No
 extrapolation ever occurs. The number of clamped (compound, energy) cells is
-counted and reported.
+counted and reported. A cell counts as clamped only when its mapped energy
+leaves the ladder by more than 1e-6 NCE; see erratum E-2. The clamp itself is
+unconditional and that tolerance changes no outcome.
 
 **Objective.** Minimize
 
@@ -434,3 +436,21 @@ value existed. Prompted by an independent review of the freeze.
 No numeric threshold that had already been applied to data was changed,
 because none had been applied to data. Section 9's format-probe disclosure is
 unaffected.
+
+### E-2, 2026-09-12, results-blind
+
+Issued before any Stage 1 `mu` was computed. No bridge-gate statistic
+existed. Prompted by an end-to-end test of the alignment branch, which was
+the first exercise of that branch to a successful outcome.
+
+Differential evolution leaves a residual of order 1e-9 at its optimum, so a
+mapped energy that should land exactly on the last rung can land a few
+nanounits past it. The clamped-cell count used a strict comparison and
+therefore reported that float noise as real clamping, doubling the count in
+the planted-shift case from 30 to 60. A cell now counts as clamped only when
+it leaves the ladder by more than 1e-6 NCE.
+
+This changes a reported diagnostic, not a rule. The clamp is unconditional
+and unchanged, the tolerance is four orders of magnitude below the 0.01 Stage
+0 uses to snap deposited energies, and no outcome can depend on it: a target
+clipped by 1e-9 moves the interpolated `mu` by nothing.
