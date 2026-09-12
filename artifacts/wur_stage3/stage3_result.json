@@ -1,0 +1,403 @@
+{
+ "population": {
+  "n_evaluated": 404,
+  "keys_sha256": "6ef8c685493068cc59b776ea852ec9e012c1216f3d92fac5137e1ffe446c2a52",
+  "n_keys": 404,
+  "n_spectra": 5030,
+  "n_cells": 2424,
+  "peak_defect_census": [],
+  "descriptor_failures": [],
+  "spectra_per_cell": {
+   "2": 2156,
+   "1": 138,
+   "4": 106,
+   "10": 12,
+   "3": 12
+  }
+ },
+ "first_sealed_access": {
+  "utc": "2026-09-12T19:55:23Z",
+  "git_head": "69ca1a6a22b6567f728487db7101afb3a6b05767",
+  "git_tree_dirty": false
+ },
+ "arms": {
+  "V1B_RIDGE_TIERA": {
+   "P1": 0.12514071092413145,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.1640168085771184,
+    "45.0": 0.1473313552566673,
+    "60.0": 0.1180443860179417,
+    "75.0": 0.09422966344703983,
+    "90.0": 0.08294118019235394
+   },
+   "S1_per_source": {
+    "WUR": 0.12514071092413145
+   },
+   "S2_descriptor_practical_win": 0.6039603960396039,
+   "S4_catastrophic": 0.10396039603960396,
+   "median_compound_rmse": 0.09764840681417289,
+   "diagnostics": {
+    "alpha": 1.0
+   }
+  },
+  "S2A_FROZEN_PIPELINE": {
+   "P1": 0.1474643004522268,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.19018009611893155,
+    "45.0": 0.16944190150484043,
+    "60.0": 0.14054209407423918,
+    "75.0": 0.11662363995709216,
+    "90.0": 0.10245203263150643
+   },
+   "S1_per_source": {
+    "WUR": 0.1474643004522268
+   },
+   "S2_descriptor_practical_win": 0.5297029702970297,
+   "S4_catastrophic": 0.12623762376237624,
+   "median_compound_rmse": 0.11489183785257986,
+   "diagnostics": {
+    "report": false,
+    "expr": "sqrt(inv(heteroatom_fraction) + ring_count) * inv(total_atom_count)",
+    "gate": {
+     "median_seed_best_r2": 0.43497825170865445,
+     "uq_seed_best_r2": 0.47189362729118745,
+     "selection_fraction": 0.2,
+     "modal_support_freq": 0.36666666666666664
+    },
+    "complexity": 8,
+    "valid_r2": 0.4188212642115111
+   }
+  },
+  "B0_NULL_PROFILE": {
+   "P1": 0.16759015537753202,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.20153753142563233,
+    "45.0": 0.19193415852455453,
+    "60.0": 0.16331401574260862,
+    "75.0": 0.14106167294615968,
+    "90.0": 0.1280872351302568
+   },
+   "S1_per_source": {
+    "WUR": 0.16759015537753202
+   },
+   "S2_descriptor_practical_win": 0.0,
+   "S4_catastrophic": 0.0,
+   "median_compound_rmse": 0.12518254530587652,
+   "diagnostics": {}
+  },
+  "B1_MASS_ONLY_ISOTONIC": {
+   "P1": 0.141954738498782,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.17933561152355812,
+    "45.0": 0.1665906314881897,
+    "60.0": 0.1361096227141914,
+    "75.0": 0.11088532085818391,
+    "90.0": 0.10010322209551313
+   },
+   "S1_per_source": {
+    "WUR": 0.141954738498782
+   },
+   "S2_descriptor_practical_win": 0.5396039603960396,
+   "S4_catastrophic": 0.12128712871287128,
+   "median_compound_rmse": 0.1121411658748814,
+   "diagnostics": {}
+  },
+  "V1A_STABLE_LAW": {
+   "P1": 0.13063210493573843,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.17183690033572963,
+    "45.0": 0.15258043518191125,
+    "60.0": 0.12315028252341445,
+    "75.0": 0.09879158936990083,
+    "90.0": 0.08711632721016223
+   },
+   "S1_per_source": {
+    "WUR": 0.13063210493573843
+   },
+   "S2_descriptor_practical_win": 0.5643564356435643,
+   "S4_catastrophic": 0.07920792079207921,
+   "median_compound_rmse": 0.1055623526420329,
+   "diagnostics": {
+    "c": 3.815555360912229,
+    "p": 0.6379670773489774,
+    "minus_q": -1.3255849983480739
+   }
+  },
+  "V1C_RICH_RIDGE_24": {
+   "P1": 0.12360237160082019,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.16075396272981834,
+    "45.0": 0.14525643185038722,
+    "60.0": 0.11756844312886795,
+    "75.0": 0.0943618193827268,
+    "90.0": 0.08197543548238077
+   },
+   "S1_per_source": {
+    "WUR": 0.12360237160082019
+   },
+   "S2_descriptor_practical_win": 0.6188118811881188,
+   "S4_catastrophic": 0.11138613861386139,
+   "median_compound_rmse": 0.09545028004805252,
+   "diagnostics": {
+    "alpha": 3.0
+   }
+  },
+  "V1B_WUR_ONLY_TRAINED": {
+   "P1": 0.12646058830120577,
+   "n_compounds": 404,
+   "n_cells": 2020,
+   "S1_per_energy": {
+    "30.0": 0.16635811133784556,
+    "45.0": 0.1492391026740429,
+    "60.0": 0.11780917416918706,
+    "75.0": 0.09474631093451637,
+    "90.0": 0.08460618203453488
+   },
+   "S1_per_source": {
+    "WUR": 0.12646058830120577
+   },
+   "S2_descriptor_practical_win": 0.5668316831683168,
+   "S4_catastrophic": 0.0891089108910891,
+   "median_compound_rmse": 0.09745965847204234,
+   "diagnostics": {}
+  }
+ },
+ "comparisons": {
+  "V1B_RIDGE_TIERA_vs_S2A_FROZEN_PIPELINE": {
+   "P1_cand": 0.12514071092413145,
+   "P1_ref": 0.1474643004522268,
+   "rel_improvement": 0.15138300903768503,
+   "mean_paired_rmse_diff": -0.02201157896448423,
+   "ci90_compound": [
+    -0.026292912285773344,
+    -0.017703996988978475
+   ],
+   "ci95_compound": [
+    -0.026969481826813167,
+    -0.01669320449810361
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.02954634952160698,
+    -0.014980207002933647
+   ],
+   "wins_fraction": 0.6435643564356436
+  },
+  "V1B_RIDGE_TIERA_vs_B1_MASS_ONLY_ISOTONIC": {
+   "P1_cand": 0.12514071092413145,
+   "P1_ref": 0.141954738498782,
+   "rel_improvement": 0.11844639884842467,
+   "mean_paired_rmse_diff": -0.01548723593519595,
+   "ci90_compound": [
+    -0.02019458320159699,
+    -0.01095142272563123
+   ],
+   "ci95_compound": [
+    -0.021026440209005355,
+    -0.010251334272838943
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.028994119110547032,
+    -0.004046423847933545
+   ],
+   "wins_fraction": 0.6138613861386139
+  },
+  "V1B_RIDGE_TIERA_vs_B0_NULL_PROFILE": {
+   "P1_cand": 0.12514071092413145,
+   "P1_ref": 0.16759015537753202,
+   "rel_improvement": 0.2532931863317048,
+   "mean_paired_rmse_diff": -0.03651362813390916,
+   "ci90_compound": [
+    -0.044061989839805,
+    -0.02881407107368234
+   ],
+   "ci95_compound": [
+    -0.0459544308328545,
+    -0.02712471780388568
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.04739075104710396,
+    -0.026210679458854517
+   ],
+   "wins_fraction": 0.6386138613861386
+  },
+  "B1_MASS_ONLY_ISOTONIC_vs_S2A_FROZEN_PIPELINE": {
+   "P1_cand": 0.141954738498782,
+   "P1_ref": 0.1474643004522268,
+   "rel_improvement": 0.037362005153441825,
+   "mean_paired_rmse_diff": -0.006524343029288283,
+   "ci90_compound": [
+    -0.012648632239603065,
+    -0.00023584111049690165
+   ],
+   "ci95_compound": [
+    -0.013891631191252488,
+    0.0005474475909124282
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.022339613657461784,
+    0.011830850347290029
+   ],
+   "wins_fraction": 0.5594059405940595
+  },
+  "V1A_STABLE_LAW_vs_S2A_FROZEN_PIPELINE": {
+   "P1_cand": 0.13063210493573843,
+   "P1_ref": 0.1474643004522268,
+   "rel_improvement": 0.11414420619003586,
+   "mean_paired_rmse_diff": -0.016628203004621905,
+   "ci90_compound": [
+    -0.020495271681510545,
+    -0.012639418145289441
+   ],
+   "ci95_compound": [
+    -0.021272068177565707,
+    -0.011827111587186603
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.024087118288387884,
+    -0.01008375414569353
+   ],
+   "wins_fraction": 0.6089108910891089
+  },
+  "V1A_STABLE_LAW_vs_V1B_RIDGE_TIERA": {
+   "P1_cand": 0.13063210493573843,
+   "P1_ref": 0.12514071092413145,
+   "rel_improvement": -0.04388175495451852,
+   "mean_paired_rmse_diff": 0.005383375959862327,
+   "ci90_compound": [
+    0.0019848636801707282,
+    0.00872286334334057
+   ],
+   "ci95_compound": [
+    0.0016089214898326802,
+    0.009334532590787424
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    0.00020329401168800727,
+    0.010995127129713953
+   ],
+   "wins_fraction": 0.4306930693069307
+  },
+  "V1C_RICH_RIDGE_24_vs_V1B_RIDGE_TIERA": {
+   "P1_cand": 0.12360237160082019,
+   "P1_ref": 0.12514071092413145,
+   "rel_improvement": 0.012292876650220639,
+   "mean_paired_rmse_diff": -0.001158231333667951,
+   "ci90_compound": [
+    -0.003213799106962863,
+    0.0007937855502650732
+   ],
+   "ci95_compound": [
+    -0.0035609611848262234,
+    0.001064126429119227
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.0044978075867644,
+    0.0020083207443907366
+   ],
+   "wins_fraction": 0.48514851485148514
+  },
+  "V1B_WUR_ONLY_TRAINED_vs_V1B_RIDGE_TIERA": {
+   "P1_cand": 0.12646058830120577,
+   "P1_ref": 0.12514071092413145,
+   "rel_improvement": -0.010547146227054039,
+   "mean_paired_rmse_diff": 0.0010955260256250365,
+   "ci90_compound": [
+    -0.0004891175761537322,
+    0.0027201476315794823
+   ],
+   "ci95_compound": [
+    -0.0007816177010813256,
+    0.002949659463359773
+   ],
+   "ci95_cluster_stereo_scaffold": [
+    -0.0008686465815394679,
+    0.0033600806997918396
+   ],
+   "wins_fraction": 0.504950495049505
+  }
+ },
+ "strata": {
+  "V1B_RIDGE_TIERA": {
+   "benzene": null,
+   "non_benzene": 0.12514071092413145
+  },
+  "S2A_FROZEN_PIPELINE": {
+   "benzene": null,
+   "non_benzene": 0.1474643004522268
+  },
+  "B0_NULL_PROFILE": {
+   "benzene": null,
+   "non_benzene": 0.16759015537753202
+  },
+  "B1_MASS_ONLY_ISOTONIC": {
+   "benzene": null,
+   "non_benzene": 0.141954738498782
+  },
+  "V1A_STABLE_LAW": {
+   "benzene": null,
+   "non_benzene": 0.13063210493573843
+  },
+  "V1C_RICH_RIDGE_24": {
+   "benzene": null,
+   "non_benzene": 0.12360237160082019
+  },
+  "V1B_WUR_ONLY_TRAINED": {
+   "benzene": null,
+   "non_benzene": 0.12646058830120577
+  }
+ },
+ "s2a_gate": {
+  "report": false,
+  "expr": "sqrt(inv(heteroatom_fraction) + ring_count) * inv(total_atom_count)",
+  "features": {
+   "median_seed_best_r2": 0.43497825170865445,
+   "uq_seed_best_r2": 0.47189362729118745,
+   "selection_fraction": 0.2,
+   "modal_support_freq": 0.36666666666666664
+  },
+  "note": "under its own gate the frozen method abstains when report is false; its P1 above is forced prediction"
+ },
+ "native_secondary": {
+  "V1B_RIDGE_TIERA": 0.14464505442229064,
+  "S2A_FROZEN_PIPELINE": 0.18098301105501532,
+  "B0_NULL_PROFILE": 0.17584613166375343,
+  "B1_MASS_ONLY_ISOTONIC": 0.16071203879468032
+ },
+ "e15_separate": {
+  "n": 404,
+  "median": 0.7626151057550971,
+  "q25": 0.5834911077428543,
+  "q75": 0.9288638348780272,
+  "note": "never pooled; erratum E-3"
+ },
+ "success_conditions": {
+  "P1_C_lt_S2A": true,
+  "P1_C_lt_B1": true,
+  "rel_vs_S2A_ge_2.5pct": true,
+  "ci90_compound_below_zero": true
+ },
+ "principal_claim_survives": true,
+ "environment": {
+  "python": "3.13.12",
+  "rdkit": "2026.03.5",
+  "pandas": "3.0.5",
+  "numpy": "2.5.2",
+  "scipy": "1.18.0",
+  "pyarrow": "25.0.1",
+  "git_commit_sha": "69ca1a6a22b6567f728487db7101afb3a6b05767",
+  "git_tree_dirty": true,
+  "wur_retrieval_manifest_sha256": "a564c8ad3cbde5057e733e185e8be1bdfa068bc8f38a66103d921e0891263aef"
+ }
+}

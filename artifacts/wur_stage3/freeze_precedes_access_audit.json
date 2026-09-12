@@ -1,0 +1,13 @@
+{
+ "freeze_commit": "69ca1a6a22b6567f728487db7101afb3a6b05767",
+ "freeze_committed_at": "2026-09-12T15:54:51-04:00",
+ "first_sealed_access_utc": "2026-09-12T19:55:23Z",
+ "git_head_at_access": "69ca1a6a22b6567f728487db7101afb3a6b05767",
+ "git_tree_dirty_at_access": false,
+ "freeze_is_ancestor_of_head_at_access": true,
+ "files_passing_allow_sealed": [
+  "src/muru/wur_stage2/stage3.py"
+ ],
+ "only_stage3_passes_allow_sealed": true,
+ "verdict": "PASS"
+}

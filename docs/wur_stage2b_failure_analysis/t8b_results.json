@@ -1,0 +1,95 @@
+{
+ "survival_yield": {
+  "frac_all_rungs_lt_0p05": 0.42604298356510745,
+  "frac_all_rungs_lt_0p1": 0.49810366624525915,
+  "frac_range_lt_0p1": 0.49810366624525915,
+  "frac_first_rung_lt_0p2": 0.595448798988622,
+  "frac_first_rung_gt_0p9": 0.08343868520859671,
+  "median_traj": [
+   0.099,
+   0.002,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "logg_quantiles": [
+   -1.59,
+   -1.59,
+   -0.16,
+   0.25,
+   0.6,
+   1.11,
+   1.61
+  ],
+  "median_g_var": 0.003222559008407934,
+  "frac_g_var_gt_1": 0.24778761061946902,
+  "reliability_R2_ceiling": 0.9961132164992225,
+  "insample_ridge_r2_unw": 0.31136910890577396,
+  "insample_ridge_r2_w": 0.3418399431253052,
+  "spearman_logg_vs_mz": -0.43528930902935076,
+  "spearman_logg_vs_atoms": -0.3567630346419341,
+  "insample_ridge_r2_wellidentified_half": 0.24161356877813722
+ },
+ "mu": {
+  "frac_all_rungs_lt_0p05": 0.0,
+  "frac_all_rungs_lt_0p1": 0.0,
+  "frac_range_lt_0p1": 0.1213653603034134,
+  "frac_first_rung_lt_0p2": 0.0050568900126422255,
+  "frac_first_rung_gt_0p9": 0.1997471554993679,
+  "median_traj": [
+   0.682,
+   0.544,
+   0.463,
+   0.421,
+   0.386
+  ],
+  "logg_quantiles": [
+   -1.61,
+   -1.42,
+   -0.49,
+   0.06,
+   0.51,
+   1.14,
+   1.59
+  ],
+  "median_g_var": 0.006300725476557237,
+  "frac_g_var_gt_1": 0.010113780025284451,
+  "reliability_R2_ceiling": 0.9881195517186107,
+  "insample_ridge_r2_unw": 0.5370582937381385,
+  "insample_ridge_r2_w": 0.5898038893606623,
+  "spearman_logg_vs_mz": -0.611165714819595,
+  "spearman_logg_vs_atoms": -0.5774313749746658,
+  "insample_ridge_r2_wellidentified_half": 0.6352962220767204
+ },
+ "frac_x_ge_075": {
+  "frac_all_rungs_lt_0p05": 0.213653603034134,
+  "frac_all_rungs_lt_0p1": 0.2718078381795196,
+  "frac_range_lt_0p1": 0.27560050568900124,
+  "frac_first_rung_lt_0p2": 0.3729456384323641,
+  "frac_first_rung_gt_0p9": 0.20480404551201012,
+  "median_traj": [
+   0.354,
+   0.061,
+   0.006,
+   0.0,
+   0.0
+  ],
+  "logg_quantiles": [
+   -1.63,
+   -1.63,
+   -0.35,
+   0.02,
+   0.5,
+   1.09,
+   1.57
+  ],
+  "median_g_var": 0.0011477850582545098,
+  "frac_g_var_gt_1": 0.15423514538558786,
+  "reliability_R2_ceiling": 0.9978120035177537,
+  "insample_ridge_r2_unw": 0.35667692827117436,
+  "insample_ridge_r2_w": 0.30665610324739534,
+  "spearman_logg_vs_mz": -0.4629240980505013,
+  "spearman_logg_vs_atoms": -0.4158191722223498,
+  "insample_ridge_r2_wellidentified_half": 0.27093364525672725
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "amendment": "A-3",
+ "outcomes": {
+  "V1B_RIDGE_TIERA": "ACCEPTED: final candidate (A-3)",
+  "V1C_RICH_RIDGE_24": "REJECTED: hypothesis H-R not supported (0.9% vs required 5% over LIN); tied with LIN under cluster bootstrap; n_amine duplicates n_N; kept as exploratory non-inferiority comparator",
+  "V1A_STABLE_LAW": "PASSES RULE, NOT SELECTED: 1.5% behind LIN (10/50 wins on fresh seeds); named interpretable secondary for Stage 3",
+  "V1D_RICH_HGB_24": "REJECTED: fails the section 8 black-box bar (11.5% < 15%)",
+  "V2A_TWOPARAM_RIDGE": "REJECTED: hypothesis H-P2 refuted (8/15, +0.5%)"
+ }
+}
