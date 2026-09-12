@@ -1,0 +1,98 @@
+{
+ "dev2b_vs_hold": [
+  true,
+  "0"
+ ],
+ "dev2b_vs_wur_sealed": [
+  true,
+  "0"
+ ],
+ "dev2b_vs_lcsb_sealed": [
+  true,
+  "0"
+ ],
+ "popB_in_dev2b_all_LCSB": [
+  true,
+  "124/124"
+ ],
+ "wur_keys_subset_of_analysis": [
+  true,
+  ""
+ ],
+ "folds_hash_recompute": [
+  true,
+  "fed825026f97ba34"
+ ],
+ "fold_disjoint_repeat0": [
+  true,
+  "groups spanning >1 fold: 0"
+ ],
+ "fold_disjoint_repeat1": [
+  true,
+  "groups spanning >1 fold: 0"
+ ],
+ "fold_disjoint_repeat2": [
+  true,
+  "groups spanning >1 fold: 0"
+ ],
+ "stage2a_split_group_disjoint": [
+  true,
+  ""
+ ],
+ "dev2b_groups_vs_hold_groups": [
+  false,
+  "4"
+ ],
+ "scaffold_group_recompute_matches_covariates": [
+  true,
+  "0 mismatches []"
+ ],
+ "popB_wur_vs_lcsb_scaffold_agree": [
+  false,
+  "1 differ [('YYJNOYZRYGDPNH', 'C(=NOCc1ccccc1)c1cn[nH]c1Oc1ccccc1', 'C(=N\\\\OCc1ccccc1)/c1cn[nH]c1Oc1ccccc1')]"
+ ],
+ "popB_alt_scaffold_straddles_fold": [
+  true,
+  "0 []"
+ ],
+ "same_canonical_smiles_different_key": [
+  true,
+  "0 []"
+ ],
+ "near_duplicate_descriptor_twins_across_folds": [
+  true,
+  "0 straddling pair-repeats; pairs [('DOLQYFPDPKPQSS', 'UFFBMTHBGFGIHF'), ('JWAZRIHNYRIHIV', 'KJCVRFUGPWSIIH'), ('BGEBZHIAGXMEMV', 'QXKHYNVANLEOEG')]"
+ ],
+ "no_hold_or_sealed_key_in_any_stage2_artifact": [
+  true,
+  "{}"
+ ],
+ "features_wur_keys_subset_analysis": [
+  true,
+  "476 keys"
+ ],
+ "features_lcsb_keys_not_sealed": [
+  true,
+  "439 keys"
+ ],
+ "lcsb_long_mu_equals_p2_dev_corpus": [
+  true,
+  "max |d| 1.11e-16, n 2174"
+ ],
+ "wur_long_mu_equals_map_of_features_wur_native_mu": [
+  true,
+  "max |d| 2.22e-16, n 1760, clamped 476"
+ ],
+ "popB_wur_copy_absent_from_long": [
+  true,
+  ""
+ ],
+ "tierA_descriptors_recompute_from_smiles": [
+  true,
+  "0 []"
+ ],
+ "tierA2_descriptors_recompute_from_smiles": [
+  true,
+  "0"
+ ]
+}

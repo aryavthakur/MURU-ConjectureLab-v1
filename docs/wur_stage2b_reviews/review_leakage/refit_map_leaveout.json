@@ -1,0 +1,81 @@
+{
+ "full_refit": {
+  "form": "T(E) = a + b*E, applied to the LCSB nominal energy to give the WUR nominal energy at which WUR is read",
+  "a": -5.95552603907965,
+  "b": 0.8618030610784556,
+  "objective": 0.07807989069255242,
+  "objective_definition": "sum over the six ladder energies of the absolute per-energy median signed delta",
+  "interpolation": "PCHIP on each compound's own six-point WUR ladder, knots at the ladder rungs, clamped at the ends, never extrapolated",
+  "optimizer": "scipy.optimize.differential_evolution",
+  "seed": 20260911,
+  "polish": true,
+  "bounds": {
+   "a": [
+    -30.0,
+    30.0
+   ],
+   "b": [
+    0.5,
+    2.0
+   ]
+  },
+  "converged": true
+ },
+ "per_fold": [
+  {
+   "fold": 0,
+   "n_b_train": 105,
+   "a": -5.8506198138313215,
+   "b": 0.8715885633531171,
+   "d_mu_train_max": 0.018980536176481655,
+   "LIN_RIDGE_TIERA": 0.1250712116907421,
+   "LIN_RIDGE_TIERA_ledger": 0.12471934672544917,
+   "V1C_RICH_RIDGE_24": 0.12686108531361487,
+   "V1C_RICH_RIDGE_24_ledger": 0.12431930897837136
+  },
+  {
+   "fold": 1,
+   "n_b_train": 97,
+   "a": -5.899630775224153,
+   "b": 0.8646797237483052,
+   "d_mu_train_max": 0.006505734209536818,
+   "LIN_RIDGE_TIERA": 0.13374615974290974,
+   "LIN_RIDGE_TIERA_ledger": 0.13352033217581047,
+   "V1C_RICH_RIDGE_24": 0.13301505845822292,
+   "V1C_RICH_RIDGE_24_ledger": 0.13301425691095592
+  },
+  {
+   "fold": 2,
+   "n_b_train": 92,
+   "a": -6.775311408109169,
+   "b": 0.8635050405809923,
+   "d_mu_train_max": 0.029854826406016444,
+   "LIN_RIDGE_TIERA": 0.1404569282417296,
+   "LIN_RIDGE_TIERA_ledger": 0.13631866749417038,
+   "V1C_RICH_RIDGE_24": 0.13500073359131542,
+   "V1C_RICH_RIDGE_24_ledger": 0.13406534110915777
+  },
+  {
+   "fold": 3,
+   "n_b_train": 108,
+   "a": -6.022866371182642,
+   "b": 0.871897854040957,
+   "d_mu_train_max": 0.011655304794604748,
+   "LIN_RIDGE_TIERA": 0.1351062511287061,
+   "LIN_RIDGE_TIERA_ledger": 0.13471398028986772,
+   "V1C_RICH_RIDGE_24": 0.1353730027457878,
+   "V1C_RICH_RIDGE_24_ledger": 0.13603133228535838
+  },
+  {
+   "fold": 4,
+   "n_b_train": 94,
+   "a": -5.562578616623831,
+   "b": 0.8556247063251489,
+   "d_mu_train_max": 0.007241377251674841,
+   "LIN_RIDGE_TIERA": 0.14081065444635407,
+   "LIN_RIDGE_TIERA_ledger": 0.14195597843469385,
+   "V1C_RICH_RIDGE_24": 0.13920969244088846,
+   "V1C_RICH_RIDGE_24_ledger": 0.13824469995219646
+  }
+ ]
+}
