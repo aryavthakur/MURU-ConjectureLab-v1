@@ -1,9 +1,11 @@
 import sqlite3
 
 import numpy as np
+import pandas as pd
 import pytest
 
-from muru.io.wur_spectra import BlobDefect, decode_blob, read_spectrum_peaks
+from muru.io.wur_spectra import (BlobDefect, build_mu_table, decode_blob,
+                                 read_spectrum_peaks, spectrum_mu)
 
 
 def test_decode_blob_reads_little_endian_float64():
@@ -110,3 +112,108 @@ def test_read_spectrum_peaks_raises_blobdefect_on_a_non_integer_id(tmp_path):
     path = _tiny_db(tmp_path, [(1, [100.0], [10.0])])
     with pytest.raises(BlobDefect):
         read_spectrum_peaks(path, ["not-an-id"])
+
+
+def test_spectrum_mu_is_the_intensity_weighted_normalized_mass():
+    # Two peaks of equal intensity at 100 and 200, precursor 200.
+    # mu = ((100 + 200) / 2) / 200 = 0.75
+    assert spectrum_mu(np.array([100.0, 200.0]),
+                       np.array([1.0, 1.0]), 200.0) == pytest.approx(0.75)
+
+
+def test_spectrum_mu_is_one_for_a_precursor_only_spectrum():
+    assert spectrum_mu(np.array([200.0]), np.array([7.0]), 200.0) == pytest.approx(1.0)
+
+
+def test_spectrum_mu_sorts_unsorted_input_without_changing_the_value():
+    unsorted_mu = spectrum_mu(np.array([200.0, 100.0]), np.array([1.0, 3.0]), 200.0)
+    sorted_mu = spectrum_mu(np.array([100.0, 200.0]), np.array([3.0, 1.0]), 200.0)
+    assert unsorted_mu == pytest.approx(sorted_mu)
+
+
+def test_spectrum_mu_rejects_a_nonfinite_mass():
+    with pytest.raises(BlobDefect, match="nonfinite"):
+        spectrum_mu(np.array([100.0, np.nan]), np.array([1.0, 1.0]), 200.0)
+
+
+def test_spectrum_mu_rejects_a_negative_intensity():
+    with pytest.raises(BlobDefect, match="negative"):
+        spectrum_mu(np.array([100.0, 200.0]), np.array([1.0, -1.0]), 200.0)
+
+
+def test_spectrum_mu_rejects_an_unusable_precursor():
+    with pytest.raises(BlobDefect, match="precursor"):
+        spectrum_mu(np.array([100.0]), np.array([1.0]), 0.0)
+
+
+def test_spectrum_mu_rejects_zero_total_intensity():
+    with pytest.raises(BlobDefect, match="intensity"):
+        spectrum_mu(np.array([100.0, 200.0]), np.array([0.0, 0.0]), 200.0)
+
+
+def _accepted(rows):
+    return pd.DataFrame(rows)
+
+
+def _acc_row(sid, key, energy, library="WUR", precursor=200.0):
+    return {"source_library": library, "source_polarity_file": "POS",
+            "spectrum_id": sid, "compound_id": 1, "connectivity_key": key,
+            "smiles": "CCO", "adduct": "[M+H]+", "energy": energy,
+            "precursor_mass": precursor, "polarity": "+"}
+
+
+def test_build_mu_table_has_one_row_per_key_and_energy(tmp_path, monkeypatch):
+    db = _tiny_db(tmp_path, [(1, [100.0, 200.0], [1.0, 1.0]),
+                             (2, [100.0, 200.0], [3.0, 1.0])])
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): db.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "AAA", 30.0)])
+    table, census = build_mu_table(acc, tmp_path)
+    assert census == []
+    assert len(table) == 2
+    assert set(table["ce_numeric"]) == {15.0, 30.0}
+    assert table.set_index("ce_numeric").loc[15.0, "mu"] == pytest.approx(0.75)
+
+
+def test_build_mu_table_takes_the_median_over_duplicate_spectra(tmp_path, monkeypatch):
+    # Three deposits at the same (key, energy): mu = 1.0, 0.75, 0.625.
+    # Median is 0.75, mean would be 0.7917.
+    db = _tiny_db(tmp_path, [
+        (1, [200.0], [1.0]),
+        (2, [100.0, 200.0], [1.0, 1.0]),
+        (3, [100.0, 200.0], [3.0, 1.0]),
+    ])
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): db.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "AAA", 15.0),
+                     _acc_row(3, "AAA", 15.0)])
+    table, census = build_mu_table(acc, tmp_path)
+    assert len(table) == 1
+    assert table.iloc[0]["mu"] == pytest.approx(0.75)
+    assert table.iloc[0]["n_spectra"] == 3
+
+
+def test_build_mu_table_preserves_contributing_spectrum_ids_and_libraries(
+        tmp_path, monkeypatch):
+    db = _tiny_db(tmp_path, [(1, [200.0], [1.0]), (2, [100.0, 200.0], [1.0, 1.0])])
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): db.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "AAA", 15.0)])
+    table, _ = build_mu_table(acc, tmp_path)
+    assert table.iloc[0]["spectrum_ids"] == (("WUR", 1), ("WUR", 2))
+    assert table.iloc[0]["source_libraries"] == ("WUR",)
+
+
+def test_build_mu_table_censuses_a_defective_spectrum_rather_than_dropping_it(
+        tmp_path, monkeypatch):
+    db = _tiny_db(tmp_path, [(1, [100.0, 200.0], [1.0, 1.0]),
+                             (2, [100.0, 200.0], [0.0, 0.0])])
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): db.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "BBB", 15.0)])
+    table, census = build_mu_table(acc, tmp_path)
+    assert len(census) == 1
+    assert census[0]["connectivity_key"] == "BBB"
+    assert census[0]["spectrum_id"] == 2
+    assert "intensity" in census[0]["reason"]
+    assert set(table["connectivity_key"]) == {"AAA"}

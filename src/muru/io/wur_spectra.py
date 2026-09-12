@@ -13,6 +13,12 @@ import sqlite3
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
+
+from muru.features import mu as feature_mu
+from muru.io.wur_raw import LIBRARY_DB_FILES
+from muru.spectra import Spectrum
+from muru.wur_bridge_constants import BASE_CELL, PRECURSOR_MATCH_PPM
 
 
 class BlobDefect(ValueError):
@@ -86,3 +92,105 @@ def read_spectrum_peaks(db_path: Path,
             f"{db_path.name}: SpectrumId absent from SpectrumTable: "
             f"{sorted(missing)}")
     return out
+
+
+MU_TABLE_COLUMNS = ["connectivity_key", "ce_numeric", "mu", "n_spectra",
+                    "spectrum_ids", "source_libraries"]
+
+
+def spectrum_mu(mz: np.ndarray, intensity: np.ndarray,
+                precursor_mz: float) -> float:
+    """Base-cell `features.mu` for one peak list.
+
+    Peaks are sorted by m/z, the declared PrecursorMass is used as the
+    precursor (the WUR analogue of MassBank's MS$FOCUSED_ION), and the
+    base preprocessing cell is applied through the same `Spectrum` path the
+    LCSB corpus used. A nonfinite value, a negative intensity, an empty or
+    all-zero peak list, or an unusable precursor raises rather than
+    returning NaN, so a defect becomes a census entry upstream instead of a
+    silent hole in the table.
+    """
+    if mz.size == 0 or intensity.size == 0:
+        raise BlobDefect("empty peak list")
+    if mz.size != intensity.size:
+        raise BlobDefect(
+            f"blob length mismatch: {mz.size} masses, {intensity.size} intensities")
+    if not np.all(np.isfinite(mz)) or not np.all(np.isfinite(intensity)):
+        raise BlobDefect("nonfinite value in the peak list")
+    if np.any(intensity < 0):
+        raise BlobDefect("negative intensity in the peak list")
+    if intensity.sum() <= 0:
+        raise BlobDefect("total intensity is not positive")
+    if precursor_mz is None or not np.isfinite(precursor_mz) or precursor_mz <= 0:
+        raise BlobDefect(f"unusable declared precursor m/z: {precursor_mz!r}")
+
+    order = np.argsort(mz)
+    spectrum = Spectrum(mz=mz[order], intensity=intensity[order],
+                        precursor_mz=float(precursor_mz))
+    value = feature_mu(spectrum.preprocess(ppm=PRECURSOR_MATCH_PPM, **BASE_CELL))
+    if not np.isfinite(value):
+        raise BlobDefect("mu is not finite")
+    return float(value)
+
+
+def build_mu_table(accepted: pd.DataFrame,
+                   data_dir: Path) -> tuple[pd.DataFrame, list[dict]]:
+    """One base-cell mu per (connectivity_key, ce_numeric), over exactly the
+    spectra in `accepted`.
+
+    Duplicate deposits at the same (key, energy) collapse by the
+    preregistered aggregator, the median. The contributing spectrum ids and
+    source libraries are preserved so the value is traceable to its inputs.
+
+    Returns (table, census). A spectrum with a defect produces a census
+    entry naming it and its reason; it never disappears quietly. A
+    (key, energy) whose every spectrum is defective yields no row, and its
+    absence is visible both in the census and in the per-energy n.
+    """
+    census: list[dict] = []
+    per_spectrum = []
+
+    for (library, polarity_file), grp in accepted.groupby(
+            ["source_library", "source_polarity_file"], sort=True):
+        stem = LIBRARY_DB_FILES[(library, polarity_file)]
+        db_path = data_dir / f"{stem}.db"
+        peaks = read_spectrum_peaks(db_path, grp["spectrum_id"])
+        for row in grp.itertuples(index=False):
+            mz, intensity = peaks[int(row.spectrum_id)]
+            try:
+                value = spectrum_mu(mz, intensity, row.precursor_mass)
+            except BlobDefect as exc:
+                census.append({
+                    "connectivity_key": row.connectivity_key,
+                    "ce_numeric": float(row.energy),
+                    "source_library": library,
+                    "spectrum_id": int(row.spectrum_id),
+                    "reason": str(exc),
+                })
+                continue
+            per_spectrum.append({
+                "connectivity_key": row.connectivity_key,
+                "ce_numeric": float(row.energy),
+                "source_library": library,
+                "spectrum_id": int(row.spectrum_id),
+                "mu": value,
+            })
+
+    if not per_spectrum:
+        return pd.DataFrame(columns=MU_TABLE_COLUMNS), census
+
+    df = pd.DataFrame(per_spectrum)
+    rows = []
+    for (key, energy), grp in df.groupby(["connectivity_key", "ce_numeric"],
+                                          sort=True):
+        grp = grp.sort_values(["source_library", "spectrum_id"])
+        rows.append({
+            "connectivity_key": key,
+            "ce_numeric": float(energy),
+            "mu": float(np.median(grp["mu"].to_numpy())),
+            "n_spectra": int(len(grp)),
+            "spectrum_ids": tuple(zip(grp["source_library"],
+                                      grp["spectrum_id"].astype(int))),
+            "source_libraries": tuple(sorted(set(grp["source_library"]))),
+        })
+    return pd.DataFrame(rows, columns=MU_TABLE_COLUMNS), census
