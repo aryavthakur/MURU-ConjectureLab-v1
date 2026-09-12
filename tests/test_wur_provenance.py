@@ -24,14 +24,32 @@ def test_canonical_key_hash_distinguishes_different_key_sets():
     assert canonical_key_hash(["A", "B"]) != canonical_key_hash(["A", "C"])
 
 
+def test_canonical_key_hash_still_matches_the_pinned_serialization_for_ordinary_keys():
+    keys = ["BBB", "AAA", "CCC"]
+    expected = hashlib.sha256("AAA\nBBB\nCCC".encode("utf-8")).hexdigest()
+    assert canonical_key_hash(keys) == expected
+
+
+def test_canonical_key_hash_rejects_a_key_containing_a_newline():
+    import pytest
+    bad = "a\nb"
+    with pytest.raises(ValueError, match=r"a\\nb"):
+        canonical_key_hash(["ok", bad])
+
+
 def test_environment_provenance_records_every_required_library():
     env = environment_provenance(ROOT)
     assert set(env) >= {
         "python", "rdkit", "pandas", "numpy", "scipy", "pyarrow",
-        "git_commit_sha", "wur_retrieval_manifest_sha256",
+        "git_commit_sha", "wur_retrieval_manifest_sha256", "git_tree_dirty",
     }
     for field in ("python", "rdkit", "pandas", "numpy", "scipy", "pyarrow"):
         assert isinstance(env[field], str) and env[field]
+
+
+def test_environment_provenance_git_tree_dirty_is_bool_or_unavailable():
+    env = environment_provenance(ROOT)
+    assert isinstance(env["git_tree_dirty"], bool) or env["git_tree_dirty"] == "unavailable"
 
 
 def test_environment_provenance_hashes_the_real_retrieval_manifest():

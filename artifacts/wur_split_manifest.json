@@ -1,6 +1,6 @@
 {
   "seed": 20260911,
-  "created_utc": "2026-09-12T14:21:26.360870+00:00",
+  "created_utc": "2026-09-12T14:27:05.398670+00:00",
   "environment": {
     "python": "3.13.12",
     "rdkit": "2026.03.5",
@@ -8,7 +8,8 @@
     "numpy": "2.5.2",
     "scipy": "1.18.0",
     "pyarrow": "25.0.1",
-    "git_commit_sha": "0523194530742a98c20c7f08452606030ed8ff4e",
+    "git_commit_sha": "7a9b9652d0a8a667981167524da2e7bba078a8cb",
+    "git_tree_dirty": true,
     "wur_retrieval_manifest_sha256": "a564c8ad3cbde5057e733e185e8be1bdfa068bc8f38a66103d921e0891263aef"
   },
   "polarities": {
