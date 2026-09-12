@@ -20,8 +20,8 @@ from scipy.stats import spearmanr
 from muru.wur_bridge_constants import (
     ALIGNMENT_A_BOUNDS, ALIGNMENT_B_BOUNDS, ALIGNMENT_MAXITER,
     ALIGNMENT_POLISH, ALIGNMENT_TOL, LADDER_ENERGIES, MEDIAN_ABS_DELTA_MAX,
-    MIN_PAIRS_FOR_CORRELATION, MIN_PASSING_ENERGIES, OFFSET_MAX, SEED,
-    SPEARMAN_MIN,
+    MIN_PAIRS_FOR_CORRELATION, MIN_PASSING_ENERGIES, MIN_POPULATION_B,
+    OFFSET_MAX, SEED, SPEARMAN_MIN,
 )
 
 # Tolerance, in NCE units, for calling a mapped energy "outside the ladder"
@@ -256,6 +256,7 @@ def decide(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
     pre_passes = rule_passes(pre)
     record = {
         "outcome": None,
+        "reason": None,
         "population_b": {
             "n_compounds": len(population_b),
             "connectivity_keys": list(population_b),
@@ -264,6 +265,16 @@ def decide(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
         "alignment": None,
         "post_alignment": None,
     }
+
+    if len(population_b) < MIN_POPULATION_B:
+        record["outcome"] = "NO_POOL"
+        record["reason"] = (
+            f"population B has {len(population_b)} compounds, below the "
+            f"preregistered floor of {MIN_POPULATION_B}. Below that floor a "
+            f"Spearman correlation judged against a {SPEARMAN_MIN} threshold "
+            f"cannot distinguish agreement from small-sample noise. The raw "
+            f"statistics are recorded and no map is fitted.")
+        return record
 
     if pre_passes:
         record["outcome"] = "POOL"

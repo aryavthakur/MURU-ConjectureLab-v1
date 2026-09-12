@@ -519,3 +519,28 @@ def test_a_genuine_energy_shift_reaches_pool_after_energy_alignment():
     import json
     text = json.dumps(result)
     assert "NaN" not in text and "Infinity" not in text
+
+
+def test_a_population_below_the_floor_is_no_pool_with_a_reason():
+    """The preregistered floor short-circuits ahead of the rule itself: below
+    it the statistics are not worth interpreting, so no map is fitted even
+    though the corpora agree perfectly and the rule would otherwise pass."""
+    keys = _keys(10)          # below MIN_POPULATION_B
+    frame = _mu_frame(keys, seed=31)
+    result = decide(frame, frame, keys)
+    assert result["outcome"] == "NO_POOL"
+    assert "below the preregistered floor" in result["reason"]
+    assert result["alignment"] is None
+    # The raw statistics are still recorded, as every path requires.
+    assert result["pre_alignment"]["per_energy"][0]["n"] == 10
+    assert result["pre_alignment"]["rule_passes"] is True
+
+
+def test_a_population_at_exactly_the_floor_is_not_short_circuited():
+    """The floor is `at least 30`, so exactly 30 passes through to the rule."""
+    from muru.wur_bridge_constants import MIN_POPULATION_B
+    keys = _keys(MIN_POPULATION_B)
+    frame = _mu_frame(keys, seed=33)
+    result = decide(frame, frame, keys)
+    assert result["outcome"] == "POOL"
+    assert result["reason"] is None
