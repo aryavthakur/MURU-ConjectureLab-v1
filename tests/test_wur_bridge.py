@@ -342,3 +342,56 @@ def test_fit_energy_map_stays_inside_the_frozen_box():
     fit = fit_energy_map(wur, lcsb, keys)
     assert ALIGNMENT_A_BOUNDS[0] <= fit["a"] <= ALIGNMENT_A_BOUNDS[1]
     assert ALIGNMENT_B_BOUNDS[0] <= fit["b"] <= ALIGNMENT_B_BOUNDS[1]
+
+
+def test_apply_energy_map_reads_wur_at_t_of_e_and_keys_the_row_by_e():
+    """Direction test, and the only one. T(E) = E + 15 means the value
+    reported AT the LCSB rung E is the WUR value read one rung HIGHER. An
+    inverted implementation, targets = (E - a) / b, would report the value one
+    rung lower and pass every other test in this file, because the clamp count
+    and the identity behaviour are both symmetric about the identity map."""
+    values = [1.0, 0.9, 0.7, 0.5, 0.35, 0.25]
+    frame = pd.DataFrame([
+        {"connectivity_key": "AAA", "ce_numeric": e, "mu": v}
+        for e, v in zip(LADDER, values)
+    ])
+    mapped, n_clamped = apply_energy_map(frame, a=15.0, b=1.0)
+    got = mapped.set_index("ce_numeric")["mu"]
+    # Knots reproduce exactly under PCHIP, so these are equalities.
+    assert got[15.0] == pytest.approx(values[1])   # read WUR at 30
+    assert got[30.0] == pytest.approx(values[2])   # read WUR at 45
+    assert got[60.0] == pytest.approx(values[4])   # read WUR at 75
+    assert got[75.0] == pytest.approx(values[5])   # T(75) = 90, the last rung
+    assert got[90.0] == pytest.approx(values[5])   # T(90) = 105, clamped to 90
+    assert n_clamped == 1                          # only E = 90 leaves the ladder
+
+
+def test_fit_energy_map_finds_a_planted_shift_and_beats_the_identity():
+    """A planted energy offset the fitter must actually work to remove. The
+    identity map is always available to it for free, so demanding a wide
+    margin over the identity is what rules out a stub that never optimizes.
+    One rung clamps at the top, so the planted optimum is approached rather
+    than reached; the margin and the sign, not an exact recovery, are the
+    assertions."""
+    keys = _keys(30)
+    rng = np.random.default_rng(23)
+    levels = {k: 0.3 + 0.6 * rng.random() for k in keys}
+
+    def _shifted(shift):
+        return pd.DataFrame([
+            {"connectivity_key": k, "ce_numeric": e,
+             "mu": levels[k] * (1.0 - 0.008 * (e - shift - 15.0))}
+            for k in keys for e in LADDER
+        ])
+
+    lcsb = _shifted(0.0)
+    wur = _shifted(15.0)   # WUR fragments as though its dial read 15 lower
+    identity_objective = sum(
+        abs(s["median_signed_delta"])
+        for s in per_energy_statistics(wur, lcsb, keys)
+    )
+    assert identity_objective > 0.2, "the planted offset must be substantial"
+
+    fit = fit_energy_map(wur, lcsb, keys)
+    assert fit["objective"] < 0.3 * identity_objective
+    assert fit["a"] > 5.0, "the axis must move in the direction that closes the gap"

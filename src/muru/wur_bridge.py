@@ -145,20 +145,34 @@ def interpolate_ladder(energies: np.ndarray, values: np.ndarray,
     return interpolator(clamped)
 
 
-def apply_energy_map(wur_mu: pd.DataFrame, a: float,
-                     b: float) -> tuple[pd.DataFrame, int]:
+def apply_energy_map(wur_mu: pd.DataFrame, a: float, b: float,
+                     population_b: list[str] | None = None
+                     ) -> tuple[pd.DataFrame, int]:
     """Re-read every WUR ladder at T(E) = a + b*E, for E on the ladder.
 
     Returns the re-read table, keyed by the LCSB energy E it is to be
     compared at, and the number of (compound, energy) cells whose mapped
     energy fell outside the ladder and was clamped.
+
+    When `population_b` is given, `wur_mu` is filtered to those connectivity
+    keys before the loop, so the returned table and the clamped-cell count
+    are both over that restricted population rather than the whole WUR
+    table. Existing two-argument callers keep working unchanged.
     """
+    if population_b is not None:
+        wur_mu = wur_mu[wur_mu["connectivity_key"].isin(set(population_b))]
     targets = a + b * np.asarray(LADDER_ENERGIES, dtype=float)
     n_clamped = 0
     rows = []
     for key, grp in wur_mu.groupby("connectivity_key", sort=True):
         grp = grp.sort_values("ce_numeric")
         energies = grp["ce_numeric"].to_numpy()
+        if tuple(energies) != tuple(float(e) for e in LADDER_ENERGIES):
+            raise ValueError(
+                f"{key}: WUR ladder is {list(energies)}, not the six rungs "
+                f"{list(LADDER_ENERGIES)}. Section 5.4 relies on a complete "
+                f"ladder; an incomplete one would be silently filled by the "
+                f"end clamp.")
         values = interpolate_ladder(energies, grp["mu"].to_numpy(), targets)
         n_clamped += int(np.sum((targets < energies[0]) | (targets > energies[-1])))
         rows += [{"connectivity_key": key, "ce_numeric": float(e), "mu": float(v)}
@@ -173,7 +187,7 @@ def _alignment_objective(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
     This targets exactly the failure the branch exists for, a consistent
     offset, rather than overall scatter, which no energy map can fix.
     """
-    mapped, _ = apply_energy_map(wur_mu, a, b)
+    mapped, _ = apply_energy_map(wur_mu, a, b, population_b)
     total = 0.0
     for stat in per_energy_statistics(mapped, lcsb_mu, population_b):
         if stat["median_signed_delta"] is None:
