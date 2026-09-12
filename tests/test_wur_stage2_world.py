@@ -63,6 +63,8 @@ def test_build_world_splits_by_scaffold_and_asserts_disjoint():
     assert set(frame.split) <= {"train", "valid", "test"}
     assert frame.groupby("scaffold_group").split.nunique().max() == 1
     assert len(frame) == 40 and wd.X.shape == (40, 12)
-    # keys absent from covariates are dropped from the world, not silently NaN
-    wd2, frame2 = W.build_world("B_WUR_NATIVE", long, cov.iloc[:30])
-    assert len(frame2) == 30
+    # keys absent from covariates are a defect unless accounted for
+    with pytest.raises(ValueError):
+        W.build_world("B_WUR_NATIVE", long, cov.iloc[:30])
+    wd2, frame2 = W.build_world("B_WUR_NATIVE", long, cov.iloc[:30], max_dropped=10)
+    assert len(frame2) == 30 and len(frame2.attrs["dropped"]["long_only"]) == 10

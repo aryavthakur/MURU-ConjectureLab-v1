@@ -17,7 +17,7 @@ def test_guard_raises_on_a_sealed_key_before_any_blob_is_read(tmp_path):
     # would otherwise raise FileNotFoundError from the reader.
     import muru.io.wur_spectra as mod
     orig = mod.sealed_keys_on_disk
-    mod.sealed_keys_on_disk = lambda: {"SEALED1"}
+    mod.sealed_keys_on_disk = lambda **kw: {"SEALED1"}
     try:
         with pytest.raises(WS.SealedReadError):
             WS.build_mu_table(_acc(["A", "SEALED1"]), tmp_path / "nope")

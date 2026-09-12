@@ -144,7 +144,8 @@ def wur_analysis_accepted(data_dir: Path,
 
 def wur_mu(accepted: pd.DataFrame, data_dir: Path) -> pd.DataFrame:
     """Base-cell mu for the accepted spectra; a peak defect halts."""
-    table, census = build_mu_table(accepted, data_dir)
+    hold = set(load_internal_holdout()["hold"]["connectivity_keys"])
+    table, census = build_mu_table(accepted, data_dir, forbidden=hold)
     if census:
         raise PopulationError(f"{len(census)} analysis spectra carry a peak defect: "
                               f"{census[:5]}")

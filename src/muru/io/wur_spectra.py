@@ -203,33 +203,43 @@ class SealedReadError(RuntimeError):
     """A sealed connectivity key was about to have its peaks decoded."""
 
 
-def sealed_keys_on_disk() -> set[str]:
-    """The WUR sealed key list, read from the tracked artifact if present.
+def sealed_keys_on_disk(*, missing_ok: bool = False) -> set[str]:
+    """The WUR sealed key list, read from the tracked artifact.
 
-    Identity only. An absent artifact (unit tests on synthetic fixtures, a
-    clone before Stage 0) yields an empty set, which guards nothing and
-    hides nothing: the artifact's presence is asserted by every Stage 2
-    population loader before this function is relied upon.
+    Identity only. The artifact's absence raises unless `missing_ok=True`
+    is passed explicitly (unit tests on synthetic fixtures, a clone before
+    Stage 0): a guard that silently guards nothing is not a guard.
     """
     path = Path(__file__).resolve().parents[3] / "artifacts" / "wur_sealed_partition.json"
     if not path.exists():
-        return set()
+        if missing_ok:
+            return set()
+        raise SealedReadError("artifacts/wur_sealed_partition.json is absent; "
+                              "refusing to decode WUR peaks without the seal list "
+                              "(pass missing_ok=True only on synthetic fixtures)")
     return set(json.loads(path.read_text())["connectivity_keys"])
 
 
 def assert_no_sealed_key(accepted: pd.DataFrame, *, allow_sealed: bool = False,
-                         sealed: set[str] | None = None) -> None:
-    """Raise before any blob is read if `accepted` carries a sealed key.
+                         sealed: set[str] | None = None,
+                         forbidden: set[str] | None = None,
+                         missing_ok: bool = False) -> None:
+    """Raise before any blob is read if `accepted` carries a sealed key or
+    any key in `forbidden` (the internal holdout, for Stage 2).
 
-    `allow_sealed=True` is the single, explicit Stage 3 override; nothing in
-    Stage 2 passes it.
+    `allow_sealed=True` is the single, explicit Stage 3 override for the
+    sealed list; it never lifts `forbidden`.
     """
+    keys = set(accepted["connectivity_key"])
+    if forbidden:
+        hit = sorted(keys & set(forbidden))
+        if hit:
+            raise SealedReadError(f"{len(hit)} forbidden (held-out) key(s) reached the "
+                                  f"mu builder; refusing to decode any peak.")
     if allow_sealed:
         return
-    sealed = sealed_keys_on_disk() if sealed is None else sealed
-    if not sealed:
-        return
-    hit = sorted(set(accepted["connectivity_key"]) & sealed)
+    sealed = sealed_keys_on_disk(missing_ok=missing_ok) if sealed is None else sealed
+    hit = sorted(keys & sealed)
     if hit:
         raise SealedReadError(
             f"{len(hit)} sealed connectivity key(s) reached the mu builder; "
@@ -238,7 +248,9 @@ def assert_no_sealed_key(accepted: pd.DataFrame, *, allow_sealed: bool = False,
 
 
 def build_mu_table(accepted: pd.DataFrame,
-                   data_dir: Path, *, allow_sealed: bool = False
+                   data_dir: Path, *, allow_sealed: bool = False,
+                   forbidden: set[str] | None = None,
+                   missing_seal_ok: bool = False,
                    ) -> tuple[pd.DataFrame, list[dict]]:
     """One base-cell mu per (connectivity_key, ce_numeric), over exactly the
     spectra in `accepted`.
@@ -255,7 +267,8 @@ def build_mu_table(accepted: pd.DataFrame,
     (key, energy) whose every spectrum is defective yields no row, and its
     absence is visible both in the census and in the per-energy n.
     """
-    assert_no_sealed_key(accepted, allow_sealed=allow_sealed)
+    assert_no_sealed_key(accepted, allow_sealed=allow_sealed, forbidden=forbidden,
+                         missing_ok=missing_seal_ok)
     census: list[dict] = []
     per_spectrum = []
 

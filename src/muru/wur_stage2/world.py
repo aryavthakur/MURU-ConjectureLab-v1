@@ -75,16 +75,28 @@ def pooled_covariates(lcsb_cov: pd.DataFrame, wur_cov: pd.DataFrame,
     return cov.reset_index(drop=True)
 
 
-def build_world(analysis: str, long: pd.DataFrame, cov: pd.DataFrame
+def build_world(analysis: str, long: pd.DataFrame, cov: pd.DataFrame,
+                max_dropped: int = 0
                 ) -> tuple[protocol.WorldData, pd.DataFrame]:
     """The frozen world constructor, on keys present in both tables.
 
     Returns the WorldData and the compound frame (key, scaffold group,
     split, source) the ladder and the report use. Split disjointness by key
-    and by scaffold group is asserted.
+    and by scaffold group is asserted. A key present in only one of the two
+    tables is a defect unless the caller has already accounted for it
+    (`max_dropped`, e.g. the count of reported descriptor failures); the
+    realized drop is attached to the frame as `frame.attrs["dropped"]`.
     """
     cov = cov.rename(columns={"connectivity_key": "group_key"})
-    keys = sorted(set(long["group_key"]) & set(cov["group_key"]))
+    long_keys, cov_keys = set(long["group_key"]), set(cov["group_key"])
+    keys = sorted(long_keys & cov_keys)
+    dropped = {"long_only": sorted(long_keys - cov_keys),
+               "cov_only": sorted(cov_keys - long_keys)}
+    n_drop = len(dropped["long_only"]) + len(dropped["cov_only"])
+    if n_drop > max_dropped:
+        raise ValueError(f"{n_drop} keys present on one side only exceed the "
+                         f"accounted {max_dropped}: long_only={len(dropped['long_only'])}, "
+                         f"cov_only={len(dropped['cov_only'])}")
     long = long[long["group_key"].isin(keys)].reset_index(drop=True)
     cov = cov[cov["group_key"].isin(keys)].reset_index(drop=True)
     wd = protocol.build_world_data(world_id(analysis), long, cov)
@@ -94,4 +106,6 @@ def build_world(analysis: str, long: pd.DataFrame, cov: pd.DataFrame
     frame["inchikey_first_block"] = frame["group_key"]
     assert_group_disjoint(frame, "split", key_col="scaffold_group")
     assert_group_disjoint(frame, "split", key_col="inchikey_first_block")
-    return wd, frame.drop(columns="inchikey_first_block")
+    frame = frame.drop(columns="inchikey_first_block")
+    frame.attrs["dropped"] = dropped
+    return wd, frame

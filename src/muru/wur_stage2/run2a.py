@@ -44,6 +44,8 @@ def _dump(path: Path, obj) -> None:
 
 
 def _json_default(o):
+    if isinstance(o, (np.bool_,)):
+        return bool(o)
     if isinstance(o, (np.integer,)):
         return int(o)
     if isinstance(o, (np.floating,)):
@@ -210,9 +212,10 @@ def bootstrap(wd: protocol.WorldData, frame: pd.DataFrame, lad: dict, sel: dict)
             idx = rng.integers(0, n, size=n)
             vals.append(engine.weighted_r2(y[idx], pred[idx], w[idx], ok[idx]))
         vals = np.array(vals, float)
-        vals = vals[np.isfinite(vals)]
-        out["rep_test_r2_weighted_ci95"] = (np.percentile(vals, [2.5, 97.5]).tolist()
-                                            if len(vals) else None)
+        finite = vals[np.isfinite(vals)]
+        out["rep_test_r2_weighted_ci95"] = (np.percentile(finite, [2.5, 97.5]).tolist()
+                                            if len(finite) else None)
+        out["rep_test_r2_n_finite_resamples"] = int(len(finite))
     return out
 
 
@@ -242,7 +245,8 @@ def descriptives(wd: protocol.WorldData, name: str, T: dict) -> dict:
 def run_analysis(name: str, T: dict, out_dir: Path) -> dict:
     t0 = time.time()
     long, cov = analysis_inputs(name, T)
-    wd, frame = W.build_world(name, long, cov)
+    n_cov_fail = len(T["census"]["wur_dev_analysis"]["descriptor_failures"])
+    wd, frame = W.build_world(name, long, cov, max_dropped=n_cov_fail)
     frame.to_csv(out_dir / "compounds.csv", index=False)
     wd.long.to_csv(out_dir / "long_mu.csv", index=False)
     wd.cov.to_csv(out_dir / "covariates.csv", index=False)
@@ -256,7 +260,8 @@ def run_analysis(name: str, T: dict, out_dir: Path) -> dict:
                           "split_counts": frame["split"].value_counts().to_dict(),
                           "split_groups": frame.groupby("split")["scaffold_group"].nunique().to_dict(),
                           "by_source": frame["source"].value_counts().to_dict(),
-                          "energies": sorted(float(e) for e in wd.long["ce_numeric"].unique())},
+                          "energies": sorted(float(e) for e in wd.long["ce_numeric"].unique()),
+                          "dropped_keys": frame.attrs.get("dropped")},
            "collapse": collapse_record(wd), "descriptives": descriptives(wd, name, T)}
     _dump(out_dir / "collapse.json", rec["collapse"])
 
@@ -265,9 +270,15 @@ def run_analysis(name: str, T: dict, out_dir: Path) -> dict:
 
     store = Store(out_dir / "ckpt")
     per_seed, seeds, failures = search(wd, store, "stage2a_pysr")
+    if not per_seed:
+        raise RuntimeError(f"no seed completed for {name}: {failures[:1]}")
     cache = SEL.candidate_cache(wd.world_id, wd, per_seed, seeds)
     _dump(out_dir / "candidate_cache.json", cache)
     sel = SEL.select_and_gate(cache)
+    n_s = cache["n_seeds"]
+    sel["gate"]["features_wilson95"] = {
+        "selection_fraction": wilson(int(round(sel["gate"]["features"]["selection_fraction"] * n_s)), n_s),
+        "modal_support_freq": wilson(int(round(sel["gate"]["features"]["modal_support_freq"] * n_s)), n_s)}
     if sel.get("expr"):
         sel["heldout_test"] = SEL.score_on_part(sel["expr"], wd, "test")
         sel["heldout_valid"] = SEL.score_on_part(sel["expr"], wd, "valid")
@@ -314,7 +325,10 @@ def main(data_dir: Path | None = None) -> dict:
               f"{'FAILED' if rec.get('failed') else rec['ladder']['status']} "
               f"gate={rec.get('selection', {}).get('report')} "
               f"{rec.get('seconds', 0):.0f}s", flush=True)
+    _dump(OUT / "stage2a_results.json", results)
     manifest = {"environment": environment_provenance(ROOT),
+                "population_keys_sha256": {n: r.get("population", {}).get("keys_sha256")
+                                           for n, r in results["analyses"].items()},
                 "files": {str(p.relative_to(ROOT)): _sha(p)
                           for p in sorted(OUT.rglob("*")) if p.is_file() and p.name != "manifest.json"}}
     _dump(OUT / "manifest.json", manifest)
