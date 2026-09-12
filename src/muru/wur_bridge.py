@@ -228,3 +228,46 @@ def fit_energy_map(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
         "bounds": {"a": list(ALIGNMENT_A_BOUNDS), "b": list(ALIGNMENT_B_BOUNDS)},
         "converged": bool(result.success),
     }
+
+
+def decide(wur_mu: pd.DataFrame, lcsb_mu: pd.DataFrame,
+          population_b: list[str]) -> dict:
+    """The gate, applied once per branch.
+
+    The raw pre-alignment statistics are always preserved, whether or not
+    the alignment branch activates, so the artifact records what was
+    actually measured and not only what survived a transform. When the
+    branch does activate, the fitted map and the single permitted
+    re-evaluation are both kept.
+    """
+    pre = per_energy_statistics(wur_mu, lcsb_mu, population_b)
+    pre_passes = rule_passes(pre)
+    record = {
+        "outcome": None,
+        "population_b": {
+            "n_compounds": len(population_b),
+            "connectivity_keys": list(population_b),
+        },
+        "pre_alignment": {"per_energy": pre, "rule_passes": pre_passes},
+        "alignment": None,
+        "post_alignment": None,
+    }
+
+    if pre_passes:
+        record["outcome"] = "POOL"
+        return record
+
+    if not alignment_branch_applies(pre):
+        record["outcome"] = "NO_POOL"
+        return record
+
+    fit = fit_energy_map(wur_mu, lcsb_mu, population_b)
+    mapped, n_clamped = apply_energy_map(wur_mu, fit["a"], fit["b"], population_b)
+    fit["n_clamped_cells"] = int(n_clamped)
+    post = per_energy_statistics(mapped, lcsb_mu, population_b)
+    post_passes = rule_passes(post)
+
+    record["alignment"] = fit
+    record["post_alignment"] = {"per_energy": post, "rule_passes": post_passes}
+    record["outcome"] = "POOL_AFTER_ENERGY_ALIGNMENT" if post_passes else "NO_POOL"
+    return record

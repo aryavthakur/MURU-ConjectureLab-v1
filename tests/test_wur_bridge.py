@@ -4,7 +4,8 @@ import pytest
 
 from muru.wur_bridge import (
     alignment_branch_applies, apply_energy_map, build_population_b,
-    fit_energy_map, interpolate_ladder, per_energy_statistics, rule_passes,
+    decide, fit_energy_map, interpolate_ladder, per_energy_statistics,
+    rule_passes,
 )
 
 LADDER = [15.0, 30.0, 45.0, 60.0, 75.0, 90.0]
@@ -395,3 +396,67 @@ def test_fit_energy_map_finds_a_planted_shift_and_beats_the_identity():
     fit = fit_energy_map(wur, lcsb, keys)
     assert fit["objective"] < 0.3 * identity_objective
     assert fit["a"] > 5.0, "the axis must move in the direction that closes the gap"
+
+
+# -- decide -----------------------------------------------------------------
+
+def test_matching_corpora_give_pool():
+    keys = _keys(40)
+    frame = _mu_frame(keys, seed=11)
+    result = decide(frame, frame, keys)
+    assert result["outcome"] == "POOL"
+    assert result["alignment"] is None
+    assert result["post_alignment"] is None
+
+
+def test_uncorrelated_corpora_give_no_pool_and_fit_no_map():
+    keys = _keys(60)
+    result = decide(_mu_frame(keys, seed=21), _mu_frame(keys, seed=22), keys)
+    assert result["outcome"] == "NO_POOL"
+    assert result["alignment"] is None
+
+
+def test_a_large_consistent_offset_gives_no_pool_without_fitting():
+    keys = _keys(40)
+    lcsb = _mu_frame(keys, seed=31)
+    wur = _mu_frame(keys, seed=31, offsets={e: 0.40 for e in LADDER})
+    result = decide(wur, lcsb, keys)
+    assert result["outcome"] == "NO_POOL"
+    assert result["alignment"] is None
+
+
+def test_the_artifact_always_preserves_the_raw_pre_alignment_statistics():
+    keys = _keys(40)
+    lcsb = _mu_frame(keys, seed=41)
+    wur = _mu_frame(keys, seed=41, offsets={e: 0.09 for e in LADDER})
+    result = decide(wur, lcsb, keys)
+    pre = {s["ce_numeric"]: s for s in result["pre_alignment"]["per_energy"]}
+    assert pre[15.0]["median_signed_delta"] == pytest.approx(0.09)
+    assert result["pre_alignment"]["rule_passes"] is False
+
+
+def test_population_b_size_and_per_energy_n_are_reported():
+    keys = _keys(40)
+    frame = _mu_frame(keys, seed=51)
+    result = decide(frame, frame, keys)
+    assert result["population_b"]["n_compounds"] == 40
+    assert [s["n"] for s in result["pre_alignment"]["per_energy"]] == [40] * 6
+
+
+def test_the_rule_is_applied_at_most_once_after_alignment():
+    keys = _keys(40)
+    lcsb = _mu_frame(keys, seed=61)
+    wur = _mu_frame(keys, seed=61, offsets={e: 0.09 for e in LADDER})
+    result = decide(wur, lcsb, keys)
+    if result["alignment"] is not None:
+        assert result["post_alignment"] is not None
+        assert result["outcome"] in {"POOL_AFTER_ENERGY_ALIGNMENT", "NO_POOL"}
+        assert "per_energy" in result["post_alignment"]
+        assert "rule_passes" in result["post_alignment"]
+
+
+def test_decide_is_json_serializable():
+    import json
+    keys = _keys(20)
+    frame = _mu_frame(keys, seed=71)
+    json.dumps(decide(frame, frame, keys))
