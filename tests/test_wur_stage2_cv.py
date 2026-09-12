@@ -69,3 +69,17 @@ def test_ledger_is_append_only(tmp_path, monkeypatch):
     assert p.exists()
     with pytest.raises(FileExistsError):
         CV.ledger_entry("X", res, {}, {}, "abc", "def")
+
+
+def test_b0_predictions_are_aligned_to_sorted_heldout_keys():
+    long, cov, frame = _dev(seed=4)
+    folds = FO.build_folds(frame[["group_key", "scaffold_group"]])
+    b0p = CV.b0_predictions(long, cov, frame, folds)
+    rep = folds["repeats"][0]
+    assign = pd.Series(rep["assignment"])
+    held = sorted(assign.index[assign == 1])
+    # every row of the B0 matrix is the same per-energy mean, so alignment is
+    # checked through the metrics: S2 and S4 of B0 against itself must be 0
+    r0 = CV.run_cv(CV.B0NullProfile, long, cov, frame, folds, b0p, with_loeo=False, repeats=[0])
+    assert all(f["S2_descriptor_practical_win"] == 0.0 and f["S4_catastrophic"] == 0.0 for f in r0.folds)
+    assert b0p[(0, 1)].shape == (len(held), 5)

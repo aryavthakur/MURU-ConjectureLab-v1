@@ -11,6 +11,8 @@ from pathlib import Path
 
 import numpy as np
 
+from muru.io.wur_provenance import canonical_key_hash
+
 from muru.wur_stage2 import cv as CV
 from muru.wur_stage2 import folds as FO
 
@@ -59,6 +61,10 @@ def run_candidate(candidate_id: str, repeats: list[int] | None = None) -> Path:
     long, cov, frame = CV.load_dev2b()
     folds = FO.load_folds()
     commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    dirty = bool(subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT,
+                                capture_output=True, text=True).stdout.strip())
+    if folds["population_keys_sha256"] != canonical_key_hash(sorted(frame["group_key"])):
+        raise ValueError("DEV2B does not match the population the folds were built on")
     b0p = CV.b0_predictions(long, cov, frame, folds)
     r = CV.run_cv(spec["make"], long, cov, frame, folds, b0p, with_loeo=True, repeats=repeats)
     refs = {k: _result_from_ledger(k) for k in REFERENCE_ARMS if (CV.LEDGER / f"{k}.json").exists()}
@@ -67,6 +73,7 @@ def run_candidate(candidate_id: str, repeats: list[int] | None = None) -> Path:
     meta = {k: spec[k] for k in ("parent", "hypothesis", "rationale", "generation", "features",
                                  "model_family", "tuning_space", "interpretable")}
     meta["partial_repeats"] = repeats
+    meta["git_tree_dirty"] = dirty
     (OUT / f"percompound_{candidate_id}.json").write_text(json.dumps(
         {"per_compound": r.per_compound, "loeo": r.loeo}, sort_keys=True))
     return CV.ledger_entry(candidate_id, r, meta, {"fold_compare": comps, "paired_bootstrap": boots},
@@ -84,10 +91,10 @@ def evaluate_rule(candidate_id: str) -> dict:
     s4_ref = float(np.mean([f["S4_catastrophic"] for f in s2a["folds"]]))
     n_feat = d["features"].get("n_features", None)
     interp = d.get("interpretable", True)
-    rel_needed = MIN_REL_IMPROVEMENT if interp else MIN_REL_IMPROVEMENT_BLACK_BOX
+    rel = fc["S2A_FROZEN_PIPELINE"]["mean_rel_improvement"]
     cond = {
         "c1_wins_vs_s2a": fc["S2A_FROZEN_PIPELINE"]["wins"] >= MIN_WINS_VS_S2A,
-        "c2_rel_improvement": fc["S2A_FROZEN_PIPELINE"]["mean_rel_improvement"] >= rel_needed,
+        "c2_rel_improvement": rel >= MIN_REL_IMPROVEMENT,
         "c3_beats_b0_and_b1": (fc["B0_NULL_PROFILE"]["wins"] >= MIN_WINS_VS_B0
                                and fc["B1_MASS_ONLY_ISOTONIC"]["wins"] >= MIN_WINS_VS_B1),
         "c4_no_catastrophic_regression": s4_c <= s4_ref,
@@ -95,6 +102,8 @@ def evaluate_rule(candidate_id: str) -> dict:
         "c6_no_e15_no_hold": True,
         "g_stability": d["P1_sd"] <= MAX_S5_RATIO * s2a["P1_sd"],
         "g_complexity": (n_feat is None) or (n_feat <= MAX_FEATURES),
+        # section 8 S6: a black box needs >= 15% over S2A (protocol text places this in the gate)
+        "g_black_box_bar": interp or rel >= MIN_REL_IMPROVEMENT_BLACK_BOX,
     }
     return {"candidate_id": candidate_id, "beats_s2a": all(cond[k] for k in list(cond)[:6]),
             "gate_clauses": all(cond.values()), "conditions": cond,
@@ -120,5 +129,7 @@ def rank_candidates(ids: list[str]) -> list[dict]:
         r["tied_with_best"] = bool(diff.mean() <= se)
         r.pop("p1s")
     tie = [r for r in rows if r["tied_with_best"]]
-    tie.sort(key=lambda r: (r["n_features"], str(r["n_params"]), r["P1"]))
+    def _np(v):
+        return (0, float(v)) if isinstance(v, (int, float)) else (1, 0.0)   # numeric before named
+    tie.sort(key=lambda r: (r["n_features"], _np(r["n_params"]), r["P1"]))
     return [{"selected": r is tie[0], **r} for r in rows]

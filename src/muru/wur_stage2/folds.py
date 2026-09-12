@@ -43,8 +43,20 @@ def build_folds(frame: pd.DataFrame) -> dict:
     return payload
 
 
-def load_folds() -> dict:
+def distinct_heldout_sets(d: dict) -> int:
+    """Number of distinct held-out compound sets across all repeats and folds."""
+    sets = set()
+    for rep in d["repeats"]:
+        a = pd.Series(rep["assignment"])
+        for k in range(d["k"]):
+            sets.add(frozenset(a.index[a == k]))
+    return len(sets)
+
+
+def load_folds(expected_population_sha256: str | None = None) -> dict:
     d = json.loads((ART / "wur_stage2b" / "folds.json").read_text())
+    if expected_population_sha256 and d["population_keys_sha256"] != expected_population_sha256:
+        raise ValueError("folds.json was built on a different population")
     recomputed = hashlib.sha256(json.dumps(
         [r["assignment"] for r in d["repeats"]], sort_keys=True).encode()).hexdigest()
     if recomputed != d["folds_sha256"]:

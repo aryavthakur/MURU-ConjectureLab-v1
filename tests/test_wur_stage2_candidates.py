@@ -39,7 +39,9 @@ def test_rule_requires_every_condition(tmp_path, monkeypatch):
     _ledger(tmp_path, "C_S3ok", good, 0.0495, 0.10, 12, comps)
     assert CA.evaluate_rule("C_S3ok")["conditions"]["c5_inherited_s3_A1"]
     _ledger(tmp_path, "C_BB", good, 0.046, 0.10, 12, comps, interp=False)
-    assert not CA.evaluate_rule("C_BB")["conditions"]["c2_rel_improvement"]
+    bb = CA.evaluate_rule("C_BB")
+    assert bb["conditions"]["c2_rel_improvement"] and bb["beats_s2a"]      # section 7 stays at 5%
+    assert not bb["conditions"]["g_black_box_bar"] and not bb["gate_clauses"]  # section 8 S6 bar
     _ledger(tmp_path, "C_FEAT", good, 0.046, 0.10, 25, comps)
     assert not CA.evaluate_rule("C_FEAT")["conditions"]["g_complexity"]
     _ledger(tmp_path, "C_SD", [0.10, 0.20] * 7 + [0.1], 0.046, 0.10, 12, comps)
