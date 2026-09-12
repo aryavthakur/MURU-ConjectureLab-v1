@@ -313,6 +313,18 @@ def run_cv(make_arm, long: pd.DataFrame, cov: pd.DataFrame, frame: pd.DataFrame,
             rc = per_compound_rmse(pred, Y)
             for key, v in zip(held, rc):
                 res.per_compound.setdefault(key, {})[rep["repeat"]] = float(v)
+            conf = arm.confidence(cov_h)
+            if conf is not None:
+                conf = np.asarray(conf, float)
+                ok = np.isfinite(conf) & np.isfinite(rc)
+                from scipy.stats import spearmanr
+                rho = float(spearmanr(conf[ok], rc[ok]).statistic) if ok.sum() >= 3 else float("nan")
+                thr = np.quantile(conf[ok], 0.2)
+                keep = ok & (conf >= thr)
+                d_keep = np.where(np.isfinite(Y[keep]), pred[keep] - Y[keep], np.nan)
+                m["S8_confidence"] = {"spearman_conf_vs_rmse": rho,
+                                      "P1_top80": float(np.sqrt(np.nanmean(d_keep ** 2))),
+                                      "abstained_fraction": float(1 - keep.sum() / max(1, ok.sum()))}
             if with_loeo:
                 lo = arm.loeo_mae(held, Y)
                 if lo is not None:
