@@ -75,3 +75,38 @@ def test_read_spectrum_peaks_raises_on_mismatched_blob_lengths(tmp_path):
     con.close()
     with pytest.raises(BlobDefect, match="mismatch"):
         read_spectrum_peaks(path, [1])
+
+
+def test_decode_blob_is_little_endian_not_native_agnostic():
+    """Big-endian bytes must NOT decode to the same values. On a
+    little-endian host a native-endian decoder would pass the
+    little-endian test above, so this is what actually pins the dtype."""
+    values = np.array([52.9174027, 121.07587178, 330.19774367])
+    decoded = decode_blob(values.astype(">f8").tobytes())
+    assert not np.allclose(decoded, values)
+
+
+def test_decode_blob_returns_a_writable_array():
+    """The next stage sorts and scales these arrays in place."""
+    arr = decode_blob(np.array([1.0, 2.0]).astype("<f8").tobytes())
+    arr[0] = 9.0  # must not raise
+    assert arr[0] == 9.0
+
+
+def test_read_spectrum_peaks_returns_empty_for_an_empty_id_list(tmp_path):
+    path = _tiny_db(tmp_path, [(1, [100.0], [10.0])])
+    assert read_spectrum_peaks(path, []) == {}
+
+
+def test_read_spectrum_peaks_raises_on_a_duplicate_spectrum_id(tmp_path):
+    """SpectrumTable has no uniqueness constraint on SpectrumId, so a
+    duplicate would otherwise silently win."""
+    path = _tiny_db(tmp_path, [(1, [100.0], [10.0]), (1, [200.0], [20.0])])
+    with pytest.raises(BlobDefect, match="more than once"):
+        read_spectrum_peaks(path, [1])
+
+
+def test_read_spectrum_peaks_raises_blobdefect_on_a_non_integer_id(tmp_path):
+    path = _tiny_db(tmp_path, [(1, [100.0], [10.0])])
+    with pytest.raises(BlobDefect):
+        read_spectrum_peaks(path, ["not-an-id"])
