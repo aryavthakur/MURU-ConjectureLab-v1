@@ -1,8 +1,18 @@
 {
   "purpose": "SEALED WUR external-validation partition. Do not open during Stage 2 development fitting.",
-  "constructed_utc": "2026-09-11T23:18:27.283377+00:00",
+  "constructed_utc": "2026-09-12T14:21:26.398871+00:00",
   "seed": 20260911,
   "selection_unit": "bemis_murcko_scaffold_group",
+  "environment": {
+    "python": "3.13.12",
+    "rdkit": "2026.03.5",
+    "pandas": "3.0.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "pyarrow": "25.0.1",
+    "git_commit_sha": "0523194530742a98c20c7f08452606030ed8ff4e",
+    "wur_retrieval_manifest_sha256": "a564c8ad3cbde5057e733e185e8be1bdfa068bc8f38a66103d921e0891263aef"
+  },
   "n_scaffold_groups": 275,
   "n_compounds": 404,
   "connectivity_keys": [
@@ -411,5 +421,6 @@
     "ZUSHSDOEVHPTCU",
     "ZZORFUFYDOWNEF"
   ],
+  "connectivity_keys_sha256": "6ef8c685493068cc59b776ea852ec9e012c1216f3d92fac5137e1ffe446c2a52",
   "disclosure": "These WUR compounds are reserved for one look at a candidate frozen on development (Stage 3). Not read for any mu or descriptor value before that freeze."
 }

@@ -3,9 +3,14 @@ lexicographically-first deposited SMILES) is already applied upstream, in
 wur_census.load_annotated_trajectories -- this module applies D2-D5 to the
 result."""
 from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from muru.io.wur_provenance import canonical_key_hash, environment_provenance
+
+ROOT = Path(__file__).resolve().parents[3]
 
 SEED = 20260911
 SEALED_TRAJECTORY_FLOOR = 250
@@ -67,6 +72,7 @@ def build_split_manifest(partitioned: dict[str, pd.DataFrame],
     """The split manifest. `partitioned` is the post-D6 assignment; `pre_d6`
     is the D1-D5 assignment, preserved so the D6 record shows what moved."""
     manifest = {"seed": SEED, "created_utc": datetime.now(timezone.utc).isoformat(),
+                "environment": environment_provenance(ROOT),
                 "polarities": {}}
     for polarity_file, df in partitioned.items():
         entry = {
@@ -139,28 +145,34 @@ def apply_d6(partitioned: dict[str, pd.DataFrame],
 def build_dev_neg_keys(neg_partitioned: pd.DataFrame) -> dict:
     """The corrected negative-mode WUR-DEV list, after D6."""
     dev = neg_partitioned[neg_partitioned["side"] == "WUR-DEV"]
+    keys = sorted(dev["connectivity_key"].tolist())
     return {
         "purpose": "Negative-mode WUR-DEV connectivity keys after rule D6. "
                    "No negative-mode external claim is made (rule D5).",
         "constructed_utc": datetime.now(timezone.utc).isoformat(),
         "seed": SEED,
+        "environment": environment_provenance(ROOT),
         "n_compounds": int(len(dev)),
         "n_scaffold_groups": int(dev["scaffold_group"].nunique()) if len(dev) else 0,
-        "connectivity_keys": sorted(dev["connectivity_key"].tolist()),
+        "connectivity_keys": keys,
+        "connectivity_keys_sha256": canonical_key_hash(keys),
     }
 
 
 def build_sealed_partition(pos_partitioned: pd.DataFrame) -> dict:
     sealed = pos_partitioned[pos_partitioned["side"] == "WUR-SEALED"]
+    keys = sorted(sealed["connectivity_key"].tolist())
     return {
         "purpose": "SEALED WUR external-validation partition. Do not open "
                    "during Stage 2 development fitting.",
         "constructed_utc": datetime.now(timezone.utc).isoformat(),
         "seed": SEED,
         "selection_unit": "bemis_murcko_scaffold_group",
+        "environment": environment_provenance(ROOT),
         "n_scaffold_groups": int(sealed["scaffold_group"].nunique()),
         "n_compounds": int(len(sealed)),
-        "connectivity_keys": sorted(sealed["connectivity_key"].tolist()),
+        "connectivity_keys": keys,
+        "connectivity_keys_sha256": canonical_key_hash(keys),
         "disclosure": "These WUR compounds are reserved for one look at a "
                       "candidate frozen on development (Stage 3). Not read "
                       "for any mu or descriptor value before that freeze.",

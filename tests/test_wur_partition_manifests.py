@@ -38,6 +38,21 @@ def test_sealed_partition_is_json_serializable_with_only_identifiers():
     sealed = build_sealed_partition(partition(_annotated())["POS"])
     json.dumps(sealed)  # must not raise
     assert set(sealed) == {
-        "purpose", "constructed_utc", "seed", "selection_unit",
-        "n_scaffold_groups", "n_compounds", "connectivity_keys", "disclosure",
+        "purpose", "constructed_utc", "seed", "selection_unit", "environment",
+        "n_scaffold_groups", "n_compounds", "connectivity_keys",
+        "connectivity_keys_sha256", "disclosure",
     }
+
+
+def test_sealed_partition_hash_matches_its_own_key_list():
+    from muru.io.wur_provenance import canonical_key_hash
+    sealed = build_sealed_partition(partition(_annotated())["POS"])
+    assert sealed["connectivity_keys_sha256"] == canonical_key_hash(
+        sealed["connectivity_keys"])
+
+
+def test_sealed_partition_environment_carries_no_compound_identity():
+    sealed = build_sealed_partition(partition(_annotated())["POS"])
+    env_text = json.dumps(sealed["environment"])
+    for key in sealed["connectivity_keys"]:
+        assert key not in env_text
