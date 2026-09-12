@@ -40,7 +40,8 @@ if __name__ == "__main__":
         assert len(df) == len(pre_d6[polarity_file]), \
             f"{polarity_file}: D6 changed the row count"
 
-    split_manifest = build_split_manifest(partitioned, pre_d6=pre_d6)
+    split_manifest = build_split_manifest(
+        partitioned, pre_d6=pre_d6, sealed_keys=set(sealed_after))
     (ROOT / "artifacts" / "wur_split_manifest.json").write_text(
         json.dumps(split_manifest, indent=2) + "\n")
 
@@ -63,7 +64,9 @@ if __name__ == "__main__":
         print(f"  {polarity_file} D6: dev {d6.get('dev_trajectories_before')} -> "
               f"{d6.get('dev_trajectories_after')}, excluded "
               f"{d6.get('excluded_trajectories')} in "
-              f"{d6.get('excluded_scaffold_groups')} groups")
+              f"{d6.get('excluded_scaffold_groups')} groups "
+              f"({d6.get('excluded_by_direct_key_match')} by direct key match, "
+              f"{d6.get('excluded_as_scaffold_group_neighbour')} as neighbours)")
     if not (floor["passes_trajectory_floor"] and floor["passes_scaffold_group_floor"]):
         print(f"WARNING: sealed part below floor: {floor}", file=sys.stderr)
         sys.exit(1)

@@ -114,3 +114,48 @@ def test_d6_runs_on_a_real_shaped_partition_without_touching_free_groups():
     part = partition({"POS": pos, "NEG": neg})
     out = apply_d6(part, sealed_scaffold_groups(part["POS"]))
     assert (out["NEG"]["side"] == "WUR-DEV").all()
+
+
+def test_split_manifest_splits_d6_exclusions_by_direct_key_match():
+    """Section 4.1 of the preregistration reports both the group-level count
+    and the narrower key-level one. Only the group-level count was in an
+    artifact, so the document's 19 was uncheckable from the repository."""
+    from muru.io.wur_partition import build_split_manifest
+
+    pos = pd.DataFrame({
+        "connectivity_key": ["PDEV", "PSEAL"],
+        "scaffold_group": ["gdev", "gseal"],
+        "side": ["WUR-DEV", "WUR-SEALED"],
+    })
+    neg = pd.DataFrame({
+        # PSEAL's own key is sealed; NNEIGH merely shares its scaffold group.
+        "connectivity_key": ["PSEAL", "NNEIGH", "NFREE"],
+        "scaffold_group": ["gseal", "gseal", "gneg"],
+        "side": ["WUR-DEV", "WUR-DEV", "WUR-DEV"],
+    })
+    pre_d6 = {"POS": pos, "NEG": neg}
+    groups = sealed_scaffold_groups(pos)
+    out = apply_d6(pre_d6, groups)
+
+    manifest = build_split_manifest(out, pre_d6=pre_d6, sealed_keys={"PSEAL"})
+    d6 = manifest["polarities"]["NEG"]["d6"]
+    assert d6["excluded_trajectories"] == 2
+    assert d6["excluded_by_direct_key_match"] == 1
+    assert d6["excluded_as_scaffold_group_neighbour"] == 1
+    assert (d6["excluded_by_direct_key_match"]
+            + d6["excluded_as_scaffold_group_neighbour"]
+            == d6["excluded_trajectories"])
+
+
+def test_split_manifest_omits_the_key_level_split_when_not_given_sealed_keys():
+    """The parameter is optional and the old call shape still works."""
+    from muru.io.wur_partition import build_split_manifest
+
+    pos = pd.DataFrame({
+        "connectivity_key": ["PDEV"], "scaffold_group": ["gdev"],
+        "side": ["WUR-DEV"],
+    })
+    pre_d6 = {"POS": pos, "NEG": pos.copy()}
+    out = apply_d6(pre_d6, sealed_scaffold_groups(pos))
+    manifest = build_split_manifest(out, pre_d6=pre_d6)
+    assert "excluded_by_direct_key_match" not in manifest["polarities"]["POS"]["d6"]

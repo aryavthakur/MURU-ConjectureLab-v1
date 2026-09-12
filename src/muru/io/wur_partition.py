@@ -68,9 +68,13 @@ def partition(annotated: dict[str, pd.DataFrame],
 
 
 def build_split_manifest(partitioned: dict[str, pd.DataFrame],
-                         pre_d6: dict[str, pd.DataFrame] | None = None) -> dict:
+                         pre_d6: dict[str, pd.DataFrame] | None = None,
+                         sealed_keys: set[str] | None = None) -> dict:
     """The split manifest. `partitioned` is the post-D6 assignment; `pre_d6`
-    is the D1-D5 assignment, preserved so the D6 record shows what moved."""
+    is the D1-D5 assignment, preserved so the D6 record shows what moved.
+    `sealed_keys` is the positive-mode WUR-SEALED connectivity keys, used
+    only to split D6's exclusions into those whose own key is sealed and
+    those that are scaffold-group neighbours of a sealed compound."""
     manifest = {"seed": SEED, "created_utc": datetime.now(timezone.utc).isoformat(),
                 "environment": environment_provenance(ROOT),
                 "polarities": {}}
@@ -103,6 +107,11 @@ def build_split_manifest(partitioned: dict[str, pd.DataFrame],
                 "excluded_scaffold_groups": int(moved["scaffold_group"].nunique())
                     if len(moved) else 0,
             }
+            if sealed_keys is not None:
+                direct = moved["connectivity_key"].isin(sealed_keys)
+                entry["d6"]["excluded_by_direct_key_match"] = int(direct.sum())
+                entry["d6"]["excluded_as_scaffold_group_neighbour"] = int(
+                    (~direct).sum())
         if polarity_file == "POS":
             entry["sealed_floor_check"] = check_sealed_floor(
                 df[df["side"] == "WUR-SEALED"])

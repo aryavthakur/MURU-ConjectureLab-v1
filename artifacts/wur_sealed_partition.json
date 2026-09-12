@@ -1,6 +1,6 @@
 {
   "purpose": "SEALED WUR external-validation partition. Do not open during Stage 2 development fitting.",
-  "constructed_utc": "2026-09-12T14:27:05.446536+00:00",
+  "constructed_utc": "2026-09-12T16:54:05.845193+00:00",
   "seed": 20260911,
   "selection_unit": "bemis_murcko_scaffold_group",
   "environment": {
@@ -10,7 +10,7 @@
     "numpy": "2.5.2",
     "scipy": "1.18.0",
     "pyarrow": "25.0.1",
-    "git_commit_sha": "7a9b9652d0a8a667981167524da2e7bba078a8cb",
+    "git_commit_sha": "29936f4b1a4bc6b93ac12d4a88222a176440741c",
     "git_tree_dirty": true,
     "wur_retrieval_manifest_sha256": "a564c8ad3cbde5057e733e185e8be1bdfa068bc8f38a66103d921e0891263aef"
   },
