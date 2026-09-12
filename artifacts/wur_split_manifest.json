@@ -1,6 +1,17 @@
 {
   "seed": 20260911,
-  "created_utc": "2026-09-11T23:18:27.280613+00:00",
+  "created_utc": "2026-09-12T16:54:05.811956+00:00",
+  "environment": {
+    "python": "3.13.12",
+    "rdkit": "2026.03.5",
+    "pandas": "3.0.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "pyarrow": "25.0.1",
+    "git_commit_sha": "29936f4b1a4bc6b93ac12d4a88222a176440741c",
+    "git_tree_dirty": true,
+    "wur_retrieval_manifest_sha256": "a564c8ad3cbde5057e733e185e8be1bdfa068bc8f38a66103d921e0891263aef"
+  },
   "polarities": {
     "POS": {
       "n_trajectories": 1010,
@@ -12,6 +23,20 @@
       "WUR-SEALED": {
         "n_trajectories": 404,
         "n_scaffold_groups": 275
+      },
+      "EXCLUDED": {
+        "n_trajectories": 0,
+        "n_scaffold_groups": 0
+      },
+      "sides_account_for_all_rows": true,
+      "d6": {
+        "rule": "side == WUR-DEV AND scaffold_group in positive-mode WUR-SEALED groups -> EXCLUDED",
+        "dev_trajectories_before": 606,
+        "dev_trajectories_after": 606,
+        "excluded_trajectories": 0,
+        "excluded_scaffold_groups": 0,
+        "excluded_by_direct_key_match": 0,
+        "excluded_as_scaffold_group_neighbour": 0
       },
       "sealed_floor_check": {
         "n_trajectories": 404,
@@ -26,12 +51,26 @@
       "n_trajectories": 241,
       "n_scaffold_groups": 178,
       "WUR-DEV": {
-        "n_trajectories": 241,
-        "n_scaffold_groups": 178
+        "n_trajectories": 209,
+        "n_scaffold_groups": 157
       },
       "WUR-SEALED": {
         "n_trajectories": 0,
         "n_scaffold_groups": 0
+      },
+      "EXCLUDED": {
+        "n_trajectories": 32,
+        "n_scaffold_groups": 21
+      },
+      "sides_account_for_all_rows": true,
+      "d6": {
+        "rule": "side == WUR-DEV AND scaffold_group in positive-mode WUR-SEALED groups -> EXCLUDED",
+        "dev_trajectories_before": 241,
+        "dev_trajectories_after": 209,
+        "excluded_trajectories": 32,
+        "excluded_scaffold_groups": 21,
+        "excluded_by_direct_key_match": 19,
+        "excluded_as_scaffold_group_neighbour": 13
       }
     }
   }

@@ -61,12 +61,16 @@ artifacts/p3_ckpt/
 # Task 5/6 check the sealed-part floor against. Tracked provenance, not
 # regenerable scratch.
 !artifacts/wur_identity_census.json
+!artifacts/wur_population_audit.json
 
 # WUR Stage 0 split/sealed-partition manifests: the D1-D5 side assignment
 # and the sealed-part connectivity-key manifest. Tracked provenance, not
 # regenerable scratch.
 !artifacts/wur_split_manifest.json
 !artifacts/wur_sealed_partition.json
+!artifacts/wur_dev_neg_keys.json
+!artifacts/wur_bridge_gate.json
+!artifacts/wur_mu_provenance.json
 *.parquet
 *.feather
 *.h5

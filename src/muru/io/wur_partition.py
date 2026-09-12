@@ -1,11 +1,16 @@
-"""Stage 0 partition rules D1-D5. D1 (scaffold group of the
+"""Stage 0 partition rules D1-D6. D1 (scaffold group of the
 lexicographically-first deposited SMILES) is already applied upstream, in
 wur_census.load_annotated_trajectories -- this module applies D2-D5 to the
-result."""
+result, then D6 as a filter over that result."""
 from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from muru.io.wur_provenance import canonical_key_hash, environment_provenance
+
+ROOT = Path(__file__).resolve().parents[3]
 
 SEED = 20260911
 SEALED_TRAJECTORY_FLOOR = 250
@@ -62,20 +67,51 @@ def partition(annotated: dict[str, pd.DataFrame],
     return {"POS": pos, "NEG": neg}
 
 
-def build_split_manifest(partitioned: dict[str, pd.DataFrame]) -> dict:
+def build_split_manifest(partitioned: dict[str, pd.DataFrame],
+                         pre_d6: dict[str, pd.DataFrame] | None = None,
+                         sealed_keys: set[str] | None = None) -> dict:
+    """The split manifest. `partitioned` is the post-D6 assignment; `pre_d6`
+    is the D1-D5 assignment, preserved so the D6 record shows what moved.
+    `sealed_keys` is the positive-mode WUR-SEALED connectivity keys, used
+    only to split D6's exclusions into those whose own key is sealed and
+    those that are scaffold-group neighbours of a sealed compound."""
     manifest = {"seed": SEED, "created_utc": datetime.now(timezone.utc).isoformat(),
+                "environment": environment_provenance(ROOT),
                 "polarities": {}}
     for polarity_file, df in partitioned.items():
         entry = {
             "n_trajectories": int(len(df)),
             "n_scaffold_groups": int(df["scaffold_group"].nunique()) if len(df) else 0,
         }
-        for side in ("WUR-DEV", "WUR-SEALED"):
+        for side in ("WUR-DEV", "WUR-SEALED", "EXCLUDED"):
             sub = df[df["side"] == side]
             entry[side] = {
                 "n_trajectories": int(len(sub)),
                 "n_scaffold_groups": int(sub["scaffold_group"].nunique()) if len(sub) else 0,
             }
+        entry["sides_account_for_all_rows"] = bool(
+            entry["WUR-DEV"]["n_trajectories"]
+            + entry["WUR-SEALED"]["n_trajectories"]
+            + entry["EXCLUDED"]["n_trajectories"] == entry["n_trajectories"])
+        if pre_d6 is not None:
+            before = pre_d6[polarity_file]
+            before_dev = before[before["side"] == "WUR-DEV"]
+            after_dev = df[df["side"] == "WUR-DEV"]
+            moved = df[df["side"] == "EXCLUDED"]
+            entry["d6"] = {
+                "rule": "side == WUR-DEV AND scaffold_group in positive-mode "
+                        "WUR-SEALED groups -> EXCLUDED",
+                "dev_trajectories_before": int(len(before_dev)),
+                "dev_trajectories_after": int(len(after_dev)),
+                "excluded_trajectories": int(len(moved)),
+                "excluded_scaffold_groups": int(moved["scaffold_group"].nunique())
+                    if len(moved) else 0,
+            }
+            if sealed_keys is not None:
+                direct = moved["connectivity_key"].isin(sealed_keys)
+                entry["d6"]["excluded_by_direct_key_match"] = int(direct.sum())
+                entry["d6"]["excluded_as_scaffold_group_neighbour"] = int(
+                    (~direct).sum())
         if polarity_file == "POS":
             entry["sealed_floor_check"] = check_sealed_floor(
                 df[df["side"] == "WUR-SEALED"])
@@ -83,17 +119,69 @@ def build_split_manifest(partitioned: dict[str, pd.DataFrame]) -> dict:
     return manifest
 
 
+def sealed_scaffold_groups(pos_partitioned: pd.DataFrame) -> set[str]:
+    """The positive-mode scaffold groups held by WUR-SEALED. D6's input."""
+    return set(pos_partitioned.loc[
+        pos_partitioned["side"] == "WUR-SEALED", "scaffold_group"])
+
+
+def apply_d6(partitioned: dict[str, pd.DataFrame],
+             sealed_groups: set[str]) -> dict[str, pd.DataFrame]:
+    """D6: a development-exposure exclusion, applied over D1-D5.
+
+    D5 routes every negative-mode trajectory to WUR-DEV without consulting
+    the scaffold-group logic that D2-D4 use, so a negative-mode compound can
+    sit in development while its scaffold group is sealed on the positive
+    side. D6 removes exactly those rows:
+
+        side == "WUR-DEV" AND scaffold_group in sealed_groups -> "EXCLUDED"
+
+    Scope is deliberately narrow. A WUR-SEALED row is never relabelled, so
+    the sealed key list is untouched and the sealed-part floor is unmoved.
+    The rule is written for both polarities and is a provable no-op on POS,
+    because D1-D4 never split a scaffold group across sides. It is applied
+    as a filter over the D1-D5 result; it does not re-run the partition.
+    """
+    out = {}
+    for polarity_file, df in partitioned.items():
+        df = df.copy()
+        excluded = (df["side"] == "WUR-DEV") & df["scaffold_group"].isin(sealed_groups)
+        df.loc[excluded, "side"] = "EXCLUDED"
+        out[polarity_file] = df
+    return out
+
+
+def build_dev_neg_keys(neg_partitioned: pd.DataFrame) -> dict:
+    """The corrected negative-mode WUR-DEV list, after D6."""
+    dev = neg_partitioned[neg_partitioned["side"] == "WUR-DEV"]
+    keys = sorted(dev["connectivity_key"].tolist())
+    return {
+        "purpose": "Negative-mode WUR-DEV connectivity keys after rule D6. "
+                   "No negative-mode external claim is made (rule D5).",
+        "constructed_utc": datetime.now(timezone.utc).isoformat(),
+        "seed": SEED,
+        "environment": environment_provenance(ROOT),
+        "n_compounds": int(len(dev)),
+        "n_scaffold_groups": int(dev["scaffold_group"].nunique()) if len(dev) else 0,
+        "connectivity_keys": keys,
+        "connectivity_keys_sha256": canonical_key_hash(keys),
+    }
+
+
 def build_sealed_partition(pos_partitioned: pd.DataFrame) -> dict:
     sealed = pos_partitioned[pos_partitioned["side"] == "WUR-SEALED"]
+    keys = sorted(sealed["connectivity_key"].tolist())
     return {
         "purpose": "SEALED WUR external-validation partition. Do not open "
                    "during Stage 2 development fitting.",
         "constructed_utc": datetime.now(timezone.utc).isoformat(),
         "seed": SEED,
         "selection_unit": "bemis_murcko_scaffold_group",
+        "environment": environment_provenance(ROOT),
         "n_scaffold_groups": int(sealed["scaffold_group"].nunique()),
         "n_compounds": int(len(sealed)),
-        "connectivity_keys": sorted(sealed["connectivity_key"].tolist()),
+        "connectivity_keys": keys,
+        "connectivity_keys_sha256": canonical_key_hash(keys),
         "disclosure": "These WUR compounds are reserved for one look at a "
                       "candidate frozen on development (Stage 3). Not read "
                       "for any mu or descriptor value before that freeze.",

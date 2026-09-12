@@ -88,21 +88,26 @@ def infer_adduct(smiles: str, precursor_mass: float,
     return matches[0] if len(matches) == 1 else None
 
 
-def build_qualifying_trajectories(raw: pd.DataFrame, polarity: str) -> pd.DataFrame:
-    """Reduce raw per-spectrum rows (any number of source libraries, one
-    nominal polarity) to one row per qualifying trajectory.
+ACCEPTED_COLUMNS = [
+    "source_library", "source_polarity_file", "spectrum_id", "compound_id",
+    "connectivity_key", "smiles", "adduct", "energy", "precursor_mass",
+    "polarity",
+]
 
-    A trajectory qualifies if its HCD spectra, on the compound's own
-    Polarity field (not the source file name), cover the full six-point
-    ladder with no stepped or off-ladder residue, its deposited SMILES
-    verifies against its own InChIKey, and exactly one adduct explains its
-    precursor mass. Duplicate/cross-library deposits of the same connectivity
-    key are merged into one row here, not dropped -- this is where defect
-    "62/61 duplicate combos" (spec §3.2) is resolved.
 
-    Returns: connectivity_key, smiles (lexicographically first deposited
-    SMILES for that key -- design rule D1), adduct, polarity, n_source_rows,
-    source_libraries (sorted tuple).
+def accepted_rows(raw: pd.DataFrame, polarity: str) -> pd.DataFrame:
+    """One row per spectrum that passes every Stage 0 identity gate.
+
+    This is the single definition of "a spectrum MURU accepted from the WUR
+    release". `build_qualifying_trajectories` groups it; Stage 1's mu builder
+    reads peaks for exactly these rows. Neither re-implements the gates, so
+    they cannot drift apart and a rejected UVPD, off-ladder, wrong-polarity
+    or wrong-adduct spectrum cannot leak back in downstream.
+
+    Gates, in order: HCD only; the compound's own Polarity field (not the
+    source file name); a collision energy that parses and snaps to a ladder
+    rung; a deposited SMILES that verifies against its own InChIKey; and
+    exactly one adduct explaining the precursor mass.
     """
     df = raw[
         (raw["fragmentation_mode"] == "HCD")
@@ -127,7 +132,23 @@ def build_qualifying_trajectories(raw: pd.DataFrame, polarity: str) -> pd.DataFr
         infer_adduct(s, m, polarity)
         for s, m in zip(df["smiles"], df["precursor_mass"])
     ]
-    df = df[df["adduct"].notna()]
+    df = df[df["adduct"].notna()].copy()
+    return df.reindex(columns=ACCEPTED_COLUMNS).reset_index(drop=True)
+
+
+def build_qualifying_trajectories(raw: pd.DataFrame, polarity: str) -> pd.DataFrame:
+    """Reduce accepted spectra to one row per qualifying trajectory.
+
+    A trajectory qualifies if its accepted spectra cover the full six-point
+    ladder. Duplicate and cross-library deposits of the same connectivity
+    key are merged into one row here, not dropped -- this is where defect
+    "62/61 duplicate combos" (spec §3.2) is resolved.
+
+    Returns: connectivity_key, smiles (lexicographically first deposited
+    SMILES for that key -- design rule D1), adduct, polarity, n_source_rows,
+    source_libraries (sorted tuple).
+    """
+    df = accepted_rows(raw, polarity)
 
     columns = ["connectivity_key", "smiles", "adduct", "polarity",
                "n_source_rows", "source_libraries"]
