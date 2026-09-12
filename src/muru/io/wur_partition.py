@@ -1,7 +1,7 @@
-"""Stage 0 partition rules D1-D5. D1 (scaffold group of the
+"""Stage 0 partition rules D1-D6. D1 (scaffold group of the
 lexicographically-first deposited SMILES) is already applied upstream, in
 wur_census.load_annotated_trajectories -- this module applies D2-D5 to the
-result."""
+result, then D6 as a filter over that result."""
 from datetime import datetime, timezone
 from pathlib import Path
 

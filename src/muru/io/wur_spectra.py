@@ -10,6 +10,7 @@ Both blobs are little-endian float64 arrays of equal length. Anything else
 is a defect and is raised or censused, never silently dropped.
 """
 import sqlite3
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -78,7 +79,8 @@ def _fetch_blob_rows(db_path: Path, wanted: list[int]) -> list[tuple]:
         con.close()
 
     seen_ids = [int(sid) for sid, _, _ in rows]
-    duplicates = sorted({sid for sid in seen_ids if seen_ids.count(sid) > 1})
+    counts = Counter(seen_ids)
+    duplicates = sorted(sid for sid, count in counts.items() if count > 1)
     if duplicates:
         raise BlobDefect(
             f"{db_path.name}: SpectrumId(s) appear more than once in "

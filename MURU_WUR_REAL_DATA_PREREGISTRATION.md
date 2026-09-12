@@ -175,7 +175,8 @@ its own declared `PrecursorMass`, the WUR analogue of MassBank's
 **Duplicate resolution.** Where more than one accepted spectrum exists at
 the same `(connectivity_key, energy)`, the value is the **median** of the
 per-spectrum `mu`. Chosen before any real `mu` existed. The contributing
-spectrum ids, source libraries and `n_spectra` are preserved for every cell.
+spectrum ids, source libraries and `n_spectra` are preserved for every cell,
+and persisted to `artifacts/wur_mu_provenance.json`; see erratum E-3.
 
 **Defects.** A blob length mismatch, a nonfinite value, a negative
 intensity, a non-positive total intensity, or an unusable declared precursor
@@ -454,3 +455,46 @@ This changes a reported diagnostic, not a rule. The clamp is unconditional
 and unchanged, the tolerance is four orders of magnitude below the 0.01 Stage
 0 uses to snap deposited energies, and no outcome can depend on it: a target
 clipped by 1e-9 moves the interpolated `mu` by nothing.
+
+### E-3, 2026-09-12, results-visible
+
+Unlike E-1 and E-2, this erratum was issued AFTER the Stage 1 gate ran and
+with its result visible. It changes no rule and no threshold. It records two
+properties of the realized run that a reader needs in order to use the
+outcome correctly, and one artifact added to discharge a promise section 5.2
+already made.
+
+1. **The outcome does not license pooling at E = 15.** The gate returned
+   `POOL_AFTER_ENERGY_ALIGNMENT`, but every pre-alignment median signed delta
+   was negative, so any admissible map reads WUR lower in energy, so
+   `T(15) < 15` is forced and E = 15 cannot be corrected by any map inside
+   the frozen box. All 124 of the clamped cells are that one energy. Its
+   post-alignment statistics are identical to its pre-alignment statistics
+   and it fails the rule: median absolute delta 0.0773, about 2.6 times the
+   replicate SD. Five of six passing was therefore the maximum attainable
+   score, not a near miss, and the five that passed had to pass unanimously.
+   Stage 2 must either drop E = 15 or report it separately. It may not treat
+   the ladder as uniformly pooled.
+
+2. **The duplicate-median rule was operationally vacuous on this data.**
+   Every one of the 744 cells has exactly two contributing spectra, and the
+   median of two values is their mean. The rule is implemented and tested,
+   and it was chosen before any `mu` existed, but on this population it
+   cannot express a preference. No reader should credit it with robustness it
+   did not provide here.
+
+3. **Per-cell provenance.** Section 5.2 promises that the contributing
+   spectrum ids, source libraries and `n_spectra` are preserved for every
+   cell. The builder preserved them but the gate CLI wrote only aggregates,
+   so `artifacts/wur_mu_provenance.json` now persists them. It was produced
+   by recomputing the same deterministic mu table from the same frozen
+   release and the same code after the gate run. It does not re-run the gate,
+   and `artifacts/wur_bridge_gate.json` is unmodified.
+
+A fourth observation, recorded because the write-up should not overstate it:
+the branch is named for a consistent offset and its entry condition tests an
+offset, but the object fitted is a two-parameter affine map, and the realized
+fit used mostly its slope (`b = 0.8618`, a 14 percent compression of the
+energy axis). That is inside the frozen box of section 5.4 and nothing was
+violated, but the correction should be described as an affine energy map, not
+as an offset.
