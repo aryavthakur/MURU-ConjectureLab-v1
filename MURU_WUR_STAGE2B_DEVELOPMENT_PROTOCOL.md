@@ -158,3 +158,22 @@ or WUR-SEALED before the freeze; changing folds, P1, or any threshold above
 after a candidate result exists; using native E = 15 in a pooled fit;
 deleting or editing a ledger entry; comparing candidates on the Stage 2A
 single split instead of the frozen folds.
+
+## 12. Amendments
+
+### A-1, 2026-09-12, issued after the reference arms and before any candidate
+
+Section 7 condition 5 pinned the inherited non-regression threshold at
+0.035 from the Stage 2A ladder's M0 median MAE (0.032). That number was
+computed with `fit_case_phi` at `E_REF = 45` on a train-only Phi. The Stage
+2B harness scores every collapse arm's within-compound LOEO MAE (S3) with
+the frozen M0 fitter against the arm's own `ENERGY_SCALE = 30` collapse
+profile, and the frozen S2A arm itself scores 0.0465 there, identical for
+B1 and LIN because they share the profile. A threshold pinned on one
+estimator and applied to another would fail every candidate for a reason
+unrelated to regression. Condition 5 is therefore restated on like-for-like
+numbers: **the median S3 of C over the 15 folds must be <= the median S3 of
+the S2A arm under this harness (0.0465) + 0.003**, the tolerance being one
+tenth of the repeatability SD. No candidate result existed when this was
+written; the four reference-arm ledger entries did, and their S3 values are
+all equal by construction, so no candidate ordering was informed by it.
