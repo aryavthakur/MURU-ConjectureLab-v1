@@ -62,7 +62,10 @@ def partition(annotated: dict[str, pd.DataFrame],
     return {"POS": pos, "NEG": neg}
 
 
-def build_split_manifest(partitioned: dict[str, pd.DataFrame]) -> dict:
+def build_split_manifest(partitioned: dict[str, pd.DataFrame],
+                         pre_d6: dict[str, pd.DataFrame] | None = None) -> dict:
+    """The split manifest. `partitioned` is the post-D6 assignment; `pre_d6`
+    is the D1-D5 assignment, preserved so the D6 record shows what moved."""
     manifest = {"seed": SEED, "created_utc": datetime.now(timezone.utc).isoformat(),
                 "polarities": {}}
     for polarity_file, df in partitioned.items():
@@ -70,17 +73,81 @@ def build_split_manifest(partitioned: dict[str, pd.DataFrame]) -> dict:
             "n_trajectories": int(len(df)),
             "n_scaffold_groups": int(df["scaffold_group"].nunique()) if len(df) else 0,
         }
-        for side in ("WUR-DEV", "WUR-SEALED"):
+        for side in ("WUR-DEV", "WUR-SEALED", "EXCLUDED"):
             sub = df[df["side"] == side]
             entry[side] = {
                 "n_trajectories": int(len(sub)),
                 "n_scaffold_groups": int(sub["scaffold_group"].nunique()) if len(sub) else 0,
+            }
+        entry["sides_account_for_all_rows"] = bool(
+            entry["WUR-DEV"]["n_trajectories"]
+            + entry["WUR-SEALED"]["n_trajectories"]
+            + entry["EXCLUDED"]["n_trajectories"] == entry["n_trajectories"])
+        if pre_d6 is not None:
+            before = pre_d6[polarity_file]
+            before_dev = before[before["side"] == "WUR-DEV"]
+            after_dev = df[df["side"] == "WUR-DEV"]
+            moved = df[df["side"] == "EXCLUDED"]
+            entry["d6"] = {
+                "rule": "side == WUR-DEV AND scaffold_group in positive-mode "
+                        "WUR-SEALED groups -> EXCLUDED",
+                "dev_trajectories_before": int(len(before_dev)),
+                "dev_trajectories_after": int(len(after_dev)),
+                "excluded_trajectories": int(len(moved)),
+                "excluded_scaffold_groups": int(moved["scaffold_group"].nunique())
+                    if len(moved) else 0,
             }
         if polarity_file == "POS":
             entry["sealed_floor_check"] = check_sealed_floor(
                 df[df["side"] == "WUR-SEALED"])
         manifest["polarities"][polarity_file] = entry
     return manifest
+
+
+def sealed_scaffold_groups(pos_partitioned: pd.DataFrame) -> set[str]:
+    """The positive-mode scaffold groups held by WUR-SEALED. D6's input."""
+    return set(pos_partitioned.loc[
+        pos_partitioned["side"] == "WUR-SEALED", "scaffold_group"])
+
+
+def apply_d6(partitioned: dict[str, pd.DataFrame],
+             sealed_groups: set[str]) -> dict[str, pd.DataFrame]:
+    """D6: a development-exposure exclusion, applied over D1-D5.
+
+    D5 routes every negative-mode trajectory to WUR-DEV without consulting
+    the scaffold-group logic that D2-D4 use, so a negative-mode compound can
+    sit in development while its scaffold group is sealed on the positive
+    side. D6 removes exactly those rows:
+
+        side == "WUR-DEV" AND scaffold_group in sealed_groups -> "EXCLUDED"
+
+    Scope is deliberately narrow. A WUR-SEALED row is never relabelled, so
+    the sealed key list is untouched and the sealed-part floor is unmoved.
+    The rule is written for both polarities and is a provable no-op on POS,
+    because D1-D4 never split a scaffold group across sides. It is applied
+    as a filter over the D1-D5 result; it does not re-run the partition.
+    """
+    out = {}
+    for polarity_file, df in partitioned.items():
+        df = df.copy()
+        excluded = (df["side"] == "WUR-DEV") & df["scaffold_group"].isin(sealed_groups)
+        df.loc[excluded, "side"] = "EXCLUDED"
+        out[polarity_file] = df
+    return out
+
+
+def build_dev_neg_keys(neg_partitioned: pd.DataFrame) -> dict:
+    """The corrected negative-mode WUR-DEV list, after D6."""
+    dev = neg_partitioned[neg_partitioned["side"] == "WUR-DEV"]
+    return {
+        "purpose": "Negative-mode WUR-DEV connectivity keys after rule D6. "
+                   "No negative-mode external claim is made (rule D5).",
+        "constructed_utc": datetime.now(timezone.utc).isoformat(),
+        "seed": SEED,
+        "n_compounds": int(len(dev)),
+        "n_scaffold_groups": int(dev["scaffold_group"].nunique()) if len(dev) else 0,
+        "connectivity_keys": sorted(dev["connectivity_key"].tolist()),
+    }
 
 
 def build_sealed_partition(pos_partitioned: pd.DataFrame) -> dict:
