@@ -1,0 +1,38 @@
+{
+  "seed": 20260911,
+  "created_utc": "2026-09-11T23:18:27.280613+00:00",
+  "polarities": {
+    "POS": {
+      "n_trajectories": 1010,
+      "n_scaffold_groups": 610,
+      "WUR-DEV": {
+        "n_trajectories": 606,
+        "n_scaffold_groups": 335
+      },
+      "WUR-SEALED": {
+        "n_trajectories": 404,
+        "n_scaffold_groups": 275
+      },
+      "sealed_floor_check": {
+        "n_trajectories": 404,
+        "n_scaffold_groups": 275,
+        "trajectory_floor": 250,
+        "scaffold_group_floor": 150,
+        "passes_trajectory_floor": true,
+        "passes_scaffold_group_floor": true
+      }
+    },
+    "NEG": {
+      "n_trajectories": 241,
+      "n_scaffold_groups": 178,
+      "WUR-DEV": {
+        "n_trajectories": 241,
+        "n_scaffold_groups": 178
+      },
+      "WUR-SEALED": {
+        "n_trajectories": 0,
+        "n_scaffold_groups": 0
+      }
+    }
+  }
+}
