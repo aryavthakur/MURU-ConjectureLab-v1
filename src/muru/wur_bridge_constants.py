@@ -27,6 +27,8 @@ DUPLICATE_AGGREGATOR = "median"
 MEDIAN_ABS_DELTA_MAX = 0.05   # ~1.7x the 0.0295 inter-mixture repeatability SD
 SPEARMAN_MIN = 0.80
 MIN_PASSING_ENERGIES = 5      # of 6
+MIN_PAIRS_FOR_CORRELATION = 3  # below this a Spearman rho is undefined
+MIN_POPULATION_B = 30          # erratum E-1; see preregistration section 5.1
 
 # Entry condition for the POOL_AFTER_ENERGY_ALIGNMENT branch.
 OFFSET_MAX = 0.15
@@ -37,3 +39,4 @@ ALIGNMENT_A_BOUNDS = (-30.0, 30.0)
 ALIGNMENT_B_BOUNDS = (0.5, 2.0)
 ALIGNMENT_MAXITER = 1000
 ALIGNMENT_TOL = 1e-8
+ALIGNMENT_POLISH = True

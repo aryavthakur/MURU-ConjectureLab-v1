@@ -147,6 +147,16 @@ The realized size is asserted and reported. It is expected to be 124. If it
 is not, the realized population is reported and used; the expected figure is
 never forced. Disjointness from both seals is asserted, not assumed.
 
+**Floor.** The gate requires at least **30** compounds in population B. Below
+that a Spearman correlation judged against a 0.80 threshold carries little
+information, and the gate cannot distinguish agreement from small-sample
+noise; a realized population below 30 yields outcome `NO_POOL` with the
+reason recorded, and no map is fitted. This floor is stated in erratum E-1
+rather than in the original freeze, and it was set with the realized size
+already known to be 124, so it is a guard against a degenerate re-run and
+carries no evidential weight for this run. It is not a power calculation and
+is not binding here.
+
 ### 5.2 Endpoint
 
 `features.mu` on both sides, at the base preprocessing cell of
@@ -189,7 +199,10 @@ compounds carrying a value on both sides at that energy:
 
 `scipy.stats.spearmanr` with its default average-rank tie handling;
 `numpy.median` for both medians. An energy with fewer than 3 pairs has no
-defined correlation and cannot pass.
+defined correlation and cannot pass. The correlation is likewise undefined
+when either vector is constant, in which case `spearmanr` returns `nan`; that
+energy also cannot pass. Both cases are recorded as a null correlation in the
+artifact rather than as a number.
 
 Both conditions must hold on at least **5 of the 6** energies.
 
@@ -207,8 +220,10 @@ The branch is entered only when **all four** conditions hold, each read off
 the raw pre-alignment statistics before any map is fitted:
 
 1. the rule in 5.3 failed;
-2. the median signed delta has the same sign at every one of the six
-   energies;
+2. the median signed delta is strictly positive at every one of the six
+   energies, or strictly negative at every one of them. An exactly zero
+   median signed delta at any energy satisfies neither, so the branch is not
+   entered;
 3. its magnitude is <= **0.15** at every energy;
 4. the Spearman correlation is >= 0.80 at every energy.
 
@@ -238,7 +253,12 @@ counted and reported.
     J(a, b) = SUM over the six ladder energies of
               | median over i of ( mu_WUR,i(T(E)) - mu_LCSB,i(E) ) |
 
-the sum of absolute per-energy median signed deltas. This targets the
+the sum of absolute per-energy median signed deltas. At each energy the
+index `i` ranges over exactly the paired subset that section 5.3 defines for
+that energy, namely the population-B compounds carrying a value on both
+sides there. That subset is not the same at every energy, because some LCSB
+compounds carry five rungs rather than six, so the objective is a sum over
+six medians taken on six possibly different subsets. This targets the
 consistent offset the branch exists for, rather than scatter, which no
 energy map can fix.
 
@@ -247,6 +267,13 @@ chosen a priori as generous relative to any plausible NCE-label mismatch
 between two Orbitraps. `scipy.optimize.differential_evolution`, seed
 `20260911`, `tol = 1e-8`, `maxiter = 1000`, `polish = True`. Deterministic
 at that seed. One fit, no restarts.
+
+**Non-uniqueness.** Clamping makes `J` constant over whole regions of
+`(a, b)`, so its minimiser is not in general unique. No tie-break is
+imposed. The reported map is whatever the procedure specified above returns,
+which is deterministic at the frozen seed, and the fitted `a`, `b`, the
+objective value and the clamped-cell count are all recorded so that a reader
+can see when the fit sat in a flat region.
 
 **Re-application.** The rule in 5.3 is applied to the aligned deltas exactly
 once. Pass gives `POOL_AFTER_ENERGY_ALIGNMENT`; fail gives `NO_POOL`. There
@@ -288,11 +315,19 @@ real population of unknown size those become fractions of the realized test
 population:
 
 - evaluable >= **0.80** of test compounds;
-- practical wins >= **2/3** of evaluable compounds.
+- practical wins >= **2/3** of test compounds.
+
+**Both denominators are test compounds.** The frozen contract is
+`MIN_EVALUABLE_COMPOUNDS = 24` and `MIN_PRACTICAL_WINS = 20` against
+`N_TEST_COMPOUNDS_EXPECTED = 30` in `adequacy.py`, and 20/30 is exactly 2/3,
+so the test-compound denominator is the one that reproduces the contract.
+Taking 2/3 of evaluable instead would fire at 16 of 24, which is a looser
+rule than the one the synthetic work calibrated, and it is corrected here
+under erratum E-1 before any Stage 2 value exists.
 
 The 0.90 practical-win margin, the minimum of 5 observed energies, the
 `log_g` bounds and `E_REF = 45.0` are unchanged. At N = 30 the fractions
-reproduce the existing contract exactly (24/30 and 20/24), and the existing
+reproduce the existing contract exactly (24/30 and 20/30), and the existing
 contract tests must keep passing at N = 30.
 
 ## 8. Standing constraints
@@ -354,3 +389,48 @@ analysis gate.
 UVPD spectra, stepped-energy spectra, the FCH 15 to 55 ladder,
 negative-mode external claims, raw vendor files, any claim about collision
 energy as a causal quantity, and any second look at the sealed part.
+
+## 12. Errata
+
+An erratum is a correction issued against this document after its freeze
+commit. Each one records what changed, why, and what had been computed at
+the time, so that a reader can judge whether the change could have been
+informed by a result. A correction issued before the relevant values exist
+is not a post-hoc threshold choice, but it is also not the same as having
+got it right the first time, and it is recorded rather than folded in
+silently.
+
+### E-1, 2026-09-12, results-blind
+
+Issued after the freeze commit of this document and before any Stage 1 `mu`
+was computed. No bridge-gate statistic, no Stage 2 value and no sealed-part
+value existed. Prompted by an independent review of the freeze.
+
+1. **Section 7, adequacy denominator.** The document said practical wins
+   `>= 2/3` of **evaluable** compounds while also claiming that at N = 30 the
+   fractions reproduce the frozen contract exactly. Those two statements are
+   inconsistent: 2/3 of 24 evaluable is 16, whereas the frozen contract is 20.
+   The denominator is test compounds, where 20/30 is exactly 2/3. Corrected,
+   and the parenthetical corrected from (24/30 and 20/24) to (24/30 and
+   20/30). This was the one live opportunity in the document to pick a
+   threshold after seeing data, since both 16 and 20 had textual support.
+2. **Section 5.1, population-B floor.** No minimum size was stated, so a
+   degenerate population could in principle have returned `POOL`. A floor of
+   30 is added, with its epistemic status stated in the section itself: it
+   was set knowing the realized size is 124, so it is not blind and is not
+   binding on this run.
+3. **Section 5.3, undefined correlation.** Added the zero-variance case
+   alongside the existing fewer-than-3-pairs case.
+4. **Section 5.4, residual ambiguities.** Stated that the objective's index
+   ranges over the same per-energy paired subset section 5.3 defines; stated
+   that clamping makes the minimiser non-unique and that no tie-break is
+   imposed beyond the frozen seed's determinism; stated that an exactly zero
+   median signed delta fails branch condition 2.
+5. **Constants.** `polish = True` and the minimum of 3 pairs per energy
+   existed only as prose. Both now have constants, alongside the new
+   population-B floor, so that every operational choice in section 5 is
+   importable and a change to it is a visible diff.
+
+No numeric threshold that had already been applied to data was changed,
+because none had been applied to data. Section 9's format-probe disclosure is
+unaffected.
