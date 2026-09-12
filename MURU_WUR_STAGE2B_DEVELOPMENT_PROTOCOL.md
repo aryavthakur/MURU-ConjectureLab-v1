@@ -177,3 +177,12 @@ the S2A arm under this harness (0.0465) + 0.003**, the tolerance being one
 tenth of the repeatability SD. No candidate result existed when this was
 written; the four reference-arm ledger entries did, and their S3 values are
 all equal by construction, so no candidate ordering was informed by it.
+
+### A-2, 2026-09-12, clerical, issued after the candidate runs
+
+A-1 quoted the S2A arm's S3 as 0.0465; that was the fold-0 value. The
+rule as written and as implemented in `candidates.evaluate_rule` uses the
+median over the 15 folds of the S2A ledger, which is 0.0397. The quoted
+number is corrected; the rule, its reference quantity and its tolerance are
+unchanged, and every candidate's condition 5 outcome is the same under both
+readings (all candidates' S3 medians are <= 0.0397).
