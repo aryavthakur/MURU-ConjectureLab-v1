@@ -186,3 +186,30 @@ median over the 15 folds of the S2A ledger, which is 0.0397. The quoted
 number is corrected; the rule, its reference quantity and its tolerance are
 unchanged, and every candidate's condition 5 outcome is the same under both
 readings (all candidates' S3 medians are <= 0.0397).
+
+### A-3, 2026-09-12, issued after the adversarial reviews, before the HOLD check
+
+1. **Selection.** V1C_RICH_RIDGE_24's registered hypothesis (>= 5 percent
+   over the twelve-feature ridge) failed (0.9 percent), one of its twelve
+   added descriptors duplicates an existing one, and under a valid standard
+   error (cluster bootstrap over scaffold groups; the fold-paired SE is
+   invalid because fold 0 is the same 183-compound scaffold in every repeat)
+   it is tied with the twelve-feature ridge. Its ledger outcome is
+   "rejected: hypothesis not supported". The twelve-feature ridge is
+   registered as candidate `V1B_RIDGE_TIERA` on the LIN ledger evidence and
+   is the **final candidate**. This is a post-results decision that moves no
+   threshold and selects the simpler of two indistinguishable models.
+2. **Uncertainty.** Every fold-based comparison is reported alongside a
+   scaffold-clustered compound-level bootstrap; the HOLD and Stage 3 primary
+   uncertainty is the compound-level paired bootstrap, clustered by
+   stereo-merged scaffold, at 90 percent (HOLD, as frozen) and 95 percent.
+3. **Corrections of fact.** The largest scaffold group is 183 pooled
+   compounds, not 122; the 15 (repeat, fold) sets are 13 distinct held-out
+   sets; the S2A arm's inner split is the frozen 60/20/20
+   `protocol.group_split`, not 75/25.
+4. **HOLD check conditions are unchanged** (section 8). Their power at
+   n = 130 is 0.85 to 0.95 for the DEV-observed effects over S2A and B1 and
+   about 0.17 for the 2.5 percent floor; the check guards against a gross
+   failure and cannot adjudicate fine differences. HOLD contains 8 compounds
+   whose stereo-merged scaffold also holds an LCSB-DEV compound; results are
+   reported with and without them.

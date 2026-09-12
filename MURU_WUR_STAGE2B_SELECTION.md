@@ -33,3 +33,9 @@ Ordered by mean P1: V1C 0.1337, V1D 0.1348, LIN 0.1349, V1A 0.1370. Paired fold 
 MURU-WUR-v1, candidate V1C_RICH_RIDGE_24: the frozen alternating collapse (shared isotonic profile Phi on log u, ENERGY_SCALE 30, per-compound scale g estimated on the training compounds), then ridge regression of log g on 24 scaled descriptors (Tier A twelve, Tier A2 twelve; alpha chosen on inner scaffold folds), and prediction mu(E) = Phi_train((E/30)/g_pred) at the pooled rungs. No symbolic search, no gate, no confidence output.
 
 Against the pre-WUR method it changes three things: the descriptor-to-scale model (ridge instead of PySR plus selector), the report rule (always predicts; reports P1 against references instead of a validation-R2 gate), and the descriptor set (24 instead of 12). It keeps the endpoint mu, the collapse estimator, the energy coordinate, the Stage 1 map and E = 15 handling.
+
+## Adjudicated selection (amendment A-3, after the five reviews)
+
+**Final candidate: `V1B_RIDGE_TIERA`** (the LIN arm: frozen collapse, ridge of log g on the twelve Tier A descriptors, alpha by inner scaffold folds). V1C is rejected because its registered hypothesis failed and it is statistically tied with the simpler model; V1A is the named interpretable secondary; V1C is an exploratory non-inferiority comparator. See `MURU_WUR_STAGE2B_REVIEW_ADJUDICATION.md`.
+
+Cluster-bootstrap (scaffold groups) 95 percent CIs on the P1 difference, from the statistical review: LIN - S2A [-0.027, -0.014]; V1C - LIN [-0.0036, +0.0011]; V1A - LIN [-0.0011, +0.0050]; V1C - B1 [-0.024, -0.013].
