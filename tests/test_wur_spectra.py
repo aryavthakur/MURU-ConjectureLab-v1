@@ -200,7 +200,7 @@ def test_build_mu_table_preserves_contributing_spectrum_ids_and_libraries(
                         {("WUR", "POS"): db.stem})
     acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "AAA", 15.0)])
     table, _ = build_mu_table(acc, tmp_path)
-    assert table.iloc[0]["spectrum_ids"] == (("WUR", 1), ("WUR", 2))
+    assert table.iloc[0]["spectrum_ids"] == (("WUR", "POS", 1), ("WUR", "POS", 2))
     assert table.iloc[0]["source_libraries"] == ("WUR",)
 
 
@@ -216,4 +216,93 @@ def test_build_mu_table_censuses_a_defective_spectrum_rather_than_dropping_it(
     assert census[0]["connectivity_key"] == "BBB"
     assert census[0]["spectrum_id"] == 2
     assert "intensity" in census[0]["reason"]
+    assert set(table["connectivity_key"]) == {"AAA"}
+
+
+def test_spectrum_mu_rejects_a_non_positive_mz():
+    with pytest.raises(BlobDefect, match="non-positive m/z"):
+        spectrum_mu(np.array([0.0, 200.0]), np.array([1.0, 1.0]), 200.0)
+
+
+def test_spectrum_mu_rejects_a_negative_mz():
+    with pytest.raises(BlobDefect, match="non-positive m/z"):
+        spectrum_mu(np.array([-100.0, 200.0]), np.array([1.0, 1.0]), 200.0)
+
+
+def test_spectrum_mu_actually_consults_the_preprocessing_cell(monkeypatch):
+    """At the base cell `Spectrum.preprocess` is an identity, so a
+    hand-rolled formula would pass every other test here. Perturbing the
+    cell makes the routing observable: dropping the precursor must change
+    the answer."""
+    mz = np.array([100.0, 200.0])
+    intensity = np.array([1.0, 1.0])
+    base = spectrum_mu(mz, intensity, 200.0)
+    monkeypatch.setattr(
+        "muru.io.wur_spectra.BASE_CELL",
+        {"relative_cutoff": 0.0, "include_precursor": False,
+         "intensity_transform": "raw"})
+    without_precursor = spectrum_mu(mz, intensity, 200.0)
+    assert base == pytest.approx(0.75)
+    assert without_precursor == pytest.approx(0.5)
+
+
+def test_spectrum_mu_passes_a_real_sorted_spectrum_to_features_mu(monkeypatch):
+    """The preregistration claims both corpora reach `features.mu` through
+    the same object. Pin that the object is a Spectrum, that its peaks are
+    sorted, and that it carries the declared precursor."""
+    from muru.spectra import Spectrum
+
+    seen = {}
+
+    def _spy(spectrum):
+        seen["obj"] = spectrum
+        return 0.5
+
+    monkeypatch.setattr("muru.io.wur_spectra.feature_mu", _spy)
+    spectrum_mu(np.array([200.0, 100.0]), np.array([1.0, 3.0]), 200.0)
+    obj = seen["obj"]
+    assert isinstance(obj, Spectrum)
+    assert list(obj.mz) == [100.0, 200.0]
+    assert obj.precursor_mz == 200.0
+
+
+def test_build_mu_table_median_of_an_even_number_of_duplicates(tmp_path, monkeypatch):
+    """Two deposits: mu = 1.0 and 0.5. numpy.median averages them to 0.75,
+    a value no single spectrum has. The frozen text names numpy.median, so
+    this is the intended convention, pinned here because an even count is
+    where the convention is actually a choice."""
+    db = _tiny_db(tmp_path, [(1, [200.0], [1.0]), (2, [100.0, 200.0], [1.0, 0.0])])
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): db.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "AAA", 15.0)])
+    table, census = build_mu_table(acc, tmp_path)
+    assert census == []
+    assert table.iloc[0]["n_spectra"] == 2
+    assert table.iloc[0]["mu"] == pytest.approx(0.75)
+
+
+def test_build_mu_table_censuses_a_mis_sized_blob_instead_of_aborting(
+        tmp_path, monkeypatch):
+    """A corrupt blob is a property of one spectrum. It must be reported per
+    spectrum, not abort the read and hide the state of every other."""
+    path = tmp_path / "mixed.db"
+    con = sqlite3.connect(str(path))
+    con.execute("CREATE TABLE SpectrumTable "
+                "(SpectrumId INTEGER, blobMass BLOB, blobIntensity BLOB)")
+    con.execute("INSERT INTO SpectrumTable VALUES (?, ?, ?)",
+                (1, np.array([100.0, 200.0], dtype="<f8").tobytes(),
+                 np.array([1.0, 1.0], dtype="<f8").tobytes()))
+    con.execute("INSERT INTO SpectrumTable VALUES (?, ?, ?)",
+                (2, np.array([100.0, 200.0], dtype="<f8").tobytes(),
+                 np.array([1.0], dtype="<f8").tobytes()))
+    con.commit()
+    con.close()
+    monkeypatch.setattr("muru.io.wur_spectra.LIBRARY_DB_FILES",
+                        {("WUR", "POS"): path.stem})
+    acc = _accepted([_acc_row(1, "AAA", 15.0), _acc_row(2, "BBB", 15.0)])
+    table, census = build_mu_table(acc, tmp_path)
+    assert len(census) == 1
+    assert census[0]["spectrum_id"] == 2
+    assert census[0]["connectivity_key"] == "BBB"
+    assert "mismatch" in census[0]["reason"]
     assert set(table["connectivity_key"]) == {"AAA"}

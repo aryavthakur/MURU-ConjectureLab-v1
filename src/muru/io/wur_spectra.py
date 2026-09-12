@@ -45,27 +45,35 @@ def _fail(message: str):
     raise BlobDefect(message)
 
 
-def read_spectrum_peaks(db_path: Path,
-                        spectrum_ids) -> dict[int, tuple[np.ndarray, np.ndarray]]:
-    """Peak arrays for the requested SpectrumIds in one mzVault file.
-
-    SpectrumId is unique per file, not across the release, so the caller
-    must group its accepted rows by source file before calling this.
-    """
+def _coerce_ids(spectrum_ids) -> list[int]:
+    """Sorted, deduplicated int ids, or a `BlobDefect` for a non-integer id."""
     try:
-        wanted = sorted({int(s) for s in spectrum_ids})
+        return sorted({int(s) for s in spectrum_ids})
     except (TypeError, ValueError) as exc:
         raise BlobDefect(f"non-integer spectrum id in {spectrum_ids!r}: {exc}")
-    if not wanted:
-        return {}
+
+
+def _fetch_blob_rows(db_path: Path, wanted: list[int]) -> list[tuple]:
+    """Raw (SpectrumId, blobMass, blobIntensity) rows for `wanted` ids.
+
+    The query is chunked at 500 ids per statement so the id count never
+    depends on a particular SQLite build's placeholder ceiling. Duplicate
+    and absent SpectrumIds are a lineage disagreement between the
+    accepted-row table and the file, not a property of one spectrum, so
+    both still raise here.
+    """
     con = sqlite3.connect(str(db_path))
     try:
-        placeholders = ",".join("?" * len(wanted))
-        rows = con.execute(
-            f"SELECT SpectrumId, blobMass, blobIntensity FROM SpectrumTable "
-            f"WHERE SpectrumId IN ({placeholders})",
-            wanted,
-        ).fetchall()
+        rows = []
+        chunk_size = 500
+        for start in range(0, len(wanted), chunk_size):
+            chunk = wanted[start:start + chunk_size]
+            placeholders = ",".join("?" * len(chunk))
+            rows.extend(con.execute(
+                f"SELECT SpectrumId, blobMass, blobIntensity FROM SpectrumTable "
+                f"WHERE SpectrumId IN ({placeholders})",
+                chunk,
+            ).fetchall())
     finally:
         con.close()
 
@@ -76,6 +84,26 @@ def read_spectrum_peaks(db_path: Path,
             f"{db_path.name}: SpectrumId(s) appear more than once in "
             f"SpectrumTable: {duplicates}")
 
+    missing = set(wanted) - set(seen_ids)
+    if missing:
+        raise BlobDefect(
+            f"{db_path.name}: SpectrumId absent from SpectrumTable: "
+            f"{sorted(missing)}")
+    return rows
+
+
+def read_spectrum_peaks(db_path: Path,
+                        spectrum_ids) -> dict[int, tuple[np.ndarray, np.ndarray]]:
+    """Peak arrays for the requested SpectrumIds in one mzVault file.
+
+    SpectrumId is unique per file, not across the release, so the caller
+    must group its accepted rows by source file before calling this.
+    """
+    wanted = _coerce_ids(spectrum_ids)
+    if not wanted:
+        return {}
+    rows = _fetch_blob_rows(db_path, wanted)
+
     out = {}
     for sid, blob_mz, blob_inten in rows:
         mz = decode_blob(blob_mz)
@@ -85,13 +113,45 @@ def read_spectrum_peaks(db_path: Path,
                 f"spectrum {sid} in {db_path.name}: blob length mismatch, "
                 f"{mz.size} masses against {inten.size} intensities")
         out[int(sid)] = (mz, inten)
-
-    missing = set(wanted) - set(out)
-    if missing:
-        raise BlobDefect(
-            f"{db_path.name}: SpectrumId absent from SpectrumTable: "
-            f"{sorted(missing)}")
     return out
+
+
+def read_spectrum_peaks_censused(
+        db_path: Path, spectrum_ids) -> tuple[dict[int, tuple[np.ndarray, np.ndarray]],
+                                              list[dict]]:
+    """Like `read_spectrum_peaks`, but a defect in ONE spectrum's blob is
+    returned as a census entry rather than aborting the whole read.
+
+    The distinction is deliberate. An unreadable or mis-sized blob is a
+    property of that spectrum, and the preregistration requires it to be
+    reported per spectrum, so one corrupt deposit must not hide the state of
+    every other. A missing, duplicated or non-integer SpectrumId is instead a
+    property of the LINEAGE -- the accepted-row table and the file disagree
+    about what exists -- which no per-spectrum census can express, so those
+    still raise.
+
+    Returns (peaks, defects). Each defect is
+    {"spectrum_id": int, "reason": str}.
+    """
+    wanted = _coerce_ids(spectrum_ids)
+    if not wanted:
+        return {}, []
+    rows = _fetch_blob_rows(db_path, wanted)
+
+    peaks, defects = {}, []
+    for sid, blob_mz, blob_inten in rows:
+        try:
+            mz = decode_blob(blob_mz)
+            inten = decode_blob(blob_inten)
+            if mz.size != inten.size:
+                raise BlobDefect(
+                    f"blob length mismatch, {mz.size} masses against "
+                    f"{inten.size} intensities")
+        except BlobDefect as exc:
+            defects.append({"spectrum_id": int(sid), "reason": str(exc)})
+            continue
+        peaks[int(sid)] = (mz, inten)
+    return peaks, defects
 
 
 MU_TABLE_COLUMNS = ["connectivity_key", "ce_numeric", "mu", "n_spectra",
@@ -117,6 +177,8 @@ def spectrum_mu(mz: np.ndarray, intensity: np.ndarray,
             f"blob length mismatch: {mz.size} masses, {intensity.size} intensities")
     if not np.all(np.isfinite(mz)) or not np.all(np.isfinite(intensity)):
         raise BlobDefect("nonfinite value in the peak list")
+    if np.any(mz <= 0):
+        raise BlobDefect("non-positive m/z in the peak list")
     if np.any(intensity < 0):
         raise BlobDefect("negative intensity in the peak list")
     if intensity.sum() <= 0:
@@ -151,12 +213,28 @@ def build_mu_table(accepted: pd.DataFrame,
     per_spectrum = []
 
     for (library, polarity_file), grp in accepted.groupby(
-            ["source_library", "source_polarity_file"], sort=True):
+            ["source_library", "source_polarity_file"], sort=True, dropna=False):
         stem = LIBRARY_DB_FILES[(library, polarity_file)]
         db_path = data_dir / f"{stem}.db"
-        peaks = read_spectrum_peaks(db_path, grp["spectrum_id"])
+        peaks, blob_defects = read_spectrum_peaks_censused(
+            db_path, grp["spectrum_id"])
+        by_spectrum = {int(r.spectrum_id): r for r in grp.itertuples(index=False)}
+        for defect in blob_defects:
+            row = by_spectrum[defect["spectrum_id"]]
+            census.append({
+                "connectivity_key": row.connectivity_key,
+                "ce_numeric": float(row.energy),
+                "source_library": library,
+                "source_polarity_file": polarity_file,
+                "spectrum_id": defect["spectrum_id"],
+                "reason": defect["reason"],
+            })
+
         for row in grp.itertuples(index=False):
-            mz, intensity = peaks[int(row.spectrum_id)]
+            sid = int(row.spectrum_id)
+            if sid not in peaks:
+                continue          # already censused above
+            mz, intensity = peaks[sid]
             try:
                 value = spectrum_mu(mz, intensity, row.precursor_mass)
             except BlobDefect as exc:
@@ -164,6 +242,7 @@ def build_mu_table(accepted: pd.DataFrame,
                     "connectivity_key": row.connectivity_key,
                     "ce_numeric": float(row.energy),
                     "source_library": library,
+                    "source_polarity_file": polarity_file,
                     "spectrum_id": int(row.spectrum_id),
                     "reason": str(exc),
                 })
@@ -172,6 +251,7 @@ def build_mu_table(accepted: pd.DataFrame,
                 "connectivity_key": row.connectivity_key,
                 "ce_numeric": float(row.energy),
                 "source_library": library,
+                "source_polarity_file": polarity_file,
                 "spectrum_id": int(row.spectrum_id),
                 "mu": value,
             })
@@ -182,15 +262,18 @@ def build_mu_table(accepted: pd.DataFrame,
     df = pd.DataFrame(per_spectrum)
     rows = []
     for (key, energy), grp in df.groupby(["connectivity_key", "ce_numeric"],
-                                          sort=True):
-        grp = grp.sort_values(["source_library", "spectrum_id"])
+                                          sort=True, dropna=False):
+        grp = grp.sort_values(["source_library", "source_polarity_file", "spectrum_id"])
         rows.append({
             "connectivity_key": key,
             "ce_numeric": float(energy),
             "mu": float(np.median(grp["mu"].to_numpy())),
             "n_spectra": int(len(grp)),
-            "spectrum_ids": tuple(zip(grp["source_library"],
-                                      grp["spectrum_id"].astype(int))),
+            "spectrum_ids": tuple(
+                (str(lib), str(pf), int(sid))
+                for lib, pf, sid in zip(grp["source_library"],
+                                        grp["source_polarity_file"],
+                                        grp["spectrum_id"])),
             "source_libraries": tuple(sorted(set(grp["source_library"]))),
         })
     return pd.DataFrame(rows, columns=MU_TABLE_COLUMNS), census
