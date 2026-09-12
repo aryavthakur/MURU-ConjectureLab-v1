@@ -18,7 +18,8 @@ if __name__ == "__main__":
     head_at_access = acc["git_head"]
     ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", freeze_commit, head_at_access], cwd=ROOT).returncode == 0
     grep = subprocess.run(["git", "grep", "-l", "allow_sealed=True", "--", "src", "scripts"], cwd=ROOT, capture_output=True, text=True).stdout.split()
-    stage3_paths = [p for p in grep if not p.endswith("wur_spectra.py")]
+    stage3_paths = [p for p in grep if not p.endswith("wur_spectra.py")
+                    and not p.endswith("audit_wur_freeze_precedes_access.py")]   # the guard and this audit name the flag without passing it
     report = {"freeze_commit": freeze_commit, "freeze_committed_at": freeze_time,
               "first_sealed_access_utc": acc["utc"], "git_head_at_access": head_at_access,
               "git_tree_dirty_at_access": acc["git_tree_dirty"],
