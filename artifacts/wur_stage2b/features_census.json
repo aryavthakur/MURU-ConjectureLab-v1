@@ -1,0 +1,12 @@
+{
+ "wur": {
+  "n_cells": 2856,
+  "n_keys": 476,
+  "defects": []
+ },
+ "lcsb": {
+  "n_cells": 2610,
+  "n_keys": 439,
+  "defects": []
+ }
+}
