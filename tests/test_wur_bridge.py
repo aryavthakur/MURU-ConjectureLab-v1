@@ -145,3 +145,62 @@ def test_rule_fails_on_four_of_six():
 
 def test_rule_fails_on_none():
     assert rule_passes(_stats([False] * 6)) is False
+
+
+def _skewed_frame(keys, energies=LADDER, seed=0):
+    """A frame whose per-energy delta distribution is deliberately skewed, so
+    that the median and the mean of the deltas differ by a wide margin."""
+    rng = np.random.default_rng(seed)
+    levels = {k: 0.3 + 0.6 * rng.random() for k in keys}
+    rows = []
+    for k in keys:
+        for e in energies:
+            rows.append({"connectivity_key": k, "ce_numeric": e,
+                         "mu": levels[k] * (1.0 - 0.008 * (e - 15.0))})
+    return pd.DataFrame(rows)
+
+
+def test_the_delta_statistic_is_a_median_and_not_a_mean():
+    """Twenty compounds sit at delta = 0.01 and five at delta = 1.0. The
+    median delta is 0.01 and passes; the mean is 0.208 and would fail. The
+    preregistration names numpy.median, so a mean would be a protocol
+    violation, and this is the test that can see it."""
+    keys = _keys(25)
+    lcsb = _skewed_frame(keys, seed=3)
+    wur = lcsb.copy()
+    # Outliers must be the 5 highest-mu compounds in lcsb, not an arbitrary
+    # slice of the key list: adding +1.0 to a low-ranked compound would push
+    # it above higher-ranked ones and break the Spearman correlation, which
+    # is not what this test is exercising.
+    outliers = set(
+        lcsb[lcsb["ce_numeric"] == LADDER[0]].nlargest(5, "mu")["connectivity_key"]
+    )
+    wur["mu"] = [
+        mu + (1.0 if k in outliers else 0.01)
+        for k, mu in zip(wur["connectivity_key"], wur["mu"])
+    ]
+    stats = per_energy_statistics(wur, lcsb, keys)
+    for s in stats:
+        assert s["n"] == 25
+        assert s["median_abs_delta"] == pytest.approx(0.01)
+        assert s["median_signed_delta"] == pytest.approx(0.01)
+        # The mean would be 0.2092, far above MEDIAN_ABS_DELTA_MAX.
+        assert np.mean([0.01] * 20 + [1.0] * 5) > 0.05
+    assert rule_passes(stats) is True
+
+
+def test_a_constant_mu_vector_gives_a_null_correlation_not_a_number():
+    """scipy returns nan when either vector is constant. The preregistration
+    requires that recorded as a null correlation, distinct from the
+    too-few-pairs case, and requires that energy to fail."""
+    keys = _keys(10)
+    lcsb = _mu_frame(keys, seed=9)
+    wur = lcsb.copy()
+    wur["mu"] = 0.5  # constant on the WUR side at every energy
+    stats = per_energy_statistics(wur, lcsb, keys)
+    for s in stats:
+        assert s["n"] == 10, "the pairs are present; only the correlation is undefined"
+        assert s["spearman_rho"] is None
+        assert s["passes"] is False
+        assert s["median_abs_delta"] is not None
+    assert rule_passes(stats) is False
