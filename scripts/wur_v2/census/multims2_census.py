@@ -548,6 +548,39 @@ def design_census(des: pd.DataFrame, muru: dict, listing: dict) -> dict:
     return {"chains": chains}
 
 
+def design_linkage(lib: pd.DataFrame, des: pd.DataFrame) -> dict:
+    """Identity-only cross-check: every released positive record's source file maps to a
+    pool whose plate metadata contains the record's compound."""
+    pos_keys = des.groupby(["collection", "position"]).key.apply(set)
+    rx = {(c, p): position_regex(p) for c, p in pos_keys.index}
+    pc = lib[lib.IONMODE == "Positive"].copy()
+    pc["stem"] = pc.FILENAME.str.replace(r"\.mzXML$", "", regex=True)
+    rows = []
+    for stem, g in pc.groupby("stem"):
+        c = g.collection.iloc[0]
+        pools = [p for (cc, p) in rx if cc == c and rx[(cc, p)].search(stem)]
+        members = set().union(*[pos_keys[(c, p)] for p in pools]) if pools else set()
+        for k in g.key.unique():
+            rows.append((c, len(pools), k in members))
+    r = pd.DataFrame(rows, columns=["collection", "n_pools_matched", "in_pool"])
+    dk = {c: set(g.key) for c, g in des.groupby("collection")}
+    lk = {c: set(g.key) for c, g in lib.groupby("collection")}
+    return {
+        "positive_file_compound_pairs_by_collection": r.groupby("collection").agg(n=("in_pool", "size"), in_pool=("in_pool", "sum"),
+                                                                                    no_pool_matched=("n_pools_matched", lambda x: int((x == 0).sum())),
+                                                                                    multiple_pools_matched=("n_pools_matched", lambda x: int((x > 1).sum()))).reset_index().to_dict("records"),
+        "library_keys_found_in_same_collection_plate_metadata": {c: f"{len(lk[c] & dk.get(c, set()))}/{len(lk[c])}" for c in lk},
+        "plated_positive_keys_by_collection": {c: len(v) for c, v in dk.items()},
+        "released_keys_by_collection_any_mode": {c: len(v) for c, v in lk.items()},
+        "plated_collection_overlap_keys": {"SELLECK&NEXUS": len(dk["SELLECK"] & dk["NEXUS"]), "MSMLS&NEXUS": len(dk["MSMLS"] & dk["NEXUS"]),
+                                           "MSMLS&SELLECK": len(dk["MSMLS"] & dk["SELLECK"])},
+        "nexus_positive_cid_energy_sets_by_subplate": des[des.collection == "NEXUS"].drop_duplicates("position").assign(
+            subplate=lambda x: x.position.str.extract(r"_(Q\d|P\d)_", expand=False),
+            eset=lambda x: x.pos_cid_energies.map(lambda v: "/".join(str(int(e)) for e in v) or "none"))
+            .groupby(["subplate", "eset"]).size().rename("n_positions").reset_index().to_dict("records"),
+    }
+
+
 def main():
     t0 = time.time()
     muru = load_muru()
@@ -556,6 +589,7 @@ def main():
     des, des_info = load_design(listing)
     lib_res = library_census(lib, muru, listing)
     des_res = design_census(des, muru, listing)
+    lib_res["design_linkage"] = design_linkage(lib, des)
 
     fetch_log = [json.loads(l) for l in (MD / "fetch_log.jsonl").read_text().splitlines() if l.strip()]
     for r in fetch_log:
