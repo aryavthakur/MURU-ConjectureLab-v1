@@ -52,6 +52,7 @@ class TrainSet:
     data: Data
     group_col: str
     outer_fold: int
+    root_fold: int = -1                # the outer fold this training set belongs to (inner sets carry their parent's)
 
     def X(self, name: str, keys=None) -> np.ndarray:
         return self.data.features[name].loc[self.keys if keys is None else keys].to_numpy(float)
@@ -82,11 +83,11 @@ def collapse_for(data: Data, keys) -> CollapseFit:
     return _COLLAPSE_CACHE[h]
 
 
-def trainset(data: Data, keys, group_col: str, outer_fold: int) -> TrainSet:
+def trainset(data: Data, keys, group_col: str, outer_fold: int, root_fold: int | None = None) -> TrainSet:
     fit = collapse_for(data, keys)
-    order = pd.Index(fit.compounds)
     return TrainSet(keys=fit.compounds, log_g=np.log(fit.g_hat), w=fit.weights, fit=fit, data=data,
-                    group_col=group_col, outer_fold=outer_fold)
+                    group_col=group_col, outer_fold=outer_fold,
+                    root_fold=outer_fold if root_fold is None else root_fold)
 
 
 def mu_from_log_g(fit: CollapseFit, log_g: np.ndarray, energies=POOLED_ENERGIES) -> np.ndarray:
@@ -120,7 +121,7 @@ def run_fold(model: ScaleModel, data: Data, train_keys, test_keys, group_col: st
         inner_sets = []
         for k in range(FO.INNER_K):
             tr, va = ts.keys[inner != k], ts.keys[inner == k]
-            inner_sets.append((trainset(data, tr, group_col, outer_fold * 10 + k), va))
+            inner_sets.append((trainset(data, tr, group_col, outer_fold * 10 + k, root_fold=outer_fold), va))
         for gi, cfg in enumerate(grid):
             sse, rows = 0.0, []
             for its, va in inner_sets:

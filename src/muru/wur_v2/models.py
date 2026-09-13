@@ -270,8 +270,7 @@ class ShapeCorrectedJoint(ScaleModel):
         return [10.0, 100.0, 1000.0]
 
     def _cfg(self, ts):
-        f = ts.outer_fold if ts.outer_fold < 10 else ts.outer_fold // 10
-        return self.joint_cfgs[f]
+        return self.joint_cfgs[ts.root_fold]
 
     @staticmethod
     def _ortho(b, t):
@@ -292,7 +291,7 @@ class ShapeCorrectedJoint(ScaleModel):
         for k in range(FO.INNER_K):
             tr, va = inner != k, inner == k
             sub = TrainSet(keys=ts.keys[tr], log_g=ts.log_g[tr], w=ts.w[tr], fit=ts.fit, data=ts.data,
-                           group_col=ts.group_col, outer_fold=ts.outer_fold)
+                           group_col=ts.group_col, outer_fold=ts.outer_fold, root_fold=ts.root_fold)
             mk = self.joint.fit(sub, cfg)
             z = self.joint.predict(mk, sub, ts.keys[va])
             p = mu_from_log_g(ts.fit, z)

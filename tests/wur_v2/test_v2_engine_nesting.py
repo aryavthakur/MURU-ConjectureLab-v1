@@ -115,3 +115,21 @@ def test_permutation_seeds_are_distinct():
         pm._ensure(d)
         blocks.append(d.features[pm.perm_name].to_numpy())
     assert not np.array_equal(blocks[0], blocks[1]) and not np.array_equal(blocks[1], blocks[2])
+
+
+def test_inner_trainsets_carry_their_outer_fold():
+    EN._COLLAPSE_CACHE.clear()
+    d = synthetic()
+    a = FO.grouped(d.cov.reset_index(), "scaffold_group", 6)
+    seen = []
+
+    class Rec(MO.RidgeModel):
+        def fit(self, ts, cfg):
+            seen.append(ts.root_fold)
+            return super().fit(ts, cfg)
+
+    for f in (0, 3):
+        seen.clear()
+        EN.run_fold(Rec("X", alphas=(1.0, 10.0), model_id="R"), d, np.array(sorted(a.index[a != f])),
+                    np.array(sorted(a.index[a == f])), "scaffold_group", f)
+        assert set(seen) == {f}
