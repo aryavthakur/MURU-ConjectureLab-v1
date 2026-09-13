@@ -1,0 +1,36 @@
+{
+ "V2_TA_MORGAN_JOINT": {
+  "sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
+  "cfg": {
+   "alpha": 0.3,
+   "block_weight": 0.1
+  },
+  "n_training": 1325
+ },
+ "V2_REF_TA_RIDGE": {
+  "sha256": "3de70e7b2294428c2ce9f69b88a4808e3397712b2f636e260645fbc46dc5bc32",
+  "cfg": {
+   "alpha": 0.1
+  },
+  "n_training": 1325
+ },
+ "V2_REF_B1_MASS": {
+  "sha256": "3e8b889c9b096dec2e03b01ad900b49ad3046fb56c0795c54e39150c64c2ab56",
+  "cfg": null,
+  "n_training": 1325
+ },
+ "V2_REF_B0_NULL": {
+  "sha256": "b910cc0d8a16002612a010d5898cf436edd4dd0ac60612371e8fdfac7b7ff56a",
+  "cfg": null,
+  "n_training": 1325
+ },
+ "reload_parity_max_abs_logg": 2.220446049250313e-15,
+ "V1B_RIDGE_TIERA_FROZEN": {
+  "sha256": "da8ab9ba487419d455966b8e61ecb75b6a74146e34dad57a1ef9e8db5b3d7575",
+  "cfg": {
+   "alpha": 1.0
+  },
+  "n_training": 921,
+  "stage3_prediction_parity_max_abs_mu": 2.220446049250313e-16
+ }
+}

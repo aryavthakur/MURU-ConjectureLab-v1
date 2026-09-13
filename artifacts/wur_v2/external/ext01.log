@@ -1,0 +1,130 @@
+{
+ "n_design_rows_nexus_selleck": 5607,
+ "attrition_step10": {
+  "step10_keys": 2982,
+  "R1_single_position_all_energies": 2895,
+  "R3_no_isolation_conflict": 2468,
+  "R2_ms2_all_energies": 1298,
+  "R4_window_and_ce": 1298,
+  "R5_mass_range": 1297,
+  "R7_neutral_scaffold_new": 1297
+ },
+ "attrition_anchor": {
+  "v2_five_rung_keys": 217,
+  "R1_single_position_all_energies": 165,
+  "R3_no_isolation_conflict": 147,
+  "R2_ms2_all_energies": 106,
+  "R4_window_and_ce": 106,
+  "R5_mass_range": 106
+ },
+ "VALIDATION": {
+  "n_compounds": 1297,
+  "n_scaffold_groups": 942,
+  "keys_sha256": "c411bb04d909c3306d93a0fb3e79fad446d0fc5f3065e54197e24d4d3dc1cdc0",
+  "by_collection": {
+   "NEXUS": 1290,
+   "SELLECK": 7
+  },
+  "n_matched_spectra": 16395
+ },
+ "ANCHOR": {
+  "n_compounds": 106,
+  "n_scaffold_groups": 88,
+  "keys_sha256": "bea5578581536bb56017297f8ca6828d0168c85b790377e4889948eb6a20d479",
+  "by_collection": {
+   "NEXUS": 105,
+   "SELLECK": 1
+  },
+  "n_matched_spectra": 1292
+ },
+ "SECONDARY": {
+  "n_compounds": 228,
+  "n_scaffold_groups": 64,
+  "keys_sha256": "bd5639d472688dcab4506a597027f0fee4e5ae9547b758843428adcae9bf40bb",
+  "by_collection": {
+   "NEXUS": 220,
+   "SELLECK": 8
+  },
+  "n_matched_spectra": 3195
+ },
+ "files": {
+  "n_mzml": 1407,
+  "n_blank": 5,
+  "by_collection_energy": [
+   {
+    "collection": "NEXUS",
+    "energy": 20.0,
+    "n": 369
+   },
+   {
+    "collection": "NEXUS",
+    "energy": 40.0,
+    "n": 368
+   },
+   {
+    "collection": "NEXUS",
+    "energy": 60.0,
+    "n": 353
+   },
+   {
+    "collection": "OTHER",
+    "energy": 20.0,
+    "n": 5
+   },
+   {
+    "collection": "SELLECK",
+    "energy": 20.0,
+    "n": 104
+   },
+   {
+    "collection": "SELLECK",
+    "energy": 40.0,
+    "n": 104
+   },
+   {
+    "collection": "SELLECK",
+    "energy": 60.0,
+    "n": 104
+   }
+  ]
+ },
+ "headers": {
+  "n_spectra": 642765,
+  "n_ms2": 413712,
+  "sha256_parquet": "643d1b0706a9b762fd8c85f187dfcfda8dd764e18c84983a5d556832285f110d",
+  "scan_window_lower_values": {
+   "50.0": 413712
+  },
+  "scan_window_upper_values": {
+   "1500.0": 315690,
+   "1000.0": 98022
+  },
+  "collision_energy_values": {
+   "20.0": 140839,
+   "40.0": 138834,
+   "60.0": 134039
+  },
+  "allowlist": [
+   "beam_type_cid",
+   "centroid_spectrum",
+   "charge_state",
+   "cid",
+   "collision_energy",
+   "ead",
+   "filter_string",
+   "isolation_window_lower_offset",
+   "isolation_window_target_mz",
+   "isolation_window_upper_offset",
+   "ms1_spectrum",
+   "ms_level",
+   "msn_spectrum",
+   "negative_scan",
+   "positive_scan",
+   "scan_start_time",
+   "scan_window_lower_limit",
+   "scan_window_upper_limit",
+   "selected_ion_mz"
+  ]
+ },
+ "seconds": 65.85658693313599
+}

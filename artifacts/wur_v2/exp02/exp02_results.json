@@ -1,0 +1,90 @@
+{
+ "R1_LCSB_inter_preparation": {
+  "n": 26,
+  "logg_icc": 0.9698646082051424,
+  "logg_within_sd": 0.1155713631384262,
+  "logg_sd_of_difference": 0.1658185936971316,
+  "logg_between_sd": 0.660716276357796,
+  "mean_difference_A_minus_B": -0.01658930198221682,
+  "trajectory_P1_repeat_A_to_B": 0.06525211882476649,
+  "trajectory_P1_oracle_B_on_B": 0.052445824819554655,
+  "mu_rmsd_A_vs_B_direct": 0.04975085597841435,
+  "mu_icc_per_rung": {
+   "30.0": 0.9169243179490684,
+   "45.0": 0.9740162648385998,
+   "60.0": 0.9866320731624929,
+   "75.0": 0.991999536029813,
+   "90.0": 0.988957463917337
+  },
+  "mu_within_sd_per_rung": {
+   "30.0": 0.06554643741975812,
+   "45.0": 0.03296307632685786,
+   "60.0": 0.019751243140749487,
+   "75.0": 0.013927043222825288,
+   "90.0": 0.0148625428031124
+  },
+  "ta_ridge_oof_P1_same_compounds": 0.1582257195861163,
+  "curated_vs_raw_mu_rmsd": 0.05059047249536224,
+  "curvature_logg_sd_median_same_compounds": 0.07315228477700747
+ },
+ "R2_cross_instrument": {
+  "n": 124,
+  "logg_icc": 0.9404048876214156,
+  "logg_within_sd": 0.14683441347348625,
+  "logg_sd_of_difference": 0.20775833198310603,
+  "logg_between_sd": 0.5924527413747174,
+  "mean_difference_A_minus_B": 0.017471645354311487,
+  "trajectory_P1_repeat_A_to_B": 0.06765827709402768,
+  "trajectory_P1_oracle_B_on_B": 0.04687541763749005,
+  "mu_rmsd_A_vs_B_direct": 0.056095485955223144,
+  "ta_ridge_oof_P1_same_compounds_on_LCSB_copy": 0.14867386401702368,
+  "ta_ridge_oof_P1_same_compounds_on_WUR_copy": 0.154875776868429,
+  "note": "the frozen map was fitted on these 124 compounds (population B); cross-instrument agreement is optimistic by construction"
+ },
+ "R3_wur_isomer_groups": {
+  "n_keys": 41,
+  "n_isomer_trajectories": 85,
+  "logg_within_key_sd_pooled": 0.0687853042372385,
+  "mu_within_key_sd_pooled_per_rung": {
+   "30.0": 0.026650497865312085,
+   "45.0": 0.024993737055052256,
+   "60.0": 0.017945700621867122,
+   "75.0": 0.01890450291838829,
+   "90.0": 0.015044805660965202
+  },
+  "note": "stereoisomers/E-Z isomers acquired separately; spread includes real stereo effects, so this is not repeatability"
+ },
+ "identifiability": {
+  "sigma_used": 0.0295,
+  "delta_rule": "SSE <= min + chi2_1(0.95) sigma^2",
+  "n": 1325,
+  "boundary_low": 39,
+  "boundary_high": 3,
+  "interval_width_quantiles": [
+   0.04,
+   0.08,
+   0.147,
+   0.227,
+   0.293
+  ],
+  "frac_weak_width_gt_0.5": 0.0030188679245283017,
+  "frac_interval_touches_edge": 0.040754716981132075,
+  "median_mz_boundary": 748.492126464844,
+  "median_mz_all": 304.0459,
+  "ta_oof_P1_weak": 0.1315510959573296,
+  "ta_oof_P1_identified": 0.13054292489090957,
+  "ta_oof_AF_weak": 0.0,
+  "ta_oof_AF_identified": 0.10295230885692658,
+  "var_logg_label": 0.4332128801662979,
+  "var_ta_logg_error": 0.2097772852452982,
+  "var_ta_logg_error_identified_only": 0.19651021859863618
+ },
+ "variance_budget": {
+  "var_logg_within_repeat_R1": 0.013356739977673978,
+  "var_logg_within_crossinstrument_R2": 0.02156034498010272,
+  "var_ta_logg_error": 0.2097772852452982,
+  "share_of_ta_error_variance_explained_by_R1_repeat_noise": 0.0655357084622933,
+  "share_by_R2_cross_instrument": 0.10287940483625344,
+  "note": "within-compound variance of a single measurement's log g = SD(A-B)^2/2"
+ }
+}

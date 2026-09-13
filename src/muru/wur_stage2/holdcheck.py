@@ -94,6 +94,9 @@ def paired_boot(dc: np.ndarray, clusters: np.ndarray | None, level: float, rng) 
 
 
 def run(data_dir: Path) -> dict:
+    if (OUT / "hold_check.json").exists():
+        # v2 guard: HOLD was scored once; a second run would overwrite its per-compound record
+        raise POP.PopulationError("hold_check.json exists: HOLD was already scored once; holdcheck.run refuses")
     t0 = time.time()
     long_dev, cov_dev, frame_dev = CV.load_dev2b()
     hold_long, hold_cov, ident, census = hold_tables(data_dir)

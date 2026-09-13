@@ -1,0 +1,15 @@
+{
+ "model_id": "MORGAN_RIDGE_PERMUTED_s1",
+ "partition": "PRIMARY",
+ "assignment_sha256": "48b94e86efb3",
+ "cfgs": {
+  "0": "300.0",
+  "1": "300.0",
+  "2": "300.0",
+  "3": "300.0",
+  "4": "300.0"
+ },
+ "seconds": 3.1596431732177734,
+ "created_utc": "2026-09-13T01:15:37Z",
+ "inputs_sha256": "07f215e961870ad176695709498771315bedcfce6367464380f30ee0c6fa24fd"
+}

@@ -1,0 +1,11 @@
+{
+ "anchor_keys_in_census": 402,
+ "wells_downloaded": 561,
+ "anchors_with_both_fixed_rungs": 328,
+ "anchor_keys_sha256": "b0c5063042c0249fe4805649eb3651eaa8a36cbe0aba5c9f0353c5a90bb4c331",
+ "n_matched_scans": 1939,
+ "rung_scan_counts": {
+  "20.0": 975,
+  "60.0": 964
+ }
+}

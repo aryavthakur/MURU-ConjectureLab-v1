@@ -1,0 +1,15 @@
+{
+ "kind": "ANCHOR_CALIBRATION",
+ "utc": "2026-09-13T03:18:13Z",
+ "git_head": "a41ea4ebb01133fd22d0225c80bb4bd38cee2e50",
+ "git_tree_dirty": false,
+ "freeze_doc": "MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md",
+ "freeze_doc_sha256": "e56c11767d5b9d04e1c4a9dede7863f3e074b08d2f14bf63e98c9ae59225d2ff",
+ "n_allowed_spectrum_keys": 1935,
+ "decodes": [
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B10_id.mzML",
+   "n": 4
+  }
+ ]
+}

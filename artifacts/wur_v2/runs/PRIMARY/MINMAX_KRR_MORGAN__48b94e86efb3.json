@@ -1,0 +1,15 @@
+{
+ "model_id": "MINMAX_KRR_MORGAN",
+ "partition": "PRIMARY",
+ "assignment_sha256": "48b94e86efb3",
+ "cfgs": {
+  "0": "0.03",
+  "1": "0.03",
+  "2": "0.03",
+  "3": "0.1",
+  "4": "0.03"
+ },
+ "seconds": 0.988610029220581,
+ "created_utc": "2026-09-13T01:14:34Z",
+ "inputs_sha256": "07f215e961870ad176695709498771315bedcfce6367464380f30ee0c6fa24fd"
+}

@@ -1,0 +1,30 @@
+{
+ "n_compounds": 1325,
+ "keys_sha256": "81eef787d7c9687b79060f3af7e95cfe2459c74eeb221d2d86264eacec8c0abd",
+ "n_lcsb_primary": 439,
+ "n_wur_primary": 886,
+ "n_both_instruments": 124,
+ "historical_class_counts": {
+  "WUR-SEALED": 404,
+  "WUR-DEV-ANALYSIS": 352,
+  "LCSB-DEV": 315,
+  "WUR-DEV-HOLD": 130,
+  "LCSB-DEV+WUR-DEV-ANALYSIS": 124
+ },
+ "n_scaffold_groups": 765,
+ "n_scaffold_v1_groups": 785,
+ "n_strict_clusters": 558,
+ "adduct_counts": {
+  "[M+H]+": 1289,
+  "[M+NH4]+": 20,
+  "[M+Na]+": 8,
+  "[M]+": 8
+ },
+ "n_aligned_cells": 6604,
+ "bridge": {
+  "a": -5.95552603907965,
+  "b": 0.8618030610784555
+ },
+ "parent_key_mismatches": 0,
+ "confirmation_keys_present": 0
+}

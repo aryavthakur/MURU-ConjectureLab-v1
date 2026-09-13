@@ -1,0 +1,11 @@
+{
+ "model_id": "TA_THEN_MORGAN",
+ "partition": "GIANT",
+ "assignment_sha256": "c67dfb83e484",
+ "cfgs": {
+  "0": "30.0"
+ },
+ "seconds": 1.272965908050537,
+ "created_utc": "2026-09-13T01:14:27Z",
+ "inputs_sha256": "07f215e961870ad176695709498771315bedcfce6367464380f30ee0c6fa24fd"
+}
