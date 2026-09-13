@@ -1,0 +1,14 @@
+{
+ "model_id": "TA_RIDGE",
+ "partition": "STRICT",
+ "assignment_sha256": "dde61276e24b",
+ "cfgs": {
+  "0": "0.01",
+  "1": "1.0",
+  "2": "1.0",
+  "3": "1.0",
+  "4": "0.1"
+ },
+ "seconds": 0.6707408428192139,
+ "created_utc": "2026-09-13T01:00:26Z"
+}

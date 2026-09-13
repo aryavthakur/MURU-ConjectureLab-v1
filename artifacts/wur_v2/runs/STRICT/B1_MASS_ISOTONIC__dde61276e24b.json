@@ -1,0 +1,14 @@
+{
+ "model_id": "B1_MASS_ISOTONIC",
+ "partition": "STRICT",
+ "assignment_sha256": "dde61276e24b",
+ "cfgs": {
+  "0": "None",
+  "1": "None",
+  "2": "None",
+  "3": "None",
+  "4": "None"
+ },
+ "seconds": 0.04999494552612305,
+ "created_utc": "2026-09-13T01:00:27Z"
+}
