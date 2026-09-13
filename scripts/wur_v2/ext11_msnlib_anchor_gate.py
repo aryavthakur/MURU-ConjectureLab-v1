@@ -39,7 +39,7 @@ if res["qualified"]:
         by_g = {g: mu[mu.key.isin(groups.index[groups == g])] for g in ug}; boots = []
         for b in range(2000):
             sub = pd.concat([by_g[g] for g in rng.choice(ug, size=len(ug), replace=True)], ignore_index=True)
-            rb = L.fit_and_gate(sub, model)
+            rb = L.fit_and_gate(sub, model, only=fam)
             boots.append(rb.get(fam, {}).get("params", {}))
         out["adapter_bootstrap"] = {k: np.percentile([b[k] for b in boots if k in b], [2.5, 97.5]).tolist() for k in res["adapter"] if k != "family"}
 # model-free diagnostic: best rank agreement with exposed rungs

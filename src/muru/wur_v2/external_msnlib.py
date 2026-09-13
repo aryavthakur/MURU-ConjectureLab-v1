@@ -95,7 +95,7 @@ def adapter_energy(nce, family: str, params: dict):
     raise ValueError(family)
 
 
-def fit_and_gate(mu: pd.DataFrame, model: dict) -> dict:
+def fit_and_gate(mu: pd.DataFrame, model: dict, only: str | None = None) -> dict:
     """A0 (no free parameter), then A1 (k), then A2 (a, b); the first family that passes is used."""
     g = MM.anchor_reference_scales(model, sorted(mu.key.unique()))
     t = mu.reset_index(drop=True).copy()
@@ -106,6 +106,8 @@ def fit_and_gate(mu: pd.DataFrame, model: dict) -> dict:
             ("A1", [{"k": k} for k in np.exp(np.linspace(np.log(0.5), np.log(3.0), 1001))]),
             ("A2", [{"a": a, "b": b} for a in np.linspace(-40, 40, 161) for b in np.exp(np.linspace(np.log(0.3), np.log(3.0), 161))])]
     for fam, grid in fams:
+        if only is not None and fam != only:
+            continue
         best = None
         for start in range(0, len(grid), 2000):
             chunk = grid[start:start + 2000]
