@@ -49,3 +49,19 @@ Plausible external ratio about 0.92 to 1.00 (development 0.889, strict clusters 
 ### 6. Freeze-precedes-access
 
 The anchor guard requires this document committed on a clean tracked tree and writes `artifacts/wur_v2/external/anchor_calibration_access.json` before the first anchor decode. Part II (fitted adapter, gate result) is appended in a separate commit before `scripts/wur_v2/ext03_validation.py`, whose guard writes `validation_access.json` before the first validation decode and refuses a second run.
+
+## PART II (after anchor calibration): MultiMS2 NOT QUALIFIED; validation not executed
+
+**Anchor access:** `artifacts/wur_v2/external/anchor_calibration_access.json`, 2026-09-13T02:26:16Z, HEAD `6c6cc4f`, clean tree, 1,292 anchor spectra of 106 anchors decoded; no VALIDATION or SECONDARY spectrum decoded.
+
+**Gate result (`artifacts/wur_v2/external/anchor_calibration.json`):**
+
+| Adapter | Parameters | 20 eV median abs delta / Spearman | 40 eV | 60 eV | pooled RMSD | passes |
+|---|---|---|---|---|---|---|
+| A1 `E = k e 500/m` | k 0.577 | 0.078 / 0.33 | 0.074 / 0.66 | 0.060 / 0.72 | 0.130 | no |
+| A2 `E = k e (500/m)^gamma` | k 0.514, gamma 1.27 | 0.099 / 0.34 | 0.068 / 0.68 | 0.068 / 0.63 | 0.128 | no |
+| required | | <= 0.05 / >= 0.80 | same | same | <= 0.08 | |
+
+**Decision (frozen rule):** MultiMS2 is **not qualified** for the three-rung fixed-energy transfer claim. `scripts/wur_v2/ext03_validation.py` refuses to run (the calibration record says `qualified: false`), no validation spectrum has been decoded, and the 1,297-compound VALIDATION and 228-compound SECONDARY populations remain outcome-unaccessed. The 106 anchors are now exposed as calibration data.
+
+**Diagnostics (anchors only, separately logged re-decode, `anchor_diagnostics_access.json`, `anchor_diagnostics.json`):** the MultiMS2 observable is internally sensible (95 percent of anchors monotone across 20/40/60 eV; within-cell scan SD 0.028, comparable to Orbitrap inter-preparation repeatability; median precursor fraction 0.52, 0.002, 0.00 at 20/40/60 eV). It is not an implementation defect: without any adapter or model, the best rank correlation between an anchor's MultiMS2 mu and its exposed Orbitrap mu at any development rung is 0.47 at 20 eV, 0.56 at 40 eV and 0.83 at 60 eV (against at least 0.87 at every rung for the 124 compounds measured on both Orbitraps). A 1 percent intensity cutoff or removing ions above the precursor does not change this (40 eV best 0.53 and 0.55). Contributing differences are fixed lab-frame energy on a QTOF against normalized HCD energy, a 50 m/z scan start against 40, raw centroids with a median 480 to 620 peaks per spectrum against vendor-thresholded library spectra, and pooled direct infusion (3.7 percent of intensity above the precursor at 20 eV). The compound ordering of fragmentation propensity at 20 to 40 eV on this instrument is only weakly aligned with the development coordinate, which no 1- or 2-parameter energy adapter can repair. These diagnostics are descriptive and do not change the frozen decision.

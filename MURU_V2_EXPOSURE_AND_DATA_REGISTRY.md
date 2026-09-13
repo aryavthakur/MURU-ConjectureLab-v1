@@ -80,3 +80,8 @@ Exposure classes: **development-exposed**; **historical holdout now exposed**; *
 - `stage3.sealed_tables` and `holdcheck.run` refuse a second call.
 - v2 loaders drop LCSB confirmation keys by key before any value column is used, and the population builder asserts none remain.
 - Any external source is handled by a separate outcome-blind census; a v2 external result path will refuse to run twice (see the final-candidate freeze when it exists).
+
+## 7. Updates after the v2 freeze
+
+- **MultiMS2 anchors (106 compounds, keys sha256 `bea55785...d479`)**: exposed as calibration data on 2026-09-13 (anchor gate). They were already identity-exposed MURU compounds.
+- **MultiMS2 VALIDATION (1,297 compounds, `c411bb04...cdc0`) and SECONDARY (228, `bd5639d4...40bb`)**: still **not outcome-accessed**. Their allowlisted scan headers (acquisition metadata only) were read. Because the anchor gate failed, they were not decoded; they remain available only for a future claim whose observable-compatibility gate passes, with the disclosure that the v2 program has seen MultiMS2 anchor outcomes and the census QC-pass membership.

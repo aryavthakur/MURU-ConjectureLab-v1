@@ -1,6 +1,6 @@
 # MURU-WUR-v2: MultiMS2 external validation protocol
 
-**Status: DRAFT r2 (after review adjudication), not frozen.** Nothing in this document authorizes access to any MultiMS2 peak, intensity or peak-derived value. It becomes binding only when committed as part of `MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md`. Revision r2 incorporates red-team RT-1 and RT-4, leakage L-02 and L-03, and statistical S-04 (`MURU_WUR_V2_REVIEW_ADJUDICATION.md`).
+**Status: FROZEN by reference in `MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md` Part I; EXECUTED to the anchor gate, which FAILED (Part II). No validation spectrum was decoded.** Original status line: DRAFT r2 (after review adjudication), not frozen. Nothing in this document authorizes access to any MultiMS2 peak, intensity or peak-derived value. It becomes binding only when committed as part of `MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md`. Revision r2 incorporates red-team RT-1 and RT-4, leakage L-02 and L-03, and statistical S-04 (`MURU_WUR_V2_REVIEW_ADJUDICATION.md`).
 
 **Source:** MultiMS2 (Rutz, Correia, Zamboni 2026, GigaScience, DOI 10.1093/gigascience/giag069), Zenodo 17250693 v2.0.0 centroided mzML, CC0 1.0. Census: `MURU_V2_MULTIMS2_OUTCOME_BLIND_CENSUS.md`.
 
