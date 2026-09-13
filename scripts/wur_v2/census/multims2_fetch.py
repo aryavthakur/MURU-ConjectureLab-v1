@@ -127,10 +127,42 @@ def fetch_gnps_identity_tsv(url: str, name: str) -> Path:
     return path
 
 
+def fetch_zenodo_zip_listing(url: str, name: str) -> Path:
+    """Zenodo's HTML preview of a zip's directory tree (file names and sizes only).
+
+    The preview page is rendered server-side from the zip's central directory;
+    no member file is transferred. Only text/html responses are accepted.
+    """
+    if not re.fullmatch(r"https://zenodo\.org/records/\d+/preview/[A-Za-z0-9_.-]+\.zip", url):
+        raise SystemExit(f"REFUSED (not a Zenodo zip preview URL): {url}")
+    req = urllib.request.Request(url, headers={"User-Agent": "MURU-outcome-blind-census/1.0"})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        ctype = r.headers.get("Content-Type", "")
+        if "text/html" not in ctype:
+            raise SystemExit(f"REFUSED (content-type {ctype}): {url}")
+        data = r.read(MAX_BYTES + 1)
+    if len(data) > MAX_BYTES:
+        raise SystemExit(f"REFUSED (body exceeded {MAX_BYTES} bytes): {url}")
+    OUT.mkdir(parents=True, exist_ok=True)
+    path = OUT / name
+    path.write_bytes(data)
+    row = {"url": url, "file": str(path.relative_to(ROOT)), "bytes": len(data),
+           "sha256": hashlib.sha256(data).hexdigest(), "http_status": 200, "range_request_bytes": None,
+           "content_type": ctype, "kind": "zip directory listing (HTML preview)",
+           "fetched_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    with LOG.open("a") as fh:
+        fh.write(json.dumps(row) + "\n")
+    print(json.dumps(row))
+    return path
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     if args and args[0] == "--gnps-identity":
         fetch_gnps_identity_tsv(args[1], args[2])
+        sys.exit(0)
+    if args and args[0] == "--zenodo-zip-listing":
+        fetch_zenodo_zip_listing(args[1], args[2])
         sys.exit(0)
     rng = None
     if "--range" in args:

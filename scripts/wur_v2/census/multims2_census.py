@@ -221,6 +221,17 @@ def load_listing() -> dict:
 
     pm = pd.DataFrame([meta(s) for s in peak.stem], index=peak.index)
     peak = pd.concat([peak.drop(columns=["collection"]), pm], axis=1)
+    # Zenodo zip directory listings (HTML previews) for the positive CID zips
+    zip_cmp = {}
+    for f in sorted(MD.glob("zenodo_zip_listing_*_mzml_centroided_pos_cid_*.html")):
+        zname = f.name.replace("zenodo_zip_listing_", "").replace(".html", "")
+        zstems = {n[:-5] for n in re.findall(r"([\w.-]+\.mzML)", f.read_text(errors="replace"))}
+        coll, e = zname.split("_")[0].upper(), float(zname.rsplit("_", 1)[1])
+        coll = "SELLECK" if coll == "SELLECK" else coll
+        mstems = set(peak[(peak.collection.isin([coll, "BLANK"])) & (peak.polarity == "pos") & (peak.method == "CID") & (peak.energy == e)].stem)
+        zip_cmp[zname + ".zip"] = {"n_mzml_in_zip": len(zstems), "n_blank_in_zip": sum("blank" in z for z in zstems),
+                                   "n_listed_on_massive_same_condition_incl_blanks": len(mstems),
+                                   "zip_minus_massive": len(zstems - mstems), "massive_minus_zip": len(mstems - zstems)}
     return {"listing": lst, "peak": peak, "mzxml_stems": set(mzx.stem), "zenodo_files": zkeys,
             "summary": {
                 "massive_listing_rows": int(len(lst)),
@@ -232,6 +243,7 @@ def load_listing() -> dict:
                 "centroided_mzml_files_by_collection_polarity_method_energy":
                     peak.groupby(["collection", "polarity", "method", "energy"]).size().rename("n").reset_index().to_dict("records"),
                 "zenodo_17250693_zip_files": zkeys,
+                "zenodo_positive_cid_zip_listing_vs_massive": zip_cmp,
             }}
 
 
@@ -439,9 +451,15 @@ def run_chain(frame: pd.DataFrame, candidate_keys: set, rung_records: pd.DataFra
                                                                                   "max_tanimoto_quantiles": {q: float(np.quantile(list(maxsim.values()), q)) for q in (0.1, 0.25, 0.5, 0.75, 0.9)} if maxsim else {}}}))
     # step 11: remaining independent structural groups
     g11 = pd.Series([key_scaf[k] for k in s10], dtype=str)
+    from rdkit.Chem import Descriptors
+    mz = pd.Series({k: Descriptors.ExactMolWt(parent_mol(key_to_smiles[k][0])) + PROTON for k in s10})
+    mz_summary = {"min": float(mz.min()), "q05": float(mz.quantile(0.05)), "median": float(mz.median()),
+                  "q95": float(mz.quantile(0.95)), "max": float(mz.max()), "n_below_100": int((mz < 100).sum()),
+                  "n_above_1000": int((mz > 1000).sum()), "n_outside_ms1_range_50_1500": int(((mz < 50) | (mz > 1500)).sum())} if len(mz) else {}
     steps.append(step_record("11_independent_structural_groups", "v2-style scaffold groups among the scaffold-new survivors (no compound removed at this step)",
                              frame, s10, extra={"population_sha256": canonical_key_hash(sorted(s10)),
-                                                "compounds_in_size_1_groups": int((g11.map(g11.value_counts()) == 1).sum())}))
+                                                "compounds_in_size_1_groups": int((g11.map(g11.value_counts()) == 1).sum()),
+                                                "MplusH_mz_from_parent_structure": mz_summary}))
     out.update(s8=s8, s9=s9, s10=s10, seen=seen)
     return out
 
@@ -453,6 +471,10 @@ def library_census(lib: pd.DataFrame, muru: dict, listing: dict) -> dict:
     verification = {"recorded_inchikey_first_block_distinct": int(lib.recorded_block1.nunique()),
                     "parent_key_distinct": int(lib.key.nunique()),
                     "full_inchikey_distinct": int(lib.INCHIAUX.nunique()), "records": int(len(lib)),
+                    "recorded_block1_vs_parent_key_symmetric_difference": len(set(lib.recorded_block1) ^ set(lib.key)),
+                    "unique_block1_adduct": int(lib[["recorded_block1", "ADDUCT"]].drop_duplicates().shape[0]),
+                    "unique_block1_adduct_method_ce": int(lib[["recorded_block1", "ADDUCT", "FRAGMENTATION_METHOD", "ce"]].drop_duplicates().shape[0]),
+                    "paper_claims": {"unique_compounds": 2899, "compound_adduct": 4210, "compound_adduct_fragmentation": 17170, "spectra": 43728},
                     "polarity_counts": lib.IONMODE.value_counts().to_dict(),
                     "method_counts": lib.FRAGMENTATION_METHOD.value_counts().to_dict()}
     res["claim_verification"] = verification
@@ -529,13 +551,18 @@ def design_census(des: pd.DataFrame, muru: dict, listing: dict) -> dict:
     chains = {}
     for chain_name, rungs in [("CID_3RUNG_20_40_60", RUNGS3), ("CID_2RUNG_40_60", SUBSETS2["40_60"])]:
         st = list(steps)
-        ok = des[des.pos_cid_energies.map(lambda s, r=rungs: set(r) <= set(s))]
-        st.append(step_record("4_fixed_energy_files_present", f"pool position has listed positive CID files at every rung {list(rungs)}", des, set(ok.key),
-                              record_count=len(ok), per_collection=coll_keys(ok),
-                              extra={"completeness_by_collection": {c: {"compounds": int(g.key.nunique()),
-                                                                        "3rung": int(g[g.pos_cid_energies.map(lambda s: set(RUNGS3) <= set(s))].key.nunique()),
-                                                                        **{f"2rung_{n}": int(g[g.pos_cid_energies.map(lambda s, r=r: set(r) <= set(s))].key.nunique()) for n, r in SUBSETS2.items()}}
-                                                                    for c, g in has_file.groupby("collection")}}))
+        # energies available to a compound within one collection = union over its pool positions
+        # (a compound plated twice is injected separately at each energy anyway)
+        ce_union = has_file.groupby(["collection", "key"]).pos_cid_energies.apply(lambda v: set().union(*map(set, v)))
+        ok_pairs = {ck for ck, es in ce_union.items() if set(rungs) <= es}
+        ok = has_file[[(c, k) in ok_pairs for c, k in zip(has_file.collection, has_file.key)]]
+        st.append(step_record("4_fixed_energy_files_present", f"listed positive CID files at every rung {list(rungs)} for the compound's pool position(s) within one collection",
+                              des, set(ok.key), record_count=len(ok), per_collection=coll_keys(ok),
+                              extra={"completeness_by_collection": {c: {"compounds": int(len(g)),
+                                                                        "3rung": int(g.map(lambda es: set(RUNGS3) <= es).sum()),
+                                                                        **{f"2rung_{n}": int(g.map(lambda es, r=r: set(r) <= es).sum()) for n, r in SUBSETS2.items()}}
+                                                                    for c, g in ce_union.groupby(level=0)},
+                                     "compounds_complete_only_by_combining_positions": int(sum(1 for (c, k), es in ce_union.items() if set(rungs) <= es and not any(set(rungs) <= set(v) for v in has_file[(has_file.collection == c) & (has_file.key == k)].pos_cid_energies)))}))
         rr = ok.assign(inchi_to_key_ok=True)
         tail = run_chain(des, set(ok.key), rr, muru, chain_name, key_to_smiles, listing, False, st)
         surv = ok[ok.key.isin(tail["s10"])].drop_duplicates("key")
@@ -594,7 +621,7 @@ def main():
     fetch_log = [json.loads(l) for l in (MD / "fetch_log.jsonl").read_text().splitlines() if l.strip()]
     for r in fetch_log:
         p = ROOT / r["file"]
-        r["sha256_verified_now"] = p.exists() and sha256_file(p) == r["sha256"]
+        r["sha256_verified_now"] = None if r.get("superseded") else (p.exists() and sha256_file(p) == r["sha256"])
     out = {
         "census": "MultiMS2 outcome-blind identity/metadata/acquisition eligibility census",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -661,6 +688,13 @@ def main():
         "design_frame": {"load_info": des_info, **des_res},
         "environment": {"python": platform.python_version(), "rdkit": rdkit.__version__, "pandas": pd.__version__, "numpy": np.__version__},
         "provenance_fetch_log": fetch_log,
+        "provenance_preliminary_fetches_outside_logger": [
+            {"url": "https://api.github.com/repos/zamboni-lab/MultiMS2", "saved": "session scratchpad only", "note": "re-fetched through the logger (gh_repo.json)"},
+            {"url": "https://api.github.com/repos/zamboni-lab/MultiMS2/git/trees/HEAD?recursive=1", "saved": "session scratchpad only", "note": "re-fetched through the logger at the pinned commit (gh_tree.json)"},
+            {"url": "https://massive.ucsd.edu/ProteoSAFe/QueryDatasets?pageSize=30&offset=0&query=%7B%22title_input%22%3A%22MSV000099369%22%7D", "saved": "session scratchpad only", "note": "re-fetched through the logger"},
+            {"url": "ftp://massive-ftp.ucsd.edu/v10/MSV000099369/ and ftp://massive.ucsd.edu/v10/MSV000099369/ and ftp://massive-ftp.ucsd.edu/v11/MSV000099369/", "saved": "nothing", "note": "directory listing attempts; all timed out"},
+            {"url": "NCBI PMC ID converter via PubMed tool, DOI 10.1093/gigascience/giag069", "saved": "nothing", "note": "returned PMCID PMC13312951, PMID 42271568"},
+        ],
         "runtime_s": round(time.time() - t0, 1),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
