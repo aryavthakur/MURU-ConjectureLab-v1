@@ -35,7 +35,60 @@ ALLOW = {
 }
 DENY = {"MS:1000285": "total ion current", "MS:1000504": "base peak m/z", "MS:1000505": "base peak intensity",
         "MS:1000527": "highest observed m/z", "MS:1000528": "lowest observed m/z"}
-DENY_NUMPRESS = {"MS:1002312", "MS:1002313", "MS:1002314", "MS:1002746", "MS:1002747", "MS:1002748"}
+NUMPRESS_UNSUPPORTED = {"MS:1002312", "MS:1002314", "MS:1002746", "MS:1002748"}   # linear, slof (+ zlib variants)
+NUMPRESS_PIC = {"MS:1002313", "MS:1002747"}                                       # positive integer (+ zlib)
+
+
+def numpress_pic_decode(data: bytes) -> np.ndarray:
+    """MS-Numpress positive-integer decoding (reference MSNumpress decodePic/decodeInt).
+
+    Values are stored as half-byte (nybble) sequences: a head nybble n <= 8 gives
+    n leading zero nybbles, n > 8 gives n-8 leading 0xf nybbles, followed by the
+    remaining nybbles least significant first. An odd half-byte count is padded with
+    a 0x0 nybble; a final lone low nybble is decoded only if it is 0x8 (a zero value).
+    """
+    nyb = np.empty(len(data) * 2, dtype=np.uint8)
+    arr = np.frombuffer(data, dtype=np.uint8)
+    nyb[0::2], nyb[1::2] = arr >> 4, arr & 0xF
+    out, i, total = [], 0, len(nyb)
+    while i < total:
+        if i == total - 1 and nyb[i] != 0x8:
+            break
+        head = int(nyb[i]); i += 1
+        if head <= 8:
+            n, res = head, 0
+        else:
+            n = head - 8
+            res = 0
+            for j in range(n):
+                res |= 0xF0000000 >> (4 * j)
+        for j in range(n, 8):
+            res |= int(nyb[i]) << ((j - n) * 4)
+            i += 1
+        out.append(res & 0xFFFFFFFF)
+    return np.array(out, dtype=float)
+
+
+def numpress_pic_encode(values) -> bytes:
+    """Reference encoder (tests only)."""
+    nybs = []
+    for v in values:
+        x = int(v + 0.5) & 0xFFFFFFFF
+        mask = 0xF0000000
+        if x & mask == 0:
+            l = 8
+            for k in range(8):
+                if x & (mask >> (4 * k)):
+                    l = k
+                    break
+            nybs.append(l)
+            nybs += [(x >> (4 * (k - l))) & 0xF for k in range(l, 8)]
+        else:
+            nybs.append(0)
+            nybs += [(x >> (4 * k)) & 0xF for k in range(8)]
+    if len(nybs) % 2:
+        nybs.append(0x0)
+    return bytes((nybs[k] << 4) | nybs[k + 1] for k in range(0, len(nybs), 2))
 
 
 class OutcomeAccessError(RuntimeError):
@@ -74,13 +127,16 @@ def scan_headers(path: Path) -> list[dict]:
 
 def _decode_array(bda) -> tuple[str, np.ndarray]:
     accs = {cv.get("accession") for cv in bda.iter(NS + "cvParam")}
-    if accs & DENY_NUMPRESS:
-        raise ValueError("numpress-compressed arrays are not supported")
+    if accs & NUMPRESS_UNSUPPORTED:
+        raise ValueError("numpress linear/slof arrays are not supported")
     raw = base64.b64decode(bda.find(NS + "binary").text or b"")
-    if "MS:1000574" in accs:
+    if "MS:1000574" in accs or "MS:1002747" in accs:
         raw = zlib.decompress(raw)
-    dtype = "<f8" if "MS:1000523" in accs else "<f4"
-    arr = np.frombuffer(raw, dtype=dtype).astype(float)
+    if accs & NUMPRESS_PIC:
+        arr = numpress_pic_decode(raw)
+    else:
+        dtype = "<f8" if "MS:1000523" in accs else "<f4"
+        arr = np.frombuffer(raw, dtype=dtype).astype(float)
     kind = "mz" if "MS:1000514" in accs else ("intensity" if "MS:1000515" in accs else "other")
     return kind, arr
 
@@ -95,6 +151,9 @@ def decode_selected(path: Path, spectrum_ids, guard) -> dict[str, tuple[np.ndarr
         sid = spec.get("id")
         if sid in wanted:
             arrays = dict(_decode_array(b) for b in spec.iter(NS + "binaryDataArray"))
+            n_declared = int(spec.get("defaultArrayLength", -1))
+            if not (len(arrays["mz"]) == len(arrays["intensity"]) and (n_declared < 0 or len(arrays["mz"]) == n_declared)):
+                raise ValueError(f"{sid}: decoded array lengths disagree with each other or with defaultArrayLength")
             out[sid] = (arrays["mz"], arrays["intensity"])
         spec.clear()
         while spec.getprevious() is not None:

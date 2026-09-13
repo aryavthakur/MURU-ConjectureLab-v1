@@ -75,3 +75,27 @@ def test_decode_requires_guard_and_returns_only_selected(tmp_path):
     mz, inten = out["scan=2"]
     assert np.allclose(mz, [50.0, 99.1, 301.14]) and np.allclose(inten, [10.0, 50.0, 40.0])
     assert g.log == [(str(p), ["scan=2"])]
+
+
+def test_numpress_pic_roundtrip_and_reference_vectors():
+    vals = [0, 1, 7, 15, 16, 255, 4096, 123456, 2 ** 31 - 1, 3.4, 99.6]
+    enc = X.numpress_pic_encode(vals)
+    dec = X.numpress_pic_decode(enc)
+    assert list(dec) == [0, 1, 7, 15, 16, 255, 4096, 123456, 2 ** 31 - 1, 3, 100]
+    # hand-checked vectors: 1 -> head 7 then nybble 1 -> 0x71; 0 -> head 8 then a 0x0 pad -> 0x80;
+    # two zeros -> 0x88 with the final lone 0x8 decoded as a value, not dropped as padding
+    assert X.numpress_pic_encode([1]) == bytes([0x71])
+    assert X.numpress_pic_encode([0]) == bytes([0x80])
+    assert list(X.numpress_pic_decode(bytes([0x80]))) == [0.0]
+    assert list(X.numpress_pic_decode(bytes([0x88]))) == [0.0, 0.0]
+    for vals2 in ([0, 0], [1, 0], [0, 1, 0], [2 ** 32 - 5, 0]):
+        assert list(X.numpress_pic_decode(X.numpress_pic_encode(vals2))) == vals2
+
+
+def test_numpress_pic_matches_pymzml_encoder():
+    pytest.importorskip("pymzml")
+    from pymzml.ms_numpress import MSNumpress
+    vals = [3, 250, 9000, 70000, 12, 0, 5]
+    m = MSNumpress(list(map(float, vals)))
+    enc = m.encode_pic()
+    assert list(X.numpress_pic_decode(bytes(enc))) == vals

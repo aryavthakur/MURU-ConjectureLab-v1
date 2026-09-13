@@ -1,0 +1,3929 @@
+[
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_A10_id.mzML",
+  "bytes": 10003255,
+  "sha256": "ad95767be9693185b8302369c137120f1f32a313c835cba428e2eff48b2e3048",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B10_id.mzML",
+  "bytes": 8885199,
+  "sha256": "9a1fb39004faeb9820042c5a6ce97a4156f0cba556cecf6d368e7407db86ef87",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B12_id.mzML",
+  "bytes": 10164683,
+  "sha256": "c41faef47534fe3d8247ff3174e7cf43449ff8ff9d59865c9bd84140c9690bb4",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B13_id.mzML",
+  "bytes": 9748099,
+  "sha256": "14efb3463590dc48be3623b31b31da8801dac087ec1bdd06dd14deebb1d073a3",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B21_id.mzML",
+  "bytes": 8828966,
+  "sha256": "11cf5a9bdf64503dc2f286614966e28c101a30841b83d45bc93a57a40f99c52b",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B24_id.mzML",
+  "bytes": 9404803,
+  "sha256": "d5fff520310626174bd0d602902fb71f00b76f74e1be9df7f5b8f761380b031f",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B2_id.mzML",
+  "bytes": 10037434,
+  "sha256": "a445c9f2405c519fa1142c201b22a712bf348e0eb1cdd0b66d14ba8903da427b",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_B3_id.mzML",
+  "bytes": 9576225,
+  "sha256": "9e9998441db2145012fd303d16dcf2f0846b41a3882b16d0a2b3c88a66e0c0df",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_C23_id.mzML",
+  "bytes": 9253737,
+  "sha256": "d3bf57f64bb418acad3c1180968886fdd3470c840bb093b76f48630e71183b91",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_C6_id.mzML",
+  "bytes": 9689007,
+  "sha256": "30c749950cec4ab93f41e3c8a6beb90fc557837ac6d4461301d61a75392609fc",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D10_id.mzML",
+  "bytes": 9818654,
+  "sha256": "4009228b133b9ff9c13c02d43c9a10edb9a2731f6f7f8a7fbcb66f03c8e4749e",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D15_id.mzML",
+  "bytes": 9194369,
+  "sha256": "611a9eb7139eeb2439c20f41f5308076e999c054dbe12d83b7cfc94fc50d27c3",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D16_id.mzML",
+  "bytes": 8651343,
+  "sha256": "c37a29304a6fb52426eb2ec160144d2d0475409e1f523803fcfc9c9f35f80c5e",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D18_id.mzML",
+  "bytes": 8792059,
+  "sha256": "cd1f33dc9e26ef6ae309b752ddbbf24f6adef0d9a41e679de8c53372b0e4ea61",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D23_id.mzML",
+  "bytes": 8489673,
+  "sha256": "040e35089d79017834a9275fd726859146f9a529d4d09764c77d3abd064e944c",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D2_id.mzML",
+  "bytes": 9188074,
+  "sha256": "4d0d296fb72cface368a3ad5f6bef981215b6d844b5b72910619d18edfc78b4d",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_D7_id.mzML",
+  "bytes": 9430264,
+  "sha256": "438bbe4d34f206a83ab95fe5073a52d6021e9e34c60d3ff4ab7aa1618c3d99e3",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_E17_id.mzML",
+  "bytes": 9100096,
+  "sha256": "34e720deefd0939bc2d26831da2876a6c170eca6e37017d666d17e0cbcfbf509",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_E7_id.mzML",
+  "bytes": 9115363,
+  "sha256": "840f253ecf411ce61dd867ca91de31f1ba5dbbadfbdd3054bf9833ad5d8e4fd4",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F10_id.mzML",
+  "bytes": 9097598,
+  "sha256": "d267b79a13d86398313f16ab2bef20c8046c4a5f1af1a564b18b80dc83096fba",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F12_id.mzML",
+  "bytes": 8945329,
+  "sha256": "0363952c5b0b438a8cccd013e3c70df92c3cb1bf76d0d5626c93ea19f09fb56d",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F13_id.mzML",
+  "bytes": 9441589,
+  "sha256": "ee53ea9bee90163e04b0dbafc029c0e3aae153823d0c49f22aee4ae60b0b8a6e",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F19_id.mzML",
+  "bytes": 8769323,
+  "sha256": "cbfbfbc5b6c529c377a2230ef2875a824f4595c165105dbf6a9855c3dc644b4d",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F1_id.mzML",
+  "bytes": 9127057,
+  "sha256": "35892a7ac648080ce84818512c14fa91a17bb0d1b7b1432981129d7eaf1d0a00",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F22_id.mzML",
+  "bytes": 9462485,
+  "sha256": "184f089bd7eb6802e8898d42cc3f34422c25e50d71aa8798291435f81e4fa0c9",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F23_id.mzML",
+  "bytes": 8726183,
+  "sha256": "77818bc3d7fdd1f1af711335302093f3d0e8878810b36173b3e0ce7832974400",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F6_id.mzML",
+  "bytes": 8754645,
+  "sha256": "a0198500405e43afdac91c613f0790e9397c3e804b63acbac2ee0a67e42313da",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_F9_id.mzML",
+  "bytes": 9384079,
+  "sha256": "298d24997e069fada0082ac9a01408eca0e73b33b828645e447b38f50b6c85b6",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_G10_id.mzML",
+  "bytes": 8993849,
+  "sha256": "24f99c60a5d2c4331f1e6b903a2f9c7d4826d1ebb04e685c10b264ba804746cc",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_G12_id.mzML",
+  "bytes": 9028420,
+  "sha256": "37b441b1983ce9347308c862c67f82db2369c711266cbde9b9882084c500b6b0",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_G21_id.mzML",
+  "bytes": 10157893,
+  "sha256": "3c21fa118020b0b9473a0cf32f39f66f042ede495105ed4ac410fad1e66911db",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_H12_id.mzML",
+  "bytes": 9873759,
+  "sha256": "d113a06bf68c304846ac938f2919933788bcf4964d109af1d2be3396dd72c7c0",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_H15_id.mzML",
+  "bytes": 9663277,
+  "sha256": "acec1cdbdc03c54f83b716168a123baaaa6e9dd55aa2722eec4ff8ed95153108",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_H18_id.mzML",
+  "bytes": 9437768,
+  "sha256": "a90f62ad47a24e64444bd83f47b8d20ba57a032c9c8d888e690a2344884d1e50",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_H20_id.mzML",
+  "bytes": 9410324,
+  "sha256": "d0db05d77d71f20203338e20fdf9b97d66b34d164330bd0eea49137b1edc64b6",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I16_id.mzML",
+  "bytes": 10031883,
+  "sha256": "fcb9247cb03405f0ad26a5fe364f77f6fbd9eb821de6e34a48724afc4033849e",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I18_id.mzML",
+  "bytes": 8910842,
+  "sha256": "f8ff1b044b67db415030f5ef66c50d2fd15a49bcdb6b9d398b242308c84edced",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I20_id.mzML",
+  "bytes": 9361044,
+  "sha256": "171f04e081b530c8c4776f016433a40dda7bd2ab1f1a71622ca204e9f233b61a",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I23_id.mzML",
+  "bytes": 9110125,
+  "sha256": "84ae9a9c3617b07e6cf0f11527bfa5fdb2fdbe648e2c644a0ad509a3d91f101c",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I24_id.mzML",
+  "bytes": 8656094,
+  "sha256": "2a738d94f6ed229cf9c8ff6dbbaa8d3c668ceefca2716d4af8bdbe0bf5d1f582",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_I8_id.mzML",
+  "bytes": 9661298,
+  "sha256": "5cd75c3ac5a3bf834b760a3db1a0a6a7bb34f810220b5f000ece0cfb5a828c60",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J12_id.mzML",
+  "bytes": 9885634,
+  "sha256": "a2f152c19c8c574acea2dbeeda9d12847ab533a6f6ce2aa671b7b7f4cb8e6a23",
+  "cached": true
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J14_id.mzML",
+  "bytes_compressed": 2800497,
+  "bytes": 10105543,
+  "sha256": "0c67800ab36993dc151cf09130bc6a1d3c004a8fca720a54dfd0a73ef6d8f3b3"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J21_id.mzML",
+  "bytes_compressed": 2677735,
+  "bytes": 9105772,
+  "sha256": "e99b8005a3e74e166cdd1caa32b3791c23ade299cc9501bbf3085bf4e251faa5"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J3_id.mzML",
+  "bytes_compressed": 3279396,
+  "bytes": 9086669,
+  "sha256": "63f7314dfdfe5b0ab0a9068c0d4fbdfcbb47ddf98c65862c32f23d4c81336909"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J4_id.mzML",
+  "bytes_compressed": 2916516,
+  "bytes": 8954194,
+  "sha256": "a25d6cd3be2f032c1b40c89510dfad57017a20428030011ec81f2b19101b368e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J5_id.mzML",
+  "bytes_compressed": 2768097,
+  "bytes": 9356389,
+  "sha256": "d3fe7b88e56651610473e3e8a7d20ecca65a33b330ab119eab591627fdc7f93d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J6_id.mzML",
+  "bytes_compressed": 2691004,
+  "bytes": 9086888,
+  "sha256": "199e575464eac713ba9ed30f4912997bce8248d31a23166a4465ffbe225f5e61"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J7_id.mzML",
+  "bytes_compressed": 2709091,
+  "bytes": 9066579,
+  "sha256": "abebd9d451a857a2c26c205d3d278a538a725e8415ca72e3305dc4fcd9ec1834"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_J8_id.mzML",
+  "bytes_compressed": 2841840,
+  "bytes": 9258582,
+  "sha256": "cff42a7cdbb68da3ce44b268217aa8828802b2b99745ff12c48c11d81dde78e4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_K17_id.mzML",
+  "bytes_compressed": 2751989,
+  "bytes": 9162294,
+  "sha256": "7313d1ef405d046c9335bdadccc7f1f89f38aeea651c13c655f960ea62bfe3d9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_K8_id.mzML",
+  "bytes_compressed": 2899133,
+  "bytes": 9797976,
+  "sha256": "c4c9681a1887602c54733c2371cf4c9a09be4a092c444749fd2b0c441fd7b38d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_L17_id.mzML",
+  "bytes_compressed": 2478912,
+  "bytes": 9479536,
+  "sha256": "c6ed5e3dc02a2398b86d4fdde28991f27102ce3d85896259cf9787f302a28a62"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M10_id.mzML",
+  "bytes_compressed": 2850425,
+  "bytes": 9069476,
+  "sha256": "54edd72ae4fdd61b115c820ed9eb2fbbb7c1bac04058ba49f927bd19bfa1d21b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M12_id.mzML",
+  "bytes_compressed": 2837985,
+  "bytes": 9380936,
+  "sha256": "ebca997113fd47e114f2b652b09b307d6e05adfa7222b1296b494490704897cf"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M14_id.mzML",
+  "bytes_compressed": 2658684,
+  "bytes": 9855867,
+  "sha256": "a6c650595be57e0208e2fead378ee52bc29d37f9dfe14917442cb63d47649d58"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M1_id.mzML",
+  "bytes_compressed": 2521277,
+  "bytes": 9407987,
+  "sha256": "cccba6f9fc75e6836bc11d9d106fa5052ba876a4e0ab7866668de8bc9a4dadac"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M20_id.mzML",
+  "bytes_compressed": 3207183,
+  "bytes": 9309677,
+  "sha256": "a3184b5d9962d0fbbeeadf83f9dd6d420bde6aff72d127adb31107431f221fdf"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M21_id.mzML",
+  "bytes_compressed": 2980649,
+  "bytes": 9364429,
+  "sha256": "98c9d6264bf145b2b45bb58b2e0e2780af19fcab0f55e42d845c454e2833b164"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M22_id.mzML",
+  "bytes_compressed": 2859491,
+  "bytes": 10048257,
+  "sha256": "f2cee823d08b18f2c133831a127d0ec00164248bff132f36f9b0f1a24db1482d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M23_id.mzML",
+  "bytes_compressed": 2651374,
+  "bytes": 9785349,
+  "sha256": "c86996c399b4bb08499882d37c996aac79246ef8a8c240fdbb4a85c16929b061"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M2_id.mzML",
+  "bytes_compressed": 2740090,
+  "bytes": 9757515,
+  "sha256": "94846843046dac6b73762c3b2b43d1ed507ea89835613a71339ce41687aa99a1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_M4_id.mzML",
+  "bytes_compressed": 2747955,
+  "bytes": 9628364,
+  "sha256": "3b0838bee7f3f364d7e503855b2a00d68a5523fcd060199298b377f291a7c107"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N14_id.mzML",
+  "bytes_compressed": 2766545,
+  "bytes": 9624545,
+  "sha256": "6f8411b2f7f113c3a55eb1df330eea371fd4720672448410a0f784d05bcd8439"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N15_id.mzML",
+  "bytes_compressed": 3001012,
+  "bytes": 9620297,
+  "sha256": "85896f5fbc931e47c3360f88767582bea0f606ed3808ed80fc362720700b3e86"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N16_id.mzML",
+  "bytes_compressed": 2403983,
+  "bytes": 9238910,
+  "sha256": "de0fd0e2f490cb25cebe077995f0456c91a20ac90c60d0074768fba337a1bb97"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N21_id.mzML",
+  "bytes_compressed": 2810963,
+  "bytes": 10230918,
+  "sha256": "ebc6bf708039178ae307e23759546c3d2b0522a6771bda3568557c646dcd3f96"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N2_id.mzML",
+  "bytes_compressed": 2978348,
+  "bytes": 10385963,
+  "sha256": "f8bf05fcc8238b46a9e31ebde86e45b7c46867c5445b85d6ab4620832c162257"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N5_id.mzML",
+  "bytes_compressed": 2846326,
+  "bytes": 9785217,
+  "sha256": "68261292aea119f0d15d66fd751872a2a954afaf81d5153bd5a58332f6d356a5"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N6_id.mzML",
+  "bytes_compressed": 2975095,
+  "bytes": 9938319,
+  "sha256": "40f0ea0d7828b6a94f3af20d3263f734d0ac991d0c7dd19e41833490d4b29d09"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_N8_id.mzML",
+  "bytes_compressed": 3030218,
+  "bytes": 8884698,
+  "sha256": "c66679bdce959f1bd8b04f144d751ee953d688fb74784723be157b902e21bd2a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O10_id.mzML",
+  "bytes_compressed": 3043555,
+  "bytes": 9417731,
+  "sha256": "ef3fb884bf0cf3cf67b7be5f0daba6e4b09787cd363afcc7bcd1ced083ac6775"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O11_id.mzML",
+  "bytes_compressed": 3118903,
+  "bytes": 8942140,
+  "sha256": "8c3187eacb22446a33896b7499d60537b302dbe783074e15e0f46401f9f6e438"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O13_id.mzML",
+  "bytes_compressed": 2786152,
+  "bytes": 8884362,
+  "sha256": "c4628175ac5c0c090d3448b1a0f076b904d0a79dbc68081864862df8ebe8e896"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O16_id.mzML",
+  "bytes_compressed": 2724853,
+  "bytes": 9053909,
+  "sha256": "007736449201471e196963404dfa2a292e684c2f11953fad8b1f55e1cf887c53"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O17_id.mzML",
+  "bytes_compressed": 2864930,
+  "bytes": 9821798,
+  "sha256": "5f50a8b2c23dc4dfa6b48e2b4870452d0539e32f70edd8e8e35e1ba34cd05805"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_O18_id.mzML",
+  "bytes_compressed": 2669544,
+  "bytes": 9180494,
+  "sha256": "98cc31ff6c56e67dce9553f31eade89cfbf8520a4bc742cd2a075424cb2a7590"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_P10_id.mzML",
+  "bytes_compressed": 2909373,
+  "bytes": 9424642,
+  "sha256": "84b3e11c2f6a725aead9a4eb58a2145f59df91a747bbb897e223b7ad345715d0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_P14_id.mzML",
+  "bytes_compressed": 2852961,
+  "bytes": 9833451,
+  "sha256": "bde3e449f53abbea48c832746215d478bcf3b57a2448c006d9026004467e0124"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_P16_id.mzML",
+  "bytes_compressed": 2899438,
+  "bytes": 9592923,
+  "sha256": "c9bd19f1f3d19dc7f5eb71e5ef7fbf4d1b23fc39c891418d5e8c90da15850eb2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_P4_id.mzML",
+  "bytes_compressed": 2935534,
+  "bytes": 9884996,
+  "sha256": "75ede4710b2b4e7b35a3e3af0a8230502abd9a46c720273600e1d01a99097ec0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_P5_id.mzML",
+  "bytes_compressed": 2851247,
+  "bytes": 10108833,
+  "sha256": "e56e9f23060daf02829a471022329cab8be0c8e05e81b4ec58586c692c6773b0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A10_id.mzML",
+  "bytes_compressed": 2398344,
+  "bytes": 9705371,
+  "sha256": "baf1cae8f67ed95ebd5831ed609e21274a374b57612e22174f9235c08404995a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A17_id.mzML",
+  "bytes_compressed": 3004464,
+  "bytes": 9279886,
+  "sha256": "04f2c190a5eb0da10fdd7ffa9d2f0e2f92256a835331030433633d0f2a598aec"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A18_id.mzML",
+  "bytes_compressed": 3183561,
+  "bytes": 9833313,
+  "sha256": "f732849489484e2488c7b572f6587de6b3e8606a4a79fa71a66fe562e8aab59d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A1_id.mzML",
+  "bytes_compressed": 2797614,
+  "bytes": 9893250,
+  "sha256": "200531ca5d382feace559d0ce383eb6b28b0441d49824913efde62b97b38a518"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A20_id.mzML",
+  "bytes_compressed": 3155302,
+  "bytes": 9219953,
+  "sha256": "f4b683aac4c0da886a8789516024ff8ffc874adc461a61070640e8503646a7d1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A21_id.mzML",
+  "bytes_compressed": 3086045,
+  "bytes": 10056659,
+  "sha256": "4412a747ebed2ffc7ed24748bf987fb1d92c42ed4e00e98f39644953d3b2cc29"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A4_id.mzML",
+  "bytes_compressed": 2915913,
+  "bytes": 10471914,
+  "sha256": "3d099368940a7f4e31ea724be2857ef5e4fb230ed7368342366cc015b2b67555"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_A7_id.mzML",
+  "bytes_compressed": 2955623,
+  "bytes": 9792083,
+  "sha256": "0180fa49a05be4c1832b3e878b10c85a32acf35ff3001b0f3e37a029eba4141f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B19_id.mzML",
+  "bytes_compressed": 2832367,
+  "bytes": 9809255,
+  "sha256": "1bc39797c8bffc3d451b1e50c8ca7c1ddd8123bdc1f0df1c5cce81001a14bb86"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B1_id.mzML",
+  "bytes_compressed": 2964245,
+  "bytes": 9050703,
+  "sha256": "b8360303e7e943c2ab7c6fd36c88a6b2f9a79a33b9460948a06c384c5f657eaa"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B21_id.mzML",
+  "bytes_compressed": 3309173,
+  "bytes": 9100422,
+  "sha256": "aa0492679dfa670a2d1caf57dc3f7f0ca2cdddbc000da13475a2515d33780a97"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B24_id.mzML",
+  "bytes_compressed": 2902454,
+  "bytes": 9357342,
+  "sha256": "aaef4f0b5342bd565b06dd34fcc56582b819ce4ea2469ca364c74b1759a720af"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B2_id.mzML",
+  "bytes_compressed": 3123073,
+  "bytes": 11207182,
+  "sha256": "d9f349b265c732b610b8ebb1b46b1546f8126956d04725b11c01fb43236d0cf0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B6_id.mzML",
+  "bytes_compressed": 3399381,
+  "bytes": 9968556,
+  "sha256": "f3cd84f6097c98b7ce782af77fde1272c8530612d7faab1c94be624b0a5bf151"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_B8_id.mzML",
+  "bytes_compressed": 2942762,
+  "bytes": 9784655,
+  "sha256": "feccf676dabbe73fdd2dc20c3b7d0b7aa0393cebb5846a149aab2cabc0c9b0af"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_C11_id.mzML",
+  "bytes_compressed": 3912096,
+  "bytes": 9330511,
+  "sha256": "7a65b361c712df04ca39c3417366b381b02e170d355eb6958dd75c17e7b6e310"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_C12_id.mzML",
+  "bytes_compressed": 3367987,
+  "bytes": 8928236,
+  "sha256": "3d8a6096c4215f112191ac2c4551dd2eb228ae4965829d3cf132bcd40fb72132"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_C23_id.mzML",
+  "bytes_compressed": 3259353,
+  "bytes": 9518455,
+  "sha256": "d892121a26b499e37b5827deca9493c659f09d764cc0e85bd5dc00cab81246e4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_C9_id.mzML",
+  "bytes_compressed": 4339044,
+  "bytes": 9818529,
+  "sha256": "e55d236e6ee37e9dac7b6b810de64d2522e572ae79937dfc8c8a7d4ddf47e666"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_D11_id.mzML",
+  "bytes_compressed": 2863816,
+  "bytes": 9132001,
+  "sha256": "390acb39eec0930332c20fcf86fa6823fd3ad07b9ac625bb7c078c6779d50e2c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_D2_id.mzML",
+  "bytes_compressed": 3024603,
+  "bytes": 8942458,
+  "sha256": "fb8f88f38c680dd764d78cd7ba1b20170969877734696b28404229e8f6a2d946"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_D4_id.mzML",
+  "bytes_compressed": 3369713,
+  "bytes": 9907394,
+  "sha256": "96cd876ccc2078d492725dfd2e2fbebc65473331ace141720f0bc1701992d814"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E10_id.mzML",
+  "bytes_compressed": 2792688,
+  "bytes": 9881352,
+  "sha256": "449f338b237ca53fd52122f55426a9a2bb0932a6bbf4995ee648e55b97182cdb"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E11_id.mzML",
+  "bytes_compressed": 2836828,
+  "bytes": 10132316,
+  "sha256": "cb68f4a4b64a4bda850a151a9814d951176fb3c3ec7fd18511bc52136cc5cb05"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E1_id.mzML",
+  "bytes_compressed": 2893670,
+  "bytes": 9288620,
+  "sha256": "fe2b8bfab032d0b523cc57e9af03d3d642c47da0f4589ec01f52ef5a2527b2bd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E3_id.mzML",
+  "bytes_compressed": 3000516,
+  "bytes": 8951060,
+  "sha256": "80f2deaaae7a525e262c9bf3bbea1ae94147eff3f29d30e61989d58d411bb8dd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E4_id.mzML",
+  "bytes_compressed": 3141863,
+  "bytes": 9290442,
+  "sha256": "e79b99683f326527854ce7e6322cb5f1bf52678818dc591c41c47130e73e8962"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_E9_id.mzML",
+  "bytes_compressed": 2784846,
+  "bytes": 9242662,
+  "sha256": "fa169212d34ec7edb5efdd0042f6fbab55f882b5c69451972ea5520462cf3092"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_F3_id.mzML",
+  "bytes_compressed": 2112923,
+  "bytes": 9000910,
+  "sha256": "bf4d72f76e89d2c8a0f2951619e95dee9209a134fddbada20c833148709aa418"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G15_id.mzML",
+  "bytes_compressed": 2387323,
+  "bytes": 8433204,
+  "sha256": "fcf0b2ab403e3e3266d860ab68809d8437809177c9677487fbf62b9c23b07f8c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G17_id.mzML",
+  "bytes_compressed": 2282978,
+  "bytes": 8834514,
+  "sha256": "c18bae693660fce89404efc1356c1fa30e4a595b60524f59e11b81cf6c7d6e92"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G20_id.mzML",
+  "bytes_compressed": 2090318,
+  "bytes": 9160079,
+  "sha256": "451da1b823c7f3b400bd282075e601b803707030e5c1ace52d83c3e92ce5c52a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G22_id.mzML",
+  "bytes_compressed": 2150878,
+  "bytes": 7648505,
+  "sha256": "e4403e133dcf8c8b7355a3ec7d639e5ef8121e4173daf383ab9b93c4aeaa0e17"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G23_id.mzML",
+  "bytes_compressed": 1947240,
+  "bytes": 8599132,
+  "sha256": "b716eaa743e5d27e14a41b6fd0b5c36000e9286365ca208cae9270c34f670d88"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_G7_id.mzML",
+  "bytes_compressed": 2219922,
+  "bytes": 8888136,
+  "sha256": "b128afc6b93607ab2b6d4274e264f6a4bb485203019c57bc39e4ef6b97143e91"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H10_id.mzML",
+  "bytes_compressed": 2233812,
+  "bytes": 7764728,
+  "sha256": "6dc2b1c2b0a8ffc4c4320e7f9eb668f8ef4add44d71b83ee3cf3e02efb753f91"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H13_id.mzML",
+  "bytes_compressed": 2130593,
+  "bytes": 8033244,
+  "sha256": "d4304427eb3956ae392027319089b0c6eba4d165059d2b421790c6a84ce1b537"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H15_id.mzML",
+  "bytes_compressed": 2921226,
+  "bytes": 7807992,
+  "sha256": "f0767658ec50b7d1f81ed894a0be149532a3c80f8e3e2d5c2f3c45e40aa7ff8a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H1_id.mzML",
+  "bytes_compressed": 2282430,
+  "bytes": 7367694,
+  "sha256": "370c2b054c09ac4ad3f80aaa35a7ce70f12aceca1b9d0dc05cb056b04a352754"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H23_id.mzML",
+  "bytes_compressed": 1980571,
+  "bytes": 8901465,
+  "sha256": "a83893faf232a9f15422718fa54a71226e163cc54cacfb2662c4d681de05b3e1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H3_id.mzML",
+  "bytes_compressed": 2141791,
+  "bytes": 7978098,
+  "sha256": "22e2bb0bd77eec2040adf29206ff0d12d05e425f9e15b40a860a489496536de0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H7_id.mzML",
+  "bytes_compressed": 2262706,
+  "bytes": 7926114,
+  "sha256": "17c16018ed7df6a5e8f573123dfb2398bef726b50c8045202bb0a5da44f8dde1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_H8_id.mzML",
+  "bytes_compressed": 2271168,
+  "bytes": 7789455,
+  "sha256": "6b5c25cf054dc655bcd5493857dde00d7b5f13dadc4dcd98f8be5555663cfcc9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I10_id.mzML",
+  "bytes_compressed": 2178117,
+  "bytes": 7751298,
+  "sha256": "b09b755676ae336ada4f3eb85ba2247350ab43a9edcf1342e255fd45008be404"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I11_id.mzML",
+  "bytes_compressed": 2544165,
+  "bytes": 8141031,
+  "sha256": "0cc96b8deefff49f1456275c23238a084e6ff8feaa0f7026c67b298df7e86481"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I13_id.mzML",
+  "bytes_compressed": 2337770,
+  "bytes": 7868775,
+  "sha256": "8fa67064482db1e5d2813c843e5b83b53a4c7a69155defbeb8e6422a26f729ef"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I14_id.mzML",
+  "bytes_compressed": 2399938,
+  "bytes": 7356636,
+  "sha256": "a29a6b8de7d65924b1425f2eadbe6d028e8db5d54b74e02c8fb86a21dd8e1c8e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I16_id.mzML",
+  "bytes_compressed": 2413679,
+  "bytes": 7251795,
+  "sha256": "30f9a458b05e6c35ac22692fe15c78ff6014723edd83da633d168999d209f122"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I19_id.mzML",
+  "bytes_compressed": 1855918,
+  "bytes": 7962092,
+  "sha256": "1fb1cd99f0db29185acca4955bca46e127956f267011d208b93af85e3acb454c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I20_id.mzML",
+  "bytes_compressed": 1989294,
+  "bytes": 7871645,
+  "sha256": "84fb1cd0e31a3eba8c59dcad26eeab07562d25e20ab6a4ee2f55c6b18439cec3"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I22_id.mzML",
+  "bytes_compressed": 1996611,
+  "bytes": 8577636,
+  "sha256": "fde7272c6e071878f75b3b909694ccbd298f76dab92cc8c0af6264a762a9f0f9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I24_id.mzML",
+  "bytes_compressed": 2220984,
+  "bytes": 7044163,
+  "sha256": "87cb881dc8f7bc14d80bd2ba6cdd5692761a9d85807d5c5aead89eae411da1d3"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_I3_id.mzML",
+  "bytes_compressed": 2389761,
+  "bytes": 7395755,
+  "sha256": "effe8fcc6986eaef90e8d8ed3abdce7a4e0749c7c944a86bdd3555fb1ae0ff55"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J14_id.mzML",
+  "bytes_compressed": 2331169,
+  "bytes": 8929826,
+  "sha256": "bce0791d02fe2674778c56d150d2a035d270250fdac57703f4af6036f310cda1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J15_id.mzML",
+  "bytes_compressed": 2240475,
+  "bytes": 8113960,
+  "sha256": "f77175f0cf7d00dafa2f0c0fa832d7f04bf3ff8b06094f359bf80832cb063ec5"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J1_id.mzML",
+  "bytes_compressed": 2206241,
+  "bytes": 7726052,
+  "sha256": "da59678209431b813604ed898b3dce866e071739c9c18fb03ad4b9435a902820"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J2_id.mzML",
+  "bytes_compressed": 2152640,
+  "bytes": 8370005,
+  "sha256": "7a676b689b1eaa7216599c0ff68de7bbf6eea3b2ab09337dbc815ca95e847692"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J4_id.mzML",
+  "bytes_compressed": 1959675,
+  "bytes": 7510620,
+  "sha256": "f5004580d3b532991a9578dcc661217d1e2ade47361503bc311b9baf12487ade"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_J7_id.mzML",
+  "bytes_compressed": 2330649,
+  "bytes": 8440391,
+  "sha256": "b7377ec6b202c2517c0193fab2823a2f7d6eb432e4f20a14496d945c863a2248"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K14_id.mzML",
+  "bytes_compressed": 2178101,
+  "bytes": 7239734,
+  "sha256": "7127cbfafc7593b78989b5f5e0067de48969bc19debf20cca7bbd0a2ab10978a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K17_id.mzML",
+  "bytes_compressed": 2368764,
+  "bytes": 7241005,
+  "sha256": "577feacdb029a571c0ee9e5317e6a8c22653c378569081531b00caf1499033f1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K18_id.mzML",
+  "bytes_compressed": 2183937,
+  "bytes": 7538108,
+  "sha256": "1f6d8556c425a9a20ea8bf9ffd35f1f378d90e9a35cdc19743c422d5008fb5c2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K19_id.mzML",
+  "bytes_compressed": 2025318,
+  "bytes": 7131670,
+  "sha256": "b4f0bc59919e41680feb93936df67cfcee0bfd1895625fa259ebc431047834dd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K22_id.mzML",
+  "bytes_compressed": 2172808,
+  "bytes": 7714500,
+  "sha256": "0d60776cd8ae919933c22685fbcc89d5417b0aeb558cc669c45f3763ac466abf"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K24_id.mzML",
+  "bytes_compressed": 2170558,
+  "bytes": 7119235,
+  "sha256": "f037c8c4850ea47b52c777a8476a1da8f540740c95c4dc2e07eafc08d3b6e33b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K3_id.mzML",
+  "bytes_compressed": 2218400,
+  "bytes": 7747085,
+  "sha256": "8d622f7a6d392a84488af72cb6c11fe1f8d539d991e514044bdb1e6739925ee9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K4_id.mzML",
+  "bytes_compressed": 2220308,
+  "bytes": 7301291,
+  "sha256": "ff9b65a94b5281a71edf01cb79a7989dacf012558466bfd9faa92c1192c00951"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_K5_id.mzML",
+  "bytes_compressed": 2598855,
+  "bytes": 8278090,
+  "sha256": "4be2058e85892cb500deda6f83e841946f64466b59084e7cbacdd023bbbaccb2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L13_id.mzML",
+  "bytes_compressed": 2367762,
+  "bytes": 7916848,
+  "sha256": "6761da0806c3b9f30e4eb904eb85a185fda65983fa85acb776e2f7e618c26154"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L17_id.mzML",
+  "bytes_compressed": 2624934,
+  "bytes": 7908848,
+  "sha256": "664da8a4bcc1cddfb8087892a2f83c606af28c87712c190b35c125679d8fd310"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L18_id.mzML",
+  "bytes_compressed": 2206271,
+  "bytes": 7226861,
+  "sha256": "15226e5e7e02a6c8e98890978631ba4a887157a9f862d9fbf837bfe489583e84"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L19_id.mzML",
+  "bytes_compressed": 2218260,
+  "bytes": 7516615,
+  "sha256": "2417633bab6fe1d061c40eb4e2f24a84f216e120e21c3914abed269c77b951c1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L20_id.mzML",
+  "bytes_compressed": 2140825,
+  "bytes": 7115128,
+  "sha256": "473cffb6a8e8146691f8240bc290649a51d8539bc0a5d09f9f0cdcebc346d683"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L2_id.mzML",
+  "bytes_compressed": 1915674,
+  "bytes": 7240959,
+  "sha256": "5576b9c2c7d709841740ff949d081e000d68b2f25c217a5d3540d4ede885db31"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L4_id.mzML",
+  "bytes_compressed": 2549837,
+  "bytes": 7756480,
+  "sha256": "1e46f31589b3c8d7902457d6f06179146281e4c2f71baf491032eea0d01f010e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L5_id.mzML",
+  "bytes_compressed": 1993595,
+  "bytes": 7294919,
+  "sha256": "29f711fe7c215c3ac3f90d5e841bf83e2eb9b28360442a3afbdc7c11cd27fd9f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_L7_id.mzML",
+  "bytes_compressed": 2442627,
+  "bytes": 7457876,
+  "sha256": "c773a330908db4824c8895b76039af6ea41c128fb8ece4b24ccfbac3f1c38296"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M10_id.mzML",
+  "bytes_compressed": 2729504,
+  "bytes": 7828718,
+  "sha256": "f6949ec5c8cc58bc36b3a18002e4d19306a4d6dba5c65031b0ccf6d9b4ee9628"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M13_id.mzML",
+  "bytes_compressed": 2209149,
+  "bytes": 7120143,
+  "sha256": "407192f6c974534d8fa39af5927651b20fcb97d798ada6276d02c75d1af4117f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M15_id.mzML",
+  "bytes_compressed": 2583306,
+  "bytes": 7506275,
+  "sha256": "dcb9bbec46842a3d0b22d187c860dbb6a7e24764e985d6c98dc0ee1ba0628340"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M16_id.mzML",
+  "bytes_compressed": 2669535,
+  "bytes": 8177424,
+  "sha256": "8dc268280b605c919c7320585aafabe654509fe1985e6cb9be8a1dbce532b1a7"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M18_id.mzML",
+  "bytes_compressed": 2215059,
+  "bytes": 7711204,
+  "sha256": "c66771b115a81e7ca3ef017788a882a19521506315c772eef13fb34cdead27b5"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M23_id.mzML",
+  "bytes_compressed": 2104614,
+  "bytes": 7500762,
+  "sha256": "f9bdc30dd73c76b58c1efbac271640196caef4a550b76d6c70f68edc83ae2929"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M24_id.mzML",
+  "bytes_compressed": 2346157,
+  "bytes": 7875711,
+  "sha256": "a7e47d470891918ecc3434fcb8cb243d1338ce86ba4b6efcf29b5eec3d094830"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M3_id.mzML",
+  "bytes_compressed": 2025976,
+  "bytes": 7696932,
+  "sha256": "f09fb4497d4cd6d18736ccc09220a831c9f223935caf2c7d51c7eb69c7f40e5f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M4_id.mzML",
+  "bytes_compressed": 2346637,
+  "bytes": 7611980,
+  "sha256": "5fa74f8472a09f9d2a2f735036cbe2c8375c57a265831f1e01797a8788c9f616"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_M7_id.mzML",
+  "bytes_compressed": 2413621,
+  "bytes": 7398441,
+  "sha256": "b8562aa7bae4de1b1747c90cb6f72dfb953850ed22a63658ba8dd9221b74c046"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N19_id.mzML",
+  "bytes_compressed": 2456597,
+  "bytes": 7389858,
+  "sha256": "33220d9e8ca2509c63087b34d2c8aa33b170ee5cf07629183d93c944a141e448"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N23_id.mzML",
+  "bytes_compressed": 2181672,
+  "bytes": 7186916,
+  "sha256": "78421787303bd98fede53063fa9cebcaacb4d4f1acd720366dedd6adb70f9238"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N2_id.mzML",
+  "bytes_compressed": 2102061,
+  "bytes": 7363477,
+  "sha256": "f2c84b7cfe2fea63b240b7c74f2b60cc1634a2136b6e114ff4e56d2440ccd85f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N4_id.mzML",
+  "bytes_compressed": 2143904,
+  "bytes": 7393542,
+  "sha256": "287e54394a887d69e3845fb86570d601fa325ce7e3af3cf8b610675a1719fc9d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N7_id.mzML",
+  "bytes_compressed": 2187446,
+  "bytes": 7934504,
+  "sha256": "e2808697ff199bc246228507107c4866227e1fa73b6e42eacf9b9f71e90286ac"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_N9_id.mzML",
+  "bytes_compressed": 2216752,
+  "bytes": 7379257,
+  "sha256": "573b49867a23aab27931ccf4ef35a27fdd0cd2dd9dc11bfeb7e5f70c1d395585"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O10_id.mzML",
+  "bytes_compressed": 2346038,
+  "bytes": 7714457,
+  "sha256": "630cbb7a54f4df29d2398f45a697ac9a2af4ec77f691ecfadd827493e34decac"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O12_id.mzML",
+  "bytes_compressed": 1993158,
+  "bytes": 6826389,
+  "sha256": "67783b9bff991fdcd653730469204e52dca62751c0321a1e5bc1a110d072e179"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O14_id.mzML",
+  "bytes_compressed": 3409762,
+  "bytes": 8379245,
+  "sha256": "89636a76984362404d1af3e250466e4efa975db9e04e01300373f73967db9a24"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O15_id.mzML",
+  "bytes_compressed": 2100884,
+  "bytes": 7377711,
+  "sha256": "22486e6ca44630a46b3994ef2a790883b8f9e7aab61950a1f5d1a760f5c02d6c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O17_id.mzML",
+  "bytes_compressed": 2045632,
+  "bytes": 6750469,
+  "sha256": "9318ec07ae64cf2d9441d0f10d633e17eac0f1126bd3570d82fb179a9eba8bc1"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O19_id.mzML",
+  "bytes_compressed": 2127876,
+  "bytes": 7375887,
+  "sha256": "c37fe35b7ac98276a3e5ca08038f2b659cc0b0d1fb586e72f0b01e4bda3a9030"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O20_id.mzML",
+  "bytes_compressed": 2198349,
+  "bytes": 7553996,
+  "sha256": "e6669213361586674b3ca2e47cc0fe9b5534c48dec89486af7e72755037d63e5"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O22_id.mzML",
+  "bytes_compressed": 2400873,
+  "bytes": 7482077,
+  "sha256": "4363d4268ead2c3988cc38bb163c13c477531f1f98386f55f48fd77cc97f7d0a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O24_id.mzML",
+  "bytes_compressed": 2017384,
+  "bytes": 7264315,
+  "sha256": "0c8c1ac516c1843e8a73af111880872f500b8ee7d0d3c96e474e423e49e87a41"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O3_id.mzML",
+  "bytes_compressed": 2286939,
+  "bytes": 7682457,
+  "sha256": "a7a878270331bd8558d85e311639a6e4ff711481f8610614688273e5bb510462"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O4_id.mzML",
+  "bytes_compressed": 2091204,
+  "bytes": 7730587,
+  "sha256": "d9af78b1cc771a6bf10f82b1a5031cd514111a320ad654890087413891ded246"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O6_id.mzML",
+  "bytes_compressed": 2592515,
+  "bytes": 7830927,
+  "sha256": "d20f05aa7dc220415b6dc48f537241872c6d8d6ac71b7413e1e47f3986737d68"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_O9_id.mzML",
+  "bytes_compressed": 2144433,
+  "bytes": 7469435,
+  "sha256": "1fc414f85552cf329f2f339cf21bf198394311d9b2894d5b881599e8ed48cef9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P10_id.mzML",
+  "bytes_compressed": 2189303,
+  "bytes": 7822254,
+  "sha256": "249669c2b5599d09f8ae87300e49ee50c04f7628a3cdf8935114401f580ea084"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P12_id.mzML",
+  "bytes_compressed": 2189598,
+  "bytes": 7117435,
+  "sha256": "efafbe8f2244a6e8d4ca5e197830a07e0f0a10ba9c92b6dc409b12ef9a948bb4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P13_id.mzML",
+  "bytes_compressed": 2180401,
+  "bytes": 7223501,
+  "sha256": "5f754163d5f20c02fae54adc9b903d71c2d391b0c2c04ebf8c5d6fc3e3eaf77f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P18_id.mzML",
+  "bytes_compressed": 2241661,
+  "bytes": 7544173,
+  "sha256": "b86d15608687fc18567a0798daf9b379216fc1c595f0efd9263a8f7c5f96ff57"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P1_id.mzML",
+  "bytes_compressed": 1882889,
+  "bytes": 7527291,
+  "sha256": "e3d2e4f6aeab199e197185cce32e0a4abdab565c1d5a32685fc069532395da72"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P4_id.mzML",
+  "bytes_compressed": 1971620,
+  "bytes": 7446299,
+  "sha256": "2cc1156efca8ee1afe5bfab2005ac70b5d6b0d81de67ea309607dfb817dcae26"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P6_id.mzML",
+  "bytes_compressed": 1732629,
+  "bytes": 7719537,
+  "sha256": "c685d911bfa28769ed8855d7d193743e2782bf586f344ac27654be505b69a3f2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D2_P9_id.mzML",
+  "bytes_compressed": 2092781,
+  "bytes": 7480050,
+  "sha256": "e63a1969ee5ed81406be8f45ddb2ceb22f9a8cb3694f819b9043293fde814884"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A11_id.mzML",
+  "bytes_compressed": 2179497,
+  "bytes": 7504157,
+  "sha256": "4e3f85ee38009d99c2459105fcc3acb968ab4d5b8ad77d7a5ed8eee50b5760fa"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A13_id.mzML",
+  "bytes_compressed": 2114729,
+  "bytes": 7394256,
+  "sha256": "aa60dbf3aae04e1c546f9123bef443dd3eb6594b4f432d9790da8916102b960e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A14_id.mzML",
+  "bytes_compressed": 2563453,
+  "bytes": 7534706,
+  "sha256": "c3a14a2e6fef6e01fe11f9713fdb2dee7e39141d2724e527fa602bb5d50f8101"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A18_id.mzML",
+  "bytes_compressed": 2098783,
+  "bytes": 7075977,
+  "sha256": "d4c6496bbc6b562163c85ba71d12e72e36c27a71e25cb3e268b1108aeed2672e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A19_id.mzML",
+  "bytes_compressed": 2433164,
+  "bytes": 7186984,
+  "sha256": "86064bf95b545cc8df5fbfbb2545b0260f8b3fcc6564ee047785117a416202ac"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A1_id.mzML",
+  "bytes_compressed": 2212785,
+  "bytes": 7207971,
+  "sha256": "0809c036608fd8a35c89274b11d4e3ba0b9195837898e269223a4d5347869cf9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A22_id.mzML",
+  "bytes_compressed": 2382271,
+  "bytes": 7507719,
+  "sha256": "9821736c7856405597a73b2a34e5d57b30c1b52fb1143ffa200800d9ed4f4196"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A4_id.mzML",
+  "bytes_compressed": 2047939,
+  "bytes": 6894558,
+  "sha256": "bb99222e65984783f4c5c8ca6aa18b9f6420aef6a47d9b535c4377d3a3f73e5b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A6_id.mzML",
+  "bytes_compressed": 2100995,
+  "bytes": 7367356,
+  "sha256": "be898d6cb3070eafadf34e684320d39bb65f6eef61b1cbfd21bb295f26a1e4fd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A7_id.mzML",
+  "bytes_compressed": 2018862,
+  "bytes": 7447215,
+  "sha256": "3ca19fee87294710c62004878c550cba0f877b565a9f572f9029cb6513b9efd3"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A8_id.mzML",
+  "bytes_compressed": 2548045,
+  "bytes": 7726941,
+  "sha256": "ff15a1b54acea93fb919610701a9b9acfe1c88970c03649268c37158c1b8e43a"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_A9_id.mzML",
+  "bytes_compressed": 2101571,
+  "bytes": 7251805,
+  "sha256": "ce539ab69a4c112a0e9b134c05d30a46dcff1797310209589b2b5b7ffec8fd55"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B14_id.mzML",
+  "bytes_compressed": 2278193,
+  "bytes": 7278273,
+  "sha256": "e1d02d0947ef5263275c72b9aec16c96392b6301fd6956a12f0b672e60c4fec3"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B17_id.mzML",
+  "bytes_compressed": 2428767,
+  "bytes": 7285737,
+  "sha256": "1e4ebf5f236598da53b07e1d2f34db8c6cc0c93e534929c428e69d61575a3bfc"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B19_id.mzML",
+  "bytes_compressed": 2277357,
+  "bytes": 7062140,
+  "sha256": "9854ff92c8fa3ae0385f8a7c1d4d815f734ccfeae616491095131701b5e95e3e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B20_id.mzML",
+  "bytes_compressed": 2682540,
+  "bytes": 7532257,
+  "sha256": "dfc56427c987f2505e8d2c5613765eec28173ab737551c09c2c02098627c8870"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B21_id.mzML",
+  "bytes_compressed": 2709333,
+  "bytes": 7571101,
+  "sha256": "3423df43b129df3e854068a5e2921a7b60d7629d14ef661253a16eecaf0283b8"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B22_id.mzML",
+  "bytes_compressed": 2071001,
+  "bytes": 7070417,
+  "sha256": "2fc9a92610b961dcd6cd4717822ebca9c30e292dc6ffad00a14b7cad0c3d595d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B2_id.mzML",
+  "bytes_compressed": 1972900,
+  "bytes": 7181082,
+  "sha256": "33bc4f4b3890f56e8821f13a7c2eb606fd4e6b11e4f2e2e4e601b9679fc0f0b4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B4_id.mzML",
+  "bytes_compressed": 2089252,
+  "bytes": 7318857,
+  "sha256": "114a6ab2ee9b9bddac45a09868a07c51d917acf0dd12d747e13e84664a3b5e69"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B6_id.mzML",
+  "bytes_compressed": 2152879,
+  "bytes": 7336173,
+  "sha256": "45a0c15e65d20507b2b750f4b053860bced9dbac12c353e1c7d58cf29cffcadd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B7_id.mzML",
+  "bytes_compressed": 1874691,
+  "bytes": 7016678,
+  "sha256": "a591f744cda0d119fef2ac90971adcd5db8c59ab64d9f84d203984d8379d9057"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_B8_id.mzML",
+  "bytes_compressed": 2160213,
+  "bytes": 7110404,
+  "sha256": "e41fd6fa2af5efb847401c63283926b0aa048c79dea6247217bb693ebff9bf01"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C12_id.mzML",
+  "bytes_compressed": 1950152,
+  "bytes": 7032631,
+  "sha256": "c5cdf54ea000e1f2a9db7ad3b2e766afaab991228a45e142570cb5bcd8b4f412"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C17_id.mzML",
+  "bytes_compressed": 2182816,
+  "bytes": 7471609,
+  "sha256": "4f965b93b330a7394d544e67a534e51e0afa322e2de9d8be2331172f91991146"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C18_id.mzML",
+  "bytes_compressed": 2121560,
+  "bytes": 7195079,
+  "sha256": "52ac407b89f3133a43b595c652c09fb8859263058d4fb935fb1cf07cd18b7543"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C19_id.mzML",
+  "bytes_compressed": 2537508,
+  "bytes": 7414414,
+  "sha256": "954e8561b70a31b572a3867440e1851e8ad9de0061877b078741699fbd7acd83"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C21_id.mzML",
+  "bytes_compressed": 2027145,
+  "bytes": 7434251,
+  "sha256": "45a35885f140010bb850b9d4a4be5146045ba4f0048b976e0f95d76263676f26"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C24_id.mzML",
+  "bytes_compressed": 2407633,
+  "bytes": 7566280,
+  "sha256": "50fb73e8648dfc40918b3f7562caf5f66fbe303c3b19ec6da2aad6b03455f869"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C3_id.mzML",
+  "bytes_compressed": 2202679,
+  "bytes": 7205503,
+  "sha256": "59e6f0b1212b06e2ea1a1d30f17eeb21477bd117891c61f8b0b76f5c75b4b079"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C6_id.mzML",
+  "bytes_compressed": 2278329,
+  "bytes": 7214456,
+  "sha256": "14d37a5b72b095d8cf78d71e14f539135fab7924f6167d18b5303906b193524e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_C9_id.mzML",
+  "bytes_compressed": 2019548,
+  "bytes": 6868165,
+  "sha256": "7b76836316a8a8048b24386f967194480b76e8fbdc091f5d8e6d232b76ee0645"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D13_id.mzML",
+  "bytes_compressed": 2147680,
+  "bytes": 7130118,
+  "sha256": "4273b2cc03ef50e53f2182b0829a162567917f2e709c4ed90b692c11e9416852"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D18_id.mzML",
+  "bytes_compressed": 2038897,
+  "bytes": 7654092,
+  "sha256": "77fd1680561c76d5b18a79971e2ec08f7b0f5beed684e5e265d39dca6dc0c019"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D19_id.mzML",
+  "bytes_compressed": 2501977,
+  "bytes": 7906333,
+  "sha256": "a0446003df585fe8c38269da659b8eaff3d78792818df08944febf9c753e4ecd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D1_id.mzML",
+  "bytes_compressed": 2195291,
+  "bytes": 7269892,
+  "sha256": "d9d3e54ed09237d49a536608c90ac27663e3cb6b7ba8c627a3afcdf2d307620b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D23_id.mzML",
+  "bytes_compressed": 2320527,
+  "bytes": 7191003,
+  "sha256": "ab2696d3499d3df730c3eb82f67cf235a123fc53bf26a1436c224a594edfc988"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D2_id.mzML",
+  "bytes_compressed": 2293776,
+  "bytes": 7606623,
+  "sha256": "d295bd55ae2fe31f17c8cc5ee0fcbf3c1b4db216e31ec3933a6158bbe93f3112"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D5_id.mzML",
+  "bytes_compressed": 2169012,
+  "bytes": 7185578,
+  "sha256": "cf836b9f1fdb41c07c4799452c7a1428dead059179bd9440f7c4614849a6b5cd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D7_id.mzML",
+  "bytes_compressed": 2048523,
+  "bytes": 7155042,
+  "sha256": "8eab56b6e8491963b2045ddebd54f6be1fe8ebc8d9573988d5cf6ed6dce7f575"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_D8_id.mzML",
+  "bytes_compressed": 2284905,
+  "bytes": 7529303,
+  "sha256": "61fd3a1692622ba371c71b95314e53743783a126c0c57ddaf0989aa3d2cdf998"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E10_id.mzML",
+  "bytes_compressed": 2202261,
+  "bytes": 7169346,
+  "sha256": "1b083f0bea9277b17e617ceab70eb06975343c61ac3bdfa049577566a5cbd647"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E11_id.mzML",
+  "bytes_compressed": 2382994,
+  "bytes": 7431727,
+  "sha256": "09096248c2f43a5a5285e7c3ffdbfff0f2b380ccba3e83bc4b903df609eee6df"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E12_id.mzML",
+  "bytes_compressed": 2106272,
+  "bytes": 7396578,
+  "sha256": "4b8ef510e894631fccbf471150a155ae345325caa4ca0de5d5694104fdc082a0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E17_id.mzML",
+  "bytes_compressed": 2071179,
+  "bytes": 7058440,
+  "sha256": "e9afacb9d1c2015ed9efafca226ee90f0311b4d6a6099292ae0e51a9de6168d0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E18_id.mzML",
+  "bytes_compressed": 2258796,
+  "bytes": 7309372,
+  "sha256": "0d12767904ab26ff4a5fce0e063cef2965d1b882dca532feb502ea9cbbebb7d6"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E20_id.mzML",
+  "bytes_compressed": 2379667,
+  "bytes": 7454000,
+  "sha256": "22a274267bf1b13cc1beac16248f84c37cf7903d67ce002583a5325e964ad649"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E21_id.mzML",
+  "bytes_compressed": 2533302,
+  "bytes": 7449093,
+  "sha256": "d5e5dae67101bf2b6f5f0e0e2ae07933d5d383198cd7648453e26333b34ff6e4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E22_id.mzML",
+  "bytes_compressed": 2341787,
+  "bytes": 7249032,
+  "sha256": "e8305ebec727f543c94240fa730f561f06f86ba27eba60c01b383f6cc07f7dfa"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E3_id.mzML",
+  "bytes_compressed": 2542672,
+  "bytes": 7385369,
+  "sha256": "266d8bc53415fa72ebefeb5a563d35fcf90ec52cb4887e50a88271392a1ee923"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_E6_id.mzML",
+  "bytes_compressed": 2316385,
+  "bytes": 7376541,
+  "sha256": "0bb2fa656a815e13d0deb900d39cb320dc18f04b454fb97919c42d9377a16e7e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F10_id.mzML",
+  "bytes_compressed": 2160064,
+  "bytes": 7770475,
+  "sha256": "c0206b1cb2038fb1a34d725edad02e6ecb1c443878461acb4afd1f3073a577e4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F11_id.mzML",
+  "bytes_compressed": 2028514,
+  "bytes": 7485425,
+  "sha256": "755e30643e02caef9066fa0bef107c8565b5264d75f3c2b34ebd329cd23047dc"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F12_id.mzML",
+  "bytes_compressed": 2139254,
+  "bytes": 7146083,
+  "sha256": "224b0cb6c88349130d04273ccca30a0a5226d040878fa46257fab1bc115d3817"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F13_id.mzML",
+  "bytes_compressed": 2545682,
+  "bytes": 7328103,
+  "sha256": "51131f67be45ba685af0b1762118e30f1f429d85ca32a3364a3b8a3fcbc64a11"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F14_id.mzML",
+  "bytes_compressed": 2243407,
+  "bytes": 7814010,
+  "sha256": "533f861b681ab5477f6c5146e0d31302a3ac3cc8a088ccfbc4738e5443877e2e"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F16_id.mzML",
+  "bytes_compressed": 2257433,
+  "bytes": 7145615,
+  "sha256": "178c35e0778aa81ca301877d2164a6c9e10179a9262e70c466dd3f47762822bd"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F20_id.mzML",
+  "bytes_compressed": 2931494,
+  "bytes": 7956641,
+  "sha256": "24a954b16db0611a757476e6c083f82545c1e7dee645f3dc35b82260be97114c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F24_id.mzML",
+  "bytes_compressed": 2015149,
+  "bytes": 7176118,
+  "sha256": "ef078207ef885e635ac7cd410b5e829d1f1912ff8f0d007598069aecd407f0c6"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F2_id.mzML",
+  "bytes_compressed": 2112039,
+  "bytes": 7180186,
+  "sha256": "6c8a7501a9d228e937a4272b36b99c5b8a2258e966fa1f64ecbe10d14fce2b27"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F4_id.mzML",
+  "bytes_compressed": 2360199,
+  "bytes": 7309270,
+  "sha256": "344c803ae61a24e563c11f86850926497091e13b20fbda63bc3e136749f3ac4c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F7_id.mzML",
+  "bytes_compressed": 2236054,
+  "bytes": 7239103,
+  "sha256": "aadf79431c8ff852364e012e3b95fcd0963675e8de8d4865c4797a7ec0ffe600"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_F8_id.mzML",
+  "bytes_compressed": 2528652,
+  "bytes": 7234424,
+  "sha256": "9c6d65743fa569c1761dbdb47204986bdbbc4c35191f45b8d6645719d8d34fd8"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G12_id.mzML",
+  "bytes_compressed": 2195184,
+  "bytes": 8269990,
+  "sha256": "5195cb4762fb7d86473fc284087d3a72a892f6356fb8009237b470d2abe1723b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G18_id.mzML",
+  "bytes_compressed": 2258973,
+  "bytes": 7216644,
+  "sha256": "67d1619d72d7ca4508966e87bbfcd2c2d830f2df578c6151426478487ecdcb34"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G19_id.mzML",
+  "bytes_compressed": 2600245,
+  "bytes": 7542857,
+  "sha256": "f748db0728cc67607bad18c70a2fa3ebdc59813da71c33593b6d91c9fa60afd2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G1_id.mzML",
+  "bytes_compressed": 1967706,
+  "bytes": 8074494,
+  "sha256": "39673b6e79620aa5cd92f56cec8a47b12538fe0f4f81f87bd5165a4088a02f9c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G21_id.mzML",
+  "bytes_compressed": 2826799,
+  "bytes": 8107456,
+  "sha256": "0dfc937b8b6534fc941854654e38b2dab04ca65d29c13413f3e400fc45f1a780"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G22_id.mzML",
+  "bytes_compressed": 2074514,
+  "bytes": 7068605,
+  "sha256": "a1546ea0f22dffe913d874a76df93c397324c40c7c9b38a5d365c17096aaeb07"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_G8_id.mzML",
+  "bytes_compressed": 2224742,
+  "bytes": 7655707,
+  "sha256": "3b4c9e61c1a288f07931f8f131299efe21046fb83cb8c3b4fd71dffce954d083"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_H14_id.mzML",
+  "bytes_compressed": 2125905,
+  "bytes": 8258173,
+  "sha256": "e2e11e398c95ab08abcc15c0b2ee20b7ff560e39b784fd0b5ffc8fd91bbf3ad2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_H18_id.mzML",
+  "bytes_compressed": 2230086,
+  "bytes": 7914862,
+  "sha256": "2334867d96a0fb9ffda86b31371f3ac4f775f4cd33f3e0b27624f76e9bc78295"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_H24_id.mzML",
+  "bytes_compressed": 2144393,
+  "bytes": 8360686,
+  "sha256": "0d8129e3cfb8bf0652229ab3e6ee1398004e17ebd1a091c52ffde37c4993b17f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_H5_id.mzML",
+  "bytes_compressed": 1992951,
+  "bytes": 7941723,
+  "sha256": "d856d589a56c2feed4ed2ab97e5bdeeb935e746464eac86958bb3dda3e46f3ab"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_I11_id.mzML",
+  "bytes_compressed": 2874486,
+  "bytes": 7681089,
+  "sha256": "e1f55eedadf8d7ac1cdcc3408c82712deeeafcaef3b9e2f9bbd21a986383a5c2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_I18_id.mzML",
+  "bytes_compressed": 2515370,
+  "bytes": 7248932,
+  "sha256": "663d97697e6a3c4b352fb06cc7badb3b97c4a1198856fc55c330d52d0e2c5111"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_I24_id.mzML",
+  "bytes_compressed": 2326854,
+  "bytes": 7249799,
+  "sha256": "842cd15cedfd81e135f1d444968bf0f20539735b6665adf9855c4644f70ae7e0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J10_id.mzML",
+  "bytes_compressed": 2226544,
+  "bytes": 6947797,
+  "sha256": "f1514e414a715ea963ab1ec687ab8651d8be8c08aad2851778bb35632c4da124"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J17_id.mzML",
+  "bytes_compressed": 2395425,
+  "bytes": 7501802,
+  "sha256": "6690becaf9ffe7c91a95f79267c743cb52944c43d70cfac58a3f26184f72cc4d"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J19_id.mzML",
+  "bytes_compressed": 2185419,
+  "bytes": 7326383,
+  "sha256": "d32edd01e059a726aa625cbb0c725c150d98b586bb45a54d6d163d0fab3df4ab"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J21_id.mzML",
+  "bytes_compressed": 2057435,
+  "bytes": 7387594,
+  "sha256": "41d4864b87fbebd53a1ab94256ef8bab0ede2c4001a20f9218327638895b64df"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J23_id.mzML",
+  "bytes_compressed": 2170023,
+  "bytes": 7069137,
+  "sha256": "5591c1316de58e2f6453a5e933d875ee2ffc8a42b857013658ee7e01143fc81b"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J5_id.mzML",
+  "bytes_compressed": 4340833,
+  "bytes": 9286547,
+  "sha256": "d90353aa59b04f3439bd8922b932b29b593a5fc5ef446b0cc8acec64f7aacd12"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J6_id.mzML",
+  "bytes_compressed": 2172962,
+  "bytes": 7871113,
+  "sha256": "42b897480104987e29f49914cbc4700aa2cec27158d84758b3d5904dd056ee8f"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_J8_id.mzML",
+  "bytes_compressed": 4208273,
+  "bytes": 8650418,
+  "sha256": "13aea1c05cc11fd147dc50d7d4cbf6f8a42dace94610fa45b47bbf186867abde"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K13_id.mzML",
+  "bytes_compressed": 2959299,
+  "bytes": 7677211,
+  "sha256": "3d1eb79f6b6880345ad9f3043565eb0d5823e3931962f42621d1220390a846f2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K18_id.mzML",
+  "bytes_compressed": 2178792,
+  "bytes": 7076501,
+  "sha256": "84e607b0c5e4e1be0fc90bdfef72dc8975b908a73167a7a6531403ecc7b44eb0"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K23_id.mzML",
+  "bytes_compressed": 2314202,
+  "bytes": 7630422,
+  "sha256": "9a41866e44b3c0f2f933eeaa5464b1507cf9723c6860e1429828e78e6c9130d9"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K3_id.mzML",
+  "bytes_compressed": 2194126,
+  "bytes": 7333880,
+  "sha256": "9a4a8720dfa0dee67f0d7af42c262faef9eb1cb6b1f278c832e71c5d9d7c9211"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K5_id.mzML",
+  "bytes_compressed": 2123669,
+  "bytes": 6966479,
+  "sha256": "d2154b1c49b2a211dacf27922e6b944c7bd0d1d4a2d0877dbfe687cf033e99c4"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K6_id.mzML",
+  "bytes_compressed": 2812104,
+  "bytes": 7485874,
+  "sha256": "6a9f38eefef99874514e5088fae3d084351734f43655fe7ad35e81578ec8d968"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K7_id.mzML",
+  "bytes_compressed": 2829053,
+  "bytes": 7455841,
+  "sha256": "c16d52997c5dc4bbc3dff0f8796f704a86bcfd3f863de520305c4ff0b48b42f8"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_K9_id.mzML",
+  "bytes_compressed": 1913518,
+  "bytes": 7012130,
+  "sha256": "3c319fb51b043bd241fdc9c8c65ed545eacadeaf3eeed04fde48e690b8ea7f38"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_L11_id.mzML",
+  "bytes_compressed": 1980486,
+  "bytes": 7549269,
+  "sha256": "a22b95f065603618f71733413e4e9a604d69b782540c9d6ce9b0404c9bdbd39c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_L12_id.mzML",
+  "bytes_compressed": 2165171,
+  "bytes": 7485237,
+  "sha256": "fbef808a06d36abd1439331934dddbad32f2523623d8f522c73f6fa2c8e5236c"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_L14_id.mzML",
+  "bytes_compressed": 1823173,
+  "bytes": 6987527,
+  "sha256": "32f1937d827e93d3567dd4d642e5f975398cebe5eac94a7ec185dd1adb0211c2"
+ },
+ {
+  "zip": "20220601_mzml_mce_bioactive_positive.zip",
+  "member": "20220613_100AGC_60000Res_pluskal_mce_1D3_L19_id.mzML",
+  "bytes_compressed": 2373987,
+  "bytes": 7262719,
+  "sha256": "1a36544f7d5c5d4229ab51e671a7987edba3ee0409f0b6043316c9a68713ed89"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_01P_A2_id_positive.mzML",
+  "bytes_compressed": 1889658,
+  "bytes": 7458937,
+  "sha256": "f40669848eccd172a3e92fd5d27f32ae49c557eb74a8ceb467c9fda9a1cadcb9"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_01P_E9_id_positive.mzML",
+  "bytes_compressed": 1740909,
+  "bytes": 6462133,
+  "sha256": "9836db6bd8dea3097468b61b8f7556ed9b4fcd883c9518a91ea2f61f51867862"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_02P_G6_id_positive.mzML",
+  "bytes_compressed": 2350937,
+  "bytes": 7187707,
+  "sha256": "b5a723b5d2ff7f03e6d62b0745d8629c73892f7f8d97f3399ec8313d08feb54a"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_03P_A12_id_positive.mzML",
+  "bytes_compressed": 1526611,
+  "bytes": 6464314,
+  "sha256": "dcbcc3e6675ae249899e78bf5ddc8559629045c6e6990bf64f628e538a638fae"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_03P_C6_id_positive.mzML",
+  "bytes_compressed": 1533114,
+  "bytes": 6365285,
+  "sha256": "fc38d9640fc50c678efd24abe75c1f67b0a014a3932889887700a16c73a926e2"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_03P_C7_id_positive.mzML",
+  "bytes_compressed": 1590251,
+  "bytes": 6785098,
+  "sha256": "68c40a52507138740fa3f4eafe3ee9cae6c66e03f76db8d60334437ba86d451a"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_04P_C3_id_positive.mzML",
+  "bytes_compressed": 1700673,
+  "bytes": 6541872,
+  "sha256": "bc1ace85140d758245ff14fafb802604aaa1c6fdc520d5e7650d3c59b9cb5b28"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_04P_C8_id_positive.mzML",
+  "bytes_compressed": 1506510,
+  "bytes": 7233163,
+  "sha256": "935a629b1f1ff04ac3a08d773b3176b59ac11e001e16f8be154c6558d48a72e2"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_05P_A3_id_positive.mzML",
+  "bytes_compressed": 1590762,
+  "bytes": 6584210,
+  "sha256": "108204aee4c451de6b32041206490a8a07409956bbaa79a2cb5c6c796b58ccb0"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_05P_A6_id_positive.mzML",
+  "bytes_compressed": 1700279,
+  "bytes": 6739195,
+  "sha256": "9278bbdf9f67ea05418715cd08ec5cbaa18ac20ddf9ee4da1fd092e7c5d16f6b"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_06P_C3_id_positive.mzML",
+  "bytes_compressed": 2083315,
+  "bytes": 7155428,
+  "sha256": "a0ade5363d7835f19c8d46399ae63441aa61026f9f77c89bd663ade9e5233cfe"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_06P_G8_id_positive.mzML",
+  "bytes_compressed": 2444256,
+  "bytes": 7342181,
+  "sha256": "a1cbe887dcebe2d5d5b7da514c969f9d6a0bc9f694ef45f3ca11316c2240fd08"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_08P_A3_id_positive.mzML",
+  "bytes_compressed": 1890664,
+  "bytes": 7693334,
+  "sha256": "403970369ab5125a742281502709e2e7116ba10642ab53066bc1986dbef2aff6"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_09P_A5_id_positive.mzML",
+  "bytes_compressed": 1844965,
+  "bytes": 6900971,
+  "sha256": "f0aea0ebc16776a869ab3dab297cd371c3fbd39e10b9259bb59261c55b240087"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_09P_E9_id_positive.mzML",
+  "bytes_compressed": 2057004,
+  "bytes": 7400497,
+  "sha256": "f79b8627f53b597ea38df783976114d282d679d064ad98270d7cadb4da4ede0c"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_10P_C2_id_positive.mzML",
+  "bytes_compressed": 2003318,
+  "bytes": 6826095,
+  "sha256": "b4f746e61cae5443770c37f9ca8817641eeb6771138367db67c663cd2140cc6c"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_10P_E11_id_positive.mzML",
+  "bytes_compressed": 2078349,
+  "bytes": 7406852,
+  "sha256": "b2156637a34e2de8b9f28cfc8899ac11a14d184f2013c1524752172e6554ccfd"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_10P_G6_id_positive.mzML",
+  "bytes_compressed": 1879685,
+  "bytes": 6906931,
+  "sha256": "4d301adae0f98a8adabe7bfb2d8b454b4e8aa3eb7703a10fa4188eccf241da1b"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_10P_G9_id_positive.mzML",
+  "bytes_compressed": 1927546,
+  "bytes": 8097780,
+  "sha256": "e2ecf6bb3570bead30a36e08668759bf72d63892eb1464fc8e3e1ffcd435ccaf"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_12P_C3_id_positive.mzML",
+  "bytes_compressed": 3073452,
+  "bytes": 7729492,
+  "sha256": "028042330708889cfcbeeb758821abdfd24a1bcc60c6a571830908f1380112b5"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_12P_E5_id_positive.mzML",
+  "bytes_compressed": 1717600,
+  "bytes": 6462554,
+  "sha256": "643cbc85cba686f42948f12d4cd6524b679b2d272f9f3bcc76b69bde48b0a078"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_12P_E8_id_positive.mzML",
+  "bytes_compressed": 1834583,
+  "bytes": 7738773,
+  "sha256": "3de239eb28126cfc1a66d5561b8b785d7add1cc51f6bf7d2bb3dcbb706c8e549"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_12P_G11_id_positive.mzML",
+  "bytes_compressed": 1678453,
+  "bytes": 7999995,
+  "sha256": "5d469193f93acba55b34e6876819d218398396b74171bf96de7ebab6a40d7749"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_13P_C12_id_positive.mzML",
+  "bytes_compressed": 1516860,
+  "bytes": 7251155,
+  "sha256": "5fb1328fd655125fc5bd45b8be3821138416c3f2d2721009ea57981237390f27"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_13P_E2_id_positive.mzML",
+  "bytes_compressed": 1788260,
+  "bytes": 6863888,
+  "sha256": "09798275c43c9708d4fd7c33c7b9856428016ed653f22a258c4eeb1d9065daaa"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_13P_E5_id_positive.mzML",
+  "bytes_compressed": 1719532,
+  "bytes": 7077296,
+  "sha256": "25f582dac96ea25d168168b1d7c738bbae72abff3ff5e42696abe899f067652e"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_13P_G12_id_positive.mzML",
+  "bytes_compressed": 1635586,
+  "bytes": 6607118,
+  "sha256": "fa630cbe65acf6361eb5d180c65e3cd74cf8083afb0e087f946873d7fe36fd71"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_14P_C4_id_positive.mzML",
+  "bytes_compressed": 1663639,
+  "bytes": 7082500,
+  "sha256": "1846391a92c0331420f184b2ebffe9f0122e9d40606654b44d08c6671c7b27f0"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_14P_E7_id_positive.mzML",
+  "bytes_compressed": 1663012,
+  "bytes": 6740151,
+  "sha256": "8d198db71f15243b0badab65d2ede002f7f763d071e3aaab4a07af9408dcfab7"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_15P_A9_id_positive.mzML",
+  "bytes_compressed": 1835743,
+  "bytes": 7294256,
+  "sha256": "92a6a863476fcf2077e43b55b00ebf0f3d9db72fd6b42125afd0b534359e0e23"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_15P_C5_id_positive.mzML",
+  "bytes_compressed": 2070230,
+  "bytes": 7086601,
+  "sha256": "20be6a60eb3e728624e5572ab370816f2a2962c4947cf9b9d85c827f0a8e710a"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_15P_C6_id_positive.mzML",
+  "bytes_compressed": 1651842,
+  "bytes": 7663971,
+  "sha256": "b8d388aa45619ff7a966ccf72043003f0f43afa3a3cf5586ee7d7913d4892375"
+ },
+ {
+  "zip": "20230404_mzml_pluskal_nih_positive.zip",
+  "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_15P_E3_id_positive.mzML",
+  "bytes_compressed": 2023081,
+  "bytes": 6652855,
+  "sha256": "064692123948d341ce6052ed57a34e0fb1ad3adbbe0acdae83e7d87e15f2bc43"
+ },
+ {
+  "zip": "20231123_mzml_mce_scaffold_positive.zip",
+  "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5001_F16_id_MSn_positive.mzML",
+  "bytes_compressed": 1833559,
+  "bytes": 7582387,
+  "sha256": "2917c37b1a3c07d10bc184836b06fb2eb9d08cb65cdc993b4cd7644e531fc95e"
+ },
+ {
+  "zip": "20231123_mzml_mce_scaffold_positive.zip",
+  "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5001_N22_id_MSn_positive.mzML",
+  "bytes_compressed": 1749695,
+  "bytes": 7468839,
+  "sha256": "4633fb82ccba45c0b2648f3c468f379b18aa99615400ca75b91f577b64a142aa"
+ },
+ {
+  "zip": "20231123_mzml_mce_scaffold_positive.zip",
+  "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5001_O6_id_MSn_positive.mzML",
+  "bytes_compressed": 1552875,
+  "bytes": 6951367,
+  "sha256": "07f6eaa5f8a1ed5d79fa2bd9835e427273ae36cbeaf807bd89062063fa6eb82c"
+ },
+ {
+  "zip": "20231123_mzml_mce_scaffold_positive.zip",
+  "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5001_P5_id_MSn_positive.mzML",
+  "bytes_compressed": 1659427,
+  "bytes": 7083189,
+  "sha256": "74c5536869ac021041e503b83ec0e5dbb975e4105aa5f049530d10b04bee57d7"
+ },
+ {
+  "zip": "20231123_mzml_mce_scaffold_positive.zip",
+  "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5001_P6_id_MSn_positive.mzML",
+  "bytes_compressed": 1444381,
+  "bytes": 7224813,
+  "sha256": "36d8a4545cd81ef0c3e06710ff083a77c92fde106ed8345093fc20a83b3e8841"
+ },
+ {
+  "zip": "mzml_20240405_pluskal_enammol_MSn_positive.zip",
+  "member": "mzml_20240405_pluskal_enammol_MSn_positive/20240405_pluskal_enammol_5002_E11_id_MSn_positive.mzML",
+  "bytes_compressed": 2594088,
+  "bytes": 7843388,
+  "sha256": "6fb41b703b9f015f61baea9960c4e8ae9911e60d94375f21f4c117ad755efa28"
+ },
+ {
+  "zip": "mzml_20240405_pluskal_enammol_MSn_positive.zip",
+  "member": "mzml_20240405_pluskal_enammol_MSn_positive/20240405_pluskal_enammol_5002_E22_id_MSn_positive.mzML",
+  "bytes_compressed": 2332985,
+  "bytes": 7514261,
+  "sha256": "3ecd1d18440177149d9e14e62f7be747aae22c83f57d92d14e6ca0eb038bbb77"
+ },
+ {
+  "zip": "mzml_20240405_pluskal_enammol_MSn_positive.zip",
+  "member": "mzml_20240405_pluskal_enammol_MSn_positive/20240405_pluskal_enammol_5004_B3_id_MSn_positive.mzML",
+  "bytes_compressed": 1258533,
+  "bytes": 7485749,
+  "sha256": "bd561a35da50c6d58e3ae5ed993ea18c378141de68f4cff2ce33040eeca16b0f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A12_id_MSn_positive.mzML",
+  "bytes_compressed": 2081953,
+  "bytes": 8266578,
+  "sha256": "8f1b0ad7107de624c8a98e7019109e55b9038bcdefbd6d22a0be6df13601cdee"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A15_id_MSn_positive.mzML",
+  "bytes_compressed": 2077689,
+  "bytes": 8458485,
+  "sha256": "78760c080e68c98411341cdc29f5b02665134f1fa5d503a6f997fb94914cf966"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A17_id_MSn_positive.mzML",
+  "bytes_compressed": 2175232,
+  "bytes": 8172948,
+  "sha256": "3f47f719fe94e1a633cd761bf9b4ae09a14fa77d503c7fbee3d153e38c06a71e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A18_id_MSn_positive.mzML",
+  "bytes_compressed": 2546189,
+  "bytes": 8295061,
+  "sha256": "b29a319d7cbc71ed2932629db27c49af422e1876e780fb36e4fc25b74fcf403c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A19_id_MSn_positive.mzML",
+  "bytes_compressed": 2428160,
+  "bytes": 8373851,
+  "sha256": "c331c5d4b78877308191c9a048cc24e46abdbaf53478ed6829766a98f8925559"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A20_id_MSn_positive.mzML",
+  "bytes_compressed": 2530149,
+  "bytes": 8099722,
+  "sha256": "0d2fabb601f5f122ec37558cd0313f14417c8db3d0c1b346fb46c26bda4d9318"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A21_id_MSn_positive.mzML",
+  "bytes_compressed": 2217897,
+  "bytes": 8338306,
+  "sha256": "f436ea24935754ead8ebf4fc442c621c9747610a5d31185f0dd6719ba3cb7010"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A22_id_MSn_positive.mzML",
+  "bytes_compressed": 1836114,
+  "bytes": 8652159,
+  "sha256": "0b2b864461043e77b195a6576dcd6551647dd1fd39d40a07d5b6cd41b799b74f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A5_id_MSn_positive.mzML",
+  "bytes_compressed": 1748730,
+  "bytes": 7772027,
+  "sha256": "5ba231ce03d895a35b8c1147991745c07e353be5c18d916ba9f282645139004c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A6_id_MSn_positive.mzML",
+  "bytes_compressed": 1409492,
+  "bytes": 8236847,
+  "sha256": "bbf0262efba8ccb9e7589a2d0e8e4dd871c41c22890aa9a69a35104ad061db2d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_A8_id_MSn_positive.mzML",
+  "bytes_compressed": 2369651,
+  "bytes": 8179237,
+  "sha256": "93a9ee5fc9327cfe0a0f68ee9baa2e1fd9e21f6620919491864d6e780b0c0124"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B10_id_MSn_positive.mzML",
+  "bytes_compressed": 1799183,
+  "bytes": 7741973,
+  "sha256": "7d0424d4aa0ed542acba498612e18ca823466587405cbddc4545f98c337d766a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B11_id_MSn_positive.mzML",
+  "bytes_compressed": 1965550,
+  "bytes": 8389333,
+  "sha256": "38f76befd046cf3a0947e8b4f58c28a4179f050b7907e4b43b267efdbf94a74e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B13_id_MSn_positive.mzML",
+  "bytes_compressed": 2272779,
+  "bytes": 7962345,
+  "sha256": "bf29aec1bf79f44b0266da298a107643411c203f082c4b966cf75fb3d91b5a12"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B14_id_MSn_positive.mzML",
+  "bytes_compressed": 2125990,
+  "bytes": 8355051,
+  "sha256": "8d65e0a7a0e575c6d31b930e559707f33e7ddedb7753eee6a621ddb0ca3492dc"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B16_id_MSn_positive.mzML",
+  "bytes_compressed": 2246219,
+  "bytes": 8434021,
+  "sha256": "dd5e97041d5706ae28bbff4f62ea94f24c20101d4f1d26a908c75a46c7ff2181"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B17_id_MSn_positive.mzML",
+  "bytes_compressed": 2012146,
+  "bytes": 7573137,
+  "sha256": "b5dcbca7216be736f254700af94330f48cdc393d06904c4881c5a8519764ecb9"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B19_id_MSn_positive.mzML",
+  "bytes_compressed": 1856991,
+  "bytes": 8106783,
+  "sha256": "dd13ca562dd2dff04cd198a31e98c64cd3d3ad34777f8cd127b473d0f85fa4d8"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B21_id_MSn_positive.mzML",
+  "bytes_compressed": 1992271,
+  "bytes": 8516935,
+  "sha256": "69ba42942d0c779f4e5eba0b1f76c06287da566a12867441e34e681f0ef72460"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B22_id_MSn_positive.mzML",
+  "bytes_compressed": 2111154,
+  "bytes": 8012563,
+  "sha256": "08cc937269fd65ac4d5d47bd51b5269689f355283d0ffda2bf7979238d114763"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B3_id_MSn_positive.mzML",
+  "bytes_compressed": 2426271,
+  "bytes": 8366689,
+  "sha256": "c63611943fbe5c0d2fad9b8221c86bab603d422af5e74f34f7ad611f336a31c2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B4_id_MSn_positive.mzML",
+  "bytes_compressed": 1865674,
+  "bytes": 8357455,
+  "sha256": "3e274f061c3e15e1725d062acb02afe478b42da94302f1b774dd697e73d6e6cb"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B5_id_MSn_positive.mzML",
+  "bytes_compressed": 1720636,
+  "bytes": 8109922,
+  "sha256": "e5aa370c7ef79b064dcb04e1bd92112d866ec7e0d1d1e2e6df30b744f9b70762"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B6_id_MSn_positive.mzML",
+  "bytes_compressed": 1458494,
+  "bytes": 7365634,
+  "sha256": "e0959ef295025e0e8f84f95d7a19a722f2d11938a66617bca7776144af1f9ed0"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B7_id_MSn_positive.mzML",
+  "bytes_compressed": 2316527,
+  "bytes": 8162668,
+  "sha256": "6e85220a0e1fff8485629213d44c878190e3687eeca6549ae7a084f4c3e1c815"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B8_id_MSn_positive.mzML",
+  "bytes_compressed": 2341357,
+  "bytes": 8520594,
+  "sha256": "55beb0e3693c2da7532ec4c3c4db7b114d0a6bfa54c8bdfc6b52f0625fcbc247"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_B9_id_MSn_positive.mzML",
+  "bytes_compressed": 2262982,
+  "bytes": 8280723,
+  "sha256": "2128279d1a4f9fc2114abd4f776dc09a2c653d106e4073dfa8029bd15afdff4c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C10_id_MSn_positive.mzML",
+  "bytes_compressed": 1544094,
+  "bytes": 8464819,
+  "sha256": "f68c8b57bf42c8db1f65fa1db23b46dd1fe2e4be2a2b06621780b893e31f3fbe"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C11_id_MSn_positive.mzML",
+  "bytes_compressed": 2232170,
+  "bytes": 8675714,
+  "sha256": "77cb40fd6c426d08323e7eeb3308b008708e4119f64d5436c8e8f7ad9c2f4bb0"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C14_id_MSn_positive.mzML",
+  "bytes_compressed": 2338881,
+  "bytes": 8258664,
+  "sha256": "8c3b1ff06bb9ef879aa86b05ddf4b56d77f1bb26e27f1c0a16c8257bb53b681b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C16_id_MSn_positive.mzML",
+  "bytes_compressed": 1763495,
+  "bytes": 8365812,
+  "sha256": "d5ab3463a416915e48cff8483724d6eaa732c3d0f2fe280775ffc82dfa8b6ad3"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C17_id_MSn_positive.mzML",
+  "bytes_compressed": 1608769,
+  "bytes": 8275373,
+  "sha256": "6193427f145bf2134b6c26bba11a03f9f40710361fd30bc616a7d9fa2eae8442"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C18_id_MSn_positive.mzML",
+  "bytes_compressed": 1530702,
+  "bytes": 7826244,
+  "sha256": "9547f84edb9d832b8beec586dd8ea044d9cef3695212006cf2f2c642a34a3853"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C22_id_MSn_positive.mzML",
+  "bytes_compressed": 1889235,
+  "bytes": 7965458,
+  "sha256": "6c5ded633036ebae4883d3c879bfd55aef3b32f696c54034658d9e2933c5cc4a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C4_id_MSn_positive.mzML",
+  "bytes_compressed": 1730410,
+  "bytes": 8065690,
+  "sha256": "4b284286fe8b911ca34478fcc7eb92d2dd01c24d6182284f17ac40a5d37b6054"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C5_id_MSn_positive.mzML",
+  "bytes_compressed": 1871666,
+  "bytes": 7564828,
+  "sha256": "56ebc092aa372a52b4355466828e1a379e60686ea8e00e99d7c2ff754feb194c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C7_id_MSn_positive.mzML",
+  "bytes_compressed": 1643822,
+  "bytes": 7737940,
+  "sha256": "f02d39ff3ff493a9d289ebd84b1a3d1494460c16a6e63305f7801a006480f35b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_C9_id_MSn_positive.mzML",
+  "bytes_compressed": 1935275,
+  "bytes": 8410132,
+  "sha256": "e3f0fe732f182e3ab3fb63ea9a09bee3b2ef85e8a8f38fe9ff004b870f74120b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D10_id_MSn_positive.mzML",
+  "bytes_compressed": 1940275,
+  "bytes": 7793440,
+  "sha256": "762c25b6a35ac72ced9ffe4ff9cd8cb7df26d74b2f2a863bf4da96954d37635b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D15_id_MSn_positive.mzML",
+  "bytes_compressed": 2141627,
+  "bytes": 7910507,
+  "sha256": "ba4fc52a48b65a7fca0ecc5db7104e727e19d4aa7d1d5f285b75dca269f89533"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D19_id_MSn_positive.mzML",
+  "bytes_compressed": 1880041,
+  "bytes": 8209740,
+  "sha256": "82180e7ac40a9b822c42b2bf5e56ee17afa3a208bc7a06102d89a350a6641392"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D21_id_MSn_positive.mzML",
+  "bytes_compressed": 1690638,
+  "bytes": 8046371,
+  "sha256": "f2efdfe3bd29b1709e3c957e7d88ecabb71afd9ee1ae2e489f9561f17777ba27"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D22_id_MSn_positive.mzML",
+  "bytes_compressed": 1816627,
+  "bytes": 8390038,
+  "sha256": "45d7bd26b45eb0746381b0675c87ebd3258be6a1d35f67d1ab8b3674cbf1a077"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D3_id_MSn_positive.mzML",
+  "bytes_compressed": 2066216,
+  "bytes": 8419482,
+  "sha256": "a478290f51152094e731d5ed94b1a249938f2a6d3279f9646eb4a3684c677116"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D4_id_MSn_positive.mzML",
+  "bytes_compressed": 2112652,
+  "bytes": 8160875,
+  "sha256": "eb3244fdf5928d7752f83c57338e95cc0be16e1183c5da7f2c88a8ede92a211a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D5_id_MSn_positive.mzML",
+  "bytes_compressed": 2532657,
+  "bytes": 8333261,
+  "sha256": "1f2807cad44c7c7e35beeca7fa19d1fbbf13b79284954ef7128e574c0c8091a9"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D6_id_MSn_positive.mzML",
+  "bytes_compressed": 2100933,
+  "bytes": 8049466,
+  "sha256": "345a723946a5d3d6d9b4c64506f7e4311d8c5947dc740c50be426bc92b1a450a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D8_id_MSn_positive.mzML",
+  "bytes_compressed": 2316621,
+  "bytes": 8913876,
+  "sha256": "18ce8f38ad3343566b2ea309408f498eb0c5a472ace5cdb5753d551f20a4fafb"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E12_id_MSn_positive.mzML",
+  "bytes_compressed": 1692327,
+  "bytes": 8191486,
+  "sha256": "b65a71bd002e89fb4084970e50a78c20649b9e0a30c808c4e336d890b4deb9aa"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E13_id_MSn_positive.mzML",
+  "bytes_compressed": 2019028,
+  "bytes": 8481277,
+  "sha256": "50f1fff6877e48ff04e714dbde7bf5bdf30d10e8ec5c7536abba4cd27987f7af"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E14_id_MSn_positive.mzML",
+  "bytes_compressed": 1731767,
+  "bytes": 7967513,
+  "sha256": "63888c853e5dc4b358a6907c8631ff7d4f7ab0b242afc4659a71a525bc0aee8a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E15_id_MSn_positive.mzML",
+  "bytes_compressed": 1732346,
+  "bytes": 8027743,
+  "sha256": "b71254ff2eeeb86f0362d3c670f40e4d83298f69d9b3323d5219b67bcdd95bea"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E16_id_MSn_positive.mzML",
+  "bytes_compressed": 1408110,
+  "bytes": 7718261,
+  "sha256": "7e2089fb9ad577e604d007251fb8baa5f70c142b68548f3cec3eec5c12544d82"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E17_id_MSn_positive.mzML",
+  "bytes_compressed": 2195366,
+  "bytes": 8783140,
+  "sha256": "72485dcc7612ae5af694fa9a4f00b19eeb934edd761bb7d0db8048dca2710e80"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E19_id_MSn_positive.mzML",
+  "bytes_compressed": 2378610,
+  "bytes": 8038762,
+  "sha256": "673761ab24deac0d0710496f1ff3c022ba31592a088f67b2ff14dc65a8fe8189"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E20_id_MSn_positive.mzML",
+  "bytes_compressed": 1698425,
+  "bytes": 7847581,
+  "sha256": "df7002f0f61b4a5e50dcd98a198352c844a32c0c72a6e20b3d18921173969c78"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E21_id_MSn_positive.mzML",
+  "bytes_compressed": 1690218,
+  "bytes": 8013926,
+  "sha256": "4cf973912b0d84d59bbe4b40eedf904d4b1b6434cc83841e1d722213865c0b0c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E3_id_MSn_positive.mzML",
+  "bytes_compressed": 1789262,
+  "bytes": 8395787,
+  "sha256": "2d681a5025acb2f33f6e8d18734213077f49909b82968a07e9a9d682f0095e30"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_E9_id_MSn_positive.mzML",
+  "bytes_compressed": 1801674,
+  "bytes": 8291279,
+  "sha256": "9e5feeec93f33caccee1e8c45087411b746db4ef727d7d3b6bc3da64cb3363b2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F10_id_MSn_positive.mzML",
+  "bytes_compressed": 2167589,
+  "bytes": 8522873,
+  "sha256": "e2a4d432bc8c2c48083ad877dcb1b2ad83d02329ace4562ca0769bbe9f6b7fcf"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F16_id_MSn_positive.mzML",
+  "bytes_compressed": 1799927,
+  "bytes": 7902195,
+  "sha256": "90b9bd64c54bcd456c928236719328e4053b8791810b1c0f5d4feb0ebc671a2c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F18_id_MSn_positive.mzML",
+  "bytes_compressed": 2222203,
+  "bytes": 7960750,
+  "sha256": "48bdb9e231c60f05843bbe6749cd70223b464f72193649942a4c32452ec585e7"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F20_id_MSn_positive.mzML",
+  "bytes_compressed": 2944251,
+  "bytes": 8705288,
+  "sha256": "5939a2a3be5469cdf7eb51116b20eea98663f00d4864e919193f6f8e82c0d41c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F21_id_MSn_positive.mzML",
+  "bytes_compressed": 2072744,
+  "bytes": 8568679,
+  "sha256": "5cd30cc2ed13cc9a4f3bcbdd05485aacbe0ea019d501292b6913807579ebb2c5"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F3_id_MSn_positive.mzML",
+  "bytes_compressed": 2137432,
+  "bytes": 8158861,
+  "sha256": "5fd788b9723511a56a94baa4eff46e13676043c017fe56ef93800578c77c7bc7"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F4_id_MSn_positive.mzML",
+  "bytes_compressed": 1965225,
+  "bytes": 7838764,
+  "sha256": "3fafc15826c87314033af0da5094162d0749a2018bd60fb4bef623185c50ac2a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F5_id_MSn_positive.mzML",
+  "bytes_compressed": 2021409,
+  "bytes": 8248826,
+  "sha256": "a0681b0157bd3ab76f1ad9ed1c7de22b74fa62f92c8b39215c89c240536cb141"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F6_id_MSn_positive.mzML",
+  "bytes_compressed": 2167977,
+  "bytes": 8200596,
+  "sha256": "f6ac83ff1aad873ed42b52ee0a2e773edbd9e2155c8413e02f158ab9f940c53b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F7_id_MSn_positive.mzML",
+  "bytes_compressed": 2102191,
+  "bytes": 8677582,
+  "sha256": "524a049b506e46a812a088ec339de5fcda3121a48e7a74734459bfcd66d70f68"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F8_id_MSn_positive.mzML",
+  "bytes_compressed": 1899783,
+  "bytes": 8570735,
+  "sha256": "1bc45555b491a21b97907b24cd866b29fee792133f4f15a4b9769ba0e4d7800a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_F9_id_MSn_positive.mzML",
+  "bytes_compressed": 2043296,
+  "bytes": 8065494,
+  "sha256": "135a361e1aa814934aeb47bc06df9f646f18023bd495a92d75050c4b34552507"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G10_id_MSn_positive.mzML",
+  "bytes_compressed": 1857762,
+  "bytes": 8159180,
+  "sha256": "9a482ede8148b2bc52950b605dadb8fed63d0a92cdeb6b0a20391e040d5b39ad"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G11_id_MSn_positive.mzML",
+  "bytes_compressed": 1967663,
+  "bytes": 8678415,
+  "sha256": "56592d9c9526a85db0ed9c649685afa129abfe66eb32a5e3f77e1c32ead96108"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G14_id_MSn_positive.mzML",
+  "bytes_compressed": 1390166,
+  "bytes": 7754556,
+  "sha256": "2c701b7c20e37523a85e0bdfe7f4bebdcbb7c07ebcabc9b77d9d6d6346cd9ceb"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G15_id_MSn_positive.mzML",
+  "bytes_compressed": 1572980,
+  "bytes": 8288311,
+  "sha256": "72be6e3ba39d96ae6a55ca8a2f3d48f21fe080e4696f47afdce61334f12e8818"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G17_id_MSn_positive.mzML",
+  "bytes_compressed": 1642767,
+  "bytes": 7899654,
+  "sha256": "5c8de992d53a2f30ff95a3b503681e756444c93f50020f3328d09edc61b8dc1f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G19_id_MSn_positive.mzML",
+  "bytes_compressed": 1871279,
+  "bytes": 8691651,
+  "sha256": "9fcac1b66426771054d7d2781ce1b9851f469a17f02f74f88ac3f18a4e26c7cc"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G20_id_MSn_positive.mzML",
+  "bytes_compressed": 2236038,
+  "bytes": 8670028,
+  "sha256": "510b50d3d6233b4a50e1971cec5ec9739e166e54a9290fa6629fe28bfe395413"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G21_id_MSn_positive.mzML",
+  "bytes_compressed": 1773813,
+  "bytes": 7995552,
+  "sha256": "200686e5053f798bb0253a01bc0bfa472915f91274b182fcaa3750e4d005546c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G3_id_MSn_positive.mzML",
+  "bytes_compressed": 1581547,
+  "bytes": 8516933,
+  "sha256": "eba56e36139eb4a07d34cdffc519c9d52f622a1e0aa0a8d3104d5d341714164e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G5_id_MSn_positive.mzML",
+  "bytes_compressed": 1976075,
+  "bytes": 7994001,
+  "sha256": "83c90bd5aabad61ad9af28b5f3e305168af1da015d09db386921b603f2a12030"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G6_id_MSn_positive.mzML",
+  "bytes_compressed": 1794566,
+  "bytes": 8312355,
+  "sha256": "9f16f2b16eb1cdeb97022510d158dbe18336604b356471f1f7b2823d3ae060f2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G7_id_MSn_positive.mzML",
+  "bytes_compressed": 2367877,
+  "bytes": 8419869,
+  "sha256": "c47e7c0a262a1176ec6832527d0e4d7a8ab9c82b9292d3700751b6cb58408d0d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_G9_id_MSn_positive.mzML",
+  "bytes_compressed": 1693359,
+  "bytes": 7638240,
+  "sha256": "14f13a49e06d516e16ef380a835b9627ab48743fe84a7a38a5bb03870fd8e76e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H10_id_MSn_positive.mzML",
+  "bytes_compressed": 1461799,
+  "bytes": 7696047,
+  "sha256": "18020e4ee46ff08e3106fc04554ad9e494d5dae6f360c41876ab04e2ab72285f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H11_id_MSn_positive.mzML",
+  "bytes_compressed": 1767409,
+  "bytes": 8692548,
+  "sha256": "deb2ea4afccb4484875ae07b3f12865c929ec72211a9fad2cafe6926b5a5d05b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H12_id_MSn_positive.mzML",
+  "bytes_compressed": 2459958,
+  "bytes": 8346583,
+  "sha256": "f9f94563c74e613e192e2fb069cf86308591a794b40d546b4902d60e91963980"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H14_id_MSn_positive.mzML",
+  "bytes_compressed": 1819227,
+  "bytes": 8143798,
+  "sha256": "168dce031b8984f753d8df9a798cf33c6e44833f51860d453deda97b3568276c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H18_id_MSn_positive.mzML",
+  "bytes_compressed": 1457739,
+  "bytes": 7842996,
+  "sha256": "4a32e25db6096b398adf0eeaebc6ccd232ec03a64dbc1c3dab624d452fa695ef"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H19_id_MSn_positive.mzML",
+  "bytes_compressed": 2045033,
+  "bytes": 8256726,
+  "sha256": "c1980c43bd4f298a397a5b2c128fa9280fde6469c4867a3b79413f1a787ca881"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H22_id_MSn_positive.mzML",
+  "bytes_compressed": 1868084,
+  "bytes": 8175820,
+  "sha256": "808db78b927b629da98ab39fd90667e707e2d5c88efc0f59a946b04359f4b1a2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H3_id_MSn_positive.mzML",
+  "bytes_compressed": 1985729,
+  "bytes": 8205737,
+  "sha256": "6418214b20ef1f535d439d59745affd59b17f9846ba6751f6867ca87509f38e4"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H4_id_MSn_positive.mzML",
+  "bytes_compressed": 1741157,
+  "bytes": 8369397,
+  "sha256": "e58c06522850b70c6d522617dee65ea40a64806db1b5ce957fff6cecbe1e0777"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H5_id_MSn_positive.mzML",
+  "bytes_compressed": 1581593,
+  "bytes": 8087282,
+  "sha256": "181f3da73c55a8f31eac9566762a5ef5b601c0ff09ccfcde0c05e6e8b495a240"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H7_id_MSn_positive.mzML",
+  "bytes_compressed": 1528458,
+  "bytes": 7966858,
+  "sha256": "ab0424ee71c46ad07307b580b0d7392f09fd701ef109c3f5cfdefe4a61b6f643"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_H8_id_MSn_positive.mzML",
+  "bytes_compressed": 2027939,
+  "bytes": 7964889,
+  "sha256": "b793487fb33911bf2565e3c09e2d5ce5f78343f47a64081642f47b164919d840"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I10_id_MSn_positive.mzML",
+  "bytes_compressed": 1721665,
+  "bytes": 7795911,
+  "sha256": "f0ff6a220d68344c89550c354e691c525b099f3171878dffb11934d3496ab960"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I12_id_MSn_positive.mzML",
+  "bytes_compressed": 1579916,
+  "bytes": 7972906,
+  "sha256": "1b58cc4e1092ffb94811859c946622367bb98f1d67d38d7535e1217a09b4a8c2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I13_id_MSn_positive.mzML",
+  "bytes_compressed": 1989022,
+  "bytes": 8082756,
+  "sha256": "f3102e60399662c92b62dc0e955007f228b7f1a8a9f35aac05c146a68a3b2dac"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I15_id_MSn_positive.mzML",
+  "bytes_compressed": 2015663,
+  "bytes": 8577820,
+  "sha256": "446d5306f1f920f9726889f3191e4fe7c3cb7ae3122da8967dd0068a662f8e61"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I16_id_MSn_positive.mzML",
+  "bytes_compressed": 1444376,
+  "bytes": 8223765,
+  "sha256": "d8fafabbdcdc0b0c720ea61456bdaea159783ce829f67f0fe778fb947c970bab"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I19_id_MSn_positive.mzML",
+  "bytes_compressed": 2042569,
+  "bytes": 8107084,
+  "sha256": "8d660a87129be7d6d650c424e0e6d1556e9e224968a0f379c84a4602c09871e5"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I21_id_MSn_positive.mzML",
+  "bytes_compressed": 1927099,
+  "bytes": 8079049,
+  "sha256": "04fc4f41c40827c17ab9fa24fa56935fdf34bdcecbd16b8f66df46f45396de5b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I22_id_MSn_positive.mzML",
+  "bytes_compressed": 1788140,
+  "bytes": 7165130,
+  "sha256": "0e337598822417321de603fcffc6c424adeb7a3825f690854d7966553046c2b3"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I3_id_MSn_positive.mzML",
+  "bytes_compressed": 2023178,
+  "bytes": 8313570,
+  "sha256": "ac89649aa4da58c75972636b7b85b4ca55bf9d6bb14492483e9f346aee39ed4d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I4_id_MSn_positive.mzML",
+  "bytes_compressed": 2163494,
+  "bytes": 8331592,
+  "sha256": "7a66be9f0f4f926992956bf344b21afbec4bb1f0076d537369ebb97612bb8e2a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I5_id_MSn_positive.mzML",
+  "bytes_compressed": 2092577,
+  "bytes": 8419471,
+  "sha256": "383ec6380ef7aacb86dfca78e978e8b98b807ab2f4a4cc27078923a0e94f339a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I6_id_MSn_positive.mzML",
+  "bytes_compressed": 1809154,
+  "bytes": 8141370,
+  "sha256": "7e9d93d10db7bd3b0d9d44c3292ddfd33e2d17bb2624507bb211b656075b6706"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_I7_id_MSn_positive.mzML",
+  "bytes_compressed": 1905842,
+  "bytes": 8041479,
+  "sha256": "cc0cf6599a3b7188fbedcc68c8eeb6b9f8ff1598d1fdfd6d9097faf5b9651171"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J10_id_MSn_positive.mzML",
+  "bytes_compressed": 1787254,
+  "bytes": 7745454,
+  "sha256": "365afa2725eadfb55ecd7aca908cafa8c3be53d235c6cc34879ab6b74b757dd3"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J11_id_MSn_positive.mzML",
+  "bytes_compressed": 1597009,
+  "bytes": 8089302,
+  "sha256": "4fceccf8133b103c3d50ae64fa89764f0712bba630dc77d289755b4fcb998776"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J12_id_MSn_positive.mzML",
+  "bytes_compressed": 1603647,
+  "bytes": 8144982,
+  "sha256": "54daacfdd4a8d0a672301e7b0083f522159b2ee76a0becdc196680d085d60e39"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J19_id_MSn_positive.mzML",
+  "bytes_compressed": 2201086,
+  "bytes": 8616219,
+  "sha256": "f7caeaf3046b05a12ae630801bdf1840061d0d21608dfc75898a399ea6375682"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J20_id_MSn_positive.mzML",
+  "bytes_compressed": 1797773,
+  "bytes": 8268933,
+  "sha256": "2129323e8db6c8aa06082db0bd94508204cc73e0846885b154dcaec6bb33dec0"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J22_id_MSn_positive.mzML",
+  "bytes_compressed": 1924459,
+  "bytes": 8044953,
+  "sha256": "5b28362ada0ec67f8d90351bd70579f73b91270ab598671a074b028578f88d6e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J3_id_MSn_positive.mzML",
+  "bytes_compressed": 1839419,
+  "bytes": 7956000,
+  "sha256": "7afcad68329f4ce8eb7ee1774549e5bd88cb2c0f1895cc332539b7f61f8f23fe"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J4_id_MSn_positive.mzML",
+  "bytes_compressed": 1884823,
+  "bytes": 8178614,
+  "sha256": "eb2fe2914cdc3c313df2dbc78ab2b185be0ea7a12892bae5152b66baec43c3d4"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_J5_id_MSn_positive.mzML",
+  "bytes_compressed": 2014072,
+  "bytes": 8275603,
+  "sha256": "537d8746b412eb88fac551ccd01f1aa111e224bd907e0f1d02462e703e20f26d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K10_id_MSn_positive.mzML",
+  "bytes_compressed": 1828369,
+  "bytes": 8723895,
+  "sha256": "391ea630ee52fa42f6b8c5b86729cb0dc6f632a809810435187f956bb0907fa9"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K11_id_MSn_positive.mzML",
+  "bytes_compressed": 1762041,
+  "bytes": 8577194,
+  "sha256": "ad5821a6feb423f60dec2c4a2c7fbfdf2120ac60a608f0bfb5644278ad0049cc"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K12_id_MSn_positive.mzML",
+  "bytes_compressed": 1981270,
+  "bytes": 8365593,
+  "sha256": "64405037ae97d0e0ff7cd6cea2874f466b3680f057d9870f4a2bb00b5d4fe9d3"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K15_id_MSn_positive.mzML",
+  "bytes_compressed": 1368922,
+  "bytes": 7269077,
+  "sha256": "540b4b2ab0d6c997070de87db4b1556b5074a0cc45f636d2284d7c0815d171ba"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K16_id_MSn_positive.mzML",
+  "bytes_compressed": 1977326,
+  "bytes": 7882461,
+  "sha256": "14cb6600dc9e32ff3a5ba131f50d238dd5f989ad706cdab2d4a8d76ed540821e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K17_id_MSn_positive.mzML",
+  "bytes_compressed": 1858318,
+  "bytes": 8266554,
+  "sha256": "4cdca81934b7d00c0274f7eb5ab43422b968ef2da0e2086edd9468e51f24cfa9"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K19_id_MSn_positive.mzML",
+  "bytes_compressed": 1364897,
+  "bytes": 7525882,
+  "sha256": "fbda9322ff46ccb84d00d137b00d880e61ab4883e59b4a248b49042e058c055c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K20_id_MSn_positive.mzML",
+  "bytes_compressed": 1915452,
+  "bytes": 8194473,
+  "sha256": "6a6ad326e8ccd3c13871bc141eee4b3a620441fa8f19e76a6d1a85ff7392e8bb"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K21_id_MSn_positive.mzML",
+  "bytes_compressed": 1774546,
+  "bytes": 8649094,
+  "sha256": "e1a0e99d192408211a8dbdf07b576409d2214db274a23637fdd424aa873ab7c1"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K22_id_MSn_positive.mzML",
+  "bytes_compressed": 1787295,
+  "bytes": 8138061,
+  "sha256": "d3ecc89d4b1ba794a7e0bce5514fbdae606d0c85c404acac06a90602230fc314"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K3_id_MSn_positive.mzML",
+  "bytes_compressed": 1549229,
+  "bytes": 7372797,
+  "sha256": "02fa63feb034d94294e6c09d317b2901d7c8a85df7ea6cf9ed1555b48301de6f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K4_id_MSn_positive.mzML",
+  "bytes_compressed": 1521441,
+  "bytes": 8305917,
+  "sha256": "23da6674e18c7e945d7ec5b31d0d2b479072b3077f96f2ff294f391afa13d2e4"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K5_id_MSn_positive.mzML",
+  "bytes_compressed": 1369057,
+  "bytes": 7672504,
+  "sha256": "b5cf699bbdf8e6b35115fe54aaa092db7720419d9bf78f40482b4c27a3f030ed"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K6_id_MSn_positive.mzML",
+  "bytes_compressed": 1755686,
+  "bytes": 8037807,
+  "sha256": "86b804bbf94b1bd3118c81f185c8040f876bd7533ed34d09b254837862658a6c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K7_id_MSn_positive.mzML",
+  "bytes_compressed": 1482283,
+  "bytes": 7455718,
+  "sha256": "d652b50f229ae7a9e81e57f9217c71fd5a2ec3ee98c35ba6b816afe519dddce8"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_K8_id_MSn_positive.mzML",
+  "bytes_compressed": 1732230,
+  "bytes": 8246084,
+  "sha256": "b3b9c1e56c8086b951d79ca1994b83dbc5a144c0382d187cb4c77ebcadf45012"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L11_id_MSn_positive.mzML",
+  "bytes_compressed": 1687407,
+  "bytes": 7847962,
+  "sha256": "e2b5bd1bba8924dbb77337ce0d6f5a537b0cbab20de6a323981112a18ebd51de"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L12_id_MSn_positive.mzML",
+  "bytes_compressed": 1473652,
+  "bytes": 8064985,
+  "sha256": "fe9ee8ad4c6b83805e2a31db72e04c3edff77ac77afb897be49952f1153a9364"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L13_id_MSn_positive.mzML",
+  "bytes_compressed": 1896466,
+  "bytes": 8037506,
+  "sha256": "bf203d2d39fcc92a491159a04a8eaee38db5dd37640dc45bf8603f42c44e6e15"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L14_id_MSn_positive.mzML",
+  "bytes_compressed": 1504930,
+  "bytes": 7603302,
+  "sha256": "13380991a95e96633f03399e962edeb9756f12fba4dc28b78d024487928fcdda"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L15_id_MSn_positive.mzML",
+  "bytes_compressed": 1882735,
+  "bytes": 8017313,
+  "sha256": "99b67f20190e9874aaa137b7842945a08f48ce9b2d52ea83102edc1ae1881b45"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L16_id_MSn_positive.mzML",
+  "bytes_compressed": 1707984,
+  "bytes": 7738596,
+  "sha256": "9280c2ab36ccf16f0ec96d441d6d97ec558a21f1c394668d2fe708fc067d678d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L18_id_MSn_positive.mzML",
+  "bytes_compressed": 1598620,
+  "bytes": 7585589,
+  "sha256": "ea04799eca056e8094d3dd405d5af74b5221135eabc03f68836aadf9f56f289b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L19_id_MSn_positive.mzML",
+  "bytes_compressed": 1739125,
+  "bytes": 8494776,
+  "sha256": "4d57ffbddb569c773b5fa10c9dadb51f6a9ea3828450f013d0bb363fec152491"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L20_id_MSn_positive.mzML",
+  "bytes_compressed": 1492573,
+  "bytes": 7952068,
+  "sha256": "7971f8dc1535a2e7282dc2e07d4b93ef44ab566c111836294c4ae69879c954d7"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L21_id_MSn_positive.mzML",
+  "bytes_compressed": 1756041,
+  "bytes": 7968749,
+  "sha256": "98540245148da3ebb9833c76269302ef4ed63f6595c97fa652bf5fb0f3c6c2b6"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L3_id_MSn_positive.mzML",
+  "bytes_compressed": 2033051,
+  "bytes": 7713227,
+  "sha256": "9bb66fe049eeb312793921ed98c4d182b4b86cfc7d2d5ace2f40a9a14c4ea43a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L4_id_MSn_positive.mzML",
+  "bytes_compressed": 1927751,
+  "bytes": 8078254,
+  "sha256": "5fe1c3b9676f5a6e1898141db7da0f9da8c043e624fe9af5ec917a906af4084b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L5_id_MSn_positive.mzML",
+  "bytes_compressed": 1917823,
+  "bytes": 8456485,
+  "sha256": "54fc9415e5cd4eccab854c4c8361839f94a12b2d2985c1a22f3c3ec1aef44da2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L6_id_MSn_positive.mzML",
+  "bytes_compressed": 1971422,
+  "bytes": 8593206,
+  "sha256": "3da52bbbfaf967cb34c06909b6cc96c6a4ab08a4b0c021f47dff44e1dd15c740"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L7_id_MSn_positive.mzML",
+  "bytes_compressed": 1484529,
+  "bytes": 7536430,
+  "sha256": "0ada8c35bf0a35cd887402030de44f3a9a8952af270eb4381dc38a120fa4e9b0"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L8_id_MSn_positive.mzML",
+  "bytes_compressed": 1711511,
+  "bytes": 7783765,
+  "sha256": "21f8a428387dea87391ac355a4c1ba726ac38afeac2da6b5f304f4a8484b2892"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_L9_id_MSn_positive.mzML",
+  "bytes_compressed": 1965687,
+  "bytes": 8187243,
+  "sha256": "10988119e989b0da6356f566d8e6b8ac6e986fe22f64e58421bed3b11041733a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M11_id_MSn_positive.mzML",
+  "bytes_compressed": 1999375,
+  "bytes": 8237148,
+  "sha256": "c0e8d1c79f8d87b2389945561e49779a4751e4b1069455d57974ed470c59fe1c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M12_id_MSn_positive.mzML",
+  "bytes_compressed": 2149809,
+  "bytes": 8009200,
+  "sha256": "472df9dced11d47b3d26a9db8ae3c79b1f779d7007f9f7b3d833f1d42b711434"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M13_id_MSn_positive.mzML",
+  "bytes_compressed": 2050595,
+  "bytes": 7860931,
+  "sha256": "23963fc7098c865c762f703f9cd3cd35f5d7b8e85fd506adfeb1af3f08c7e03b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M16_id_MSn_positive.mzML",
+  "bytes_compressed": 1827240,
+  "bytes": 7579101,
+  "sha256": "fdee0a8c5bf7b5c8cd7e5e0dc79a067e4591d640cc8e6f6f49843f75cefdf194"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M19_id_MSn_positive.mzML",
+  "bytes_compressed": 1608378,
+  "bytes": 8539549,
+  "sha256": "1c173b7b1decb43720eb88e7fcb148dc2e32f7468984d28045f332cf47bd746d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M20_id_MSn_positive.mzML",
+  "bytes_compressed": 1780886,
+  "bytes": 8189352,
+  "sha256": "d29e483fbb4b190f961646cd032153f91f3e77815f0ae9e4e77a1b6979e85f18"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M21_id_MSn_positive.mzML",
+  "bytes_compressed": 2020686,
+  "bytes": 8186207,
+  "sha256": "3e6072abfd1a1e0be9b3880880fedb14d20811f5bd43675ee00e71482b37c195"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M22_id_MSn_positive.mzML",
+  "bytes_compressed": 1822769,
+  "bytes": 7598684,
+  "sha256": "665a492161e7a7677660c7cb24d43e40772bd7f02af34d9cb8a2a0baff0e4cd7"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M4_id_MSn_positive.mzML",
+  "bytes_compressed": 1461143,
+  "bytes": 8561414,
+  "sha256": "6e1799b32630a59670fb7ed220bbb5b65c422b5a305b0ec9b0d741c35d217a76"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M6_id_MSn_positive.mzML",
+  "bytes_compressed": 1580466,
+  "bytes": 8487391,
+  "sha256": "da67a3faa216f0adb51aaf462fec479020bd07eb1a66ed8702d7716639687047"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_M8_id_MSn_positive.mzML",
+  "bytes_compressed": 1367713,
+  "bytes": 8061404,
+  "sha256": "d510cd0272ef9fb2bf696174a60949f5f0578f8f43f5489edc90609f13bcde7e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N11_id_MSn_positive.mzML",
+  "bytes_compressed": 1958738,
+  "bytes": 8868321,
+  "sha256": "904ded8e59f8b2e6e2c57285cc77bd40e73ce6406f547b806c21b55abd569f89"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N14_id_MSn_positive.mzML",
+  "bytes_compressed": 2067073,
+  "bytes": 8526541,
+  "sha256": "a39255e1722f7c97cf3951d4313ab4503b8a1229cc3bf2f57b0a8e7598fa7877"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N18_id_MSn_positive.mzML",
+  "bytes_compressed": 1361258,
+  "bytes": 8503040,
+  "sha256": "38deb213ec67dcfcfd14883c1741ba2fc0a6fbf2499e04ee5770575e50d7aadf"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N19_id_MSn_positive.mzML",
+  "bytes_compressed": 1661597,
+  "bytes": 7995591,
+  "sha256": "54b08605209cbdc18853712b916819db036044a2c17541c3f699b2730bb15e32"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N20_id_MSn_positive.mzML",
+  "bytes_compressed": 1580288,
+  "bytes": 7968489,
+  "sha256": "000a688081c24ebdb09f9bc92b421d9074ed7f747ac3315c3f688edd8e810139"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N5_id_MSn_positive.mzML",
+  "bytes_compressed": 2081502,
+  "bytes": 7340086,
+  "sha256": "823bcb0166948a475986031c50d66214867a6bb57416c1eefcc56ee90d8bd243"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N7_id_MSn_positive.mzML",
+  "bytes_compressed": 1872987,
+  "bytes": 8018868,
+  "sha256": "b6ff40866fd8f8c314d117f36e9b4a6746034a9025a8f2791dd8d96d443bce02"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_N8_id_MSn_positive.mzML",
+  "bytes_compressed": 2054323,
+  "bytes": 8281725,
+  "sha256": "cc972b9193bdd05dce7e7b3941a80c8e79949e52301319bcf85ef926a854f125"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O10_id_MSn_positive.mzML",
+  "bytes_compressed": 1774696,
+  "bytes": 8036764,
+  "sha256": "860e636a504f038dd2d1764b2a34be60b1d8e1e3067956a5b1df67d43d789edd"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O11_id_MSn_positive.mzML",
+  "bytes_compressed": 1481408,
+  "bytes": 8107959,
+  "sha256": "d1fb2a7d48884568ff626da964e0d470562c9f0a064d498822731a08c67016d0"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O12_id_MSn_positive.mzML",
+  "bytes_compressed": 1650787,
+  "bytes": 8262866,
+  "sha256": "f0d98fe2c8d28c891ca57d755ab8a7c7e6e116869ff81cb9bf55bf81f42ac3d2"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O13_id_MSn_positive.mzML",
+  "bytes_compressed": 1640159,
+  "bytes": 8053079,
+  "sha256": "e0a7e9816859b89947c0247bacf1c382884512a3c2ee3abe417043dd3ce91f98"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O14_id_MSn_positive.mzML",
+  "bytes_compressed": 1699262,
+  "bytes": 8336215,
+  "sha256": "12c8e8d86802a35c99b6e910ffc16103a26272d01aa52a7498c8ba5da0dbf9d9"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O15_id_MSn_positive.mzML",
+  "bytes_compressed": 2086971,
+  "bytes": 7903574,
+  "sha256": "89f6b1f9151fd82428eb2f4c010a1317835ade7f4fbada07a8a3bbf411bbb4aa"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O17_id_MSn_positive.mzML",
+  "bytes_compressed": 2213338,
+  "bytes": 7652941,
+  "sha256": "24c475c0abadc16a0f65d97ae64bedb3a3e68f9337053f2f62fb96497aba184d"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O7_id_MSn_positive.mzML",
+  "bytes_compressed": 1833799,
+  "bytes": 8034146,
+  "sha256": "cf355987f555cdf8c01782421a6dc775e301f85bd257e0f3de43dec3bf64a979"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_O9_id_MSn_positive.mzML",
+  "bytes_compressed": 1823066,
+  "bytes": 8594845,
+  "sha256": "f900083796261a9dfaaa366cc91cf4ac28ff2d22c90eaeb8a0b3f5e5794b3536"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_P3_id_MSn_positive.mzML",
+  "bytes_compressed": 1882873,
+  "bytes": 8982892,
+  "sha256": "0ddd436ac294546ff1bf268fb1898f484516d7af0dca6cc62a6c952bdf3c011e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_P4_id_MSn_positive.mzML",
+  "bytes_compressed": 1827635,
+  "bytes": 7829949,
+  "sha256": "77058796f95e95b64c665ebdde6a4d187ed64125a8f37d05e92022e43bdbfc43"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_P5_id_MSn_positive.mzML",
+  "bytes_compressed": 2245930,
+  "bytes": 8239919,
+  "sha256": "5c3b97a00711b7adcac0f7c86bc00021b72886d024ed0a07245c2be4c042f1b6"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_P6_id_MSn_positive.mzML",
+  "bytes_compressed": 2338142,
+  "bytes": 8536290,
+  "sha256": "11e3ccfe0a46b4795cfbfa82b5c41c64857e9476fab265b714e32023f8303c86"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A10_id_MSn_positive.mzML",
+  "bytes_compressed": 2105053,
+  "bytes": 7657806,
+  "sha256": "c996492e5b4423f62e23ac1e9b8ff0aa9dbcdca2af10ad11165e26f43247fd6f"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A12_id_MSn_positive.mzML",
+  "bytes_compressed": 2069964,
+  "bytes": 8078321,
+  "sha256": "a2a404c1923aed704f9fe80fd0f2cdfdfa8d48326c38770b3b9033e3e480519a"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A13_id_MSn_positive.mzML",
+  "bytes_compressed": 2199318,
+  "bytes": 8460869,
+  "sha256": "cba2c9493dd9e7c3457bd4ff88c9bcf569ec1ff69e0b7d0ee22b48d05ec8fb1c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A14_id_MSn_positive.mzML",
+  "bytes_compressed": 2066664,
+  "bytes": 8210798,
+  "sha256": "bc8299bf67d0ac5ef2c50ade5800e9ecc3d5253e791a82187b958b9cb63ee77b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A15_id_MSn_positive.mzML",
+  "bytes_compressed": 2211559,
+  "bytes": 8575690,
+  "sha256": "0eccae87a8f68e2cfa8ddbcf3a72891b4982ece1248aedb28acca823d4d6d160"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_A21_id_MSn_positive.mzML",
+  "bytes_compressed": 1793368,
+  "bytes": 7867271,
+  "sha256": "37d7610e7ce4000e8842275cba6978242bd9687ca5b3e5ff4a364ade7ebe05cf"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B4_id_MSn_positive.mzML",
+  "bytes_compressed": 2220739,
+  "bytes": 8392575,
+  "sha256": "0543485791f19f6f88622452235d66f598c7e3f16178e03285ad5f2ab39bed4e"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B5_id_MSn_positive.mzML",
+  "bytes_compressed": 2301312,
+  "bytes": 9876276,
+  "sha256": "96a68fb2f03fff51d007268e7fba7811b26b8a7d1f9a0d02d37272f1a543c9ee"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B6_id_MSn_positive.mzML",
+  "bytes_compressed": 2656410,
+  "bytes": 9138528,
+  "sha256": "0dadf56d4de9a1effeae43121f79b7618d11175e9a09e6ef1e8154282b3eec9c"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B7_id_MSn_positive.mzML",
+  "bytes_compressed": 3234595,
+  "bytes": 9482339,
+  "sha256": "1076de86310b0da7e91265a2f03b38edd899441db531a9849294203beda81209"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B8_id_MSn_positive.mzML",
+  "bytes_compressed": 2956568,
+  "bytes": 8590528,
+  "sha256": "b81e6f1c364a03c8f2ce053e7e2625dd29ca72c79f0f515761b53a339bae3f5b"
+ },
+ {
+  "zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+  "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5006_B9_id_MSn_positive.mzML",
+  "bytes_compressed": 2095162,
+  "bytes": 8126241,
+  "sha256": "afdac12083c1b36571bdea464330c374a8bbaa20abfe5f810156b33a2b7650b2"
+ },
+ {
+  "zip": "mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip",
+  "member": "mzml/20241113_pluskal_mcediv_20k_5015_N6_id_MSn_positive.mzML",
+  "bytes_compressed": 1798463,
+  "bytes": 7550071,
+  "sha256": "0e6ff1a16900d2edf6299f37d9bcb602fa4a44ef3b76ea1e018d7bccdb6b5d01"
+ },
+ {
+  "zip": "mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip",
+  "member": "mzml/20241113_pluskal_mcediv_20k_5016_A18_id_MSn_positive.mzML",
+  "bytes_compressed": 1890852,
+  "bytes": 8439258,
+  "sha256": "1c70fad108bde30c6a43ff72ec128d5192f04c3835f227e685df1d060491da2b"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_A12_id_MSn_positive.mzML",
+  "bytes_compressed": 2559206,
+  "bytes": 7804962,
+  "sha256": "c79b92e2a2532ee6e2abc6abee435aefbbb44615a14e931648e5dadc13a5188a"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_A23_id_MSn_positive.mzML",
+  "bytes_compressed": 2111027,
+  "bytes": 7413253,
+  "sha256": "ca31aac95c6d5aecd46a9819b584d2a75f9769c37a6454e5852513fa3d132124"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_A4_id_MSn_positive.mzML",
+  "bytes_compressed": 605012,
+  "bytes": 6894089,
+  "sha256": "aee1c06045b4521eb55742fc14cbf3decf7b68852bcb220e189b52375e3adc42"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_B11_id_MSn_positive.mzML",
+  "bytes_compressed": 2206331,
+  "bytes": 7081266,
+  "sha256": "eaabe668626e048538c56b6be57f1f01a6681671c5c7dd8cc4ba977549a236e6"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_B13_id_MSn_positive.mzML",
+  "bytes_compressed": 3060505,
+  "bytes": 8173824,
+  "sha256": "2040605bdfd4a745ab4696d84492261a95ea3172ee43a54ed0a88a0e58ba9b88"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_B18_id_MSn_positive.mzML",
+  "bytes_compressed": 2690338,
+  "bytes": 7500767,
+  "sha256": "12443311f67ad5d58dbdd8ab5d1d7a68b095b9118468f0e495b410d2f9db8585"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_B24_id_MSn_positive.mzML",
+  "bytes_compressed": 2504898,
+  "bytes": 7564134,
+  "sha256": "acb077928bd0f867d8b4ed0c469b747b68e3a5cc115557dca278a33b230c3849"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_B3_id_MSn_positive.mzML",
+  "bytes_compressed": 2282011,
+  "bytes": 7610151,
+  "sha256": "75a66964f90c31fca859f00f6f211fd7454545541923dafa08d1c2ce27744b6e"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_C10_id_MSn_positive.mzML",
+  "bytes_compressed": 2613876,
+  "bytes": 7766063,
+  "sha256": "456a373ff8422980454b4bb00aa8dfe3d3c905f16b265b54fb1adc9f436f3ce0"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_C13_id_MSn_positive.mzML",
+  "bytes_compressed": 2543993,
+  "bytes": 7644556,
+  "sha256": "c1e175250f86721cf092dee9d6203e29ace739dde95958de3e0e54ddbaa3e613"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_C20_id_MSn_positive.mzML",
+  "bytes_compressed": 2346320,
+  "bytes": 7267865,
+  "sha256": "57122198e5eefbecf7a2c76754dbb925c2a89dde9728ab798e865c2dca85f05b"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_C24_id_MSn_positive.mzML",
+  "bytes_compressed": 2627241,
+  "bytes": 7797657,
+  "sha256": "e3d2f6963cac87b3aea2c66149589dc8047453b0ff7f08c24e41c608eb7c02ef"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_C3_id_MSn_positive.mzML",
+  "bytes_compressed": 2114480,
+  "bytes": 7251095,
+  "sha256": "a6803e3eb55a51f59910cfc562a34ca1ae65a78666ceba99044cfc945f9e4ab8"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_D14_id_MSn_positive.mzML",
+  "bytes_compressed": 1841044,
+  "bytes": 7286209,
+  "sha256": "1f9a980843ee82ffbfc04cc02105d83ece52fefb256132b6c361a8cecb576893"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_D4_id_MSn_positive.mzML",
+  "bytes_compressed": 2495980,
+  "bytes": 7822274,
+  "sha256": "97253acadf13c17498e441ee27ac34b264787ffa53dd6a87e6e36121f7a45703"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_D5_id_MSn_positive.mzML",
+  "bytes_compressed": 2920064,
+  "bytes": 8126537,
+  "sha256": "ad2a23b121a547ef96cf128251beb8d2d8385f3f72e1f0195b8b9c7ea745bc5a"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_D7_id_MSn_positive.mzML",
+  "bytes_compressed": 3632801,
+  "bytes": 8546476,
+  "sha256": "95025889c3f131030cc006942d9c9cd0207ab9160f0cfaf8f70c3a150a8b0bf1"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_E11_id_MSn_positive.mzML",
+  "bytes_compressed": 2355812,
+  "bytes": 7367765,
+  "sha256": "e9755361ebfe209551058504c2c015257e3853c76a91b94c02d8fc2a720270db"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_E12_id_MSn_positive.mzML",
+  "bytes_compressed": 2259634,
+  "bytes": 7476546,
+  "sha256": "0fa697940f54517a17f391e27517c133064578cff82963873b485b4e1f2660c7"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_E14_id_MSn_positive.mzML",
+  "bytes_compressed": 2173026,
+  "bytes": 7203734,
+  "sha256": "8aa3c9282269f2fe9b871d1ec4992e46773e85ffa9d0d663daba3851d35ced74"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_H11_id_MSn_positive.mzML",
+  "bytes_compressed": 2852804,
+  "bytes": 8040482,
+  "sha256": "7cfcd4fbb3dde04bacc7a7ac80761a5d912ef4aa89049200eca993e7cd7efca4"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_H19_id_MSn_positive.mzML",
+  "bytes_compressed": 1807108,
+  "bytes": 7127114,
+  "sha256": "c5769f8622ea41f8b7b2ea724423c95c0244674edfd6c3bd74b527db3a7c765f"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_H6_id_MSn_positive.mzML",
+  "bytes_compressed": 1856411,
+  "bytes": 7198017,
+  "sha256": "5ac92b09764cc69b66d59ccce0928fc8891469d6462eb146dceef3d908f9887a"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_H8_id_MSn_positive.mzML",
+  "bytes_compressed": 3510064,
+  "bytes": 8783736,
+  "sha256": "6d1623b4a0208f6acdeb843bbec45012adb9a1dcfced793ba63661d69522c8a7"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_I10_id_MSn_positive.mzML",
+  "bytes_compressed": 2423767,
+  "bytes": 7482051,
+  "sha256": "9c849a4599f459da00095a2e6a8311ffc5288ef5e4cbd961f039b27ceea04485"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_I3_id_MSn_positive.mzML",
+  "bytes_compressed": 2985369,
+  "bytes": 8281910,
+  "sha256": "c8ca221c99dab64511d3c1b7ff1f36a195c1d5dd4837f0d7c6cdf4c7068e0663"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_J12_id_MSn_positive.mzML",
+  "bytes_compressed": 1878225,
+  "bytes": 7523951,
+  "sha256": "536ba6d56a45a6b27ac89432b2beda64b99500d62d52bd776f314aaecae70f00"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_J13_id_MSn_positive.mzML",
+  "bytes_compressed": 2969218,
+  "bytes": 7950731,
+  "sha256": "b7fac61401d8232e782c4faa6e08837f99a51357ea9afabdea3015053b376331"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_J14_id_MSn_positive.mzML",
+  "bytes_compressed": 1516002,
+  "bytes": 7354246,
+  "sha256": "82c5d20b6e0cfd6de50d4344cd615377054ff2fb00cdbb7bed65f3404d82ec11"
+ },
+ {
+  "zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+  "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_J20_id_MSn_positive.mzML",
+  "bytes_compressed": 2593231,
+  "bytes": 7477903,
+  "sha256": "1deffd134d8d14d0838ba75fca49ce3b5d6daa2145b8eea1a12958ebe12d2091"
+ }
+]
