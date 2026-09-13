@@ -64,13 +64,53 @@ Two distinct root causes account for all 25:
    (`muru-rc4.1-environment-closure-1.0.0`, RC4 parent
    `c800e7a59eca904ee32231e43ce3d1ddda4a26ee`) from an earlier phase of the
    MURU program (predates WUR v2 entirely). The verifier reports 7
-   undeclared-hard-import distributions (e.g. `lxml`, `fixtures`, and
-   several intra-repo test/script module names it mistakes for
-   third-party packages) and a Julia/`SymbolicRegression.jl` identity gate
-   that has since grown a caller (`scripts/cloud_e6/preflight_e6.py`) the
-   frozen test doesn't yet know about. None of this is WUR v2 code, none of
-   it changed between base and head, and it is an environment-identity
-   check against a years-old snapshot, not a functional regression.
+   undeclared-hard-import distributions and a Julia/`SymbolicRegression.jl`
+   identity gate that has since grown a caller
+   (`scripts/cloud_e6/preflight_e6.py`) the frozen test doesn't yet know
+   about. The binary pass/fail outcome of these 4 tests is unchanged
+   between base and head, and the check itself is a years-old
+   environment-identity snapshot comparison, not new WUR v2 functionality
+   under test.
+
+   **Correction, found by independent review and not present in this
+   document's first draft:** one of the 7 undeclared-hard-import items,
+   `lxml`, is *not* pre-existing — it is a genuine new gap introduced by
+   this WUR v2 generation. `src/muru/wur_v2/external_mzml.py` (new since
+   PR #5's base) does `from lxml import etree`, and `lxml` is not pinned
+   in `requirements.lock.txt`; anyone rebuilding the environment from that
+   lock file alone would not get `lxml` and this WUR v2 module would fail
+   to import. It does not flip this test's pass/fail status (the test was
+   already failing on base for 4 unrelated reasons), so it produced no
+   *new* red/green transition for Phase 1's classification purposes — but
+   describing it, as an earlier draft did, as "none of it changed between
+   base and head" was wrong, and is corrected here.
+
+   This study attempted the direct fix (adding `lxml==6.0.2` to
+   `requirements.lock.txt`) and then reverted it after discovering the
+   lock file is itself under a frozen, cross-file hash contract in this
+   same test module: `test_the_lock_pins_every_distribution_exactly_once_with_an_equality`
+   hardcodes a distribution count (50); `test_the_tracked_bootstrap_is_the_same_bytes_as_the_enforced_pin_source`
+   requires `requirements.lock.txt`'s sha256 to equal a separately tracked
+   snapshot (`configs/rc3_requirements_lock_c7c2332.txt`); and
+   `test_the_tracked_environment_manifest_matches_this_tree` requires it to
+   equal a `tracked_lock_sha256` recorded in a manifest file. Editing the
+   lock file without a coordinated update to those two other tracked
+   artifacts turned 2 pre-existing failures into 2 *different* failures
+   (still failing, but for a new reason) rather than fixing anything net —
+   confirmed by rerunning `tests/test_eng_environment_closure.py` before
+   and after the edit. This is exactly the class of change the mandate's
+   "if fixing a defect changes anything material, STOP" principle argues
+   against attempting casually: the lock file is governed by an
+   RC4-era freeze whose update procedure this study does not have context
+   for, and getting it wrong would leave the repository in a worse,
+   internally-inconsistent state than leaving the disclosed gap alone. The
+   edit was reverted (`git checkout -- requirements.lock.txt`); the
+   working tree is clean of it. **The `lxml` pinning gap remains, is
+   disclosed here precisely, and is left for whoever owns the RC4
+   environment-closure contract to fix correctly** — it does not touch
+   WUR v2's candidate, comparator, endpoint, or any scientific code path,
+   only a packaging manifest.
+
 2. **Missing Phase-2/Phase-3 synthetic-benchmark data (7 of the 11
    failures + all 14 errors)** — `tests/test_ov_*.py`,
    `tests/test_p3_*.py` and friends require large generated artifacts
@@ -80,11 +120,14 @@ Two distinct root causes account for all 25:
    WUR v2). Every one of these fails or errors identically on base, before
    any WUR v2 work existed.
 
-No genuine software or reproducibility defect attributable to WUR v2 or to
-this study's own changes was found. No fix was needed and none was made;
-per the mandate ("Historical/pre-existing failures may remain if they are
-genuinely unrelated, but document them precisely"), they are left as-is.
-**No candidate re-freeze or re-audit is triggered.**
+No fix was made to any test-outcome-changing defect (the one genuine defect
+found, the `lxml` pin, does not change any test's pass/fail outcome and was
+left disclosed rather than half-fixed into a worse state). Per the mandate
+("Historical/pre-existing failures may remain if they are genuinely
+unrelated, but document them precisely"), the 25 pre-existing
+failures/errors are left as-is. **No candidate re-freeze or re-audit is
+triggered**, and nothing in this section touches the candidate, comparator,
+endpoint, or any scientific code path.
 
 ## 5. Environment
 

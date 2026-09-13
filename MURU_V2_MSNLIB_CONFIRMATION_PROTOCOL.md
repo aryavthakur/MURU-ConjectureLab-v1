@@ -112,6 +112,33 @@ using `numpy.random.default_rng(seed=20261010)`. This exact seed, this exact
 sampling call, against this exact sorted list. No re-seeding, no
 similarity/confidence/molecular-class/anchor-behavior-based selection.
 
+**Closing an ambiguity an independent review found in this draft:** "seed
+20261010" alone under-specifies a reproducible sample — it pins the RNG
+seed but not the sort key, the exact numpy call, or the eligible-group list
+itself, unlike every compound-level population elsewhere in this program
+(each of which carries a sha256-over-sorted-keys hash). Before §6 is ever
+executed, the executing session MUST, in this order: (1) fix the sort key
+as `sorted(eligible_group_ids)` on the plain string scaffold-group-v2
+identifier, ascending; (2) use exactly
+`numpy.random.default_rng(20261010).choice(sorted_ids, size=2000,
+replace=False)` — not `.permutation(...)[:2000]`, which draws a different
+sequence for the same seed; (3) write the resulting eligible-group list's
+sha256 (sorted keys joined by `\n`, matching the convention already used
+elsewhere in this program, e.g. `population_manifest.json`'s
+`keys_sha256`) into the confirmation freeze document *before* drawing the
+sample, so the input to sampling is itself hash-pinned and auditable, not
+just the seed. A sample drawn without first recording that input-list hash
+does not satisfy this protocol's sampling rule, even if the seed matches.
+
+**Guard against structural cherry-picking the list construction itself:**
+because eligible-group composition (sizes, Morgan similarity to training)
+is computable from structure alone, before any outcome, it is tempting to
+try a few list constructions and pick the one whose *sample* looks most
+favorable while still truthfully citing "seed 20261010." That is exactly as
+prohibited as choosing groups directly by similarity or confidence: the
+list construction in the paragraph above is fixed once, the resulting hash
+is recorded, and no second construction is attempted for any reason.
+
 After sampling, apply only header/acquisition eligibility rules (never
 outcome-derived ones): positive mode; correct production well/run; selected-
 ion m/z within frozen tolerance; fixed NCE20/NCE60 rung definition; scan-
@@ -193,7 +220,15 @@ compounds into frozen similarity bands by maximum Morgan similarity to the
 development training population, computed from structure only, before any
 outcome is seen. Preferred fixed bands: `<0.30`, `0.30-0.50`, `0.50-0.70`,
 `≥0.70`, adjusted to predeclared quantile bins only if these produce
-inadequate counts — decided before outcomes, not after.
+inadequate counts (fewer than 30 validation compounds in a band) — decided
+before outcomes, not after. **Same guard as the tail-risk secondary,
+stated explicitly because an independent review found it missing here:**
+this analysis is interpreted strongly — i.e. reported as evidence the
+candidate's advantage holds or shrinks with novelty — only if the primary
+confirmation in this section is satisfied. If the pooled primary result is
+null or inconclusive, a favorable-looking similarity band is reported
+descriptively, alongside the unfavorable bands, and is never promoted to a
+headline finding on its own.
 
 ## 10. Claim scope
 
@@ -201,9 +236,18 @@ If positive: *"On an independent, scaffold-separated MSnLib
 commercial-screening population measured on a Thermo Orbitrap ID-X at fixed
 HCD NCE 20 and 60, the frozen MURU-WUR-v2 structural scale model
 outperformed the frozen Tier A scale comparator under a fixed zero-parameter
-deployment energy map."* Never: universal MS/MS prediction, all instruments,
-all adducts, negative mode, dense energy trajectories, QTOF transfer,
-natural products generally, or perfect cross-instrument calibration.
+deployment energy map."* This single sentence template must always be
+qualified with which §9 outcome produced it — "practically meaningful"
+(ratio ≤0.95) and "statistically supported but modest" (0.95<ratio<1.00)
+are not interchangeable, and a report may not quote this sentence alone
+without naming which one applies. Never: universal MS/MS prediction, all
+instruments, all adducts, negative mode, dense energy trajectories, QTOF
+transfer, natural products generally, or perfect cross-instrument
+calibration. "Commercial-screening population" is shorthand only: the
+design frame also includes natural-product libraries (NIHNP, TargetMol),
+roughly a tenth of eligible keys — covered by, not contradicting, the
+"natural products generally" exclusion above, but not itself a precise
+population label.
 
 Source citation for the record: Brungs, Schmid, Heuckeroth et al., *Nat
 Methods* 22, 2028-2031 (2025), doi:10.1038/s41592-025-02813-0; Zenodo
@@ -250,8 +294,27 @@ below).
    manifest hash) filled in from steps 2-3 — **on a clean tree, before**
    any validation peak array is decoded.
 5. Construct the one-look guard (`src/muru/wur_v2/external_guard.py`,
-   `AccessGuard(kind="VALIDATION", ...)` — already implemented and reusable
-   as-is, refuses a second construction) and execute the single look.
+   `AccessGuard(kind="VALIDATION", ...)`, reused as-is) and execute the
+   single look. **Correction to an earlier overstatement in this document,
+   found by independent review:** the guard's actual protection is
+   narrower than "refuses a second construction" suggests. Reading the
+   implementation, `AccessGuard.__init__` refuses construction only if (a)
+   its record file currently exists on disk and (b) the tracked tree is
+   dirty — it does not consult git history for a record path that once
+   existed and was later deleted (`git rm` the record, commit, and a
+   second `AccessGuard(kind="VALIDATION", ...)` construction would
+   succeed), and it does not hash-lock the freeze document's content at
+   guard-construction time against the version that was actually committed
+   in step 4, so a threshold or population-rule edit between steps 4 and 5
+   would not be caught by the code itself. Before step 5, whoever executes
+   this protocol must additionally: (a) `git log --follow` the intended
+   VALIDATION record path and confirm no prior record ever existed for
+   this study (not just that none exists now); (b) diff the freeze
+   document actually on disk at guard-construction time against the exact
+   commit recorded in step 4, byte for byte, and refuse to proceed on any
+   difference. These two checks are process discipline on top of the code,
+   not something the guard class itself enforces — do not rely on the
+   class's refusal alone.
 6. Everything in §8-§10 above governs that look unchanged. No threshold,
    population rule, or success criterion in this document may be edited
    after step 5 begins.

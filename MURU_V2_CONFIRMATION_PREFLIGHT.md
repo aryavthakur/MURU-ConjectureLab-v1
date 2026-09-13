@@ -120,8 +120,20 @@ reinterpret that result.**
 
 ## 0.6 No MSnLib validation-outcome access exists yet
 
-- `git grep` across all tracked files for `msnlib_validation`,
-  `validation_access`, `validation_result`: **zero hits**.
+- `git grep` at `dc1f04d0...` for `msnlib_validation`: zero hits. `git
+  grep` for `validation_access` and `validation_result` (broader terms,
+  not MSnLib-specific) returns 5 hits, **not zero as an earlier draft of
+  this document incorrectly stated** — corrected here after an independent
+  review caught it. All 5 are source code and prose for
+  `scripts/wur_v2/ext03_validation.py`, the **pre-existing, never-executed
+  MultiMS2** "one look" script (guarded by `AccessGuard("VALIDATION", ...)`,
+  and itself gated on `cal.get("qualified")`, which is false because
+  MultiMS2's own anchor calibration never qualified) — not MSnLib, and not
+  an executed result. `git ls-tree` on `dc1f04d0...` confirms no actual
+  `validation_access.json` or `validation_result.json` data file is
+  tracked anywhere in the repository at that commit, for either MSnLib or
+  MultiMS2. The substantive conclusion is unchanged; the literal "zero
+  hits" phrasing was wrong and is not repeated.
 - Filesystem search for `*.mzml*` anywhere in the repository (tracked or
   untracked): **zero hits**. Raw spectra were never committed, consistent
   with the mandate ("do not commit raw multi-gigabyte mzML").
@@ -165,7 +177,7 @@ Tested from this sandboxed execution environment:
 | `github.com` | HTTP 200, 0.49s |
 | `zenodo.org` (bare HTTPS connect, no path/query, no dataset request) | `curl: (28) Operation timed out`, tested at 10s and 15s timeouts |
 | `gnps-external.ucsd.edu` (bare HTTPS connect) | `curl: (28) Operation timed out`, 15s |
-| DNS for `zenodo.org` | resolves fine (3 A records via the sandbox's resolver) |
+| DNS for `zenodo.org` | resolves fine (multiple A records via the sandbox's resolver; an independent re-check moments later saw a different record count — 6 vs. this run's 3 — consistent with anycast/load-balancer rotation, not a resolution failure) |
 | ICMP to `8.8.8.8` | 0% loss, ~9ms |
 
 DNS and ICMP both work, and `github.com` is fully reachable, so this is not

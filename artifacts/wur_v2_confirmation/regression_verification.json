@@ -63,6 +63,16 @@
  },
  "candidate_change_triggered": false,
  "fix_applied": false,
+ "genuine_defect_found_not_fixed": {
+  "description": "lxml is imported by new WUR v2 module src/muru/wur_v2/external_mzml.py but not pinned in requirements.lock.txt",
+  "found_by": "independent regression-classification reviewer agent",
+  "changes_any_test_pass_fail_outcome": false,
+  "attempted_fix": "added lxml==6.0.2 to requirements.lock.txt",
+  "attempted_fix_reverted": true,
+  "reason_reverted": "requirements.lock.txt is under a frozen cross-file hash contract (configs/rc3_requirements_lock_c7c2332.txt snapshot equality, a tracked_lock_sha256 manifest field, and a hardcoded pinned-distribution count of 50) predating WUR v2; editing it without a coordinated update to those turned 2 pre-existing failures into 2 differently-failing ones rather than net-fixing anything",
+  "touches_candidate_or_science": false,
+  "left_for": "whoever owns the RC4 environment-closure contract"
+ },
  "environment": {
   "python": "3.13.12", "os": "Darwin 25.1.0 arm64",
   "numpy": "2.5.2", "scipy": "1.18.0", "pandas": "3.0.5",
