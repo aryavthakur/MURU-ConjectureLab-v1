@@ -1,0 +1,10 @@
+{
+ "model_id": "EXP07_TA_IONENV",
+ "partition": "GIANT",
+ "assignment_sha256": "c67dfb83e484",
+ "cfgs": {
+  "0": "0.3"
+ },
+ "seconds": 0.1633009910583496,
+ "created_utc": "2026-09-13T01:12:25Z"
+}

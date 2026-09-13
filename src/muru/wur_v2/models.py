@@ -210,42 +210,43 @@ class KNNResidual(ScaleModel):
 
 
 class PermutedFeatures(ScaleModel):
-    """Negative control: the wrapped model with feature rows permuted across compounds."""
+    """Negative control: the wrapped model with feature rows permuted across compounds.
+
+    Each seed gets its own permuted block (`<feature>__perm<seed>`); an earlier
+    version cached one block under a seed-free name, so every seed reused the
+    first permutation.
+    """
 
     def __init__(self, inner: ScaleModel, feature: str, seed: int):
         self.inner, self.feature, self.seed = inner, feature, seed
         self.id = f"{inner.id}_PERMUTED_s{seed}"
+        self.perm_name = f"{feature}__perm{seed}"
 
     def grid(self):
         return self.inner.grid()
 
-    def _swap(self, ts):
-        F = ts.data.features[self.feature]
-        rng = np.random.default_rng(self.seed)
-        perm = F.iloc[rng.permutation(len(F))].to_numpy()
-        ts.data.features[self.feature + "__perm"] = pd.DataFrame(perm, index=F.index, columns=F.columns)
+    def _ensure(self, data):
+        if self.perm_name not in data.features:
+            F = data.features[self.feature]
+            rng = np.random.default_rng(self.seed)
+            data.features[self.perm_name] = pd.DataFrame(F.iloc[rng.permutation(len(F))].to_numpy(), index=F.index, columns=F.columns)
+
+    def _call(self, fn, data, *args):
+        self._ensure(data)
+        orig = self.inner.__dict__.copy()
+        for attr in ("feature", "fp"):
+            if getattr(self.inner, attr, None) == self.feature:
+                setattr(self.inner, attr, self.perm_name)
+        try:
+            return fn(*args)
+        finally:
+            self.inner.__dict__.update(orig)
 
     def fit(self, ts, cfg):
-        if self.feature + "__perm" not in ts.data.features:
-            self._swap(ts)
-        orig = self.inner.__dict__.copy()
-        for attr in ("feature", "fp"):
-            if getattr(self.inner, attr, None) == self.feature:
-                setattr(self.inner, attr, self.feature + "__perm")
-        try:
-            return self.inner.fit(ts, cfg)
-        finally:
-            self.inner.__dict__.update(orig)
+        return self._call(self.inner.fit, ts.data, ts, cfg)
 
     def predict(self, m, ts, keys):
-        orig = self.inner.__dict__.copy()
-        for attr in ("feature", "fp"):
-            if getattr(self.inner, attr, None) == self.feature:
-                setattr(self.inner, attr, self.feature + "__perm")
-        try:
-            return self.inner.predict(m, ts, keys)
-        finally:
-            self.inner.__dict__.update(orig)
+        return self._call(self.inner.predict, ts.data, m, ts, keys)
 
 
 def b0_predictions(data, assignment: pd.Series) -> pd.DataFrame:

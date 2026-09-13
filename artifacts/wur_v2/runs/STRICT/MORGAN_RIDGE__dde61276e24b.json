@@ -1,0 +1,14 @@
+{
+ "model_id": "MORGAN_RIDGE",
+ "partition": "STRICT",
+ "assignment_sha256": "dde61276e24b",
+ "cfgs": {
+  "0": "30.0",
+  "1": "30.0",
+  "2": "10.0",
+  "3": "30.0",
+  "4": "30.0"
+ },
+ "seconds": 3.6156399250030518,
+ "created_utc": "2026-09-13T01:12:47Z"
+}

@@ -1,0 +1,14 @@
+{
+ "model_id": "TA_THEN_MORGAN",
+ "partition": "PARTITION_S1",
+ "assignment_sha256": "a4f44ae2f31b",
+ "cfgs": {
+  "0": "30.0",
+  "1": "30.0",
+  "2": "30.0",
+  "3": "30.0",
+  "4": "30.0"
+ },
+ "seconds": 5.8596720695495605,
+ "created_utc": "2026-09-13T01:14:14Z"
+}

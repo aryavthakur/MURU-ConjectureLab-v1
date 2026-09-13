@@ -104,3 +104,14 @@ def test_signal_is_recovered_and_permutation_destroys_it():
     perm = EN.run_cv(MO.PermutedFeatures(MO.RidgeModel("X", model_id="R"), "X", 0), d, a, "T", "scaffold_group")
     err = lambda r: float(np.sqrt(np.nanmean((r.pred.loc[d.Y.index].to_numpy() - d.Y.to_numpy()) ** 2)))
     assert err(real) < 0.7 * err(perm)
+
+
+def test_permutation_seeds_are_distinct():
+    d = synthetic(n=60, groups=20)
+    base = MO.RidgeModel("X", model_id="R")
+    blocks = []
+    for s in range(3):
+        pm = MO.PermutedFeatures(base, "X", s)
+        pm._ensure(d)
+        blocks.append(d.features[pm.perm_name].to_numpy())
+    assert not np.array_equal(blocks[0], blocks[1]) and not np.array_equal(blocks[1], blocks[2])
