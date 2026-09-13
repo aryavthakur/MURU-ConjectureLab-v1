@@ -1,0 +1,77 @@
+{
+ "study": "muru-v2-msnlib-confirmation",
+ "phase": "2-3-reproducibility",
+ "repro_worktree_head": "1be9d54eb6f1fc1d1a5b8b3602150845e581808d",
+ "repro_worktree_path": "/tmp/muru_repro_rebuild (ephemeral, not part of the repository)",
+ "representations": {
+  "rebuild_command": "PYTHONPATH=src python3 scripts/wur_v2/build_v2_representations.py",
+  "seconds": 26.6,
+  "shapes_and_hashes": {
+   "TIER_A": {"shape": [1325, 12], "sha256_16": "45bdfdd7aef2aa2b"},
+   "MORGAN": {"shape": [1325, 2048], "sha256_16": "1dd2e97e70c18d5b"},
+   "MORGAN_COUNTS": {"shape": [1325, 2048], "sha256_16": "f447b437000370d2"},
+   "ATOMPAIR": {"shape": [1325, 2048], "sha256_16": "84e400a0ae38802f"},
+   "ATOMPAIR_COUNTS": {"shape": [1325, 2048], "sha256_16": "a66f1c71a11198f7"},
+   "MACCS": {"shape": [1325, 167], "sha256_16": "13b95c01da6dde88"},
+   "MINMAX_MORGAN": {"shape": [1325, 1325], "sha256_16": "60c5ff2f3ec632b2"},
+   "MINMAX_ATOMPAIR": {"shape": [1325, 1325], "sha256_16": "5c42f709bd311cb3"}
+  },
+  "morgan_parquet_full_sha256": "7230d95a31e933424613f956f696c02d1e034164cbb30966e1f1645df14c758e",
+  "morgan_parquet_committed_to_repo": false,
+  "tier_a_maccs_committed_and_verified_exact_equal_to_rebuild": true,
+  "finding": "MORGAN.parquet (and ATOMPAIR/kernel files) are not git-tracked, unlike TIER_A/MACCS which are; this is a minor packaging asymmetry, disclosed and proven-reconstructible, not fixed (out of scope for this study)."
+ },
+ "candidate_and_comparators": {
+  "rebuild_command": "PYTHONPATH=src python3 scripts/wur_v2/build_v2_candidate.py",
+  "seconds": 9.5,
+  "V2_TA_MORGAN_JOINT": {"rebuilt_canonical_json_sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b", "match": true},
+  "V2_REF_TA_RIDGE": {"rebuilt_canonical_json_sha256": "3de70e7b2294428c2ce9f69b88a4808e3397712b2f636e260645fbc46dc5bc32", "match": true},
+  "V2_REF_B1_MASS": {"rebuilt_canonical_json_sha256": "3e8b889c9b096dec2e03b01ad900b49ad3046fb56c0795c54e39150c64c2ab56", "match": true},
+  "V2_REF_B0_NULL": {"rebuilt_canonical_json_sha256": "b910cc0d8a16002612a010d5898cf436edd4dd0ac60612371e8fdfac7b7ff56a", "match": true},
+  "reload_parity_max_abs_logg": 2.220446049250313e-15
+ },
+ "p1_reproduction": {
+  "script": "scripts/wur_v2/repro_check_p1.py (written for this check)",
+  "cache_path_fingerprint_verified": true,
+  "cache_path_fingerprint": "07f215e961870ad176695709498771315bedcfce6367464380f30ee0c6fa24fd",
+  "from_scratch_rerun_bypassing_all_caches": true,
+  "from_scratch_seconds": 28.3,
+  "cache_and_from_scratch_bit_identical": true,
+  "PRIMARY": {
+   "P1_candidate": 0.11599941847410669,
+   "P1_tierA": 0.13054598985817814,
+   "ratio": 0.8885712889390591,
+   "AF_candidate": 0.06339622641509433,
+   "AF_tierA": 0.10264150943396226
+  },
+  "STRICT": {
+   "P1_candidate": 0.12281854776057843,
+   "P1_tierA": 0.13268637788545154,
+   "ratio": 0.9256304205289858,
+   "AF_candidate": 0.07622641509433963,
+   "AF_tierA": 0.10943396226415095
+  },
+  "mandate_stated_approx": {
+   "P1_candidate": 0.1159994, "P1_tierA": 0.1305460, "ratio": 0.8885713, "strict_ratio": 0.9256304,
+   "AF_candidate_pct": 6.3, "AF_tierA_pct": 10.3
+  },
+  "matches_mandate_to_6_sig_figs": true
+ },
+ "raw_inputs": [
+  {"name": "LCSB spectra", "path": "artifacts/wur_v2/data/lcsb_pos_spectra.parquet", "sha256": "ce11ff7c3be574ca375ec1abab46c6c2efe728d797859e877263db9899051061", "committed": true},
+  {"name": "WUR spectra", "path": "artifacts/wur_v2/data/wur_pos_spectra.parquet", "sha256": "df806afdc6f81365da6f8575cd605551a0d7e558a760af76411600bfd3993dc5", "committed": true},
+  {"name": "compound identity table", "path": "artifacts/wur_v2/data/compounds.csv", "sha256": "87d79ab7f9e02eb7c99c4ea9b7e12a87568d0b2c8c81c372b22d44bec862e34c", "committed": true},
+  {"name": "WUR identity table", "path": "artifacts/wur_v2/data/wur_pos_identity.csv", "sha256": "ec5c3bd5204daa6e76be6cf2995ab84b3d90fede51dfef235b1c49aa33b86c36", "committed": true}
+ ],
+ "raw_multigigabyte_mzml_committed_anywhere": false,
+ "environment": {
+  "python": "3.13.12",
+  "os": "Darwin 25.1.0 arm64",
+  "numpy": "2.5.2",
+  "scipy": "1.18.0",
+  "pandas": "3.0.5",
+  "scikit_learn": "1.9.0",
+  "rdkit": "2026.03.5",
+  "pymzml": "2.6.1"
+ }
+}

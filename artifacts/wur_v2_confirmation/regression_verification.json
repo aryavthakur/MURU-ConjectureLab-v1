@@ -1,0 +1,71 @@
+{
+ "study": "muru-v2-msnlib-confirmation",
+ "phase": "1-regression",
+ "targeted_suite": {
+  "command": "python3 -m pytest tests/wur_v2 tests/test_wur_stage2_*.py -p no:warnings -rs",
+  "passed": 116, "failed": 0, "skipped": 0, "duration_s": 68.16
+ },
+ "full_suite_head": {
+  "command": "python3 -m pytest -p no:warnings -rs",
+  "branch": "claude/muru-v2-msnlib-confirmation",
+  "head_sha": "1be9d54eb6f1fc1d1a5b8b3602150845e581808d",
+  "passed": 2014, "failed": 11, "skipped": 60, "errors": 14, "duration_s": 600.59
+ },
+ "full_suite_base": {
+  "command": "python3 -m pytest -p no:warnings -rs",
+  "commit": "17027e13614cc850d88bcb72b3e8b8c2458eb00a",
+  "branch": "fable/wur-stage2-muru-development (PR #5 base)",
+  "passed": 1967, "failed": 11, "skipped": 60, "errors": 14, "duration_s": 583.14
+ },
+ "failed_test_names_head": [
+  "test_no_third_party_import_escapes_the_lock",
+  "test_the_closure_verifier_passes_in_this_environment",
+  "test_the_julia_identity_gate_has_no_prospective_caller_yet",
+  "test_world_manifest_carries_no_planted_law",
+  "test_search_inputs_expose_only_response_and_covariates",
+  "test_g1a_is_independent_of_real_chemistry",
+  "test_only_declared_version_bump_paths_differ_from_amendment_a2",
+  "test_every_pinned_post_change_hash_matches_the_working_tree"
+ ],
+ "failed_test_names_base": [
+  "test_no_third_party_import_escapes_the_lock",
+  "test_the_closure_verifier_passes_in_this_environment",
+  "test_the_julia_identity_gate_has_no_prospective_caller_yet",
+  "test_world_manifest_carries_no_planted_law",
+  "test_search_inputs_expose_only_response_and_covariates",
+  "test_g1a_is_independent_of_real_chemistry",
+  "test_only_declared_version_bump_paths_differ_from_amendment_a2",
+  "test_every_pinned_post_change_hash_matches_the_working_tree"
+ ],
+ "error_test_names_head": [
+  "test_a_world_rebuilds_bit_identically", "test_constants_are_not_the_phase3_literals",
+  "test_drawn_parameters_stay_inside_the_preregistered_ranges", "test_every_feature_is_supplied_to_the_search",
+  "test_every_frozen_world_hash_is_still_reproducible", "test_g1c_plants_a_law_the_frozen_grammar_cannot_represent",
+  "test_g1c_worlds_reproduce_their_frozen_hash_after_the_centering_fix", "test_no_observed_mu_enters_a_synthetic_response",
+  "test_no_sealed_confirmation_compound_reaches_a_world", "test_null_constructions_destroy_the_descriptor_response_link",
+  "test_replicates_and_regimes_produce_different_worlds", "test_the_coupling_adversary_manufactures_a_mass_association_with_no_chemistry",
+  "test_the_non_mass_carrier_rotates_across_replicates", "test_the_pure_null_contains_no_descriptor_signal"
+ ],
+ "error_test_names_base": [
+  "test_a_world_rebuilds_bit_identically", "test_constants_are_not_the_phase3_literals",
+  "test_drawn_parameters_stay_inside_the_preregistered_ranges", "test_every_feature_is_supplied_to_the_search",
+  "test_every_frozen_world_hash_is_still_reproducible", "test_g1c_plants_a_law_the_frozen_grammar_cannot_represent",
+  "test_g1c_worlds_reproduce_their_frozen_hash_after_the_centering_fix", "test_no_observed_mu_enters_a_synthetic_response",
+  "test_no_sealed_confirmation_compound_reaches_a_world", "test_null_constructions_destroy_the_descriptor_response_link",
+  "test_replicates_and_regimes_produce_different_worlds", "test_the_coupling_adversary_manufactures_a_mass_association_with_no_chemistry",
+  "test_the_non_mass_carrier_rotates_across_replicates", "test_the_pure_null_contains_no_descriptor_signal"
+ ],
+ "failed_and_error_names_identical_head_vs_base": true,
+ "new_failures_introduced_by_v2": 0,
+ "classification": {
+  "environment_closure_rc4_lock_drift": 4,
+  "missing_phase2_phase3_synthetic_benchmark_data": 21
+ },
+ "candidate_change_triggered": false,
+ "fix_applied": false,
+ "environment": {
+  "python": "3.13.12", "os": "Darwin 25.1.0 arm64",
+  "numpy": "2.5.2", "scipy": "1.18.0", "pandas": "3.0.5",
+  "scikit_learn": "1.9.0", "rdkit": "2026.03.5", "pymzml": "2.6.1"
+ }
+}
