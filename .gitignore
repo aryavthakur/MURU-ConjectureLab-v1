@@ -70,6 +70,13 @@ artifacts/p3_ckpt/
 !artifacts/wur_sealed_partition.json
 !artifacts/wur_dev_neg_keys.json
 !artifacts/wur_bridge_gate.json
+
+# MSnLib confirmation study (post-PR#5): preflight/reproducibility manifests,
+# the confirmation freeze, the one-look access/result records. Small JSON
+# evidence, not regenerable scratch — always tracked. Raw mzML is never
+# written here.
+!artifacts/wur_v2_confirmation/
+!artifacts/wur_v2_confirmation/**
 !artifacts/wur_mu_provenance.json
 *.parquet
 *.feather

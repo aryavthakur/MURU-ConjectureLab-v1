@@ -1,0 +1,96 @@
+{
+ "study": "muru-v2-msnlib-confirmation",
+ "phase": "0-preflight",
+ "ancestry": {
+  "required_start_head": "dc1f04d0d7ba6ee59fc3baf7be7c4c350671efda",
+  "start_head_verified": true,
+  "pr5_url": "https://github.com/aryavthakur/MURU-ConjectureLab-v1/pull/5",
+  "pr5_state": "OPEN",
+  "pr5_mergeable": "MERGEABLE",
+  "pr5_head_ref": "claude/muru-wur-v2-generation-b2ffa1",
+  "pr5_head_oid": "dc1f04d0d7ba6ee59fc3baf7be7c4c350671efda",
+  "pr5_base_ref": "fable/wur-stage2-muru-development",
+  "pr5_base_oid": "17027e13614cc850d88bcb72b3e8b8c2458eb00a",
+  "start_head_is_ancestor_of_main": false,
+  "new_branch": "claude/muru-v2-msnlib-confirmation",
+  "new_branch_created_from": "dc1f04d0d7ba6ee59fc3baf7be7c4c350671efda",
+  "harness_auto_branch_not_used": "claude/muru-v2-msnlib-confirmation-44b714",
+  "tree_clean_at_checkout": true
+ },
+ "candidate_hash": {
+  "file": "artifacts/wur_v2/candidate/V2_TA_MORGAN_JOINT.json",
+  "expected_canonical_json_sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
+  "actual_canonical_json_sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
+  "canonical_match": true,
+  "raw_file_sha256_sum_for_reference_only": "f2ca0322ab75bbcc2ee91e66be07172966d0492060c7669107e1f9081edf58c3",
+  "raw_file_hash_matches_expected": false,
+  "raw_vs_canonical_discrepancy_explained": true,
+  "explanation": "expected hash is computed by src/muru/wur_v2/candidate.py:sha256_of() over json.dumps(obj, sort_keys=True, separators=(',',':')), not over raw file bytes; git blob at dc1f04d verified identical to working tree; only historical revision (96681cb, Amendment A-3) added canary/provenance metadata with all scientific fields byte-identical to the first version (ed37f8c)"
+ },
+ "comparator_hash": {
+  "file": "artifacts/wur_v2/candidate/V2_REF_TA_RIDGE.json",
+  "canonical_json_sha256": "3de70e7b2294428c2ce9f69b88a4808e3397712b2f636e260645fbc46dc5bc32",
+  "matches_candidate_manifest": true,
+  "raw_file_sha256_sum_for_reference_only": "de9afa119b80ddc46ffebf98783ac18bfa97c79f0e9e7adf57c300cd9fc6146f"
+ },
+ "training_population_hash": {
+  "expected": "81eef787d7c9687b79060f3af7e95cfe2459c74eeb221d2d86264eacec8c0abd",
+  "candidate_embedded_training_keys_sha256": "81eef787d7c9687b79060f3af7e95cfe2459c74eeb221d2d86264eacec8c0abd",
+  "population_manifest_keys_sha256": "81eef787d7c9687b79060f3af7e95cfe2459c74eeb221d2d86264eacec8c0abd",
+  "match": true,
+  "n_training": 1325,
+  "n_scaffold_groups": 765,
+  "n_strict_clusters": 558
+ },
+ "existing_access_records": [
+  {"path": "artifacts/wur_v2/external/anchor_calibration_access.json", "kind": "ANCHOR_CALIBRATION", "git_head": "6c6cc4fbe0e8ee8506de9b82625aa8499a426acb", "n_allowed_spectrum_keys": 1292},
+  {"path": "artifacts/wur_v2/external_msnlib/anchor_calibration_access.json", "kind": "ANCHOR_CALIBRATION", "git_head": "a41ea4ebb01133fd22d0225c80bb4bd38cee2e50", "n_allowed_spectrum_keys": 1935, "note": "stopped before any decode; MS-Numpress not yet supported"},
+  {"path": "artifacts/wur_v2/external_msnlib/anchor_calibration_access_attempt2.json", "kind": "ANCHOR_CALIBRATION", "note": "rerun after decoder fix"},
+  {"path": "artifacts/wur_v2/external/anchor_diagnostics_access.json", "kind": "ANCHOR_CALIBRATION", "note": "MultiMS2 anchor diagnostics, not MSnLib"}
+ ],
+ "validation_access_record_exists": false,
+ "old_anchor_gate": {
+  "source_doc": "MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md",
+  "n_census_anchors": 402,
+  "n_anchors_both_rungs": 328,
+  "n_anchor_scans_decoded": 1935,
+  "A0": {"nce20_median_abs_delta": 0.0501, "nce20_spearman": 0.882, "nce60_median_abs_delta": 0.0320, "nce60_spearman": 0.902, "pooled_rmsd": 0.0784, "passes": false, "fail_reason": "NCE20 median exceeds 0.05 by 0.0001"},
+  "A1": {"nce20_median_abs_delta": 0.0500, "nce20_spearman": 0.881, "nce60_median_abs_delta": 0.0450, "nce60_spearman": 0.901, "pooled_rmsd": 0.0811, "passes": false, "fail_reason": "RMSD exceeds 0.08 by 0.0011"},
+  "A2": {"nce20_median_abs_delta": 0.0506, "nce20_spearman": 0.881, "nce60_median_abs_delta": 0.0303, "nce60_spearman": 0.902, "pooled_rmsd": 0.0782, "passes": false, "fail_reason": "NCE20 median exceeds 0.05"},
+  "gate_applied_literally": true,
+  "gate_result": "not qualified"
+ },
+ "multims2_status": {
+  "census_file": "artifacts/wur_v2/external_census/multims2_census.json",
+  "peaks_or_intensities_accessed": false,
+  "decode_or_validation_access_record_exists": false,
+  "untouched": true
+ },
+ "raw_mzml_found_in_repo_or_known_local_paths": false,
+ "network_egress_test": {
+  "github.com": {"reachable": true, "http_code": 200, "time_s": 0.49},
+  "zenodo.org": {"reachable": false, "error": "curl 28 operation timed out", "timeout_s_tested": [10, 15]},
+  "gnps-external.ucsd.edu": {"reachable": false, "error": "curl 28 operation timed out", "timeout_s_tested": [15]},
+  "dns_resolution_of_zenodo_org": true,
+  "icmp_to_8_8_8_8": true,
+  "proxy_env_vars_set": false,
+  "conclusion": "host-level egress allowlist excludes MSnLib data hosts; not a general outage"
+ },
+ "blocker": {
+  "blocking": true,
+  "description": "No network route from this execution sandbox to Zenodo, GNPS-external, or (presumed) MassIVE, and no local cache of raw MSnLib validation or anchor mzML files exists in this checkout. Phase 4 (header-only population sampling, parser preflight on anchors, and the one-look validation execution) cannot be carried out here.",
+  "action_per_mandate": "STOP before validation outcome access; report the blocker; proceed only through phases that do not require MSnLib data access.",
+  "connectivity_probes_constitute_data_access": false,
+  "probe_detail": "two bare-domain-root HTTPS connection attempts (https://zenodo.org, https://gnps-external.ucsd.edu), no path/query/scan-id, both timed out with zero bytes received"
+ },
+ "environment": {
+  "python": "3.13.12",
+  "os": "Darwin 25.1.0 arm64",
+  "numpy": "2.5.2",
+  "scipy": "1.18.0",
+  "pandas": "3.0.5",
+  "scikit_learn": "1.9.0",
+  "rdkit": "2026.03.5",
+  "pymzml": "2.6.1"
+ }
+}

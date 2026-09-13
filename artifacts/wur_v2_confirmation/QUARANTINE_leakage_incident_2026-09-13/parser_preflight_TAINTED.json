@@ -1,0 +1,42 @@
+{
+  "n_files_available": 561,
+  "n_files_processed": 561,
+  "n_spectra_decoded_for_preflight": 3366,
+  "n_files_using_numpress_pic": 561,
+  "n_files_using_plain_zlib": 561,
+  "cvparam_accessions_observed_sample": [
+    "MS:1000514",
+    "MS:1000515",
+    "MS:1000519",
+    "MS:1000523",
+    "MS:1000574",
+    "MS:1002747"
+  ],
+  "unanticipated_accessions": [
+    "MS:1000519"
+  ],
+  "array_length_or_decode_failures": [],
+  "nondeterministic_decode_count": 0,
+  "nondeterministic_decode_examples": [],
+  "sample_mu_sanity_check": [
+    {
+      "spectrum_id": "controllerType=0 controllerNumber=1 scan=139",
+      "n_peaks": 51,
+      "precursor_in_array": true,
+      "mu": 0.46017915445525165
+    },
+    {
+      "spectrum_id": "controllerType=0 controllerNumber=1 scan=141",
+      "n_peaks": 31,
+      "precursor_in_array": false,
+      "mu": 0.25228169356532976
+    },
+    {
+      "spectrum_id": "controllerType=0 controllerNumber=1 scan=307",
+      "n_peaks": 15,
+      "precursor_in_array": true,
+      "mu": 0.4535200362523742
+    }
+  ],
+  "note": "Parser preflight on already-exposed ANCHOR_CALIBRATION data only (MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md Part IV); no VALIDATION spectrum decoded here."
+}

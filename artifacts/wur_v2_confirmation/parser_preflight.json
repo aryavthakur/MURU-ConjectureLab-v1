@@ -1,0 +1,21 @@
+{
+  "n_files_available": 561,
+  "n_files_processed": 561,
+  "n_spectra_decoded_for_preflight": 1816,
+  "n_files_using_numpress_pic": 472,
+  "n_files_using_plain_zlib": 472,
+  "cvparam_accessions_observed_sample": [
+    "MS:1000514",
+    "MS:1000515",
+    "MS:1000519",
+    "MS:1000523",
+    "MS:1000574",
+    "MS:1002747"
+  ],
+  "unanticipated_accessions": [],
+  "array_length_or_decode_failures": [],
+  "nondeterministic_decode_count": 0,
+  "nondeterministic_decode_examples": [],
+  "sample_mu_sanity_check": [],
+  "note": "Parser preflight on already-exposed ANCHOR_CALIBRATION data only, scoped through match_compounds to each well's own anchor compound (never by file position) -- see the module docstring for the 2026-09-13 leakage incident this fix addresses."
+}
