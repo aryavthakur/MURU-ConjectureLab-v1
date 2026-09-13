@@ -31,3 +31,16 @@ def test_candidate_hash_and_prediction_shape():
     # per-compound energy matrix (native energies through an adapter) is accepted
     mu2 = CA.predict_mu(m, ["CCN(CC)CC(=O)Nc1c(C)cccc1C"] * 2, [235.18, 235.18], np.array([[30.0, 60.0, 90.0], [30.0, 60.0, 90.0]]))
     assert np.allclose(mu2[0], mu[0])
+
+
+@pytest.mark.skipif(not (CAND / f"{CA.CANDIDATE_ID}.json").exists(), reason="candidate not built")
+def test_candidate_refuses_changed_feature_definition_or_canary():
+    m = json.loads((CAND / f"{CA.CANDIDATE_ID}.json").read_text())
+    CA.verify(m)
+    bad = json.loads(json.dumps(m)); bad["feature_spec"]["morgan"]["radius"] = 1
+    with pytest.raises(CA.ProvenanceError):
+        CA.predict_log_g(bad, ["CCO"], [47.05])
+    bad2 = json.loads(json.dumps(m)); bad2["canary_log_g"][0] += 0.01
+    with pytest.raises(CA.ProvenanceError):
+        CA.verify(bad2)
+    assert CA.supported(m, ["CCN(CC)CC(=O)Nc1c(C)cccc1C"], [235.18], [30.0, 90.0]).all()

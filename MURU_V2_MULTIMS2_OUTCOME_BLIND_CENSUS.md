@@ -1,5 +1,7 @@
 # MURU v2: MultiMS2 outcome-blind identity, metadata and acquisition census
 
+> **Erratum (2026-09-13, red-team finding RT-4).** The scaffold-new survivors are drug-like synthetic screening compounds, not natural-product-like: natural-product-likeness median -0.95 against -0.46 for development, Fsp3 0.25 against 0.42, [M+H]+ median m/z 376 against 304 (structure-only computation). Wherever this report says "natural-product-like", read "drug-like screening". Also (leakage finding L-02): the QC-pass membership and replicate counts recorded here are outcome proxies and must not be used for any validation population, exclusion, stratum or anchor.
+
 Date: 2026-09-12. Status: census only. No MultiMS2 peak, intensity or peak-derived value was read. MultiMS2 stays in exposure class "potential-future-external-not-outcome-accessed", with the disclosures in section 8.
 
 Machine-readable output: `artifacts/wur_v2/external_census/multims2_census.json` (attrition for every step, survivor key lists, population hashes, and a provenance row for every fetched URL with its file, size and sha256). Scripts: `scripts/wur_v2/census/multims2_fetch.py` (a logged fetcher with a denylist) and `scripts/wur_v2/census/multims2_census.py` (deterministic, about 60 s). Downloaded metadata (40 MB, gitignored) is in `data/external/multims2_metadata/`.

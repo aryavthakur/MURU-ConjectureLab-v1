@@ -22,6 +22,33 @@ from muru.molecules import tier_a_descriptors
 from muru.wur_v2 import engine as EN, folds as FO, models as MO, representations as R
 
 CANDIDATE_ID = "V2_TA_MORGAN_JOINT"
+CANARY_SMILES = ("CCN(CC)CC(=O)Nc1c(C)cccc1C", "Cn1cnc2c1c(=O)n(C)c(=O)n2C", "CN1CCC[C@H]1c1cccnc1",
+                 "CC(C)Cc1ccc(C(C)C(=O)O)cc1", "O=C(O)c1ccccc1O")
+CANARY_MZ = (235.1805, 195.0877, 163.1230, 207.1380, 139.0390)
+
+
+def feature_spec() -> dict:
+    import rdkit
+    return {"tier_a_features": list(protocol.FEATURES), "tier_a_scale": {k: protocol.SCALE[k] for k in protocol.FEATURES},
+            "morgan": {"radius": R.MORGAN_RADIUS, "fp_size": R.FP_SIZE, "counts": True, "chirality": False, "transform": "log1p"},
+            "rdkit_version": rdkit.__version__}
+
+
+class ProvenanceError(RuntimeError):
+    pass
+
+
+def verify(model: dict) -> None:
+    """Refuse to predict if the feature definition or the canary predictions no longer reproduce (review I-2)."""
+    if "feature_spec" not in model:
+        return
+    spec = feature_spec()
+    for k in ("tier_a_features", "tier_a_scale", "morgan"):
+        if spec[k] != model["feature_spec"][k]:
+            raise ProvenanceError(f"feature definition changed: {k}")
+    got = _predict_log_g_raw(model, CANARY_SMILES, CANARY_MZ)
+    if not np.allclose(got, model["canary_log_g"], rtol=0, atol=1e-9):
+        raise ProvenanceError("canary log g predictions do not reproduce")
 
 
 def _select(model, data, keys):
@@ -50,6 +77,10 @@ def fit_all(data: EN.Data) -> dict:
     iso = IsotonicRegression(increasing="auto", out_of_bounds="clip").fit(
         data.cov.loc[ts.keys, "precursor_mz"].to_numpy(float), ts.log_g, sample_weight=ts.w)
     out["V2_REF_B1_MASS"] = {**base, "kind": "mass_isotonic", "x": iso.X_thresholds_.tolist(), "y": iso.y_thresholds_.tolist()}
+    for name in ("V2_TA_MORGAN_JOINT", "V2_REF_TA_RIDGE", "V2_REF_B1_MASS"):
+        out[name]["feature_spec"] = feature_spec()
+        out[name]["canary_smiles"] = list(CANARY_SMILES)
+        out[name]["canary_log_g"] = _predict_log_g_raw(out[name], CANARY_SMILES, CANARY_MZ).tolist()
     out["V2_REF_B0_NULL"] = {"kind": "null", "energies_lcsb": EN.POOLED_ENERGIES.tolist(),
                              "rung_means": data.Y.loc[keys].mean(0).tolist(), "n_training": len(keys)}
     return out
@@ -68,6 +99,11 @@ def features_for(smiles: list[str], precursor_mz: list[float]) -> tuple[np.ndarr
 
 
 def predict_log_g(model: dict, smiles, precursor_mz) -> np.ndarray:
+    verify(model)
+    return _predict_log_g_raw(model, smiles, precursor_mz)
+
+
+def _predict_log_g_raw(model: dict, smiles, precursor_mz) -> np.ndarray:
     A, mg = features_for(list(smiles), list(precursor_mz))
     k = model["kind"]
     if k == "joint_ridge":
@@ -93,6 +129,17 @@ def predict_mu(model: dict, smiles, precursor_mz, energies_lcsb) -> np.ndarray:
         E = np.broadcast_to(E, (len(lg), len(E)))
     u = (E / model["profile"]["energy_scale"]) / np.exp(lg)[:, None]
     return _phi_eval(np.array(model["profile"]["knots_log_u"]), np.array(model["profile"]["values"]), u)
+
+
+def supported(model: dict, smiles, precursor_mz, energies_lcsb) -> np.ndarray:
+    """True where u = (E/30)/g_hat lies inside the frozen profile's knot range (review M-6)."""
+    E = np.asarray(energies_lcsb, float)
+    lg = predict_log_g(model, smiles, precursor_mz)
+    if E.ndim == 1:
+        E = np.broadcast_to(E, (len(lg), len(E)))
+    u = (E / model["profile"]["energy_scale"]) / np.exp(lg)[:, None]
+    lo, hi = profile_support_u(model)
+    return (u >= lo) & (u <= hi)
 
 
 def profile_support_u(model: dict) -> tuple[float, float]:

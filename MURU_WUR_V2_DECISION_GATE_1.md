@@ -72,3 +72,15 @@ Every pre-stated sensitivity keeps the joint model ahead of TA_RIDGE: compound w
 ## 8. Decision
 
 Proceed to candidate selection. By protocol section 12 the simplest admitted candidate within 1 percent of the best admitted P1 (EXP08E, 0.1151, an A-1 arm) is **EXP08B, TA_MORGAN_JOINT (0.1160)**: EXP08E is 0.8 percent better, adds the ION_ENV block, and reduces AF by only 0.5 points; EXP09D (atom pairs) is equal in complexity, 0.3 percent better, worse on GIANT, and an A-1 arm; EXP08C (two stage) is equal in class and slightly worse. Outcome A applies: a simple structural model that improves P1 materially over the refitted v1 family and stays ahead on every hard split, with no trust mechanism.
+
+## 9. Corrections after the adversarial reviews (see `MURU_WUR_V2_REVIEW_ADJUDICATION.md`)
+
+- The candidate's gain is about 10 to 11 percent after selection adjustment (ratio 0.889, conditional [0.865, 0.911], ten-arm simultaneous [0.860, 0.918]); 7.4 percent on STRICT is the new-chemistry development estimate; 8.2 percent against a quadratic Tier A control.
+- About half of the gain is atom-type composition (radius-0 Morgan invariants) and the rest first-shell environments; radius 1 matches radius 2. Section 6 answers 1 and 3 should read "atom-type composition plus local environments".
+- Section 1, "noise does not dominate": the 6.5 to 10.3 percent shares are of Tier A's out-of-fold log g error variance (interval 4 to 12 percent). Against the candidate's trajectory MSE the repeat floor is 30 to 32 percent (P1 floor about 0.065 to 0.07).
+- Section 1, E30: the linear derivative-amplification mechanism is not supported; the supported statement is "scale misplacement dominates E30 error under an oracle-scale decomposition".
+- Section 1, survival/depth: the EXP04 regression is mechanically dominated by total mu and is not mechanistic evidence.
+- Section 3, trust: random PR-AUC baseline about 0.068; calibration-in-the-large -0.09. Conclusion unchanged.
+- Section 4, shape: "1.8 percent (1.2 to 2.4), below the pre-set bar".
+- Section 5: the source-transfer stress test is not scaffold-disjoint and the bridge was fitted on development compounds; neither is transfer evidence.
+- Admission criterion c4 for EXP08B passes only as restated in amendment A-3.

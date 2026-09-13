@@ -177,7 +177,11 @@ class KernelRidgeMinMax(ScaleModel):
 
 def kernel_block(data, name, rows, cols) -> np.ndarray:
     index, K = data.kernels[name]
-    return K[np.ix_(index.get_indexer(rows), index.get_indexer(cols))]
+    ri, ci = index.get_indexer(rows), index.get_indexer(cols)
+    if (ri < 0).any() or (ci < 0).any():
+        # get_indexer returns -1 for an unknown key, which would silently read the last row (review M-3)
+        raise KeyError("kernel_block: key not in the precomputed kernel")
+    return K[np.ix_(ri, ci)]
 
 
 class KNNResidual(ScaleModel):

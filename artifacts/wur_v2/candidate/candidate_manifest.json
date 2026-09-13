@@ -1,6 +1,6 @@
 {
  "V2_TA_MORGAN_JOINT": {
-  "sha256": "9eaa78d6126f4dc826d58bc46915781dc990ad997c2adbfdd7e1ab392589ed93",
+  "sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
   "cfg": {
    "alpha": 0.3,
    "block_weight": 0.1
@@ -8,14 +8,14 @@
   "n_training": 1325
  },
  "V2_REF_TA_RIDGE": {
-  "sha256": "2f575f38bcbacf60382507b12d403f0ee5701f543fe1378c47c0baa84a5962b5",
+  "sha256": "3de70e7b2294428c2ce9f69b88a4808e3397712b2f636e260645fbc46dc5bc32",
   "cfg": {
    "alpha": 0.1
   },
   "n_training": 1325
  },
  "V2_REF_B1_MASS": {
-  "sha256": "10228c2832d07d0af2cf011ae831d32c69cab16c01465cc5435458436302a263",
+  "sha256": "3e8b889c9b096dec2e03b01ad900b49ad3046fb56c0795c54e39150c64c2ab56",
   "cfg": null,
   "n_training": 1325
  },

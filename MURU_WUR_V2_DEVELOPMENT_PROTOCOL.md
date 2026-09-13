@@ -168,3 +168,13 @@ Stop broad model escalation when any holds: independent-repeat variability domin
 **Result information visible.** Everything in A-1 plus Experiments 10 and 11, including an exploratory, not fully nested predicted-shape estimate of P1 0.1132 against 0.1160 (the training coefficients for fold f came from models trained on fold f's labels).
 
 **Effect on earlier interpretation.** The frozen section 13 stop reading ("oracle gain below 3 percent") is recorded as having fired on the held-energy oracle; A-2 overrides it for one arm only, disclosed here. No completed result changes.
+
+### A-3, 2026-09-13, after the five adversarial reviews, before any external access
+
+**What changed.** (1) Admission criterion c4 is restated for models containing the Tier A block: every permutation of the fingerprint rows must lose to the unpermuted arm, and the mean permuted P1 ratio against TA_RIDGE must not fall below the arm's own empty-fingerprint null by more than that null's bootstrap noise. (2) Development estimates for the selected candidate are reported with a ten-arm simultaneous interval and a selection-optimism estimate alongside the conditional interval. (3) The external protocol adopts the statistical review's design (section 6 of `MURU_WUR_V2_MULTIMS2_EXTERNAL_PROTOCOL.md`). (4) Run caches carry an input fingerprint; serialized models carry feature provenance and canaries.
+
+**Why.** c4 as coded ("does not beat TA_RIDGE") cannot hold for a joint model whose permuted fingerprint block leaves a Tier A ridge plus noise: its permuted ratio sits at 1.00 by construction and crosses it by chance (0.998 to 1.005). The intent of c4 is that the structure-label link, not the extra columns, produces the gain. The review findings S-01, S-02, S-04, I-1, I-2 are adjudicated in `MURU_WUR_V2_REVIEW_ADJUDICATION.md`.
+
+**Result information visible.** All development results, all five review reports (including reviewer diagnostics: quadratic Tier A, composition ladder, radius-1 joint model, MultiMS2 structure-only reweighting).
+
+**Effect on earlier interpretation.** EXP08B is admitted under the restated c4 (literal c4 failed; disclosed). No arm changes admission otherwise. No candidate change.

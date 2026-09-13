@@ -1,0 +1,11 @@
+{
+ "model_id": "JOINT_PLUS_SHAPE",
+ "partition": "GIANT",
+ "assignment_sha256": "c67dfb83e484",
+ "cfgs": {
+  "0": "10.0"
+ },
+ "seconds": 1.620521068572998,
+ "created_utc": "2026-09-13T01:27:31Z",
+ "inputs_sha256": "07f215e961870ad176695709498771315bedcfce6367464380f30ee0c6fa24fd"
+}

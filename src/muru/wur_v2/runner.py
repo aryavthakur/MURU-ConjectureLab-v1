@@ -21,6 +21,26 @@ TEST_FOLDS = {"GIANT": [0]}
 BENZENE = "c1ccccc1"
 
 
+def inputs_fingerprint(data: EN.Data) -> str:
+    """sha256 over the outcome matrix and every representation file on disk (features and kernels).
+
+    Stored with each cached run and checked on load, so a cache is never reused
+    after outcomes or representations change (review finding I-1). It does not
+    depend on which blocks a caller happened to load.
+    """
+    import hashlib
+    if getattr(data, "_fingerprint", None):
+        return data._fingerprint
+    h = hashlib.sha256()
+    h.update(np.ascontiguousarray(data.Y.to_numpy(float)).tobytes())
+    h.update("\n".join(map(str, data.Y.index)).encode())
+    for f in sorted((DATA / "representations").glob("*")):
+        if f.suffix in (".parquet", ".npy"):
+            h.update(f.name.encode()); h.update(hashlib.sha256(f.read_bytes()).digest())
+    data._fingerprint = h.hexdigest()
+    return data._fingerprint
+
+
 def load_data(with_representations: bool = True) -> EN.Data:
     d = EN.Data.load(ROOT)
     d.cov["compound_group"] = d.cov.index
@@ -47,9 +67,13 @@ def run(model: EN.ScaleModel, data: EN.Data, partition: str, keys_subset=None, t
     sha = folds()["partitions"][partition]["assignment_sha256"][:12]
     path = RUNS / partition / f"{model.id}{tag}__{sha}.parquet"
     meta_path = path.with_suffix(".json")
+    fp = inputs_fingerprint(data)
     if use_cache and path.exists() and keys_subset is None:
-        pred = pd.read_parquet(path)
         meta = json.loads(meta_path.read_text())
+        if meta.get("inputs_sha256") != fp:
+            # legacy or stale cache: recompute, and only accept the file if it is identical
+            return _revalidate(model, data, partition, tag, path, meta_path, meta, fp)
+        pred = pd.read_parquet(path)
         return EN.CVRun(model_id=model.id, partition=partition, pred=pred[list(EN.POOLED_ENERGIES.astype(str))].set_axis(EN.POOLED_ENERGIES, axis=1),
                         log_g_pred=pred["log_g_pred"], fold_of=pred["fold"], cfgs=meta["cfgs"],
                         inner_oof=pd.read_parquet(path.with_suffix(".inner.parquet")) if path.with_suffix(".inner.parquet").exists() else pd.DataFrame(),
@@ -68,8 +92,29 @@ def run(model: EN.ScaleModel, data: EN.Data, partition: str, keys_subset=None, t
             io = r.inner_oof.copy(); io.columns = [str(c) for c in io.columns]
             io.to_parquet(path.with_suffix(".inner.parquet"))
         meta_path.write_text(json.dumps({"model_id": model.id, "partition": partition, "assignment_sha256": sha,
-                                         "cfgs": r.cfgs, "seconds": r.seconds,
+                                         "inputs_sha256": fp, "cfgs": r.cfgs, "seconds": r.seconds,
                                          "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}, indent=1))
+    return r
+
+
+class StaleCacheError(RuntimeError):
+    pass
+
+
+def _revalidate(model, data, partition, tag, path, meta_path, meta, fp):
+    """A cache without a matching input fingerprint is recomputed; the cached file is kept only if identical."""
+    a = assignment(partition)
+    tf = TEST_FOLDS.get(partition)
+    r = _run_selected_folds(model, data, a, partition, tf) if tf is not None else EN.run_cv(model, data, a, partition, GROUP_COL[partition])
+    old = pd.read_parquet(path)
+    new = r.pred.copy(); new.columns = [str(c) for c in new.columns]
+    same = (list(old.index) == list(new.index)
+            and np.array_equal(old[new.columns].to_numpy(), new.to_numpy())
+            and np.array_equal(old["log_g_pred"].to_numpy(), r.log_g_pred.loc[old.index].to_numpy()))
+    if not same:
+        raise StaleCacheError(f"cached run {path.name} differs from a fresh recomputation with the current inputs")
+    meta["inputs_sha256"] = fp
+    meta_path.write_text(json.dumps(meta, indent=1))
     return r
 
 
