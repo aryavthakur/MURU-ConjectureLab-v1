@@ -249,6 +249,75 @@ class PermutedFeatures(ScaleModel):
         return self._call(self.inner.predict, ts.data, m, ts, keys)
 
 
+class ShapeCorrectedJoint(ScaleModel):
+    """Amendment A-2: joint Tier A + Morgan scale model plus ONE structure-predicted shape coefficient.
+
+    Inside a training set: the shape basis is the first principal component of the
+    collapse residuals after each compound's own scale tangent is projected out;
+    shape coefficients of training compounds are cross-fitted (4 grouped folds of
+    the joint scale model inside the training set); a ridge on the joint design
+    predicts the coefficient. For a query compound, mu = Phi(u(zhat)) + c_hat * b,
+    with b orthogonalized against the tangent at zhat, clipped to [0, 1]. The joint
+    configuration for outer fold f is the one the nested TA_MORGAN_JOINT run
+    selected for fold f on the same partition.
+    """
+
+    def __init__(self, joint_cfgs: dict, model_id: str = "JOINT_PLUS_SHAPE"):
+        self.joint_cfgs, self.id = joint_cfgs, model_id
+        self.joint = JointRidge("MORGAN", "_joint")
+
+    def grid(self):
+        return [10.0, 100.0, 1000.0]
+
+    def _cfg(self, ts):
+        f = ts.outer_fold if ts.outer_fold < 10 else ts.outer_fold // 10
+        return self.joint_cfgs[f]
+
+    @staticmethod
+    def _ortho(b, t):
+        return b - ((b * t).sum(-1, keepdims=True) / np.maximum((t * t).sum(-1, keepdims=True), 1e-12)) * t
+
+    def fit(self, ts, shape_alpha):
+        from muru.wur_v2 import scale as SC
+        cfg = self._cfg(ts)
+        jm = self.joint.fit(ts, cfg)
+        Y = ts.data.Y.loc[ts.keys].to_numpy()
+        r = Y - mu_from_log_g(ts.fit, ts.log_g)
+        t = SC.sensitivity(ts.fit, ts.log_g, POOLED_ENERGIES)
+        ro = np.where(np.isfinite(r), self._ortho(np.nan_to_num(r), t), 0.0)
+        _, _, Vt = np.linalg.svd(ro - ro.mean(0), full_matrices=False)
+        b = Vt[0] * (1.0 if Vt[0][-1] >= 0 else -1.0)
+        inner = FO.inner_folds(ts.data.cov.loc[ts.keys].reset_index(), ts.group_col, ts.outer_fold + 555)
+        c = np.zeros(len(ts.keys))
+        for k in range(FO.INNER_K):
+            tr, va = inner != k, inner == k
+            sub = TrainSet(keys=ts.keys[tr], log_g=ts.log_g[tr], w=ts.w[tr], fit=ts.fit, data=ts.data,
+                           group_col=ts.group_col, outer_fold=ts.outer_fold)
+            mk = self.joint.fit(sub, cfg)
+            z = self.joint.predict(mk, sub, ts.keys[va])
+            p = mu_from_log_g(ts.fit, z)
+            bt = self._ortho(np.tile(b, (va.sum(), 1)), SC.sensitivity(ts.fit, z, POOLED_ENERGIES))
+            res = Y[va] - p
+            m = np.isfinite(res)
+            c[va] = np.where(m, res * bt, 0).sum(1) / np.maximum(np.where(m, bt * bt, 0).sum(1), 1e-12)
+        A = ts.X("TIER_A")
+        stats = (A.mean(0), A.std(0) + 1e-12)
+        D = np.hstack([(A - stats[0]) / stats[1], cfg[1] * ts.X("MORGAN")])
+        sm = Ridge(alpha=shape_alpha).fit(D, c, sample_weight=ts.w)
+        return {"joint": jm, "b": b, "shape": sm, "stats": stats, "bw": cfg[1]}
+
+    def predict(self, m, ts, keys):
+        return self.joint.predict(m["joint"], ts, keys)
+
+    def predict_mu(self, m, ts, keys, log_g):
+        from muru.wur_v2 import scale as SC
+        A = ts.X("TIER_A", keys)
+        D = np.hstack([(A - m["stats"][0]) / m["stats"][1], m["bw"] * ts.X("MORGAN", keys)])
+        ch = m["shape"].predict(D)
+        bt = self._ortho(np.tile(m["b"], (len(keys), 1)), SC.sensitivity(ts.fit, log_g, POOLED_ENERGIES))
+        return np.clip(mu_from_log_g(ts.fit, log_g) + ch[:, None] * bt, 0.0, 1.0)
+
+
 def b0_predictions(data, assignment: pd.Series) -> pd.DataFrame:
     out = []
     for f in sorted(assignment.unique()):

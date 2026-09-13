@@ -126,7 +126,7 @@ def run_fold(model: ScaleModel, data: Data, train_keys, test_keys, group_col: st
             for its, va in inner_sets:
                 m = model.fit(its, cfg)
                 lg = model.predict(m, its, va)
-                p = mu_from_log_g(its.fit, lg)
+                p = model.predict_mu(m, its, va, lg) if hasattr(model, "predict_mu") else mu_from_log_g(its.fit, lg)
                 sse += _sse(p, data.Y.loc[va].to_numpy())
                 rows.append(pd.DataFrame(p, index=va, columns=POOLED_ENERGIES).assign(log_g_pred=lg))
             inner_loss[gi] = sse
@@ -137,7 +137,8 @@ def run_fold(model: ScaleModel, data: Data, train_keys, test_keys, group_col: st
     cfg = grid[best]
     m = model.fit(ts, cfg)
     lg = model.predict(m, ts, np.asarray(test_keys))
-    pred = mu_from_log_g(ts.fit, lg)
+    pred = (model.predict_mu(m, ts, np.asarray(test_keys), lg) if hasattr(model, "predict_mu")
+            else mu_from_log_g(ts.fit, lg))
     return FoldResult(test_keys=np.asarray(test_keys), pred=pred, log_g_pred=lg, cfg=cfg,
                       inner_loss={str(grid[i]): v for i, v in inner_loss.items()},
                       inner_oof=inner_preds.get(best, pd.DataFrame()))
