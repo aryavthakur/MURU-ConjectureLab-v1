@@ -77,6 +77,10 @@ artifacts/p3_ckpt/
 # written here.
 !artifacts/wur_v2_confirmation/
 !artifacts/wur_v2_confirmation/**
+# MSnLib confirmation study 2 (replacement population): exposure registry, security evidence, freeze and
+# access records. Tracked so an access record can never hide from git status.
+!artifacts/wur_v2_confirmation_v2/
+!artifacts/wur_v2_confirmation_v2/**
 !artifacts/wur_mu_provenance.json
 *.parquet
 *.feather

@@ -66,15 +66,42 @@ def test_headers_allowlisted_and_no_outcome_summaries(tmp_path):
 
 
 def test_decode_requires_guard_and_returns_only_selected(tmp_path):
+    """Since the 2026-09-13 incident a duck-typed guard like `Guard` (the pattern that burned confirmation
+    sample 1) is refused; decoding needs an exact-type decode authority. Decode mechanics are unchanged."""
+    import csv
+    import hashlib
+    import subprocess
+
+    from muru.wur_v2 import decode_authority as DA
+
     p = _mzml(tmp_path)
     with pytest.raises(X.OutcomeAccessError):
         X.decode_selected(p, ["scan=2"], None)
-    g = Guard()
+    with pytest.raises(X.OutcomeAccessError):
+        X.decode_selected(p, ["scan=2"], Guard())
+
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    for args in (["init", "-q"], ["config", "user.email", "t@t"], ["config", "user.name", "t"]):
+        subprocess.run(["git", *args], cwd=repo, check=True)
+    digest = hashlib.sha256(p.read_bytes()).hexdigest()
+    for rel, row in ((DA.ANCHOR_ALLOWLIST, {"file": p.name, "file_sha256": digest, "unique_sample_id": "u",
+                                            "anchor_key": "K", "anchor_mh": "301.1410"}),
+                     (DA.EXPOSED_FILES, {"file": p.name, "file_sha256": digest, "unique_sample_id": "u", "events": "E"})):
+        (repo / rel).parent.mkdir(parents=True, exist_ok=True)
+        with open(repo / rel, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(row))
+            w.writeheader()
+            w.writerow(row)
+    subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
+    subprocess.run(["git", "commit", "-q", "-m", "allowlist"], cwd=repo, check=True)
+    g = DA.AnchorPreflightAuthority(log_path=tmp_path / "log.jsonl", root=repo, code_root=None)
     out = X.decode_selected(p, ["scan=2"], g)
     assert set(out) == {"scan=2"}
     mz, inten = out["scan=2"]
     assert np.allclose(mz, [50.0, 99.1, 301.14]) and np.allclose(inten, [10.0, 50.0, 40.0])
-    assert g.log == [(str(p), ["scan=2"])]
+    with pytest.raises(DA.DecodeAuthorityError):
+        X.decode_selected(p, ["scan=3"], g)                  # precursor 455.29 is not the allowlisted anchor
 
 
 def test_numpress_pic_roundtrip_and_reference_vectors():

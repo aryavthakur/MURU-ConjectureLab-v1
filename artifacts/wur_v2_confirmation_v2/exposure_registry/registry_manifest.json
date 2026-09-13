@@ -1,0 +1,131 @@
+{
+ "study_id": "muru-v2-msnlib-confirmation-2.0",
+ "registry": "permanent exposure exclusion registry (study 2, step 2)",
+ "utc": "2026-09-13T21:36:53Z",
+ "rule": "a compound or scaffold group listed here may never enter an MSnLib confirmatory pool",
+ "counts": {
+  "excluded_compound_keys_all_sources": 13355,
+  "excluded_scaffold_groups_all_sources": 6525,
+  "design12b_keys": 39238,
+  "design12b_groups": 29562,
+  "excluded_design12b_keys": 9906,
+  "excluded_design12b_groups": 5276,
+  "remaining_design12b_groups_count_only": 24286,
+  "decoded_msnlib_files": 561,
+  "decoded_msnlib_wells": 561,
+  "decoded_msnlib_spectra_unique": 4927,
+  "per_reason_compounds": {
+   "COPLATED_IN_DECODED_WELL": 4020,
+   "DECODED_SAME_PLATE_ION_0p01": 4111,
+   "DECODED_SAME_WELL_ION_0p7": 1221,
+   "EXPOSED_POPULATION:ENTACT-MIX-LISTS-499-503-505": 445,
+   "EXPOSED_POPULATION:LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 781,
+   "EXPOSED_POPULATION:LCSB-CONFIRMATION": 110,
+   "EXPOSED_POPULATION:LCSB-DEV": 439,
+   "EXPOSED_POPULATION:LCSB-NEG": 379,
+   "EXPOSED_POPULATION:LCSB-POS-V2-SPECTRA": 478,
+   "EXPOSED_POPULATION:LCSB-RAW-MIX-REPLICATE-SET-92": 92,
+   "EXPOSED_POPULATION:LCSB-RAW-MIXES-499-503-505": 39,
+   "EXPOSED_POPULATION:V2-DEVELOPMENT-POPULATION": 1325,
+   "EXPOSED_POPULATION:WUR-DEV-ANALYSIS": 476,
+   "EXPOSED_POPULATION:WUR-DEV-HOLD": 130,
+   "EXPOSED_POPULATION:WUR-NEG-D6-EXCLUDED": 32,
+   "EXPOSED_POPULATION:WUR-NEG-DEV": 209,
+   "EXPOSED_POPULATION:WUR-POS-IDENTITY": 1010,
+   "EXPOSED_POPULATION:WUR-SEALED": 404,
+   "MSNLIB_ANCHOR_CENSUS_DESIGN": 402,
+   "MSNLIB_ANCHOR_CENSUS_DETECTED": 340,
+   "MSNLIB_ANCHOR_GATE_CALIBRATION": 328,
+   "MULTIMS2_ANCHOR_CALIBRATION": 106,
+   "SAMPLE1_DRAW_GROUP": 2690,
+   "SCAFFOLD_GROUP_EXCLUDED": 9906,
+   "SURFACED_VALUE_ATTRIBUTED_WELL": 20
+  },
+  "per_event_spectra": {
+   "E_anchor_gate_attempt1": 4,
+   "E_anchor_gate_attempt2": 1935,
+   "E_buggy_preflight": 3366,
+   "E_buggy_preflight_surfaced_sanity_check": 3,
+   "E_fixed_preflight_rerun": 1816
+  }
+ },
+ "hashes_sorted_newline_joined": {
+  "excluded_compound_keys_sha256": "5e2d2790ef032f0e77213b1cd21376248be42f4eee743e4cbbd7f0195b19c9ea",
+  "excluded_scaffold_groups_sha256": "afc05bfe20a24b978ea60a5a90fe4e4dbb7d27243cbb3979c65c04aff4d36786",
+  "excluded_design12b_keys_sha256": "2300c7caba13f75ff98b003b32b3adbc73740912b2337980b5a1783da3c1e7c0",
+  "excluded_design12b_groups_sha256": "e514f8e2ee70c4d8d8cb58c2c5c3f8dbf77226c2deba95f88641998eafddee30",
+  "sample1_groups_sha256": "e3772e294bdaf4d82f31358f03e3c86342676d4900f4655ce6c005646ea9d757",
+  "sample1_keys_sha256": "099180786d00a4b939621e1fb36f3fcf09d50a8abc3c106418c1acb4bc5caa50"
+ },
+ "output_file_sha256": {
+  "excluded_compounds.csv": "85e5ee6c4b46c18a1ccbf98e6909391674d6b6d220c6fae3da3de0f3fa7d9ec9",
+  "excluded_scaffold_groups.csv": "55b80c471af235e57706be502221df383b0c3d87ce661a2ec94d8691eeeb079e",
+  "exposed_files.csv": "b343a297f80676c2b1772fcd10e38d094b45537fd39842cb38195f0263d22d26",
+  "decoded_spectra.csv": "2a599a2bc148b0cdda05df13b0818af3c6548aba4bd1b96080b77cf1d52874f1",
+  "excluded_compound_keys.txt": "51b17cba18a868d11d60ca948b1a8e36e93b0a9c349f8707289b3790cce6e800",
+  "excluded_scaffold_groups.txt": "56b81940dfed8ab9f7d26093bd999d5f1362df7f78fb9f5ac3559ec52f5067f8"
+ },
+ "decode_event_verification": {
+  "buggy_spectra": 3366,
+  "buggy_files": 561,
+  "fixed_spectra": 1816,
+  "fixed_files": 472,
+  "gate2_spectra": 1935,
+  "gate2_files": 470,
+  "gate1_ids": 4,
+  "incident_affected_pairs_subset_of_buggy_set": true,
+  "surfaced_spectrum_ids_match_quarantine": true,
+  "gate2_per_file_counts_match_access_record": true
+ },
+ "inputs": {
+  "merlin_tables_sha256_verified_against_census": {
+   "compounds__mcebio_cleaned.tsv": "32b73f879742be186105a5247c6f1267c36294a8e3541403433ac8e368601de8",
+   "compounds__mcescaf_cleaned.tsv": "79da9e70c481dbca1ef073152d74d5891c8e7d921caf96f1a10e0281c1c6ca79",
+   "compounds__nihnp_cleaned.tsv": "917a75bc6e7df6d832fdb46b93690c3aa2f4a1a3cf53b872f36c4a550c59d615",
+   "compounds__otavapep_cleaned.tsv": "cdc42649622d93449893b64df678dd7cce480a24e768746cea1045d374b5a592",
+   "compounds__enamdisc_cleaned.tsv": "c9a778d1e25c5bf4a441f3c04f13a20f8e83d44a82cbacbe45e2d544e909dd7c",
+   "compounds__enammol_cleaned.tsv": "18224ad0c79027df44568613e81fc7935b9f2c9215e6a1086be15c5995a7f963",
+   "compounds__mcedrug_cleaned.tsv": "6826cc783ce947f94d4f8c60920ebe3b988be20e551733ab76f2603acc927bd5",
+   "compounds__mcediv_50k_sub_cleaned.tsv": "b636dfee9803257fbff6fea5b51bfaff7740bfe70d32e0315931e7d63db7ca1d",
+   "compounds__targetmolhtsnp_cleaned.tsv": "8c6f1e6ac1e166cba2bce793f70076156836b0e6423535a8f85dfa4bd9dc5865"
+  },
+  "anchor_file_manifest_sha256": "48494e524171471808731938ee3adabeeea40da9c0baf36acac015468da98d39",
+  "lcsb_trajectories_sha256": "0b2ea8302485fdb91e96b3d7e6bbb673a014f05b314d61e1c434fb3ae88c5881",
+  "census_sha256": "e487b23ae8b3e6d12f741e8797da773dc629b6090e8f6cb425a677f5eaf7c3bf",
+  "population_key_counts": {
+   "ENTACT-MIX-LISTS-499-503-505": 445,
+   "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 781,
+   "LCSB-CONFIRMATION": 110,
+   "LCSB-DEV": 439,
+   "LCSB-NEG": 379,
+   "LCSB-POS-V2-SPECTRA": 478,
+   "LCSB-RAW-MIX-REPLICATE-SET-92": 92,
+   "LCSB-RAW-MIXES-499-503-505": 39,
+   "MultiMS2-ANCHOR": 106,
+   "V2-DEVELOPMENT-POPULATION": 1325,
+   "WUR-DEV-ANALYSIS": 476,
+   "WUR-DEV-HOLD": 130,
+   "WUR-NEG-D6-EXCLUDED": 32,
+   "WUR-NEG-DEV": 209,
+   "WUR-POS-IDENTITY": 1010,
+   "WUR-SEALED": 404
+  },
+  "identity_py_sha256": "2ebe0de24e5ea5f781eea94984b238be8977161a836a56b5add4e277a0ca9cbd",
+  "rdkit": "2026.03.5",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "python": "3.13.12"
+ },
+ "rejected_rule_sensitivity": {
+  "rule": "decoded precursor within 0.01 Da of [M+H]+ of a compound in ANY well of ANY library",
+  "n_compounds_it_would_flag": 15803,
+  "n_additional_design12b_groups_it_would_exclude": 7733,
+  "why_rejected": "no exposure mechanism: cross-library, cross-year mass coincidences (both independent audits)"
+ },
+ "not_excluded_disclosures": {
+  "MultiMS2-VALIDATION and SECONDARY": "reserved, never decoded; not previously exposed, so not excluded (the census kept them in 12b)",
+  "prospective acquisition target lists": "design-only, never measured; not excluded",
+  "header-only reads": "scan headers of the 2,811 locally extracted wells were read for population construction; headers are acquisition metadata, not outcomes, by program precedent; not excluded",
+  "WUR negative-mode keys without SMILES": "excluded by exact key; scaffold groups cannot be computed (no SMILES in repo)"
+ }
+}

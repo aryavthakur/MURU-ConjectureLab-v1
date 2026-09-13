@@ -10,9 +10,10 @@ Two strictly separated operations:
   observed m/z): those are outcomes and are not on the allowlist.
 
 * `decode_selected(path, spectrum_ids, guard)` decodes peak arrays for an
-  explicit list of spectra only, and only when a guard object authorizes it
-  (a calibration-anchor guard or the one-look validation guard). Any other
-  spectrum's arrays are skipped unread.
+  explicit list of spectra only, and only under a fully constructed decode
+  authority from `muru.wur_v2.decode_authority` (since 2026-09-13: the legacy
+  `AccessGuard`, the void study-1 `ConfirmationAccessGuard` and duck-typed
+  guards are refused). Any other spectrum's arrays are skipped unread.
 """
 from __future__ import annotations
 
@@ -141,15 +142,67 @@ def _decode_array(bda) -> tuple[str, np.ndarray]:
     return kind, arr
 
 
+def _spectrum_header_scope(spec) -> tuple[float | None, float | None]:
+    """(ms_level, selected_ion_mz) read from a spectrum element's own cvParams, never from its arrays.
+    Same last-value-wins semantics as scan_headers/_cv, so the two passes agree on an unchanged file."""
+    level = mz = None
+    for cv in spec.iter(NS + "cvParam"):
+        if cv.getparent() is not None and cv.getparent().tag == NS + "binaryDataArray":
+            continue
+        acc, val = cv.get("accession"), cv.get("value")
+        if acc == "MS:1000511" and val not in (None, ""):
+            level = float(val)
+        elif acc == "MS:1000744" and val not in (None, ""):
+            mz = float(val)
+    return level, mz
+
+
+def _authority_types() -> tuple:
+    from muru.wur_v2.decode_authority import AUTHORITY_TYPES
+    return AUTHORITY_TYPES
+
+
+def _constructed(guard) -> bool:
+    from muru.wur_v2.decode_authority import is_constructed
+    return is_constructed(guard)
+
+
 def decode_selected(path: Path, spectrum_ids, guard) -> dict[str, tuple[np.ndarray, np.ndarray]]:
-    if guard is None or not getattr(guard, "authorized", False):
-        raise OutcomeAccessError("peak decode requires an authorizing guard")
-    wanted = set(spectrum_ids)
-    guard.record_decode(path, sorted(wanted))
+    """Decode peak arrays for explicitly named spectra under a decode authority.
+
+    Hardened 2026-09-13 after confirmation sample 1 was burned by a duck-typed guard with no scope
+    (artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/). Order is fixed:
+      1. the guard's EXACT type must be AnchorPreflightAuthority or ConfirmationV2Authority
+         (muru.wur_v2.decode_authority); duck types, subclasses and legacy guards are refused;
+      2. a header-only pass (arrays removed) reads each requested scan's ms level and selected-ion m/z
+         from the file itself;
+      3. guard.authorize(path, [(id, m/z, level)]) checks file content hash, scan allowlist and precursor
+         scope and durably records the intent, or raises;
+      4. the decode pass re-reads m/z and level from the same spectrum element and refuses on any change,
+         then decodes only those spectra.
+    """
+    if (guard is None or type(guard) not in _authority_types() or not _constructed(guard)
+            or getattr(guard, "authorized", False) is not True):
+        raise OutcomeAccessError(
+            "peak decode requires an authorized AnchorPreflightAuthority or ConfirmationV2Authority "
+            f"(got {type(guard).__module__}.{type(guard).__qualname__})")
+    path = Path(path)
+    wanted = sorted(set(spectrum_ids))
+    if not wanted:
+        return {}
+    header = {r["spectrum_id"]: r for r in scan_headers(path)}
+    missing = [s for s in wanted if s not in header]
+    if missing:
+        raise OutcomeAccessError(f"{len(missing)} requested spectra are not in {path.name}, e.g. {missing[:3]}")
+    requests = [(s, header[s].get("selected_ion_mz"), header[s].get("ms_level")) for s in wanted]
+    guard.authorize(path, requests)
+    scope = {s: (lvl, mz) for s, mz, lvl in requests}
     out = {}
     for _, spec in etree.iterparse(str(path), events=("end",), tag=NS + "spectrum", huge_tree=True):
         sid = spec.get("id")
-        if sid in wanted:
+        if sid in scope:
+            if _spectrum_header_scope(spec) != scope[sid]:
+                raise OutcomeAccessError(f"{path.name}:{sid} header changed between authorization and decode")
             arrays = dict(_decode_array(b) for b in spec.iter(NS + "binaryDataArray"))
             n_declared = int(spec.get("defaultArrayLength", -1))
             if not (len(arrays["mz"]) == len(arrays["intensity"]) and (n_declared < 0 or len(arrays["mz"]) == n_declared)):

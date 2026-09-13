@@ -1,5 +1,9 @@
 """Confirmation-specific one-look VALIDATION guard (study `muru-v2-msnlib-confirmation-1.0`).
 
+VOID since 2026-09-13: study 1.0's population was burned before its one look. Constructing this guard for
+study 1.0 raises, and external_mzml.decode_selected refuses this class for any study. It is kept (not
+deleted) as the historical record of the reviewed v1 design; study 2 uses decode_authority.py.
+
 The base `AccessGuard` (`external_guard.py`) has two process-level weaknesses,
 identified before this study's first validation-outcome access (no such
 access has ever occurred; see `MURU_V2_MSNLIB_CONFIRMATION_PROTOCOL.md`):
@@ -89,6 +93,11 @@ class ConfirmationAccessGuard:
                  actual_population_key_hash: str, actual_scaffold_group_hash: str,
                  actual_spectrum_manifest_hash: str, allowed_spectrum_keys: set,
                  code_allowlist: set[str] | None = None, root: Path = ROOT, study_id: str = STUDY_ID):
+        if study_id == STUDY_ID:
+            raise ConfirmationGuardError(
+                f"study {STUDY_ID} is VOID: its validation population was permanently EXPOSED by the 2026-09-13 "
+                f"parser-preflight incident (MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md); no guard may be "
+                f"constructed for it. Study 2 uses muru.wur_v2.decode_authority.ConfirmationV2Authority.")
         self.root = Path(root)
         self.record_path = Path(record_path)
         self.freeze_doc_path = Path(freeze_doc_path)

@@ -13,6 +13,7 @@ import pytest
 
 from muru.wur_v2.confirmation_guard import ConfirmationAccessGuard, ConfirmationGuardError
 
+TEST_STUDY = "test-only-historical-guard-mechanics"
 HASHES = dict(actual_candidate_hash="cand-1", actual_comparator_hash="comp-1",
               actual_population_key_hash="pop-1", actual_scaffold_group_hash="scaf-1",
               actual_spectrum_manifest_hash="spec-1")
@@ -37,9 +38,11 @@ def _repo(tmp_path):
 
 
 def _make(root, head, record_name="access/validation.json", **overrides):
+    # study 1.0 is VOID (2026-09-13 incident) and refuses construction; the historical mechanics are
+    # exercised under a test-only study id
     kwargs = dict(record_path=root / record_name, freeze_doc_path=root / "FREEZE.md",
                   freeze_manifest_path=root / "FREEZE_MANIFEST.json", expected_freeze_commit=head,
-                  allowed_spectrum_keys={("a.mzML", "scan=1")}, root=root)
+                  allowed_spectrum_keys={("a.mzML", "scan=1")}, root=root, study_id=TEST_STUDY)
     kwargs.update(HASHES)
     kwargs.update(overrides)
     return ConfirmationAccessGuard(**kwargs)
@@ -49,7 +52,7 @@ def test_first_look_succeeds_and_writes_record_before_decode(tmp_path):
     root, head = _repo(tmp_path)
     g = _make(root, head)
     rec = json.loads((root / "access/validation.json").read_text())
-    assert rec["study_id"] == "muru-v2-msnlib-confirmation-1.0"
+    assert rec["study_id"] == TEST_STUDY
     assert rec["freeze_commit"] == head
     assert rec["decodes"] == []
     assert g.authorized is True

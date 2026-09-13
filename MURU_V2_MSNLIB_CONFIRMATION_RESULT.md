@@ -1,5 +1,17 @@
 # MURU-WUR-v2: Verification and MSnLib External Confirmation — Result
 
+> **CORRECTION, added 2026-09-13 (study-2 preparation). Read §E before §C.**
+> §C's statement that "no MSnLib validation outcome of any kind was accessed,
+> requested, or seen" was true for the network-blocked session that wrote it
+> and is false for the study as a whole. In the later 2026-09-13 session a
+> parser-preflight script accidentally decoded validation-population spectra
+> (964 spectra, 350 eligible validation compounds, 314 scaffold groups), one
+> validation mu value was visibly surfaced to the operator, and the original
+> 2,000-scaffold-group validation population (seed 20261010) is permanently
+> EXPOSED. No confirmatory one look was executed. The decision "VALIDATION NOT
+> EXECUTED" still stands. A replacement study with a new population is
+> `muru-v2-msnlib-confirmation-2.0`. Nothing below is deleted.
+
 **Decision: VALIDATION NOT EXECUTED.**
 
 This document closes the mandate given for this branch
@@ -89,7 +101,10 @@ cache of raw MSnLib validation or anchor mzML exists in this checkout.
 Population sampling (which needs the MSnLib design-frame identity tables),
 header-only preflight, parser preflight, and the one-look decode are all
 consequently blocked. **No MSnLib validation outcome of any kind was
-accessed, requested, or seen at any point in this study.** The two
+accessed, requested, or seen at any point in this study.** [CORRECTION
+2026-09-13: true for this network-blocked session only; superseded by §E,
+where validation-population spectra were accidentally decoded and the
+population was burned.] The two
 connectivity probes made (bare HTTPS connections to the domain roots of
 `zenodo.org` and `gnps-external.ucsd.edu`, no path, no query, no scan or
 compound identifier) returned no content and are not a data access event;

@@ -168,6 +168,14 @@ validation-population files, though present in the same local directory,
 were explicitly excluded from this pass by filename allowlist — this
 preflight never touched them.**
 
+> **CORRECTION, added 2026-09-13.** The sentence above is false. The filename
+> allowlist restricted the preflight to anchor FILES, but MSnLib wells are
+> pooled and the script selected the first six rung scans of each file by
+> position, so 964 of the 3,366 decoded spectra belonged to validation-
+> population compounds co-plated in those anchor wells, and the §7 "sample mu
+> sanity check" printed one validation mu value. This is the leakage incident
+> recorded in `MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md`.
+
 - MS-Numpress PIC (+ zlib) decoded on all 561 files; every decode repeated
   twice and compared bit-for-bit (0 non-deterministic decodes).
 - `MS:1000519` ("32-bit integer") appears alongside the Numpress-PIC

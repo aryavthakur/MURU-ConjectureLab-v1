@@ -53,13 +53,28 @@ class MS2Scan:
         )
 
 
+class ExternalSourceRefused(RuntimeError):
+    """This unguarded reader must never open an external validation-source file (MSnLib, MultiMS2)."""
+
+
+_EXTERNAL_MARKERS = ("pluskal", "msnlib", "multims2", "muru-msnlib")
+
+
 def iter_ms2(path: str | Path, min_peaks: int = 1):
     """Yield MS2 scans from a centroided mzML.
 
     Reads only what is needed: scan id, retention time, selected precursor m/z,
     and the centroided peak list. No feature detection, no deisotoping -- this
     is the deliberately un-processed branch.
+
+    Refuses MSnLib/MultiMS2 paths (added 2026-09-13 after the MSnLib confirmation
+    sample-1 leakage incident): this reader decodes every peak list with no access
+    guard, so external validation data may only be decoded through
+    muru.wur_v2.external_mzml.decode_selected under a decode authority.
     """
+    lowered = str(Path(path).resolve()).lower()
+    if any(m in lowered for m in _EXTERNAL_MARKERS):
+        raise ExternalSourceRefused(f"{path}: external validation-source file; use the guarded decoder")
     run = pymzml.run.Reader(str(path), MS_precisions={1: 5e-6, 2: 5e-6})
     for spec in run:
         if spec.ms_level != 2:
