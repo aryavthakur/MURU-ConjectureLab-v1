@@ -1,0 +1,53 @@
+{
+  "reviews_dispatched": 4,
+  "leakage": {
+    "verdict": "LEAKAGE_CONCERNS_FOUND",
+    "clean_checks": ["training-vs-validation key/scaffold disjointness (0 overlap, independently rebuilt from raw inputs)",
+                      "scaffold-new filtering (step 10/10b) spot-checked and correct",
+                      "anchor-vs-validation key/scaffold disjointness (0 overlap)",
+                      "exactly one sampling seed/call, no reroll",
+                      "no outcome-derived eligibility filter (scan_headers structurally excludes intensity/TIC/base-peak fields)",
+                      "duplicate-acquisition tie-break keys only on filename fields, never on peak/mu"],
+    "material_finding": "10_parser_preflight.py decoded real MS2 peak arrays for 964 spectra (28.6% of 3,366 decoded) matching 350 of 2,140 eligible validation-population compounds, across 367 of 561 designated anchor files, via an unscoped positional selection instead of match_compounds. One real validation mu value (MURAVORBGFDSMA) was surfaced to the operator.",
+    "disposition": "CONFIRMED by operator against their own tool output. Population marked EXPOSED. Bug fixed and regression-tested. See MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md."
+  },
+  "statistics": {
+    "verdict": "STATISTICS_CONCERNS_FOUND, both material findings fixed pre-freeze",
+    "clean_checks": ["exact P1 definition (pooled two-rung RMSE) traced end-to-end",
+                      "whole-scaffold-group multinomial cluster bootstrap, not row-level",
+                      "bootstrap recomputes P1 per replicate via valid per-cluster-sum algebra",
+                      "B=10000/seed=20261011 correctly override metrics.py's own different module defaults",
+                      "group count (1658) exceeds the 500 floor and the 250-group two-rung floor"],
+    "material_findings_fixed": [
+      "decision logic in 12_external_analysis.py omitted the frozen AF tail-risk override (upper-95% AF_diff CI vs +0.03 tolerance); fixed to a disjunctive precondition evaluated before the ratio/CI branches",
+      "artifacts/wur_v2_confirmation/eligible_population.(csv) had no builder script anywhere in the tracked tree; written as 08b_build_eligible_population.py with build-time assertions (exact key-set match, no development-population overlap)"
+    ],
+    "minor_finding": "the '95% upper bound' is a two-sided 97.5th percentile CI, applied consistently everywhere but not explicitly disambiguated in the frozen prose -- documentation only, not a computational error"
+  },
+  "implementation": {
+    "verdict": "IMPLEMENTATION_CONCERNS_FOUND, one material finding investigated and resolved (not a real defect)",
+    "clean_checks": ["A0 direction confirmed by direct computation (NCE20->LCSB30.12, NCE60->LCSB76.53)",
+                      "A0 constants identical, character-for-character, everywhere they appear",
+                      "candidate and comparator share one live-computed E array, never divergent",
+                      "precursor inclusion: spectrum_mu sums the full decoded array, no m/z filter",
+                      "Morgan fingerprint settings (radius=2, fp_size=2048, no chirality) verified byte-identical across the novelty-bin and candidate code paths",
+                      "full test suite: 0 failures, re-run fresh"],
+    "material_finding_investigated": "fixed_rung_scans' first20 rule lacks the run_len>=2 guard that last60 has, so a fragmented Assisted scan whose CE coincidentally equals 20.0 could in principle be misclassified as rung 20. RESOLVED by empirical investigation, not assumption: real header data across 400 files shows MS2 collision_energy takes ONLY the six documented values {15,20,30,45,60,75}, and 20.0 is exclusively Exp1's fixed energy -- never one of the Assisted experiment's five candidate steps {15,30,45,60,75}. The asymmetry between first20 and last60 is therefore a deliberate, correct reflection of the acquisition design (60 is ambiguous between Exp3 and Assisted; 20 is not), not a bug. No code change made.",
+    "minor_findings": ["test count is 59 (47 pre-existing + 12 new), not ~73 as informally estimated earlier in the session -- 0 failures regardless, documentation-only discrepancy",
+                        "the parser 'decode twice' determinism check is real (no caching anywhere in the decode path) but structurally weak given the decoder has no source of run-to-run non-determinism to detect"]
+  },
+  "governance": {
+    "verdict": "GOVERNANCE_CONCERNS_FOUND, all findings fixed pre-freeze",
+    "clean_checks": ["git log --all --follow on the intended validation_access.json path returns nothing",
+                      "_bind_to_freeze_commit does true byte-for-byte comparison, exercised by dedicated tests for both an edited-then-committed freeze doc and freeze manifest",
+                      "access record written before self.authorized=True, before any decode call",
+                      "no programmatic deletion path for any access record anywhere in the repo",
+                      "12 guard tests pass; tracked-tree dirty check correctly excludes untracked files (gitignored raw mzML)"],
+    "material_findings_fixed": [
+      "population_key_hash/scaffold_group_hash/spectrum_manifest_hash were read from a stale cached header_eligibility.json rather than recomputed live -- fixed: 11_run_one_look.py now calls compute_header_eligibility() fresh immediately before constructing the guard",
+      "freeze_manifest.json cannot contain a freeze_commit field (a commit's hash is a function of its own tree; no commit can embed its own resultant SHA) -- fixed: 11_run_one_look.py resolves expected_freeze_commit via a live `git rev-parse HEAD` call, valid only because the script is run immediately after the freeze commit with nothing else committed in between"
+    ],
+    "acknowledged_limitation": "code_allowlist is name-based only (no diff-content inspection); mitigated only by convention (an empty allowlist with freeze-commit-equals-access-HEAD), documented explicitly as an honor-system mechanism in confirmation_guard.py, not a verified-safe path for future reuse with a non-empty allowlist"
+  },
+  "outcome": "The leakage review's material finding is the operative one: the reviewed sample is EXPOSED and this confirmation attempt did not proceed to the one-look. All other findings across all four reviews were fixed pre-freeze and are preserved as reusable, validated infrastructure (transport authentication, ConfirmationAccessGuard, metrics/decision-rule code, parser preflight scoping) for a future validation design against a fresh, undrawn sample."
+}

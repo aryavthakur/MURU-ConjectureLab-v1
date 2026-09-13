@@ -1,0 +1,13 @@
+{
+  "python": "3.13.12",
+  "os": "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "numpy": "2.5.2",
+  "scipy": "1.18.0",
+  "pandas": "3.0.5",
+  "scikit_learn": "1.9.0",
+  "rdkit": "2026.03.5",
+  "pymzml": "2.6.1",
+  "lxml": "6.0.2",
+  "pyarrow": "25.0.1",
+  "note": "Identical interpreter/site-packages used for Phase 1 regression testing and this confirmation study (no per-worktree virtualenv). requirements.lock.txt is a separate, frozen RC4-era environment-closure contract with a known disclosed gap (lxml unpinned, MURU_V2_REGRESSION_VERIFICATION.md §4); this file is the confirmation study's own environment record and does not modify or supersede that lock file."
+}

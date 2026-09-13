@@ -190,3 +190,53 @@ tail-risk secondary already had — added. Two minor findings (claim-scope
 template ambiguity between "practically meaningful" and "modest" outcomes,
 and an imprecise "commercial-screening" population label) were also
 closed.
+
+## E. 2026-09-13 continuation: transport resolved, then a real leakage incident — POPULATION EXPOSED, decision remains VALIDATION NOT EXECUTED
+
+A later session resumed this branch with network access. Both blockers from
+§C were resolved: 98 MassIVE files were fetched before that route was
+cancelled by explicit instruction, and all nine official positive-mode
+Zenodo mzML archives were independently authenticated (MD5, SHA256, and
+byte size, against both user-supplied provenance and this repository's own
+prior central-directory record) and used to cover the full frozen
+2,402-file requirement. Header-only eligibility, structural-novelty bins,
+a hardened one-look guard (`ConfirmationAccessGuard`,
+`src/muru/wur_v2/confirmation_guard.py`), and a four-reviewer independent
+pre-access audit (leakage, statistics, implementation, governance) all
+proceeded, with two real pre-outcome code defects found and fixed (a
+missing tail-risk override in the decision rule; a load-bearing file with
+no builder in the tracked tree) before any freeze was committed.
+
+**The leakage reviewer then found a real, material incident**: a parser-
+preflight test script (`10_parser_preflight.py`), intended to re-test the
+mzML/Numpress parser on already-exposed anchor data only, had a scoping bug
+that decoded real MS2 peak arrays for 964 spectra (28.6% of 3,366 decoded)
+matching 350 of the 2,140 eligible validation-population compounds, because
+MSnLib wells are pooled and many "anchor" files are shared with sampled
+validation compounds. The operator saw one real validation μ value (compound
+`MURAVORBGFDSMA`, μ = 0.4535200362523742) in tool output before any formal
+guard was ever constructed. Full record:
+`MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md`.
+
+Per explicit operator instruction and this program's own established
+precedent for outcome exposure (the WUR-SEALED entry in the exposure
+registry: one look, however partial, permanently changes a population's
+status), **the entire 2,000-scaffold-group / 2,690-compound sample (seed
+20261010) is now EXPOSED and can never support an independent confirmatory
+claim.** It was not scored, not further summarized, and no P1/ratio/bootstrap
+was computed. The tainted artifact and the exact buggy script are quarantined,
+not deleted (`artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/`);
+the bug is fixed and regression-tested
+(`tests/wur_v2/test_v2_parser_preflight_scope.py`); `MURU_V2_MSNLIB_CONFIRMATION_FREEZE.md`
+is marked VOID rather than deleted, since the reviewed methodology and
+infrastructure (transport, guard, statistics) remain sound for a future
+attempt even though this specific sample is dead.
+
+**Decision: VALIDATION NOT EXECUTED still stands** — no P1, ratio, bootstrap
+interval, or AF value was ever computed for this population, so no
+confirmation/disconfirmation claim of any kind is made here. This is now
+compounded by the fact that this specific sample could not support such a
+claim even if re-attempted. A new independent validation design, with a new
+sample, is required and is explicitly out of scope for this branch — the
+next session should define it separately, reusing the transport/guard
+infrastructure but drawing an entirely new population.
