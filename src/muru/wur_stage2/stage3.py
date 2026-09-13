@@ -42,6 +42,10 @@ def training_population(data_dir: Path):
 
 
 def sealed_tables(data_dir: Path):
+    if (OUT / "first_sealed_access.json").exists():
+        # v2 guard: the one look happened at 69ca1a6; a second call would overwrite
+        # the first-access record. v2 reads exposed WUR through muru.wur_v2.spectra.
+        raise POP.PopulationError("WUR-SEALED was already accessed once; stage3.sealed_tables refuses a second call")
     sealed = json.loads((ROOT / "artifacts" / "wur_sealed_partition.json").read_text())
     keys = set(sealed["connectivity_keys"])
     if canonical_key_hash(sorted(keys)) != WUR_SEALED_SHA256:
