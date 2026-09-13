@@ -1,0 +1,10 @@
+{
+ "model_id": "TA_ION_MORGAN_JOINT",
+ "partition": "GIANT",
+ "assignment_sha256": "c67dfb83e484",
+ "cfgs": {
+  "0": "(0.3, 0.1)"
+ },
+ "seconds": 2.3517627716064453,
+ "created_utc": "2026-09-13T01:19:33Z"
+}

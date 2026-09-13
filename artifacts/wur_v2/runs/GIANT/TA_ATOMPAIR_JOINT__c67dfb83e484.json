@@ -1,0 +1,10 @@
+{
+ "model_id": "TA_ATOMPAIR_JOINT",
+ "partition": "GIANT",
+ "assignment_sha256": "c67dfb83e484",
+ "cfgs": {
+  "0": "(1.0, 0.1)"
+ },
+ "seconds": 2.4233500957489014,
+ "created_utc": "2026-09-13T01:18:37Z"
+}
