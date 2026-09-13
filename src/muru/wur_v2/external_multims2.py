@@ -248,7 +248,7 @@ def fit_adapter(mu_anchor: pd.DataFrame, pop: pd.DataFrame, model: dict, gammas=
     return {**best, "cells": t}
 
 
-def gate(cells: pd.DataFrame) -> dict:
+def gate(cells: pd.DataFrame, n_energies: int = 3) -> dict:
     from scipy.stats import spearmanr
     per = {}
     for e, g in cells.groupby("energy"):
@@ -257,7 +257,7 @@ def gate(cells: pd.DataFrame) -> dict:
     rmsd = float(np.sqrt(np.mean((cells.mu - cells.mu_ref) ** 2)))
     n_anchor = int(cells.key.nunique())
     passes = (all(v["median_abs_delta"] <= 0.05 and v["spearman"] >= 0.80 for v in per.values())
-              and len(per) == 3 and rmsd <= 0.08 and n_anchor >= 30)
+              and len(per) == n_energies and rmsd <= 0.08 and n_anchor >= 30)
     return {"per_energy": per, "pooled_rmsd": rmsd, "n_anchors": n_anchor, "passes": bool(passes)}
 
 
