@@ -42,6 +42,12 @@ ARMS = {
  "EXP09C_KNN_RESIDUAL_MORGAN": dict(model=lambda: MO.KNNResidual("MINMAX_MORGAN", "KNN10_RESIDUAL_MORGAN"), gen="v2-G1",
      rep="TIER_A ridge + similarity-weighted mean of cross-fitted residuals of 10 nearest training compounds (MinMax Morgan)", space="none (k=10 fixed)",
      hyp="Scale residuals are locally smooth in Morgan similarity space."),
+ "EXP09D_TA_ATOMPAIR_JOINT": dict(model=lambda: MO.JointRidge("ATOMPAIR", "TA_ATOMPAIR_JOINT"), gen="v2-G1",
+     rep="training-standardized TIER_A + block-weighted atom-pair log1p counts", space="alpha {0.1..300} x block weight {0.1,0.3,1}",
+     hyp="Amendment A-1: in the leading joint architecture, the atom-pair metric performs like Morgan (the structural metric is not the lever)."),
+ "EXP08E_TA_ION_MORGAN_JOINT": dict(model=lambda: MO.JointRidge("MORGAN", "TA_ION_MORGAN_JOINT", base="TIER_A_ION"), gen="v2-G1",
+     rep="training-standardized TIER_A + ION_ENV + block-weighted Morgan log1p counts", space="alpha {0.1..300} x block weight {0.1,0.3,1}",
+     hyp="Amendment A-1: the audited ion-environment block adds scale information that Morgan environments do not already carry."),
 }
 pop = json.loads((ROOT / "artifacts/wur_v2/data/population_manifest.json").read_text())["keys_sha256"]
 F = RU.folds()

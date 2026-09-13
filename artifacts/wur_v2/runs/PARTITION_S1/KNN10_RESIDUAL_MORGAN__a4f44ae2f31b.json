@@ -1,0 +1,14 @@
+{
+ "model_id": "KNN10_RESIDUAL_MORGAN",
+ "partition": "PARTITION_S1",
+ "assignment_sha256": "a4f44ae2f31b",
+ "cfgs": {
+  "0": "None",
+  "1": "None",
+  "2": "None",
+  "3": "None",
+  "4": "None"
+ },
+ "seconds": 0.6476302146911621,
+ "created_utc": "2026-09-13T01:17:15Z"
+}

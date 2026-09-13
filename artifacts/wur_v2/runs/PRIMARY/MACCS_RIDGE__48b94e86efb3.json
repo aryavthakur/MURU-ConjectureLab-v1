@@ -1,0 +1,14 @@
+{
+ "model_id": "MACCS_RIDGE",
+ "partition": "PRIMARY",
+ "assignment_sha256": "48b94e86efb3",
+ "cfgs": {
+  "0": "30.0",
+  "1": "30.0",
+  "2": "30.0",
+  "3": "100.0",
+  "4": "30.0"
+ },
+ "seconds": 0.3569979667663574,
+ "created_utc": "2026-09-13T01:17:12Z"
+}

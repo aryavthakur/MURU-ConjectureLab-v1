@@ -149,4 +149,12 @@ Stop broad model escalation when any holds: independent-repeat variability domin
 
 ## 16. Amendments
 
-(none)
+### A-1, 2026-09-12, after Experiments 1-9 predeclared arms, before the arms below run
+
+**What changed.** Two arms are added inside the section 10 budget (12 arms; 8 used): `TA_ATOMPAIR_JOINT` (the protocol's joint ridge with the atom-pair block in place of Morgan) and `TA_ION_MORGAN_JOINT` (the joint ridge with Tier A plus ION_ENV as the standardized base block and Morgan as the weighted block). Same grids, same nesting, same admission rule.
+
+**Why.** The predeclared ALT arm compares atom pairs with Morgan only as single-block ridges; the leading arm is the Tier A + fingerprint joint ridge, so the like-for-like metric question is the atom-pair joint ridge. The optional quantum pilot gate (section 13) needs the gain of ION_ENV beyond Morgan, which no predeclared arm measures.
+
+**Result information visible.** PRIMARY/STRICT/GIANT results of EXP07 (ION_ENV admitted, 2.2 percent), EXP08A-D (Morgan ridge 5.1, joint 11.1, two-stage 10.7, MinMax kernel 8.9 percent), EXP09A-C (atom-pair ridge 5.9 percent, MACCS not admitted, kNN residual 6.9 percent), the corrected permutation controls, and the Experiment 6 learning curves.
+
+**Effect on earlier interpretation.** None on completed arms. The two added arms are exploratory with respect to the visible results and their outcome is read with that caveat: an added arm is selected over a predeclared one only if it is better by more than the section 12 one-percent practical margin.

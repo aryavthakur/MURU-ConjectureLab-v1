@@ -1,0 +1,14 @@
+{
+ "model_id": "ATOMPAIR_RIDGE",
+ "partition": "PARTITION_S2",
+ "assignment_sha256": "0b0cb1587537",
+ "cfgs": {
+  "0": "100.0",
+  "1": "100.0",
+  "2": "100.0",
+  "3": "100.0",
+  "4": "30.0"
+ },
+ "seconds": 3.694580078125,
+ "created_utc": "2026-09-13T01:17:03Z"
+}

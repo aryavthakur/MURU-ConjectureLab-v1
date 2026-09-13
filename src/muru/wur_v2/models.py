@@ -83,20 +83,20 @@ class RidgeV1Selection(ScaleModel):
 class JointRidge(ScaleModel):
     """Training-standardized Tier A block plus a weighted fingerprint block, one ridge."""
 
-    def __init__(self, fp: str, model_id: str):
-        self.fp, self.id = fp, model_id
+    def __init__(self, fp: str, model_id: str, base: str = "TIER_A"):
+        self.fp, self.id, self.base = fp, model_id, base
 
     def grid(self):
         return [(a, b) for b in BLOCK_WEIGHTS for a in RIDGE_ALPHAS_FP]
 
     def _design(self, ts, keys, stats, bw):
-        A = ts.X("TIER_A", keys)
+        A = ts.X(self.base, keys)
         A = (A - stats[0]) / stats[1]
         return np.hstack([A, bw * ts.X(self.fp, keys)])
 
     def fit(self, ts, cfg):
         a, bw = cfg
-        A = ts.X("TIER_A")
+        A = ts.X(self.base)
         stats = (A.mean(0), A.std(0) + 1e-12)
         m = Ridge(alpha=a).fit(self._design(ts, ts.keys, stats, bw), ts.log_g, sample_weight=ts.w)
         return (m, stats, bw)
