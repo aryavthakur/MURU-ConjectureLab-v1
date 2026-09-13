@@ -24,5 +24,13 @@
   "cfg": null,
   "n_training": 1325
  },
- "reload_parity_max_abs_logg": 2.220446049250313e-15
+ "reload_parity_max_abs_logg": 2.220446049250313e-15,
+ "V1B_RIDGE_TIERA_FROZEN": {
+  "sha256": "da8ab9ba487419d455966b8e61ecb75b6a74146e34dad57a1ef9e8db5b3d7575",
+  "cfg": {
+   "alpha": 1.0
+  },
+  "n_training": 921,
+  "stage3_prediction_parity_max_abs_mu": 2.220446049250313e-16
+ }
 }
