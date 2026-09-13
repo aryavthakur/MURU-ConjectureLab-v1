@@ -1,0 +1,127 @@
+{
+ "per_rung": [
+  {
+   "E": 30.0,
+   "RMSE_obs": 0.1724790750719078,
+   "MSE_obs": 0.029749031337660808,
+   "MSE_scale": 0.022880243649571932,
+   "MSE_shape": 0.004585607010649193,
+   "cross": 0.0022831806774396843,
+   "scale_share": 0.7691088623987118,
+   "shape_share": 0.1541430696885932,
+   "cross_share": 0.07674806791269503,
+   "RMSE_scale_linearized": 0.14170161025428568,
+   "R2_elin_vs_escale": 0.7236758493111985,
+   "mean_abs_sensitivity": 0.3152456512692158,
+   "corr_abs_e_vs_abs_sens_dz": 0.5672004821409834,
+   "RMSE_premeasurement_sens_times_sd": 0.18574111175973193
+  },
+  {
+   "E": 45.0,
+   "RMSE_obs": 0.148917690657084,
+   "MSE_obs": 0.022176478590638957,
+   "MSE_scale": 0.017469441733937816,
+   "MSE_shape": 0.0018112883104024807,
+   "cross": 0.0028957485462986605,
+   "scale_share": 0.7877464252287532,
+   "shape_share": 0.08167610123489372,
+   "cross_share": 0.13057747353635313,
+   "RMSE_scale_linearized": 0.13862942870337608,
+   "R2_elin_vs_escale": 0.5654983304941501,
+   "mean_abs_sensitivity": 0.30377826279368014,
+   "corr_abs_e_vs_abs_sens_dz": 0.64141385229822,
+   "RMSE_premeasurement_sens_times_sd": 0.1834929877711245
+  },
+  {
+   "E": 60.0,
+   "RMSE_obs": 0.11945356358841479,
+   "MSE_obs": 0.014269153853971456,
+   "MSE_scale": 0.012573035354079625,
+   "MSE_shape": 0.0018549630805314227,
+   "cross": -0.00015884458063959204,
+   "scale_share": 0.8811339118458128,
+   "shape_share": 0.1299981133790313,
+   "cross_share": -0.011132025224844128,
+   "RMSE_scale_linearized": 0.13476411783571668,
+   "R2_elin_vs_escale": 0.4313611276806004,
+   "mean_abs_sensitivity": 0.2657964825883973,
+   "corr_abs_e_vs_abs_sens_dz": 0.5796097268792242,
+   "RMSE_premeasurement_sens_times_sd": 0.15284605028547543
+  },
+  {
+   "E": 75.0,
+   "RMSE_obs": 0.10226073877798592,
+   "MSE_obs": 0.010457258695419473,
+   "MSE_scale": 0.009529294684298029,
+   "MSE_shape": 0.002330752236064644,
+   "cross": -0.0014027882249431998,
+   "scale_share": 0.9112612551578251,
+   "shape_share": 0.22288367381458862,
+   "cross_share": -0.13414492897241362,
+   "RMSE_scale_linearized": 0.1210810958083412,
+   "R2_elin_vs_escale": 0.4505967342005295,
+   "mean_abs_sensitivity": 0.22188390472213898,
+   "corr_abs_e_vs_abs_sens_dz": 0.5019725403249787,
+   "RMSE_premeasurement_sens_times_sd": 0.1315824396092588
+  },
+  {
+   "E": 90.0,
+   "RMSE_obs": 0.09255221476670916,
+   "MSE_obs": 0.008565912458223059,
+   "MSE_scale": 0.007526051253244044,
+   "MSE_shape": 0.00296906825941543,
+   "cross": -0.0019292070544364153,
+   "scale_share": 0.8786047359168638,
+   "shape_share": 0.3466143594037317,
+   "cross_share": -0.22521909532059547,
+   "RMSE_scale_linearized": 0.11730731980292869,
+   "R2_elin_vs_escale": 0.3482464932754753,
+   "mean_abs_sensitivity": 0.19474914255101394,
+   "corr_abs_e_vs_abs_sens_dz": 0.3982195759905951,
+   "RMSE_premeasurement_sens_times_sd": 0.10962687325543725
+  }
+ ],
+ "gradient": {
+  "MSE_gradient_obs_E30_minus_E90": 0.02118311887943775,
+  "MSE_gradient_scale_component": 0.015354192396327888,
+  "MSE_gradient_shape_component": 0.0016165387512337625,
+  "MSE_gradient_cross_component": 0.004212387731876099,
+  "fraction_of_gradient_explained_by_scale": 0.724831526637565,
+  "fraction_explained_by_scale_plus_cross": 0.9236874059748152
+ },
+ "E30_by_sensitivity_tercile": [
+  {
+   "sens_tercile": "low",
+   "n": 441.0,
+   "RMSE_obs": 0.179057998609729,
+   "RMSE_shape": 0.06061324394113963,
+   "RMSE_scale": 0.16217063178553628,
+   "mean_y": 0.6856118436886808
+  },
+  {
+   "sens_tercile": "mid",
+   "n": 440.0,
+   "RMSE_obs": 0.18158862311998095,
+   "RMSE_shape": 0.07693496300877044,
+   "RMSE_scale": 0.1592003597142966,
+   "mean_y": 0.6027378443459891
+  },
+  {
+   "sens_tercile": "high",
+   "n": 440.0,
+   "RMSE_obs": 0.15558162771722145,
+   "RMSE_shape": 0.06454408625586092,
+   "RMSE_scale": 0.13034144386120997,
+   "mean_y": 0.717213140736733
+  }
+ ],
+ "pooled": {
+  "P1_obs": 0.13054598985817814,
+  "P1_scale_only": 0.11829812367951602,
+  "P1_oracle_shape_residual": 0.052064204974662076,
+  "share_scale": 0.8211616175059051,
+  "share_shape": 0.159056496056243,
+  "share_cross": 0.019781886437851916
+ },
+ "scale_error_sd_log_units": 0.4580145033132665
+}
