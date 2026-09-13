@@ -1,0 +1,1891 @@
+{
+ "kind": "ANCHOR_CALIBRATION",
+ "utc": "2026-09-13T03:20:57Z",
+ "git_head": "4d79f26b93f2dfd6d9b6a99c94b5656935f274c9",
+ "git_tree_dirty": false,
+ "freeze_doc": "MURU_WUR_V2_FINAL_CANDIDATE_FREEZE.md",
+ "freeze_doc_sha256": "0defd2dacd0e0096c7d3268bbf74894ee572cf1ea1dac06cbe6776b89516b706",
+ "n_allowed_spectrum_keys": 1935,
+ "decodes": [
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B13_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B21_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B24_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B2_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_B3_id.mzML",
+   "n": 14
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_C23_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_D10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_D15_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_D18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_D23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_D2_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_E17_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_E7_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_F13_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_F19_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_F22_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_F23_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_F6_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_G10_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_G12_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_G21_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_H12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_H18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_H20_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_I16_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_I18_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_I20_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_I23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J21_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J4_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J5_id.mzML",
+   "n": 3
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J6_id.mzML",
+   "n": 10
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_J7_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_K17_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_K8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M14_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M1_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M20_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M21_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M22_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M23_id.mzML",
+   "n": 10
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_M4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N14_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N15_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N16_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N21_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N2_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N5_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_N8_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O10_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O11_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O16_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O17_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_O18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_P10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_P14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_P16_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D1_P4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A10_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A1_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A20_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_A21_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B19_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B21_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B24_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B2_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B6_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_B8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_C11_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_C12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_C23_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_D11_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_D2_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_E11_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_E1_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_E3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_E4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_F3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_G15_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_G17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_G22_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_G23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_G7_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H10_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H15_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H1_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H23_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H3_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H7_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_H8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I11_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I13_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I14_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I16_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I20_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I22_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_I24_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_J14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_J15_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_J1_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_J2_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K18_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K22_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K24_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K4_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_K5_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L20_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L2_id.mzML",
+   "n": 10
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L5_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_L7_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M15_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M16_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M24_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M3_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M4_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_M7_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N19_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N2_id.mzML",
+   "n": 10
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N7_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_N9_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O10_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O14_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O20_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O24_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O4_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_O6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P10_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P12_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P18_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P1_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D2_P9_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A11_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A1_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A22_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A4_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A6_id.mzML",
+   "n": 14
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_A9_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B22_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B2_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B6_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B7_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_B8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C17_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C19_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C21_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C24_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C6_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_C9_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D18_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D1_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D2_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D5_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D7_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_D8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E10_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E11_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E12_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E17_id.mzML",
+   "n": 10
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E18_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E20_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E21_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_E6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F10_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F11_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F13_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F14_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F16_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F20_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F24_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F2_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F4_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_F8_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G12_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G19_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G1_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G21_id.mzML",
+   "n": 8
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G22_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_G8_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_H14_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_H18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_H24_id.mzML",
+   "n": 5
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_H5_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_I18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_I24_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J10_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J17_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J19_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J21_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J23_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J5_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_J6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_K18_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_K23_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_K3_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_K6_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_K7_id.mzML",
+   "n": 2
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_L11_id.mzML",
+   "n": 6
+  },
+  {
+   "file": "20220613_100AGC_60000Res_pluskal_mce_1D3_L12_id.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_01P_A2_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_01P_E9_id_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20230404_pluskal_nih_03P_A12_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_03P_C6_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_03P_C7_id_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20230404_pluskal_nih_04P_C3_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_04P_C8_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_05P_A3_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_08P_A3_id_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20230404_pluskal_nih_09P_A5_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_09P_E9_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_10P_G9_id_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20230404_pluskal_nih_12P_E5_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_12P_E8_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_13P_C12_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_13P_E5_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_13P_G12_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_14P_C4_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_14P_E7_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_15P_A9_id_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20230404_pluskal_nih_15P_C6_id_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20230404_pluskal_nih_15P_E3_id_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20231123_pluskal_nencka_mce_5001_F16_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20231123_pluskal_nencka_mce_5001_N22_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20231123_pluskal_nencka_mce_5001_O6_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20231123_pluskal_nencka_mce_5001_P5_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20231123_pluskal_nencka_mce_5001_P6_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240405_pluskal_enammol_5002_E22_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A12_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A15_id_MSn_positive.mzML",
+   "n": 12
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A17_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A18_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A19_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A20_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A21_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A22_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A5_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A6_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_A8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B13_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B14_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B17_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B22_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B3_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_B9_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C10_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C14_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C16_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C17_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C18_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C22_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C4_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C5_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_C9_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D10_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D15_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D21_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D22_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D4_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D5_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D6_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_D8_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E13_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E14_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E16_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E17_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E19_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E3_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_E9_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F16_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F18_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F20_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F3_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F5_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F6_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F7_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_F8_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G10_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G14_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G15_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G17_id_MSn_positive.mzML",
+   "n": 5
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G20_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G21_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G3_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G5_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G6_id_MSn_positive.mzML",
+   "n": 10
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_G9_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H10_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H14_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H18_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H19_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H22_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H5_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_H8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I12_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I13_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I15_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I19_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I22_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I3_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I5_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I6_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_I7_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J10_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J11_id_MSn_positive.mzML",
+   "n": 1
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J19_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J20_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J22_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J4_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_J5_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K10_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K11_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K15_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K16_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K17_id_MSn_positive.mzML",
+   "n": 3
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K19_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K20_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K4_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K5_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K6_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K7_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_K8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L11_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L13_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L14_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L15_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L16_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L18_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L20_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L4_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L5_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L7_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L8_id_MSn_positive.mzML",
+   "n": 12
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_L9_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M16_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M20_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M22_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M4_id_MSn_positive.mzML",
+   "n": 3
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M6_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_M8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N11_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N14_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N18_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N19_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N20_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N5_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_N8_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O10_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O11_id_MSn_positive.mzML",
+   "n": 7
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O12_id_MSn_positive.mzML",
+   "n": 14
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O13_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O14_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O15_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O17_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O7_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_O9_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_P3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_P4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_P5_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5005_P6_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A10_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A12_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A13_id_MSn_positive.mzML",
+   "n": 8
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A14_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A15_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_A21_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_B8_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20240408_pluskal_fda_drugs_5006_B9_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241113_pluskal_mcediv_20k_5015_N6_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20241113_pluskal_mcediv_20k_5016_A18_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_A12_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_A23_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_A4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_B11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_B13_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_B18_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_B24_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_B3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_C10_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_C13_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_C20_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_C24_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_C3_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_D14_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_D4_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_D5_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_D7_id_MSn_positive.mzML",
+   "n": 2
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_E11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_E12_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_H11_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_H19_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_H6_id_MSn_positive.mzML",
+   "n": 4
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_J14_id_MSn_positive.mzML",
+   "n": 6
+  },
+  {
+   "file": "20241120_pluskal_targetmol_hts_np_5017_J20_id_MSn_positive.mzML",
+   "n": 4
+  }
+ ]
+}

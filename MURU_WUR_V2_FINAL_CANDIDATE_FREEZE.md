@@ -75,3 +75,18 @@ The anchor guard requires this document committed on a clean tracked tree and wr
 **Disclosure.** The MSnLib protocol was written after the MultiMS2 anchor gate failed and after the MSnLib outcome-blind census; no MSnLib outcome, library spectrum or detected-compound flag informed it. 96 of the 402 MSnLib anchor keys are MultiMS2 anchors (exposed calibration data).
 
 **Part III addendum (implementation defect, before any MSnLib value was decoded).** The first anchor-gate run (access record `artifacts/wur_v2/external_msnlib/anchor_calibration_access.json`, 2026-09-13T03:18:13Z, HEAD `a41ea4e`, clean tree) logged a decode request for 4 spectra of one file and then stopped with an exception before any array was decoded: MSnLib mzML stores intensities with MS-Numpress positive-integer compression, which the reader refused. No peak, intensity or mu value was produced or seen. The reader now implements the reference MS-Numpress PIC decoder (round-trip and cross-implementation tests; decoded lengths checked against `defaultArrayLength`). The first record is kept unchanged; the rerun writes `anchor_calibration_access_attempt2.json`. No rule, threshold, population or model changed.
+
+## PART IV (after the MSnLib anchor gate): MSnLib NOT QUALIFIED under the frozen gate; validation not executed
+
+**Anchor access:** `artifacts/wur_v2/external_msnlib/anchor_calibration_access_attempt2.json` (clean tree). 402 census anchors, 561 wells; 328 anchors had both fixed rungs under the section 2 rules (keys sha256 `b0c50630...c331`); 1,935 anchor scans decoded; no validation spectrum decoded.
+
+| Adapter | Parameters | NCE 20 median abs delta / Spearman | NCE 60 | pooled RMSD | passes |
+|---|---|---|---|---|---|
+| A0 frozen WUR map, no free parameter | none | **0.0501** / 0.882 | 0.0320 / 0.902 | 0.0784 | no (NCE 20 median exceeds 0.05 by 0.0001) |
+| A1 `E = k NCE` | k 1.484 | 0.0500 / 0.881 | 0.0450 / 0.901 | **0.0811** | no (RMSD exceeds 0.08 by 0.001) |
+| A2 `E = a + b NCE` | a 7.0, b 1.144 | **0.0506** / 0.881 | 0.0303 / 0.902 | 0.0782 | no (NCE 20 median exceeds 0.05) |
+| required | | <= 0.05 / >= 0.80 | same | <= 0.08 | |
+
+**Decision (frozen rule, applied literally):** MSnLib is **not qualified** for the two-rung transfer claim, and no validation population was sampled, downloaded or decoded. The thresholds are not revisited after seeing these numbers.
+
+**What the anchors show (descriptive, not a decision input).** Unlike MultiMS2, the observable is well aligned: model-free Spearman between MSnLib mu and exposed Orbitrap mu is 0.944 (NCE 20 against LCSB 30) and 0.959 (NCE 60 against LCSB 75); the zero-parameter frozen WUR map already gives median signed differences of +0.012 and +0.005 and RMSD 0.078, comparable to the development cross-instrument agreement (RMSD 0.056 on the bridge's own fitting compounds). The failure is at the absolute-agreement tolerance, by margins far smaller than anchor sampling noise. A future, separately pre-registered MSnLib study could legitimately fix the zero-parameter A0 map in advance (it uses no MSnLib information), replace the absolute gate with pre-specified propagation of bridge uncertainty, and spend the still untouched validation population once; that study would have to disclose these anchor results. That is a new decision, not part of this program.
