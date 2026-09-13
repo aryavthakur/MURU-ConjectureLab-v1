@@ -64,3 +64,54 @@ def test_every_decoded_spectrum_of_the_incident_is_listed():
     aff = list(csv.DictReader(open(ROOT / "artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/"
                                          "affected_spectra_full_list.csv", newline="")))
     assert len(dec) == 3366 and {(r["file"], r["spectrum_id"]) for r in aff} <= dec
+
+
+# ------------------------------------------------------------------------------- pinned registry (review REG-4)
+# A rebuild with a narrower rule regenerates consistent manifest hashes; these literals make any change to the
+# registry contents a deliberate, reviewed test edit. They must equal the values the decode authority is bound to.
+PINNED = {
+    "registry_manifest_sha256": "89d55a29b4884c6d43df6cb3b41def010b45c8e630ae3d934816dfaf589dc1bb",
+    "excluded_compound_keys_sha256": "a2502ea29cc0b5095d0c44f894a29cbd7a4c4c23463349b87ec556d5b7c0247a",
+    "excluded_scaffold_groups_sha256": "237ab680a94de0c254e31f0e209cb959fbfecb209d2b72bce78facc55b6d03c2",
+    "excluded_design12b_keys_sha256": "d3a93523504e1b762bc90c3e9876265a85a9c6628c6bacb2909523c0cad5bad4",
+    "excluded_design12b_groups_sha256": "2b8f71e104b3e6c6a6ef118d347cfe32ad11ae8791e0b157134577caacbab39f",
+    "counts": {"excluded_compound_keys_all_sources": 31497, "excluded_scaffold_groups_all_sources": 18393,
+               "excluded_design12b_keys": 23695, "excluded_design12b_groups": 15156,
+               "remaining_design12b_groups_count_only": 14406, "decoded_msnlib_spectra_unique": 4927},
+}
+# compounds the pre-sampling reviews showed were decoded or printed but missed by the first registry build
+MUST_BE_EXCLUDED = {
+    "ZVXNYZWXUADSRV", "SXNJFOWDRLKDSF", "BJCJYEYYYGBROF", "FYDWDCIFZSGNBU", "VWAMTBXLZPEDQO", "VJKCWFZTSDXOBS",
+    "CDTCEMOVQWPDDS",                                     # REG-1 multiply charged / in-source carryover owners
+    "FATBGEAMYMYZAF", "WWUZIQQURGPMPG", "HXYVTAGFYLMHSO",   # REG-2 owners of printed spectra
+    "GBFLZEXEOZUWRN", "WTGMGRFVBFDHGQ", "XBJWOGLKABXFJE", "ZZKNRXZVGOYGJT",   # F-03 new-anchor-decode carryover
+    "OECUWHDVQIITIS", "MURAVORBGFDSMA",                   # same-well owner missed by the incident list; printed value
+    "ITKWBJOJBMUWRV", "ZUCUYBFQLSBQCB",                   # REG-5 tautomer / MultiMS2-variant scaffold split
+}
+
+
+def test_registry_contents_are_pinned():
+    m = json.loads((REG / "registry_manifest.json").read_text())
+    assert _sha(REG / "registry_manifest.json") == PINNED["registry_manifest_sha256"]
+    for k in ("excluded_compound_keys_sha256", "excluded_scaffold_groups_sha256", "excluded_design12b_keys_sha256",
+              "excluded_design12b_groups_sha256"):
+        assert m["hashes_sorted_newline_joined"][k] == PINNED[k], k
+    for k, v in PINNED["counts"].items():
+        assert m["counts"][k] == v, k
+    from muru.wur_v2.decode_authority import REGISTRY_MANIFEST_SHA256
+    assert REGISTRY_MANIFEST_SHA256 == PINNED["registry_manifest_sha256"]
+
+
+def test_review_identified_exposures_are_excluded():
+    keys = set((REG / "excluded_compound_keys.txt").read_text().split())
+    assert MUST_BE_EXCLUDED <= keys, sorted(MUST_BE_EXCLUDED - keys)
+
+
+def test_every_reason_component_is_non_empty():
+    m = json.loads((REG / "registry_manifest.json").read_text())
+    for reason in ("SAMPLE1_DRAW_GROUP", "DECODED_SAME_WELL_ION_0p7", "DECODED_SAME_PLATE_ION_0p01",
+                   "DECODED_SAME_PLATE_EXTENDED_ION_5PPM", "COPLATED_IN_DECODED_WELL", "SURFACED_VALUE_ATTRIBUTED_WELL",
+                   "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM", "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM",
+                   "HEADER_READ_WELL_STUDY1", "MSNLIB_ANCHOR_CENSUS_DESIGN", "MSNLIB_ANCHOR_GATE_CALIBRATION",
+                   "MULTIMS2_ANCHOR_CALIBRATION", "SCAFFOLD_GROUP_EXCLUDED"):
+        assert m["counts"]["per_reason_compounds"].get(reason, 0) > 0, reason

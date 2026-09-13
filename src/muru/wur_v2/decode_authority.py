@@ -1,56 +1,62 @@
 """Decode authorities for MSnLib confirmation study 2 (`muru-v2-msnlib-confirmation-2.0`).
 
-Why this module exists. Confirmation sample 1 was burned on 2026-09-13 when a
-parser-preflight script passed a duck-typed guard (`authorized = True`, no
-scope) to `external_mzml.decode_selected` and selected scans by file position
-in pooled wells. Every scope rule lived in the caller. This module moves scope
-into the decode path itself:
+Why this module exists. Confirmation sample 1 was burned on 2026-09-13 when a parser-preflight script passed a
+duck-typed guard (`authorized = True`, no scope) to `external_mzml.decode_selected` and selected scans by file
+position in pooled wells. The study-2 pre-sampling review (leakage, implementation and registry reviewers) then
+found that a first hardening still kept scope in mutable attributes, trusted local-only history, and let the
+anchor preflight create new exposure. This version:
 
-* `external_mzml.decode_selected` accepts ONLY an object whose exact type is
-  `AnchorPreflightAuthority` or `ConfirmationV2Authority` (no duck types, no
-  subclasses, no legacy `AccessGuard`, no void study-1 guard).
-* The decoder reads each requested scan's selected-ion m/z and MS level from
-  the file itself (arrays removed first) and hands (spectrum_id, m/z, level)
-  to `authorize` BEFORE any binary array is decoded; it re-reads the m/z from
-  the same spectrum element immediately before decoding it.
-* `AnchorPreflightAuthority` authorizes only files whose CONTENT sha256 is on
-  the committed anchor allowlist and in the committed exposure registry's
-  exposed-file list, and only scans whose precursor is within 0.01 Da of an
-  allowlisted anchor [M+H]+ plated in that file's well. A caller cannot widen
-  scope by passing other ids: the check is on the file's own header values.
-* `ConfirmationV2Authority` can only be constructed at the final freeze
-  commit and writes, fsyncs and commits its access record (plus an
-  out-of-repo ledger entry) before it becomes authorized. It loads the
-  validation scan allowlist itself from the frozen, commit-bound CSV and
-  recomputes every frozen hash itself.
+* keeps every authority's scope in module-private, immutable state registered only as the last step of a
+  completed constructor. The authority objects carry no scope attributes and reject attribute assignment, and
+  `external_mzml.decode_selected` calls the module function `authorize_decode`, never a method on the object;
+* `AnchorPreflightAuthority` authorizes only exact (file content sha256, spectrum id) pairs that were ALREADY
+  decoded in a past event, as recorded in the committed exposure registry, and only when the scan's precursor
+  is within 0.01 Da of a census anchor [M+H]+. A preflight therefore creates no new exposure;
+* `ConfirmationV2Authority` is constructible only at a freeze commit that is also published on origin as
+  refs/muru-freeze/<study>. It verifies every frozen byte, recomputes every hash itself (including a header-only
+  re-read of every allowlisted scan from the frozen ZIP members), enforces disjointness from the exposure
+  registry, and writes, fsyncs, commits AND PUSHES its access record (refs/muru-access/<study>) plus ledger
+  entries before any decode can be authorized. A second clone, shallow clone, other HOME or removed worktree
+  sees the pushed ref and refuses;
+* production constructors take no location overrides. Tests obtain overrides only through `_for_tests`, which
+  requires pytest to be imported and MURU_DECODE_AUTHORITY_TEST_MODE=1.
 
-Threat model. This protects against honest mistakes and careless reuse (the
-2026-09-13 failure class) and makes deliberate circumvention require
-conspicuous new code (a new decoder, a `root=`/`ledger_dir=` override in a
-study script, or an edit to this module), which the static choke-point tests
-and the review process are designed to catch. It cannot stop a deliberately
-malicious operator who writes their own base64 decoder; nothing in-process
-can.
+Threat model. Honest mistakes and ordinary misuse of repo code are blocked in code and by the static choke-point
+tests. A deliberately malicious operator can still write a new base64 decoder for bytes on disk or rewrite this
+module; that is disclosed, not claimed to be prevented.
 """
 from __future__ import annotations
 
 import csv
 import hashlib
 import json
+import math
 import os
+import pwd
 import subprocess
 import sys
 import time
+import types
 import weakref
+from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 SEL_TOL = 0.01
-
 STUDY_ID_V2 = "muru-v2-msnlib-confirmation-2.0"
+TEST_MODE_ENV = "MURU_DECODE_AUTHORITY_TEST_MODE"
+
 V2_DIR = "artifacts/wur_v2_confirmation_v2"
+REGISTRY_DIR = f"{V2_DIR}/exposure_registry"
+REGISTRY_MANIFEST = f"{REGISTRY_DIR}/registry_manifest.json"
+EXPOSED_FILES = f"{REGISTRY_DIR}/exposed_files.csv"
+DECODED_SPECTRA = f"{REGISTRY_DIR}/decoded_spectra.csv"
+EXCLUDED_KEYS = f"{REGISTRY_DIR}/excluded_compound_keys.txt"
+EXCLUDED_GROUPS = f"{REGISTRY_DIR}/excluded_scaffold_groups.txt"
+REGISTRY_FILES = (REGISTRY_MANIFEST, EXPOSED_FILES, DECODED_SPECTRA, EXCLUDED_KEYS, EXCLUDED_GROUPS)
 ANCHOR_ALLOWLIST = f"{V2_DIR}/anchor_preflight/anchor_preflight_allowlist.csv"
-EXPOSED_FILES = f"{V2_DIR}/exposure_registry/exposed_files.csv"
+CENSUS = "artifacts/wur_v2/external_census/msnlib_census.json"
+PROTOCOL_V2 = "MURU_V2_MSNLIB_CONFIRMATION_PROTOCOL_V2.md"
 FREEZE_DOC = "MURU_V2_MSNLIB_CONFIRMATION_V2_FREEZE.md"
 FREEZE_MANIFEST = f"{V2_DIR}/freeze/freeze_manifest.json"
 SCAN_ALLOWLIST = f"{V2_DIR}/freeze/validation_scan_allowlist.csv"
@@ -60,38 +66,38 @@ ACCESS_RECORD = f"{ACCESS_DIR}/validation_access_record.json"
 DECODE_INTENTS = f"{ACCESS_DIR}/validation_decode_intents.jsonl"
 CANDIDATE_JSON = "artifacts/wur_v2/candidate/V2_TA_MORGAN_JOINT.json"
 COMPARATOR_JSON = "artifacts/wur_v2/candidate/V2_REF_TA_RIDGE.json"
-DEFAULT_LEDGER_DIR = Path.home() / ".muru" / "access_ledger"
+REQUIRED_FROZEN = (SCAN_ALLOWLIST, POPULATION_CSV, CANDIDATE_JSON, COMPARATOR_JSON, FREEZE_DOC, PROTOCOL_V2,
+                   *REGISTRY_FILES)
+ACCESS_REF = f"refs/muru-access/{STUDY_ID_V2}"
+FREEZE_REF = f"refs/muru-freeze/{STUDY_ID_V2}"
+REMOTE = "origin"
+HOME = Path(pwd.getpwuid(os.getuid()).pw_dir)          # not $HOME: an environment variable must not move the ledger
+DEFAULT_LEDGER_DIR = HOME / ".muru" / "access_ledger"
+DEFAULT_ZIP_DIR = HOME / "muru-msnlib" / "zenodo"
 
-# Semantic hashes the freeze manifest must carry and the authority recomputes.
-LIVE_HEADER_HASH_FIELDS = ("population_key_hash", "scaffold_group_hash", "spectrum_manifest_hash")
+# sha256 of the committed registry manifest this code is bound to. Updated only together with a registry rebuild.
+REGISTRY_MANIFEST_SHA256 = "89d55a29b4884c6d43df6cb3b41def010b45c8e630ae3d934816dfaf589dc1bb"
 
 
 class DecodeAuthorityError(RuntimeError):
     pass
 
 
-# Instances are added only as the last statement of a successful __init__. The decoder requires membership,
-# so an object made with __new__ (skipping every construction check) is refused even though its type is exact.
-_CONSTRUCTED: "weakref.WeakSet" = weakref.WeakSet()
+# ============================================================================================ helpers
+
+def _git_env() -> dict:
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    env.update(GIT_NO_REPLACE_OBJECTS="1", GIT_TERMINAL_PROMPT="0", GIT_CONFIG_NOSYSTEM="1")
+    return env
 
 
-def is_constructed(obj) -> bool:
-    try:
-        return obj in _CONSTRUCTED
-    except TypeError:
-        return False
+def _git(root: Path, *args: str, timeout: int = 300) -> subprocess.CompletedProcess:
+    return subprocess.run(["git", "-c", "core.hooksPath=/dev/null", "-c", "commit.gpgsign=false", *args],
+                          cwd=root, capture_output=True, env=_git_env(), timeout=timeout)
 
 
-# ---------------------------------------------------------------------------------------------
-# small, separately testable helpers
-# ---------------------------------------------------------------------------------------------
-
-def _git(root: Path, *args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=root, capture_output=True)
-
-
-def _git_text(root: Path, *args: str) -> str:
-    r = _git(root, *args)
+def _git_text(root: Path, *args: str, timeout: int = 300) -> str:
+    r = _git(root, *args, timeout=timeout)
     if r.returncode != 0:
         raise DecodeAuthorityError(f"git {' '.join(args)} failed: {r.stderr.decode(errors='replace').strip()}")
     return r.stdout.decode().strip()
@@ -119,16 +125,22 @@ def canonical_json_sha256(obj) -> str:
     return sha256_bytes(json.dumps(obj, sort_keys=True, separators=(",", ":")).encode())
 
 
+def _finite(x) -> bool:
+    try:
+        return x is not None and math.isfinite(float(x))
+    except (TypeError, ValueError):
+        return False
+
+
 def _blob_at(root: Path, commit: str, rel: str) -> bytes:
-    r = _git(root, "show", f"{commit}:{rel}")
+    r = _git(root, "cat-file", "blob", f"{commit}:{rel}")
     if r.returncode != 0:
         raise DecodeAuthorityError(f"{rel} is not present at commit {commit[:12]}")
     return r.stdout
 
 
 def require_committed_identical(root: Path, rel: str, commit: str) -> bytes:
-    """On-disk bytes of `rel` must equal the blob committed at `commit`. Returns the bytes."""
-    p = root / rel
+    p = Path(root) / rel
     if not p.is_file():
         raise DecodeAuthorityError(f"{rel} does not exist on disk")
     on_disk = p.read_bytes()
@@ -151,7 +163,6 @@ def _durable_append(path: Path, obj: dict) -> None:
 
 
 def _durable_create(path: Path, text: str) -> None:
-    """Create exclusively (fails if the file exists) and fsync file and directory."""
     path.parent.mkdir(parents=True, exist_ok=True)
     fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
     try:
@@ -166,333 +177,462 @@ def _durable_create(path: Path, text: str) -> None:
         os.close(dfd)
 
 
-def _read_csv(path: Path) -> list[dict]:
-    with open(path, newline="") as f:
+def _rows(root: Path, rel: str) -> list[dict]:
+    with open(Path(root) / rel, newline="") as f:
         return list(csv.DictReader(f))
 
 
-def check_code_provenance(code_root: Path, modules=None, main_file=None) -> None:
+def _lines(root: Path, rel: str) -> set:
+    return {ln for ln in (Path(root) / rel).read_text().split("\n") if ln}
+
+
+def check_code_provenance(code_root: Path, modules=None, main_file=None, *, require_main=True) -> list[str]:
     """The code doing the decoding must be the committed code of `code_root`.
 
-    Every loaded muru module file must live under code_root/src (so nothing earlier on sys.path, such as
-    another session's scratchpad, shadows the package) and be byte-identical to its HEAD blob; the running
-    script (__main__) must also be a committed, unmodified file under code_root.
-    """
+    Every loaded module whose file lies inside code_root, and every muru module wherever it lives, must be a
+    .py file under code_root/src (or, for the running script, under code_root) that is byte-identical to HEAD.
+    The running script must have a real file (python -c, stdin and notebooks are refused). Returns the checked
+    'relative path:sha256' lines for the access record."""
     code_root = Path(code_root).resolve()
     head = _git_text(code_root, "rev-parse", "HEAD")
     if modules is None:
-        modules = {n: getattr(m, "__file__", None) for n, m in list(sys.modules.items())
-                   if n == "muru" or n.startswith("muru.")}
+        modules = {n: getattr(m, "__file__", None) for n, m in list(sys.modules.items())}
     if main_file is None:
         main_file = getattr(sys.modules.get("__main__"), "__file__", None)
-    src = code_root / "src"
-    files = [(n, f) for n, f in sorted(modules.items()) if f]
-    if not any(n == "muru.wur_v2.decode_authority" for n, _ in files):
+    if require_main and not main_file:
+        raise DecodeAuthorityError("the running script has no file (python -c, stdin or a notebook); refusing")
+    items = sorted((n, f) for n, f in modules.items() if f)
+    if not any(n == "muru.wur_v2.decode_authority" for n, _ in items):
         raise DecodeAuthorityError("muru.wur_v2.decode_authority is not among the modules being checked")
-    if main_file is not None:
-        files.append(("__main__", main_file))
-    for name, f in files:
+    if main_file:
+        items.append(("__main__", main_file))
+    src = code_root / "src"
+    checked = []
+    for name, f in items:
         fp = Path(f).resolve()
-        base = code_root if name == "__main__" else src
-        try:
-            rel = fp.relative_to(code_root)
-            fp.relative_to(base)
-        except ValueError:
+        is_muru = name == "muru" or name.startswith("muru.")
+        if not fp.is_relative_to(code_root) and not is_muru and name != "__main__":
+            continue                                                  # stdlib and site-packages
+        base = src if is_muru else code_root
+        if not fp.is_relative_to(base):
             raise DecodeAuthorityError(f"{name} is loaded from {fp}, outside {base}; refusing (shadowed or foreign code)")
-        require_committed_identical(code_root, str(rel), head)
+        if fp.suffix != ".py":
+            raise DecodeAuthorityError(f"{name} is loaded from a non-source file {fp.name}; refusing")
+        rel = str(fp.relative_to(code_root))
+        b = require_committed_identical(code_root, rel, head)
+        checked.append(f"{rel}:{sha256_bytes(b)}")
+    return checked
 
 
-# ---------------------------------------------------------------------------------------------
-# Anchor parser preflight
-# ---------------------------------------------------------------------------------------------
+# ============================================================================================ scope registry
 
-class AnchorPreflightAuthority:
-    """Authorizes decodes of already-exposed anchor spectra only.
+@dataclass(frozen=True)
+class _Scope:
+    kind: str
+    files: types.MappingProxyType          # basename -> (sha256, MappingProxyType(spectrum_id -> frozen m/z))
+    log_path: Path
+    root: Path
+    code_root: Path | None
+    ledger_paths: tuple
+    digest: str
 
-    Allowlist CSV columns: file (basename), file_sha256, unique_sample_id, anchor_key, anchor_mh.
-    Exposed-file CSV columns (exposure registry): file, file_sha256, unique_sample_id, events.
-    Both must be tracked and byte-identical to HEAD.
-    """
+
+_SCOPES: "weakref.WeakKeyDictionary" = weakref.WeakKeyDictionary()
+_RECORDS: "weakref.WeakKeyDictionary" = weakref.WeakKeyDictionary()
+
+
+def _freeze_files(entries: dict) -> types.MappingProxyType:
+    return types.MappingProxyType({f: (sha, types.MappingProxyType(dict(scans))) for f, (sha, scans) in entries.items()})
+
+
+def _scope_digest(kind: str, files) -> str:
+    return canonical_json_sha256({"kind": kind, "files": {f: [sha, sorted(scans.items())] for f, (sha, scans) in files.items()}})
+
+
+def is_constructed(obj) -> bool:
+    try:
+        return obj in _SCOPES
+    except TypeError:
+        return False
+
+
+class _Sealed:
+    __slots__ = ("__weakref__", "_sealed")
+
+    def __setattr__(self, name, value):
+        raise DecodeAuthorityError("decode authorities are immutable")
+
+    def __delattr__(self, name):
+        raise DecodeAuthorityError("decode authorities are immutable")
+
+    @property
+    def authorized(self) -> bool:
+        return is_constructed(self)
+
+
+class _TestOverrides:
+    __slots__ = ("values",)
+
+    def __init__(self, values: dict):
+        self.values = dict(values)
+
+
+def _test_mode() -> bool:
+    return os.environ.get(TEST_MODE_ENV) == "1" and "pytest" in sys.modules
+
+
+def _for_tests(cls, **overrides):
+    """Construct an authority with location overrides. Tests only."""
+    if not _test_mode():
+        raise DecodeAuthorityError("_for_tests is available only under pytest with MURU_DECODE_AUTHORITY_TEST_MODE=1")
+    if issubclass(cls, AnchorPreflightAuthority):
+        log_path = overrides.pop("log_path")
+        return cls(log_path=log_path, _ov=_TestOverrides(overrides))
+    return cls(_ov=_TestOverrides(overrides))
+
+
+def _overrides(_ov) -> dict:
+    if _ov is None:
+        return {}
+    if type(_ov) is not _TestOverrides or not _test_mode():
+        raise DecodeAuthorityError("location overrides are available only in test mode")
+    return _ov.values
+
+
+def _check_registry(root: Path, commit: str, pinned: str) -> None:
+    for rel in REGISTRY_FILES:
+        require_committed_identical(root, rel, commit)
+    got = sha256_file(Path(root) / REGISTRY_MANIFEST)
+    if got != pinned:
+        raise DecodeAuthorityError(f"exposure registry manifest sha256 {got[:16]} is not the one this code is bound to "
+                                   f"({str(pinned)[:16]})")
+    m = json.loads((Path(root) / REGISTRY_MANIFEST).read_text())
+    for name, want in m["output_file_sha256"].items():
+        if sha256_file(Path(root) / REGISTRY_DIR / name) != want:
+            raise DecodeAuthorityError(f"registry output {name} does not match its manifest")
+
+
+# ============================================================================================ authorization
+
+def authorize_decode(guard, name: str, sha: str, requests) -> None:
+    """Called by external_mzml.decode_selected before any array is decoded.
+
+    requests: (spectrum_id, ms_level, selected_ion_mz, n_precursors, n_selected_ions), read from the bytes that
+    will be decoded."""
+    if type(guard) not in AUTHORITY_TYPES:
+        raise DecodeAuthorityError("not a decode authority")
+    sc = _SCOPES.get(guard)
+    if sc is None:
+        raise DecodeAuthorityError("authority has no registered scope (construction did not complete)")
+    if _scope_digest(sc.kind, sc.files) != sc.digest:
+        raise DecodeAuthorityError("authority scope digest changed")
+    if sc.code_root is not None:
+        check_code_provenance(sc.code_root)                       # late imports are checked too
+    for lp in sc.ledger_paths:
+        if not lp.is_file():
+            raise DecodeAuthorityError(f"ledger entry {lp} is missing; refusing to decode")
+    if sc.kind == "VALIDATION" and not (sc.root / ACCESS_RECORD).is_file():
+        raise DecodeAuthorityError("validation access record is missing; refusing to decode")
+    ent = sc.files.get(name)
+    if ent is None:
+        raise DecodeAuthorityError(f"{name} is not in this authority's allowlist")
+    if sha != ent[0]:
+        raise DecodeAuthorityError(f"{name} content sha256 {sha[:16]} != allowlisted {ent[0][:16]} (substituted file)")
+    approved = []
+    for sid, level, mz, n_prec, n_sel in requests:
+        if sid not in ent[1]:
+            raise DecodeAuthorityError(f"{name}:{sid} is not in this authority's allowlist")
+        if level != 2.0:
+            raise DecodeAuthorityError(f"{name}:{sid} is not an MS2 scan (ms_level={level!r})")
+        if n_prec != 1 or n_sel != 1:
+            raise DecodeAuthorityError(f"{name}:{sid} has {n_prec} precursors / {n_sel} selected ions; exactly one required")
+        if not _finite(mz) or not (abs(float(mz) - ent[1][sid]) <= 1e-6):
+            raise DecodeAuthorityError(f"{name}:{sid} selected-ion m/z {mz!r} does not match the allowlisted {ent[1][sid]!r}")
+        approved.append(sid)
+    _durable_append(sc.log_path, {"event": "authorize", "kind": sc.kind, "file": name, "file_sha256": sha,
+                                  "spectra": approved, "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
+
+
+# ============================================================================================ anchor preflight
+
+class AnchorPreflightAuthority(_Sealed):
+    """Re-decodes of already-exposed anchor spectra only.
+
+    Allowlist CSV columns: file, file_sha256, spectrum_id, selected_ion_mz, anchor_key, anchor_mh. Every row must
+    be a (file, spectrum_id) already in the registry's decoded_spectra.csv, with the file's sha256 in
+    exposed_files.csv, the precursor within 0.01 Da of anchor_mh, and anchor_key a census anchor."""
+    __slots__ = ()
     KIND = "ANCHOR_PREFLIGHT"
 
-    def __init__(self, *, log_path: Path, root: Path = ROOT, code_root: Path | None = ROOT,
-                 allowlist_rel: str = ANCHOR_ALLOWLIST, exposed_files_rel: str = EXPOSED_FILES):
-        self.authorized = False
-        self.root = Path(root)
+    def __init__(self, *, log_path, _ov=None):
+        ov = _overrides(_ov)
+        root = Path(ov.get("root", ROOT)).resolve()
+        code_root = ov.get("code_root", ROOT)
         if code_root is not None:
             check_code_provenance(code_root)
-        head = _git_text(self.root, "rev-parse", "HEAD")
-        allow_rows = _read_csv(self.root / allowlist_rel) if (self.root / allowlist_rel).is_file() else None
-        if allow_rows is None:
-            raise DecodeAuthorityError(f"anchor allowlist {allowlist_rel} does not exist")
-        require_committed_identical(self.root, allowlist_rel, head)
-        require_committed_identical(self.root, exposed_files_rel, head)
-        exposed_sha = {r["file_sha256"] for r in _read_csv(self.root / exposed_files_rel)}
-
-        self.files: dict[str, dict] = {}
-        for r in allow_rows:
-            ent = self.files.setdefault(r["file"], {"sha256": r["file_sha256"], "mh": [], "keys": []})
-            if ent["sha256"] != r["file_sha256"]:
-                raise DecodeAuthorityError(f"anchor allowlist lists two sha256 values for {r['file']}")
-            ent["mh"].append(float(r["anchor_mh"]))
-            ent["keys"].append(r["anchor_key"])
-        if not self.files:
+        head = _git_text(root, "rev-parse", "HEAD")
+        _check_registry(root, head, ov.get("registry_manifest_sha256", REGISTRY_MANIFEST_SHA256))
+        require_committed_identical(root, ANCHOR_ALLOWLIST, head)
+        require_committed_identical(root, CENSUS, head)
+        anchors = set(json.loads((root / CENSUS).read_text())["anchors"]["design"]["v2_dev_five_rung"]["keys"])
+        exposed = {r["file"]: r["file_sha256"] for r in _rows(root, EXPOSED_FILES)}
+        decoded = {(r["file"], r["spectrum_id"]): r["selected_ion_mz"] for r in _rows(root, DECODED_SPECTRA)}
+        entries: dict[str, tuple] = {}
+        for r in _rows(root, ANCHOR_ALLOWLIST):
+            f, sid = r["file"], r["spectrum_id"]
+            if exposed.get(f) != r["file_sha256"]:
+                raise DecodeAuthorityError(f"anchor allowlist file {f} is not an exposed file with that sha256")
+            if (f, sid) not in decoded:
+                raise DecodeAuthorityError(f"anchor allowlist scan {f}:{sid} was never decoded before; a preflight may "
+                                           f"only re-decode already-exposed spectra")
+            mz, mh = r["selected_ion_mz"], r["anchor_mh"]
+            if not (_finite(mz) and _finite(mh) and _finite(decoded[(f, sid)])):
+                raise DecodeAuthorityError(f"anchor allowlist row {f}:{sid} has a non-finite m/z")
+            if not (abs(float(mz) - float(decoded[(f, sid)])) <= 1e-6) or not (abs(float(mz) - float(mh)) <= SEL_TOL):
+                raise DecodeAuthorityError(f"anchor allowlist row {f}:{sid} precursor is not the anchor's [M+H]+")
+            if r["anchor_key"] not in anchors:
+                raise DecodeAuthorityError(f"anchor allowlist row {f}:{sid} names a non-anchor key")
+            sha, scans = entries.setdefault(f, (r["file_sha256"], {}))
+            if sha != r["file_sha256"]:
+                raise DecodeAuthorityError(f"anchor allowlist lists two sha256 values for {f}")
+            scans[sid] = float(mz)
+        if not entries:
             raise DecodeAuthorityError("anchor allowlist is empty")
-        not_exposed = sorted(f for f, e in self.files.items() if e["sha256"] not in exposed_sha)
-        if not_exposed:
-            raise DecodeAuthorityError(
-                f"{len(not_exposed)} anchor-allowlisted file(s) are not in the exposure registry's exposed-file "
-                f"list, e.g. {not_exposed[:3]}; anchor preflight may only touch already-exposed files")
-        self.log_path = Path(log_path)
-        self.head = head
-        self._sha_cache: dict[tuple, str] = {}
-        _durable_append(self.log_path, {"event": "construct", "kind": self.KIND, "git_head": head,
-                                         "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                                         "n_files": len(self.files)})
-        self.authorized = True
-        _CONSTRUCTED.add(self)
-
-    def _file_sha(self, path: Path) -> str:
-        st = path.stat()
-        k = (str(path.resolve()), st.st_size, st.st_mtime_ns)
-        if k not in self._sha_cache:
-            self._sha_cache[k] = sha256_file(path)
-        return self._sha_cache[k]
-
-    def authorize(self, path, requests) -> None:
-        """requests: iterable of (spectrum_id, selected_ion_mz, ms_level) read from the file by the decoder."""
-        if not self.authorized:
-            raise DecodeAuthorityError("anchor preflight authority is not authorized")
-        path = Path(path)
-        ent = self.files.get(path.name)
-        if ent is None:
-            raise DecodeAuthorityError(f"{path.name} is not on the anchor preflight allowlist")
-        sha = self._file_sha(path)
-        if sha != ent["sha256"]:
-            raise DecodeAuthorityError(
-                f"{path.name} content sha256 {sha[:16]} does not match the allowlisted anchor file "
-                f"{ent['sha256'][:16]} (renamed or substituted file)")
-        approved = []
-        for sid, mz, level in requests:
-            if level != 2.0 and level != 2:
-                raise DecodeAuthorityError(f"{path.name}:{sid} is not an MS2 scan (ms_level={level!r})")
-            if mz is None:
-                raise DecodeAuthorityError(f"{path.name}:{sid} has no selected-ion m/z")
-            d = [abs(float(mz) - m) for m in ent["mh"]]
-            i = min(range(len(d)), key=d.__getitem__)
-            if d[i] > SEL_TOL:
-                raise DecodeAuthorityError(
-                    f"{path.name}:{sid} precursor {float(mz):.5f} is not within {SEL_TOL} Da of any allowlisted "
-                    f"anchor [M+H]+ in this well; decode refused")
-            approved.append({"spectrum_id": sid, "selected_ion_mz": float(mz), "anchor_key": ent["keys"][i]})
-        _durable_append(self.log_path, {"event": "authorize", "file": path.name, "file_sha256": sha,
-                                         "spectra": approved})
+        files = _freeze_files(entries)
+        log_path = Path(log_path)
+        _durable_append(log_path, {"event": "construct", "kind": self.KIND, "git_head": head,
+                                   "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "n_files": len(files)})
+        _SCOPES[self] = _Scope(self.KIND, files, log_path, root, None if code_root is None else Path(code_root),
+                               (), _scope_digest(self.KIND, files))
 
 
-# ---------------------------------------------------------------------------------------------
-# The one-look validation authority
-# ---------------------------------------------------------------------------------------------
+# ============================================================================================ the one look
 
-class ConfirmationV2Authority:
-    """The single first look at replacement population 2. Construction order (each a separate method so
-    the mutation harness can remove one check at a time):
+class ConfirmationV2Authority(_Sealed):
+    """The single first look at replacement population 2. Construction phases:
 
-      1 _check_not_previously_accessed  ledger entry, on-disk record, any commit or reflog entry ever
-                                        touching the access directory
-      2 _resolve_freeze_commit          exactly one commit ever ADDED the freeze doc, and it is HEAD
-      3 _check_clean_tree               no tracked modification and no untracked file anywhere
-      4 _check_frozen_bytes             every file in the manifest's frozen_files is byte-identical on disk
-                                        to the freeze commit and has the recorded sha256
-      5 _check_recomputed_hashes        candidate/comparator canonical hashes, population/scaffold/scan
-                                        hashes recomputed here from committed files; caller's live header
-                                        recomputation must also match
-      6 _write_and_commit_record        exclusive-create + fsync record and ledger, git commit the record,
-                                        verify HEAD^ == freeze commit
+      _preflight_environment          repo identity, not shallow, committer identity, no index lock, ledger
+                                      writable, origin fetched
+      _check_not_previously_accessed  ledgers, on-disk record, any commit/reflog/remote-tracking history of the
+                                      access directory, local and remote refs/muru-access/<study>
+      _resolve_freeze_commit          the freeze doc and manifest were each added exactly once, by HEAD (merges
+                                      included), no competing freeze anywhere, origin refs/muru-freeze/<study> == HEAD
+      _check_clean_tree               no tracked change, untracked file, ignored .py under src/scripts, index flag
+      _check_frozen_bytes             every frozen file byte-identical to the freeze commit with the recorded sha256
+      _check_recomputed               candidate/comparator/population/scaffold/spectrum hashes, registry binding and
+                                      disjointness, header-only re-read of every allowlisted scan from its ZIP member
+      _write_commit_push_record       exclusive record, commit on the freeze commit, refs/muru-access/<study>, push,
+                                      verify on origin, then ledger entries; only then is the scope registered
     """
+    __slots__ = ()
     KIND = "VALIDATION"
 
-    def __init__(self, *, live_header_hashes: dict, root: Path = ROOT, ledger_dir: Path = DEFAULT_LEDGER_DIR,
-                 code_root: Path | None = ROOT):
-        self.authorized = False
-        self.root = Path(root)
-        self.study_id = STUDY_ID_V2
-        self.ledger_path = Path(ledger_dir) / f"{self.study_id}.json"
-        if code_root is not None:
-            check_code_provenance(code_root)
-        self._check_not_previously_accessed()
-        self.freeze_commit = self._resolve_freeze_commit()
-        self._check_clean_tree()
-        self.manifest = self._check_frozen_bytes()
-        self.allowed = self._check_recomputed_hashes(live_header_hashes)
-        self._sha_cache: dict[tuple, str] = {}
-        self.record = self._write_and_commit_record()
-        self.authorized = True
-        _CONSTRUCTED.add(self)
+    def __init__(self, *, _ov=None):
+        ov = _overrides(_ov)
+        root = Path(ov.get("root", ROOT)).resolve()
+        code_root = ov.get("code_root", ROOT)
+        ledger_dirs = tuple(Path(p) for p in ov.get("ledger_dirs", (DEFAULT_LEDGER_DIR,)))
+        checked_code = check_code_provenance(code_root) if code_root is not None else []
+        common = Path(_git_text(root, "rev-parse", "--path-format=absolute", "--git-common-dir"))
+        ctx = types.SimpleNamespace(
+            root=root, zip_dir=Path(ov.get("zip_dir", DEFAULT_ZIP_DIR)),
+            pinned=ov.get("registry_manifest_sha256", REGISTRY_MANIFEST_SHA256),
+            ledger_paths=tuple(d / f"{STUDY_ID_V2}.json" for d in ledger_dirs)
+            + (common / "muru-access-ledger" / f"{STUDY_ID_V2}.json",))
+        self._preflight_environment(ctx)
+        self._check_not_previously_accessed(ctx)
+        ctx.freeze = self._resolve_freeze_commit(ctx)
+        self._check_clean_tree(ctx)
+        ctx.manifest = self._check_frozen_bytes(ctx)
+        entries = self._check_recomputed(ctx)
+        files = _freeze_files(entries)
+        record = self._write_commit_push_record(ctx, files, checked_code)
+        _RECORDS[self] = types.MappingProxyType(record)
+        _SCOPES[self] = _Scope(self.KIND, files, root / DECODE_INTENTS, root,
+                               None if code_root is None else Path(code_root), ctx.ledger_paths,
+                               _scope_digest(self.KIND, files))
 
-    # 1
-    def _check_not_previously_accessed(self) -> None:
-        if self.ledger_path.exists():
-            raise DecodeAuthorityError(
-                f"out-of-repo access ledger entry {self.ledger_path} exists: study {self.study_id} was already "
-                f"accessed on this machine; a second first look is prohibited")
-        if (self.root / ACCESS_RECORD).exists() or (self.root / DECODE_INTENTS).exists():
+    @property
+    def record(self) -> dict:
+        return dict(_RECORDS.get(self, {}))
+
+    @staticmethod
+    def _preflight_environment(ctx) -> None:
+        top = Path(_git_text(ctx.root, "rev-parse", "--show-toplevel")).resolve()
+        if top != ctx.root:
+            raise DecodeAuthorityError(f"git toplevel {top} is not the study root {ctx.root}")
+        if _git_text(ctx.root, "rev-parse", "--is-shallow-repository") != "false":
+            raise DecodeAuthorityError("shallow repositories cannot prove the absence of a prior look")
+        _git_text(ctx.root, "var", "GIT_COMMITTER_IDENT")
+        git_dir = Path(_git_text(ctx.root, "rev-parse", "--path-format=absolute", "--git-dir"))
+        if (git_dir / "index.lock").exists():
+            raise DecodeAuthorityError("git index.lock present")
+        for lp in ctx.ledger_paths:
+            lp.parent.mkdir(parents=True, exist_ok=True)
+            probe = lp.parent / f".probe-{os.getpid()}"
+            probe.write_text("x")
+            probe.unlink()
+        _git_text(ctx.root, "fetch", "--prune", REMOTE, timeout=600)
+
+    @staticmethod
+    def _check_not_previously_accessed(ctx) -> None:
+        for lp in ctx.ledger_paths:
+            if lp.exists():
+                raise DecodeAuthorityError(f"access ledger entry {lp} exists: {STUDY_ID_V2} was already accessed")
+        if (ctx.root / ACCESS_RECORD).exists() or (ctx.root / DECODE_INTENTS).exists():
             raise DecodeAuthorityError(f"{ACCESS_DIR} already holds an access record; a second look is prohibited")
-        hist = _git_text(self.root, "log", "--all", "--reflog", "--format=%H", "--", ACCESS_DIR)
+        hist = _git_text(ctx.root, "log", "--all", "--reflog", "-m", "--format=%H", "--", ACCESS_DIR)
         if hist:
             raise DecodeAuthorityError(
-                f"a validation access record has existed in git history under {ACCESS_DIR} "
-                f"({len(hist.splitlines())} commit(s)); a second first look is prohibited even though none is on disk")
+                f"a validation access record has existed in git history under {ACCESS_DIR}; a second first look is prohibited")
+        if _git(ctx.root, "rev-parse", "--verify", "--quiet", ACCESS_REF).returncode == 0:
+            raise DecodeAuthorityError(f"local {ACCESS_REF} exists; a second first look is prohibited")
+        if _git_text(ctx.root, "ls-remote", REMOTE, ACCESS_REF, timeout=300):
+            raise DecodeAuthorityError(f"{REMOTE} holds {ACCESS_REF}; a look already happened in another clone")
 
-    # 2
-    def _resolve_freeze_commit(self) -> str:
-        head = _git_text(self.root, "rev-parse", "HEAD")
-        reachable = _git_text(self.root, "log", "--diff-filter=A", "--format=%H", "HEAD", "--", FREEZE_DOC).splitlines()
-        if len(reachable) != 1:
-            raise DecodeAuthorityError(
-                f"{FREEZE_DOC} must have been added by exactly one commit in HEAD's history; found {len(reachable)} "
-                f"(a deleted-and-re-added freeze is a second freeze)")
-        if reachable[0] != head:
-            raise DecodeAuthorityError(
-                f"HEAD {head[:12]} is not the freeze commit {reachable[0][:12]} that added {FREEZE_DOC}; validation "
-                f"access HEAD must equal the final freeze commit (no allowlist)")
-        manifest_adds = _git_text(self.root, "log", "--diff-filter=A", "--format=%H", "HEAD", "--",
-                                  FREEZE_MANIFEST).splitlines()
-        if manifest_adds != [head]:
-            raise DecodeAuthorityError(
-                f"{FREEZE_MANIFEST} must be added by the freeze commit itself and never re-added (found {manifest_adds})")
-        # a freeze with DIFFERENT content added anywhere else (another branch, a rewritten or amended commit
-        # still in the reflog) is a competing freeze: refuse rather than let the operator choose between them
-        everywhere = set(_git_text(self.root, "log", "--all", "--reflog", "--diff-filter=A", "--format=%H", "--",
+    @staticmethod
+    def _resolve_freeze_commit(ctx) -> str:
+        root = ctx.root
+        head = _git_text(root, "rev-parse", "HEAD")
+        for rel in (FREEZE_DOC, FREEZE_MANIFEST):
+            adds = _git_text(root, "log", "-m", "--diff-filter=A", "--format=%H", "HEAD", "--", rel).splitlines()
+            if adds != [head]:
+                raise DecodeAuthorityError(f"{rel} must be added exactly once, by HEAD (the freeze commit); found {adds}")
+        everywhere = set(_git_text(root, "log", "--all", "--reflog", "-m", "--diff-filter=A", "--format=%H", "--",
                                    FREEZE_DOC).splitlines())
         for c in sorted(everywhere - {head}):
             for rel in (FREEZE_DOC, FREEZE_MANIFEST):
-                other = _git(self.root, "show", f"{c}:{rel}")
-                if other.returncode != 0 or other.stdout != _blob_at(self.root, head, rel):
-                    raise DecodeAuthorityError(
-                        f"commit {c[:12]} elsewhere in history added a different {rel}; competing freezes are prohibited")
+                other = _git(root, "cat-file", "blob", f"{c}:{rel}")
+                if other.returncode != 0 or other.stdout != _blob_at(root, head, rel):
+                    raise DecodeAuthorityError(f"commit {c[:12]} added a different {rel}; competing freezes are prohibited")
+        remote = _git_text(root, "ls-remote", REMOTE, FREEZE_REF, timeout=300).split()
+        if not remote or remote[0] != head:
+            raise DecodeAuthorityError(f"{REMOTE} {FREEZE_REF} does not name HEAD {head[:12]}; the freeze must be "
+                                       f"published before the look")
         return head
 
-    # 3
-    def _check_clean_tree(self) -> None:
-        st = _git_text(self.root, "status", "--porcelain", "--untracked-files=all")
+    @staticmethod
+    def _check_clean_tree(ctx) -> None:
+        st = _git_text(ctx.root, "status", "--porcelain", "--untracked-files=all")
         if st:
             raise DecodeAuthorityError(f"working tree is not clean (tracked or untracked changes): {st.splitlines()[:5]}")
-        # skip-worktree ("S") and assume-unchanged (lower-case tag) hide on-disk edits from git status
-        hidden = [ln for ln in _git_text(self.root, "ls-files", "-v").splitlines() if ln[:1] == "S" or ln[:1].islower()]
+        ign = _git_text(ctx.root, "status", "--porcelain", "--ignored=matching", "--untracked-files=all").splitlines()
+        bad = [ln for ln in ign if ln.startswith("!!") and ln.endswith(".py")
+               and (ln[3:].startswith("src/") or ln[3:].startswith("scripts/"))]
+        if bad:
+            raise DecodeAuthorityError(f"ignored Python files under src/ or scripts/: {bad[:5]}")
+        hidden = [ln for ln in _git_text(ctx.root, "ls-files", "-v").splitlines() if ln[:1] == "S" or ln[:1].islower()]
         if hidden:
             raise DecodeAuthorityError(f"index flags hide working-tree changes (skip-worktree/assume-unchanged): {hidden[:5]}")
 
-    # 4
-    def _check_frozen_bytes(self) -> dict:
-        raw = require_committed_identical(self.root, FREEZE_MANIFEST, self.freeze_commit)
-        require_committed_identical(self.root, FREEZE_DOC, self.freeze_commit)
+    @staticmethod
+    def _check_frozen_bytes(ctx) -> dict:
+        raw = require_committed_identical(ctx.root, FREEZE_MANIFEST, ctx.freeze)
         manifest = json.loads(raw)
-        if manifest.get("study_id") != self.study_id:
-            raise DecodeAuthorityError(f"freeze manifest study_id {manifest.get('study_id')!r} != {self.study_id!r}")
+        if manifest.get("study_id") != STUDY_ID_V2:
+            raise DecodeAuthorityError(f"freeze manifest study_id {manifest.get('study_id')!r} != {STUDY_ID_V2!r}")
         frozen = manifest.get("frozen_files") or {}
-        for rel in (SCAN_ALLOWLIST, POPULATION_CSV, CANDIDATE_JSON, COMPARATOR_JSON, FREEZE_DOC):
-            if rel not in frozen:
-                raise DecodeAuthorityError(f"freeze manifest frozen_files lacks required entry {rel}")
+        missing = [rel for rel in REQUIRED_FROZEN if rel not in frozen]
+        if missing:
+            raise DecodeAuthorityError(f"freeze manifest frozen_files lacks required entries {missing}")
         for rel, want in sorted(frozen.items()):
-            b = require_committed_identical(self.root, rel, self.freeze_commit)
+            b = require_committed_identical(ctx.root, rel, ctx.freeze)
             if sha256_bytes(b) != want:
                 raise DecodeAuthorityError(f"{rel} sha256 {sha256_bytes(b)[:16]} != frozen {str(want)[:16]}")
         return manifest
 
-    # 5
-    def _check_recomputed_hashes(self, live_header_hashes: dict) -> dict:
-        m = self.manifest
-        cand = canonical_json_sha256(json.loads((self.root / CANDIDATE_JSON).read_bytes()))
-        comp = canonical_json_sha256(json.loads((self.root / COMPARATOR_JSON).read_bytes()))
-        rows = _read_csv(self.root / SCAN_ALLOWLIST)
-        pop = _read_csv(self.root / POPULATION_CSV)
+    @staticmethod
+    def _check_recomputed(ctx) -> dict:
+        from muru.wur_v2 import external_mzml as X
+        root, m = ctx.root, ctx.manifest
+        _check_registry(root, ctx.freeze, ctx.pinned)
+        rows = _rows(root, SCAN_ALLOWLIST)
+        pop = _rows(root, POPULATION_CSV)
         recomputed = {
-            "candidate_hash": cand,
-            "comparator_hash": comp,
+            "candidate_hash": canonical_json_sha256(json.loads((root / CANDIDATE_JSON).read_bytes())),
+            "comparator_hash": canonical_json_sha256(json.loads((root / COMPARATOR_JSON).read_bytes())),
             "population_key_hash": sha256_lines({r["key"] for r in pop}),
             "scaffold_group_hash": sha256_lines({r["scaffold_group"] for r in pop}),
             "spectrum_manifest_hash": sha256_lines({f"{r['file']}:{r['spectrum_id']}" for r in rows}),
+            "registry_manifest_sha256": sha256_file(root / REGISTRY_MANIFEST),
         }
         for field, val in recomputed.items():
             if m.get(field) != val:
                 raise DecodeAuthorityError(f"{field}: freeze manifest {m.get(field)!r} != recomputed {val!r}")
-        for field in LIVE_HEADER_HASH_FIELDS:
-            if (live_header_hashes or {}).get(field) != m.get(field):
-                raise DecodeAuthorityError(
-                    f"{field}: live header-only recomputation {(live_header_hashes or {}).get(field)!r} != frozen "
-                    f"{m.get(field)!r}; the on-disk data or eligibility code has drifted since the freeze")
+        excluded_keys, excluded_groups = _lines(root, EXCLUDED_KEYS), _lines(root, EXCLUDED_GROUPS)
+        exposed = _rows(root, EXPOSED_FILES)
+        exposed_sha, exposed_wells = {r["file_sha256"] for r in exposed}, {r["unique_sample_id"] for r in exposed}
         pop_keys = {r["key"] for r in pop}
-        allowed: dict[str, dict] = {}
+        if pop_keys & excluded_keys:
+            raise DecodeAuthorityError(f"{len(pop_keys & excluded_keys)} population keys are in the exposure registry")
+        if {r["scaffold_group"] for r in pop} & excluded_groups:
+            raise DecodeAuthorityError("population scaffold groups intersect the exposure registry")
+        entries: dict[str, tuple] = {}
+        members: dict[str, tuple] = {}
         for r in rows:
             if r["key"] not in pop_keys:
-                raise DecodeAuthorityError(f"scan allowlist row {r['file']}:{r['spectrum_id']} names key outside population")
-            f = allowed.setdefault(r["file"], {"sha256": r["file_sha256"], "scans": {}})
-            if f["sha256"] != r["file_sha256"]:
+                raise DecodeAuthorityError(f"scan allowlist row {r['file']}:{r['spectrum_id']} names a key outside the population")
+            if r["file_sha256"] in exposed_sha or r["unique_sample_id"] in exposed_wells:
+                raise DecodeAuthorityError(f"scan allowlist file {r['file']} is an exposed file or well")
+            if not _finite(r["selected_ion_mz"]):
+                raise DecodeAuthorityError(f"scan allowlist row {r['file']}:{r['spectrum_id']} has a non-finite m/z")
+            sha, scans = entries.setdefault(r["file"], (r["file_sha256"], {}))
+            if sha != r["file_sha256"]:
                 raise DecodeAuthorityError(f"scan allowlist lists two sha256 values for {r['file']}")
-            f["scans"][r["spectrum_id"]] = float(r["selected_ion_mz"])
-        return allowed
+            scans[r["spectrum_id"]] = float(r["selected_ion_mz"])
+            members[r["file"]] = (r["source_zip"], r["member"])
+        for f, (sha, scans) in sorted(entries.items()):             # live header-only re-read from the frozen bytes
+            zname, member = members[f]
+            name, data = X.read_source(X.ZipMember(ctx.zip_dir / zname, member))
+            if name != f or sha256_bytes(data) != sha:
+                raise DecodeAuthorityError(f"{zname}!{member} does not have the frozen name and sha256")
+            seen = {}
+            for spec in X._iter_spectra(data):
+                sid = spec.get("id")
+                if sid in scans:
+                    bdal = spec.find(X.NS + "binaryDataArrayList")
+                    if bdal is not None:
+                        spec.remove(bdal)
+                    seen[sid] = X._spectrum_scope(spec)
+            for sid, mz in scans.items():
+                s = seen.get(sid)
+                if s is None or s[0] != 2.0 or s[2] != 1 or s[3] != 1 or not _finite(s[1]) or not (abs(s[1] - mz) <= 1e-6):
+                    raise DecodeAuthorityError(f"{f}:{sid} header does not match the frozen scan (live re-read)")
+        return entries
 
-    # 6
-    def _write_and_commit_record(self) -> dict:
+    @staticmethod
+    def _write_commit_push_record(ctx, files, checked_code) -> dict:
+        root = ctx.root
         record = {
-            "study_id": self.study_id, "kind": self.KIND,
+            "study_id": STUDY_ID_V2, "kind": "VALIDATION",
             "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "validation_access_head": self.freeze_commit, "freeze_commit": self.freeze_commit,
-            "freeze_manifest_sha256": sha256_bytes((self.root / FREEZE_MANIFEST).read_bytes()),
-            **{k: self.manifest[k] for k in ("candidate_hash", "comparator_hash", "population_key_hash",
-                                             "scaffold_group_hash", "spectrum_manifest_hash")},
-            "n_allowed_files": len(self.allowed),
-            "n_allowed_scans": sum(len(v["scans"]) for v in self.allowed.values()),
-            "statement": "written, fsynced and committed before any validation binary array is decoded; "
+            "validation_access_head": ctx.freeze, "freeze_commit": ctx.freeze,
+            "freeze_manifest_sha256": sha256_file(root / FREEZE_MANIFEST),
+            **{k: ctx.manifest[k] for k in ("candidate_hash", "comparator_hash", "population_key_hash",
+                                            "scaffold_group_hash", "spectrum_manifest_hash", "registry_manifest_sha256")},
+            "n_allowed_files": len(files), "n_allowed_scans": sum(len(s) for _, s in files.values()),
+            "code_provenance": checked_code,
+            "statement": "written, fsynced, committed and pushed before any validation binary array is decoded; "
                          "population 2 is permanently EXPOSED from this record onward",
         }
-        text = json.dumps(record, indent=1, sort_keys=True) + "\n"
-        _durable_create(self.root / ACCESS_RECORD, text)
-        _durable_create(self.ledger_path, json.dumps({**record, "repo_root": str(self.root)}, indent=1) + "\n")
-        _git_text(self.root, "add", "-f", "--", ACCESS_RECORD)
-        _git_text(self.root, "commit", "-q", "-m",
-                  f"{self.study_id}: VALIDATION ACCESS RECORD (written before any validation decode)",
-                  "--", ACCESS_RECORD)
-        parent = _git_text(self.root, "rev-parse", "HEAD^")
-        changed = _git_text(self.root, "show", "--name-only", "--format=", "HEAD").splitlines()
-        if parent != self.freeze_commit or changed != [ACCESS_RECORD]:
-            raise DecodeAuthorityError(
-                f"access-record commit did not land directly on the freeze commit with only the record "
-                f"(parent {parent[:12]}, changed {changed})")
-        record["access_record_commit"] = _git_text(self.root, "rev-parse", "HEAD")
+        _durable_create(root / ACCESS_RECORD, json.dumps(record, indent=1, sort_keys=True) + "\n")
+        _git_text(root, "add", "-f", "--", ACCESS_RECORD)
+        _git_text(root, "commit", "-q", "--no-verify", "-m",
+                  f"{STUDY_ID_V2}: VALIDATION ACCESS RECORD (written before any validation decode)", "--", ACCESS_RECORD)
+        rec_commit = _git_text(root, "rev-parse", "HEAD")
+        parent = _git_text(root, "rev-parse", "HEAD^")
+        changed = _git_text(root, "show", "--name-only", "--format=", "HEAD").splitlines()
+        if parent != ctx.freeze or changed != [ACCESS_RECORD]:
+            raise DecodeAuthorityError("access-record commit is not a single-file child of the freeze commit")
+        _git_text(root, "update-ref", ACCESS_REF, rec_commit)
+        _git_text(root, "push", "--atomic", REMOTE, f"{rec_commit}:{ACCESS_REF}", timeout=600)
+        remote = _git_text(root, "ls-remote", REMOTE, ACCESS_REF, timeout=300).split()
+        if not remote or remote[0] != rec_commit:
+            raise DecodeAuthorityError(f"{REMOTE} does not show {ACCESS_REF} at the record commit after push")
+        record["access_record_commit"] = rec_commit
+        for lp in ctx.ledger_paths:
+            _durable_create(lp, json.dumps({**record, "repo_root": str(root)}, indent=1) + "\n")
         return record
-
-    def _file_sha(self, path: Path) -> str:
-        st = path.stat()
-        k = (str(path.resolve()), st.st_size, st.st_mtime_ns)
-        if k not in self._sha_cache:
-            self._sha_cache[k] = sha256_file(path)
-        return self._sha_cache[k]
-
-    def authorize(self, path, requests) -> None:
-        if not self.authorized:
-            raise DecodeAuthorityError("validation authority is not authorized")
-        if not (self.root / ACCESS_RECORD).is_file() or not self.ledger_path.is_file():
-            raise DecodeAuthorityError("access record or ledger entry missing; refusing to decode")
-        path = Path(path)
-        ent = self.allowed.get(path.name)
-        if ent is None:
-            raise DecodeAuthorityError(f"{path.name} is not in the frozen validation scan allowlist")
-        sha = self._file_sha(path)
-        if sha != ent["sha256"]:
-            raise DecodeAuthorityError(
-                f"{path.name} content sha256 {sha[:16]} != frozen {ent['sha256'][:16]} (substituted file)")
-        approved = []
-        for sid, mz, level in requests:
-            if sid not in ent["scans"]:
-                raise DecodeAuthorityError(f"{path.name}:{sid} is not in the frozen validation scan allowlist")
-            if (level != 2.0 and level != 2) or mz is None or abs(float(mz) - ent["scans"][sid]) > 1e-6:
-                raise DecodeAuthorityError(
-                    f"{path.name}:{sid} header (ms_level={level!r}, m/z={mz!r}) does not match the frozen scan "
-                    f"(m/z {ent['scans'][sid]!r})")
-            approved.append(sid)
-        _durable_append(self.root / DECODE_INTENTS, {"file": path.name, "file_sha256": sha, "spectra": approved,
-                                                      "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
 
 AUTHORITY_TYPES = (AnchorPreflightAuthority, ConfirmationV2Authority)

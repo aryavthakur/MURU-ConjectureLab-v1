@@ -2,95 +2,38 @@
 
 Every test attempts one concrete way premature or out-of-scope decoding could happen and asserts it is refused
 AND that not a single binary array was decoded (a spy on external_mzml._decode_array counts calls). All data are
-synthetic: tiny mzML files and throwaway git repositories under tmp_path. No real MSnLib file is opened.
+synthetic: tiny mzML bytes, ZIP members and throwaway git repositories with a bare origin under tmp_path.
 
-Requirement map (MSnLib confirmation study 2 mandate, section 3):
-  R1 anchor preflight only decodes scans whose precursor matches the explicit anchor allowlist
+Requirement map (MSnLib confirmation study 2 mandate, section 3), plus the pre-sampling review findings they close:
+  R1 anchor preflight only decodes scans whose precursor matches the explicit anchor allowlist (F-03, F-04, F-14)
   R2 co-plated non-anchor scans cannot be selected by position
-  R3 no validation decode without a committed final freeze
-  R4 every requested validation scan is in the frozen scan allowlist
-  R5 a historical access record blocks a second first look even if the file was deleted
-  R6 candidate/comparator/population/scaffold/spectrum hashes are recomputed live
-  R7 freeze bytes are bound to the freeze commit
-  R8 the access record is written (and committed) before any validation binary array is decoded
+  R3 no validation decode without a committed final freeze (F-01, F-06, F-A, F-B, F-15)
+  R4 every requested validation scan is in the frozen scan allowlist (F-10, F-H)
+  R5 a historical access record blocks a second first look even if deleted (F-02, F-E, F-D)
+  R6 hashes recomputed live (F-05, F-F, F-13)
+  R7 freeze bytes bound to the freeze commit (F-12)
+  R8 the access record is written, committed and pushed before any validation array is decoded
 """
-import base64
-import csv
-import hashlib
 import json
 import shutil
 import subprocess
+import zipfile
 
-import numpy as np
 import pytest
 
+import decode_fixtures as FX
 from muru.wur_v2 import decode_authority as DA
 from muru.wur_v2 import external_mzml as X
 from muru.wur_v2.decode_authority import AnchorPreflightAuthority, ConfirmationV2Authority, DecodeAuthorityError
 
 
-# ----------------------------------------------------------------------------------------- synthetic data
-
-def _bda(values, kind_acc, bits64):
-    raw = np.asarray(values, "<f8" if bits64 else "<f4").tobytes()
-    return (f'<binaryDataArray encodedLength="0"><cvParam accession="{"MS:1000523" if bits64 else "MS:1000521"}" name="f"/>'
-            f'<cvParam accession="{kind_acc}" name="a"/><binary>{base64.b64encode(raw).decode()}</binary></binaryDataArray>')
-
-
-def write_mzml(path, scans):
-    """scans: list of (spectrum_id, ms_level, selected_ion_mz or None, collision_energy or None)."""
-    specs = []
-    for i, (sid, level, mz, ce) in enumerate(scans):
-        prec = ""
-        if mz is not None:
-            prec = (f'<precursorList count="1"><precursor><selectedIonList count="1"><selectedIon>'
-                    f'<cvParam accession="MS:1000744" name="sel" value="{mz}"/></selectedIon></selectedIonList>'
-                    f'<activation><cvParam accession="MS:1000045" name="ce" value="{ce}"/></activation></precursor></precursorList>')
-        specs.append(
-            f'<spectrum index="{i}" id="{sid}" defaultArrayLength="2"><cvParam accession="MS:1000511" name="ms level" value="{level}"/>'
-            f'<scanList count="1"><scan><scanWindowList count="1"><scanWindow><cvParam accession="MS:1000501" name="lo" value="40"/>'
-            f'<cvParam accession="MS:1000500" name="hi" value="1000"/></scanWindow></scanWindowList></scan></scanList>{prec}'
-            f'<binaryDataArrayList count="2">{_bda([50.0 + i, 99.0 + i], "MS:1000514", True)}'
-            f'{_bda([10.0, 20.0], "MS:1000515", False)}</binaryDataArrayList></spectrum>')
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text('<?xml version="1.0" encoding="utf-8"?><mzML xmlns="http://psi.hupo.org/ms/mzml"><run>'
-                    f'<spectrumList count="{len(scans)}">' + "".join(specs) + "</spectrumList></run></mzML>")
-    return path
-
-
-# pooled well: a NON-anchor compound (m/z 500.0) is acquired FIRST, the anchor (m/z 300.0) later
-POOLED = [("s0", 1, None, None),
-          ("s1", 2, 500.0, 20.0), ("s2", 2, 500.0, 60.0),
-          ("s3", 2, 300.0, 20.0), ("s4", 2, 300.0, 60.0)]
-
-
-def sha(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
-
-
-def git(root, *args):
-    return subprocess.run(["git", *args], cwd=root, capture_output=True, text=True, check=True).stdout.strip()
-
-
-def init_repo(root):
-    root.mkdir(parents=True, exist_ok=True)
-    git(root, "init", "-q")
-    git(root, "config", "user.email", "t@t")
-    git(root, "config", "user.name", "t")
-    return root
-
-
-def write_csv(path, rows, cols):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=cols)
-        w.writeheader()
-        w.writerows(rows)
+@pytest.fixture(autouse=True)
+def test_mode(monkeypatch):
+    monkeypatch.setenv(DA.TEST_MODE_ENV, "1")
 
 
 @pytest.fixture
 def spy(monkeypatch):
-    """Counts binary array decodes; optional pre-decode assertion hook."""
     state = {"n": 0, "before": None}
     orig = X._decode_array
 
@@ -104,181 +47,220 @@ def spy(monkeypatch):
     return state
 
 
-# ----------------------------------------------------------------------------------------- anchor preflight
+# ======================================================================================= anchor preflight
 
-@pytest.fixture
-def anchor_env(tmp_path):
-    data = tmp_path / "data"
-    pooled = write_mzml(data / "pluskal_A1_id.mzML", POOLED)
-    other = write_mzml(data / "pluskal_B7_id.mzML", [("t1", 2, 300.0, 20.0), ("t2", 2, 300.0, 60.0)])
-    repo = init_repo(tmp_path / "repo")
-    write_csv(repo / DA.ANCHOR_ALLOWLIST,
-              [{"file": pooled.name, "file_sha256": sha(pooled), "unique_sample_id": "pluskal_A1_id",
-                "anchor_key": "ANCHORKEY", "anchor_mh": "300.0"}],
-              ["file", "file_sha256", "unique_sample_id", "anchor_key", "anchor_mh"])
-    write_csv(repo / DA.EXPOSED_FILES,
-              [{"file": pooled.name, "file_sha256": sha(pooled), "unique_sample_id": "pluskal_A1_id", "events": "E"}],
-              ["file", "file_sha256", "unique_sample_id", "events"])
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "registry + allowlist")
-    return {"repo": repo, "pooled": pooled, "other": other, "log": tmp_path / "preflight_log.jsonl"}
-
-
-def anchor_authority(env):
-    return AnchorPreflightAuthority(log_path=env["log"], root=env["repo"], code_root=None)
-
-
-def rung_ids_by_position(path, n=6):
-    """Exactly the burned script's selection: first n rung-tagged scans by position."""
-    return [r["spectrum_id"] for r in X.scan_headers(path) if r.get("ms_level") == 2.0][:n]
-
-
-def test_R2_positional_selection_in_pooled_well_is_refused_before_any_decode(anchor_env, spy):
-    auth = anchor_authority(anchor_env)
-    ids = rung_ids_by_position(anchor_env["pooled"])
-    assert ids[:2] == ["s1", "s2"]                                  # the non-anchor scans come first
-    with pytest.raises(DecodeAuthorityError, match="not within 0.01 Da"):
-        X.decode_selected(anchor_env["pooled"], ids, auth)
+def test_R2_positional_selection_in_pooled_well_is_refused_before_any_decode(tmp_path, spy):
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    ids = [r["spectrum_id"] for r in X.scan_headers(env["pooled"]) if r.get("ms_level") == 2.0][:6]
+    assert ids[:2] == ["s1", "s2"]
+    with pytest.raises(DecodeAuthorityError, match="not in this authority's allowlist"):
+        X.decode_selected(env["pooled"], ids, auth)
     assert spy["n"] == 0
 
 
-def test_R1_caller_naming_only_a_coplated_scan_is_refused(anchor_env, spy):
-    auth = anchor_authority(anchor_env)
-    with pytest.raises(DecodeAuthorityError, match="not within 0.01 Da"):
-        X.decode_selected(anchor_env["pooled"], ["s1"], auth)
-    assert spy["n"] == 0
-
-
-def test_R1_anchor_matched_scans_decode_and_are_logged_with_their_anchor(anchor_env, spy):
-    auth = anchor_authority(anchor_env)
-    out = X.decode_selected(anchor_env["pooled"], ["s3", "s4"], auth)
+def test_R1_anchor_re_decode_succeeds_and_is_logged(tmp_path, spy):
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    out = X.decode_selected(env["pooled"], ["s3", "s4"], auth)
     assert set(out) == {"s3", "s4"} and spy["n"] == 4
-    log = [json.loads(line) for line in anchor_env["log"].read_text().splitlines()]
-    assert log[-1]["event"] == "authorize"
-    assert {s["spectrum_id"] for s in log[-1]["spectra"]} == {"s3", "s4"}
-    assert {s["anchor_key"] for s in log[-1]["spectra"]} == {"ANCHORKEY"}
+    log = [json.loads(line) for line in env["log"].read_text().splitlines()]
+    assert log[-1]["event"] == "authorize" and set(log[-1]["spectra"]) == {"s3", "s4"}
 
 
-def test_R1_near_isobar_just_outside_tolerance_is_refused(anchor_env, spy, tmp_path):
-    p = write_mzml(tmp_path / "iso" / anchor_env["pooled"].name, [("a", 2, 300.011, 20.0)])
-    auth = AnchorPreflightAuthority(log_path=anchor_env["log"], root=anchor_env["repo"], code_root=None)
-    auth.files[p.name]["sha256"] = sha(p)          # isolate the precursor check from the content-hash check
-    with pytest.raises(DecodeAuthorityError, match="not within 0.01 Da"):
-        X.decode_selected(p, ["a"], auth)
-    assert spy["n"] == 0
+def test_R1_allowlist_scan_never_decoded_before_is_refused_at_construction(tmp_path):
+    scans = FX.POOLED + [("s5", 2, 300.0, 20.0)]
+    env = FX.anchor_env(tmp_path, pooled_scans=scans, extra_allow=[{
+        "file": "pluskal_A1_id.mzML", "file_sha256": FX.sha(FX.mzml_bytes(scans)), "spectrum_id": "s5",
+        "selected_ion_mz": "300.0", "anchor_key": "ANCHORKEY", "anchor_mh": "300.0"}])
+    rows = [r for r in DA._rows(env["repo"], DA.DECODED_SPECTRA) if r["spectrum_id"] != "s5"]
+    env["registry_sha"] = FX.write_registry(env["repo"], DA._rows(env["repo"], DA.EXPOSED_FILES), rows)
+    FX.git(env["repo"], "commit", "-qam", "s5 was never decoded")
+    with pytest.raises(DecodeAuthorityError, match="never decoded before"):
+        FX.anchor_authority(env)
 
 
-def test_R1_file_not_on_anchor_allowlist_is_refused(anchor_env, spy):
-    auth = anchor_authority(anchor_env)
-    with pytest.raises(DecodeAuthorityError, match="not on the anchor preflight allowlist"):
-        X.decode_selected(anchor_env["other"], ["t1"], auth)        # precursor 300.0 matches the anchor mass
-    assert spy["n"] == 0
+def test_R1_nan_anchor_mh_is_refused_at_construction(tmp_path):
+    env = FX.anchor_env(tmp_path, anchor_mh="nan")
+    with pytest.raises(DecodeAuthorityError, match="non-finite"):
+        FX.anchor_authority(env)
 
 
-def test_R1_validation_file_renamed_to_an_anchor_basename_is_refused(anchor_env, spy, tmp_path):
-    impostor = tmp_path / "impostor" / anchor_env["pooled"].name
-    impostor.parent.mkdir()
-    shutil.copy(anchor_env["other"], impostor)                        # same name, different content
-    auth = anchor_authority(anchor_env)
-    with pytest.raises(DecodeAuthorityError, match="renamed or substituted"):
-        X.decode_selected(impostor, ["t1"], auth)
-    assert spy["n"] == 0
+def test_R1_non_anchor_key_is_refused_at_construction(tmp_path):
+    env = FX.anchor_env(tmp_path, anchor_key="NOTANANCHOR")
+    with pytest.raises(DecodeAuthorityError, match="non-anchor key"):
+        FX.anchor_authority(env)
 
 
-def test_R1_allowlisted_file_absent_from_exposure_registry_refused_at_construction(anchor_env):
-    repo = anchor_env["repo"]
-    rows = [{"file": "pluskal_A1_id.mzML", "file_sha256": "0" * 64, "unique_sample_id": "pluskal_A1_id", "events": "E"}]
-    write_csv(repo / DA.EXPOSED_FILES, rows, ["file", "file_sha256", "unique_sample_id", "events"])
-    git(repo, "commit", "-qam", "registry no longer lists the anchor file")
-    with pytest.raises(DecodeAuthorityError, match="not in the exposure registry"):
-        anchor_authority(anchor_env)
+def test_R1_allowlisted_file_absent_from_exposed_files_is_refused(tmp_path):
+    env = FX.anchor_env(tmp_path)
+    rows = DA._rows(env["repo"], DA.EXPOSED_FILES)
+    rows[0]["file_sha256"] = "0" * 64
+    env["registry_sha"] = FX.write_registry(env["repo"], rows, DA._rows(env["repo"], DA.DECODED_SPECTRA))
+    FX.git(env["repo"], "commit", "-qam", "registry no longer lists that content")
+    with pytest.raises(DecodeAuthorityError, match="not an exposed file"):
+        FX.anchor_authority(env)
 
 
-def test_R1_uncommitted_allowlist_widening_refused_at_construction(anchor_env):
-    p = anchor_env["repo"] / DA.ANCHOR_ALLOWLIST
-    p.write_text(p.read_text() + f"{anchor_env['other'].name},{sha(anchor_env['other'])},pluskal_B7_id,X,300.0\n")
+def test_R1_registry_manifest_not_the_pinned_one_is_refused(tmp_path):
+    env = FX.anchor_env(tmp_path)
+    with pytest.raises(DecodeAuthorityError, match="not the one this code is bound to"):
+        FX.anchor_authority(env, registry_manifest_sha256="f" * 64)
+
+
+def test_R1_uncommitted_allowlist_widening_is_refused(tmp_path):
+    env = FX.anchor_env(tmp_path)
+    p = env["repo"] / DA.ANCHOR_ALLOWLIST
+    p.write_text(p.read_text() + f"{env['other'].name},{FX.sha(env['other'])},t1,300.0,ANCHORKEY,300.0\n")
     with pytest.raises(DecodeAuthorityError, match="not byte-identical"):
-        anchor_authority(anchor_env)
+        FX.anchor_authority(env)
 
 
-def test_R1_ms1_scan_is_refused(anchor_env, spy):
-    auth = anchor_authority(anchor_env)
-    with pytest.raises(DecodeAuthorityError):
-        X.decode_selected(anchor_env["pooled"], ["s0"], auth)
+def test_R1_file_not_on_allowlist_and_renamed_validation_file_are_refused(tmp_path, spy):
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    with pytest.raises(DecodeAuthorityError, match="not in this authority's allowlist"):
+        X.decode_selected(env["other"], ["t1"], auth)
+    impostor = FX.write_mzml(tmp_path / "impostor" / env["pooled"].name, FX.POOLED, marker=3.0)
+    with pytest.raises(DecodeAuthorityError, match="substituted file"):
+        X.decode_selected(impostor, ["s3"], auth)
     assert spy["n"] == 0
 
 
-def test_R1_msn_scan_carrying_the_anchor_precursor_is_refused(anchor_env, spy, tmp_path):
-    p = write_mzml(tmp_path / "msn" / anchor_env["pooled"].name, [("ms3", 3, 300.0, 40.0)])
-    auth = anchor_authority(anchor_env)
-    auth.files[p.name]["sha256"] = sha(p)
+def test_R1_spectrum_with_two_selected_ions_is_refused(tmp_path, spy):
+    plain = [("s0", 1, None, None), ("s3", 2, 300.0, 20.0), ("s4", 2, 300.0, 60.0)]
+    chimeric = [("s0", 1, None, None), ("s3", 2, [500.0, 300.0], 20.0), ("s4", 2, 300.0, 60.0)]
+    env = FX.anchor_env(tmp_path, pooled_scans=plain)
+    FX.write_mzml(env["pooled"], chimeric)
+    rows = DA._rows(env["repo"], DA.EXPOSED_FILES)
+    rows[0]["file_sha256"] = FX.sha(env["pooled"])
+    env["registry_sha"] = FX.write_registry(env["repo"], rows, DA._rows(env["repo"], DA.DECODED_SPECTRA))
+    allow = DA._rows(env["repo"], DA.ANCHOR_ALLOWLIST)
+    for r in allow:
+        r["file_sha256"] = FX.sha(env["pooled"])
+    FX.write_csv(env["repo"] / DA.ANCHOR_ALLOWLIST, allow, list(allow[0]))
+    FX.git(env["repo"], "commit", "-qam", "chimeric precursor list")
+    auth = FX.anchor_authority(env)
+    with pytest.raises(DecodeAuthorityError, match="exactly one required"):
+        X.decode_selected(env["pooled"], ["s3"], auth)
+    assert spy["n"] == 0
+
+
+def test_R1_msn_scan_on_the_allowlist_is_refused(tmp_path, spy):
+    scans = [("s0", 1, None, None), ("s3", 3, 300.0, 40.0), ("s4", 2, 300.0, 60.0)]
+    env = FX.anchor_env(tmp_path, pooled_scans=scans)
+    auth = FX.anchor_authority(env)
     with pytest.raises(DecodeAuthorityError, match="not an MS2 scan"):
-        X.decode_selected(p, ["ms3"], auth)
+        X.decode_selected(env["pooled"], ["s3"], auth)
     assert spy["n"] == 0
 
 
-# ----------------------------------------------------------------------------------------- decoder type gate
+# ======================================================================================= decoder gate
 
 class DuckGuard:
     authorized = True
 
-    def authorize(self, path, requests):
-        pass
-
-    def record_decode(self, path, ids):
+    def authorize(self, *a):
         pass
 
 
-class AnchorSubclass(AnchorPreflightAuthority):
-    pass
-
-
-def test_R3_duck_typed_guard_like_the_burned_TestGuard_is_refused(anchor_env, spy):
-    with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
-        X.decode_selected(anchor_env["pooled"], ["s1"], DuckGuard())
-    assert spy["n"] == 0
-
-
-def test_R3_legacy_and_void_guards_are_refused(anchor_env, spy, tmp_path):
+def test_R3_duck_legacy_void_subclass_and_new_objects_are_refused(tmp_path, spy):
     from muru.wur_v2.confirmation_guard import ConfirmationAccessGuard
     from muru.wur_v2.external_guard import AccessGuard
-    for cls in (AccessGuard, ConfirmationAccessGuard):
-        g = object.__new__(cls)
-        g.authorized = True
-        g.allowed = {(anchor_env["pooled"].name, "s1")}
+    env = FX.anchor_env(tmp_path)
+    real = FX.anchor_authority(env)
+
+    class Sub(AnchorPreflightAuthority):
+        __slots__ = ()
+
+    guards = [DuckGuard(), object.__new__(AccessGuard), object.__new__(ConfirmationAccessGuard),
+              object.__new__(AnchorPreflightAuthority), object.__new__(Sub)]
+    for g in guards:
         with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
-            X.decode_selected(anchor_env["pooled"], ["s1"], g)
+            X.decode_selected(env["pooled"], ["s3"], g)
+    assert real.authorized is True and spy["n"] == 0
+
+
+def test_R3_constructed_authority_cannot_be_mutated_or_given_new_scope(tmp_path, spy):
+    """F-01/F-B: scope lives in module-private immutable state, not on the object."""
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    with pytest.raises(DecodeAuthorityError):
+        auth.files = {}
+    with pytest.raises(DecodeAuthorityError):
+        auth.authorize = lambda *a: None
+    with pytest.raises(TypeError):
+        vars(auth)
+    sc = DA._SCOPES[auth]
+    with pytest.raises(TypeError):
+        sc.files[env["other"].name] = (FX.sha(env["other"]), {"t1": 300.0})
+    with pytest.raises(TypeError):
+        sc.files[env["pooled"].name][1]["s1"] = 500.0
+    with pytest.raises(DecodeAuthorityError, match="not in this authority's allowlist"):
+        X.decode_selected(env["other"], ["t1"], auth)
     assert spy["n"] == 0
 
 
-def test_R3_subclass_of_an_authority_is_refused(anchor_env, spy):
-    g = AnchorSubclass(log_path=anchor_env["log"], root=anchor_env["repo"], code_root=None)
-    with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
-        X.decode_selected(anchor_env["pooled"], ["s3"], g)
+def test_R3_scope_digest_mismatch_is_refused(tmp_path, spy, monkeypatch):
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    sc = DA._SCOPES[auth]
+    monkeypatch.setitem(DA._SCOPES, auth, DA._Scope(sc.kind, sc.files, sc.log_path, sc.root, sc.code_root,
+                                                     sc.ledger_paths, "0" * 64))
+    with pytest.raises(DecodeAuthorityError, match="digest changed"):
+        X.decode_selected(env["pooled"], ["s3"], auth)
     assert spy["n"] == 0
 
 
-def test_R3_authority_built_with_new_skipping_construction_checks_is_refused(anchor_env, spy):
-    real = anchor_authority(anchor_env)
-    fake = object.__new__(AnchorPreflightAuthority)
-    fake.__dict__.update(real.__dict__)                        # every attribute a real one has, no __init__ run
-    fake.files = {anchor_env["pooled"].name: {"sha256": sha(anchor_env["pooled"]), "mh": [500.0], "keys": ["X"]}}
-    assert type(fake) is AnchorPreflightAuthority and fake.authorized is True
-    with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
-        X.decode_selected(anchor_env["pooled"], ["s1"], fake)
-    assert spy["n"] == 0
+def test_R3_decode_primitive_refuses_outside_decode_selected():
+    """F-A: importing _decode_array does not let anyone decode an array."""
+    for spec in X._iter_spectra(FX.mzml_bytes(FX.POOLED)):
+        bda = spec.find(f"{X.NS}binaryDataArrayList/{X.NS}binaryDataArray")
+        with pytest.raises(X.OutcomeAccessError, match="only be decoded inside decode_selected"):
+            X._decode_array(bda)
+        break
 
 
-def test_R3_code_provenance_refuses_shadowed_or_modified_modules(tmp_path):
-    repo = init_repo(tmp_path / "code")
+def test_R3_overrides_require_test_mode(tmp_path, monkeypatch):
+    """F-06: location overrides are unavailable to ordinary code."""
+    env = FX.anchor_env(tmp_path)
+    monkeypatch.delenv(DA.TEST_MODE_ENV)
+    with pytest.raises(DecodeAuthorityError, match="only under pytest"):
+        FX.anchor_authority(env)
+    with pytest.raises(DecodeAuthorityError, match="only in test mode"):
+        AnchorPreflightAuthority(log_path=env["log"], _ov=DA._TestOverrides({"root": env["repo"], "code_root": None}))
+    with pytest.raises(TypeError):
+        AnchorPreflightAuthority(log_path=env["log"], root=env["repo"])
+    with pytest.raises(TypeError):
+        ConfirmationV2Authority(ledger_dir=tmp_path)
+
+
+def test_R4_bytes_are_read_once_so_a_file_swapped_after_authorization_is_not_what_gets_decoded(tmp_path, monkeypatch):
+    env = FX.anchor_env(tmp_path)
+    auth = FX.anchor_authority(env)
+    orig = DA.authorize_decode
+
+    def authorize_then_swap(*a):
+        orig(*a)
+        FX.write_mzml(env["pooled"], FX.POOLED, marker=900.0)
+
+    monkeypatch.setattr(DA, "authorize_decode", authorize_then_swap)
+    out = X.decode_selected(env["pooled"], ["s3"], auth)
+    assert out["s3"][0][0] < 100.0
+
+
+def test_R3_code_provenance_refuses_shadowed_modified_untracked_and_fileless_scripts(tmp_path):
+    repo = FX.init_repo(tmp_path / "code", with_origin=False)
     mod = repo / "src/muru/wur_v2/decode_authority.py"
     mod.parent.mkdir(parents=True)
     mod.write_text("# committed\n")
     script = repo / "scripts/run.py"
     script.parent.mkdir()
     script.write_text("# committed\n")
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "code")
+    helper = repo / "scripts/helper.py"
+    helper.write_text("# committed helper\n")
+    FX.git(repo, "add", "-A")
+    FX.git(repo, "commit", "-q", "-m", "code")
     ok = {"muru.wur_v2.decode_authority": str(mod)}
     DA.check_code_provenance(repo, modules=ok, main_file=str(script))
     shadow = tmp_path / "scratchpad/muru/wur_v2/decode_authority.py"
@@ -288,10 +270,13 @@ def test_R3_code_provenance_refuses_shadowed_or_modified_modules(tmp_path):
         DA.check_code_provenance(repo, modules={"muru.wur_v2.decode_authority": str(shadow)}, main_file=str(script))
     with pytest.raises(DecodeAuthorityError, match="outside"):
         DA.check_code_provenance(repo, modules=ok, main_file=str(tmp_path / "scratchpad/run_one_look.py"))
-    mod.write_text("# edited, not committed\n")
+    with pytest.raises(DecodeAuthorityError, match="no file"):
+        DA.check_code_provenance(repo, modules=ok, main_file="")
+    DA.check_code_provenance(repo, modules={**ok, "helper": str(helper)}, main_file=str(script))
+    helper.write_text("# edited helper, not committed\n")
     with pytest.raises(DecodeAuthorityError, match="not byte-identical"):
-        DA.check_code_provenance(repo, modules=ok, main_file=str(script))
-    mod.write_text("# committed\n")
+        DA.check_code_provenance(repo, modules={**ok, "helper": str(helper)}, main_file=str(script))
+    helper.write_text("# committed helper\n")
     untracked = repo / "src/muru/wur_v2/header_eligibility.py"
     untracked.write_text("x = 1\n")
     with pytest.raises(DecodeAuthorityError, match="not present at commit"):
@@ -299,11 +284,11 @@ def test_R3_code_provenance_refuses_shadowed_or_modified_modules(tmp_path):
                                  main_file=str(script))
 
 
-def test_R3_legacy_pymzml_reader_refuses_external_msnlib_files(tmp_path):
+def test_R3_legacy_pymzml_reader_refuses_renamed_external_files(tmp_path):
     from muru.io import mzml as legacy
-    for name in ("20220613_100AGC_60000Res_pluskal_mce_1D1_A10_id.mzML", "anything.mzML"):
-        sub = "msnlib_mzml" if name == "anything.mzML" else "x"
-        p = write_mzml(tmp_path / sub / name, VAL)
+    for name in ("20220613_100AGC_60000Res_pluskal_mce_1D1_A10_id.mzML", "20200303_ENTACT_RP_mix499_pos_CE15.mzML",
+                 "anything.mzML"):
+        p = FX.write_mzml(tmp_path / "neutral" / name, FX.VAL)
         with pytest.raises(legacy.ExternalSourceRefused):
             next(legacy.iter_ms2(p))
 
@@ -318,353 +303,361 @@ def test_R3_void_study1_guard_cannot_be_constructed(tmp_path):
                                 allowed_spectrum_keys=set(), root=tmp_path)
 
 
-def test_R3_authority_whose_construction_failed_midway_is_not_authorized(anchor_env, spy, monkeypatch):
-    g = anchor_authority(anchor_env)
-    g.authorized = False
-    with pytest.raises(X.OutcomeAccessError):
-        X.decode_selected(anchor_env["pooled"], ["s3"], g)
+def test_R3_constructed_subclass_is_refused_by_the_decoder(tmp_path, spy):
+    env = FX.anchor_env(tmp_path)
+
+    class Sub(AnchorPreflightAuthority):
+        __slots__ = ()
+
+    g = DA._for_tests(Sub, log_path=env["log"], root=env["repo"], code_root=None, registry_manifest_sha256=env["registry_sha"])
+    assert DA.is_constructed(g)
+    with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
+        X.decode_selected(env["pooled"], ["s3"], g)
     assert spy["n"] == 0
 
 
-def test_header_change_between_authorization_and_decode_is_refused(anchor_env, spy, monkeypatch):
-    auth = anchor_authority(anchor_env)
-    orig = auth.authorize
+def test_R3_authorize_decode_refuses_an_unconstructed_authority_directly():
+    g = object.__new__(AnchorPreflightAuthority)
+    with pytest.raises(DecodeAuthorityError, match="no registered scope"):
+        DA.authorize_decode(g, "f.mzML", "0" * 64, [])
 
-    def authorize_then_swap(path, requests):
-        orig(path, requests)
-        write_mzml(anchor_env["pooled"], [(sid, lvl, 500.0 if sid == "s3" else mz, ce) for sid, lvl, mz, ce in POOLED])
 
-    monkeypatch.setattr(auth, "authorize", authorize_then_swap)
-    with pytest.raises(X.OutcomeAccessError, match="changed between authorization and decode"):
-        X.decode_selected(anchor_env["pooled"], ["s3"], auth)
+def test_R1_header_mz_differing_from_the_recorded_decoded_mz_is_refused(tmp_path, spy):
+    scans = [("s0", 1, None, None), ("s3", 2, 300.004, 20.0), ("s4", 2, 300.0, 60.0)]
+    env = FX.anchor_env(tmp_path, pooled_scans=scans)
+    rows = DA._rows(env["repo"], DA.DECODED_SPECTRA)
+    for r in rows:
+        r["selected_ion_mz"] = "300.0"                    # registry and allowlist say 300.0; the file says 300.004
+    env["registry_sha"] = FX.write_registry(env["repo"], DA._rows(env["repo"], DA.EXPOSED_FILES), rows)
+    FX.git(env["repo"], "commit", "-qam", "recorded m/z differs from header")
+    auth = FX.anchor_authority(env)
+    with pytest.raises(DecodeAuthorityError, match="does not match the allowlisted"):
+        X.decode_selected(env["pooled"], ["s3"], auth)
     assert spy["n"] == 0
 
 
-# ----------------------------------------------------------------------------------------- validation one look
-
-VAL = [("v1", 2, 412.2, 20.0), ("v2", 2, 412.2, 60.0), ("v3", 2, 612.3, 20.0)]
-
-
-def build_frozen_repo(tmp_path, *, commit_freeze=True):
-    data = tmp_path / "data"
-    vfile = write_mzml(data / "pluskal_C3_id.mzML", VAL)
-    repo = init_repo(tmp_path / "repo")
-    (repo / "README").write_text("r\n")
-    git(repo, "add", "README")
-    git(repo, "commit", "-q", "-m", "protocol")
-    cand = {"name": "CAND", "coef": [1, 2]}
-    comp = {"name": "COMP", "coef": [3]}
-    for rel, obj in ((DA.CANDIDATE_JSON, cand), (DA.COMPARATOR_JSON, comp)):
-        (repo / rel).parent.mkdir(parents=True, exist_ok=True)
-        (repo / rel).write_text(json.dumps(obj))
-    pop = [{"key": "KEYA", "scaffold_group": "GA", "mh": "412.2"}]
-    write_csv(repo / DA.POPULATION_CSV, pop, ["key", "scaffold_group", "mh"])
-    scans = [{"file": vfile.name, "file_sha256": sha(vfile), "spectrum_id": "v1", "selected_ion_mz": "412.2", "key": "KEYA", "rung": "20"},
-             {"file": vfile.name, "file_sha256": sha(vfile), "spectrum_id": "v2", "selected_ion_mz": "412.2", "key": "KEYA", "rung": "60"}]
-    write_csv(repo / DA.SCAN_ALLOWLIST, scans, ["file", "file_sha256", "spectrum_id", "selected_ion_mz", "key", "rung"])
-    (repo / DA.FREEZE_DOC).write_text("FINAL FREEZE study 2\n")
-    hashes = {"candidate_hash": DA.canonical_json_sha256(cand), "comparator_hash": DA.canonical_json_sha256(comp),
-              "population_key_hash": DA.sha256_lines(["KEYA"]), "scaffold_group_hash": DA.sha256_lines(["GA"]),
-              "spectrum_manifest_hash": DA.sha256_lines([f"{vfile.name}:v1", f"{vfile.name}:v2"])}
-    frozen = {rel: hashlib.sha256((repo / rel).read_bytes()).hexdigest()
-              for rel in (DA.CANDIDATE_JSON, DA.COMPARATOR_JSON, DA.POPULATION_CSV, DA.SCAN_ALLOWLIST, DA.FREEZE_DOC)}
-    manifest = {"study_id": DA.STUDY_ID_V2, **hashes, "frozen_files": frozen}
-    (repo / DA.FREEZE_MANIFEST).parent.mkdir(parents=True, exist_ok=True)
-    (repo / DA.FREEZE_MANIFEST).write_text(json.dumps(manifest, indent=1))
-    if commit_freeze:
-        git(repo, "add", "-A")
-        git(repo, "commit", "-q", "-m", "FINAL FREEZE")
-    live = {k: hashes[k] for k in DA.LIVE_HEADER_HASH_FIELDS}
-    return {"repo": repo, "vfile": vfile, "ledger": tmp_path / "ledger", "live": live, "manifest": manifest}
+def test_R1_empty_anchor_allowlist_is_refused(tmp_path):
+    env = FX.anchor_env(tmp_path)
+    FX.write_csv(env["repo"] / DA.ANCHOR_ALLOWLIST, [], ["file", "file_sha256", "spectrum_id", "selected_ion_mz",
+                                                         "anchor_key", "anchor_mh"])
+    FX.git(env["repo"], "commit", "-qam", "empty")
+    with pytest.raises(DecodeAuthorityError, match="empty"):
+        FX.anchor_authority(env)
 
 
-def v2(env, **kw):
-    return ConfirmationV2Authority(live_header_hashes=kw.pop("live", env["live"]), root=env["repo"],
-                                   ledger_dir=env["ledger"], code_root=None, **kw)
+def test_restricted_header_reader_never_returns_collision_energy_assisted_or_msn_rows():
+    """F-MSn: population-2 headers must not expose the Assisted energy or MS3+ precursor (fragment) m/z."""
+    scans = [("m1", 1, None, None), ("a20", 2, 300.1, 20.0), ("assist", 2, 300.1, 45.0), ("a60", 2, 300.1, 60.0),
+             ("ms3", 3, 151.07, 20.0), ("ms3b", 3, 151.07, 60.0)]
+    rows = X.scan_headers_rung_only(FX.mzml_bytes(scans))
+    assert [r["spectrum_id"] for r in rows] == ["a20", "a60"]
+    assert all(set(r) == set(X.RUNG_ONLY_COLUMNS) for r in rows)
+    assert {r["rung"] for r in rows} == {20.0, 60.0}
 
 
-def test_R8_access_record_is_written_fsynced_committed_and_intent_logged_before_first_array_decode(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
+# ======================================================================================= the one look
+
+def test_R8_record_written_committed_pushed_and_intent_logged_before_first_array_decode(tmp_path, spy):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    freeze = git(repo, "rev-parse", "HEAD")
+    freeze = FX.git(repo, "rev-parse", "HEAD")
     seen = {}
 
     def before_decode():
         if seen:
             return
         rec = repo / DA.ACCESS_RECORD
-        assert rec.is_file()
-        assert git(repo, "log", "--format=%H", "--", DA.ACCESS_RECORD) != ""
-        assert git(repo, "rev-parse", "HEAD^") == freeze
+        assert rec.is_file() and json.loads(rec.read_text())["validation_access_head"] == freeze
+        assert FX.git(repo, "rev-parse", "HEAD^") == freeze
+        assert FX.git(repo, "ls-remote", "origin", DA.ACCESS_REF).split()[0] == FX.git(repo, "rev-parse", "HEAD")
         assert (env["ledger"] / f"{DA.STUDY_ID_V2}.json").is_file()
         intents = [json.loads(line) for line in (repo / DA.DECODE_INTENTS).read_text().splitlines()]
         assert intents and set(intents[-1]["spectra"]) == {"v1", "v2"}
-        assert json.loads(rec.read_text())["validation_access_head"] == freeze
         seen["ok"] = True
 
     spy["before"] = before_decode
-    auth = v2(env)
-    out = X.decode_selected(env["vfile"], ["v1", "v2"], auth)
+    auth = FX.v2_authority(env)
+    out = X.decode_selected(FX.member(env), ["v1", "v2"], auth)
     assert set(out) == {"v1", "v2"} and seen.get("ok") and spy["n"] == 4
 
 
-def test_R3_no_freeze_commit_means_no_authority(tmp_path, spy):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
+def test_R3_no_freeze_commit_means_no_authority_and_nothing_written(tmp_path):
+    env = FX.validation_env(tmp_path, commit_freeze=False)
     with pytest.raises(DecodeAuthorityError):
-        v2(env)
-    assert not (env["repo"] / DA.ACCESS_RECORD).exists() and not env["ledger"].exists()
+        FX.v2_authority(env)
+    assert not (env["repo"] / DA.ACCESS_RECORD).exists()
+    assert not (env["ledger"] / f"{DA.STUDY_ID_V2}.json").exists()
 
 
-def test_R7_head_one_commit_past_the_freeze_is_refused_even_for_docs(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    (env["repo"] / "NOTE.md").write_text("typo fix\n")
-    git(env["repo"], "add", "NOTE.md")
-    git(env["repo"], "commit", "-q", "-m", "outcome-neutral note")
-    with pytest.raises(DecodeAuthorityError, match="is not the freeze commit"):
-        v2(env)
+def test_R7_freeze_not_published_on_origin_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path, publish=False)
+    with pytest.raises(DecodeAuthorityError, match="must be published"):
+        FX.v2_authority(env)
 
 
-def test_R7_freeze_document_deleted_and_readded_is_a_second_freeze(tmp_path):
-    env = build_frozen_repo(tmp_path)
+def test_R7_head_one_commit_past_the_freeze_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
+    (env["repo"] / "NOTE.md").write_text("typo\n")
+    FX.git(env["repo"], "add", "NOTE.md")
+    FX.git(env["repo"], "commit", "-q", "-m", "note")
+    with pytest.raises(DecodeAuthorityError, match="added exactly once, by HEAD"):
+        FX.v2_authority(env)
+
+
+def test_R7_freeze_deleted_and_readded_is_a_second_freeze(tmp_path):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    git(repo, "rm", "-q", DA.FREEZE_DOC)
-    git(repo, "commit", "-q", "-m", "remove freeze")
+    FX.git(repo, "rm", "-q", DA.FREEZE_DOC)
+    FX.git(repo, "commit", "-q", "-m", "remove")
     (repo / DA.FREEZE_DOC).write_text("FINAL FREEZE study 2\n")
-    git(repo, "add", DA.FREEZE_DOC)
-    git(repo, "commit", "-q", "-m", "re-freeze")
-    with pytest.raises(DecodeAuthorityError, match="exactly one commit"):
-        v2(env)
+    FX.git(repo, "add", DA.FREEZE_DOC)
+    FX.git(repo, "commit", "-q", "-m", "re-freeze")
+    FX.publish_freeze(env)
+    with pytest.raises(DecodeAuthorityError, match="added exactly once"):
+        FX.v2_authority(env)
 
 
-def test_R7_competing_freeze_with_different_content_on_another_branch_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
+def test_R7_competing_freeze_on_another_branch_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    freeze = git(repo, "rev-parse", "HEAD")
-    git(repo, "checkout", "-q", "-b", "alt", "HEAD~1")
+    freeze = FX.git(repo, "rev-parse", "HEAD")
+    FX.git(repo, "checkout", "-q", "-b", "alt", "HEAD~1")
     (repo / DA.FREEZE_DOC).write_text("A DIFFERENT FREEZE\n")
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "alternative freeze")
-    git(repo, "checkout", "-q", "--detach", freeze)
+    FX.git(repo, "add", "-A")
+    FX.git(repo, "commit", "-q", "-m", "alternative")
+    FX.git(repo, "checkout", "-q", "main")
+    assert FX.git(repo, "rev-parse", "HEAD") == freeze
     with pytest.raises(DecodeAuthorityError, match="competing freezes"):
-        v2(env)
+        FX.v2_authority(env)
 
 
-def test_R7_uncommitted_edit_to_freeze_manifest_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    p = env["repo"] / DA.FREEZE_MANIFEST
-    p.write_text(p.read_text().replace('"study_id"', '"note": "x", "study_id"'))
-    with pytest.raises(DecodeAuthorityError):
-        v2(env)
-
-
-def test_R7_frozen_file_sha_in_manifest_must_match_committed_bytes(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
+def test_R7_manifest_committed_before_the_freeze_commit_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path, commit_freeze=False)
     repo = env["repo"]
-    m = json.loads((repo / DA.FREEZE_MANIFEST).read_text())
-    m["frozen_files"][DA.SCAN_ALLOWLIST] = "f" * 64
-    (repo / DA.FREEZE_MANIFEST).write_text(json.dumps(m))
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "freeze with a wrong frozen sha")
-    with pytest.raises(DecodeAuthorityError, match="!= frozen"):
-        v2(env)
+    FX.git(repo, "add", DA.FREEZE_MANIFEST)
+    FX.git(repo, "commit", "-q", "-m", "manifest first")
+    FX.git(repo, "add", "-A")
+    FX.git(repo, "commit", "-q", "-m", "FINAL FREEZE")
+    FX.git(repo, "push", "-q", "origin", "main")
+    FX.publish_freeze(env)
+    with pytest.raises(DecodeAuthorityError, match="added exactly once"):
+        FX.v2_authority(env)
 
 
-def test_R7_skip_worktree_flag_hiding_an_edited_frozen_file_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
+def test_R7_skip_worktree_untracked_and_ignored_code_are_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    git(repo, "update-index", "--skip-worktree", DA.POPULATION_CSV)
     p = repo / DA.POPULATION_CSV
+    FX.git(repo, "update-index", "--skip-worktree", DA.POPULATION_CSV)
     p.write_text(p.read_text() + "KEYB,GB,500.0\n")
-    assert git(repo, "status", "--porcelain", "--untracked-files=all") == ""
     with pytest.raises(DecodeAuthorityError, match="hide working-tree changes"):
-        v2(env)
-
-
-def test_R7_layer_isolated_manifest_bytes_binding(tmp_path, monkeypatch):
-    """With the clean-tree layer disabled, the manifest byte binding alone must refuse an on-disk edit."""
-    env = build_frozen_repo(tmp_path)
-    monkeypatch.setattr(ConfirmationV2Authority, "_check_clean_tree", lambda self: None)
-    p = env["repo"] / DA.FREEZE_MANIFEST
-    p.write_text(p.read_text().replace('"study_id"', '"note": "harmless-looking edit", "study_id"'))
-    with pytest.raises(DecodeAuthorityError, match="not byte-identical"):
-        v2(env)
-
-
-def test_R7_freeze_manifest_committed_before_the_freeze_commit_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
-    repo = env["repo"]
-    git(repo, "add", DA.FREEZE_MANIFEST)
-    git(repo, "commit", "-q", "-m", "manifest first")
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "FINAL FREEZE")
-    with pytest.raises(DecodeAuthorityError, match="must be added by the freeze commit"):
-        v2(env)
-
-
-def test_untracked_file_in_tree_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    (env["repo"] / "scratch_decoder.py").write_text("print('x')\n")
+        FX.v2_authority(env)
+    FX.git(repo, "update-index", "--no-skip-worktree", DA.POPULATION_CSV)
+    FX.git(repo, "checkout", "--", DA.POPULATION_CSV)
+    (repo / "scratch_decoder.py").write_text("x = 1\n")
     with pytest.raises(DecodeAuthorityError, match="not clean"):
-        v2(env)
+        FX.v2_authority(env)
+    (repo / "scratch_decoder.py").unlink()
+    (repo / ".git/info/exclude").write_text("scripts/hidden_helper.py\n")
+    (repo / "scripts").mkdir()
+    (repo / "scripts/hidden_helper.py").write_text("x = 1\n")
+    with pytest.raises(DecodeAuthorityError, match="ignored Python files"):
+        FX.v2_authority(env)
 
 
-def test_R6_manifest_hash_that_does_not_match_recomputed_candidate_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
-    repo = env["repo"]
-    m = json.loads((repo / DA.FREEZE_MANIFEST).read_text())
-    m["candidate_hash"] = "c" * 64
-    (repo / DA.FREEZE_MANIFEST).write_text(json.dumps(m))
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "freeze whose candidate hash is caller-echoed, not real")
-    with pytest.raises(DecodeAuthorityError, match="candidate_hash"):
-        v2(env)
+@pytest.mark.parametrize("tweak,match", [
+    (lambda m: m.update(candidate_hash="c" * 64), "candidate_hash"),
+    (lambda m: m.update(study_id="muru-v2-msnlib-confirmation-1.0"), "study_id"),
+    (lambda m: m.update(registry_manifest_sha256="r" * 64), "registry_manifest_sha256"),
+    (lambda m: m["frozen_files"].pop(DA.PROTOCOL_V2), "lacks required entries"),
+    (lambda m: m["frozen_files"].update({DA.SCAN_ALLOWLIST: "f" * 64}), "!= frozen"),
+])
+def test_R6_manifest_that_does_not_match_recomputed_values_is_refused(tmp_path, tweak, match):
+    env = FX.validation_env(tmp_path, manifest_tweak=tweak)
+    with pytest.raises(DecodeAuthorityError, match=match):
+        FX.v2_authority(env)
 
 
-def test_R6_scan_row_smuggled_into_allowlist_before_freeze_is_caught_by_recomputed_spectrum_hash(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
-    repo = env["repo"]
-    p = repo / DA.SCAN_ALLOWLIST
-    p.write_text(p.read_text() + f"{env['vfile'].name},{sha(env['vfile'])},v3,612.3,KEYA,20\n")
-    m = json.loads((repo / DA.FREEZE_MANIFEST).read_text())
-    m["frozen_files"][DA.SCAN_ALLOWLIST] = sha(p)          # the bytes are frozen, but the semantic hash was not updated
-    (repo / DA.FREEZE_MANIFEST).write_text(json.dumps(m))
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "freeze")
-    with pytest.raises(DecodeAuthorityError, match="spectrum_manifest_hash"):
-        v2(env)
+def test_R6_population_intersecting_the_exposure_registry_is_refused(tmp_path):
+    cases = ((dict(excluded_keys=["KEYA"]), "population keys are in the exposure registry"),
+             (dict(excluded_groups=["GA"]), "scaffold groups intersect"),
+             (dict(exposed_extra=[{"file": "x.mzML", "file_sha256": "0" * 64, "unique_sample_id": "pluskal_C3_id",
+                                   "events": "E"}]), "exposed file or well"))
+    for i, (kw, match) in enumerate(cases):
+        env = FX.validation_env(tmp_path / f"case{i}", **kw)
+        with pytest.raises(DecodeAuthorityError, match=match):
+            FX.v2_authority(env)
 
 
-def test_R6_live_header_recomputation_mismatch_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    live = dict(env["live"], population_key_hash="drifted")
-    with pytest.raises(DecodeAuthorityError, match="live header-only recomputation"):
-        v2(env, live=live)
+def test_R6_live_header_re_read_catches_a_frozen_mz_that_the_file_does_not_have(tmp_path):
+    env = FX.validation_env(tmp_path, allow_mz="412.25")
+    with pytest.raises(DecodeAuthorityError, match="live re-read"):
+        FX.v2_authority(env)
+
+
+def test_R6_zip_member_with_different_bytes_is_refused_before_any_record(tmp_path):
+    env = FX.validation_env(tmp_path)
+    with zipfile.ZipFile(env["zips"] / "lib.zip", "w") as zf:
+        zf.writestr(FX.MEMBER, FX.mzml_bytes(FX.VAL, marker=5.0))
+    with pytest.raises(DecodeAuthorityError, match="frozen name and sha256"):
+        FX.v2_authority(env)
     assert not (env["repo"] / DA.ACCESS_RECORD).exists()
 
 
-def test_R5_record_on_disk_refuses_second_look(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    repo = env["repo"]
-    v2(env)
-    shutil.rmtree(env["ledger"])
-    git(repo, "reset", "-q", "--soft", "HEAD~1")               # un-commit, record stays on disk
-    git(repo, "restore", "--staged", DA.ACCESS_RECORD)
+def test_R5_second_construction_in_the_same_clone_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
+    FX.v2_authority(env)
     with pytest.raises(DecodeAuthorityError):
-        v2(env)
+        FX.v2_authority(env)
 
 
-def test_R5_record_deleted_and_branch_reset_is_still_refused_via_history(tmp_path):
-    env = build_frozen_repo(tmp_path)
+def test_R5_record_deleted_branch_reset_and_ledgers_removed_is_still_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    v2(env)
-    shutil.rmtree(env["ledger"])                               # out-of-repo ledger removed too
-    git(repo, "reset", "-q", "--hard", "HEAD~1")               # branch and disk back to the freeze commit
+    FX.v2_authority(env)
+    shutil.rmtree(env["ledger"])
+    shutil.rmtree(repo / ".git/muru-access-ledger")
+    FX.git(repo, "update-ref", "-d", DA.ACCESS_REF)
+    FX.git(repo, "reset", "-q", "--hard", "HEAD~1")
     assert not (repo / DA.ACCESS_RECORD).exists()
+    with pytest.raises(DecodeAuthorityError, match="existed in git history|holds"):
+        FX.v2_authority(env)
+
+
+def test_R5_history_erased_locally_is_still_refused_by_the_pushed_ref(tmp_path):
+    env = FX.validation_env(tmp_path)
+    repo = env["repo"]
+    FX.v2_authority(env)
+    shutil.rmtree(env["ledger"])
+    shutil.rmtree(repo / ".git/muru-access-ledger")
+    FX.git(repo, "update-ref", "-d", DA.ACCESS_REF)
+    FX.git(repo, "reset", "-q", "--hard", "HEAD~1")
+    FX.git(repo, "reflog", "expire", "--expire=now", "--all")
+    FX.git(repo, "gc", "-q", "--prune=now")
+    assert FX.git(repo, "log", "--all", "--reflog", "--format=%H", "--", DA.ACCESS_DIR) == ""
+    with pytest.raises(DecodeAuthorityError, match="holds"):
+        FX.v2_authority(env)
+
+
+def test_R5_layer_isolated_local_history_blocks_when_remote_ref_and_ledgers_are_gone(tmp_path):
+    env = FX.validation_env(tmp_path)
+    repo = env["repo"]
+    FX.v2_authority(env)
+    shutil.rmtree(env["ledger"])
+    shutil.rmtree(repo / ".git/muru-access-ledger")
+    FX.git(repo, "push", "-q", "origin", f":{DA.ACCESS_REF}")
+    FX.git(repo, "update-ref", "-d", DA.ACCESS_REF)
+    FX.git(repo, "reset", "-q", "--hard", "HEAD~1")
     with pytest.raises(DecodeAuthorityError, match="existed in git history"):
-        v2(env)
+        FX.v2_authority(env)
 
 
-def test_R5_record_erased_from_history_is_still_refused_via_out_of_repo_ledger(tmp_path):
-    env = build_frozen_repo(tmp_path)
+def test_R5_layer_isolated_record_is_not_authorized_if_origin_does_not_show_it(tmp_path, monkeypatch):
+    env = FX.validation_env(tmp_path)
+    orig = DA._git_text
+
+    def no_push(root, *args, **kw):
+        if args and args[0] == "push":
+            return ""
+        return orig(root, *args, **kw)
+
+    monkeypatch.setattr(DA, "_git_text", no_push)
+    with pytest.raises(DecodeAuthorityError, match="does not show"):
+        FX.v2_authority(env)
+    assert not (env["ledger"] / f"{DA.STUDY_ID_V2}.json").exists()
+
+
+def test_R7_layer_isolated_manifest_byte_binding(tmp_path, monkeypatch):
+    env = FX.validation_env(tmp_path)
+    monkeypatch.setattr(ConfirmationV2Authority, "_check_clean_tree", staticmethod(lambda ctx: None))
+    p = env["repo"] / DA.FREEZE_MANIFEST
+    p.write_text(p.read_text().replace('"study_id"', '"note": "harmless-looking edit", "study_id"'))
+    with pytest.raises(DecodeAuthorityError, match="not byte-identical"):
+        FX.v2_authority(env)
+
+
+def test_R6_scan_allowlist_key_outside_the_population_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path, scan_key="KEYZ")
+    with pytest.raises(DecodeAuthorityError, match="outside the population"):
+        FX.v2_authority(env)
+
+
+def test_R5_a_clone_made_before_the_look_is_refused_after_the_look(tmp_path):
+    env = FX.validation_env(tmp_path)
+    clone = tmp_path / "clone_b"
+    origin = FX.git(env["repo"], "remote", "get-url", "origin")
+    subprocess.run(["git", "clone", "-q", origin, str(clone)], check=True, capture_output=True)
+    FX.git(clone, "config", "user.email", "t@t")
+    FX.git(clone, "config", "user.name", "t")
+    FX.v2_authority(env)
+    env_b = dict(env, repo=clone, ledger=tmp_path / "ledger_b")
+    with pytest.raises(DecodeAuthorityError, match="another clone|existed in git history"):
+        FX.v2_authority(env_b)
+
+
+def test_R5_shallow_clone_is_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
+    shallow = tmp_path / "shallow"
+    origin = FX.git(env["repo"], "remote", "get-url", "origin")
+    subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", "main", f"file://{origin}", str(shallow)], check=True, capture_output=True)
+    FX.git(shallow, "config", "user.email", "t@t")
+    FX.git(shallow, "config", "user.name", "t")
+    with pytest.raises(DecodeAuthorityError, match="shallow"):
+        FX.v2_authority(dict(env, repo=shallow))
+
+
+def test_R5_gitignored_record_or_intents_on_disk_are_refused(tmp_path):
+    env = FX.validation_env(tmp_path)
     repo = env["repo"]
-    v2(env)
-    git(repo, "reset", "-q", "--hard", "HEAD~1")
-    git(repo, "reflog", "expire", "--expire=now", "--all")
-    git(repo, "gc", "-q", "--prune=now")
-    assert git(repo, "log", "--all", "--reflog", "--format=%H", "--", DA.ACCESS_DIR) == ""
-    with pytest.raises(DecodeAuthorityError, match="ledger"):
-        v2(env)
-
-
-def test_R5_gitignored_record_left_on_disk_with_history_and_ledger_erased_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
-    repo = env["repo"]
-    (repo / ".gitignore").write_text(f"{DA.ACCESS_DIR}/\n")       # a record the clean-tree check cannot see
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "FINAL FREEZE")
+    (repo / ".git/info/exclude").write_text(f"{DA.ACCESS_DIR}/\n")
     for rel in (DA.ACCESS_RECORD, DA.DECODE_INTENTS):
         p = repo / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text("{}\n")
-        assert git(repo, "status", "--porcelain", "--untracked-files=all") == ""
-        assert git(repo, "log", "--all", "--reflog", "--format=%H", "--", DA.ACCESS_DIR) == ""
         with pytest.raises(DecodeAuthorityError, match="already holds an access record"):
-            v2(env)
+            FX.v2_authority(env)
         p.unlink()
 
 
-def test_R7_freeze_manifest_that_was_never_committed_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path, commit_freeze=False)
-    repo = env["repo"]
-    (repo / ".gitignore").write_text(f"{DA.FREEZE_MANIFEST}\n")
-    git(repo, "add", "-A")
-    git(repo, "commit", "-q", "-m", "freeze without its manifest")
-    assert (repo / DA.FREEZE_MANIFEST).is_file()
-    assert git(repo, "status", "--porcelain", "--untracked-files=all") == ""
-    with pytest.raises(DecodeAuthorityError, match="not present at commit|must be added by the freeze commit"):
-        v2(env)
+def test_R5_common_dir_ledger_alone_blocks_a_second_look(tmp_path):
+    env = FX.validation_env(tmp_path)
+    common = env["repo"] / ".git/muru-access-ledger"
+    common.mkdir(parents=True)
+    (common / f"{DA.STUDY_ID_V2}.json").write_text("{}\n")
+    with pytest.raises(DecodeAuthorityError, match="ledger entry"):
+        FX.v2_authority(env)
 
 
-def test_R5_access_directory_touched_on_any_other_branch_is_refused(tmp_path):
-    env = build_frozen_repo(tmp_path)
-    repo = env["repo"]
-    freeze = git(repo, "rev-parse", "HEAD")
-    git(repo, "checkout", "-q", "-b", "side")
-    (repo / DA.ACCESS_DIR).mkdir(parents=True, exist_ok=True)
-    (repo / DA.ACCESS_DIR / "old_record.json").write_text("{}\n")
-    git(repo, "add", "-f", DA.ACCESS_DIR)
-    git(repo, "commit", "-q", "-m", "an earlier look")
-    git(repo, "rm", "-rq", DA.ACCESS_DIR)
-    git(repo, "commit", "-q", "-m", "deleted")
-    git(repo, "checkout", "-q", "--detach", freeze)
-    with pytest.raises(DecodeAuthorityError, match="existed in git history"):
-        v2(env)
+def test_R5_unreachable_origin_fails_before_anything_is_written(tmp_path):
+    env = FX.validation_env(tmp_path)
+    FX.git(env["repo"], "remote", "set-url", "origin", str(tmp_path / "gone.git"))
+    with pytest.raises(DecodeAuthorityError, match="fetch"):
+        FX.v2_authority(env)
+    assert not (env["repo"] / DA.ACCESS_RECORD).exists()
 
 
-def test_R4_scan_outside_frozen_allowlist_is_refused_even_in_an_allowlisted_file(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
-    auth = v2(env)
-    with pytest.raises(DecodeAuthorityError, match="not in the frozen validation scan allowlist"):
-        X.decode_selected(env["vfile"], ["v1", "v3"], auth)
-    assert spy["n"] == 0
-
-
-def test_R4_file_not_in_allowlist_is_refused(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
-    auth = v2(env)
-    stranger = write_mzml(tmp_path / "data" / "pluskal_Z9_id.mzML", VAL)
-    with pytest.raises(DecodeAuthorityError, match="not in the frozen validation scan allowlist"):
-        X.decode_selected(stranger, ["v1"], auth)
-    assert spy["n"] == 0
-
-
-def test_R4_substituted_file_with_same_ids_is_refused_by_content_hash(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
-    auth = v2(env)
-    write_mzml(env["vfile"], [("v1", 2, 412.2, 20.0), ("v2", 2, 412.2, 60.0), ("v3", 2, 612.3, 20.0), ("v4", 2, 1.0, 1.0)])
+def test_R4_scan_outside_allowlist_and_substituted_or_stranger_members_are_refused(tmp_path, spy):
+    env = FX.validation_env(tmp_path)
+    auth = FX.v2_authority(env)
+    with pytest.raises(DecodeAuthorityError, match="not in this authority's allowlist"):
+        X.decode_selected(FX.member(env), ["v1", "v3"], auth)
+    other = tmp_path / "other.zip"
+    with zipfile.ZipFile(other, "w") as zf:
+        zf.writestr(FX.MEMBER, FX.mzml_bytes(FX.VAL, marker=9.0))
+        zf.writestr("mzml/pluskal_Z9_id.mzML", FX.mzml_bytes(FX.VAL))
     with pytest.raises(DecodeAuthorityError, match="substituted file"):
-        X.decode_selected(env["vfile"], ["v1"], auth)
+        X.decode_selected(X.ZipMember(other, FX.MEMBER), ["v1"], auth)
+    with pytest.raises(DecodeAuthorityError, match="not in this authority's allowlist"):
+        X.decode_selected(X.ZipMember(other, "mzml/pluskal_Z9_id.mzML"), ["v1"], auth)
     assert spy["n"] == 0
 
 
-def test_R4_allowlisted_id_whose_precursor_differs_from_frozen_is_refused(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
-    auth = v2(env)
-    auth.allowed[env["vfile"].name]["scans"]["v1"] = 999.0     # simulate a scan whose header disagrees with the freeze
-    with pytest.raises(DecodeAuthorityError, match="does not match the frozen scan"):
-        X.decode_selected(env["vfile"], ["v1"], auth)
-    assert spy["n"] == 0
-
-
-def test_R3_validation_authority_subclass_is_refused(tmp_path, spy):
-    env = build_frozen_repo(tmp_path)
-
-    class Sub(ConfirmationV2Authority):
-        pass
-
-    g = Sub(live_header_hashes=env["live"], root=env["repo"], ledger_dir=env["ledger"], code_root=None)
-    with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
-        X.decode_selected(env["vfile"], ["v1"], g)
+def test_R8_decode_refused_if_record_or_ledger_disappears_after_construction(tmp_path, spy):
+    env = FX.validation_env(tmp_path)
+    auth = FX.v2_authority(env)
+    (env["ledger"] / f"{DA.STUDY_ID_V2}.json").unlink()
+    with pytest.raises(DecodeAuthorityError, match="ledger entry"):
+        X.decode_selected(FX.member(env), ["v1"], auth)
     assert spy["n"] == 0
 
 

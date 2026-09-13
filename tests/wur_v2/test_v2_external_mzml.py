@@ -65,43 +65,42 @@ def test_headers_allowlisted_and_no_outcome_summaries(tmp_path):
         assert not any("intensity" in k or "base_peak" in k or "observed" in k for k in r)
 
 
-def test_decode_requires_guard_and_returns_only_selected(tmp_path):
+def test_decode_requires_guard_and_returns_only_selected(tmp_path, monkeypatch):
     """Since the 2026-09-13 incident a duck-typed guard like `Guard` (the pattern that burned confirmation
-    sample 1) is refused; decoding needs an exact-type decode authority. Decode mechanics are unchanged."""
-    import csv
-    import hashlib
-    import subprocess
+    sample 1) is refused; decoding needs a constructed decode authority. Decode mechanics (zlib and plain,
+    64- and 32-bit arrays, only the requested spectra) are unchanged."""
+    import json
 
+    import decode_fixtures as FX
     from muru.wur_v2 import decode_authority as DA
 
+    monkeypatch.setenv(DA.TEST_MODE_ENV, "1")
     p = _mzml(tmp_path)
     with pytest.raises(X.OutcomeAccessError):
         X.decode_selected(p, ["scan=2"], None)
     with pytest.raises(X.OutcomeAccessError):
         X.decode_selected(p, ["scan=2"], Guard())
 
-    repo = tmp_path / "repo"
-    repo.mkdir()
-    for args in (["init", "-q"], ["config", "user.email", "t@t"], ["config", "user.name", "t"]):
-        subprocess.run(["git", *args], cwd=repo, check=True)
-    digest = hashlib.sha256(p.read_bytes()).hexdigest()
-    for rel, row in ((DA.ANCHOR_ALLOWLIST, {"file": p.name, "file_sha256": digest, "unique_sample_id": "u",
-                                            "anchor_key": "K", "anchor_mh": "301.1410"}),
-                     (DA.EXPOSED_FILES, {"file": p.name, "file_sha256": digest, "unique_sample_id": "u", "events": "E"})):
-        (repo / rel).parent.mkdir(parents=True, exist_ok=True)
-        with open(repo / rel, "w", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=list(row))
-            w.writeheader()
-            w.writerow(row)
-    subprocess.run(["git", "add", "-A"], cwd=repo, check=True)
-    subprocess.run(["git", "commit", "-q", "-m", "allowlist"], cwd=repo, check=True)
-    g = DA.AnchorPreflightAuthority(log_path=tmp_path / "log.jsonl", root=repo, code_root=None)
+    repo = FX.init_repo(tmp_path / "repo", with_origin=False)
+    (repo / DA.CENSUS).parent.mkdir(parents=True, exist_ok=True)
+    (repo / DA.CENSUS).write_text(json.dumps({"anchors": {"design": {"v2_dev_five_rung": {"keys": ["K"]}}}}))
+    digest = FX.sha(p)
+    reg = FX.write_registry(repo, [{"file": p.name, "file_sha256": digest, "unique_sample_id": "u", "events": "E"}],
+                            [{"event": "E", "file": p.name, "unique_sample_id": "u", "spectrum_id": s, "selected_ion_mz": mz,
+                              "rung": "", "surfaced_to_operator": "False"} for s, mz in (("scan=2", "301.141"), ("scan=3", "455.29"))])
+    FX.write_csv(repo / DA.ANCHOR_ALLOWLIST, [{"file": p.name, "file_sha256": digest, "spectrum_id": "scan=2",
+                                               "selected_ion_mz": "301.141", "anchor_key": "K", "anchor_mh": "301.1410"}],
+                 ["file", "file_sha256", "spectrum_id", "selected_ion_mz", "anchor_key", "anchor_mh"])
+    FX.git(repo, "add", "-A")
+    FX.git(repo, "commit", "-q", "-m", "allowlist")
+    g = DA._for_tests(DA.AnchorPreflightAuthority, log_path=tmp_path / "log.jsonl", root=repo, code_root=None,
+                      registry_manifest_sha256=reg)
     out = X.decode_selected(p, ["scan=2"], g)
     assert set(out) == {"scan=2"}
     mz, inten = out["scan=2"]
     assert np.allclose(mz, [50.0, 99.1, 301.14]) and np.allclose(inten, [10.0, 50.0, 40.0])
     with pytest.raises(DA.DecodeAuthorityError):
-        X.decode_selected(p, ["scan=3"], g)                  # precursor 455.29 is not the allowlisted anchor
+        X.decode_selected(p, ["scan=3"], g)                  # not on the anchor allowlist
 
 
 def test_numpress_pic_roundtrip_and_reference_vectors():

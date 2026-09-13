@@ -48,3 +48,21 @@ def test_non_anchor_rows_are_never_admitted():
     well = [row("A", 300.0, "C1"), row("B", 500.0, "C2")]
     admitted, _ = admissible_anchor_scopes(well, set())
     assert admitted == []
+
+
+def test_multiply_charged_and_in_source_forms_are_modelled():
+    """REG-1: real carryover spectra were triggered on [M+2H]2+, [M+3H]3+ and [M+H-NH3]+ ions."""
+    from muru.wur_v2.anchor_scope import ION_FORMS, ion_mzs
+    m = 700.0
+    mzs = dict(zip(ION_FORMS, ion_mzs(0, m + PROTON, float("nan"))))
+    assert abs(mzs["[M+2H]2+"] - (m + 2 * PROTON) / 2) < 1e-9
+    assert abs(mzs["[M+3H]3+"] - (m + 3 * PROTON) / 3) < 1e-9
+    assert abs(mzs["[M+H-NH3]+"] - (m + PROTON - 17.026549)) < 1e-9
+    assert ion_mzs(2, float("nan"), 500.0) == [250.0]            # a dication contributes M+/z
+
+
+def test_doubly_charged_coplated_ion_blocks_an_anchor():
+    heavy = 2 * (300.0 - 0.2) - 2 * PROTON                        # its [M+2H]2+ sits 0.2 Da from the anchor
+    well = [row("ANCHOR", 300.0, "C1"), row("HEAVY", heavy + PROTON, "C9")]
+    admitted, rejected = admissible_anchor_scopes(well, {"ANCHOR"})
+    assert not admitted and "HEAVY" in rejected[0]["reason"]

@@ -15,13 +15,26 @@ Exclusion components (reason codes), each deduplicated per compound key, then ex
                                   ion (carryover from earlier injections of that plate; this covers the surfaced
                                   value, whose attributed compound sits in the adjacent well of the same plate)
   COPLATED_IN_DECODED_WELL        every compound plated in a well whose mzML file had any array decoded
+  DECODED_SAME_PLATE_EXTENDED_ION_5PPM  any compound on the same plate whose multiply charged, cluster, solvent or
+                                  in-source ion (anchor_scope.ION_FORMS) is within 5 ppm of a decoded selected ion
+                                  (review REG-1: real carryover spectra triggered on [M+2H]2+, [M+3H]3+, [M+H-NH3]+)
   SURFACED_VALUE_ATTRIBUTED_WELL  every compound plated in any well of a compound attributed (same plate, any ion,
                                   0.01 Da) to one of the three spectra whose mu was printed to the operator
+  SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM  any compound in ANY library with any ion within 5 ppm of a printed
+                                  spectrum's selected ion (review REG-2: one printed spectrum has an off-plate owner)
+  ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM  for a decoded spectrum with no same-well or same-plate owner, any compound
+                                  of the same library, any plate, with any ion within 3 ppm (review REG-6)
+  HEADER_READ_WELL_STUDY1         every compound plated in any of the wells whose scan headers were parsed during
+                                  study 1 (the 2,402 sample-1 transport wells and the 561 anchor wells, 2,811 local
+                                  files): headers carry the outcome-adaptive Assisted collision energy and MS3+
+                                  precursor m/z values, which are MS2 fragment masses (review F-MSn, REG-3)
 
-Rejected rule, reported as a sensitivity count only: matching decoded precursors to [M+H]+ of compounds in ANY
-well of ANY library (the incident record's attribution rule). Both independent audits showed that rule attributes
-mostly cross-well mass coincidences; a compound acquired in a different library and year cannot contribute to
-a spectrum, so it adds exclusions with no exposure mechanism behind them.
+Rejected rule, reported as a sensitivity count only: matching every decoded precursor to [M+H]+ of compounds in ANY
+well of ANY library at 0.01 Da (the incident record's attribution rule). The registry review measured it against
+an m/z-shifted null: for spectra with no in-well or same-plate owner, other-plate owner rates sit at null level
+(same library 50 vs null 51.7; other libraries 148 vs 138), so the blanket rule adds thousands of coincidental
+exclusions. It is NOT true that off-plate owners never occur (one printed spectrum has one); those cases are
+covered by the narrower SURFACED and ORPHAN rules above.
   MSNLIB_ANCHOR_*                 census design/detected anchors and anchor-gate calibration keys
   MULTIMS2_ANCHOR_CALIBRATION     MultiMS2 anchor keys (decoded 2026-09-13)
   EXPOSED_POPULATION:<name>       every previously exposed MURU development/holdout/external population
@@ -32,7 +45,9 @@ Decode events reconstructed (header replay, each verified against its access rec
 
 Scaffold groups: identity.scaffold_group_v2 of every available SMILES variant of an excluded key (MERLIN rows,
 v2 compounds.csv, LCSB trajectories, WUR identity, MultiMS2 populations, ENTACT mix lists), plus the census
-key->scaffold map. A 12b compound is excluded if its census scaffold group is in the excluded set.
+key->scaffold map. A 12b compound is excluded if its census scaffold group is in the excluded set, or if that
+group's scaffold is the same RDKit canonical tautomer as an excluded scaffold (review REG-5). MultiMS2 VALIDATION
+and SECONDARY SMILES are used only as scaffold variants of keys already excluded for another reason.
 
 Usage:
   PYTHONPATH=src python3 scripts/wur_v2_confirmation_v2/01_build_exposure_registry.py \
@@ -61,7 +76,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from muru.wur_v2 import external_msnlib as L       # noqa: E402
 from muru.wur_v2 import external_mzml as X         # noqa: E402
 from muru.wur_v2 import identity as ID             # noqa: E402
-from muru.wur_v2.anchor_scope import ISO_TOL, PROTON, SHIFTS   # noqa: E402
+from muru.wur_v2.anchor_scope import ISO_TOL, PROTON, SHIFTS, ion_mzs   # noqa: E402
+from rdkit.Chem.MolStandardize import rdMolStandardize                # noqa: E402
 
 ELECTRON = 0.00054858
 SEL_TOL = 0.01
@@ -173,12 +189,12 @@ def design_rows(merlin: Path, census: dict, cache: Path) -> pd.DataFrame:
 
 
 def ions(row) -> list[float]:
-    if row.parent_charge == 0 and np.isfinite(row.mh):
-        m = row.mh - PROTON
-        return [m + s for s in SHIFTS.values()]
-    if np.isfinite(row.m_plus):
-        return [row.m_plus]
-    return []
+    """Census singly charged set (used by the 0.01 Da rules)."""
+    return ion_mzs(row.parent_charge, row.mh, row.m_plus, forms=SHIFTS)
+
+
+def ions_extended(row) -> list[float]:
+    return ion_mzs(row.parent_charge, row.mh, row.m_plus)
 
 
 # --------------------------------------------------------------------------------------------- decode events
@@ -300,9 +316,23 @@ def reconstruct_events(anchor_dir: Path, design: pd.DataFrame, census: dict, mer
     tainted = json.loads((q / "parser_preflight_TAINTED.json").read_text())
     if [r["spectrum_id"] for r in tainted["sample_mu_sanity_check"]] != surfaced:
         raise SystemExit("reconstructed surfaced sanity-check spectrum ids differ from the quarantined record")
+    rec = json.loads((q / "incident_record.json").read_text())
+    surf_files = {v.get("file") for v in rec.get("values_surfaced_to_operator", []) if isinstance(v, dict) and v.get("file")}
+    if surf_files and surf_files != {names[0]}:
+        raise SystemExit(f"surfaced spectra file {names[0]} differs from the incident record {surf_files}")
+    checks["surfaced_file_matches_incident_record"] = bool(surf_files)
     checks["incident_affected_pairs_subset_of_buggy_set"] = True
     checks["surfaced_spectrum_ids_match_quarantine"] = True
     checks["gate2_per_file_counts_match_access_record"] = True
+    checks["verification_level"] = {
+        "E_buggy_preflight": "exact ids: 964 incident pairs must be a subset, count 3,366, 6 per file",
+        "E_buggy_preflight_surfaced_sanity_check": "exact ids and file against the quarantined record",
+        "E_anchor_gate_attempt2": "per-file counts equal the access record (ids not recorded there)",
+        "E_anchor_gate_attempt1": "count equals the access record",
+        "E_fixed_preflight_rerun": "total and file counts only (no id-level record exists)",
+        "consequence": "every compound plated in all 561 wells is excluded regardless (COPLATED_IN_DECODED_WELL); "
+                       "only the carryover rules depend on exact ids",
+    }
 
     decoded_files = pd.DataFrame({"file": names, "file_sha256": [file_sha[n] for n in names],
                                   "unique_sample_id": [USID_RE.search(n).group(1) for n in names]})
@@ -354,8 +384,9 @@ def exposed_populations(trajectories: Path) -> tuple[dict, dict]:
             add_smiles(k, s)
     mm = json.loads((ROOT / "artifacts/wur_v2/external/populations.json").read_text())
     pops["MultiMS2-ANCHOR"] = {r["key"] for r in mm["populations"]["ANCHOR"]}
-    for r in mm["populations"]["ANCHOR"]:
-        add_smiles(r["key"], r.get("smiles"))
+    for pop in ("ANCHOR", "VALIDATION", "SECONDARY"):      # VALIDATION/SECONDARY: scaffold variants only, never exclusions
+        for r in mm["populations"][pop]:
+            add_smiles(r["key"], r.get("smiles"))
     entact = set()
     for f in sorted((ROOT / "data/massive/compound_lists").glob("mix*_compounds.csv")):
         d = pd.read_csv(f)
@@ -475,6 +506,50 @@ def main() -> int:
     surf_well_keys = set(ok[ok.unique_sample_id.isin(surf_wells)].key)
     mark(surf_well_keys, "SURFACED_VALUE_ATTRIBUTED_WELL")
 
+    # extended-ion index (anchor_scope.ION_FORMS) over all design rows, for ppm rules
+    ext_v, ext_k, ext_pl, ext_lib = [], [], [], []
+    for row in ok.itertuples(index=False):
+        for mzv in ions_extended(row):
+            ext_v.append(mzv); ext_k.append(row.key); ext_pl.append(row.plate); ext_lib.append(row.library)
+    order = np.argsort(ext_v)
+    ext_v = np.asarray(ext_v)[order]
+    ext_k, ext_pl, ext_lib = (np.asarray(a, dtype=object)[order] for a in (ext_k, ext_pl, ext_lib))
+
+    def ppm_matches(mz, ppm, plate=None, library=None):
+        tol = mz * ppm * 1e-6
+        lo, hi = np.searchsorted(ext_v, mz - tol, "left"), np.searchsorted(ext_v, mz + tol, "right")
+        sel = np.ones(hi - lo, bool)
+        if plate is not None:
+            sel &= ext_pl[lo:hi] == plate
+        if library is not None:
+            sel &= ext_lib[lo:hi] == library
+        return set(ext_k[lo:hi][sel])
+
+    lib_of_well = ok.drop_duplicates("unique_sample_id").set_index("unique_sample_id").library
+    same_plate_ext = set()
+    orphan_owners = set()
+    for w, mz in zip(spectra.unique_sample_id, spectra.selected_ion_mz):
+        hits = ppm_matches(mz, 5.0, plate=plate_of_well.get(w))
+        same_plate_ext |= hits
+        in_well = {r.key for r in by_well.get(w, pd.DataFrame(columns=ok.columns)).itertuples(index=False)
+                   if any(abs(i - mz) <= mz * 5e-6 for i in ions_extended(r))}
+        if not hits and not in_well and not plate_matches(w, mz):
+            orphan_owners |= ppm_matches(mz, 3.0, library=lib_of_well.get(w))
+    mark(same_plate_ext, "DECODED_SAME_PLATE_EXTENDED_ION_5PPM")
+    mark(orphan_owners, "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM")
+    surf_any = set().union(*(ppm_matches(mz, 5.0) for mz in surf.selected_ion_mz)) if len(surf) else set()
+    mark(surf_any, "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM")
+
+    # wells whose full scan headers were parsed during study 1
+    tp = json.loads((ROOT / "artifacts/wur_v2_confirmation/transport_provenance_manifest.json").read_text())
+    header_wells = {r["unique_sample_id"] for r in tp["rows"]} | decoded_wells
+    listing = sorted(p.name for p in Path(args.anchor_mzml_dir).glob("*.mzML"))
+    listing_wells = {m.group(1) for m in (USID_RE.search(n) for n in listing) if m}
+    if not listing_wells <= header_wells:
+        raise SystemExit(f"{len(listing_wells - header_wells)} locally present study-1 wells are not in the tracked lists")
+    header_keys = set(ok[ok.unique_sample_id.isin(header_wells)].key)
+    mark(header_keys, "HEADER_READ_WELL_STUDY1")
+
     # ---- (3) anchors and calibration
     mark(census["anchors"]["design"]["v2_dev_five_rung"]["keys"], "MSNLIB_ANCHOR_CENSUS_DESIGN")
     mark(census["anchors"]["detected"]["v2_dev_five_rung"]["keys"], "MSNLIB_ANCHOR_CENSUS_DETECTED")
@@ -502,6 +577,27 @@ def main() -> int:
             strings.add(scaffold_cache[(s, k)])
         for g in strings:
             group_reasons.setdefault(g, set()).update(rs)
+    taut = rdMolStandardize.TautomerEnumerator()
+    taut_cache: dict[str, str] = {}
+
+    def canon_taut(scaffold: str) -> str:
+        if scaffold.startswith("__"):
+            return scaffold
+        if scaffold not in taut_cache:
+            m = Chem.MolFromSmiles(scaffold)
+            try:
+                taut_cache[scaffold] = Chem.MolToSmiles(taut.Canonicalize(m)) if m is not None else scaffold
+            except Exception:
+                taut_cache[scaffold] = scaffold
+        return taut_cache[scaffold]
+
+    log("tautomer closure over scaffold groups")
+    excluded_taut = {}
+    for g, rs in group_reasons.items():
+        excluded_taut.setdefault(canon_taut(g), set()).update(rs)
+    for g in groups12b:
+        if g not in group_reasons and canon_taut(g) in excluded_taut:
+            group_reasons[g] = {"TAUTOMER_OF_EXCLUDED_SCAFFOLD"}
     excluded_12b_groups = groups12b_set & set(group_reasons)
     for g in excluded_12b_groups:
         for k in keys_by_group[g]:

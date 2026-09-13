@@ -1,123 +1,216 @@
-"""Static choke-point checks for MSnLib confirmation study 2.
+"""Static choke-point checks for MSnLib confirmation study 2 (source parsing only, no execution).
 
 The runtime boundary (decode_authority + external_mzml.decode_selected) only helps if nothing routes around it.
-These tests parse source files (no execution) and fail if:
-  * any module under src/ or scripts/ outside a short, reasoned allowlist touches a binary-array decoding
-    primitive (_decode_array, numpress_pic_decode, base64 b64decode, zlib decompress, pymzml, pyteomics,
-    pyopenms, muru.io.mzml);
-  * a study-2 script overrides an authority's root/ledger/allowlist location, builds an authority with
-    __new__, assigns an authority's scope attributes, imports a legacy/void guard, or hard-codes another
-    session's worktree or scratch path (the burned study's scripts did all of the last two).
+The pre-sampling leakage review (F-07) showed nine realistic bypass scripts that an earlier, narrower version of
+these checks let through; every one of them is reproduced below as a self-test and must be flagged. Checks run over
+every *.py and *.ipynb file in the repository except tests/ (tests construct synthetic data) and a short, reasoned
+allowlist. They cannot see code that is never committed; the runtime provenance check refuses such code for the
+one look itself.
 """
+from __future__ import annotations
+
 import ast
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DECODER = ROOT / "src/muru/wur_v2/external_mzml.py"
-ALL_CODE = sorted(p for p in list((ROOT / "src").rglob("*.py")) + list((ROOT / "scripts").rglob("*.py"))
-                  if "__pycache__" not in p.parts)
-STUDY2_SCRIPTS = sorted((ROOT / "scripts/wur_v2_confirmation_v2").rglob("*.py"))
-# The only code allowed to touch a decoding primitive, each with the reason it is safe.
+SKIP_DIRS = {".git", ".claude", "node_modules", "tests", "__pycache__", ".venv"}
+
 DECODE_ALLOWLIST = {
     "src/muru/wur_v2/external_mzml.py": "the guarded decoder itself",
-    "src/muru/io/mzml.py": "legacy LCSB raw-branch pymzml reader; refuses MSnLib/MultiMS2 paths (ExternalSourceRefused)",
+    "src/muru/io/mzml.py": "legacy LCSB raw-branch pymzml reader; opens only indexed LCSB files (content allowlist)",
     "scripts/t1_12_raw_branch.py": "legacy LCSB raw-branch driver of muru.io.mzml (LCSB mixes only)",
     "scripts/wur_v2/ext10_msnlib_anchor_files.py": "zlib inflates ZIP members to extract anchor files; decodes no array",
+    "scripts/pb_34_rc3_integrity.py": "integrity scanner imports repo modules by computed name; decodes nothing",
+    "artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/10_parser_preflight_BUGGY_AS_RUN.py":
+        "quarantined incident evidence, preserved as run",
 }
+BOUNDARY_MODULES = {"src/muru/wur_v2/external_mzml.py", "src/muru/wur_v2/decode_authority.py"}
 
-DECODE_PRIMITIVES = {"_decode_array", "numpress_pic_decode", "b64decode", "decodebytes", "decompress", "decompressobj"}
-FORBIDDEN_MODULES = {"pymzml", "muru.io.mzml", "base64", "zlib", "gzip", "lzma", "bz2", "pyteomics", "pyopenms"}
-AUTHORITIES = {"AnchorPreflightAuthority", "ConfirmationV2Authority"}
-LOCATION_OVERRIDES = {"root", "code_root", "ledger_dir", "allowlist_rel", "exposed_files_rel", "study_id"}
-SCOPE_ATTRS = {"authorized", "allowed", "files", "manifest", "freeze_commit", "ledger_path"}
-LEGACY_GUARDS = {"muru.wur_v2.external_guard", "muru.wur_v2.confirmation_guard"}
+DECODE_PRIMITIVES = {"_decode_array", "numpress_pic_decode", "b64decode", "standard_b64decode", "urlsafe_b64decode",
+                     "decodebytes", "a2b_base64", "decompress", "decompressobj"}
+FORBIDDEN_MODULE_ROOTS = {"pymzml", "pyteomics", "pyopenms", "matchms", "spectrum_utils", "base64", "zlib", "gzip",
+                          "lzma", "bz2", "binascii"}
+PRIVATE_BOUNDARY_NAMES = {"_for_tests", "_TestOverrides", "_SCOPES", "_RECORDS", "_PERMIT", "_decode_array",
+                          "authorize_decode", "_iter_spectra", "_spectrum_scope", "TEST_MODE_ENV"}
+PRIVATE_STRINGS = ("MURU_DECODE_AUTHORITY_TEST_MODE",)
+BOUNDARY_IMPORTS = ("muru.wur_v2.external_mzml", "muru.wur_v2.decode_authority")
+AUTHORITY_CLASSES = {"AnchorPreflightAuthority", "ConfirmationV2Authority"}
+REFLECTION_ATTRS = {"__dict__", "__kwdefaults__", "__defaults__", "__code__", "__globals__"}
+LEGACY_GUARDS = ("muru.wur_v2.external_guard", "muru.wur_v2.confirmation_guard")
 FOREIGN_PATH_MARKERS = ("muru-accuracy-sprint", "/private/tmp", "recursive-executor-framework", "scratchpad")
 
 
-def _tree(path):
-    return ast.parse(path.read_text(), filename=str(path))
-
-
-def _imported_modules(tree):
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Import):
-            for a in node.names:
-                yield a.name
-        elif isinstance(node, ast.ImportFrom) and node.module:
-            yield node.module
-            for a in node.names:
-                yield f"{node.module}.{a.name}"
-
-
-def _names(tree):
-    for node in ast.walk(tree):
-        if isinstance(node, ast.Name):
-            yield node.id
-        elif isinstance(node, ast.Attribute):
-            yield node.attr
-        elif isinstance(node, ast.alias):
-            yield node.name.split(".")[-1]
-
-
-def test_only_allowlisted_modules_touch_binary_decoding_primitives():
-    offenders = []
-    for path in ALL_CODE:
-        rel = str(path.relative_to(ROOT))
-        if rel in DECODE_ALLOWLIST:
+def _sources():
+    for p in sorted(ROOT.rglob("*")):
+        if p.suffix not in (".py", ".ipynb") or not p.is_file():
             continue
-        tree = _tree(path)
-        bad_names = set(_names(tree)) & DECODE_PRIMITIVES
-        bad_mods = {m for m in _imported_modules(tree)
-                    if m in FORBIDDEN_MODULES or m.split(".")[0] in {"pymzml", "pyteomics", "pyopenms"}}
-        if bad_names or bad_mods:
-            offenders.append((rel, sorted(bad_names | bad_mods)))
-    assert not offenders, offenders
+        rel = p.relative_to(ROOT)
+        if set(rel.parts[:-1]) & SKIP_DIRS or rel.parts[0] in SKIP_DIRS:
+            continue
+        text = p.read_text(errors="replace")
+        if p.suffix == ".ipynb":
+            try:
+                cells = json.loads(text).get("cells", [])
+                text = "\n".join("".join(c.get("source", [])) for c in cells if c.get("cell_type") == "code")
+            except json.JSONDecodeError:
+                pass
+        yield str(rel), text
+
+
+def _module_aliases(tree) -> tuple[set, set]:
+    """Names bound to the boundary modules, and names bound to authority classes."""
+    mods, classes = set(), set()
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Import):
+            for a in n.names:
+                if a.name in BOUNDARY_IMPORTS:
+                    mods.add(a.asname or a.name.split(".")[0])
+        elif isinstance(n, ast.ImportFrom) and n.module:
+            for a in n.names:
+                full = f"{n.module}.{a.name}"
+                if full in BOUNDARY_IMPORTS:
+                    mods.add(a.asname or a.name)
+                if n.module in BOUNDARY_IMPORTS and a.name in AUTHORITY_CLASSES:
+                    classes.add(a.asname or a.name)
+    return mods, classes
+
+
+def _root_name(node):
+    while isinstance(node, (ast.Attribute, ast.Subscript, ast.Call)):
+        node = node.value if not isinstance(node, ast.Call) else node.func
+    return node.id if isinstance(node, ast.Name) else None
+
+
+def violations(rel: str, text: str) -> list[str]:
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return []
+    out = []
+    in_boundary = rel in BOUNDARY_MODULES
+    if rel not in DECODE_ALLOWLIST:
+        for n in ast.walk(tree):
+            if isinstance(n, (ast.Name, ast.Attribute)):
+                name = n.id if isinstance(n, ast.Name) else n.attr
+                if name in DECODE_PRIMITIVES:
+                    out.append(f"decode primitive {name}")
+            elif isinstance(n, ast.Import):
+                out += [f"imports {a.name}" for a in n.names if a.name.split(".")[0] in FORBIDDEN_MODULE_ROOTS
+                        or a.name == "muru.io.mzml"]
+            elif isinstance(n, ast.ImportFrom) and n.module:
+                if n.module.split(".")[0] in FORBIDDEN_MODULE_ROOTS or n.module == "muru.io.mzml" or \
+                        (n.module == "muru.io" and any(a.name == "mzml" for a in n.names)):
+                    out.append(f"imports from {n.module}")
+            elif isinstance(n, ast.Call):
+                fn = n.func.attr if isinstance(n.func, ast.Attribute) else getattr(n.func, "id", "")
+                if fn in ("import_module", "__import__"):
+                    a0 = n.args[0] if n.args else None
+                    if not isinstance(a0, ast.Constant) or str(a0.value).split(".")[0] in FORBIDDEN_MODULE_ROOTS:
+                        out.append(f"dynamic import {fn}")
+                if fn in ("decode", "encode") and _root_name(n.func) == "codecs":
+                    enc = n.args[1] if len(n.args) > 1 else next((k.value for k in n.keywords if k.arg == "encoding"), None)
+                    if not isinstance(enc, ast.Constant) or any(x in str(enc.value) for x in ("zlib", "base64", "bz2")):
+                        out.append("codecs decode")
+    if not in_boundary:
+        mods, classes = _module_aliases(tree)
+        for n in ast.walk(tree):
+            if isinstance(n, (ast.Name, ast.Attribute)):
+                name = n.id if isinstance(n, ast.Name) else n.attr
+                if name in PRIVATE_BOUNDARY_NAMES:
+                    out.append(f"private boundary name {name}")
+                if isinstance(n, ast.Attribute) and n.attr in REFLECTION_ATTRS and (mods or classes):
+                    out.append(f"reflection {n.attr}")
+            elif isinstance(n, ast.Constant) and isinstance(n.value, str) and any(s in n.value for s in PRIVATE_STRINGS):
+                out.append("test-mode switch string")
+            elif isinstance(n, (ast.Assign, ast.AugAssign, ast.AnnAssign, ast.Delete)):
+                targets = n.targets if isinstance(n, (ast.Assign, ast.Delete)) else [n.target]
+                for t in targets:
+                    if isinstance(t, (ast.Attribute, ast.Subscript)) and _root_name(t) in (mods | classes):
+                        out.append(f"assignment into boundary module/class {_root_name(t)}")
+            elif isinstance(n, ast.Call):
+                fn = getattr(n.func, "id", None) or (n.func.attr if isinstance(n.func, ast.Attribute) else "")
+                if fn in ("setattr", "delattr", "getattr") and n.args and _root_name(n.args[0]) in (mods | classes):
+                    a1 = n.args[1] if len(n.args) > 1 else None
+                    if fn != "getattr" or not isinstance(a1, ast.Constant) or str(a1.value).startswith("_"):
+                        out.append(f"{fn} on boundary module/class")
+                if fn == "vars" and (mods or classes):
+                    out.append("vars() in code that imports the boundary")
+                if fn == "partial" and any(_root_name(a) in (mods | classes) or getattr(a, "attr", "") in AUTHORITY_CLASSES
+                                           for a in n.args):
+                    out.append("functools.partial of an authority")
+                if fn in AUTHORITY_CLASSES and (n.keywords and any(k.arg != "log_path" for k in n.keywords)):
+                    out.append(f"{fn} constructed with keywords {[k.arg for k in n.keywords]}")
+                if fn == "__new__":
+                    out.append("__new__ call")
+    return out
+
+
+def study2_violations(rel: str, text: str) -> list[str]:
+    out = [f"foreign path marker {m!r}" for m in FOREIGN_PATH_MARKERS if m in text]
+    tree = ast.parse(text)
+    for n in ast.walk(tree):
+        mod = n.module if isinstance(n, ast.ImportFrom) else None
+        names = [a.name for a in n.names] if isinstance(n, (ast.Import, ast.ImportFrom)) else []
+        for m in ([mod] if mod else []) + names:
+            if any(m == g or m.startswith(g + ".") for g in LEGACY_GUARDS):
+                out.append(f"imports legacy/void guard {m}")
+        if isinstance(n, ast.Call):
+            fn = n.func.attr if isinstance(n.func, ast.Attribute) else getattr(n.func, "id", "")
+            if fn == "scan_headers" and not rel.endswith("01_build_exposure_registry.py"):
+                out.append("full scan_headers on study-2 data (use scan_headers_rung_only)")
+    return out
+
+
+def test_no_source_file_routes_around_the_decode_boundary():
+    problems = {rel: v for rel, text in _sources() if (v := violations(rel, text))}
+    assert not problems, problems
     assert all((ROOT / rel).is_file() for rel in DECODE_ALLOWLIST)
 
 
-def test_decoder_module_calls_authorize_before_decoding():
-    src = DECODER.read_text()
-    body = src[src.index("def decode_selected"):]
-    assert body.index("guard.authorize(") < body.index("_decode_array(")
-    assert "type(guard) not in _authority_types()" in body and "not _constructed(guard)" in body
-
-
-def test_study2_scripts_do_not_weaken_or_bypass_authorities():
-    problems = []
-    for path in STUDY2_SCRIPTS:
-        text = path.read_text()
-        tree = _tree(path)
-        rel = str(path.relative_to(ROOT))
-        for marker in FOREIGN_PATH_MARKERS:
-            if marker in text:
-                problems.append((rel, f"foreign path marker {marker!r}"))
-        for mod in _imported_modules(tree):
-            if any(mod == g or mod.startswith(g + ".") for g in LEGACY_GUARDS):
-                problems.append((rel, f"imports legacy/void guard {mod}"))
-        for node in ast.walk(tree):
-            if isinstance(node, ast.Call):
-                fn = node.func.attr if isinstance(node.func, ast.Attribute) else getattr(node.func, "id", "")
-                if fn in AUTHORITIES:
-                    overrides = {k.arg for k in node.keywords} & LOCATION_OVERRIDES
-                    if overrides or any(k.arg is None for k in node.keywords):
-                        problems.append((rel, f"{fn} constructed with overrides {sorted(overrides) or ['**kwargs']}"))
-                if fn == "__new__":
-                    problems.append((rel, "__new__ call"))
-            if isinstance(node, (ast.Assign, ast.AugAssign, ast.AnnAssign)):
-                targets = node.targets if isinstance(node, ast.Assign) else [node.target]
-                for t in targets:
-                    if isinstance(t, ast.Attribute) and t.attr in SCOPE_ATTRS:
-                        problems.append((rel, f"assigns .{t.attr}"))
-            if isinstance(node, ast.Call) and getattr(node.func, "id", "") == "setattr":
-                problems.append((rel, "setattr call"))
+def test_study2_scripts_follow_the_study_rules():
+    problems = {}
+    for p in sorted((ROOT / "scripts/wur_v2_confirmation_v2").rglob("*.py")):
+        rel = str(p.relative_to(ROOT))
+        v = study2_violations(rel, p.read_text())
+        if v:
+            problems[rel] = v
     assert not problems, problems
 
 
-def test_static_checker_detects_the_burned_preflight_pattern(tmp_path):
-    """Self-test: the checks above must flag the actual as-run buggy script's constructs."""
-    burned = ROOT / "artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/10_parser_preflight_BUGGY_AS_RUN.py"
-    text = burned.read_text()
-    assert any(m in text for m in FOREIGN_PATH_MARKERS)
-    tree = ast.parse(text)
-    assigned = {t.id for n in ast.walk(tree) if isinstance(n, ast.Assign) for t in n.targets if isinstance(t, ast.Name)}
-    assert "authorized" in assigned      # class-level `authorized = True` duck guard
+def test_decoder_orders_authorization_before_the_permit_and_decode():
+    src = (ROOT / "src/muru/wur_v2/external_mzml.py").read_text()
+    body = src[src.index("def decode_selected"):]
+    assert body.index("DA.authorize_decode(") < body.index("_PERMIT.set(") < body.index("_decode_array(b)")
+    assert "type(guard) not in DA.AUTHORITY_TYPES or not DA.is_constructed(guard)" in body
+    prim = src[src.index("def _decode_array"):src.index("def _spectrum_scope")]
+    assert prim.index("_PERMIT.get() is None") < prim.index("b64decode")
+
+
+BYPASSES = {   # the leakage reviewer's F-07 bypass scripts, as study scripts would write them
+    "B01_subscript_widen": "from muru.wur_v2 import decode_authority as DA\nDA._SCOPES[a] = s\n",
+    "B02_authorize_override": "from muru.wur_v2.decode_authority import AnchorPreflightAuthority\nAnchorPreflightAuthority.authorize = f\n",
+    "B03_independent_decoder": "import binascii, codecs\nraw = codecs.decode(binascii.a2b_base64(t), 'zlib')\n",
+    "B04_partial_override": "import functools\nfrom muru.wur_v2 import decode_authority as DA\nf = functools.partial(DA.AnchorPreflightAuthority, _ov=o)\n",
+    "B05_getattr_private": "from muru.wur_v2 import external_mzml as X\nd = getattr(X, '_decode_' + 'array')\n",
+    "B06_module_patch": "from muru.wur_v2 import external_mzml as X\nX._authority_module = lambda: fake\n",
+    "B07_importlib": "import importlib\nm = importlib.import_module('pym' + 'zml')\n",
+    "B08_test_mode_env": "import os\nos.environ['MURU_DECODE_AUTHORITY_TEST_MODE'] = '1'\n",
+    "B09_vars": "from muru.wur_v2 import decode_authority as DA\nvars(DA)['SEL_TOL'] = 1.0\n",
+    "B10_overrides": "from muru.wur_v2.decode_authority import ConfirmationV2Authority\nConfirmationV2Authority(_ov=o)\n",
+    "B11_legacy_reader": "from muru.io.mzml import iter_ms2\n",
+    "B12_new": "from muru.wur_v2.decode_authority import AnchorPreflightAuthority\nx = object.__new__(AnchorPreflightAuthority)\n",
+}
+
+
+def test_every_known_bypass_pattern_is_flagged():
+    for name, code in BYPASSES.items():
+        assert violations(f"scripts/wur_v2_confirmation_v2/{name}.py", code), name
+    assert violations("scripts/wur_v2_confirmation_v2/x.py",
+                      "from muru.wur_v2 import external_mzml as X\nX.decode_selected(src, ids, auth)\n") == []
+
+
+def test_checker_flags_the_burned_preflight():
+    rel = "artifacts/wur_v2_confirmation/QUARANTINE_leakage_incident_2026-09-13/10_parser_preflight_BUGGY_AS_RUN.py"
+    text = (ROOT / rel).read_text()
+    assert study2_violations("scripts/wur_v2_confirmation_v2/burned.py", text)

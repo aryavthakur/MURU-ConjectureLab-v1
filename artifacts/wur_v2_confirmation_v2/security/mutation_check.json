@@ -1,67 +1,25 @@
 {
- "utc": "2026-09-13T21:39:47Z",
+ "utc": "2026-09-13T23:05:01Z",
  "tests": [
   "tests/wur_v2/test_v2_decode_authority_security.py",
   "tests/wur_v2/test_v2_external_mzml.py"
  ],
- "n_mutants": 35,
- "n_killed": 35,
- "n_survived": 0,
+ "n_mutants": 57,
+ "n_killed": 54,
+ "n_survived": 3,
  "n_invalid": 0,
  "results": [
   {
    "mutant": "decoder_exact_type_gate",
    "file": "src/muru/wur_v2/external_mzml.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_subclass_of_an_authority_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "decoder_authorized_flag",
-   "file": "src/muru/wur_v2/external_mzml.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_authority_whose_construction_failed_midway_is_not_authorized\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_index_flags_hiding_changes",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_skip_worktree_flag_hiding_an_edited_frozen_file_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_constructed_subclass_is_refused_by_the_decoder\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "decoder_constructed_registry",
    "file": "src/muru/wur_v2/external_mzml.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_authority_built_with_new_skipping_construction_checks_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "authority_code_provenance_outside_root",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_code_provenance_refuses_shadowed_or_modified_modules\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "authority_code_provenance_bytes",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_code_provenance_refuses_shadowed_or_modified_modules\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_manifest_added_by_freeze_commit",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_freeze_manifest_committed_before_the_freeze_commit_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "legacy_reader_refuses_external",
-   "file": "src/muru/io/mzml.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_legacy_pymzml_reader_refuses_external_msnlib_files\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "void_study1_guard",
-   "file": "src/muru/wur_v2/confirmation_guard.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_void_study1_guard_cannot_be_constructed\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_duck_legacy_void_subclass_and_new_objects_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "decoder_authorize_call",
@@ -70,154 +28,334 @@
    "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R2_positional_selection_in_pooled_well_is_refused_before_any_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "decoder_reread_header_scope",
+   "mutant": "decoder_reread_scope",
    "file": "src/muru/wur_v2/external_mzml.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_header_change_between_authorization_and_decode_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "status": "SURVIVED",
+   "pytest_tail": "............................................................             [100%]"
   },
   {
-   "mutant": "anchor_precursor_tolerance",
+   "mutant": "primitive_permit_check",
+   "file": "src/muru/wur_v2/external_mzml.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_decode_primitive_refuses_outside_decode_selected\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "restricted_headers_drop_msn",
+   "file": "src/muru/wur_v2/external_mzml.py",
+   "status": "SURVIVED",
+   "pytest_tail": "............................................................             [100%]"
+  },
+  {
+   "mutant": "legacy_reader_allowlist",
+   "file": "src/muru/io/mzml.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_legacy_pymzml_reader_refuses_renamed_external_files\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "void_study1_guard",
+   "file": "src/muru/wur_v2/confirmation_guard.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_void_study1_guard_cannot_be_constructed\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "sealed_setattr",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_constructed_authority_cannot_be_mutated_or_given_new_scope\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "scope_files_mappingproxy",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_constructed_authority_cannot_be_mutated_or_given_new_scope\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "test_mode_gate",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_overrides_require_test_mode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "overrides_type_check",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_overrides_require_test_mode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_scope_registered",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_authorize_decode_refuses_an_unconstructed_authority_directly\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_digest",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_scope_digest_mismatch_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_ledger_present",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_decode_refused_if_record_or_ledger_disappears_after_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_file_on_allowlist",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_file_not_on_allowlist_and_renamed_validation_file_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_content_sha",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_file_not_on_allowlist_and_renamed_validation_file_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "authorize_scan_on_allowlist",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
    "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R2_positional_selection_in_pooled_well_is_refused_before_any_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "anchor_ms2_only",
+   "mutant": "authorize_ms2",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_msn_scan_carrying_the_anchor_precursor_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_msn_scan_on_the_allowlist_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "anchor_file_on_allowlist",
+   "mutant": "authorize_single_precursor",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_file_not_on_anchor_allowlist_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_spectrum_with_two_selected_ions_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "anchor_content_sha",
+   "mutant": "authorize_mz_matches",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_validation_file_renamed_to_an_anchor_basename_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_header_mz_differing_from_the_recorded_decoded_mz_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "anchor_exposure_registry_membership",
+   "mutant": "authorize_intent_logged",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_allowlisted_file_absent_from_exposure_registry_refused_at_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_anchor_re_decode_succeeds_and_is_logged\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "anchor_registry_bound",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_registry_manifest_not_the_pinned_one_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "anchor_allowlist_committed",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_uncommitted_allowlist_widening_refused_at_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_uncommitted_allowlist_widening_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_ledger_check",
+   "mutant": "anchor_exposed_sha",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_record_erased_from_history_is_still_refused_via_out_of_repo_ledger\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_allowlisted_file_absent_from_exposed_files_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_record_on_disk_check",
+   "mutant": "anchor_previously_decoded",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_gitignored_record_left_on_disk_with_history_and_ledger_erased_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_allowlist_scan_never_decoded_before_is_refused_at_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_history_check",
+   "mutant": "anchor_finite",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_record_deleted_and_branch_reset_is_still_refused_via_history\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_nan_anchor_mh_is_refused_at_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_single_freeze_add",
+   "mutant": "anchor_key_is_census_anchor",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R3_no_freeze_commit_means_no_authority\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_non_anchor_key_is_refused_at_construction\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_head_is_freeze",
+   "mutant": "anchor_empty_allowlist",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_head_one_commit_past_the_freeze_is_refused_even_for_docs\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R1_empty_anchor_allowlist_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_shallow",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_shallow_clone_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_fetch",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_unreachable_origin_fails_before_anything_is_written\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_ledger_exists",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_common_dir_ledger_alone_blocks_a_second_look\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_record_on_disk",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_gitignored_record_or_intents_on_disk_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_history",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_layer_isolated_local_history_blocks_when_remote_ref_and_ledgers_are_gone\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_local_access_ref",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "SURVIVED",
+   "pytest_tail": "............................................................             [100%]"
+  },
+  {
+   "mutant": "v2_remote_access_ref",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_history_erased_locally_is_still_refused_by_the_pushed_ref\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_freeze_added_once_by_head",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_head_one_commit_past_the_freeze_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "v2_competing_freeze",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_competing_freeze_with_different_content_on_another_branch_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_competing_freeze_on_another_branch_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_freeze_published",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_freeze_not_published_on_origin_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "v2_clean_tree",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_untracked_file_in_tree_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_skip_worktree_untracked_and_ignored_code_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_ignored_py",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_skip_worktree_untracked_and_ignored_code_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_index_flags",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_skip_worktree_untracked_and_ignored_code_are_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "v2_manifest_bytes_bound",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_layer_isolated_manifest_bytes_binding\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_layer_isolated_manifest_byte_binding\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_frozen_file_sha",
+   "mutant": "v2_study_id",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R7_frozen_file_sha_in_manifest_must_match_committed_bytes\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_manifest_that_does_not_match_recomputed_values_is_refused[<lambda>-study_id]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_recomputed_hashes",
+   "mutant": "v2_required_frozen",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_manifest_hash_that_does_not_match_recomputed_candidate_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_manifest_that_does_not_match_recomputed_values_is_refused[<lambda>-lacks required entries]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_live_header_hashes",
+   "mutant": "v2_frozen_sha",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_live_header_recomputation_mismatch_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_manifest_that_does_not_match_recomputed_values_is_refused[<lambda>-!= frozen]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_commit_record_before_authorized",
+   "mutant": "v2_recomputed",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_access_record_is_written_fsynced_committed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_manifest_that_does_not_match_recomputed_values_is_refused[<lambda>-candidate_hash]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_disjoint_keys",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_population_intersecting_the_exposure_registry_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_disjoint_groups",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_population_intersecting_the_exposure_registry_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_key_in_population",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_scan_allowlist_key_outside_the_population_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_not_exposed_file",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_population_intersecting_the_exposure_registry_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_live_member_sha",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_zip_member_with_different_bytes_is_refused_before_any_record\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_live_header",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R6_live_header_re_read_catches_a_frozen_mz_that_the_file_does_not_have\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_push_record",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_record_written_committed_pushed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  },
+  {
+   "mutant": "v2_verify_remote_record",
+   "file": "src/muru/wur_v2/decode_authority.py",
+   "status": "KILLED",
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R5_layer_isolated_record_is_not_authorized_if_origin_does_not_show_it\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
    "mutant": "v2_ledger_written",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_access_record_is_written_fsynced_committed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_record_written_committed_pushed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   },
   {
-   "mutant": "v2_scan_allowlist_membership",
+   "mutant": "v2_record_before_scope",
    "file": "src/muru/wur_v2/decode_authority.py",
    "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R4_scan_outside_frozen_allowlist_is_refused_even_in_an_allowlisted_file\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_file_on_allowlist",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R4_file_not_in_allowlist_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_content_sha",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R4_substituted_file_with_same_ids_is_refused_by_content_hash\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_precursor_matches_frozen",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R4_allowlisted_id_whose_precursor_differs_from_frozen_is_refused\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
-  },
-  {
-   "mutant": "v2_intent_logged_before_decode",
-   "file": "src/muru/wur_v2/decode_authority.py",
-   "status": "KILLED",
-   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_access_record_is_written_fsynced_committed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
+   "pytest_tail": "=========================== short test summary info ============================\nFAILED tests/wur_v2/test_v2_decode_authority_security.py::test_R8_record_written_committed_pushed_and_intent_logged_before_first_array_decode\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!"
   }
- ]
+ ],
+ "equivalent_mutants": {
+  "decoder_reread_scope": "both passes parse the same in-memory bytes, so the re-read scope always equals the authorized one; kept as defense in depth against future refactors",
+  "v2_local_access_ref": "git log --all already walks refs/muru-access/*, so a surviving local ref is always seen by the history check first",
+  "restricted_headers_drop_msn": "external_msnlib.fixed_rung_scans independently keeps only ms_level == 2 rows, so MS3+ rows never reach the returned output; the early drop is defense in depth"
+ },
+ "non_equivalent_survivors": []
 }

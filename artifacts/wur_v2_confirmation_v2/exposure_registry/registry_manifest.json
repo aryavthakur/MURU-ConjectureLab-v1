@@ -1,23 +1,24 @@
 {
  "study_id": "muru-v2-msnlib-confirmation-2.0",
  "registry": "permanent exposure exclusion registry (study 2, step 2)",
- "utc": "2026-09-13T21:36:53Z",
+ "utc": "2026-09-13T22:36:24Z",
  "rule": "a compound or scaffold group listed here may never enter an MSnLib confirmatory pool",
  "counts": {
-  "excluded_compound_keys_all_sources": 13355,
-  "excluded_scaffold_groups_all_sources": 6525,
+  "excluded_compound_keys_all_sources": 31497,
+  "excluded_scaffold_groups_all_sources": 18393,
   "design12b_keys": 39238,
   "design12b_groups": 29562,
-  "excluded_design12b_keys": 9906,
-  "excluded_design12b_groups": 5276,
-  "remaining_design12b_groups_count_only": 24286,
+  "excluded_design12b_keys": 23695,
+  "excluded_design12b_groups": 15156,
+  "remaining_design12b_groups_count_only": 14406,
   "decoded_msnlib_files": 561,
   "decoded_msnlib_wells": 561,
   "decoded_msnlib_spectra_unique": 4927,
   "per_reason_compounds": {
    "COPLATED_IN_DECODED_WELL": 4020,
-   "DECODED_SAME_PLATE_ION_0p01": 4111,
-   "DECODED_SAME_WELL_ION_0p7": 1221,
+   "DECODED_SAME_PLATE_EXTENDED_ION_5PPM": 2770,
+   "DECODED_SAME_PLATE_ION_0p01": 4118,
+   "DECODED_SAME_WELL_ION_0p7": 1225,
    "EXPOSED_POPULATION:ENTACT-MIX-LISTS-499-503-505": 445,
    "EXPOSED_POPULATION:LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 781,
    "EXPOSED_POPULATION:LCSB-CONFIRMATION": 110,
@@ -33,12 +34,15 @@
    "EXPOSED_POPULATION:WUR-NEG-DEV": 209,
    "EXPOSED_POPULATION:WUR-POS-IDENTITY": 1010,
    "EXPOSED_POPULATION:WUR-SEALED": 404,
+   "HEADER_READ_WELL_STUDY1": 23147,
    "MSNLIB_ANCHOR_CENSUS_DESIGN": 402,
    "MSNLIB_ANCHOR_CENSUS_DETECTED": 340,
    "MSNLIB_ANCHOR_GATE_CALIBRATION": 328,
    "MULTIMS2_ANCHOR_CALIBRATION": 106,
+   "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM": 26,
    "SAMPLE1_DRAW_GROUP": 2690,
-   "SCAFFOLD_GROUP_EXCLUDED": 9906,
+   "SCAFFOLD_GROUP_EXCLUDED": 23695,
+   "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM": 19,
    "SURFACED_VALUE_ATTRIBUTED_WELL": 20
   },
   "per_event_spectra": {
@@ -50,20 +54,20 @@
   }
  },
  "hashes_sorted_newline_joined": {
-  "excluded_compound_keys_sha256": "5e2d2790ef032f0e77213b1cd21376248be42f4eee743e4cbbd7f0195b19c9ea",
-  "excluded_scaffold_groups_sha256": "afc05bfe20a24b978ea60a5a90fe4e4dbb7d27243cbb3979c65c04aff4d36786",
-  "excluded_design12b_keys_sha256": "2300c7caba13f75ff98b003b32b3adbc73740912b2337980b5a1783da3c1e7c0",
-  "excluded_design12b_groups_sha256": "e514f8e2ee70c4d8d8cb58c2c5c3f8dbf77226c2deba95f88641998eafddee30",
+  "excluded_compound_keys_sha256": "a2502ea29cc0b5095d0c44f894a29cbd7a4c4c23463349b87ec556d5b7c0247a",
+  "excluded_scaffold_groups_sha256": "237ab680a94de0c254e31f0e209cb959fbfecb209d2b72bce78facc55b6d03c2",
+  "excluded_design12b_keys_sha256": "d3a93523504e1b762bc90c3e9876265a85a9c6628c6bacb2909523c0cad5bad4",
+  "excluded_design12b_groups_sha256": "2b8f71e104b3e6c6a6ef118d347cfe32ad11ae8791e0b157134577caacbab39f",
   "sample1_groups_sha256": "e3772e294bdaf4d82f31358f03e3c86342676d4900f4655ce6c005646ea9d757",
   "sample1_keys_sha256": "099180786d00a4b939621e1fb36f3fcf09d50a8abc3c106418c1acb4bc5caa50"
  },
  "output_file_sha256": {
-  "excluded_compounds.csv": "85e5ee6c4b46c18a1ccbf98e6909391674d6b6d220c6fae3da3de0f3fa7d9ec9",
-  "excluded_scaffold_groups.csv": "55b80c471af235e57706be502221df383b0c3d87ce661a2ec94d8691eeeb079e",
+  "excluded_compounds.csv": "8c0aa08307faa5b3012c0cdce0badc2d6270fe80ab352f93d9863d05758d1c8e",
+  "excluded_scaffold_groups.csv": "012be37d989248f3195bdd35648f7c52b3dd9c92d742bdd5ff0515a3899ce122",
   "exposed_files.csv": "b343a297f80676c2b1772fcd10e38d094b45537fd39842cb38195f0263d22d26",
   "decoded_spectra.csv": "2a599a2bc148b0cdda05df13b0818af3c6548aba4bd1b96080b77cf1d52874f1",
-  "excluded_compound_keys.txt": "51b17cba18a868d11d60ca948b1a8e36e93b0a9c349f8707289b3790cce6e800",
-  "excluded_scaffold_groups.txt": "56b81940dfed8ab9f7d26093bd999d5f1362df7f78fb9f5ac3559ec52f5067f8"
+  "excluded_compound_keys.txt": "f68144da252974fa9465bce423bbecb27bc41d94a3d21ccfa17f7c12357a94b8",
+  "excluded_scaffold_groups.txt": "56670782419cfea670d72cfe32f9d69fa3892fc7ba988b4446a16b1874c56b1c"
  },
  "decode_event_verification": {
   "buggy_spectra": 3366,
@@ -73,9 +77,18 @@
   "gate2_spectra": 1935,
   "gate2_files": 470,
   "gate1_ids": 4,
+  "surfaced_file_matches_incident_record": true,
   "incident_affected_pairs_subset_of_buggy_set": true,
   "surfaced_spectrum_ids_match_quarantine": true,
-  "gate2_per_file_counts_match_access_record": true
+  "gate2_per_file_counts_match_access_record": true,
+  "verification_level": {
+   "E_buggy_preflight": "exact ids: 964 incident pairs must be a subset, count 3,366, 6 per file",
+   "E_buggy_preflight_surfaced_sanity_check": "exact ids and file against the quarantined record",
+   "E_anchor_gate_attempt2": "per-file counts equal the access record (ids not recorded there)",
+   "E_anchor_gate_attempt1": "count equals the access record",
+   "E_fixed_preflight_rerun": "total and file counts only (no id-level record exists)",
+   "consequence": "every compound plated in all 561 wells is excluded regardless (COPLATED_IN_DECODED_WELL); only the carryover rules depend on exact ids"
+  }
  },
  "inputs": {
   "merlin_tables_sha256_verified_against_census": {
@@ -119,7 +132,7 @@
  "rejected_rule_sensitivity": {
   "rule": "decoded precursor within 0.01 Da of [M+H]+ of a compound in ANY well of ANY library",
   "n_compounds_it_would_flag": 15803,
-  "n_additional_design12b_groups_it_would_exclude": 7733,
+  "n_additional_design12b_groups_it_would_exclude": 4309,
   "why_rejected": "no exposure mechanism: cross-library, cross-year mass coincidences (both independent audits)"
  },
  "not_excluded_disclosures": {
