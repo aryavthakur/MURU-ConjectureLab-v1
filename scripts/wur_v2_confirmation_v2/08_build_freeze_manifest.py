@@ -23,6 +23,8 @@ EXTRA_FROZEN = (
     f"{V2}/population/header_eligibility_manifest.json", f"{V2}/population/required_members.csv",
     f"{V2}/freeze/novelty_bins.json", f"{V2}/freeze/novelty_bins_per_compound.csv",
     f"{V2}/anchor_preflight/anchor_preflight_allowlist.csv", f"{V2}/anchor_preflight/anchor_preflight_result.json",
+    f"{V2}/anchor_preflight/anchor_preflight_log_audit.json", "MURU_V2_MSNLIB_CONFIRMATION_PROTOCOL_V2_AMENDMENT_A1.md",
+    f"{V2}/randomness/nist_beacon_pulse_canonical_uri_raw.json",
     "scripts/wur_v2_confirmation_v2/10_one_look.py", "scripts/wur_v2_confirmation_v2/11_external_analysis.py",
     "src/muru/wur_v2/decode_authority.py", "src/muru/wur_v2/external_mzml.py", "src/muru/wur_v2/metrics.py",
     "src/muru/wur_v2/candidate.py", "src/muru/wur_v2/external_msnlib.py", "src/muru/wur_v2/external_multims2.py",
