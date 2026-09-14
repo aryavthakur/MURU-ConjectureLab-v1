@@ -99,7 +99,8 @@ natural products generally; absolute cross-instrument calibration. The absolute-
 margins before this study (freeze section 9) and was not revisited.
 
 **Development versus external.** In development the P1 ratio was 0.889 (0.1160 vs 0.1305). Externally it is 0.971, so
-roughly three quarters of the development advantage did not transfer.
+roughly three quarters of the development advantage did not transfer. The development tail advantage (AF 6.3% vs
+10.3%) did not transfer at all (11.9% vs 11.8%).
 
 ## Disclosures carried from the freeze
 
