@@ -114,6 +114,22 @@ def violations(rel: str, text: str) -> list[str]:
                         out.append("codecs decode")
     if not in_boundary:
         mods, classes = _module_aliases(tree)
+        imports_boundary = bool(mods or classes) or any(b in text for b in BOUNDARY_IMPORTS)
+        for n in ast.walk(tree):
+            if isinstance(n, ast.Subscript):
+                key = n.slice.value if isinstance(n.slice, ast.Constant) else None
+                is_sys_modules = isinstance(n.value, ast.Attribute) and n.value.attr == "modules" and _root_name(n.value) == "sys"
+                if is_sys_modules and (key is None or any(str(key).startswith(b) for b in BOUNDARY_IMPORTS)):
+                    out.append("sys.modules access to a boundary module")
+                if isinstance(key, str) and key in PRIVATE_BOUNDARY_NAMES | REFLECTION_ATTRS:
+                    out.append(f"string subscript of private boundary name {key}")
+            elif isinstance(n, ast.Call):
+                fn = getattr(n.func, "id", None) or (n.func.attr if isinstance(n.func, ast.Attribute) else "")
+                if isinstance(n.func, ast.Name) and fn in ("exec", "eval", "compile") and imports_boundary:
+                    out.append(f"{fn}() in code that touches the decode boundary")
+                if fn in ("getattr", "setattr", "delattr", "hasattr") and len(n.args) > 1 and \
+                        isinstance(n.args[1], ast.Constant) and n.args[1].value in PRIVATE_BOUNDARY_NAMES:
+                    out.append(f"{fn} of private boundary name {n.args[1].value}")
         for n in ast.walk(tree):
             if isinstance(n, (ast.Name, ast.Attribute)):
                 name = n.id if isinstance(n, ast.Name) else n.attr
@@ -200,6 +216,12 @@ BYPASSES = {   # the leakage reviewer's F-07 bypass scripts, as study scripts wo
     "B10_overrides": "from muru.wur_v2.decode_authority import ConfirmationV2Authority\nConfirmationV2Authority(_ov=o)\n",
     "B11_legacy_reader": "from muru.io.mzml import iter_ms2\n",
     "B12_new": "from muru.wur_v2.decode_authority import AnchorPreflightAuthority\nx = object.__new__(AnchorPreflightAuthority)\n",
+    # round-2 leakage review NF-1: module objects reached through sys.modules and string subscripts
+    "S1_sys_modules_authorize": "import sys\nsys.modules['muru.wur_v2.decode_authority'].__dict__['authorize_decode'] = f\n",
+    "S2_sys_modules_authority_module": "import sys\nm = sys.modules['muru.wur_v2.external_mzml']\nm.__dict__['_authority_module'] = f\n",
+    "S3_permit_by_string": "import sys\nd = vars(sys.modules['muru.wur_v2.' + 'external_mzml'])\nd['_PERMIT'].set(1)\n",
+    "S4_exec": "import muru.wur_v2.external_mzml\nexec('X._PERMIT.set(1)')\n",
+    "S5_getattr_string": "import sys\ng = getattr(sys.modules[name], '_decode_array')\n",
 }
 
 

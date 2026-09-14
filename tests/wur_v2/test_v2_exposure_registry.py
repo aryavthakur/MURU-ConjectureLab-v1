@@ -70,14 +70,14 @@ def test_every_decoded_spectrum_of_the_incident_is_listed():
 # A rebuild with a narrower rule regenerates consistent manifest hashes; these literals make any change to the
 # registry contents a deliberate, reviewed test edit. They must equal the values the decode authority is bound to.
 PINNED = {
-    "registry_manifest_sha256": "89d55a29b4884c6d43df6cb3b41def010b45c8e630ae3d934816dfaf589dc1bb",
-    "excluded_compound_keys_sha256": "a2502ea29cc0b5095d0c44f894a29cbd7a4c4c23463349b87ec556d5b7c0247a",
-    "excluded_scaffold_groups_sha256": "237ab680a94de0c254e31f0e209cb959fbfecb209d2b72bce78facc55b6d03c2",
-    "excluded_design12b_keys_sha256": "d3a93523504e1b762bc90c3e9876265a85a9c6628c6bacb2909523c0cad5bad4",
-    "excluded_design12b_groups_sha256": "2b8f71e104b3e6c6a6ef118d347cfe32ad11ae8791e0b157134577caacbab39f",
-    "counts": {"excluded_compound_keys_all_sources": 31497, "excluded_scaffold_groups_all_sources": 18393,
-               "excluded_design12b_keys": 23695, "excluded_design12b_groups": 15156,
-               "remaining_design12b_groups_count_only": 14406, "decoded_msnlib_spectra_unique": 4927},
+    "registry_manifest_sha256": "ef64541d71be977f65e880c616a8cb895b6c9f3657ff8d8019797ca7d69a9675",
+    "excluded_compound_keys_sha256": "bf103796a9415f8447cc3f27b0692ea57d8d9f2431427975842d19f84953b000",
+    "excluded_scaffold_groups_sha256": "261bb8dd96803dbaf61c1a326bb90ed69c97dae1fe90f0d4d7f0e376db521b31",
+    "excluded_design12b_keys_sha256": "be27fc50bd207d946d4618eb376921f3b21a99a011017706388791e9696bf505",
+    "excluded_design12b_groups_sha256": "8a54ee5465124182db49152705a9e4b38cfe522616484ffcc6d56dd8c67262fd",
+    "counts": {"excluded_compound_keys_all_sources": 31507, "excluded_scaffold_groups_all_sources": 18402,
+               "excluded_design12b_keys": 23703, "excluded_design12b_groups": 15163,
+               "remaining_design12b_groups_count_only": 14399, "decoded_msnlib_spectra_unique": 4927},
 }
 # compounds the pre-sampling reviews showed were decoded or printed but missed by the first registry build
 MUST_BE_EXCLUDED = {
@@ -87,6 +87,7 @@ MUST_BE_EXCLUDED = {
     "GBFLZEXEOZUWRN", "WTGMGRFVBFDHGQ", "XBJWOGLKABXFJE", "ZZKNRXZVGOYGJT",   # F-03 new-anchor-decode carryover
     "OECUWHDVQIITIS", "MURAVORBGFDSMA",                   # same-well owner missed by the incident list; printed value
     "ITKWBJOJBMUWRV", "ZUCUYBFQLSBQCB",                   # REG-5 tautomer / MultiMS2-variant scaffold split
+    "IZSBMDHDBLUZOI", "GAZRAIBCFIZVCH", "WYPOXKFQFNGLOX",   # round-2 precautions (orphan owner; enamine_5008 H11-H14)
 }
 
 

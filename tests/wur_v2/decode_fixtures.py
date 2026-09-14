@@ -129,7 +129,8 @@ MEMBER = "mzml/pluskal_C3_id.mzML"
 
 def validation_env(tmp_path: Path, *, commit_freeze=True, publish=True, scans=VAL, pop_key="KEYA", group="GA",
                    excluded_keys=(), excluded_groups=(), exposed_extra=(), allow_mz="412.2",
-                   manifest_tweak=None, frozen_tweak=None, scan_key=None) -> dict:
+                   manifest_tweak=None, frozen_tweak=None, scan_key=None, pop_mh="412.2", pop_wells="pluskal_C3_id",
+                   rungs=("20", "60"), row_well="pluskal_C3_id") -> dict:
     zips = tmp_path / "zips"
     zips.mkdir(parents=True, exist_ok=True)
     member_bytes = mzml_bytes(scans)
@@ -147,10 +148,11 @@ def validation_env(tmp_path: Path, *, commit_freeze=True, publish=True, scans=VA
         (repo / rel).write_text(json.dumps(obj))
     reg_sha = write_registry(repo, [{"file": "pluskal_A1_id.mzML", "file_sha256": "0" * 64, "unique_sample_id": "pluskal_A1_id",
                                      "events": "E"}, *exposed_extra], [], excluded_keys, excluded_groups)
-    write_csv(repo / DA.POPULATION_CSV, [{"key": pop_key, "scaffold_group": group, "mh": "412.2"}], ["key", "scaffold_group", "mh"])
+    write_csv(repo / DA.POPULATION_CSV, [{"key": pop_key, "scaffold_group": group, "mh": pop_mh, "wells": pop_wells}],
+              ["key", "scaffold_group", "mh", "wells"])
     scan_rows = [{"source_zip": "lib.zip", "member": MEMBER, "file": fname, "file_sha256": sha(member_bytes),
-                  "unique_sample_id": "pluskal_C3_id", "spectrum_id": s, "selected_ion_mz": allow_mz, "key": scan_key or pop_key,
-                  "rung": r} for s, r in (("v1", "20"), ("v2", "60"))]
+                  "unique_sample_id": row_well, "spectrum_id": s, "selected_ion_mz": allow_mz, "key": scan_key or pop_key,
+                  "rung": r} for s, r in zip(("v1", "v2"), rungs)]
     write_csv(repo / DA.SCAN_ALLOWLIST, scan_rows,
               ["source_zip", "member", "file", "file_sha256", "unique_sample_id", "spectrum_id", "selected_ion_mz", "key", "rung"])
     (repo / DA.FREEZE_DOC).write_text("FINAL FREEZE study 2\n")
@@ -176,14 +178,26 @@ def validation_env(tmp_path: Path, *, commit_freeze=True, publish=True, scans=VA
     return env
 
 
-def publish_freeze(env):
+def publish_freeze(env, register=True):
+    """Raw publication for negative tests (bypasses verify_freeze_candidate on purpose)."""
     head = git(env["repo"], "rev-parse", "HEAD")
-    git(env["repo"], "push", "-q", "origin", f"{head}:{DA.FREEZE_REF}")
+    git(env["repo"], "push", "-q", "-f", "origin", f"{head}:{DA.FREEZE_REF}")
+    if register:
+        reg = env["repo"] / ".git" / "muru-access-ledger" / f"{DA.STUDY_ID_V2}.freeze.json"
+        reg.parent.mkdir(parents=True, exist_ok=True)
+        reg.write_text(json.dumps({"freeze_commit": head}))
+
+
+def v2_overrides(env, **ov):
+    kw = dict(root=env["repo"], code_root=None, ledger_dirs=(env["ledger"],), zip_dir=env["zips"],
+              registry_manifest_sha256=env["registry_sha"],
+              canonical_remote=git(env["repo"], "remote", "get-url", "origin"))
+    kw.update(ov)
+    return kw
 
 
 def v2_authority(env, **ov):
-    kw = dict(root=env["repo"], code_root=None, ledger_dirs=(env["ledger"],), zip_dir=env["zips"],
-              registry_manifest_sha256=env["registry_sha"])
+    kw = v2_overrides(env)
     kw.update(ov)
     return DA._for_tests(DA.ConfirmationV2Authority, **kw)
 

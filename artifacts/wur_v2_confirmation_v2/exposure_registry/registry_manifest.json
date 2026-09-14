@@ -1,16 +1,16 @@
 {
  "study_id": "muru-v2-msnlib-confirmation-2.0",
  "registry": "permanent exposure exclusion registry (study 2, step 2)",
- "utc": "2026-09-13T22:36:24Z",
+ "utc": "2026-09-13T23:48:22Z",
  "rule": "a compound or scaffold group listed here may never enter an MSnLib confirmatory pool",
  "counts": {
-  "excluded_compound_keys_all_sources": 31497,
-  "excluded_scaffold_groups_all_sources": 18393,
+  "excluded_compound_keys_all_sources": 31507,
+  "excluded_scaffold_groups_all_sources": 18402,
   "design12b_keys": 39238,
   "design12b_groups": 29562,
-  "excluded_design12b_keys": 23695,
-  "excluded_design12b_groups": 15156,
-  "remaining_design12b_groups_count_only": 14406,
+  "excluded_design12b_keys": 23703,
+  "excluded_design12b_groups": 15163,
+  "remaining_design12b_groups_count_only": 14399,
   "decoded_msnlib_files": 561,
   "decoded_msnlib_wells": 561,
   "decoded_msnlib_spectra_unique": 4927,
@@ -40,8 +40,10 @@
    "MSNLIB_ANCHOR_GATE_CALIBRATION": 328,
    "MULTIMS2_ANCHOR_CALIBRATION": 106,
    "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM": 26,
+   "PRECAUTION_ORPHAN_OWNER": 1,
+   "PRECAUTION_PRINTED_HEADER_NEIGHBOURHOOD": 32,
    "SAMPLE1_DRAW_GROUP": 2690,
-   "SCAFFOLD_GROUP_EXCLUDED": 23695,
+   "SCAFFOLD_GROUP_EXCLUDED": 23703,
    "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM": 19,
    "SURFACED_VALUE_ATTRIBUTED_WELL": 20
   },
@@ -54,20 +56,20 @@
   }
  },
  "hashes_sorted_newline_joined": {
-  "excluded_compound_keys_sha256": "a2502ea29cc0b5095d0c44f894a29cbd7a4c4c23463349b87ec556d5b7c0247a",
-  "excluded_scaffold_groups_sha256": "237ab680a94de0c254e31f0e209cb959fbfecb209d2b72bce78facc55b6d03c2",
-  "excluded_design12b_keys_sha256": "d3a93523504e1b762bc90c3e9876265a85a9c6628c6bacb2909523c0cad5bad4",
-  "excluded_design12b_groups_sha256": "2b8f71e104b3e6c6a6ef118d347cfe32ad11ae8791e0b157134577caacbab39f",
+  "excluded_compound_keys_sha256": "bf103796a9415f8447cc3f27b0692ea57d8d9f2431427975842d19f84953b000",
+  "excluded_scaffold_groups_sha256": "261bb8dd96803dbaf61c1a326bb90ed69c97dae1fe90f0d4d7f0e376db521b31",
+  "excluded_design12b_keys_sha256": "be27fc50bd207d946d4618eb376921f3b21a99a011017706388791e9696bf505",
+  "excluded_design12b_groups_sha256": "8a54ee5465124182db49152705a9e4b38cfe522616484ffcc6d56dd8c67262fd",
   "sample1_groups_sha256": "e3772e294bdaf4d82f31358f03e3c86342676d4900f4655ce6c005646ea9d757",
   "sample1_keys_sha256": "099180786d00a4b939621e1fb36f3fcf09d50a8abc3c106418c1acb4bc5caa50"
  },
  "output_file_sha256": {
-  "excluded_compounds.csv": "8c0aa08307faa5b3012c0cdce0badc2d6270fe80ab352f93d9863d05758d1c8e",
-  "excluded_scaffold_groups.csv": "012be37d989248f3195bdd35648f7c52b3dd9c92d742bdd5ff0515a3899ce122",
+  "excluded_compounds.csv": "f4fa8013457487d2fecad7d45e2dd60de9883bb9e63fbb55f7d1aef9800b1475",
+  "excluded_scaffold_groups.csv": "fa4913a154d4341f8af382c4cdece2a6ee205d4da0928fc0b3118df0f235d67f",
   "exposed_files.csv": "b343a297f80676c2b1772fcd10e38d094b45537fd39842cb38195f0263d22d26",
   "decoded_spectra.csv": "2a599a2bc148b0cdda05df13b0818af3c6548aba4bd1b96080b77cf1d52874f1",
-  "excluded_compound_keys.txt": "f68144da252974fa9465bce423bbecb27bc41d94a3d21ccfa17f7c12357a94b8",
-  "excluded_scaffold_groups.txt": "56670782419cfea670d72cfe32f9d69fa3892fc7ba988b4446a16b1874c56b1c"
+  "excluded_compound_keys.txt": "372ff0323a92f7fda21fa38a35506b4ec968f90e4f9c3b12f73d240de990c47e",
+  "excluded_scaffold_groups.txt": "a0d782a17a287b106a151e8e8115efcc0d64dcac19f3e06ff00780159045e9cb"
  },
  "decode_event_verification": {
   "buggy_spectra": 3366,
@@ -132,13 +134,14 @@
  "rejected_rule_sensitivity": {
   "rule": "decoded precursor within 0.01 Da of [M+H]+ of a compound in ANY well of ANY library",
   "n_compounds_it_would_flag": 15803,
-  "n_additional_design12b_groups_it_would_exclude": 4309,
-  "why_rejected": "no exposure mechanism: cross-library, cross-year mass coincidences (both independent audits)"
+  "n_additional_design12b_groups_it_would_exclude": 4308,
+  "why_rejected": "measured against a shifted-m/z null by the registry review, other-plate owner rates of spectra with no same-well or same-plate owner sit at null level, so the blanket rule adds thousands of coincidental exclusions; off-plate owners do occur (one printed spectrum has one) and those cases are covered by SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM and ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM"
  },
  "not_excluded_disclosures": {
   "MultiMS2-VALIDATION and SECONDARY": "reserved, never decoded; not previously exposed, so not excluded (the census kept them in 12b)",
   "prospective acquisition target lists": "design-only, never measured; not excluded",
-  "header-only reads": "scan headers of the 2,811 locally extracted wells were read for population construction; headers are acquisition metadata, not outcomes, by program precedent; not excluded",
+  "header-only reads": "EXCLUDED, not merely disclosed: every compound in the wells of the 2,811 locally extracted study-1 files (HEADER_READ_WELL_STUDY1), because full headers carry the outcome-adaptive Assisted collision energy and MS3+ precursor m/z (fragment masses)",
+  "co-isolation from earlier wells": "not excluded: compounds from earlier wells on a decoded plate whose ion falls inside a decoded spectrum's 1.2 m/z isolation window. The registry review measured no carryover presence for remaining-pool compounds (next-injection presence 2/431 one well back vs 3/497 one well forward) and no co-isolation-selected owner excess; disclosed residual",
   "WUR negative-mode keys without SMILES": "excluded by exact key; scaffold groups cannot be computed (no SMILES in repo)"
  }
 }

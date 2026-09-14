@@ -63,8 +63,11 @@ _FILE_INDEX = Path(__file__).resolve().parents[3] / "data" / "massive" / "file_i
 def _indexed_lcsb_sizes() -> dict:
     import csv
     with open(_FILE_INDEX, newline="") as f:
-        return {r["filepath"].rsplit("/", 1)[-1]: int(r["size"]) for r in csv.DictReader(f)
-                if r["filepath"].endswith(".mzML") and r["size"].isdigit()}
+        out: dict = {}
+        for r in csv.DictReader(f):
+            if r["filepath"].endswith(".mzML") and r["size"].isdigit():
+                out.setdefault(r["filepath"].rsplit("/", 1)[-1], set()).add(int(r["size"]))
+        return out
 
 
 def iter_ms2(path: str | Path, min_peaks: int = 1):
@@ -84,7 +87,7 @@ def iter_ms2(path: str | Path, min_peaks: int = 1):
     """
     p = Path(path)
     sizes = _indexed_lcsb_sizes()
-    if p.name not in sizes or p.stat().st_size != sizes[p.name]:
+    if p.name not in sizes or p.stat().st_size not in sizes[p.name]:
         raise ExternalSourceRefused(f"{path}: not an indexed LCSB raw file of the recorded size; use the guarded decoder")
     run = pymzml.run.Reader(str(path), MS_precisions={1: 5e-6, 2: 5e-6})
     for spec in run:

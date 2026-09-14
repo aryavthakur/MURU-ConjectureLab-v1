@@ -19,7 +19,8 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-TESTS = ["tests/wur_v2/test_v2_decode_authority_security.py", "tests/wur_v2/test_v2_external_mzml.py"]
+TESTS = ["tests/wur_v2/test_v2_decode_authority_security.py", "tests/wur_v2/test_v2_decode_authority_round2.py",
+         "tests/wur_v2/test_v2_external_mzml.py"]
 SUPPORT = ["tests/wur_v2/decode_fixtures.py", "data/massive/file_index.csv"]
 DA = "src/muru/wur_v2/decode_authority.py"
 XM = "src/muru/wur_v2/external_mzml.py"
@@ -101,10 +102,102 @@ MUTANTS = [
     ("v2_verify_remote_record", DA, "        if not remote or remote[0] != rec_commit:", "        if False:"),
     ("v2_ledger_written", DA, '            _durable_create(lp, json.dumps({**record, "repo_root": str(root)}, indent=1) + "\\n")\n',
      "            pass\n"),
+    # ---- round-2 review fixes and the reviewers' surviving extra mutants
+    ("full_header_gate", XM, "    if not DA._test_mode() and hashlib.sha256(data).hexdigest() not in _full_header_allowlist():", "    if False:"),
+    ("decoder_str_ids", XM, "    if any(type(s) is not str for s in spectrum_ids):", "    if False:"),
+    ("identity_scope_lookup", DA, "        if k is obj:\n            return _SCOPES[k]", "        if k == obj:\n            return _SCOPES[k]"),
+    ("sealed_no_copy", DA, '    def __reduce_ex__(self, protocol):\n        raise DecodeAuthorityError("decode authorities cannot be copied or pickled")',
+     "    def __reduce_ex__(self, protocol):\n        return object.__reduce_ex__(self, protocol)"),
+    ("test_mode_needs_current_test", DA, '            and bool(os.environ.get("PYTEST_CURRENT_TEST")))', "            and True)"),
+    ("test_overrides_real_root", DA, "    if root is not None and Path(root).resolve() == ROOT:", "    if False:"),
+    ("test_overrides_real_zip_dir", DA, "    if zip_dir is not None and Path(zip_dir).resolve().is_relative_to(DEFAULT_ZIP_DIR.resolve()):", "    if False:"),
+    ("test_overrides_real_ledger", DA, "        if Path(d).resolve().is_relative_to(DEFAULT_LEDGER_DIR.resolve()):", "        if False:"),
+    ("remote_ref_exact_name", DA, "        if len(parts) == 2 and parts[1] == ref:", "        if len(parts) == 2:"),
+    ("canonical_remote", DA, "    if url != want or push_url != want:", "    if False:"),
+    ("push_permission_probe", DA, '        _git_text(ctx.root, "push", "--dry-run", "--porcelain", REMOTE, f"HEAD:{PROBE_REF}", timeout=600)\n', "        pass\n"),
+    ("toplevel_check", DA, "    if top != ctx.root:", "    if False:"),
+    ("committer_ident_probe", DA, '        _git_text(ctx.root, "var", "GIT_COMMITTER_IDENT")\n', ""),
+    ("index_lock_probe", DA, '        if (git_dir / "index.lock").exists():', "        if False:"),
+    ("ledger_probe", DA, '            probe.write_text("x")\n', ""),
+    ("git_env_sanitized", DA, '    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}', "    env = dict(os.environ)"),
+    ("git_hooks_disabled", DA, '    return subprocess.run(["git", "-c", "core.hooksPath=/dev/null", "-c", "commit.gpgsign=false", *args],',
+     '    return subprocess.run(["git", "-c", "commit.gpgsign=false", *args],'),
+    ("freeze_adds_dedupe_merges", DA, '        adds = list(dict.fromkeys(_git_text(root, "log", "-m", "--diff-filter=A", "--format=%H", "HEAD", "--",',
+     '        adds = list(dict.fromkeys(_git_text(root, "log", "--diff-filter=A", "--format=%H", "HEAD", "--",'),
+    ("competing_uses_reflog", DA, '    everywhere = set(_git_text(root, "log", "--all", "--reflog", "-m", "--diff-filter=A", "--format=%H", "--",',
+     '    everywhere = set(_git_text(root, "log", "--all", "-m", "--diff-filter=A", "--format=%H", "--",'),
+    ("competing_compares_manifest", DA, "        for rel in (FREEZE_DOC, FREEZE_MANIFEST):\n            other = _git(root,",
+     "        for rel in (FREEZE_DOC,):\n            other = _git(root,"),
+    ("freeze_registration_required", DA, '        if reg.get("freeze_commit") != ctx.freeze:', "        if False:"),
+    ("publish_verifies_first", DA, "    summary = verify_freeze_candidate(_ov=_ov)\n", '    summary = {"freeze_commit": _git_text(_context(ov).root, "rev-parse", "HEAD")}\n'),
+    ("publish_once", DA, '    if _remote_ref(ctx.root, FREEZE_REF) is not None:\n        raise DecodeAuthorityError(f"{REMOTE} already holds',
+     '    if False:\n        raise DecodeAuthorityError(f"{REMOTE} already holds'),
+    ("attempt_failed_logged", DA, '            _durable_append(ctx.attempts_log, {"status": "ATTEMPT_FAILED_NO_DECODE", "utc": _utc(),',
+     '            (lambda *a: None)(ctx.attempts_log, {"status": "ATTEMPT_FAILED_NO_DECODE", "utc": _utc(),'),
+    ("ignored_files_guarded", DA, "    if bad:\n        raise DecodeAuthorityError(f\"ignored files under",
+     "    if False:\n        raise DecodeAuthorityError(f\"ignored files under"),
+    ("allowlist_mz_vs_population_mh", DA, '        if not (abs(float(r["selected_ion_mz"]) - float(p["mh"])) <= SEL_TOL):', "        if False:"),
+    ("allowlist_well_is_file_well", DA, '        if well is None or well.group(1) != r["unique_sample_id"]:', "        if False:"),
+    ("allowlist_key_plated_in_well", DA, '        if r["unique_sample_id"] not in set(p["wells"].split(";")):', "        if False:"),
+    ("allowlist_live_rung", DA, "            if sid not in live_rung or not _finite(rungs[(f, sid)]) or float(rungs[(f, sid)]) != live_rung[sid]:", "            if False:"),
+    ("allowlist_exposed_sha", DA, '        if r["file_sha256"] in exposed_sha or r["unique_sample_id"] in exposed_wells:',
+     '        if r["unique_sample_id"] in exposed_wells:'),
+    ("recomputed_all_fields", DA, "    for field in RECOMPUTED_FIELDS:\n        if m.get(field) != recomputed[field]:",
+     "    for field in RECOMPUTED_FIELDS[:1]:\n        if m.get(field) != recomputed[field]:"),
+    ("authorize_record_present", DA, '    if sc.kind == "VALIDATION" and not (sc.root / ACCESS_RECORD).is_file():', "    if False:"),
+    ("registry_outputs_match_manifest", DA, '        if sha256_file(Path(root) / REGISTRY_DIR / name) != want:', "        if False:"),
+    ("anchor_census_committed", DA, "        require_committed_identical(root, CENSUS, head)\n", ""),
+    ("anchor_mz_equals_recorded", DA, "            if not (abs(float(mz) - float(decoded[(f, sid)])) <= 1e-6):", "            if False:"),
+    ("anchor_mz_within_anchor_mh", DA, "            if not (abs(float(mz) - float(mh)) <= SEL_TOL):", "            if False:"),
+    ("anchor_provenance_at_construction", DA, "        if code_root is not None:\n            check_code_provenance(code_root)\n        head = ",
+     "        if False:\n            check_code_provenance(code_root)\n        head = "),
+    ("v2_provenance_at_construction", DA, "        checked_code = check_code_provenance(code_root) if code_root is not None else []",
+     "        checked_code = []"),
+    ("provenance_foreign_modules", DA, "        if not fp.is_relative_to(base):\n            raise DecodeAuthorityError(f\"{name} is loaded from",
+     "        if not fp.is_relative_to(base):\n            continue\n            raise DecodeAuthorityError(f\"{name} is loaded from"),
+    ("provenance_py_suffix", DA, '        if fp.suffix != ".py":', "        if False:"),
+    ("legacy_reader_size_set", "src/muru/io/mzml.py", "    if p.name not in sizes or p.stat().st_size not in sizes[p.name]:",
+     "    if p.name not in sizes or p.stat().st_size != max(sizes[p.name]):"),
     ("v2_record_before_scope", DA, "        record = self._write_commit_push_record(ctx, files, checked_code)\n",
      "        record = {}\n"),
 ]
 
+
+# Targets re-pointed after the round-2 rewrite moved the validation checks into module functions.
+_RETARGET = {
+    "legacy_reader_allowlist": ("src/muru/io/mzml.py", "    if p.name not in sizes or p.stat().st_size not in sizes[p.name]:", "    if False:"),
+    "test_mode_gate": (DA, '    return (os.environ.get(TEST_MODE_ENV) == "1" and "pytest" in sys.modules', "    return (True"),
+    "authorize_scan_on_allowlist": (DA, "        if type(sid) is not str or sid not in ent[1]:", "        if type(sid) is not str:"),
+    "v2_shallow": (DA, '    if _git_text(ctx.root, "rev-parse", "--is-shallow-repository") != "false":', "    if False:"),
+    "v2_fetch": (DA, '    _git_text(ctx.root, "fetch", "--prune", REMOTE, timeout=600)\n', ""),
+    "v2_remote_access_ref": (DA, "        if _remote_ref(ctx.root, ACCESS_REF) is not None:", "        if False:"),
+    "v2_freeze_added_once_by_head": (DA, "        if adds != [head]:", "        if False:"),
+    "v2_competing_freeze": (DA, "            if other.returncode != 0 or other.stdout != _blob_at(root, head, rel):", "            if False:"),
+    "v2_freeze_published": (DA, "        if _remote_ref(ctx.root, FREEZE_REF) != ctx.freeze:", "        if False:"),
+    "v2_clean_tree": (DA, "    if st:\n        raise DecodeAuthorityError(f\"working tree is not clean",
+                      "    if False:\n        raise DecodeAuthorityError(f\"working tree is not clean"),
+    "v2_index_flags": (DA, "    if hidden:", "    if False:"),
+    "v2_manifest_bytes_bound": (DA, "    raw = require_committed_identical(ctx.root, FREEZE_MANIFEST, ctx.freeze)",
+                                "    raw = (ctx.root / FREEZE_MANIFEST).read_bytes()"),
+    "v2_study_id": (DA, '    if manifest.get("study_id") != STUDY_ID_V2:', "    if False:"),
+    "v2_required_frozen": (DA, "    if missing:\n        raise DecodeAuthorityError(f\"freeze manifest frozen_files lacks",
+                           "    if False:\n        raise DecodeAuthorityError(f\"freeze manifest frozen_files lacks"),
+    "v2_frozen_sha": (DA, "        if sha256_bytes(b) != want:", "        if False:"),
+    "v2_recomputed": (DA, "        if m.get(field) != recomputed[field]:", "        if False:"),
+    "v2_disjoint_keys": (DA, "    if set(by_key) & excluded_keys:", "    if False:"),
+    "v2_disjoint_groups": (DA, '    if {r["scaffold_group"] for r in pop} & excluded_groups:', "    if False:"),
+    "v2_key_in_population": (DA, "        if p is None:\n            raise DecodeAuthorityError(f\"scan allowlist row {f}:{sid} names a key",
+                             "        if False:\n            raise DecodeAuthorityError(f\"scan allowlist row {f}:{sid} names a key"),
+    "v2_not_exposed_file": (DA, '        if r["file_sha256"] in exposed_sha or r["unique_sample_id"] in exposed_wells:', "        if False:"),
+    "v2_live_member_sha": (DA, "        if name != f or sha256_bytes(data) != sha:", "        if False:"),
+    "v2_live_header": (DA, "            if s is None or s[0] != 2.0 or s[2] != 1 or s[3] != 1 or not _finite(s[1]) or not (abs(s[1] - mz) <= 1e-6):",
+                       "            if False:"),
+    "v2_push_record": (DA, '        _git_text(root, "push", "--atomic", f"--force-with-lease={ACCESS_REF}:", REMOTE, f"{rec_commit}:{ACCESS_REF}",\n                  timeout=600)\n', ""),
+    "v2_verify_remote_record": (DA, "        if _remote_ref(root, ACCESS_REF) != rec_commit:", "        if False:"),
+}
+_DROP = {"v2_ignored_py"}
+MUTANTS = [(mid, *_RETARGET[mid]) if mid in _RETARGET else (mid, rel, old, new)
+           for mid, rel, old, new in MUTANTS if mid not in _DROP]
 
 # Mutants that cannot change behaviour, with the reason; reported, but not required to be killed.
 EQUIVALENT = {
@@ -112,6 +205,8 @@ EQUIVALENT = {
                             "authorized one; kept as defense in depth against future refactors",
     "v2_local_access_ref": "git log --all already walks refs/muru-access/*, so a surviving local ref is always seen by "
                            "the history check first",
+    "decoder_exact_type_gate": "is_constructed() itself requires type(obj) in AUTHORITY_TYPES, so the decoder's own "
+                               "type test is a duplicate kept for readability",
     "restricted_headers_drop_msn": "external_msnlib.fixed_rung_scans independently keeps only ms_level == 2 rows, so "
                                    "MS3+ rows never reach the returned output; the early drop is defense in depth",
 }

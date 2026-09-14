@@ -35,6 +35,10 @@ an m/z-shifted null: for spectra with no in-well or same-plate owner, other-plat
 (same library 50 vs null 51.7; other libraries 148 vs 138), so the blanket rule adds thousands of coincidental
 exclusions. It is NOT true that off-plate owners never occur (one printed spectrum has one); those cases are
 covered by the narrower SURFACED and ORPHAN rules above.
+  PRECAUTION_PRINTED_HEADER_NEIGHBOURHOOD  every compound plated in enamine_5008 H11-H14: a round-1 reviewer
+                                  subagent read full headers of H14 and may have printed them (round-2 R2-REG-3)
+  PRECAUTION_ORPHAN_OWNER         IZSBMDHDBLUZOI, the only unexplained full-orphan owner in an earlier well
+                                  (round-2 R2-REG-3; judged implausible but excluded at a cost of one group)
   MSNLIB_ANCHOR_*                 census design/detected anchors and anchor-gate calibration keys
   MULTIMS2_ANCHOR_CALIBRATION     MultiMS2 anchor keys (decoded 2026-09-13)
   EXPOSED_POPULATION:<name>       every previously exposed MURU development/holdout/external population
@@ -540,6 +544,13 @@ def main() -> int:
     surf_any = set().union(*(ppm_matches(mz, 5.0) for mz in surf.selected_ion_mz)) if len(surf) else set()
     mark(surf_any, "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM")
 
+    # precautionary exclusions from the round-2 registry review
+    precaution_wells = {f"pluskal_enamine_5008_H{i}_id" for i in (11, 12, 13, 14)}
+    if not precaution_wells <= set(ok.unique_sample_id):
+        raise SystemExit("precaution wells not found in the design tables")
+    mark(set(ok[ok.unique_sample_id.isin(precaution_wells)].key), "PRECAUTION_PRINTED_HEADER_NEIGHBOURHOOD")
+    mark({"IZSBMDHDBLUZOI"}, "PRECAUTION_ORPHAN_OWNER")
+
     # wells whose full scan headers were parsed during study 1
     tp = json.loads((ROOT / "artifacts/wur_v2_confirmation/transport_provenance_manifest.json").read_text())
     header_wells = {r["unique_sample_id"] for r in tp["rows"]} | decoded_wells
@@ -678,13 +689,23 @@ def main() -> int:
             "n_compounds_it_would_flag": len(rejected_any_well),
             "n_additional_design12b_groups_it_would_exclude": len({key_scaf[k] for k in rejected_any_well if k in step12b}
                                                                  - excluded_12b_groups),
-            "why_rejected": "no exposure mechanism: cross-library, cross-year mass coincidences (both independent audits)",
+            "why_rejected": "measured against a shifted-m/z null by the registry review, other-plate owner rates of spectra "
+                            "with no same-well or same-plate owner sit at null level, so the blanket rule adds thousands of "
+                            "coincidental exclusions; off-plate owners do occur (one printed spectrum has one) and those "
+                            "cases are covered by SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM and "
+                            "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM",
         },
         "not_excluded_disclosures": {
             "MultiMS2-VALIDATION and SECONDARY": "reserved, never decoded; not previously exposed, so not excluded (the census kept them in 12b)",
             "prospective acquisition target lists": "design-only, never measured; not excluded",
-            "header-only reads": "scan headers of the 2,811 locally extracted wells were read for population construction; "
-                                 "headers are acquisition metadata, not outcomes, by program precedent; not excluded",
+            "header-only reads": "EXCLUDED, not merely disclosed: every compound in the wells of the 2,811 locally "
+                                 "extracted study-1 files (HEADER_READ_WELL_STUDY1), because full headers carry the "
+                                 "outcome-adaptive Assisted collision energy and MS3+ precursor m/z (fragment masses)",
+            "co-isolation from earlier wells": "not excluded: compounds from earlier wells on a decoded plate whose ion "
+                                               "falls inside a decoded spectrum's 1.2 m/z isolation window. The registry "
+                                               "review measured no carryover presence for remaining-pool compounds "
+                                               "(next-injection presence 2/431 one well back vs 3/497 one well forward) "
+                                               "and no co-isolation-selected owner excess; disclosed residual",
             "WUR negative-mode keys without SMILES": "excluded by exact key; scaffold groups cannot be computed (no SMILES in repo)",
         },
     }

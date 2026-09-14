@@ -143,9 +143,36 @@ def _cv(elem):
     return out
 
 
+class HeaderAccessRefused(OutcomeAccessError):
+    """Full headers were requested for a file that is not already exposed."""
+
+
+def _full_header_allowlist() -> frozenset:
+    """sha256 of files whose full headers may be read: the exposure registry's decoded files and the study-1
+    sample transport files (all of whose compounds are excluded from population 2)."""
+    import csv
+    import json
+
+    from muru.wur_v2 import decode_authority as DA
+    shas = set()
+    try:
+        with open(DA.ROOT / DA.EXPOSED_FILES, newline="") as f:
+            shas |= {r["file_sha256"] for r in csv.DictReader(f)}
+        shas |= {r["sha256"] for r in json.loads((DA.ROOT / DA.STUDY1_TRANSPORT).read_text())["rows"] if r.get("sha256")}
+    except (OSError, ValueError, KeyError):
+        return frozenset()                                   # no readable allowlist: refuse everything
+    return frozenset(shas)
+
+
 def scan_headers(source) -> list[dict]:
-    """Full allowlisted headers. NOT for population-2 files (see scan_headers_rung_only)."""
+    """Full allowlisted headers, including every collision energy and MS3+ precursor m/z. Those are outcome
+    proxies (the Assisted energy is outcome-adaptive; an MS3 precursor is an MS2 fragment m/z), so since the
+    study-2 review this refuses any file that is not already exposed. Population-2 files use
+    scan_headers_rung_only."""
     data = source if isinstance(source, (bytes, bytearray)) else read_source(source)[1]
+    from muru.wur_v2 import decode_authority as DA
+    if not DA._test_mode() and hashlib.sha256(data).hexdigest() not in _full_header_allowlist():
+        raise HeaderAccessRefused("full scan headers are only for already-exposed files; use scan_headers_rung_only")
     rows = []
     for spec in _iter_spectra(data):
         bdal = spec.find(NS + "binaryDataArrayList")
@@ -262,6 +289,9 @@ def decode_selected(source, spectrum_ids, guard) -> dict[str, tuple[np.ndarray, 
         raise OutcomeAccessError(
             "peak decode requires an authorized AnchorPreflightAuthority or ConfirmationV2Authority "
             f"(got {type(guard).__module__}.{type(guard).__qualname__})")
+    spectrum_ids = list(spectrum_ids)
+    if any(type(s) is not str for s in spectrum_ids):
+        raise OutcomeAccessError("spectrum ids must be plain str")
     wanted = sorted(set(spectrum_ids))
     if not wanted:
         return {}

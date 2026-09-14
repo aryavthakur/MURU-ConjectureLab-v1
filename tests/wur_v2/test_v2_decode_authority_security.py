@@ -225,7 +225,7 @@ def test_R3_overrides_require_test_mode(tmp_path, monkeypatch):
     """F-06: location overrides are unavailable to ordinary code."""
     env = FX.anchor_env(tmp_path)
     monkeypatch.delenv(DA.TEST_MODE_ENV)
-    with pytest.raises(DecodeAuthorityError, match="only under pytest"):
+    with pytest.raises(DecodeAuthorityError, match="only inside a running pytest test"):
         FX.anchor_authority(env)
     with pytest.raises(DecodeAuthorityError, match="only in test mode"):
         AnchorPreflightAuthority(log_path=env["log"], _ov=DA._TestOverrides({"root": env["repo"], "code_root": None}))
@@ -266,9 +266,9 @@ def test_R3_code_provenance_refuses_shadowed_modified_untracked_and_fileless_scr
     shadow = tmp_path / "scratchpad/muru/wur_v2/decode_authority.py"
     shadow.parent.mkdir(parents=True)
     shadow.write_text("# committed\n")
-    with pytest.raises(DecodeAuthorityError, match="outside"):
+    with pytest.raises(DecodeAuthorityError, match=r"outside \S+; refusing"):
         DA.check_code_provenance(repo, modules={"muru.wur_v2.decode_authority": str(shadow)}, main_file=str(script))
-    with pytest.raises(DecodeAuthorityError, match="outside"):
+    with pytest.raises(DecodeAuthorityError, match=r"outside \S+; refusing"):
         DA.check_code_provenance(repo, modules=ok, main_file=str(tmp_path / "scratchpad/run_one_look.py"))
     with pytest.raises(DecodeAuthorityError, match="no file"):
         DA.check_code_provenance(repo, modules=ok, main_file="")
@@ -310,7 +310,7 @@ def test_R3_constructed_subclass_is_refused_by_the_decoder(tmp_path, spy):
         __slots__ = ()
 
     g = DA._for_tests(Sub, log_path=env["log"], root=env["repo"], code_root=None, registry_manifest_sha256=env["registry_sha"])
-    assert DA.is_constructed(g)
+    assert DA._scope_of(g) is not None and not DA.is_constructed(g)
     with pytest.raises(X.OutcomeAccessError, match="requires an authorized"):
         X.decode_selected(env["pooled"], ["s3"], g)
     assert spy["n"] == 0
@@ -341,7 +341,7 @@ def test_R1_empty_anchor_allowlist_is_refused(tmp_path):
     FX.write_csv(env["repo"] / DA.ANCHOR_ALLOWLIST, [], ["file", "file_sha256", "spectrum_id", "selected_ion_mz",
                                                          "anchor_key", "anchor_mh"])
     FX.git(env["repo"], "commit", "-qam", "empty")
-    with pytest.raises(DecodeAuthorityError, match="empty"):
+    with pytest.raises(DecodeAuthorityError, match="anchor allowlist is empty"):
         FX.anchor_authority(env)
 
 
@@ -391,6 +391,11 @@ def test_R3_no_freeze_commit_means_no_authority_and_nothing_written(tmp_path):
 
 def test_R7_freeze_not_published_on_origin_is_refused(tmp_path):
     env = FX.validation_env(tmp_path, publish=False)
+    with pytest.raises(DecodeAuthorityError, match="no local freeze registration"):
+        FX.v2_authority(env)
+    reg = env["repo"] / ".git" / "muru-access-ledger" / f"{DA.STUDY_ID_V2}.freeze.json"
+    reg.parent.mkdir(parents=True, exist_ok=True)
+    reg.write_text(json.dumps({"freeze_commit": FX.git(env["repo"], "rev-parse", "HEAD")}))
     with pytest.raises(DecodeAuthorityError, match="must be published"):
         FX.v2_authority(env)
 
@@ -461,7 +466,7 @@ def test_R7_skip_worktree_untracked_and_ignored_code_are_refused(tmp_path):
     (repo / ".git/info/exclude").write_text("scripts/hidden_helper.py\n")
     (repo / "scripts").mkdir()
     (repo / "scripts/hidden_helper.py").write_text("x = 1\n")
-    with pytest.raises(DecodeAuthorityError, match="ignored Python files"):
+    with pytest.raises(DecodeAuthorityError, match="ignored files under"):
         FX.v2_authority(env)
 
 
@@ -490,7 +495,7 @@ def test_R6_population_intersecting_the_exposure_registry_is_refused(tmp_path):
 
 
 def test_R6_live_header_re_read_catches_a_frozen_mz_that_the_file_does_not_have(tmp_path):
-    env = FX.validation_env(tmp_path, allow_mz="412.25")
+    env = FX.validation_env(tmp_path, allow_mz="412.25", pop_mh="412.25")
     with pytest.raises(DecodeAuthorityError, match="live re-read"):
         FX.v2_authority(env)
 
@@ -520,7 +525,7 @@ def test_R5_record_deleted_branch_reset_and_ledgers_removed_is_still_refused(tmp
     FX.git(repo, "update-ref", "-d", DA.ACCESS_REF)
     FX.git(repo, "reset", "-q", "--hard", "HEAD~1")
     assert not (repo / DA.ACCESS_RECORD).exists()
-    with pytest.raises(DecodeAuthorityError, match="existed in git history|holds"):
+    with pytest.raises(DecodeAuthorityError, match="existed in git history|holds refs/muru-access"):
         FX.v2_authority(env)
 
 
@@ -535,7 +540,7 @@ def test_R5_history_erased_locally_is_still_refused_by_the_pushed_ref(tmp_path):
     FX.git(repo, "reflog", "expire", "--expire=now", "--all")
     FX.git(repo, "gc", "-q", "--prune=now")
     assert FX.git(repo, "log", "--all", "--reflog", "--format=%H", "--", DA.ACCESS_DIR) == ""
-    with pytest.raises(DecodeAuthorityError, match="holds"):
+    with pytest.raises(DecodeAuthorityError, match="holds refs/muru-access"):
         FX.v2_authority(env)
 
 
@@ -569,7 +574,7 @@ def test_R5_layer_isolated_record_is_not_authorized_if_origin_does_not_show_it(t
 
 def test_R7_layer_isolated_manifest_byte_binding(tmp_path, monkeypatch):
     env = FX.validation_env(tmp_path)
-    monkeypatch.setattr(ConfirmationV2Authority, "_check_clean_tree", staticmethod(lambda ctx: None))
+    monkeypatch.setattr(DA, "_check_clean_tree", lambda ctx: None)
     p = env["repo"] / DA.FREEZE_MANIFEST
     p.write_text(p.read_text().replace('"study_id"', '"note": "harmless-looking edit", "study_id"'))
     with pytest.raises(DecodeAuthorityError, match="not byte-identical"):
@@ -586,7 +591,7 @@ def test_R5_a_clone_made_before_the_look_is_refused_after_the_look(tmp_path):
     env = FX.validation_env(tmp_path)
     clone = tmp_path / "clone_b"
     origin = FX.git(env["repo"], "remote", "get-url", "origin")
-    subprocess.run(["git", "clone", "-q", origin, str(clone)], check=True, capture_output=True)
+    subprocess.run(["git", "clone", "-q", "--branch", "main", origin, str(clone)], check=True, capture_output=True)
     FX.git(clone, "config", "user.email", "t@t")
     FX.git(clone, "config", "user.name", "t")
     FX.v2_authority(env)
@@ -602,8 +607,11 @@ def test_R5_shallow_clone_is_refused(tmp_path):
     subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", "main", f"file://{origin}", str(shallow)], check=True, capture_output=True)
     FX.git(shallow, "config", "user.email", "t@t")
     FX.git(shallow, "config", "user.name", "t")
-    with pytest.raises(DecodeAuthorityError, match="shallow"):
-        FX.v2_authority(dict(env, repo=shallow))
+    reg = shallow / ".git" / "muru-access-ledger" / f"{DA.STUDY_ID_V2}.freeze.json"   # isolate the shallow check
+    reg.parent.mkdir(parents=True)
+    reg.write_text(json.dumps({"freeze_commit": FX.git(shallow, "rev-parse", "HEAD")}))
+    with pytest.raises(DecodeAuthorityError, match="shallow repositories cannot prove"):
+        FX.v2_authority(dict(env, repo=shallow, ledger=tmp_path / "ledger_b"))
 
 
 def test_R5_gitignored_record_or_intents_on_disk_are_refused(tmp_path):
@@ -622,7 +630,7 @@ def test_R5_gitignored_record_or_intents_on_disk_are_refused(tmp_path):
 def test_R5_common_dir_ledger_alone_blocks_a_second_look(tmp_path):
     env = FX.validation_env(tmp_path)
     common = env["repo"] / ".git/muru-access-ledger"
-    common.mkdir(parents=True)
+    common.mkdir(parents=True, exist_ok=True)
     (common / f"{DA.STUDY_ID_V2}.json").write_text("{}\n")
     with pytest.raises(DecodeAuthorityError, match="ledger entry"):
         FX.v2_authority(env)
@@ -631,7 +639,7 @@ def test_R5_common_dir_ledger_alone_blocks_a_second_look(tmp_path):
 def test_R5_unreachable_origin_fails_before_anything_is_written(tmp_path):
     env = FX.validation_env(tmp_path)
     FX.git(env["repo"], "remote", "set-url", "origin", str(tmp_path / "gone.git"))
-    with pytest.raises(DecodeAuthorityError, match="fetch"):
+    with pytest.raises(DecodeAuthorityError, match="git fetch"):
         FX.v2_authority(env)
     assert not (env["repo"] / DA.ACCESS_RECORD).exists()
 

@@ -54,7 +54,17 @@ class Guard:
         self.log.append((str(path), ids))
 
 
-def test_headers_allowlisted_and_no_outcome_summaries(tmp_path):
+def test_full_headers_are_refused_for_files_that_are_not_already_exposed(tmp_path, monkeypatch):
+    """Study-2 review F-MSn: full headers expose the Assisted energy and MS3+ fragment m/z."""
+    monkeypatch.delenv("MURU_DECODE_AUTHORITY_TEST_MODE", raising=False)
+    with pytest.raises(X.HeaderAccessRefused):
+        X.scan_headers(_mzml(tmp_path))
+    rows = X.scan_headers_rung_only(_mzml(tmp_path))                 # the restricted reader stays available
+    assert [r["spectrum_id"] for r in rows] == ["scan=2"] and set(rows[0]) == set(X.RUNG_ONLY_COLUMNS)
+
+
+def test_headers_allowlisted_and_no_outcome_summaries(tmp_path, monkeypatch):
+    monkeypatch.setenv("MURU_DECODE_AUTHORITY_TEST_MODE", "1")
     rows = X.scan_headers(_mzml(tmp_path))
     assert [r["ms_level"] for r in rows] == [1.0, 2.0, 2.0]
     assert rows[1]["selected_ion_mz"] == pytest.approx(301.1410) and rows[2]["collision_energy"] == 40.0
