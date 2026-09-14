@@ -1,0 +1,13 @@
+{
+ "study_id": "muru-v2-msnlib-confirmation-2.0",
+ "definition": "sorted(design-12b census scaffold groups) minus every scaffold group in the exposure registry; a group is kept only if none of its 12b compounds is an excluded key",
+ "n_eligible_groups": 14399,
+ "eligible_groups_sha256_sorted_newline_joined": "bcdf07dac4a5a84c9063cc4c95e87951ece7e747bc1c22ac78ddb87d8f4e2f1d",
+ "eligible_scaffold_groups_txt_sha256": "3c6b57eaef63f84ac43b03451689bff25871bbe58b1469d801a068df18800e8a",
+ "n_eligible_compounds": 15535,
+ "eligible_compounds_sha256_sorted_newline_joined": "bd0572de25d003954c644aa302b390ce2df3c54d279c38f6c82986961ab7334b",
+ "registry_manifest_sha256": "ef64541d71be977f65e880c616a8cb895b6c9f3657ff8d8019797ca7d69a9675",
+ "design12b_keys_sha256": "8ae32fb53e27a0fb99f875f48d7ffbe127fc1668e512b65797c3ad70712cd09e",
+ "design12b_groups_sha256": "809f14c4d2528661be39e169aacf67b8618f736db6d1d17afd2a7914c67f07b9",
+ "n_design12b_groups": 29562
+}
