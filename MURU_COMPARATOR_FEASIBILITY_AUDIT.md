@@ -374,3 +374,30 @@ compounds.
 
 Reproduce: `python3 scripts/comparator_feasibility/01_overlap_and_support.py --msnlib-parquet <Zenodo 21105617
 20250828_9libraries_only_detected_cleaned.parquet>`.
+
+## 12. Update after the technical phase (T1 to T4, 2026-09-14)
+
+User decisions R1 (square the sqrt-scale ICEBERG 2.1 and GLACIER output exactly once) and R2 (raw NCE 20/60 as the
+single diagnostic sensitivity) were accepted and frozen. T1 to T4 were executed. The final protocol is
+`MURU_COMPARATOR_BENCHMARK_PREREGISTRATION.md`.
+
+Changes from sections 0 to 11:
+
+- **ICEBERG 2.1 checkpoint (section 7.2):** section 7.2 preferred a spectrum-loss intensity checkpoint over a
+  contrastive-finetuned one. The public `msg_simulation` archive contains only `inten_contr`, so that is used.
+- **GLACIER checkpoint:** the public checkpoint is contrastive-finetuned (`contr_weight 1.0`).
+- **GLACIER eligibility (T3 settled it, eligible):**
+  - It natively emits the intact molecule as a real peak at [M+H]+: 18/20 example spectra at the primary energy.
+  - The other 2 fell below the native top-100 cut; the bound on the omitted contribution is 5.7e-4 in mu.
+  - No precursor is inserted.
+- **FIORA-OS v0.1.0 implementation:**
+  - The benchmark runs on the minimally patched v0.1.2 release (one `==` to `=`), not on HEAD.
+  - The patched release is exactly equivalent to HEAD `e19ef82` on 20 example spectra.
+  - The unpatched release emits sqrt-scale output.
+- **Execution platform:** Modal Linux x86_64 CPU containers, because upstream DGL for torch 2.6 has no macOS wheel.
+- **Seeding:** ms-pred runs apply the prediction scripts' own declared seed, `seed_everything(42)`, through a wrapper.
+  Unseeded ICEBERG was not bit-deterministic; seeded runs are byte-identical.
+- **Checkpoint loading:** `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1` is required to load the official Lightning
+  checkpoints under torch 2.6.
+- **T4:** no exclusions. The common population stays 1,327 compounds / 1,254 scaffold groups (key-list sha256
+  `dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514`).

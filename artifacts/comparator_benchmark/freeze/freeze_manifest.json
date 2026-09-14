@@ -1,0 +1,47 @@
+{
+ "prereg_id": "muru-v2-comparator-benchmark-1.0",
+ "pr7_head": "f9e4ea1a79d575d8c468e290cee9508120df6f34",
+ "bootstrap": {
+  "B": 10000,
+  "seed": 20260915
+ },
+ "population_key_list_sha256": "dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514",
+ "sha256": {
+  "MURU_COMPARATOR_BENCHMARK_PREREGISTRATION.md": "c3b3cb5ad6c48f26c3ca49982e2e119c0438cb09d921c41ac7fb34ba0f4e81e3",
+  "MURU_COMPARATOR_FEASIBILITY_AUDIT.md": "215560534f67123d072768c2a6e38dffda8ed842660d00614276e83177a99c15",
+  "scripts/comparator_benchmark/modal_app.py": "46a92e3960f71adc7008b905840b224ee7816d89363b3580bcea8f1758a22605",
+  "scripts/comparator_benchmark/run_predictions.py": "e2ec7e5fbe7b000598a38265d81ec0aa0c8858f4b18ff26dafda99e23f8a684c",
+  "scripts/comparator_benchmark/analysis.py": "c6851db9cbca70eff2d10c47e35ed792fe8d07a2e2c6d8c2a6723b36f7ea1276",
+  "scripts/comparator_benchmark/container/seeded_run.py": "581f3eff3292a6168ef364a3f0c826cce32621d6f5adbf144e6c4044923bda86",
+  "scripts/comparator_benchmark/container/mspred_h5_to_json.py": "aab52b9112de665352b1d17bdd7312d22bde8874bb2f9ed7574ff17096c74dc8",
+  "scripts/comparator_benchmark/container/t4_fiora.py": "150f72c83b06650a4cd6c0089d7f740b41ece678a1a4a661ab654705b6db057b",
+  "scripts/comparator_benchmark/container/t4_mspred.py": "a95e332bb65298c02cc2678e7e383b2fa9031b83c473cfb2aa01caa554892a89",
+  "scripts/comparator_benchmark/t4_acceptance.py": "39333585cbc9d3a788f6ddb05aa9e062a6d62a00e817dd78736515510f74752d",
+  "scripts/comparator_benchmark/t2_t3_smoke.py": "f8170902655748bca3c8426b4dba0f04119251444d86c2f472823cb15f8895ee",
+  "scripts/comparator_benchmark/t2b_seeded_determinism.py": "f61f6fec22a6739495d94344bf78e971ef9385798240c59681e39f249355a91b",
+  "scripts/comparator_benchmark/t1_provenance.py": "16335727818db12341e177825b227cdc392bf9cf8524e632cb3236eb8a89b0b9",
+  "tests/comparator_benchmark/test_analysis_rules.py": "cf029babf71d3a6059913c8e0b12893538d1832c6682a7c2df59a113aa29d23e",
+  "artifacts/comparator_benchmark/population/common_population.csv": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe",
+  "artifacts/comparator_benchmark/population/common_population_keys.txt": "dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514",
+  "artifacts/comparator_benchmark/population/t4_summary.json": "c42fe3a9ba101d3616140f735d951a1a09dc95956dc82b414c215eed8c4fe77d",
+  "artifacts/comparator_benchmark/population/t4_exclusions.csv": "74658643957e7171b4faad3852d53519e694194bcefe6d8d8d9373410674ecbf",
+  "artifacts/comparator_benchmark/technical/t1/t1_provenance.json": "81500cba75640e9e578cae03a425206c5a6d3222a75305f1ce1d9b3ee70e971e",
+  "artifacts/comparator_benchmark/technical/t1/checkpoint_hyperparameters.jsonl": "f0ff1484ca5f79c7e07c9dccac96e8ee9ae934d743399270ed359e02296079e0",
+  "artifacts/comparator_benchmark/technical/t1/fiora_v0.1.2_minimal_patch.diff": "cc85912797913d2e5043001fef05c6c81cbc86c98117f4f4bbd8a8d7a127e732",
+  "artifacts/comparator_benchmark/technical/t1/fiora_env_freeze.txt": "34e8a3661723fae1cff52eec2059a2b37b3cd8ca834eff4d5b0c9e0d6719ed4b",
+  "artifacts/comparator_benchmark/technical/t1/mspred_env_freeze.txt": "a7ff2fcea09a4541748b85aae63bf13fc579fe8e7ed796251abc0d47f9782b78",
+  "artifacts/comparator_benchmark/technical/t2_t3/t2_t3_report.json": "d435c0428116ef1db5fd0a6cef511ef02322859a64169d3482329f6622a2e04f",
+  "artifacts/comparator_benchmark/technical/t2b_seeded/t2b_report.json": "5b4952212b5165193febe2d3b8165de621d15ff429758d8e83df6cab97cb258c",
+  "artifacts/comparator_feasibility/overlap_support_per_compound.csv": "bf31cb0270c25a62c390e8cfee4896a053369ef06bd0ae5c8cb6193df5fdfa7c"
+ },
+ "git_blob_at_pr7_head": {
+  "artifacts/wur_v2_confirmation_v2/result/measured_mu.csv": "375d36e914af92498d1643eca0d557f8f0034b79",
+  "artifacts/wur_v2_confirmation_v2/freeze/validation_population.csv": "cd2dda3bb678f45edeff2d645696cddf8103e692",
+  "artifacts/wur_v2_confirmation_v2/freeze/novelty_bins_per_compound.csv": "8cfa47fbfd26eb4f57bb0dd51d563ed53a17545a",
+  "artifacts/wur_v2/candidate/V2_TA_MORGAN_JOINT.json": "f0e0a8d88cab1991fcd375e6b9ad78792d2f96f4",
+  "src/muru/wur_v2/metrics.py": "f6955c74f603f60b829feda780951232aa678c0c",
+  "src/muru/wur_v2/external_multims2.py": "fad997a838c2a8420eefc7430bb5adf164456cfd",
+  "src/muru/wur_v2/candidate.py": "7660229aff245cb439915546afc31c3bbae5e221",
+  "src/muru/wur_v2/identity.py": "dfd929b7ef8081a078403e7cdf547908d369ec05"
+ }
+}

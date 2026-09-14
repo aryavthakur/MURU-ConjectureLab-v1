@@ -1,0 +1,12 @@
+diff -ru fiora_v0.1.2/fiora/MS/SimulationFramework.py fiora_v0.1.2_patched/fiora/MS/SimulationFramework.py
+--- fiora_v0.1.2/fiora/MS/SimulationFramework.py	2026-09-14 19:08:08
++++ fiora_v0.1.2_patched/fiora/MS/SimulationFramework.py	2026-09-14 19:11:52
+@@ -121,7 +121,7 @@
+         if transform_prob == "square":
+             max_prob = max(sim_peaks["intensity"])**2
+             for i in range(len(sim_peaks["intensity"])):
+-                sim_peaks["intensity"][i] == sim_peaks["intensity"][i]**2 / max_prob
++                sim_peaks["intensity"][i] = sim_peaks["intensity"][i]**2 / max_prob
+                 
+         return sim_peaks
+     

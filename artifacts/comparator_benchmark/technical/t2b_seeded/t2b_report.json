@@ -1,0 +1,51 @@
+{
+ "iceberg_ev_primary": {
+  "cmd": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "numeric_identical_seeded_reps": true,
+  "hdf5_byte_identical_seeded_reps": true,
+  "max_abs_mu_diff_seeded_vs_unseeded_rep1": 0.0003534167369204644
+ },
+ "iceberg_raw_nce_sensitivity": {
+  "cmd": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "numeric_identical_seeded_reps": true,
+  "hdf5_byte_identical_seeded_reps": true,
+  "max_abs_mu_diff_seeded_vs_unseeded_rep1": 8.379379647271978e-05
+ },
+ "iceberg_ev_primary_batch1_descriptive": {
+  "max_abs_mu_diff_batch1_vs_seeded_default_batch": 0.00025201390795387413,
+  "per_spectrum_abs_mu_diff": {
+   "Example_0_NCE20": 3.265672698926636e-08,
+   "Example_0_NCE60": 1.17479108663332e-08,
+   "Example_1_NCE20": 5.5391732712406494e-05,
+   "Example_1_NCE60": 1.0013061713110005e-08,
+   "Example_2_NCE20": 8.487919911370767e-08,
+   "Example_2_NCE60": 2.272231292010929e-09,
+   "Example_3_NCE20": 7.54530771196471e-09,
+   "Example_3_NCE60": 9.616822449487472e-09,
+   "Example_4_NCE20": 8.468279355522412e-08,
+   "Example_4_NCE60": 3.588721653180471e-09,
+   "Example_5_NCE20": 2.1706625386030964e-10,
+   "Example_5_NCE60": 1.2272553528980268e-09,
+   "Example_6_NCE20": 3.876121645873809e-12,
+   "Example_6_NCE60": 7.806720159209135e-09,
+   "Example_7_NCE20": 1.2017830064436907e-09,
+   "Example_7_NCE60": 1.377215852471636e-08,
+   "Example_8_NCE20": 5.346750697743374e-08,
+   "Example_8_NCE60": 6.121496087807543e-09,
+   "Example_9_NCE20": 0.00025201390795387413,
+   "Example_9_NCE60": 1.0964635865917671e-09
+  }
+ },
+ "glacier_ev_primary": {
+  "cmd": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "numeric_identical_seeded_reps": true,
+  "hdf5_byte_identical_seeded_reps": true,
+  "max_abs_mu_diff_seeded_vs_unseeded_rep1": 0.0
+ },
+ "glacier_raw_nce_sensitivity": {
+  "cmd": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "numeric_identical_seeded_reps": true,
+  "hdf5_byte_identical_seeded_reps": true,
+  "max_abs_mu_diff_seeded_vs_unseeded_rep1": 0.0
+ }
+}
