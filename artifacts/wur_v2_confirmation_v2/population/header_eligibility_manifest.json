@@ -1,0 +1,35 @@
+{
+ "study_id": "muru-v2-msnlib-confirmation-2.0",
+ "sampled_groups_sha256": "71a4ec38b488a83c5ed78ba00d1e2b25549046d16c0af5c8f1c83fca51464f5e",
+ "sampled_compounds_sha256": "dc898e82a983a15eeea1cfda227660fbc2efe634fc86ac58eb97e692e061b107",
+ "attrition": {
+  "sampled_groups": 2000,
+  "sampled_compounds": 2154,
+  "compounds_with_conflict_free_dev_range_well": 2154,
+  "compounds_with_a_zip_member": 2154,
+  "wells_without_zip_member": 0,
+  "members_read_headers_only": 1670,
+  "compounds_matched_any_rung": 1816,
+  "eligible_compounds": 1794,
+  "eligible_scaffold_groups": 1691,
+  "allowlisted_scans": 6004,
+  "files_with_allowlisted_scans": 1428
+ },
+ "population_key_hash": "58f180a0fd15096bd26b7d8deb998be39953c0dee19d2573ba7bfe3b03123be3",
+ "scaffold_group_hash": "b5788cab23bacfc4fa89ca66d54f52b7b23436c3467c0744eeba5631cd52e681",
+ "spectrum_manifest_hash": "2987b6c4fc87a817d8945c85c5625146a2b23a4705f01995a8ce87c49adb8e11",
+ "min_scaffold_group_floor": 500,
+ "passes_floor": true,
+ "header_reader": "external_mzml.scan_headers_rung_only (no collision energy, Assisted scan or MS3+ row returned)",
+ "zip_sha256_verified": {
+  "20220601_mzml_mce_bioactive_positive.zip": "e9e8375159f3d516335ea4d09d77bb5f9c28c33ff1661209fedcfe983d32ee07",
+  "20230404_mzml_pluskal_nih_positive.zip": "10c812cb5aba807a88b9188ebc248c6a1e2946e68d1033f6ac493edf755950eb",
+  "20231123_mzml_mce_scaffold_positive.zip": "1eb31622f10bfa644a1300591187cbe76bbf69cf5682526b5ae58d953c225bdc",
+  "20231124_mzml_otavapep_positive.zip": "1a2c978eb9b7bce9e98396ea901db55af82e2f08a206922fac1d68aa6b41e6ff",
+  "mzml_20240405_pluskal_enammol_MSn_positive.zip": "22194df47e151d38c2ba1eb71a20faa90f794aca417d263d999e20643cebc863",
+  "mzml_20240408_pluskal_mcedrug_MSn_positive.zip": "87b9264664a118c734a6bbde320a4f4bf655ab7d2c915df55ed025ba6cdd1279",
+  "mzml_20240502_pluskal_enamdisc_MSn_positive.zip": "a1da7a147025130a6c839eabb7396c4a089c79b35266359fffcaae9ef3c98d47",
+  "mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip": "89ad88f74096a59bb64ca14979eada2e35bd9c2c6eaf98c692690eea8005ab24",
+  "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip": "007173324b055ac6f66a273450f10e7f095baa8b6a6710dbc4f607b868553e4f"
+ }
+}
