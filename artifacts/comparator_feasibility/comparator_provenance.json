@@ -1,0 +1,51 @@
+{
+ "audit": "MURU comparator feasibility audit (outcome-blind), 2026-09-14",
+ "base_commit_pr7_head": "f9e4ea1a79d575d8c468e290cee9508120df6f34",
+ "muru": {
+  "model": "V2_TA_MORGAN_JOINT",
+  "candidate_json": "artifacts/wur_v2/candidate/V2_TA_MORGAN_JOINT.json",
+  "canonical_json_sha256": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
+  "energy_map": "A0: E_LCSB = (NCE - (-5.95552603907965)) / 0.8618030610784555",
+  "endpoint_function": "muru.wur_v2.external_multims2.spectrum_mu"
+ },
+ "fiora": {
+  "repository": "https://github.com/BAMeScience/fiora",
+  "code_pin_primary": {"ref": "v1.1.0 = main HEAD", "commit": "e19ef82c9a6cb9dbac92bce23e914008f1aeb44e", "date": "2026-04-28"},
+  "code_pin_not_to_use_for_v0_1_0": {"ref": "v0.1.2", "commit": "53ac2473665f76d6a47f14e49006cc8756431f30", "reason": "SimulationFramework.simulate_spectrum square transform written as '==' (no-op): sqrt-scale output"},
+  "checkpoints": {
+   "fiora_OS_v1.0.0": {"path": "fiora/resources/models/fiora_OS_v1.0.0.pt", "git_blob_sha1": "bfee0855fab976e6eb14a8acac530d394e128f8c", "size_bytes": 53845076, "default_in_cli": true, "training_library": "MSnLib Zenodo 16984129 (params say 'MSnLib v7'), all 9 libraries, *_ms2.mgf", "training_label": "compiled_probsALL (linear)", "split": "random by structure group_id, seed 42, 80/10/10 plus preset assignments from non-public datasplits_Jan24.csv; membership unpublished", "status": "EXCLUDED: 1,794/1,794 PR #7 compounds in its training universe"},
+   "fiora_OS_v0.1.0": {"path": "fiora/resources/models/fiora_OS_v0.1.0.pt", "git_blob_sha1": "e53b4478f067ddc82771be5a8a7fc454f168f127", "size_bytes": 39533372, "params_git_blob_sha1": "008c13fe922366d689642aff27c8336ac76dd5b3", "default_in_cli": false, "training_library": "MSnLib v1.0, Zenodo 11163381 (mcebio, nihnp, mcescaf, otavapep; *_pos_all_lib_MS2.mgf)", "training_label": "compiled_probsSQRT (CLI squares back at HEAD)", "status": "PRIMARY FIORA REPRESENTATIVE (conditional on pre-freeze smoke test)"}
+  },
+  "adducts": ["[M+H]+", "[M-H]-", "[M]+", "[M]-"],
+  "instrument_categories": ["HCD"],
+  "collision_energy_native": "raw MSnLib NCE value with Instrument_type HCD (lib_loader/msnlib_loader.ipynb at 218014d and e19ef82: CE = MSnLib 'Collision energy' / mean of CE steps, no conversion); CLI predict passes CE unchanged; normalised CE/100, clamp at 100",
+  "nce_to_ev_function_not_used_for_msnlib": "fiora/MOL/collision_energy.py NCE_to_eV = nce * precursor_mz / 500 * charge_factor (applied by align_CE to NIST/MoNA-style strings only)",
+  "output": "MGF/MSP peaks: precursor peak at theoretical [M+H]+ with predicted probability, fragment peaks (5 hydrogen modes) with probability > --min_prob 0.001, duplicate fragments summed, no renormalisation for linear-label models, squared and max-scaled for compiled_probsSQRT models",
+  "license": "MIT (code and shipped weights, no separate weight licence found)"
+ },
+ "ms_pred": {
+  "repository": "https://github.com/coleygroup/ms-pred",
+  "code_pin": {"ref": "main HEAD (no tag for ICEBERG 2.1 or GLACIER)", "commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33", "date": "2026-09-04", "iceberg_2_1_readme_commit": "f7482f15be80ceed70a44df4a34d4282f0355289"},
+  "training_data": {"dataset": "MassSpecGym 1.5", "source": "https://huggingface.co/datasets/roman-bushuiev/MassSpecGym data/MassSpecGym1.5.tsv", "tsv_lfs_sha256": "50cfdd1d22f79543c59555f9ce43c6893bd788a19a42b21fb4e2e3a54673c06a", "split": "official MCES fold column (train 194,119 / val 19,429 / test 17,556 spectra); val used for checkpoint selection", "msnlib_portion": "Zenodo 11163381 MSnLib v1.0 MSn MGFs (MassSpecGym dataset_construction notebook 1)"},
+  "iceberg_2_1": {
+   "checkpoint_primary": "msg_simulation (README 'Pretrained ICEBERG 2.1 Model Weights on MassSpecGym'), Dropbox folder https://www.dropbox.com/scl/fo/mcj0ngdvuj2xkhr983frb/ABGLrS8ZCeyYUWhzRfxPtRg?rlkey=rccvo52cehh75ma1yy8jji46t",
+   "checkpoint_not_primary": "msg_all, https://www.dropbox.com/scl/fo/kwm35ih8tlfnshfrcq8ot/AOeS4M0_v9MhqeEZys9sCRQ?rlkey=f1n6pbzx94g1k2el2wcbmee61 (CE of unannotated spectra imputed by matching predicted to experimental spectra, including test-fold rows)",
+   "file_hashes": "UNVERIFIED until download; sha256 of gen/inten checkpoints to be recorded in the preregistration",
+   "nist_weights": "not public (email with NIST licence proof)"
+  },
+  "glacier": {
+   "paper": "arXiv:2606.29161 v1 (2026-06-28), Wang, Wang, Coley",
+   "checkpoint": "MassSpecGym-trained, Dropbox https://www.dropbox.com/scl/fo/ta99j0mp1w7qzek5zvy3w/AFCLQNO8W2EP7ZDMOj9nxWI?rlkey=563zxtyvvhwfu1uyz6n10n2ui",
+   "file_hashes": "UNVERIFIED until download; contrastive-finetuned or not UNVERIFIED",
+   "nist_weights": "not offered"
+  },
+  "adducts_embedding": ["[M+H]+", "[M+Na]+", "[M+K]+", "[M-H2O+H]+", "[M+NH4]+", "[M]+", "[M+H-2H2O]+", "[M+H-NH3]+", "[M+H-CH2O2]+", "[M+CHO2]-", "[M-H]-", "[M+Cl]-", "[M-H-H2O]-", "[M-H-CO2]-"],
+  "adducts_trained_msg": ["[M+H]+", "[M+Na]+"],
+  "instrument_embedding": {"Orbitrap": 0, "QTOF": 1, "IT-FT": 2, "Unknown": 3},
+  "collision_energy_native": "absolute eV (ICEBERG paper; iceberg_elucidation nce=True converts with ms_pred.common.misc_utils.nce_to_ev: eV = NCE * precursor_mz / 500)",
+  "collision_energy_training_encoding_conflict": "MassSpecGym converts NCE to eV only when the source string contains '%'; for MSnLib-derived Orbitrap rows 84% of CE values are the integer MSnLib NCE ladder (60, 20, 30, 45, 15, 75 ...), i.e. unconverted NCE numbers entered as eV",
+  "output": "sparse top-k (k=100) peaks of fragment x hydrogen-shift states; root fragment (intact molecule, probability 1, always kept) receives a predicted intensity at [M+H]+ (ICEBERG verified in gen_model.predict_mol; GLACIER UNVERIFIED); intensities are on the training scale sqrt(I / I_max) (process_spec_file: max-normalise then np.sqrt, peaks <= parent_mass + 1 kept)",
+  "license": "MIT code; weights no separate licence stated"
+ },
+ "massspecgym_identity_fetch": "artifacts/comparator_feasibility/massspecgym15_identity_fetch_record.json"
+}

@@ -1,0 +1,277 @@
+{
+ "inputs": {
+  "population_csv": "artifacts/wur_v2_confirmation_v2/freeze/validation_population.csv",
+  "msnlib_parquet_md5": "fe0fd40f75eebe8a09247a370da81c86",
+  "wells_unmapped": 0,
+  "msg_identity_available": true
+ },
+ "counts": {
+  "n_population": 1794,
+  "n_muru_unsupported": 5,
+  "n_in_msnlib_v1_0": 456,
+  "n_in_msnlib_16984129": 1794,
+  "n_fiora_unsupported": 1,
+  "n_mspred_unsupported": 1,
+  "n_mspred_bad_elements": 0,
+  "n_mh_above_1000": 1,
+  "n_parent_mass_above_1000": 1,
+  "iceberg_ev_range_nce20": [
+   5.72180472208,
+   41.42148201056
+  ],
+  "iceberg_ev_range_nce60": [
+   17.16541416624,
+   124.26444603168001
+  ],
+  "msg_fold_membership": {
+   "absent": 1340,
+   "train": 238,
+   "val": 120,
+   "test": 96
+  }
+ },
+ "populations": {
+  "pr7_frozen_population": {
+   "label": "pr7_frozen_population",
+   "n_compounds": 1794,
+   "n_scaffold_groups": 1691,
+   "largest_group": 7,
+   "per_rung_cells": 3588,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 450,
+    "Q2 [0.281,0.319)": 464,
+    "Q3 [0.319,0.364)": 457,
+    "Q4 [0.364,1.000)": 423
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.2519264290436977,
+    "0.25": 0.28040232505128787,
+    "0.5": 0.3176086634030559,
+    "0.75": 0.3602702702702702,
+    "0.9": 0.4024390243902439
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 765,
+    "enamdisc": 569,
+    "mcescaf": 260,
+    "mcebio": 108,
+    "nihnp": 62,
+    "enammol": 51,
+    "otavapep": 27,
+    "tmhtsnp": 19,
+    "mcedrug": 8
+   }
+  },
+  "pr7_scored_muru_supported": {
+   "label": "pr7_scored_muru_supported",
+   "n_compounds": 1789,
+   "n_scaffold_groups": 1687,
+   "largest_group": 7,
+   "per_rung_cells": 3578,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 449,
+    "Q2 [0.281,0.319)": 462,
+    "Q3 [0.319,0.364)": 456,
+    "Q4 [0.364,1.000)": 422
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.2519083969465648,
+    "0.25": 0.2803738317757009,
+    "0.5": 0.3177570093457944,
+    "0.75": 0.3603603603603603,
+    "0.9": 0.4025713745509549
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 765,
+    "enamdisc": 569,
+    "mcescaf": 260,
+    "mcebio": 107,
+    "nihnp": 59,
+    "enammol": 51,
+    "otavapep": 27,
+    "tmhtsnp": 18,
+    "mcedrug": 8
+   }
+  },
+  "fiora_os_v1_0_0_default_clean": {
+   "label": "fiora_os_v1_0_0_default_clean",
+   "n_compounds": 0,
+   "n_scaffold_groups": 0,
+   "largest_group": 0,
+   "per_rung_cells": 0,
+   "novelty_bin_counts": {},
+   "max_similarity_to_dev_quantiles": {},
+   "plated_library_counts": {}
+  },
+  "fiora_os_v0_1_0_clean": {
+   "label": "fiora_os_v0_1_0_clean",
+   "n_compounds": 1337,
+   "n_scaffold_groups": 1264,
+   "largest_group": 6,
+   "per_rung_cells": 2674,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 353,
+    "Q2 [0.281,0.319)": 321,
+    "Q3 [0.319,0.364)": 335,
+    "Q4 [0.364,1.000)": 328
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.2777777777777778,
+    "0.5": 0.3185840707964602,
+    "0.75": 0.3617021276595745,
+    "0.9": 0.40460139111824506
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 697,
+    "enamdisc": 569,
+    "enammol": 51,
+    "tmhtsnp": 18,
+    "mcedrug": 3
+   }
+  },
+  "mspred_supported_not_in_msnlib_v1_0": {
+   "label": "mspred_supported_not_in_msnlib_v1_0",
+   "n_compounds": 1337,
+   "n_scaffold_groups": 1264,
+   "largest_group": 6,
+   "per_rung_cells": 2674,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 353,
+    "Q2 [0.281,0.319)": 321,
+    "Q3 [0.319,0.364)": 335,
+    "Q4 [0.364,1.000)": 328
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.2777777777777778,
+    "0.5": 0.3185840707964602,
+    "0.75": 0.3617021276595745,
+    "0.9": 0.40460139111824506
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 697,
+    "enamdisc": 569,
+    "enammol": 51,
+    "tmhtsnp": 18,
+    "mcedrug": 3
+   }
+  },
+  "iceberg21_msg_strict_clean_absent_from_msg": {
+   "label": "iceberg21_msg_strict_clean_absent_from_msg",
+   "n_compounds": 1339,
+   "n_scaffold_groups": 1266,
+   "largest_group": 6,
+   "per_rung_cells": 2678,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 355,
+    "Q2 [0.281,0.319)": 322,
+    "Q3 [0.319,0.364)": 334,
+    "Q4 [0.364,1.000)": 328
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.27754435107376285,
+    "0.5": 0.3181818181818182,
+    "0.75": 0.3617021276595745,
+    "0.9": 0.40430313172364324
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 702,
+    "enamdisc": 569,
+    "enammol": 51,
+    "tmhtsnp": 9,
+    "mcescaf": 8,
+    "mcebio": 4,
+    "mcedrug": 4
+   }
+  },
+  "iceberg21_msg_foldaware_clean_not_train_val": {
+   "label": "iceberg21_msg_foldaware_clean_not_train_val",
+   "n_compounds": 1433,
+   "n_scaffold_groups": 1354,
+   "largest_group": 6,
+   "per_rung_cells": 2866,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 375,
+    "Q2 [0.281,0.319)": 358,
+    "Q3 [0.319,0.364)": 357,
+    "Q4 [0.364,1.000)": 343
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.2777777777777778,
+    "0.5": 0.3173076923076923,
+    "0.75": 0.3611111111111111,
+    "0.9": 0.4038108680310515
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 715,
+    "enamdisc": 569,
+    "mcescaf": 72,
+    "enammol": 51,
+    "mcebio": 24,
+    "tmhtsnp": 12,
+    "nihnp": 7,
+    "mcedrug": 4,
+    "otavapep": 1
+   }
+  },
+  "glacier_msg_strict_clean_absent_from_msg": {
+   "label": "glacier_msg_strict_clean_absent_from_msg",
+   "n_compounds": 1339,
+   "n_scaffold_groups": 1266,
+   "largest_group": 6,
+   "per_rung_cells": 2678,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 355,
+    "Q2 [0.281,0.319)": 322,
+    "Q3 [0.319,0.364)": 334,
+    "Q4 [0.364,1.000)": 328
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.27754435107376285,
+    "0.5": 0.3181818181818182,
+    "0.75": 0.3617021276595745,
+    "0.9": 0.40430313172364324
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 702,
+    "enamdisc": 569,
+    "enammol": 51,
+    "tmhtsnp": 9,
+    "mcescaf": 8,
+    "mcebio": 4,
+    "mcedrug": 4
+   }
+  },
+  "all_model_intersection_fiora_v0_1_0_iceberg_glacier_strict": {
+   "label": "all_model_intersection_fiora_v0_1_0_iceberg_glacier_strict",
+   "n_compounds": 1327,
+   "n_scaffold_groups": 1254,
+   "largest_group": 6,
+   "per_rung_cells": 2654,
+   "novelty_bin_counts": {
+    "Q1 [0.000,0.281)": 351,
+    "Q2 [0.281,0.319)": 319,
+    "Q3 [0.319,0.364)": 333,
+    "Q4 [0.364,1.000)": 324
+   },
+   "max_similarity_to_dev_quantiles": {
+    "0.1": 0.25,
+    "0.25": 0.2777777777777778,
+    "0.5": 0.3181818181818182,
+    "0.75": 0.3617021276595745,
+    "0.9": 0.40435094429835045
+   },
+   "plated_library_counts": {
+    "mcediv_50k": 697,
+    "enamdisc": 569,
+    "enammol": 51,
+    "tmhtsnp": 9,
+    "mcedrug": 2
+   }
+  }
+ }
+}
