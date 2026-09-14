@@ -1,0 +1,32 @@
+{
+ "candidate_hash": "11aa801c3acc2d862d35977d3c2ee348bdce143b89f3d0cc7ff745e61dcf9e9b",
+ "canonical_remote": "github.com/aryavthakur/MURU-ConjectureLab-v1",
+ "code_provenance": [
+  "scripts/wur_v2_confirmation_v2/10_one_look.py:6bdbdcbd380691d979eb7135a57a069ad70fbfa3a2028fb00e869826a575d0d7",
+  "src/muru/__init__.py:fa21a7b9615d6721f1d127f8f6da46b20010570741c0bcd2031d8314b4b8c045",
+  "src/muru/io/wur_provenance.py:c3757803404c8b877ff4d884e2ed17bec132e24d7291f8fcd67d36d611a56a4f",
+  "src/muru/molecules.py:b96cb106563fe4a8cc4960e62503af13c82d571cd1f08c8da201d95e7e40b333",
+  "src/muru/wur_v2/__init__.py:a4d9668f148b4fb7d552c8ca7dfb460c3efa0b2d1681cacbec30e8fa06237083",
+  "src/muru/wur_v2/decode_authority.py:94daa1188a627f07716493435f941b545ee61a98c5a05104249d98088b2d4df2",
+  "src/muru/wur_v2/external_multims2.py:f826152ddeff247808d35a4c8415de15dd4ab21f997c4079f82d6e62130fffb3",
+  "src/muru/wur_v2/external_mzml.py:ee8aab2238b52c836def6c3f9d73f71bd0ec0b36a44f8de1d1a5d1d14f4b51bf",
+  "src/muru/wur_v2/identity.py:2ebe0de24e5ea5f781eea94984b238be8977161a836a56b5add4e277a0ca9cbd",
+  "scripts/wur_v2_confirmation_v2/10_one_look.py:6bdbdcbd380691d979eb7135a57a069ad70fbfa3a2028fb00e869826a575d0d7"
+ ],
+ "comparator_hash": "3de70e7b2294428c2ce9f69b88a4808e3397712b2f636e260645fbc46dc5bc32",
+ "freeze_commit": "5b5afd345ce00b5dab678650d408834a63c1d888",
+ "freeze_manifest_sha256": "6d06ec0c8df742f3e29a4233287baffa9a90895190ed1f6891c07c133fd553ea",
+ "host": "Sandeeps-MacBook-Air.local",
+ "kind": "VALIDATION",
+ "n_allowed_files": 1428,
+ "n_allowed_scans": 6004,
+ "nonce": "d7ec1f69ef138e08e17e331b48ceeffd",
+ "population_key_hash": "58f180a0fd15096bd26b7d8deb998be39953c0dee19d2573ba7bfe3b03123be3",
+ "registry_manifest_sha256": "ef64541d71be977f65e880c616a8cb895b6c9f3657ff8d8019797ca7d69a9675",
+ "scaffold_group_hash": "b5788cab23bacfc4fa89ca66d54f52b7b23436c3467c0744eeba5631cd52e681",
+ "spectrum_manifest_hash": "2987b6c4fc87a817d8945c85c5625146a2b23a4705f01995a8ce87c49adb8e11",
+ "statement": "written, fsynced, committed and pushed before any validation binary array is decoded; population 2 is permanently EXPOSED from this record onward",
+ "study_id": "muru-v2-msnlib-confirmation-2.0",
+ "utc": "2026-09-14T03:32:15Z",
+ "validation_access_head": "5b5afd345ce00b5dab678650d408834a63c1d888"
+}
