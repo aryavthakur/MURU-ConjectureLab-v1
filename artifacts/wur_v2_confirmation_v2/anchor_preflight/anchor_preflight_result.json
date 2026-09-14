@@ -1,0 +1,12 @@
+{
+ "n_allowlisted_spectra": 1747,
+ "n_files_decoded": 433,
+ "n_spectra_checked": 1747,
+ "n_nondeterministic": 0,
+ "n_decode_failures": 0,
+ "decode_failures": [],
+ "n_nonfinite_endpoint": 0,
+ "n_spectra_with_precursor_peak": 902,
+ "passes": true,
+ "note": "anchor spectra only, already decoded by the original anchor gate; counts only, no values"
+}
