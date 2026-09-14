@@ -4,6 +4,17 @@
 **Status:** pre-registered, **NOT executed**. See §11 for why, and what a future
 session needs to do to execute it.
 
+> **CORRECTION, added 2026-09-13 (study-2 preparation).** This protocol's
+> validation population (seed 20261010) was burned before its formal one
+> look: a parser-preflight script accidentally decoded validation-population
+> spectra and one validation mu value was visibly surfaced. The population is
+> permanently EXPOSED; see `MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md`.
+> §0's sentence "No MSnLib validation fragmentation outcome has been seen" was
+> true when committed and is no longer true. This protocol is superseded for
+> execution by `MURU_V2_MSNLIB_CONFIRMATION_PROTOCOL_V2.md`, which keeps every
+> scientific rule and replaces only the validation population construction.
+> The text below is unchanged history.
+
 ## 0. Provenance disclosure (read this first)
 
 This document was written **after** the MSnLib anchor-calibration results

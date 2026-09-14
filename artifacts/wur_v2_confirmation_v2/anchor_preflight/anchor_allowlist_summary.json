@@ -1,0 +1,10 @@
+{
+ "n_gate_spectra": 1935,
+ "n_allowlisted": 1747,
+ "n_files": 433,
+ "n_anchor_keys": 309,
+ "skipped": {
+  "no_admissible_anchor": 184,
+  "ambiguous": 4
+ }
+}

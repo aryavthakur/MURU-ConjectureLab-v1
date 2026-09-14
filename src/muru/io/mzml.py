@@ -53,13 +53,42 @@ class MS2Scan:
         )
 
 
+class ExternalSourceRefused(RuntimeError):
+    """This unguarded reader must never open an external validation-source file (MSnLib, MultiMS2)."""
+
+
+_FILE_INDEX = Path(__file__).resolve().parents[3] / "data" / "massive" / "file_index.csv"
+
+
+def _indexed_lcsb_sizes() -> dict:
+    import csv
+    with open(_FILE_INDEX, newline="") as f:
+        out: dict = {}
+        for r in csv.DictReader(f):
+            if r["filepath"].endswith(".mzML") and r["size"].isdigit():
+                out.setdefault(r["filepath"].rsplit("/", 1)[-1], set()).add(int(r["size"]))
+        return out
+
+
 def iter_ms2(path: str | Path, min_peaks: int = 1):
     """Yield MS2 scans from a centroided mzML.
 
     Reads only what is needed: scan id, retention time, selected precursor m/z,
     and the centroided peak list. No feature detection, no deisotoping -- this
     is the deliberately un-processed branch.
+
+    Positive allowlist (added 2026-09-13 after the MSnLib confirmation sample-1
+    leakage incident and the study-2 review): this reader decodes every peak list
+    with no access guard, so it opens only the LCSB/ENTACT raw files listed in the
+    tracked MassIVE MSV000091754 index (data/massive/file_index.csv), matched by
+    basename AND byte size. A renamed or copied external file is refused; external
+    validation data may only be decoded through
+    muru.wur_v2.external_mzml.decode_selected under a decode authority.
     """
+    p = Path(path)
+    sizes = _indexed_lcsb_sizes()
+    if p.name not in sizes or p.stat().st_size not in sizes[p.name]:
+        raise ExternalSourceRefused(f"{path}: not an indexed LCSB raw file of the recorded size; use the guarded decoder")
     run = pymzml.run.Reader(str(path), MS_precisions={1: 5e-6, 2: 5e-6})
     for spec in run:
         if spec.ms_level != 2:

@@ -154,6 +154,18 @@ reinterpret that result.**
   population has not been sampled, downloaded, peak-decoded, scored, or
   used for any model-selection decision.
 
+> **CORRECTION, added 2026-09-13 (study-2 preparation). The conclusion above
+> was true when written (Phase 0, before sampling) and is no longer true.**
+> Later on 2026-09-13 the confirmation sample was drawn and downloaded, and
+> a parser-preflight script accidentally decoded validation-population MS2
+> peak arrays (964 spectra matching 350 eligible validation compounds, by
+> positional scan selection in pooled wells). One validation mu value
+> (compound `MURAVORBGFDSMA`) was visibly printed to the operator. The whole
+> 2,000-scaffold-group sample is permanently EXPOSED. No confirmatory one
+> look was executed and no P1, ratio, bootstrap or AF was computed. Full
+> record: `MURU_V2_MSNLIB_CONFIRMATION_POPULATION_EXPOSED.md`. The original
+> text above is kept unchanged as history.
+
 ## 0.7 MultiMS² remains untouched
 
 `artifacts/wur_v2/external_census/multims2_census.json` →

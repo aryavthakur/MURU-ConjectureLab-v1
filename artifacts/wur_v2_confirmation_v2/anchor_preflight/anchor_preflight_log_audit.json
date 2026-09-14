@@ -1,0 +1,11 @@
+{
+ "log_entries": 867,
+ "authorize_entries": 866,
+ "distinct_decoded_spectra": 1747,
+ "all_in_anchor_allowlist": true,
+ "all_previously_decoded_in_registry": true,
+ "all_sha_match_allowlist": true,
+ "files_overlapping_population2": 0,
+ "sha_overlapping_population2": 0,
+ "every_allowlisted_spectrum_decoded": true
+}
