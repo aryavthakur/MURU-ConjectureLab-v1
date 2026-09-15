@@ -1,0 +1,251 @@
+{
+ "verdict": "PASS",
+ "failed_checks": [],
+ "checks": {
+  "freeze_ref_is_c0e724e": {
+   "ok": true,
+   "detail": "c0e724e342ee37139a50999be2030bd8144b1346"
+  },
+  "frozen_code_population_protocol_unchanged_since_freeze": {
+   "ok": true,
+   "detail": []
+  },
+  "freeze_manifest_hashes_match": {
+   "ok": true,
+   "detail": []
+  },
+  "head_at_verification": "c0e724e342ee37139a50999be2030bd8144b1346",
+  "prediction_manifest_file_hashes_match": {
+   "ok": true,
+   "detail": []
+  },
+  "prediction_manifest_population_hash": {
+   "ok": true
+  },
+  "row_counts": {
+   "FIORA-OS v0.1.0 | native_nce": 2654,
+   "GLACIER | ev_primary": 2654,
+   "GLACIER | raw_nce_sensitivity": 2654,
+   "ICEBERG 2.1 | ev_primary": 2654,
+   "ICEBERG 2.1 | raw_nce_sensitivity": 2654
+  },
+  "exactly_five_model_condition_tables": {
+   "ok": true,
+   "detail": [
+    [
+     "FIORA-OS v0.1.0",
+     "native_nce"
+    ],
+    [
+     "GLACIER",
+     "ev_primary"
+    ],
+    [
+     "GLACIER",
+     "raw_nce_sensitivity"
+    ],
+    [
+     "ICEBERG 2.1",
+     "ev_primary"
+    ],
+    [
+     "ICEBERG 2.1",
+     "raw_nce_sensitivity"
+    ]
+   ]
+  },
+  "FIORA-OS v0.1.0 | native_nce: 2654 rows, one per frozen cell, no duplicates": {
+   "ok": true,
+   "detail": {
+    "rows": 2654,
+    "unique": 2654
+   }
+  },
+  "FIORA-OS v0.1.0 | native_nce: every key has exactly NCE20 and NCE60": {
+   "ok": true
+  },
+  "ICEBERG 2.1 | ev_primary: 2654 rows, one per frozen cell, no duplicates": {
+   "ok": true,
+   "detail": {
+    "rows": 2654,
+    "unique": 2654
+   }
+  },
+  "ICEBERG 2.1 | ev_primary: every key has exactly NCE20 and NCE60": {
+   "ok": true
+  },
+  "GLACIER | ev_primary: 2654 rows, one per frozen cell, no duplicates": {
+   "ok": true,
+   "detail": {
+    "rows": 2654,
+    "unique": 2654
+   }
+  },
+  "GLACIER | ev_primary: every key has exactly NCE20 and NCE60": {
+   "ok": true
+  },
+  "ICEBERG 2.1 | raw_nce_sensitivity: 2654 rows, one per frozen cell, no duplicates": {
+   "ok": true,
+   "detail": {
+    "rows": 2654,
+    "unique": 2654
+   }
+  },
+  "ICEBERG 2.1 | raw_nce_sensitivity: every key has exactly NCE20 and NCE60": {
+   "ok": true
+  },
+  "GLACIER | raw_nce_sensitivity: 2654 rows, one per frozen cell, no duplicates": {
+   "ok": true,
+   "detail": {
+    "rows": 2654,
+    "unique": 2654
+   }
+  },
+  "GLACIER | raw_nce_sensitivity: every key has exactly NCE20 and NCE60": {
+   "ok": true
+  },
+  "no_primary_prediction_failures": {
+   "ok": true,
+   "detail": []
+  },
+  "sensitivity_failures_descriptive": [],
+  "fiora_mgf_titles_one_to_one": {
+   "ok": true,
+   "detail": 2654
+  },
+  "fiora_input_energy_is_raw_nce_hcd_mh+": {
+   "ok": true
+  },
+  "fiora_mu_recomputed_from_native_mgf (max abs deviation <= 1e-12; CSV float round-trip only)": {
+   "ok": true,
+   "detail": 2.220446049250313e-16
+  },
+  "fiora_square_applied_once_by_cli (every spectrum max-normalised squared scale, max == 1)": {
+   "ok": true
+  },
+  "iceberg_ev_primary: spectra one-to-one with frozen cells": {
+   "ok": true,
+   "detail": {
+    "n": 2654,
+    "unique": 2654
+   }
+  },
+  "iceberg_ev_primary: mu == spectrum_mu(mass, stored_inten**2, mh) (one square, nothing else; max abs deviation <= 1e-12)": {
+   "ok": true,
+   "detail": 2.220446049250313e-16
+  },
+  "iceberg_ev_primary: native stored intensities on sqrt scale (max <= 1, not pre-squared by pipeline)": {
+   "ok": true,
+   "detail": 0.9911444783210754
+  },
+  "iceberg_ev_primary: model-input collision energy (input TSV) equals frozen mapping; HDF5 label is its '.0f' rounding": {
+   "ok": true,
+   "detail": 0.0
+  },
+  "iceberg_ev_primary: native [M+H]+ precursor peak present (descriptive)": "2346/2654",
+  "iceberg_ev_primary: input tsv rows 2654, adduct/instrument frozen": {
+   "ok": true
+  },
+  "iceberg_raw_nce_sensitivity: spectra one-to-one with frozen cells": {
+   "ok": true,
+   "detail": {
+    "n": 2654,
+    "unique": 2654
+   }
+  },
+  "iceberg_raw_nce_sensitivity: mu == spectrum_mu(mass, stored_inten**2, mh) (one square, nothing else; max abs deviation <= 1e-12)": {
+   "ok": true,
+   "detail": 2.220446049250313e-16
+  },
+  "iceberg_raw_nce_sensitivity: native stored intensities on sqrt scale (max <= 1, not pre-squared by pipeline)": {
+   "ok": true,
+   "detail": 0.9932651519775391
+  },
+  "iceberg_raw_nce_sensitivity: model-input collision energy (input TSV) equals frozen mapping; HDF5 label is its '.0f' rounding": {
+   "ok": true,
+   "detail": 0.0
+  },
+  "iceberg_raw_nce_sensitivity: native [M+H]+ precursor peak present (descriptive)": "2050/2654",
+  "iceberg_raw_nce_sensitivity: input tsv rows 2654, adduct/instrument frozen": {
+   "ok": true
+  },
+  "glacier_ev_primary: spectra one-to-one with frozen cells": {
+   "ok": true,
+   "detail": {
+    "n": 2654,
+    "unique": 2654
+   }
+  },
+  "glacier_ev_primary: mu == spectrum_mu(mass, stored_inten**2, mh) (one square, nothing else; max abs deviation <= 1e-12)": {
+   "ok": true,
+   "detail": 2.220446049250313e-16
+  },
+  "glacier_ev_primary: native stored intensities on sqrt scale (max <= 1, not pre-squared by pipeline)": {
+   "ok": true,
+   "detail": 0.9993357062339783
+  },
+  "glacier_ev_primary: model-input collision energy (input TSV) equals frozen mapping; HDF5 label is its '.0f' rounding": {
+   "ok": true,
+   "detail": 0.0
+  },
+  "glacier_ev_primary: native [M+H]+ precursor peak present (descriptive)": "2244/2654",
+  "glacier_ev_primary: input tsv rows 2654, adduct/instrument frozen": {
+   "ok": true
+  },
+  "glacier_raw_nce_sensitivity: spectra one-to-one with frozen cells": {
+   "ok": true,
+   "detail": {
+    "n": 2654,
+    "unique": 2654
+   }
+  },
+  "glacier_raw_nce_sensitivity: mu == spectrum_mu(mass, stored_inten**2, mh) (one square, nothing else; max abs deviation <= 1e-12)": {
+   "ok": true,
+   "detail": 2.220446049250313e-16
+  },
+  "glacier_raw_nce_sensitivity: native stored intensities on sqrt scale (max <= 1, not pre-squared by pipeline)": {
+   "ok": true,
+   "detail": 0.9993081092834473
+  },
+  "glacier_raw_nce_sensitivity: model-input collision energy (input TSV) equals frozen mapping; HDF5 label is its '.0f' rounding": {
+   "ok": true,
+   "detail": 0.0
+  },
+  "glacier_raw_nce_sensitivity: native [M+H]+ precursor peak present (descriptive)": "1635/2654",
+  "glacier_raw_nce_sensitivity: input tsv rows 2654, adduct/instrument frozen": {
+   "ok": true
+  },
+  "ICEBERG 2.1: seeded wrapper in every run command": {
+   "ok": true,
+   "detail": [
+    "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+    "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5"
+   ]
+  },
+  "GLACIER: seeded wrapper in every run command": {
+   "ok": true,
+   "detail": [
+    "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+    "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5"
+   ]
+  },
+  "sensitivity_distinguishable: separate files, condition label, and different stored energies": {
+   "ok": true
+  },
+  "image_checkpoint_hashes_equal_preregistration": {
+   "ok": true,
+   "detail": {
+    "/opt/fiora_v0.1.2_patched/models/fiora_OS_v0.1.0.pt": "adf44d61e40083f23a593cd6a3914e8008c12637b556d0bf2abd6ac467ab55f5",
+    "/opt/fiora_v0.1.2_patched/models/fiora_OS_v0.1.0_state.pt": "0615f268b10564a0bc262d43571a5f414a9c53083d65df3200bec89b9a258790",
+    "/opt/fiora_v0.1.2_patched/models/fiora_OS_v0.1.0_params.json": "f4fd5a40bff01bfe8a244ac466bb56ee61bc789a01fc81e5102f8ec60ef3c85a",
+    "/ckpt/iceberg21_msg_simulation/gen/best.ckpt": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+    "/ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+    "/ckpt/glacier_msg/best.ckpt": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11"
+   }
+  },
+  "image_fiora_patched_code_equals_t1_record": {
+   "ok": true
+  }
+ },
+ "measured_data_read": false
+}
