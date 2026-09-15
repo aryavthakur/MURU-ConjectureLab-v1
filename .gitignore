@@ -187,3 +187,9 @@ artifacts/ov_ckpt
 !artifacts/fh_ckpt/**
 !artifacts/fresh_holdout/
 !artifacts/fresh_holdout/**
+
+# comparator feasibility audit: outcome-blind provenance and overlap evidence
+!artifacts/comparator_feasibility/
+!artifacts/comparator_feasibility/**
+!artifacts/comparator_benchmark/
+!artifacts/comparator_benchmark/**

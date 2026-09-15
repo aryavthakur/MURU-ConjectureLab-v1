@@ -1,0 +1,87 @@
+{
+ "prereg_id": "muru-v2-comparator-benchmark-1.0",
+ "freeze_commit": "c0e724e342ee37139a50999be2030bd8144b1346",
+ "code_head_at_generation": "c0e724e342ee37139a50999be2030bd8144b1346",
+ "generation_started_utc": "2026-09-14T23:50:23Z",
+ "invocation": "python3 scripts/comparator_benchmark/run_predictions.py (single run, exit 0, no rerun)",
+ "platform": {
+  "FIORA-OS v0.1.0": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+  "ICEBERG 2.1 ev_primary": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+  "ICEBERG 2.1 raw_nce_sensitivity": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+  "GLACIER ev_primary": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+  "GLACIER raw_nce_sensitivity": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36"
+ },
+ "run_commands": {
+  "FIORA-OS v0.1.0": "cd /opt/fiora_v0.1.2_patched && PYTHONPATH=/opt/fiora_v0.1.2_patched python scripts/fiora-predict -i $WORK/in.csv -o $WORK/out.mgf --model /opt/fiora_v0.1.2_patched/models/fiora_OS_v0.1.0.pt --annotation",
+  "ICEBERG 2.1 ev_primary": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "ICEBERG 2.1 raw_nce_sensitivity": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "GLACIER ev_primary": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5",
+  "GLACIER raw_nce_sensitivity": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5"
+ },
+ "execution_images": "scripts/comparator_benchmark/modal_app.py at c0e724e; package freezes artifacts/comparator_benchmark/technical/t1/*_env_freeze.txt",
+ "local_sources": "~/muru-comparators/repos (fiora v0.1.2 53ac247 + patch; fiora e19ef82; ms-pred ed8311f), ~/muru-comparators/checkpoints (hashes in t1_provenance.json, re-verified inside the image)",
+ "final_primary_population": {
+  "n_compounds": 1327,
+  "n_scaffold_groups": 1254,
+  "key_list_sha256": "dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514",
+  "csv_sha256": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe",
+  "changed_by_prediction_failures": false
+ },
+ "row_counts": {
+  "FIORA-OS v0.1.0 | native_nce": 2654,
+  "GLACIER | ev_primary": 2654,
+  "GLACIER | raw_nce_sensitivity": 2654,
+  "ICEBERG 2.1 | ev_primary": 2654,
+  "ICEBERG 2.1 | raw_nce_sensitivity": 2654
+ },
+ "status_counts": {
+  "FIORA-OS v0.1.0 | native_nce": {
+   "OK": 2654
+  },
+  "GLACIER | ev_primary": {
+   "OK": 2654
+  },
+  "GLACIER | raw_nce_sensitivity": {
+   "OK": 2654
+  },
+  "ICEBERG 2.1 | ev_primary": {
+   "OK": 2654
+  },
+  "ICEBERG 2.1 | raw_nce_sensitivity": {
+   "OK": 2654
+  }
+ },
+ "native_precursor_peak_fraction_descriptive": {
+  "FIORA-OS v0.1.0 | native_nce": 1.0,
+  "GLACIER | ev_primary": 0.8455162019593067,
+  "GLACIER | raw_nce_sensitivity": 0.6160512434061793,
+  "ICEBERG 2.1 | ev_primary": 0.8839487565938207,
+  "ICEBERG 2.1 | raw_nce_sensitivity": 0.7724189902034665
+ },
+ "primary_failures": 0,
+ "sensitivity_failures": 0,
+ "prediction_artifact_sha256": {
+  "competitor_mu.csv": "c51041d4757d873a4db4837042680ad109037ab4dd7c9848a968a39ed801baad",
+  "fiora_os_v0_1_0_input.csv": "ca535c72a3095d04c0d9bbad93cf8f21f8d016427ec25e7ad0c05c171852d4ae",
+  "fiora_os_v0_1_0_output.mgf": "2b77f2b15d448f5a8b5a44a177d8404a1fa58edb0899ae01dde77e5199f21b14",
+  "glacier_ev_primary_input.tsv": "d378d46263601b60423789851aaf400102e566fd5577633fe5857ec88ded594b",
+  "glacier_ev_primary_preds.hdf5": "eb9bebbd05631c8cc58ac3009dec5051ebc475bb8709eee597fb7402669508c5",
+  "glacier_ev_primary_spectra.json": "67aa640693eed86eef23880bb3470d1bbb9679a0067292c4ab43d69fcf3386fb",
+  "glacier_raw_nce_sensitivity_input.tsv": "ed1c8caf30764ff01dee3ee4101f5e3dcbd7557a89a15001bb000d3b98bd4d06",
+  "glacier_raw_nce_sensitivity_preds.hdf5": "5c71f0b55f6d21b9a4d58d09021a650ba3039fc8a2e1ed78b63de5783828dbb3",
+  "glacier_raw_nce_sensitivity_spectra.json": "c5d754e926589995795de91e759200d48b2edb1bc1c47a103e2d9860fadffd05",
+  "iceberg_ev_primary_input.tsv": "051a225cb2cca6afba6c314f78ff43a845682cf33b787d1826f5173fe984daa4",
+  "iceberg_ev_primary_preds.hdf5": "463a53258f6da3b2f1f7e98b60ec02a7c44f94f119d12b6399f94e186a074917",
+  "iceberg_ev_primary_spectra.json": "ab567a010c40b47c82614ebf8db2b9772fc1b015d6c14e3ca1bbad55eb3aa03e",
+  "iceberg_raw_nce_sensitivity_input.tsv": "145aa1b855611aba60a11d386808782f338eb0d2783cb944b708b1522aa8b1f2",
+  "iceberg_raw_nce_sensitivity_preds.hdf5": "9f3029e722613183cecdd11f2a9aca850fd8a0ccf023fa06366ad37105e79cb2",
+  "iceberg_raw_nce_sensitivity_spectra.json": "cd793b3d975467ca44288e9d1982e06ed7e1dd0cc1002a0c4d67d87dbab6f782"
+ },
+ "prediction_manifest_sha256": "b39f643496bbf71591c7367428e69b86ea705e15c36a94d7860c747547e489c4",
+ "verification_report_sha256": "65b8244330bcc659f5517eaa58de424466ab91eeb38c8cb2e2a2157834442bdc",
+ "measured_data_read": false,
+ "notes": [
+  "GLACIER and ICEBERG native top-100 outputs preserved; precursor peaks below the cutoff were not restored.",
+  "Verifier tolerance: mu recomputation agrees to 2.2e-16 (CSV float round-trip); HDF5 collision label is PredSpecDB's '.0f' rounding of the model-input energy recorded in the input TSV."
+ ]
+}

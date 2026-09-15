@@ -1,0 +1,99 @@
+{
+ "recorded": "2026-09-14",
+ "execution_platform": "Modal, Linux x86_64 (gVisor), Python 3.11.12, CPU only; images defined in scripts/comparator_benchmark/modal_app.py",
+ "fiora": {
+  "repository": "https://github.com/BAMeScience/fiora",
+  "license": "MIT (LICENSE in repository; no separate weight licence)",
+  "release_code_for_benchmark": {
+   "tag": "v0.1.2",
+   "commit": "53ac2473665f76d6a47f14e49006cc8756431f30",
+   "minimal_patch": "fiora/MS/SimulationFramework.py line 124: '==' replaced by '=' (the intended assignment of the squared, max-normalised intensity); see fiora_v0.1.2_minimal_patch.diff",
+   "patched_file_sha256": "6fef3fe26e4a3819e60e564067cbf64ec870dd6911d099b6dbe32983920a3501",
+   "unpatched_file_sha256": "66134550da16b90d26d7402a044646221f1a82c3e121fef3c3d477ce2161a0de",
+   "cli": "scripts/fiora-predict",
+   "cli_sha256": "2c933cd87f9ffeced1a2c76eced96dd7b5e48b0cb2619564588a91b23d219abf"
+  },
+  "comparison_code": {
+   "ref": "main HEAD = v1.1.0",
+   "commit": "e19ef82c9a6cb9dbac92bce23e914008f1aeb44e"
+  },
+  "checkpoint": {
+   "name": "FIORA-OS v0.1.0",
+   "files": {
+    "fiora_OS_v0.1.0.pt": {
+     "sha256": "adf44d61e40083f23a593cd6a3914e8008c12637b556d0bf2abd6ac467ab55f5",
+     "bytes": 39533372
+    },
+    "fiora_OS_v0.1.0_params.json": {
+     "sha256": "f4fd5a40bff01bfe8a244ac466bb56ee61bc789a01fc81e5102f8ec60ef3c85a",
+     "bytes": 1136
+    },
+    "fiora_OS_v0.1.0_state.pt": {
+     "sha256": "0615f268b10564a0bc262d43571a5f414a9c53083d65df3200bec89b9a258790",
+     "bytes": 19755411
+    }
+   },
+   "identical_in_head_resources_models": true
+  },
+  "excluded_checkpoint": {
+   "name": "FIORA-OS v1.0.0",
+   "sha256": "273807127861ca0ac8404962f111ff8628ba02e6beb5d1142d8772ced07443a0",
+   "reason": "compound-level MSnLib split not reconstructible; all PR #7 compounds in its training universe"
+  }
+ },
+ "ms_pred": {
+  "repository": "https://github.com/coleygroup/ms-pred",
+  "license": "MIT (LICENSE in repository); checkpoints: no separate licence stated",
+  "commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "commit_date": "2026-09-04T01:12:22-04:00",
+  "install": "uv sync --extra cpu (upstream README), UV_EXCLUDE_NEWER=2026-09-04T05:12:22Z",
+  "iceberg_2_1": {
+   "source_url": "https://www.dropbox.com/scl/fo/mcj0ngdvuj2xkhr983frb/ABGLrS8ZCeyYUWhzRfxPtRg?rlkey=rccvo52cehh75ma1yy8jji46t&dl=1",
+   "readme_label": "Pretrained ICEBERG 2.1 Model Weights on MassSpecGym: msg_simulation",
+   "archive_sha256": "ea510bba5bba7d34a49f15850f176e87aaec56795757db2f0b2366085d397a63",
+   "files": {
+    "gen/best.ckpt": {
+     "sha256": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+     "bytes": 41561644
+    },
+    "gen/hparams.yaml": {
+     "sha256": "b4866c3d03007685623e335411f8ee73d3d6b6f30cef2c374d868dbbd39321ea",
+     "bytes": 360
+    },
+    "inten_contr/best.ckpt": {
+     "sha256": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+     "bytes": 40604948
+    },
+    "inten_contr/hparams.yaml": {
+     "sha256": "7b730add1fe5f9cffaa85cb5902c374cbb840fd2f9b6e098de4b7b39b3477aec",
+     "bytes": 526
+    }
+   },
+   "note": "the archive contains only gen/ and inten_contr/ (contrastive-finetuned intensity model); no non-contrastive intensity checkpoint is published for msg_simulation, so inten_contr is the checkpoint used",
+   "hparams": {
+    "gen/hparams.yaml": "hidden_size: 512\nlayers: 6\nset_layers: 0\nlearning_rate: 0.000996\nlr_decay_rate: 0.7214\nweight_decay: 0.0\ndropout: 0.2\nmpnn_type: GGNN\npool_op: avg\nnode_feats: 46\npe_embed_k: 14\nmax_broken: 6\nroot_encode: gnn\ninject_early: false\nwarmup: 1000\nembed_adduct: true\nembed_collision: true\nembed_instrument: true\nembed_elem_group: true\nencode_forms: true\nadd_hs: true\n",
+    "inten_contr/hparams.yaml": "hidden_size: 256\ngnn_layers: 4\nmlp_layers: 1\nset_layers: 0\nlearning_rate: 0.000736\nlr_decay_rate: 0.825\nweight_decay: 1.0e-07\ndropout: 0.1\nmpnn_type: GGNN\npool_op: avg\nnode_feats: 32\npe_embed_k: 0\nmax_broken: 6\nfrag_set_layers: 3\nloss_fn: cosine\ntrack_cosine: false\nroot_encode: gnn\ninject_early: false\nwarmup: 1000\nembed_adduct: true\nembed_collision: true\nembed_elem_group: true\nembed_instrument: true\ninclude_unshifted_mz: true\nbinned_targs: true\nencode_forms: true\nadd_hs: true\nsk_tau: 0.05\ncontr_weight: 1.0\nppm_tol: 20.0\n"
+   }
+  },
+  "glacier": {
+   "source_url": "https://www.dropbox.com/scl/fo/ta99j0mp1w7qzek5zvy3w/AFCLQNO8W2EP7ZDMOj9nxWI?rlkey=563zxtyvvhwfu1uyz6n10n2ui&dl=1",
+   "readme_label": "GLACIER checkpoint trained on the MassSpecGym dataset",
+   "archive_sha256": "7e0fa24a19163513fe7cbeea3bf51a48cdd33bf2dbe8ac7a0457cbbf28d1258b",
+   "files": {
+    "best.ckpt": {
+     "sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+     "bytes": 181602423
+    }
+   },
+   "paper": "arXiv:2606.29161 v1"
+  }
+ },
+ "environment_freezes": {
+  "fiora": "fiora_env_freeze.txt",
+  "ms_pred": "mspred_env_freeze.txt"
+ },
+ "environment_freeze_sha256": {
+  "fiora_env_freeze.txt": "34e8a3661723fae1cff52eec2059a2b37b3cd8ca834eff4d5b0c9e0d6719ed4b",
+  "mspred_env_freeze.txt": "a7ff2fcea09a4541748b85aae63bf13fc579fe8e7ed796251abc0d47f9782b78"
+ }
+}

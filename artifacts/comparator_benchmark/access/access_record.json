@@ -1,0 +1,43 @@
+{
+ "record": "PRE-ACCESS RECORD, muru-v2-comparator-benchmark-1.0, written before any benchmark measured mu is read",
+ "utc_timestamp": "2026-09-15T01:08:52.247257Z",
+ "freeze": {
+  "ref": "refs/muru-freeze/muru-v2-comparator-benchmark-1.0",
+  "commit": "c0e724e342ee37139a50999be2030bd8144b1346",
+  "remote_target_verified": "c0e724e342ee37139a50999be2030bd8144b1346"
+ },
+ "predictions": {
+  "ref": "refs/muru-predictions/muru-v2-comparator-benchmark-1.0",
+  "commit": "2c291a2be28617083dab19b7dadcc617b1ace75b",
+  "remote_target_verified": "2c291a2be28617083dab19b7dadcc617b1ace75b"
+ },
+ "execution_commit_git_rev_parse_HEAD": "2c291a2be28617083dab19b7dadcc617b1ace75b",
+ "git_status_porcelain_empty": true,
+ "population": {
+  "key_list_sha256": "dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514",
+  "csv_sha256": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe",
+  "n_compounds": 1327,
+  "n_scaffold_groups": 1254
+ },
+ "prediction_manifest_sha256": "b39f643496bbf71591c7367428e69b86ea705e15c36a94d7860c747547e489c4",
+ "competitor_mu_csv_sha256": "c51041d4757d873a4db4837042680ad109037ab4dd7c9848a968a39ed801baad",
+ "analysis_py_sha256": "c6851db9cbca70eff2d10c47e35ed792fe8d07a2e2c6d8c2a6723b36f7ea1276",
+ "metrics_py_sha256": "48c8cfb984808887ce20594ca88976e7d05717296ed27b03242953fbaaef6374",
+ "candidate_json_sha256_file": "f2ca0322ab75bbcc2ee91e66be07172966d0492060c7669107e1f9081edf58c3",
+ "measured_mu_csv_git_blob_id_not_opened": "375d36e914af92498d1643eca0d557f8f0034b79",
+ "python_executable": "/opt/miniconda3/bin/python3",
+ "python_version": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:07:20) [Clang 20.1.8 ]",
+ "numpy_version": "2.5.2",
+ "pandas_version": "3.0.5",
+ "scipy_version": "1.18.0",
+ "rdkit_version": "2026.03.5",
+ "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+ "machine": "arm64",
+ "hostname": "Sandeeps-MacBook-Air.local",
+ "sys_flags_optimize": 0,
+ "PYTHONOPTIMIZE_set": false,
+ "MURU_COMPARATOR_ONE_LOOK_previously_set": false,
+ "result_dir_exists_before_access": false,
+ "analysis_command": "cd /Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-accuracy-sprint-594932 && env -u PYTHONOPTIMIZE MURU_COMPARATOR_ONE_LOOK=1 /opt/miniconda3/bin/python3 scripts/comparator_benchmark/analysis.py > ~/muru-comparators/runs/analysis_one_look.log 2>&1",
+ "statement": "No benchmark measured mu, measured spectrum, peak array, MURU residual, per-compound MURU error or MURU subset result for this population had been read or computed before this record. Only PR #7 aggregate results (1,789 compounds) were previously known."
+}
