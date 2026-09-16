@@ -1,0 +1,168 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c09_tuebingen_s9_verify.py",
+ "V1_collision_energy_condition": {
+  "MSV000092049": {
+   "massive_description": "Analzyed by Giovanni Andrea Vitale and Christian Geibel from Petras Lab.\nmode= positive\nstepped CE (25, 35, 45)\nRes MS1= 30K,  MS2=15k\nFragment= Top 5 ions",
+   "massive_instrument": "Q Exactive HF",
+   "massive_instrument_accession": "MS:1002523",
+   "files_in_dataset_listing": 54,
+   "files_with_ms2": 19,
+   "library_source_files": 17,
+   "library_source_files_matched_in_dataset": 17,
+   "library_source_files_unmatched": [],
+   "distinct_Top_CEs_over_matched_files": [
+    35.0
+   ],
+   "matched_ms2_scans": 87464,
+   "matched_ms2_scans_at_top_CE": 87464,
+   "all_ms2_at_single_top_CE": true,
+   "MassAnalyzer": [
+    "orbitrap;quadrupole"
+   ],
+   "Ionization": [
+    "electrospray inlet;electrospray ionization"
+   ],
+   "classification": [
+    "DDA"
+   ]
+  },
+  "MSV000092050": {
+   "massive_description": "Analzyed by Giovanni Andrea Vitale and Christian Geibel from Petras Lab.\nmode= negative\nstepped CE (25, 35, 45)\nRes MS1= 30K, MS2=15k\nFragment= Top 5 ions",
+   "massive_instrument": "Q Exactive HF",
+   "massive_instrument_accession": "MS:1002523",
+   "files_in_dataset_listing": 49,
+   "files_with_ms2": 19,
+   "library_source_files": 17,
+   "library_source_files_matched_in_dataset": 17,
+   "library_source_files_unmatched": [],
+   "distinct_Top_CEs_over_matched_files": [
+    35.0
+   ],
+   "matched_ms2_scans": 52769,
+   "matched_ms2_scans_at_top_CE": 52769,
+   "all_ms2_at_single_top_CE": true,
+   "MassAnalyzer": [
+    "orbitrap;quadrupole"
+   ],
+   "Ionization": [
+    "electrospray inlet;electrospray ionization"
+   ],
+   "classification": [
+    "DDA"
+   ]
+  },
+  "mh_positive_records": 281,
+  "mh_positive_keys": 273,
+  "distinct_CE_values_available_per_compound": 1,
+  "library_record_fields": [
+   "Adduct",
+   "CAS_Number",
+   "Charge",
+   "Compound_Name",
+   "Compound_Source",
+   "Data_Collector",
+   "ExactMass",
+   "INCHI",
+   "INCHI_AUX",
+   "Instrument",
+   "Ion_Mode",
+   "Ion_Source",
+   "Library_Class",
+   "PI",
+   "Precursor_MZ",
+   "Pubmed_ID",
+   "Scan",
+   "Smiles",
+   "SpectrumID",
+   "create_time",
+   "library_membership",
+   "ms_level",
+   "scan",
+   "source_file",
+   "spectrum_id",
+   "spectrum_status",
+   "splash",
+   "src",
+   "submit_user",
+   "task",
+   "task_id",
+   "user_id"
+  ],
+  "library_fields_mentioning_energy_or_collision": []
+ },
+ "V2_mspred_msg_training_overlap": {
+  "labels_tsv": "/Users/aryav/muru-comparators/repos/ms-pred/data/spec_datasets/msg/labels.tsv",
+  "labels_rows": 119029,
+  "labels_unique_inchikey14": 16974,
+  "labels_instrument_values": {
+   "Orbitrap": 81323,
+   "QTOF": 37706
+  },
+  "c09_keys_all": 340,
+  "c09_keys_all_in_mspred_labels": 66,
+  "c09_mh_keys": 273,
+  "c09_mh_keys_in_mspred_labels": 65,
+  "c09_mh_keys_in_msg15_simulation_challenge_keyfile": 65,
+  "agreement_labels_vs_simchallenge_keyfile": true
+ },
+ "V3_gnps_library_crosscheck": {
+  "gnps_library_records": 16158,
+  "gnps_library_membership_values": [
+   "GNPS-LIBRARY"
+  ],
+  "shared_SpectrumIDs_with_tuebingen": 0,
+  "records_with_tuebingen_upload_task": 0,
+  "records_with_tuebingen_source_file_name": 0,
+  "tuebingen_in_massspecgym_46_library_list": false,
+  "gnps_library_in_massspecgym_46_library_list": true
+ },
+ "V4_pools": [
+  {
+   "label": "A [M+H]+ positive-task records with a structure",
+   "records": 281,
+   "compounds": 273,
+   "scaffold_groups": 217
+  },
+  {
+   "label": "B = A minus keys in MSG1.5 (either route), MURU exposed populations, MURU dev, PR7, comparator",
+   "records": 183,
+   "compounds": 178,
+   "scaffold_groups": 147
+  },
+  {
+   "label": "C = A minus keys, conservative (full MURU exposure registry)",
+   "records": 179,
+   "compounds": 174,
+   "scaffold_groups": 143
+  },
+  {
+   "label": "D = C minus scaffold groups of MURU registry/dev, PR7, comparator",
+   "records": 142,
+   "compounds": 138,
+   "scaffold_groups": 115
+  },
+  {
+   "label": "E = D within MURU [M+H]+ range 70.0-1042.6",
+   "records": 125,
+   "compounds": 121,
+   "scaffold_groups": 101
+  },
+  {
+   "label": "F = E with precursor consistent (<=0.01 Da) and uncharged parent",
+   "records": 120,
+   "compounds": 116,
+   "scaffold_groups": 96
+  },
+  {
+   "label": "G = F with no known in-pool co-isolation conflict (lower bound: in-library compounds only)",
+   "records": 105,
+   "compounds": 102,
+   "scaffold_groups": 86
+  }
+ ],
+ "input_sha256": {
+  "c09_records_identity_overlap.csv": "4281ed85f962a85e6726585b34f24a8907d86cdb1442dc0f12eb5560852a533c",
+  "c09_screen_summary.json": "37782d9e9ee7f7a597cd59d2ce46840eb8b7c17d464e8c65c3f9c1ca37f4e3fe",
+  "c09_keys_in_msg15_row_summary.csv": "e16389ce05ed3eb01241620cd042f05ee4f1d2857ad0a3c526ce50b30d354a32"
+ }
+}

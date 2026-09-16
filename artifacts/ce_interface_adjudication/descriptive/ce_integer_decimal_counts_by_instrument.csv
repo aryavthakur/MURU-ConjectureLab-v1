@@ -1,0 +1,9 @@
+instrument_type,simulation_challenge,n_nonmissing,n_integer,n_non_integer,n_decimals_0,n_decimals_1,n_decimals_2,n_decimals_3,n_decimals_4,n_decimals_5,n_decimals_6,n_decimals_7plus,n_unique_values,n_unique_integer_values,n_unique_non_integer_values
+<NA>,False,39,30,9,30,0,0,0,2,3,2,2,16,7,9
+Orbitrap,False,1675,1465,210,1465,0,0,0,0,30,142,38,107,14,93
+Orbitrap,True,81323,57395,23928,57395,0,3,76,489,4438,13390,5532,9905,31,9874
+QTOF,False,1003,1003,0,1003,0,0,0,0,0,0,0,22,22,0
+QTOF,True,37706,36345,1361,36345,847,452,0,0,9,3,50,233,36,197
+<NA>,all,39,30,9,30,0,0,0,2,3,2,2,16,7,9
+Orbitrap,all,82998,58860,24138,58860,0,3,76,489,4468,13532,5570,9999,32,9967
+QTOF,all,38709,37348,1361,37348,847,452,0,0,9,3,50,233,36,197

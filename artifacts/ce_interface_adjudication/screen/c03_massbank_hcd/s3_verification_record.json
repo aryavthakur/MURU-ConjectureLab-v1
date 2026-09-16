@@ -1,0 +1,434 @@
+{
+ "written_utc": "2026-09-15T22:58:54.215831+00:00",
+ "task": "S3-C03-verify",
+ "verifies": "screen/c03_massbank_hcd",
+ "recomputed": {
+  "records_2023_11": 25349,
+  "records_per_dir": {
+   "AAFC": 950,
+   "Eawag": 13210,
+   "Eawag_Additional_Specs": 968,
+   "HBM4EU": 3204,
+   "NaToxAq": 3756,
+   "UFZ": 3261
+  },
+  "records_positive": 20600,
+  "records_positive_MH": 20091,
+  "records_esi_orbitrap": 24929,
+  "design_rows": 19462,
+  "design_rows_per_dir": {
+   "AAFC": 623,
+   "Eawag": 9453,
+   "Eawag_Additional_Specs": 656,
+   "HBM4EU": 2258,
+   "NaToxAq": 3660,
+   "UFZ": 2812
+  },
+  "design_compounds": 1639,
+  "design_compounds_in_msg15_any_fold": 1615,
+  "design_compounds_in_msg15_simchallenge": 1609,
+  "design_compounds_in_muru_registry": 911,
+  "design_compounds_in_muru_v2_development": 539,
+  "design_compounds_in_pr7": 2,
+  "design_compounds_in_comparator": 0,
+  "design_compounds_after_key_exclusions": 15,
+  "scaffold_groups_after_key_exclusions": 11,
+  "design_compounds_after_key_and_scaffold_exclusions": 5,
+  "scaffold_groups_after_key_and_scaffold_exclusions": 4,
+  "distinct_nce_per_design_compound": {
+   "median": 7.0,
+   "q25": 6.0,
+   "q75": 9.0,
+   "n_ge_4": 1463
+  },
+  "design_MH_mz_range": [
+   70.039976466812,
+   1045.535276466812
+  ]
+ },
+ "recomputed_matches_summary_json": {
+  "records_2023_11": true,
+  "design_rows": true,
+  "design_compounds": true,
+  "design_compounds_after_key_exclusions": true,
+  "scaffold_groups_after_key_exclusions": true
+ },
+ "ce_arm_spot_checks": [
+  {
+   "accession": "MSBNK-AAFC-AC000001",
+   "title": "Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+",
+   "record_ce_number": 10.0,
+   "msg_rows_same_key_and_precursor": 2,
+   "n_converted_match": 0,
+   "n_raw_match": 0,
+   "example_converted_ce": null,
+   "example_raw_ce": null
+  },
+  {
+   "accession": "MSBNK-NaToxAq-NA000438",
+   "title": "Senecionine N-oxide; LC-ESI-ITFT; MS2; CE: 20%; R=15000; [M+H]+",
+   "record_ce_number": 20.0,
+   "msg_rows_same_key_and_precursor": 97,
+   "n_converted_match": 2,
+   "n_raw_match": 0,
+   "example_converted_ce": 14.08702,
+   "example_raw_ce": null
+  },
+  {
+   "accession": "MSBNK-Eawag-EQ330851",
+   "title": "Etodolac; LC-ESI-QFT; MS2; CE: 15; R=35000; [M-H]-",
+   "record_ce_number": 15.0,
+   "msg_rows_same_key_and_precursor": 8,
+   "n_converted_match": 0,
+   "n_raw_match": 2,
+   "example_converted_ce": null,
+   "example_raw_ce": 15.0
+  },
+  {
+   "accession": "MSBNK-Eawag-EA034202",
+   "title": "Ioxitalamic acid; LC-ESI-ITFT; MS2; CE: 15%; R=7500; [M+H]+",
+   "record_ce_number": 15.0,
+   "msg_rows_same_key_and_precursor": 28,
+   "n_converted_match": 4,
+   "n_raw_match": 0,
+   "example_converted_ce": 19.343625,
+   "example_raw_ce": null
+  },
+  {
+   "accession": "MSBNK-HBM4EU-HB003696",
+   "title": "Dechlorogriseofulvin; LC-ESI-ITFT; MS2; CE: 20%; R=7500; [M+H]+",
+   "record_ce_number": 20.0,
+   "msg_rows_same_key_and_precursor": 12,
+   "n_converted_match": 1,
+   "n_raw_match": 1,
+   "example_converted_ce": 12.764704,
+   "example_raw_ce": 20.0
+  }
+ ],
+ "tag_2023_11": {
+  "tag_object": "5854ddefbe6b76b451fc4d608deed820c43a9501",
+  "commit": "9dc52cb29b7ade23e81befc3ce9eb001477ce393",
+  "tagger_date": "2023-11-28T13:26:24Z",
+  "matches_screen_commit": true
+ },
+ "jsonld_live_recheck": [
+  {
+   "accession": "MSBNK-AAFC-AC000001",
+   "identical_to_cache": true,
+   "live_title": "Mellein; LC-ESI-ITFT; MS2; CE: 10; R=17500; [M+H]+"
+  },
+  {
+   "accession": "MSBNK-NaToxAq-NA000438",
+   "identical_to_cache": true,
+   "live_title": "Senecionine N-oxide; LC-ESI-ITFT; MS2; CE: 20%; R=15000; [M+H]+"
+  },
+  {
+   "accession": "MSBNK-UFZ-UF402004",
+   "identical_to_cache": true,
+   "live_title": "Pyrazophos; LC-ESI-ITFT; MS2; CE: 55; R=15000; [M+H]+"
+  }
+ ],
+ "massbank_server_release_served": {
+  "version": "2025.10",
+  "timestamp": "2025-10-24T10:33:06Z",
+  "note": "JSON-LD titles reflect this release, NOT 2023.11"
+ },
+ "post_tag_commit_audit": {
+  "2909674": {
+   "date": "2025-04-22",
+   "message": "chore: added links to ChemOnt classification",
+   "additions": 120333,
+   "deletions": 0,
+   "patches_read": true,
+   "changed_line_tags_page1": {
+    "CH$LINK": 300
+   },
+   "numeric_changed_lines_page1": 0,
+   "dirs_page1": {
+    "AAFC": 300
+   }
+  },
+  "f224a5c": {
+   "date": "2025-05-02",
+   "message": "fix: incorrect ChemOnt classifications",
+   "additions": 34380,
+   "deletions": 32307,
+   "patches_read": true,
+   "changed_line_tags_page1": {
+    "CH$LINK": 584
+   },
+   "numeric_changed_lines_page1": 0,
+   "dirs_page1": {
+    "AAFC": 270,
+    "ACES_SU": 30
+   }
+  },
+  "74f840a": {
+   "date": "2025-01-31",
+   "message": "Fix CHEBI identifier",
+   "additions": 28839,
+   "deletions": 28839,
+   "patches_read": true,
+   "changed_line_tags_page1": {
+    "CH$LINK": 600
+   },
+   "numeric_changed_lines_page1": 0,
+   "dirs_page1": {
+    "Antwerp_Univ": 300
+   }
+  },
+  "dbc9063": {
+   "date": "2025-10-27",
+   "message": "Add chemont classification",
+   "additions": 4726,
+   "deletions": 0,
+   "patches_read": true,
+   "changed_line_tags_page1": {
+    "CH$LINK": 300
+   },
+   "numeric_changed_lines_page1": 0,
+   "dirs_page1": {
+    "mFam": 207,
+    "Fac_Eng_Univ_Tokyo": 41,
+    "RIKEN_NPDepo": 15,
+    "Eawag": 12,
+    "Waters": 8,
+    "AAFC": 5
+   }
+  },
+  "fd8fb15": {
+   "date": "2025-10-24",
+   "message": "Merge files for release 2025.10 (#343)",
+   "additions": 643047,
+   "deletions": 597,
+   "patches_read": false
+  },
+  "2d07d24": {
+   "date": "2026-05-07",
+   "message": "Remove PUBLICATION: NA",
+   "additions": 0,
+   "deletions": 5574,
+   "patches_read": false
+  },
+  "c421681": {
+   "date": "2026-07-30",
+   "message": "chore: PR with post-updated records (#399)",
+   "additions": 670,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "06338d1": {
+   "date": "2026-02-04",
+   "message": "chore: PR with post-updated records (#372)",
+   "additions": 3108,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "d257cab": {
+   "date": "2026-07-30",
+   "message": "Eawag spectra 2026 (#398)",
+   "additions": 44821,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "6275b60": {
+   "date": "2026-07-01",
+   "message": "Add Classyfire classes",
+   "additions": 309,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "500fd21": {
+   "date": "2026-02-02",
+   "message": "upload of CyanoMetDB_01 (#366)",
+   "additions": 253748,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "12b1ea6": {
+   "date": "2025-02-05",
+   "message": "Change plain PubChem number to corresponding CID and fix some compound info, upd",
+   "additions": 751,
+   "deletions": 886,
+   "patches_read": false
+  },
+  "4398ef3": {
+   "date": "2025-02-04",
+   "message": "Change plain PubChem number to corresponding CID and fix some compound info",
+   "additions": 1648,
+   "deletions": 1647,
+   "patches_read": false
+  },
+  "90fdf6f": {
+   "date": "2025-02-04",
+   "message": "Change PubChem SID to CID and fix compound info",
+   "additions": 548,
+   "deletions": 569,
+   "patches_read": false
+  },
+  "6be0d51": {
+   "date": "2024-06-14",
+   "message": "added eawag records",
+   "additions": 141087,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "58f4e12": {
+   "date": "2024-05-16",
+   "message": "Adding Eawag PFAS spectra",
+   "additions": 13655,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "3f57a1f": {
+   "date": "2024-05-15",
+   "message": "Adding Eawag spectra",
+   "additions": 10947,
+   "deletions": 0,
+   "patches_read": false
+  },
+  "563cce0": {
+   "date": "2024-05-15",
+   "message": "Adding Eawag spectra for Meyer et al. 2024",
+   "additions": 55693,
+   "deletions": 0,
+   "patches_read": false
+  }
+ },
+ "sampled_record_file_commits_since_tag": {
+  "AAFC": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "fix: incorrect ChemOnt classifications": 4,
+    "chore: added links to ChemOnt classification": 8
+   }
+  },
+  "Eawag": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "fix: incorrect ChemOnt classifications": 3,
+    "chore: added links to ChemOnt classification": 8
+   }
+  },
+  "Eawag_Additional_Specs": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "chore: added links to ChemOnt classification": 5,
+    "fix: incorrect ChemOnt classifications": 4,
+    "Fix CHEBI identifier": 1
+   }
+  },
+  "HBM4EU": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "fix: incorrect ChemOnt classifications": 2,
+    "chore: added links to ChemOnt classification": 8,
+    "Fix CHEBI identifier": 2
+   }
+  },
+  "NaToxAq": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "chore: added links to ChemOnt classification": 8,
+    "Fix CHEBI identifier": 6,
+    "fix: incorrect ChemOnt classifications": 1
+   }
+  },
+  "UFZ": {
+   "files_sampled": 8,
+   "commit_messages": {
+    "chore: added links to ChemOnt classification": 8,
+    "Fix CHEBI identifier": 6,
+    "fix: incorrect ChemOnt classifications": 2
+   }
+  }
+ },
+ "reproduction": {
+  "rerun_of_screen_c03_massbank_hcd.py": "bit-identical",
+  "summary_json_sha256": "7e018e7f910c4b99e8b660b9083663e49e09c56e573c239d010c565f51c0d1c9",
+  "note": "re-ran the frozen analysis script from its cached metadata into a scratch directory; output summary.json byte-identical to the committed one and to the sha recorded in screen_verdict.json"
+ },
+ "ms_pred_instrument_tokens": {
+  "source": "/Users/aryav/muru-comparators/repos/ms-pred/src/ms_pred/common/chem_utils.py:277-282",
+  "tokens": {
+   "Orbitrap": "0 (Orbitrap HCD)",
+   "QTOF": 1,
+   "IT-FT": "2 (Orbitrap CID)",
+   "Unknown": 3
+  },
+  "note": "MassSpecGym collapses LC-ESI-ITFT and LC-ESI-QFT to instrument_type 'Orbitrap' (P3 notes section table), so MassBank ion-trap-CID ITFT records enter the checkpoints under the Orbitrap-HCD token"
+ },
+ "checkpoint_hparams_checked": {
+  "file": "artifacts/comparator_benchmark/technical/t1/checkpoint_hyperparameters.jsonl",
+  "glacier_msg": {
+   "embed_collision": true,
+   "embed_instrument": true,
+   "embed_adduct": true
+  },
+  "iceberg21_msg_simulation_gen": {
+   "embed_collision": true,
+   "embed_instrument": true
+  },
+  "iceberg21_msg_simulation_inten_contr": {
+   "embed_collision": true,
+   "embed_instrument": true
+  }
+ },
+ "criteria": {
+  "1_absent_from_MURU_development": {
+   "status": "NOT_MET",
+   "evidence": "539 of 1,639 design compounds are in the frozen V2-DEVELOPMENT-POPULATION key list; 911 are in the full MURU exposure registry (recomputed here)"
+  },
+  "2_absent_from_PR7_confirmation_population": {
+   "status": "PARTIAL",
+   "evidence": "2 of 1,639 design compounds are PR #7 population keys (HBM4EU KSQNKZMAMGACTL Cyclopeptin, PZPPOCZWRGNKIR Chaetocin, 6 records each); the rest are absent"
+  },
+  "3_absent_from_comparator_benchmark_population": {
+   "status": "MET",
+   "evidence": "0 of 1,639 design compounds are in comparator_common_population_keys.txt (1,327 keys)"
+  },
+  "4_absent_from_ICEBERG_GLACIER_training": {
+   "status": "NOT_MET",
+   "evidence": "1,615 of 1,639 design compounds are MassSpecGym 1.5 compounds (all folds, InChIKey14 recorded or MURU parent key); 1,609 are in the simulation_challenge subset that defines the msg_simulation training universe; MassBank 2023.11 is a declared MassSpecGym source"
+  },
+  "5_known_CE_semantics": {
+   "status": "PARTIAL",
+   "evidence": "Two semantics coexist per contributor and per series. Verified: MassBank record CE text is free text (AC$MASS_SPECTROMETRY: COLLISION_ENERGY, exported verbatim as Collision_energy: in MassBank_NIST.msp); MassSpecGym converts only strings containing '%' as eV = NCE*precursor_mz/500 and keeps every other first number raw. Hand-verified per accession: NaToxAq NA000438 '20%' -> MSG 14.087020 = 20*352.1755/500; Eawag EA034202 '15 %' -> 19.343625; HBM4EU HB003696 '20%' -> 12.764704; Eawag EQ330851 '15 (nominal)' -> raw 15/30/45/60. Residual gap: the 2023.11 record text itself was NOT read (record .txt files carry peak lists, outside the download policy); the strings observed are 2025.10 titles and dev-HEAD AC$ lines"
+  },
+  "6_MH_positive_available": {
+   "status": "MET",
+   "evidence": "20,091 positive-mode [M+H]+ records of 25,349 at the tag; 19,462 of them are ESI-Orbitrap-class design rows with a parseable structure"
+  },
+  "7_compatible_fragmentation_instrument": {
+   "status": "PARTIAL",
+   "evidence": "24,929 of 25,349 records are ESI Orbitrap class (LC-ESI-ITFT 16,327, LC-ESI-QFT 8,557, ESI-ITFT 45); incompatible remainder: 299 QTOF (HBM4EU), 102 APCI, 19 records absent from the current server. Fragmentation mode at dev HEAD in a 1,570-file sample is mostly HCD but includes CID on Orbitrap: NaToxAq 71/300, HBM4EU 41/200, UFZ 6-8/200, Eawag 7/270; MassSpecGym maps LC-ESI-ITFT and LC-ESI-QFT alike to 'Orbitrap', and ms-pred's token set (chem_utils.py:277-282) has a separate IT-FT = Orbitrap CID token that MassSpecGym never uses. Records whose CE is raw NCE on an Orbitrap are the deployment-compatible subset for MURU's fixed NCE20/NCE60"
+  },
+  "8_multiple_energies_per_compound": {
+   "status": "MET",
+   "evidence": "median 7 distinct CE values per design compound (q25 6, q75 9); 1,463 of 1,639 have >= 4; ladders: NaToxAq 10-105 step 5, Eawag 15-180, Eawag_Additional_Specs 15-95, UFZ 10-125, HBM4EU 5-185, AAFC 10-55"
+  },
+  "9_structural_diversity_after_exclusions": {
+   "status": "NOT_MET",
+   "evidence": "15 compounds / 11 scaffold groups survive key exclusion (MassSpecGym all folds + MURU registry + PR #7 + comparator); 5 compounds / 4 groups also survive scaffold-group exclusion, and 4 of those 5 have [M+H]+ > 1000 m/z (one above the MURU development range 70.0-1042.6); only 1 of the 15 has both NCE 20 and 60; 10 of 15 have >= 2 energies. Far below a scaffold-split calibration plus held-out evaluation"
+  },
+  "10_license_and_access": {
+   "status": "MET",
+   "evidence": "CC BY 4.0 14,614 records, CC0 6,980, CC BY-SA 4.0 3,736 (19 records no longer served); public GitHub repository plus public MassBank API and export service; no registration"
+  },
+  "11_hidden_MassSpecGym_inclusion_plausible": {
+   "status": "NOT_MET (inclusion is explicit, and cross-identifier inclusion is demonstrated)",
+   "evidence": "MassBank 2023.11 is a declared MassSpecGym source, so inclusion is not hidden but certain: 1,615/1,639 by key. Of the 24 design compounds not matched by key, 12 have a formula that occurs in MassSpecGym; 4 of the 15 post-exclusion survivors have a canonical-tautomer key equal to a MassSpecGym compound's, i.e. the same chemistry is in training under a different recorded identifier"
+  }
+ },
+ "verdict": {
+  "value": "PARTIAL_OR_SUPPORTING_ONLY",
+  "concurs_with": "screen_verdict.json (same directory)",
+  "reason": "criteria 1, 4, 9 and 11 fail decisively, so C03 can never serve as held-out evaluation data; its value is exactly what the candidate record claims, CE-semantics attribution per training source"
+ },
+ "disclosures": [
+  "The MassBank server serves release 2025.10 (API /metadata version 2025.10, 2025-10-24); every title, license and structure read through the export service is that release, not 2023.11. The accession set screened is the 2023.11 git tree (25,349 records), 25,330 of which still exist in 2025.10 (19 UFZ records gone).",
+  "No MassBank record .txt, release asset, /records/{accession} response, peak list, model output or MURU measurement was read at any point in this screen or this verification.",
+  "One exploratory commit-diff call (fd8fb15, the 2025.10 release merge) returned patches of whole new record files added after the tag and therefore carried peak lines in memory; only a field-tag histogram was computed, nothing was stored, printed or used, and none of those records is in the screened 2023.11 set. Recorded in downloads_register.jsonl.",
+  "Post-tag change bound for CE strings: of the commits touching the six directories, only 12b1ea6 (886), 4398ef3 (1,647), 90fdf6f (569), 2d07d24 (5,574, PUBLICATION: NA) and the repo-wide release merge fd8fb15 (597) delete any line; every other commit is additions-only. For 48 sampled record files (8 per directory) the only post-tag commits touching them are ChemOnt/CHEBI metadata commits (plus one HBM4EU file in fd8fb15), and in 1,200 sampled record-file patches of those metadata commits every changed line is CH$LINK. So AC$MASS_SPECTROMETRY: COLLISION_ENERGY rewrites between 2023.11 and today are bounded to at most a few hundred lines repo-wide and none were observed."
+ ]
+}

@@ -1,0 +1,1158 @@
+{
+ "design_sets": {
+  "P0_all_mh_ge3nce": {
+   "n_compounds": 136,
+   "n_compound_rows": 142,
+   "n_scaffold_groups": 65,
+   "n_scaffold_groups_singleton": 39,
+   "max_compounds_in_one_scaffold_group": 10,
+   "n_scaffold_groups_also_in_msg15": 19,
+   "mh_min": 299.23,
+   "mh_median": 881.46,
+   "mh_max": 1752.8,
+   "n_mh_gt_msg_label_max_995_556": 43,
+   "n_mh_gt_msg15_max": 42,
+   "n_mh_gt_muru_dev_max": 24,
+   "n_mh_gt_glacier_upper": 4,
+   "level_counts": {
+    "2b": 50,
+    "1": 39,
+    "2a": 31,
+    "3": 22
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 73,
+    "MSBNK-MLU-ED": 35,
+    "MSBNK-EAWAG-ED": 32,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 2
+   }
+  },
+  "P1_single_identity": {
+   "n_compounds": 119,
+   "n_compound_rows": 122,
+   "n_scaffold_groups": 59,
+   "n_scaffold_groups_singleton": 36,
+   "max_compounds_in_one_scaffold_group": 10,
+   "n_scaffold_groups_also_in_msg15": 19,
+   "mh_min": 299.23,
+   "mh_median": 883.44,
+   "mh_max": 1752.8,
+   "n_mh_gt_msg_label_max_995_556": 37,
+   "n_mh_gt_msg15_max": 36,
+   "n_mh_gt_muru_dev_max": 21,
+   "n_mh_gt_glacier_upper": 4,
+   "level_counts": {
+    "2b": 50,
+    "1": 39,
+    "2a": 31,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 61,
+    "MSBNK-MLU-ED": 35,
+    "MSBNK-EAWAG-ED": 24,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 2
+   }
+  },
+  "P2_key_clean": {
+   "n_compounds": 104,
+   "n_compound_rows": 107,
+   "n_scaffold_groups": 51,
+   "n_scaffold_groups_singleton": 29,
+   "max_compounds_in_one_scaffold_group": 7,
+   "n_scaffold_groups_also_in_msg15": 11,
+   "mh_min": 299.23,
+   "mh_median": 887.47,
+   "mh_max": 1752.8,
+   "n_mh_gt_msg_label_max_995_556": 35,
+   "n_mh_gt_msg15_max": 35,
+   "n_mh_gt_muru_dev_max": 21,
+   "n_mh_gt_glacier_upper": 4,
+   "level_counts": {
+    "2b": 50,
+    "1": 28,
+    "2a": 27,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 57,
+    "MSBNK-MLU-ED": 28,
+    "MSBNK-EAWAG-ED": 21,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P3_key_and_scaffold_clean": {
+   "n_compounds": 81,
+   "n_compound_rows": 84,
+   "n_scaffold_groups": 45,
+   "n_scaffold_groups_singleton": 28,
+   "max_compounds_in_one_scaffold_group": 7,
+   "n_scaffold_groups_also_in_msg15": 5,
+   "mh_min": 299.23,
+   "mh_median": 899.44,
+   "mh_max": 1752.8,
+   "n_mh_gt_msg_label_max_995_556": 27,
+   "n_mh_gt_msg15_max": 27,
+   "n_mh_gt_muru_dev_max": 18,
+   "n_mh_gt_glacier_upper": 4,
+   "level_counts": {
+    "2b": 40,
+    "1": 23,
+    "2a": 19,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 45,
+    "MSBNK-MLU-ED": 27,
+    "MSBNK-EAWAG-ED": 11,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P4_P3_nce20_60": {
+   "n_compounds": 75,
+   "n_compound_rows": 78,
+   "n_scaffold_groups": 43,
+   "n_scaffold_groups_singleton": 27,
+   "max_compounds_in_one_scaffold_group": 7,
+   "n_scaffold_groups_also_in_msg15": 4,
+   "mh_min": 299.23,
+   "mh_median": 907.43,
+   "mh_max": 1752.8,
+   "n_mh_gt_msg_label_max_995_556": 25,
+   "n_mh_gt_msg15_max": 25,
+   "n_mh_gt_muru_dev_max": 16,
+   "n_mh_gt_glacier_upper": 4,
+   "level_counts": {
+    "2b": 36,
+    "1": 21,
+    "2a": 19,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 45,
+    "MSBNK-MLU-ED": 26,
+    "MSBNK-EAWAG-ED": 6,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P5_P4_msg_range": {
+   "n_compounds": 53,
+   "n_compound_rows": 53,
+   "n_scaffold_groups": 33,
+   "n_scaffold_groups_singleton": 23,
+   "max_compounds_in_one_scaffold_group": 5,
+   "n_scaffold_groups_also_in_msg15": 3,
+   "mh_min": 299.23,
+   "mh_median": 792.47,
+   "mh_max": 993.5,
+   "n_mh_gt_msg_label_max_995_556": 0,
+   "n_mh_gt_msg15_max": 0,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "2b": 29,
+    "1": 13,
+    "2a": 9,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 37,
+    "MSBNK-MLU-ED": 12,
+    "MSBNK-EAWAG-ED": 3,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P6_P4_muru_range": {
+   "n_compounds": 62,
+   "n_compound_rows": 62,
+   "n_scaffold_groups": 34,
+   "n_scaffold_groups_singleton": 21,
+   "max_compounds_in_one_scaffold_group": 6,
+   "n_scaffold_groups_also_in_msg15": 4,
+   "mh_min": 299.23,
+   "mh_median": 830.47,
+   "mh_max": 1041.39,
+   "n_mh_gt_msg_label_max_995_556": 9,
+   "n_mh_gt_msg15_max": 9,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "2b": 33,
+    "1": 18,
+    "2a": 9,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 39,
+    "MSBNK-MLU-ED": 17,
+    "MSBNK-EAWAG-ED": 5,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P7_P5_level1_2a": {
+   "n_compounds": 22,
+   "n_compound_rows": 22,
+   "n_scaffold_groups": 19,
+   "n_scaffold_groups_singleton": 16,
+   "max_compounds_in_one_scaffold_group": 2,
+   "n_scaffold_groups_also_in_msg15": 2,
+   "mh_min": 299.23,
+   "mh_median": 795.86,
+   "mh_max": 991.52,
+   "n_mh_gt_msg_label_max_995_556": 0,
+   "n_mh_gt_msg15_max": 0,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "1": 13,
+    "2a": 9
+   },
+   "series": {
+    "MSBNK-MLU-ED": 12,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 9,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P8_P5_level1": {
+   "n_compounds": 13,
+   "n_compound_rows": 13,
+   "n_scaffold_groups": 12,
+   "n_scaffold_groups_singleton": 11,
+   "max_compounds_in_one_scaffold_group": 2,
+   "n_scaffold_groups_also_in_msg15": 1,
+   "mh_min": 413.12,
+   "mh_median": 859.51,
+   "mh_max": 991.52,
+   "n_mh_gt_msg_label_max_995_556": 0,
+   "n_mh_gt_msg15_max": 0,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "1": 13
+   },
+   "series": {
+    "MSBNK-MLU-ED": 8,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 4,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P9_P5_first_mass_40": {
+   "n_compounds": 37,
+   "n_compound_rows": 37,
+   "n_scaffold_groups": 21,
+   "n_scaffold_groups_singleton": 12,
+   "max_compounds_in_one_scaffold_group": 4,
+   "n_scaffold_groups_also_in_msg15": 2,
+   "mh_min": 299.23,
+   "mh_median": 791.41,
+   "mh_max": 993.5,
+   "n_mh_gt_msg_label_max_995_556": 0,
+   "n_mh_gt_msg15_max": 0,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "2b": 25,
+    "1": 5,
+    "2a": 5,
+    "3": 2
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 36,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  },
+  "P10_P9_level1_2a": {
+   "n_compounds": 10,
+   "n_compound_rows": 10,
+   "n_scaffold_groups": 9,
+   "n_scaffold_groups_singleton": 8,
+   "max_compounds_in_one_scaffold_group": 2,
+   "n_scaffold_groups_also_in_msg15": 2,
+   "mh_min": 299.23,
+   "mh_median": 791.94,
+   "mh_max": 991.52,
+   "n_mh_gt_msg_label_max_995_556": 0,
+   "n_mh_gt_msg15_max": 0,
+   "n_mh_gt_muru_dev_max": 0,
+   "n_mh_gt_glacier_upper": 0,
+   "level_counts": {
+    "1": 5,
+    "2a": 5
+   },
+   "series": {
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED": 9,
+    "MSBNK-EAWAG-EC|MSBNK-EAWAG-ED|MSBNK-MLU-ED": 1
+   }
+  }
+ },
+ "ms_pred_element_domain": {
+  "reference": "ms-pred src/ms_pred/common/chem_utils.py:131 NORM_VEC (normalisation, not a hard cap), :132 MAX_ATOM_CT=160",
+  "n_compounds_checked": 122,
+  "n_compounds_with_any_element_count_above_NORM_VEC": 1,
+  "per_element_n_compounds_above_NORM_VEC": {
+   "O": 1
+  },
+  "elements_not_in_ms_pred_valid_list": {},
+  "n_compounds_heavy_atoms_gt_MAX_ATOM_CT": 0,
+  "heavy_atoms_max": 122.0
+ },
+ "msg15_overlap_rows_per_key": [
+  {
+   "inchikey14": "ZYZCGGRZINLQBL",
+   "cyanometdb_name": "MC-LR",
+   "n_msg_rows": 41,
+   "folds": "train",
+   "n_simulation_challenge_rows": 40,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap",
+   "ce_values": "119.467|149.333|179.2|238.933|298.667|358.4|59.7334|69.6889|89.6",
+   "precursor_mz_min": 995.556,
+   "precursor_mz_max": 995.556
+  },
+  {
+   "inchikey14": "ZDOVFDLIJJGVQM",
+   "cyanometdb_name": "Anabaenopeptin B",
+   "n_msg_rows": 20,
+   "folds": "val",
+   "n_simulation_challenge_rows": 18,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap|QTOF",
+   "ce_values": "100.495|125.619|150.743|200.991|25.1239|251.239|301.486|50.2477|75.3716",
+   "precursor_mz_min": 837.46,
+   "precursor_mz_max": 837.462
+  },
+  {
+   "inchikey14": "DIAQQISRBBDJIM",
+   "cyanometdb_name": "MC-LA",
+   "n_msg_rows": 19,
+   "folds": "train",
+   "n_simulation_challenge_rows": 18,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap",
+   "ce_values": "109.259|136.574|163.889|218.518|27.3148|273.148|327.777|54.6295|81.9443",
+   "precursor_mz_min": 910.492,
+   "precursor_mz_max": 910.492
+  },
+  {
+   "inchikey14": "JWVKNHDSRADFFA",
+   "cyanometdb_name": "Anabaenopeptin A",
+   "n_msg_rows": 19,
+   "folds": "test",
+   "n_simulation_challenge_rows": 18,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap|QTOF",
+   "ce_values": "101.331|126.664|151.996|202.662|25.3327|253.327|303.993|50.6654|75.9982",
+   "precursor_mz_min": 844.423,
+   "precursor_mz_max": 844.424
+  },
+  {
+   "inchikey14": "KCAKUFQSCADGHZ",
+   "cyanometdb_name": "Oscillamide Y",
+   "n_msg_rows": 18,
+   "folds": "test",
+   "n_simulation_challenge_rows": 18,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap",
+   "ce_values": "103.013|128.766|154.519|206.026|25.7532|257.532|309.038|51.5064|77.2596",
+   "precursor_mz_min": 858.4396,
+   "precursor_mz_max": 858.4396
+  },
+  {
+   "inchikey14": "VJFRQMMMXJJUSM",
+   "cyanometdb_name": "Aerucyclamide A",
+   "n_msg_rows": 18,
+   "folds": "test",
+   "n_simulation_challenge_rows": 18,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap",
+   "ce_values": "128.452|16.0565|160.565|192.678|32.1129|48.1694|64.2259|80.2823|96.3388",
+   "precursor_mz_min": 535.2156,
+   "precursor_mz_max": 535.2156
+  },
+  {
+   "inchikey14": "IXBQSRWSVIBXNC",
+   "cyanometdb_name": "Nodularin-R",
+   "n_msg_rows": 10,
+   "folds": "test",
+   "n_simulation_challenge_rows": 8,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap|QTOF",
+   "ce_values": "45|60|75|90",
+   "precursor_mz_min": 825.448,
+   "precursor_mz_max": 825.4505
+  },
+  {
+   "inchikey14": "KXSGCAPYMUMVSH",
+   "cyanometdb_name": "Molassamide",
+   "n_msg_rows": 4,
+   "folds": "test",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+|[M+Na]+",
+   "instruments": "<NA>|QTOF",
+   "ce_values": "",
+   "precursor_mz_min": 963.488,
+   "precursor_mz_max": 985.47
+  },
+  {
+   "inchikey14": "UAVAEWGJORGZNS",
+   "cyanometdb_name": "Loggerpeptin A",
+   "n_msg_rows": 2,
+   "folds": "test",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+",
+   "instruments": "<NA>|QTOF",
+   "ce_values": "",
+   "precursor_mz_min": 993.536,
+   "precursor_mz_max": 993.536
+  },
+  {
+   "inchikey14": "VOJZQYLSWQMIAF",
+   "cyanometdb_name": "Rivulariapeptolide 988",
+   "n_msg_rows": 2,
+   "folds": "test",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+",
+   "instruments": "<NA>|QTOF",
+   "ce_values": "",
+   "precursor_mz_min": 989.505,
+   "precursor_mz_max": 989.505
+  },
+  {
+   "inchikey14": "ASRBKZHDORPEHO",
+   "cyanometdb_name": "Gallinamide A",
+   "n_msg_rows": 1,
+   "folds": "test",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+Na]+",
+   "instruments": "<NA>",
+   "ce_values": "",
+   "precursor_mz_min": 615.368,
+   "precursor_mz_max": 615.368
+  },
+  {
+   "inchikey14": "JFWABYMXSVHLEW",
+   "cyanometdb_name": "Aerucyclamide B",
+   "n_msg_rows": 1,
+   "folds": "test",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+",
+   "instruments": "<NA>",
+   "ce_values": "",
+   "precursor_mz_min": 533.21,
+   "precursor_mz_max": 533.21
+  },
+  {
+   "inchikey14": "MQIAICAGVFTAAN",
+   "cyanometdb_name": "Aerucyclamide C",
+   "n_msg_rows": 1,
+   "folds": "val",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+",
+   "instruments": "<NA>",
+   "ce_values": "",
+   "precursor_mz_min": 517.21,
+   "precursor_mz_max": 517.21
+  },
+  {
+   "inchikey14": "NGPDQWFWZNXVLZ",
+   "cyanometdb_name": "Cyanopeptolin 963A",
+   "n_msg_rows": 1,
+   "folds": "val",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+Na]+",
+   "instruments": "<NA>",
+   "ce_values": "",
+   "precursor_mz_min": 986.4,
+   "precursor_mz_max": 986.4
+  },
+  {
+   "inchikey14": "VYEBKSHVYPDMQQ",
+   "cyanometdb_name": "[D-Asp3]MC-LR",
+   "n_msg_rows": 1,
+   "folds": "train",
+   "n_simulation_challenge_rows": 0,
+   "adducts": "[M+H]+",
+   "instruments": "Orbitrap",
+   "ce_values": "",
+   "precursor_mz_min": 981.54,
+   "precursor_mz_max": 981.54
+  }
+ ],
+ "ms_pred_msg_labels": {
+  "path": "repos/ms-pred/data/spec_datasets/msg/labels.tsv",
+  "n_rows": 119029,
+  "precursor_min": 60.081045906016,
+  "precursor_max": 995.556,
+  "instrument_counts": {
+   "Orbitrap": 81323,
+   "QTOF": 37706
+  },
+  "ionization_counts": {
+   "[M+H]+": 119029
+  },
+  "n_rows_with_overlap_key": 138,
+  "overlap_keys_in_labels": [
+   "DIAQQISRBBDJIM",
+   "IXBQSRWSVIBXNC",
+   "JWVKNHDSRADFFA",
+   "KCAKUFQSCADGHZ",
+   "VJFRQMMMXJJUSM",
+   "ZDOVFDLIJJGVQM",
+   "ZYZCGGRZINLQBL"
+  ]
+ },
+ "record_level": {
+  "n_records_tag_2026.03": 3126,
+  "series_counts": {
+   "MSBNK-EAWAG-ED": 1536,
+   "MSBNK-EAWAG-EC": 1010,
+   "MSBNK-MLU-ED": 580
+  },
+  "instrument_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "Exploris 240 Thermo Scientific": 1010
+   },
+   "MSBNK-EAWAG-ED": {
+    "Exploris 240 Thermo Scientific": 1536
+   },
+   "MSBNK-MLU-ED": {
+    "QExactive Plus": 580
+   }
+  },
+  "instrument_type": {
+   "LC-ESI-QFT": 3126
+  },
+  "fragmentation_mode_sampled": {
+   "nan": 1979,
+   "HCD": 1147
+  },
+  "ce_field_string_forms_sampled": {
+   "NA": 1979,
+   "<n> % (nominal)": 1147
+  },
+  "title_ce_forms_all_records": {
+   "<n>%": 3126
+  },
+  "title_vs_field_ce_disagree": 0,
+  "n_records_with_TENTATIVE_in_title": 0,
+  "precursor_type_counts": {
+   "[M+H]+": 1888,
+   "[M-H]-": 1211,
+   "[M+2H]2+": 27
+  },
+  "first_mass_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "40": 1010
+   },
+   "MSBNK-EAWAG-ED": {
+    "auto": 1536
+   },
+   "MSBNK-MLU-ED": {
+    "nan": 580
+   }
+  },
+  "scan_window_sample": {
+   "n_records_with_scan_range": 1147,
+   "by_series_firstmass": {
+    "MSBNK-EAWAG-EC|40": {
+     "n": 538,
+     "lo_values": {
+      "40.0": 496,
+      "64.0": 42
+     },
+     "n_muru_window_ok": 496
+    },
+    "MSBNK-EAWAG-ED|auto": {
+     "n": 486,
+     "lo_values": {
+      "103.0": 70,
+      "50.0": 36,
+      "63.0": 36,
+      "105.0": 31,
+      "87.0": 27,
+      "102.0": 26,
+      "100.0": 23,
+      "110.0": 21,
+      "150.0": 18,
+      "106.0": 18,
+      "88.0": 18,
+      "86.0": 18,
+      "56.0": 18,
+      "109.0": 18,
+      "62.0": 16,
+      "66.0": 16,
+      "108.0": 16,
+      "96.0": 13,
+      "61.0": 12,
+      "54.0": 9,
+      "101.0": 9,
+      "104.0": 8,
+      "111.0": 5,
+      "84.0": 4
+     },
+     "n_muru_window_ok": 0
+    },
+    "MSBNK-MLU-ED|none": {
+     "n": 123,
+     "lo_values": {
+      "70.0": 35,
+      "69.0": 33,
+      "68.0": 16,
+      "56.0": 15,
+      "67.0": 14,
+      "77.0": 10
+     },
+     "n_muru_window_ok": 0
+    }
+   }
+  },
+  "n_mh_records": 1888
+ },
+ "record_header_sample": {
+  "n_records_in_sample": 300,
+  "license_values": {
+   "CC BY-SA": 300
+  },
+  "publication_values": {
+   "10.1021/acs.jnatprod.6b00351": 13,
+   "10.21577/0100-4042.20170640": 5,
+   "https://pubs.acs.org/doi/10.1021/acschembio.7b00570": 3,
+   "10.1016/j.chemosphere.2022.137012": 5,
+   "10.1093/femsec/fiaa243": 12,
+   "https://pubs.acs.org/doi/10.1021/np500106w": 6,
+   "https://doi.org/10.1371/journal.pone.0073618; https://www.jstage.jst.go.jp/article/massspec/48/1/48_1_56/_pdf": 3,
+   "10.1016/j.aquatox.2023.106689": 14,
+   "https://doi.org/10.1021/np000316k": 2,
+   "https://doi.org/10.1021/acs.est.1c04194": 5,
+   "https://doi.org/10.1111/j.1365-2958.2009.06816.x": 4,
+   "https://doi.org/10.1016/j.chembiol.2010.01.017": 8,
+   "https://doi.org/10.3390/md18090442": 7,
+   "http://dx.doi.org/10.1016/j.toxicon.2013.03.016": 6,
+   "https://doi.org/10.3390/md16070220": 5,
+   "10.1371/journal.pone.0172850 ;10.1002/ange.202015105; 10.1002/anie.202015105": 6,
+   "10.1016/j.toxicon.2013.03.016": 4,
+   "https://doi.org/10.4224/crm.2013.nodr.20070214": 4,
+   "10.1021/acs.jnatprod.7b00370": 2,
+   "10.1038/s41598-018-32618-5": 2,
+   "10.1073/pnas.0914343107": 6,
+   "10.1016/j.chemosphere.2022.137014": 1,
+   "https://doi.org/10.4224/crm.2013.mclr.20070131": 2,
+   "https://doi.org/10.3390/md11010001": 5,
+   "https://doi.org/10.1371/journal.pone.0073618": 1,
+   "10.3390/molecules25133027": 2,
+   "10.1016/j.chemosphere.2022.137013": 3,
+   "10.1016/j.toxicon.2013.03.017": 3,
+   "10.1111/j.1574-6941.2012.01439.x": 3,
+   "10.1371/journal.pone.0069562.g001": 2
+  },
+  "confidence_level_values": {
+   "3": 29,
+   "2a": 74,
+   "2b": 103,
+   "1": 94
+  },
+  "n_records_with_cyanometdb_id_comment": 156,
+  "level_agreement_with_table_s4": {
+   "agree": 297,
+   "disagree": 3
+  },
+  "cyanometdb_id_unit_agreement": {
+   "agree": 156,
+   "disagree": 0
+  },
+  "disagreement_examples": [
+   {
+    "accession": "MSBNK-EAWAG-ED081453",
+    "unit": "Isomer Group_C42H61N7O10S@row143",
+    "level_s4": "3",
+    "level_record": "2b"
+   },
+   {
+    "accession": "MSBNK-EAWAG-ED081456",
+    "unit": "Isomer Group_C42H61N7O10S@row143",
+    "level_s4": "3",
+    "level_record": "2b"
+   },
+   {
+    "accession": "MSBNK-EAWAG-ED146553",
+    "unit": "Isomer Group_C24H34N6O6S@row140",
+    "level_s4": "3",
+    "level_record": "2b"
+   }
+  ]
+ },
+ "timing": {
+  "cyanometdb_record_files_in_Eawag_dir_by_ref": {
+   "2023.11": {
+    "n_eawag_dir_files": 13210,
+    "n_cyanometdb_named": 0,
+    "root_has_MLU_dir": false
+   },
+   "2025.10": {
+    "n_eawag_dir_files": 17591,
+    "n_cyanometdb_named": 0,
+    "root_has_MLU_dir": false
+   },
+   "2026.03": {
+    "n_eawag_dir_files": 20717,
+    "n_cyanometdb_named": 3126
+   },
+   "dev": {
+    "n_eawag_dir_files": 21387,
+    "n_cyanometdb_named": 3126
+   }
+  },
+  "record_DATE_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "2024.02": 695,
+    "2025.02": 315
+   },
+   "MSBNK-EAWAG-ED": {
+    "2024.02": 903,
+    "2025.01": 323,
+    "2025.02": 154,
+    "2024.05": 129,
+    "2024.04": 27
+   },
+   "MSBNK-MLU-ED": {
+    "2024.02": 498,
+    "2024.04": 82
+   }
+  },
+  "massbank_pr_366": {
+   "created_at": "2026-01-12T18:35:31Z",
+   "merged_at": "2026-02-02T08:15:18Z",
+   "changed_files": 3126,
+   "base": "dev",
+   "user": "chufz",
+   "source": "gh api repos/MassBank/MassBank-data/pulls/366"
+  }
+ },
+ "codesearch_count_probe_caveat": [
+  {
+   "term": "TENTATIVE",
+   "label": "TENTATIVE",
+   "prefix": "MSBNK-EAWAG-EC",
+   "total_count": 950,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-EC189555.txt"
+  },
+  {
+   "term": "TENTATIVE",
+   "label": "TENTATIVE",
+   "prefix": "MSBNK-EAWAG-ED",
+   "total_count": 1408,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-ED195005.txt"
+  },
+  {
+   "term": "TENTATIVE",
+   "label": "TENTATIVE",
+   "prefix": "MSBNK-MLU-ED",
+   "total_count": 654,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-MLU-ED025554.txt"
+  },
+  {
+   "term": "CONFIDENCE",
+   "label": "CONFIDENCE",
+   "prefix": "MSBNK-EAWAG-EC",
+   "total_count": 896,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-EC148151.txt"
+  },
+  {
+   "term": "CONFIDENCE",
+   "label": "CONFIDENCE",
+   "prefix": "MSBNK-EAWAG-ED",
+   "total_count": 1176,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-ED148155.txt"
+  },
+  {
+   "term": "CONFIDENCE",
+   "label": "CONFIDENCE",
+   "prefix": "MSBNK-MLU-ED",
+   "total_count": 654,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-MLU-ED025554.txt"
+  },
+  {
+   "term": "CyanoMetDB_ID",
+   "label": "CYANOMETDB_ID",
+   "prefix": "MSBNK-EAWAG-EC",
+   "total_count": 950,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-EC148151.txt"
+  },
+  {
+   "term": "CyanoMetDB_ID",
+   "label": "CYANOMETDB_ID",
+   "prefix": "MSBNK-EAWAG-ED",
+   "total_count": 1408,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-ED148155.txt"
+  },
+  {
+   "term": "CyanoMetDB_ID",
+   "label": "CYANOMETDB_ID",
+   "prefix": "MSBNK-MLU-ED",
+   "total_count": 654,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-MLU-ED025554.txt"
+  },
+  {
+   "term": "LICENSE",
+   "label": "LICENSE",
+   "prefix": "MSBNK-EAWAG-EC",
+   "total_count": 950,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-EC148151.txt"
+  },
+  {
+   "term": "LICENSE",
+   "label": "LICENSE",
+   "prefix": "MSBNK-EAWAG-ED",
+   "total_count": 1408,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-EAWAG-ED148155.txt"
+  },
+  {
+   "term": "LICENSE",
+   "label": "LICENSE",
+   "prefix": "MSBNK-MLU-ED",
+   "total_count": 654,
+   "incomplete_results": false,
+   "first_item_path": "Eawag/MSBNK-MLU-ED025554.txt"
+  }
+ ],
+ "ce_geometry": {
+  "P0_all_mh_ge3nce": {
+   "precursor_over_500_q10": 1.162,
+   "precursor_over_500_median": 1.763,
+   "precursor_over_500_q90": 2.239,
+   "n_compounds_ratio_gt_1": 135,
+   "n_mh_records_total": 1888,
+   "nce_value_coverage_n_compounds": {
+    "15": 142,
+    "20": 142,
+    "25": 140,
+    "30": 142,
+    "35": 16,
+    "40": 140,
+    "50": 138,
+    "60": 134,
+    "70": 121,
+    "80": 107
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P1_single_identity": {
+   "precursor_over_500_q10": 1.124,
+   "precursor_over_500_median": 1.767,
+   "precursor_over_500_q90": 2.252,
+   "n_compounds_ratio_gt_1": 115,
+   "n_mh_records_total": 1621,
+   "nce_value_coverage_n_compounds": {
+    "15": 122,
+    "20": 122,
+    "25": 120,
+    "30": 122,
+    "35": 16,
+    "40": 120,
+    "50": 118,
+    "60": 114,
+    "70": 107,
+    "80": 93
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P2_key_clean": {
+   "precursor_over_500_q10": 1.169,
+   "precursor_over_500_median": 1.775,
+   "precursor_over_500_q90": 2.451,
+   "n_compounds_ratio_gt_1": 101,
+   "n_mh_records_total": 1441,
+   "nce_value_coverage_n_compounds": {
+    "15": 107,
+    "20": 107,
+    "25": 105,
+    "30": 107,
+    "35": 13,
+    "40": 105,
+    "50": 104,
+    "60": 100,
+    "70": 95,
+    "80": 84
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P3_key_and_scaffold_clean": {
+   "precursor_over_500_q10": 1.165,
+   "precursor_over_500_median": 1.799,
+   "precursor_over_500_q90": 2.609,
+   "n_compounds_ratio_gt_1": 80,
+   "n_mh_records_total": 1131,
+   "nce_value_coverage_n_compounds": {
+    "15": 84,
+    "20": 84,
+    "25": 82,
+    "30": 84,
+    "35": 6,
+    "40": 83,
+    "50": 82,
+    "60": 78,
+    "70": 73,
+    "80": 68
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P4_P3_nce20_60": {
+   "precursor_over_500_q10": 1.158,
+   "precursor_over_500_median": 1.815,
+   "precursor_over_500_q90": 2.585,
+   "n_compounds_ratio_gt_1": 74,
+   "n_mh_records_total": 1098,
+   "nce_value_coverage_n_compounds": {
+    "15": 78,
+    "20": 78,
+    "25": 78,
+    "30": 78,
+    "35": 4,
+    "40": 78,
+    "50": 78,
+    "60": 78,
+    "70": 73,
+    "80": 68
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P5_P4_msg_range": {
+   "precursor_over_500_q10": 1.119,
+   "precursor_over_500_median": 1.585,
+   "precursor_over_500_q90": 1.96,
+   "n_compounds_ratio_gt_1": 49,
+   "n_mh_records_total": 809,
+   "nce_value_coverage_n_compounds": {
+    "15": 53,
+    "20": 53,
+    "25": 53,
+    "30": 53,
+    "35": 3,
+    "40": 53,
+    "50": 53,
+    "60": 53,
+    "70": 51,
+    "80": 47
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P6_P4_muru_range": {
+   "precursor_over_500_q10": 1.124,
+   "precursor_over_500_median": 1.661,
+   "precursor_over_500_q90": 2.015,
+   "n_compounds_ratio_gt_1": 58,
+   "n_mh_records_total": 904,
+   "nce_value_coverage_n_compounds": {
+    "15": 62,
+    "20": 62,
+    "25": 62,
+    "30": 62,
+    "35": 3,
+    "40": 62,
+    "50": 62,
+    "60": 62,
+    "70": 58,
+    "80": 54
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P7_P5_level1_2a": {
+   "precursor_over_500_q10": 0.866,
+   "precursor_over_500_median": 1.592,
+   "precursor_over_500_q90": 1.961,
+   "n_compounds_ratio_gt_1": 19,
+   "n_mh_records_total": 287,
+   "nce_value_coverage_n_compounds": {
+    "15": 22,
+    "20": 22,
+    "25": 22,
+    "30": 22,
+    "40": 22,
+    "50": 22,
+    "60": 22,
+    "70": 20,
+    "80": 18
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P8_P5_level1": {
+   "precursor_over_500_q10": 0.903,
+   "precursor_over_500_median": 1.719,
+   "precursor_over_500_q90": 1.975,
+   "n_compounds_ratio_gt_1": 11,
+   "n_mh_records_total": 164,
+   "nce_value_coverage_n_compounds": {
+    "15": 13,
+    "20": 13,
+    "25": 13,
+    "30": 13,
+    "40": 13,
+    "50": 13,
+    "60": 13,
+    "70": 12,
+    "80": 11
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P9_P5_first_mass_40": {
+   "precursor_over_500_q10": 1.14,
+   "precursor_over_500_median": 1.583,
+   "precursor_over_500_q90": 1.957,
+   "n_compounds_ratio_gt_1": 35,
+   "n_mh_records_total": 669,
+   "nce_value_coverage_n_compounds": {
+    "15": 37,
+    "20": 37,
+    "25": 37,
+    "30": 37,
+    "35": 1,
+    "40": 37,
+    "50": 37,
+    "60": 37,
+    "70": 37,
+    "80": 37
+   },
+   "distinct_nce_per_compound_median": 9.0
+  },
+  "P10_P9_level1_2a": {
+   "precursor_over_500_q10": 1.097,
+   "precursor_over_500_median": 1.584,
+   "precursor_over_500_q90": 1.933,
+   "n_compounds_ratio_gt_1": 9,
+   "n_mh_records_total": 185,
+   "nce_value_coverage_n_compounds": {
+    "15": 10,
+    "20": 10,
+    "25": 10,
+    "30": 10,
+    "40": 10,
+    "50": 10,
+    "60": 10,
+    "70": 10,
+    "80": 10
+   },
+   "distinct_nce_per_compound_median": 9.0
+  }
+ },
+ "scan_window_mh_sampled": {
+  "n_mh_records_with_mass_range": 676,
+  "n_mh_records_total": 1888,
+  "by_series": {
+   "MSBNK-EAWAG-EC": {
+    "n": 326,
+    "lo_le_40": 290,
+    "hi_ge_prec_plus_1": 326,
+    "lo_min": 40.0,
+    "lo_max": 64.0,
+    "hi_min": 326.0,
+    "hi_max": 1584.0
+   },
+   "MSBNK-EAWAG-ED": {
+    "n": 281,
+    "lo_le_40": 0,
+    "hi_ge_prec_plus_1": 281,
+    "lo_min": 50.0,
+    "lo_max": 150.0,
+    "hi_min": 326.0,
+    "hi_max": 1584.0
+   },
+   "MSBNK-MLU-ED": {
+    "n": 69,
+    "lo_le_40": 0,
+    "hi_ge_prec_plus_1": 69,
+    "lo_min": 56.0,
+    "lo_max": 77.0,
+    "hi_min": 845.0,
+    "hi_max": 1165.0
+   }
+  }
+ },
+ "criteria": [
+  {
+   "id": 1,
+   "criterion": "absent from MURU development",
+   "status": "MET",
+   "evidence": "git grep -l over the MURU worktree finds no file under src/, scripts/ or *.md containing CyanoMetDB, MSBNK-EAWAG, MSBNK-MLU or Eawag; MURU's only MassBank cohort is LCSB and MURU_V2_EXPOSURE_AND_DATA_REGISTRY.md:35 lists non-LCSB MassBank/MoNA cohorts as not outcome-accessed. Compound level: 4 of 136 [M+H]+ compound keys are in the MURU exposure registry (Nodularin-R, MC-LA, MC-LY, 7-Deoxy-Cylindrospermopsin) and 30 of the 142 [M+H]+ >=3-NCE compound rows share a registry scaffold group (9 groups, mostly the microcystin macrocycle); removed in P2/P3."
+  },
+  {
+   "id": 2,
+   "criterion": "absent from the PR #7 (MSnLib confirmation study 2) population",
+   "status": "MET",
+   "evidence": "0 of 136 keys in msnlib_study2_population_keys.txt (1,794) and 0 shared scaffold groups."
+  },
+  {
+   "id": 3,
+   "criterion": "absent from the comparator benchmark population",
+   "status": "MET",
+   "evidence": "0 of 136 keys in comparator_common_population_keys.txt (1,327) and 0 shared scaffold groups."
+  },
+  {
+   "id": 4,
+   "criterion": "absent from ICEBERG/GLACIER training at compound level (MassSpecGym 1.5, all folds)",
+   "status": "PARTIAL",
+   "evidence": "14 of 136 [M+H]+ compound keys are in MassSpecGym 1.5 by recorded or MURU parent key; 7 of them are in the [M+H]+ simulation-challenge subset and appear in ms-pred data/spec_datasets/msg/labels.tsv with 138 rows. All 14 are removed in design set P2, so the post-exclusion sets are MET by construction."
+  },
+  {
+   "id": 5,
+   "criterion": "known CE semantics",
+   "status": "MET",
+   "evidence": "Record titles of all 3,126 records carry CE: <n>% (single value, never stepped); the AC$MASS_SPECTROMETRY COLLISION_ENERGY field reads '<n> % (nominal)' and FRAGMENTATION_MODE HCD in the 1,147 records whose headers were harvested with the QC query, with 0 title-vs-field disagreements; the paper states 9 NCE per mode (15,20,25,30,40,50,60,70,80 %), 1.0 Da isolation, MS2 R=15,000. The field-level check covers 1,147 of 3,126 records because of the harvest's query sampling, not because the field is missing."
+  },
+  {
+   "id": 6,
+   "criterion": "[M+H]+ positive mode available",
+   "status": "MET",
+   "evidence": "1,888 [M+H]+ records (plus 1,211 [M-H]- and 27 [M+2H]2+); 130 compound units have an [M+H]+ ladder and all 130 have >= 3 distinct NCE."
+  },
+  {
+   "id": 7,
+   "criterion": "compatible fragmentation / instrument metadata",
+   "status": "PARTIAL",
+   "evidence": "Compatible: HCD beam-type on Orbitrap (Exploris 240 2,546 records, Q Exactive Plus 580), instrument_type LC-ESI-QFT maps to the ms-pred token 'Orbitrap' (ms-pred src/ms_pred/common/chem_utils.py:277-282); NCE 20 and 60 both present for 78 of the 84 P3 compound rows; heavy atoms <= 122 vs MAX_ATOM_CT 160. Not compatible: MURU's external scan-window rule (lower <= 40, external_msnlib.py:59-62) is met only by the EC series (290 of 326 sampled EC [M+H]+ records), 0 of 281 ED and 0 of 69 MLU sampled records; 27 of 81 P3 compounds exceed the MassSpecGym 1.5 precursor max 999.396 and the ICEBERG msg label max 995.556, 18 exceed the MURU development max 1042.6, 4 exceed the GLACIER checkpoint upper_limit 1500; negative mode and [M+2H]2+ records are outside MURU claim scope."
+  },
+  {
+   "id": 8,
+   "criterion": "multiple energies per compound",
+   "status": "MET",
+   "evidence": "Median 9 distinct NCE per [M+H]+ compound in every design set; the modal ladder 15,20,25,30,40,50,60,70,80 covers 97 of 130 units; 9 units stop at 60 and 11 use a 15-70 ladder with an extra 35."
+  },
+  {
+   "id": 9,
+   "criterion": "structural diversity and scaffold count after all exclusions",
+   "status": "NOT_MET",
+   "evidence": "P3 (key and scaffold clean) = 81 compounds in 45 MURU scaffold groups, 28 of them singletons; intersecting the models' precursor domain and requiring NCE 20 and 60 gives P5 = 53 compounds / 33 groups; Level 1 only gives 13 compounds / 12 groups. All are cyanobacterial peptides and peptide-like natural products: Butina clustering at Tanimoto 0.4 gives 20 clusters for the 81-compound set and 16 for the 57-compound in-range set, with 40 and 28 name families, 54 and 31 macrocycles; Bemis-Murcko groups of macrocyclic peptides are nearly compound-specific, so the group count overstates independence. Nearest-MassSpecGym-neighbour Tanimoto for the 57 in-range compounds: median 0.59, 18 of 57 at >= 0.7, so key-level novelty does not imply structural novelty."
+  },
+  {
+   "id": 10,
+   "criterion": "license and access",
+   "status": "MET",
+   "evidence": "Every one of the 300 sampled records carries 'LICENSE: CC BY-SA' (COPYRIGHT Eawag 2023); the repository MassBank/MassBank-data is public (tag 2026.03) and releases are archived under Zenodo 10.5281/zenodo.3378723; the paper is CC-BY 4.0. Share-alike constrains redistribution of derived spectral sets. The peak lists themselves were not downloaded (this study's download policy forbids spectra)."
+  },
+  {
+   "id": 11,
+   "criterion": "hidden MassSpecGym inclusion under a different identifier",
+   "status": "MET",
+   "evidence": "0 of the 3,126 record files exist in the MassBank tags 2023.11 (the release MassSpecGym 1.0 ingested) or 2025.10; they entered through PR #366 (opened 2026-01-12, merged 2026-02-02, 3,126 changed files) and first appear at tag 2026.03. MassSpecGym 1.5 added no spectra (only smiles re-canonicalisation). Residual compound-level route: 14 keys are already in MassSpecGym from earlier independent depositions (SI Table S4 marks 11 compounds as previously in MassBank; SI Table S1 lists 14 compounds deposited before 2025), and 13 compound rows share a neutral formula with a different MassSpecGym key; all are excluded in P2."
+  }
+ ],
+ "verdict": {
+  "verdict": "PARTIAL_OR_SUPPORTING_ONLY",
+  "reason": "Criteria 1-6, 8, 10 and 11 hold for the post-exclusion design sets and the CE quantity is unambiguous, but criterion 9 fails (one chemical class, 45 scaffold groups at P3, 33 inside the models' precursor domain, 12 at Level 1) and criterion 7 is only partly met (two scan modes, only the EC series satisfies MURU's scan-window rule, and a quarter to a third of the clean compounds sit above the models' precursor range). Useful as a dedicated high-m/z arm (precursor/500 median 1.59-1.82), not as a stand-alone Design A dataset."
+ },
+ "access_notes": {
+  "peak_data_not_downloaded": true,
+  "aborted_probe": "One GitHub code-search text-match probe (term TENTATIVE, series MSBNK-EAWAG-EC) returned a fragment containing peak-like lines; the fetch script's own guard aborted and that response was discarded in memory and never stored. The probe was re-run count-only.",
+  "codesearch_count_probe_unusable": "With a filename: filter the code-search totals do not track the search term: LICENSE (present in every record) and TENTATIVE return identical totals (950/1408/654), and those totals also differ from the true per-series file counts 1010/1536/580. No TENTATIVE prevalence claim can be derived from them."
+ }
+}

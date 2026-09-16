@@ -1,0 +1,23 @@
+{
+ "candidate": "C03 MassBank 2023.11 in-training Orbitrap HCD contributors (AAFC, Eawag, Eawag_Additional_Specs, HBM4EU, NaToxAq, UFZ)",
+ "task": "S3-C03",
+ "written_utc": "2026-09-15",
+ "verdict": "PARTIAL_OR_SUPPORTING_ONLY",
+ "verdict_note": "Not usable as evaluation data (criteria 1, 4, 9, 11 NOT_MET). Usable only as CE-attribution support: MassSpecGym 1.5 rows are linked per MassBank series to the percent-converted or raw parser arm.",
+ "key_numbers_source": "summary.json (same directory), produced by scripts/ce_interface_adjudication/screen_c03_massbank_hcd.py",
+ "summary_json_sha256": "7e018e7f910c4b99e8b660b9083663e49e09c56e573c239d010c565f51c0d1c9",
+ "status_by_criterion": {
+  "1": "NOT_MET",
+  "2": "PARTIAL",
+  "3": "MET",
+  "4": "NOT_MET",
+  "5": "PARTIAL",
+  "6": "MET",
+  "7": "PARTIAL",
+  "8": "MET",
+  "9": "NOT_MET",
+  "10": "MET",
+  "11": "NOT_MET"
+ },
+ "no_spectra_statement": "No MassBank record .txt file, release asset (MSP/JSON/SQL), /records/{accession} or /simple API response, peak list, model output or MURU measurement was downloaded or read. Identity came from the MassBank export-service JSON-LD endpoint, whose builder (MassBank-lib Record.createStructuredDataJsonArray) emits no peak fields; every response was checked for peak-like keys and numeric arrays."
+}

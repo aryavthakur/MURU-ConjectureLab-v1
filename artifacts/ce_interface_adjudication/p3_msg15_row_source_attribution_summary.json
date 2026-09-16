@@ -1,0 +1,265 @@
+{
+ "script": "scripts/ce_interface_adjudication/p3_msg_source_attribution.py",
+ "inputs": {
+  "identity": {
+   "path": "artifacts/comparator_feasibility/massspecgym15_identity.parquet",
+   "sha256": "88e2fd1d810e8f3c79d253c042110174ada1b1990d5a4e122a71097b8a975c48"
+  },
+  "membership": {
+   "path": "artifacts/ce_interface_adjudication/exclusion/msg_row_msnlib_membership.parquet",
+   "sha256": "b71c522b2de572940ce064edf91350001e63f51ce243326c5fddb58789d421d3"
+  },
+  "metadata": {
+   "path": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2"
+  }
+ },
+ "n_rows": 231104,
+ "n_runs": 31885,
+ "block_boundaries": {
+  "B_start_identifier_num": 202862,
+  "C_start_identifier_num": 239029,
+  "B_first_row_exceptions": 51,
+  "B_runs": 10215
+ },
+ "rows_by_block": {
+  "A_MassBank_or_MoNA_first": 135086,
+  "C_GNPS_first": 63625,
+  "B_MSnLib_first": 32393
+ },
+ "rows_by_label": {
+  "MassBank_or_MoNA": 84298,
+  "GNPS": 65152,
+  "GNPS_or_MoNA_missing_ce": 42037,
+  "MSnLib_v1": 30866,
+  "MSnLib_v1_probable": 8751
+ },
+ "label_x_instrument_x_ce_class_all": {
+  "GNPS|NA": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 55,
+   "other_fractional": 0
+  },
+  "GNPS|Orbitrap": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 58512,
+   "other_fractional": 0
+  },
+  "GNPS|QTOF": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 6585,
+   "other_fractional": 0
+  },
+  "GNPS_or_MoNA_missing_ce|NA": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 3121,
+   "other_fractional": 0
+  },
+  "GNPS_or_MoNA_missing_ce|Orbitrap": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 30396,
+   "other_fractional": 0
+  },
+  "GNPS_or_MoNA_missing_ce|QTOF": {
+   "half_integer": 0,
+   "integer": 0,
+   "missing": 8520,
+   "other_fractional": 0
+  },
+  "MSnLib_v1|Orbitrap": {
+   "half_integer": 0,
+   "integer": 30863,
+   "missing": 0,
+   "other_fractional": 0
+  },
+  "MSnLib_v1|QTOF": {
+   "half_integer": 0,
+   "integer": 3,
+   "missing": 0,
+   "other_fractional": 0
+  },
+  "MSnLib_v1_probable|Orbitrap": {
+   "half_integer": 0,
+   "integer": 8751,
+   "missing": 0,
+   "other_fractional": 0
+  },
+  "MassBank_or_MoNA|NA": {
+   "half_integer": 0,
+   "integer": 30,
+   "missing": 2008,
+   "other_fractional": 9
+  },
+  "MassBank_or_MoNA|Orbitrap": {
+   "half_integer": 19,
+   "integer": 19261,
+   "missing": 152,
+   "other_fractional": 24104
+  },
+  "MassBank_or_MoNA|QTOF": {
+   "half_integer": 546,
+   "integer": 37345,
+   "missing": 9,
+   "other_fractional": 815
+  }
+ },
+ "label_by_fold_all": {
+  "GNPS": {
+   "test": 5797,
+   "train": 51836,
+   "val": 7519
+  },
+  "GNPS_or_MoNA_missing_ce": {
+   "test": 1457,
+   "train": 38800,
+   "val": 1780
+  },
+  "MSnLib_v1": {
+   "test": 5821,
+   "train": 19211,
+   "val": 5834
+  },
+  "MSnLib_v1_probable": {
+   "test": 662,
+   "train": 7506,
+   "val": 583
+  },
+  "MassBank_or_MoNA": {
+   "test": 3819,
+   "train": 76766,
+   "val": 3713
+  }
+ },
+ "label_x_instrument_x_ce_class_simulation_challenge": {
+  "MSnLib_v1|Orbitrap": {
+   "half_integer": 0,
+   "integer": 30637,
+   "other_fractional": 0
+  },
+  "MSnLib_v1|QTOF": {
+   "half_integer": 0,
+   "integer": 3,
+   "other_fractional": 0
+  },
+  "MSnLib_v1_probable|Orbitrap": {
+   "half_integer": 0,
+   "integer": 8393,
+   "other_fractional": 0
+  },
+  "MassBank_or_MoNA|Orbitrap": {
+   "half_integer": 19,
+   "integer": 18380,
+   "other_fractional": 23894
+  },
+  "MassBank_or_MoNA|QTOF": {
+   "half_integer": 546,
+   "integer": 36342,
+   "other_fractional": 815
+  }
+ },
+ "label_by_fold_simulation_challenge": {
+  "MSnLib_v1": {
+   "test": 5794,
+   "train": 19054,
+   "val": 5792
+  },
+  "MSnLib_v1_probable": {
+   "test": 618,
+   "train": 7219,
+   "val": 556
+  },
+  "MassBank_or_MoNA": {
+   "test": 3542,
+   "train": 73068,
+   "val": 3386
+  }
+ },
+ "top_ce_values_simulation_challenge_by_label": {
+  "MSnLib_v1": {
+   "60.0": 10591,
+   "20.0": 9644,
+   "30.0": 4985,
+   "45.0": 2996,
+   "15.0": 2338,
+   "75.0": 78,
+   "40.0": 3,
+   "10.0": 3,
+   "55.0": 2
+  },
+  "MSnLib_v1_probable": {
+   "60.0": 2625,
+   "20.0": 2383,
+   "15.0": 1237,
+   "30.0": 1209,
+   "45.0": 712,
+   "75.0": 227
+  },
+  "MassBank_or_MoNA": {
+   "10.0": 7039,
+   "30.0": 6390,
+   "40.0": 6207,
+   "20.0": 5883,
+   "6.0": 4339,
+   "50.0": 3233,
+   "60.0": 2653,
+   "90.0": 2598,
+   "45.0": 2524,
+   "35.0": 2481,
+   "15.0": 2202,
+   "75.0": 1921,
+   "80.0": 885,
+   "120.0": 796,
+   "55.0": 791
+  }
+ },
+ "fractional_ce_back_conversion": {
+  "definition": "implied_nce = collision_energy * 500 / precursor_mz; resid = |implied_nce - round|",
+  "n_other_fractional_rows": 24928,
+  "share_resid_lt_0.01": 0.9669849165596919,
+  "share_resid_lt_0.05": 0.9693517329910141,
+  "implied_integer_nce_top_resid_lt_0.01": {
+   "25": 2374,
+   "60": 2215,
+   "30": 2097,
+   "90": 2058,
+   "45": 1902,
+   "75": 1894,
+   "35": 1653,
+   "15": 1509,
+   "40": 976,
+   "50": 860,
+   "80": 780,
+   "70": 712,
+   "20": 639,
+   "55": 489,
+   "65": 480,
+   "85": 388,
+   "120": 377,
+   "105": 355,
+   "95": 309,
+   "10": 301
+  },
+  "share_resid_lt_0.01_by_label": {
+   "MassBank_or_MoNA": 0.9669849165596919
+  },
+  "share_resid_lt_0.01_by_instrument": {
+   "NA": 1.0,
+   "Orbitrap": 0.9986724195154332,
+   "QTOF": 0.029447852760736196
+  },
+  "n_by_label_x_instrument": {
+   "MassBank_or_MoNA|NA": 9,
+   "MassBank_or_MoNA|Orbitrap": 24104,
+   "MassBank_or_MoNA|QTOF": 815
+  }
+ },
+ "output_parquet": {
+  "path": "artifacts/ce_interface_adjudication/p3_msg15_row_source_attribution.parquet",
+  "sha256": "3eea7d3673d5eb029185c69456b20f98ccda61efa6f23ed9de460cc84b53cbd0"
+ }
+}

@@ -1,0 +1,131 @@
+{
+ "d1_staged_clean_key_list": {
+  "identical": true,
+  "n": 207,
+  "recomputed_n": 207
+ },
+ "d3_eq5_sample": {
+  "example_files": [
+   "MSBNK-Eawag-EQ500051.txt",
+   "MSBNK-Eawag-EQ500052.txt",
+   "MSBNK-Eawag-EQ500053.txt"
+  ],
+  "n_files": 188,
+  "n_in_d1_post_2023_11_set": 0
+ },
+ "fraction_ce_string_with_percent": 1.0,
+ "groups": {
+  "CyanoMetDB": {
+   "clean_above_msg15_max_pmz": 38,
+   "clean_below_500": 6,
+   "clean_by_first_release": {
+    "2026.03": 120
+   },
+   "clean_in_comparator_common_population": 0,
+   "clean_in_msnlib9": 0,
+   "clean_pmz_max": 1752.8,
+   "clean_pmz_median": 883.4,
+   "clean_pmz_q10_q90": [
+    587.3,
+    1096.4
+   ],
+   "ge3_clean": 120,
+   "ge3_in_msg15": 14,
+   "ge3_in_muru_registry": 4,
+   "mh_compounds": 136,
+   "mh_compounds_by_first_release": {
+    "2026.03": 136
+   },
+   "mh_compounds_ge3_nce": 136,
+   "mh_records_by_instrument": {
+    "Exploris 240 Thermo Scientific": 1581,
+    "QExactive Plus": 307
+   },
+   "top_ladders_all_mh_compounds": {
+    "15,20,25,30,35,40,50,60,70": 11,
+    "15,20,25,30,40,50,60": 13,
+    "15,20,25,30,40,50,60,70": 3,
+    "15,20,25,30,40,50,60,70,80": 99
+   }
+  },
+  "EawagEQ": {
+   "clean_above_msg15_max_pmz": 0,
+   "clean_below_500": 73,
+   "clean_by_first_release": {
+    "2024.06": 23,
+    "2024.11": 31,
+    "2025.10": 33
+   },
+   "clean_in_comparator_common_population": 0,
+   "clean_in_msnlib9": 0,
+   "clean_pmz_max": 784.5,
+   "clean_pmz_median": 311.1,
+   "clean_pmz_q10_q90": [
+    159.3,
+    581.4
+   ],
+   "ge3_clean": 87,
+   "ge3_in_msg15": 248,
+   "ge3_in_muru_registry": 222,
+   "mh_compounds": 375,
+   "mh_compounds_by_first_release": {
+    "2024.06": 81,
+    "2024.11": 214,
+    "2025.10": 80
+   },
+   "mh_compounds_ge3_nce": 364,
+   "mh_records_by_instrument": {
+    "Exploris 240 Orbitrap Thermo Scientific": 1346,
+    "Exploris 240 Thermo Scientific": 855,
+    "Q Exactive": 96,
+    "Q Exactive Plus": 609
+   },
+   "top_ladders_all_mh_compounds": {
+    "15,30,45,60,75,90": 25,
+    "15,30,45,60,75,90,120": 41,
+    "15,30,45,60,75,90,120,150": 30,
+    "15,30,45,60,75,90,120,150,180": 201
+   }
+  }
+ },
+ "inputs": {
+  "d1_csv": {
+   "path": "/private/tmp/claude-502/-Users-aryav-Documents-MURU-ConjectureLab-v1--claude-worktrees-muru-v2-stability-study-6537d5/c50bb7b0-c2aa-4e0b-bd11-bc34c1ea3cbc/scratchpad/ce_interface_adjudication/d1_metadata/d1_eawag_new_record_metadata.csv",
+   "sha256": "56bdbdeecd60b2a2c357b358f202538cbd9ce8bf036c1609fb035348eeda4139"
+  },
+  "d1_keys": {
+   "path": "/private/tmp/claude-502/-Users-aryav-Documents-MURU-ConjectureLab-v1--claude-worktrees-muru-v2-stability-study-6537d5/c50bb7b0-c2aa-4e0b-bd11-bc34c1ea3cbc/scratchpad/ce_interface_adjudication/d1_metadata/d1_clean_ik14_eawag_new_MH_ge3nce.json",
+   "sha256": "cfe8c91d89b2a6d85513823efc192dcc322ef25bfb8862aa53260431e08a04a8"
+  },
+  "d3_eq5": {
+   "path": "/private/tmp/claude-502/-Users-aryav-Documents-MURU-ConjectureLab-v1--claude-worktrees-muru-v2-stability-study-6537d5/c50bb7b0-c2aa-4e0b-bd11-bc34c1ea3cbc/scratchpad/d3/artifacts/eawag_eq5_path_to_inchikey.json",
+   "sha256": "e9541e2d397c40e78cb54e3bdce538d89fbecf3b02e1613b759969c4b80799ab"
+  },
+  "msg_meta": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2"
+  }
+ },
+ "key_definition_note": "recorded 14-char InChIKey first block from the MassBank record; MURU registry keys are parent connectivity keys, so MURU overlap is approximate; scaffold groups not applied",
+ "msg15_precursor_mz_max": 999.396,
+ "n_records": 7490,
+ "records_by_group_instrument": {
+  "CyanoMetDB|Exploris 240 Thermo Scientific": 2546,
+  "CyanoMetDB|QExactive Plus": 580,
+  "EawagEQ|Exploris 240 Orbitrap Thermo Scientific": 2302,
+  "EawagEQ|Exploris 240 Thermo Scientific": 997,
+  "EawagEQ|Q Exactive": 183,
+  "EawagEQ|Q Exactive Plus": 834
+ },
+ "records_by_group_prefix_ptype": {
+  "CyanoMetDB|EAWAG-EC|[M+H]+": 662,
+  "CyanoMetDB|EAWAG-EC|[M-H]-": 348,
+  "CyanoMetDB|EAWAG-ED|[M+2H]2+": 27,
+  "CyanoMetDB|EAWAG-ED|[M+H]+": 919,
+  "CyanoMetDB|EAWAG-ED|[M-H]-": 590,
+  "CyanoMetDB|MLU-ED|[M+H]+": 307,
+  "CyanoMetDB|MLU-ED|[M-H]-": 273,
+  "EawagEQ|Eawag-EQ|[M+H]+": 2939,
+  "EawagEQ|Eawag-EQ|[M-H]-": 1425
+ }
+}

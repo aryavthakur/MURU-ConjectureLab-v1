@@ -1,0 +1,169 @@
+{
+ "script": "scripts/ce_interface_adjudication/p5_02_msg_msnlib_membership.py",
+ "output_sha256": "947620791673697e1f4cdc109a86402d8136beedd976837dca126345e3f84aba",
+ "n_rows": 231104,
+ "n_keys": 28929,
+ "identifiers_monotonic": true,
+ "identifiers_consecutive": false,
+ "max_identifier_num": 414174,
+ "rows_parent_key_available": 231104,
+ "compound_membership": {
+  "rows_in_msnlib_v1_compound": 124524,
+  "keys_in_msnlib_v1_compound": 14753,
+  "rows_in_msnlib_9lib_compound": 136590,
+  "keys_in_msnlib_9lib_compound": 15529,
+  "match_route_rows": {
+   "recorded_and_parent": 136422,
+   "none": 94514,
+   "parent_only": 127,
+   "recorded_only": 41
+  },
+  "rows_by_v1_sublibrary_set": {
+   "none": 106580,
+   "MCEBIO": 78371,
+   "NIHNP": 16837,
+   "MCEBIO;NIHNP": 13128,
+   "MCESCAF": 11614,
+   "OTAVAPEP": 3230,
+   "MCEBIO;MCESCAF": 1223,
+   "MCEBIO;MCESCAF;NIHNP": 93,
+   "MCESCAF;OTAVAPEP": 15,
+   "MCEBIO;OTAVAPEP": 7,
+   "MCESCAF;NIHNP": 6
+  },
+  "orbitrap_rows_in_v1_compound": 93448,
+  "by_fold_rows_in_v1_compound": {
+   "train": 102731,
+   "val": 11019,
+   "test": 10774
+  }
+ },
+ "runs": {
+  "n_runs": 31885,
+  "keys_with_1_run": 26785,
+  "keys_with_2plus_runs": 2144
+ },
+ "dense_msnlib_first_appearance_bins": [
+  190000,
+  192000,
+  204000,
+  206000,
+  208000,
+  210000,
+  212000,
+  214000,
+  216000,
+  218000,
+  220000,
+  222000,
+  224000,
+  226000,
+  228000,
+  230000,
+  232000,
+  234000,
+  236000
+ ],
+ "rows_with_key_first_in_dense_bins": {
+  "n_rows": 35029,
+  "instrument": {
+   "Orbitrap": 33091,
+   "QTOF": 1197,
+   "NA": 741
+  },
+  "adduct": {
+   "[M+H]+": 32477,
+   "[M+Na]+": 2552
+  },
+  "ce_null": 5189,
+  "ce_integer_share_of_nonnull": 1.0,
+  "top_ce_values": {
+   "60.0": 10292,
+   "20.0": 9407,
+   "30.0": 4851,
+   "45.0": 2913,
+   "15.0": 2305,
+   "75.0": 72
+  }
+ },
+ "rows_v1_compound_key_first_outside_dense_bins": {
+  "n_rows": 89520,
+  "instrument": {
+   "Orbitrap": 60379,
+   "QTOF": 26288,
+   "NA": 2853
+  },
+  "adduct": {
+   "[M+H]+": 75018,
+   "[M+Na]+": 14502
+  },
+  "ce_null": 41555,
+  "ce_integer_share_of_nonnull": 0.7672261023663087,
+  "top_ce_values": {
+   "20.0": 6067,
+   "30.0": 4362,
+   "10.0": 4063,
+   "60.0": 3950,
+   "40.0": 3352,
+   "6.0": 2347,
+   "45.0": 2128,
+   "15.0": 1985,
+   "50.0": 1652,
+   "35.0": 1589,
+   "90.0": 1009,
+   "75.0": 830
+  }
+ },
+ "rows_not_v1_compound": {
+  "n_rows": 106580,
+  "instrument": {
+   "Orbitrap": 78610,
+   "QTOF": 26340,
+   "NA": 1630
+  },
+  "adduct": {
+   "[M+H]+": 87766,
+   "[M+Na]+": 18814
+  },
+  "ce_null": 62617,
+  "ce_integer_share_of_nonnull": 0.6737483793189728,
+  "top_ce_values": {
+   "30.0": 3570,
+   "10.0": 3242,
+   "40.0": 3150,
+   "20.0": 3038,
+   "6.0": 1995,
+   "60.0": 1781,
+   "50.0": 1642,
+   "90.0": 1592,
+   "45.0": 1558,
+   "15.0": 1513,
+   "75.0": 1324,
+   "35.0": 1145
+  }
+ },
+ "row_signature": {
+  "definition": "instrument_type == Orbitrap AND collision_energy in {15,20,30,45,60,75} AND precursor_mz has 4 or 5 decimal digits (repr of the released double)",
+  "rows_key_first_in_dense_bins": 35029,
+  "rows_key_first_in_dense_bins_ce_nonnull": 29840,
+  "signature_rows_key_first_in_dense_bins": 29487,
+  "signature_rows_v1_compound_outside_dense": 12420,
+  "rows_v1_compound_outside_dense": 89520,
+  "signature_rows_9lib_not_v1_compound": 145,
+  "signature_rows_not_in_any_msnlib_compound": 6325,
+  "rows_not_in_any_msnlib_compound": 94514,
+  "dense_bins_position_in_run_median_ce_nonnull": 1.0,
+  "dense_bins_position_in_run_median_ce_null": 5.0,
+  "dense_bins_ce_null_decimals": {
+   "1": 201,
+   "2": 2810,
+   "3": 2178
+  },
+  "dense_bins_ce_nonnull_decimals": {
+   "2": 19,
+   "3": 334,
+   "4": 3076,
+   "5": 26411
+  }
+ }
+}

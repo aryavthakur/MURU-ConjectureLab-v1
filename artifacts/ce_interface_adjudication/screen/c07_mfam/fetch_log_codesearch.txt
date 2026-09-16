@@ -1,0 +1,36 @@
+codesearch ce_MC01 122 116
+codesearch inst_MC01 122 116
+codesearch ce_MC06 48 48
+codesearch inst_MC06 48 48
+codesearch ce_MC09 217 230
+codesearch inst_MC09 217 230
+codesearch ce_MC14 93 93
+codesearch inst_MC14 93 93
+codesearch ce_MC16 14 14
+codesearch inst_MC16 14 14
+codesearch ce_MC18 16 16
+codesearch inst_MC18 16 16
+codesearch ce_MC19 212 218
+codesearch inst_MC19 212 218
+codesearch ce_MC22 483 415
+codesearch inst_MC22 483 415
+codesearch ce_MC25 161 161
+codesearch inst_MC25 161 161
+codesearch inst_MC15 23 23
+Traceback (most recent call last):
+  File "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/scripts/ce_interface_adjudication/screen_c07_mfam_fetch.py", line 322, in <module>
+    raise RuntimeError("too large")
+     ^^^^^^
+  File "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/scripts/ce_interface_adjudication/screen_c07_mfam_fetch.py", line 316, in main
+    # Springer static-content copy is used instead. No challenge was attempted.
+  File "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/scripts/ce_interface_adjudication/screen_c07_mfam_fetch.py", line 266, in stage_codesearch
+    try:
+    
+  File "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/scripts/ce_interface_adjudication/screen_c07_mfam_fetch.py", line 79, in gh_api
+    if r.returncode != 0:
+        ^^^^^^^^^^^^^^^^^
+RuntimeError: gh api search/code?q=COLLISION_ENERGY+POSITIVE+repo%3AMassBank%2FMassBank-data+path%3AmFam+filename%3AMSBNK-mFam-MC20&per_page=100&page=10: Get "https://api.github.com/search/code?q=COLLISION_ENERGY+POSITIVE+repo%3AMassBank%2FMassBank-data+path%3AmFam+filename%3AMSBNK-mFam-MC20&per_page=100&page=10": net/http: TLS handshake timeout
+ 
+codesearch inst_MC20_pos 1048 1000
+codesearch fragmode_all 0 0
+codesearch inst_MC20_neg 1042 1000

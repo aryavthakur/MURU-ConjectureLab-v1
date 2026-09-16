@@ -1,0 +1,1418 @@
+{
+ "rdkit": "2026.03.5",
+ "tree": {
+  "n_record_files_tag_2026.03": 3126,
+  "by_series_tag": {
+   "MSBNK-EAWAG-EC": 1010,
+   "MSBNK-EAWAG-ED": 1536,
+   "MSBNK-MLU-ED": 580
+  },
+  "n_record_files_dev": 3126,
+  "n_blob_changed_tag_to_dev": 188
+ },
+ "codesearch": {
+  "n_query_partitions": 210,
+  "n_partitions_total_count_ne_expected": 0,
+  "n_partitions_items_ne_total": 0,
+  "n_incomplete_results": 0,
+  "n_record_files_seen": 3126,
+  "n_tag_files_not_seen": 0,
+  "n_seen_not_in_tag": 0
+ },
+ "scan_window_sample": {
+  "n_records_with_scan_range": 1147,
+  "by_series_firstmass": {
+   "MSBNK-EAWAG-EC|40": {
+    "n": 538,
+    "lo_values": {
+     "40.0": 496,
+     "64.0": 42
+    },
+    "n_muru_window_ok": 496
+   },
+   "MSBNK-EAWAG-ED|auto": {
+    "n": 486,
+    "lo_values": {
+     "103.0": 70,
+     "50.0": 36,
+     "63.0": 36,
+     "105.0": 31,
+     "87.0": 27,
+     "102.0": 26,
+     "100.0": 23,
+     "110.0": 21,
+     "150.0": 18,
+     "106.0": 18,
+     "88.0": 18,
+     "86.0": 18,
+     "56.0": 18,
+     "109.0": 18,
+     "62.0": 16,
+     "66.0": 16,
+     "108.0": 16,
+     "96.0": 13,
+     "61.0": 12,
+     "54.0": 9,
+     "101.0": 9,
+     "104.0": 8,
+     "111.0": 5,
+     "84.0": 4
+    },
+    "n_muru_window_ok": 0
+   },
+   "MSBNK-MLU-ED|none": {
+    "n": 123,
+    "lo_values": {
+     "70.0": 35,
+     "69.0": 33,
+     "68.0": 16,
+     "56.0": 15,
+     "67.0": 14,
+     "77.0": 10
+    },
+    "n_muru_window_ok": 0
+   }
+  }
+ },
+ "records": {
+  "instrument_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "Exploris 240 Thermo Scientific": 1010
+   },
+   "MSBNK-EAWAG-ED": {
+    "Exploris 240 Thermo Scientific": 1536
+   },
+   "MSBNK-MLU-ED": {
+    "QExactive Plus": 580
+   }
+  },
+  "instrument_type": {
+   "LC-ESI-QFT": 3126
+  },
+  "fragmentation_mode": {
+   "nan": 1979,
+   "HCD": 1147
+  },
+  "ce_string_forms": {
+   "NA": 1979,
+   "<n> % (nominal)": 1147
+  },
+  "title_ce_forms": {
+   "<n>%": 3126
+  },
+  "title_vs_field_ce_disagree": 0,
+  "resolution_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "15000": 538,
+    "nan": 472
+   },
+   "MSBNK-EAWAG-ED": {
+    "nan": 1050,
+    "15000": 486
+   },
+   "MSBNK-MLU-ED": {
+    "nan": 457,
+    "15000": 99,
+    "17500": 24
+   }
+  },
+  "title_R_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "15000": 1010
+   },
+   "MSBNK-EAWAG-ED": {
+    "15000": 1536
+   },
+   "MSBNK-MLU-ED": {
+    "15000": 338,
+    "17500": 242
+   }
+  },
+  "precursor_type": {
+   "[M+H]+": 1888,
+   "[M-H]-": 1211,
+   "[M+2H]2+": 27
+  },
+  "title_adduct": {
+   "[M+H]+": 1888,
+   "[M-H]-": 1211,
+   "[M+2H]2+": 27
+  },
+  "precursor_type_vs_title_disagree": 0,
+  "title_first_mass_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "40": 1010
+   },
+   "MSBNK-EAWAG-ED": {
+    "auto": 1536
+   },
+   "MSBNK-MLU-ED": {
+    "nan": 580
+   }
+  },
+  "mass_range_lo_by_series_first_mass": {
+   "MSBNK-EAWAG-EC|40": {
+    "n": 1010,
+    "lo_min": 40.0,
+    "lo_max": 64.0
+   },
+   "MSBNK-EAWAG-ED|auto": {
+    "n": 1536,
+    "lo_min": 50.0,
+    "lo_max": 150.0
+   },
+   "MSBNK-MLU-ED|none": {
+    "n": 580,
+    "lo_min": 56.0,
+    "lo_max": 77.0
+   }
+  },
+  "date_by_series": {
+   "MSBNK-EAWAG-EC": {
+    "2024.02": 695,
+    "2025.02": 315
+   },
+   "MSBNK-EAWAG-ED": {
+    "2024.02": 903,
+    "2025.01": 323,
+    "2025.02": 154,
+    "2024.05": 129,
+    "2024.04": 27
+   },
+   "MSBNK-MLU-ED": {
+    "2024.02": 498,
+    "2024.04": 82
+   }
+  },
+  "title_other": {
+   "LC-ESI-QFT|MS2": 3126
+  },
+  "ce_nce_values_by_series_adduct": {
+   "MSBNK-EAWAG-EC|[M+H]+": {
+    "15.0": 75,
+    "20.0": 75,
+    "25.0": 74,
+    "40.0": 74,
+    "50.0": 74,
+    "60.0": 74,
+    "70.0": 73,
+    "80.0": 72,
+    "30.0": 71
+   },
+   "MSBNK-EAWAG-EC|[M-H]-": {
+    "15.0": 49,
+    "20.0": 49,
+    "25.0": 49,
+    "30.0": 45,
+    "40.0": 37,
+    "50.0": 35,
+    "60.0": 33,
+    "70.0": 28,
+    "80.0": 23
+   },
+   "MSBNK-EAWAG-ED|[M+2H]2+": {
+    "15.0": 3,
+    "20.0": 3,
+    "25.0": 3,
+    "30.0": 3,
+    "35.0": 3,
+    "40.0": 3,
+    "50.0": 3,
+    "60.0": 3,
+    "70.0": 3
+   },
+   "MSBNK-EAWAG-ED|[M+H]+": {
+    "15.0": 107,
+    "20.0": 107,
+    "30.0": 107,
+    "25.0": 105,
+    "40.0": 105,
+    "50.0": 104,
+    "60.0": 101,
+    "70.0": 91,
+    "80.0": 76,
+    "35.0": 16
+   },
+   "MSBNK-EAWAG-ED|[M-H]-": {
+    "15.0": 84,
+    "20.0": 84,
+    "25.0": 84,
+    "30.0": 80,
+    "40.0": 66,
+    "50.0": 61,
+    "60.0": 49,
+    "70.0": 41,
+    "80.0": 26,
+    "35.0": 15
+   },
+   "MSBNK-MLU-ED|[M+H]+": {
+    "15.0": 37,
+    "20.0": 37,
+    "25.0": 37,
+    "30.0": 37,
+    "40.0": 37,
+    "50.0": 35,
+    "60.0": 34,
+    "70.0": 28,
+    "80.0": 25
+   },
+   "MSBNK-MLU-ED|[M-H]-": {
+    "15.0": 44,
+    "20.0": 44,
+    "25.0": 42,
+    "30.0": 39,
+    "40.0": 33,
+    "50.0": 28,
+    "60.0": 20,
+    "70.0": 14,
+    "80.0": 9
+   }
+  },
+  "n_fragment_matches_tag_blob": 2938,
+  "n_missing_title": 0,
+  "n_missing_inchikey_line": 0,
+  "n_missing_instrument": 0,
+  "n_missing_precursor": 0,
+  "n_missing_ce_field": 1979,
+  "n_title_tentative": 0,
+  "n_title_tentative_by_series": {
+   "MSBNK-EAWAG-EC": 0,
+   "MSBNK-EAWAG-ED": 0,
+   "MSBNK-MLU-ED": 0
+  }
+ },
+ "s4": {
+  "rows": 174,
+  "hash_marked_previously_in_massbank_ids_from_si_pdf": [
+   "713",
+   "760",
+   "861",
+   "867",
+   "1466",
+   "1802",
+   "1823",
+   "1844",
+   "1894",
+   "1916",
+   "1962"
+  ],
+  "n_units_with_accessions": 150,
+  "n_units_groups": 10,
+  "n_accessions_listed": 2905,
+  "n_compound_rows_incl_group_members": 164,
+  "level_counts_units": {
+   "2b": 52,
+   "1": 49,
+   "2a": 37,
+   "3": 12
+  },
+  "purity_counts_units": {
+   "crude extract": 104,
+   "reference material": 31,
+   "bioreagent": 14,
+   "nan": 1
+  },
+  "n_tag_records_not_in_s4": 221,
+  "n_s4_accessions_not_in_tag": 0,
+  "records_not_in_s4_by_series_adduct": {
+   "MSBNK-EAWAG-ED|[M+H]+": 96,
+   "MSBNK-EAWAG-EC|[M+H]+": 61,
+   "MSBNK-EAWAG-ED|[M-H]-": 44,
+   "MSBNK-EAWAG-EC|[M-H]-": 20
+  },
+  "n_not_listed_mapped_via_member_id": 221,
+  "n_not_listed_title_name_eq_member_name": 0,
+  "not_listed_units": {
+   "Isomer Group_C53H74N10O13@row166": 56,
+   "Isomer Group_C31H42N6O7@row152": 50,
+   "Isomer Group_C41H61N5O9@row146": 22,
+   "Isomer Group_C31H44N6O7@row149": 18,
+   "Isomer Group_C31H42N6O7@row156": 18,
+   "Isomer Group_C42H61N7O10S@row143": 15,
+   "Isomer Group_C50H72N8O13@row170": 14,
+   "Isomer Group_C51H78N10O12@row162": 14,
+   "Isomer Group_C24H34N6O6S@row140": 9,
+   "Isomer Group_C51H78N10O12@row159": 5
+  },
+  "n_records_unmapped_after_stem": 0,
+  "unmapped_stems": []
+ },
+ "exclusion_set_sizes": {
+  "msg15_recorded_all": 28929,
+  "msg15_parent_all": 28923,
+  "msg15_simchallenge_all": 16974,
+  "muru_registry_keys": 31507,
+  "muru_registry_scaffolds": 18402,
+  "study2_keys": 1794,
+  "study2_scaffolds": 1691,
+  "comparator_keys": 1327,
+  "comparator_scaffolds": 1254,
+  "msg15_scaffolds_all": 16991,
+  "muru_exposed_union_keys": 33301,
+  "msnlib_9lib_keys": 53612,
+  "muru_exposed_populations_union": 1912
+ },
+ "msg15_precursor_mz_max_reverified": 999.396,
+ "tiers": {
+  "A_all_mh_ge3nce": {
+   "label": "S4 compound rows with [M+H]+ at >=3 NCE (group members included)",
+   "n_compound_rows": 142,
+   "n_units": 130,
+   "n_distinct_muru_keys": 136,
+   "n_distinct_scaffold_groups": 65,
+   "n_scaffold_groups_also_in_msg15": 19,
+   "n_distinct_scaffold_groups_not_in_msg15": 46,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 581.0,
+    "0.5": 881.46,
+    "0.9": 1119.64,
+    "1": 1752.8
+   },
+   "n_has_nce20_and_nce60": 134,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 32,
+   "n_has_nce20_and_nce60_first_mass_40": 74,
+   "n_ge3nce_first_mass_40": 74,
+   "scaffold_groups_with_first_mass_40_nce20_60": 35,
+   "level_counts": {
+    "2b": 50,
+    "1": 39,
+    "2a": 31,
+    "3": 22
+   }
+  },
+  "B_single_identity": {
+   "label": "A minus Level-3 isomer-group members",
+   "n_compound_rows": 122,
+   "n_units": 122,
+   "n_distinct_muru_keys": 119,
+   "n_distinct_scaffold_groups": 59,
+   "n_scaffold_groups_also_in_msg15": 19,
+   "n_distinct_scaffold_groups_not_in_msg15": 40,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 561.94,
+    "0.5": 883.44,
+    "0.9": 1126.17,
+    "1": 1752.8
+   },
+   "n_has_nce20_and_nce60": 114,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 32,
+   "n_has_nce20_and_nce60_first_mass_40": 62,
+   "n_ge3nce_first_mass_40": 62,
+   "scaffold_groups_with_first_mass_40_nce20_60": 32,
+   "level_counts": {
+    "2b": 50,
+    "1": 39,
+    "2a": 31,
+    "3": 2
+   }
+  },
+  "C_clean_keys": {
+   "label": "B, key absent from MSG1.5 (both routes), MURU registry, study-2, comparator",
+   "n_compound_rows": 107,
+   "n_units": 107,
+   "n_distinct_muru_keys": 104,
+   "n_distinct_scaffold_groups": 51,
+   "n_scaffold_groups_also_in_msg15": 11,
+   "n_distinct_scaffold_groups_not_in_msg15": 40,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 584.42,
+    "0.5": 887.47,
+    "0.9": 1225.46,
+    "1": 1752.8
+   },
+   "n_has_nce20_and_nce60": 100,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 30,
+   "n_has_nce20_and_nce60_first_mass_40": 57,
+   "n_ge3nce_first_mass_40": 57,
+   "scaffold_groups_with_first_mass_40_nce20_60": 30,
+   "level_counts": {
+    "2b": 50,
+    "1": 28,
+    "2a": 27,
+    "3": 2
+   }
+  },
+  "D_clean_keys_and_scaffolds": {
+   "label": "C, scaffold group absent from MURU registry, study-2 and comparator scaffold lists",
+   "n_compound_rows": 84,
+   "n_units": 84,
+   "n_distinct_muru_keys": 81,
+   "n_distinct_scaffold_groups": 45,
+   "n_scaffold_groups_also_in_msg15": 5,
+   "n_distinct_scaffold_groups_not_in_msg15": 40,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 582.37,
+    "0.5": 899.44,
+    "0.9": 1304.7,
+    "1": 1752.8
+   },
+   "n_has_nce20_and_nce60": 78,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 28,
+   "n_has_nce20_and_nce60_first_mass_40": 45,
+   "n_ge3nce_first_mass_40": 45,
+   "scaffold_groups_with_first_mass_40_nce20_60": 25,
+   "level_counts": {
+    "2b": 40,
+    "1": 23,
+    "2a": 19,
+    "3": 2
+   }
+  },
+  "E_D_msg_range": {
+   "label": "D with [M+H]+ <= 999.396 (MSG 1.5 max)",
+   "n_compound_rows": 57,
+   "n_units": 57,
+   "n_distinct_muru_keys": 57,
+   "n_distinct_scaffold_groups": 34,
+   "n_scaffold_groups_also_in_msg15": 4,
+   "n_distinct_scaffold_groups_not_in_msg15": 30,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 559.92,
+    "0.5": 795.4,
+    "0.9": 976.71,
+    "1": 993.5
+   },
+   "n_has_nce20_and_nce60": 53,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 20,
+   "n_has_nce20_and_nce60_first_mass_40": 37,
+   "n_ge3nce_first_mass_40": 37,
+   "scaffold_groups_with_first_mass_40_nce20_60": 21,
+   "level_counts": {
+    "2b": 33,
+    "1": 13,
+    "2a": 9,
+    "3": 2
+   }
+  },
+  "F_D_muru_range": {
+   "label": "D with [M+H]+ in MURU dev range 70-1042.6",
+   "n_compound_rows": 66,
+   "n_units": 66,
+   "n_distinct_muru_keys": 66,
+   "n_distinct_scaffold_groups": 35,
+   "n_scaffold_groups_also_in_msg15": 5,
+   "n_distinct_scaffold_groups_not_in_msg15": 30,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 568.34,
+    "0.5": 852.49,
+    "0.9": 1006.52,
+    "1": 1041.39
+   },
+   "n_has_nce20_and_nce60": 62,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 22,
+   "n_has_nce20_and_nce60_first_mass_40": 39,
+   "n_ge3nce_first_mass_40": 39,
+   "scaffold_groups_with_first_mass_40_nce20_60": 21,
+   "level_counts": {
+    "2b": 37,
+    "1": 18,
+    "2a": 9,
+    "3": 2
+   }
+  },
+  "G_E_level1": {
+   "label": "E at confidence Level 1",
+   "n_compound_rows": 13,
+   "n_units": 13,
+   "n_distinct_muru_keys": 13,
+   "n_distinct_scaffold_groups": 12,
+   "n_scaffold_groups_also_in_msg15": 1,
+   "n_distinct_scaffold_groups_not_in_msg15": 11,
+   "precursor_mh_theor_quantiles": {
+    "0": 413.12,
+    "0.1": 451.58,
+    "0.5": 859.51,
+    "0.9": 987.32,
+    "1": 991.52
+   },
+   "n_has_nce20_and_nce60": 13,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 3,
+   "n_has_nce20_and_nce60_first_mass_40": 5,
+   "n_ge3nce_first_mass_40": 5,
+   "scaffold_groups_with_first_mass_40_nce20_60": 4,
+   "level_counts": {
+    "1": 13
+   }
+  },
+  "H_E_level1_2a": {
+   "label": "E at Level 1 or 2a",
+   "n_compound_rows": 22,
+   "n_units": 22,
+   "n_distinct_muru_keys": 22,
+   "n_distinct_scaffold_groups": 19,
+   "n_scaffold_groups_also_in_msg15": 2,
+   "n_distinct_scaffold_groups_not_in_msg15": 17,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 433.05,
+    "0.5": 795.86,
+    "0.9": 980.38,
+    "1": 991.52
+   },
+   "n_has_nce20_and_nce60": 22,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 8,
+   "n_has_nce20_and_nce60_first_mass_40": 10,
+   "n_ge3nce_first_mass_40": 10,
+   "scaffold_groups_with_first_mass_40_nce20_60": 9,
+   "level_counts": {
+    "1": 13,
+    "2a": 9
+   }
+  },
+  "I_E_refmaterial": {
+   "label": "E recorded from reference material or bioreagent",
+   "n_compound_rows": 10,
+   "n_units": 10,
+   "n_distinct_muru_keys": 10,
+   "n_distinct_scaffold_groups": 8,
+   "n_scaffold_groups_also_in_msg15": 0,
+   "n_distinct_scaffold_groups_not_in_msg15": 8,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 401.73,
+    "0.5": 868.49,
+    "0.9": 972.66,
+    "1": 991.51
+   },
+   "n_has_nce20_and_nce60": 10,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 4,
+   "n_has_nce20_and_nce60_first_mass_40": 5,
+   "n_ge3nce_first_mass_40": 5,
+   "scaffold_groups_with_first_mass_40_nce20_60": 3,
+   "level_counts": {
+    "1": 5,
+    "2b": 4,
+    "2a": 1
+   }
+  },
+  "J_E_nce20_60_first_mass_40": {
+   "label": "E with NCE20 and NCE60 [M+H]+ spectra in the first-mass-40 scan mode (EC series)",
+   "n_compound_rows": 37,
+   "n_units": 37,
+   "n_distinct_muru_keys": 37,
+   "n_distinct_scaffold_groups": 21,
+   "n_scaffold_groups_also_in_msg15": 2,
+   "n_distinct_scaffold_groups_not_in_msg15": 19,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 569.94,
+    "0.5": 791.41,
+    "0.9": 978.73,
+    "1": 993.5
+   },
+   "n_has_nce20_and_nce60": 37,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 20,
+   "n_has_nce20_and_nce60_first_mass_40": 37,
+   "n_ge3nce_first_mass_40": 37,
+   "scaffold_groups_with_first_mass_40_nce20_60": 21,
+   "level_counts": {
+    "2b": 25,
+    "1": 5,
+    "2a": 5,
+    "3": 2
+   }
+  },
+  "K_E_scaffold_new_vs_msg15": {
+   "label": "E whose scaffold group is also absent from MSG 1.5 scaffolds",
+   "n_compound_rows": 48,
+   "n_units": 48,
+   "n_distinct_muru_keys": 48,
+   "n_distinct_scaffold_groups": 30,
+   "n_scaffold_groups_also_in_msg15": 0,
+   "n_distinct_scaffold_groups_not_in_msg15": 30,
+   "precursor_mh_theor_quantiles": {
+    "0": 299.23,
+    "0.1": 545.49,
+    "0.5": 789.9,
+    "0.9": 971.45,
+    "1": 991.51
+   },
+   "n_has_nce20_and_nce60": 46,
+   "n_has_nce20_and_nce60_muru_window_ok_VERIFIED_subset": 16,
+   "n_has_nce20_and_nce60_first_mass_40": 32,
+   "n_ge3nce_first_mass_40": 32,
+   "scaffold_groups_with_first_mass_40_nce20_60": 19,
+   "level_counts": {
+    "2b": 29,
+    "1": 11,
+    "2a": 7,
+    "3": 1
+   }
+  }
+ },
+ "overlap": {
+  "compound_rows_with_mh": 142,
+  "in_msg15_any_route": [
+   {
+    "cyanometdb_id": "214",
+    "name": "Molassamide",
+    "level": "1",
+    "mh_theor": 963.4822106390003,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "861",
+    "name": "Nodularin-R",
+    "level": "1",
+    "mh_theor": 825.4505165869999,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "867",
+    "name": "Anabaenopeptin B",
+    "level": "1",
+    "mh_theor": 837.4617499670002,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "1213",
+    "name": "Gallinamide A",
+    "level": "1",
+    "mh_theor": 593.390876471,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "1466",
+    "name": "Aerucyclamide A",
+    "level": "1",
+    "mh_theor": 535.215572035,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "1472",
+    "name": "Aerucyclamide B",
+    "level": "1",
+    "mh_theor": 533.199921971,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "1823",
+    "name": "MC-LR",
+    "level": "1",
+    "mh_theor": 995.5560442750002,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "1894",
+    "name": "MC-LA",
+    "level": "1",
+    "mh_theor": 910.4920470510002,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "1953",
+    "name": "[D-Asp3]MC-LR",
+    "level": "1",
+    "mh_theor": 981.5403942110001,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "2276",
+    "name": "Rivulariapeptolide 988",
+    "level": "1",
+    "mh_theor": 989.4978607030001,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "713",
+    "name": "Oscillamide Y",
+    "level": "2a",
+    "mh_theor": 858.439617555,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "760",
+    "name": "Anabaenopeptin A",
+    "level": "2a",
+    "mh_theor": 844.4239674910001,
+    "hash_prev_massbank": true,
+    "in_msg15_simchallenge": true
+   },
+   {
+    "cyanometdb_id": "1469",
+    "name": "Aerucyclamide C",
+    "level": "2a",
+    "mh_theor": 517.222765591,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   },
+   {
+    "cyanometdb_id": "511",
+    "name": "Loggerpeptin A",
+    "level": "3",
+    "mh_theor": 993.5291608310001,
+    "hash_prev_massbank": false,
+    "in_msg15_simchallenge": false
+   }
+  ],
+  "in_muru_registry": [
+   {
+    "cyanometdb_id": "861",
+    "name": "Nodularin-R",
+    "muru_population_hits": "V2-DEVELOPMENT-POPULATION|WUR-DEV-ANALYSIS|WUR-POS-IDENTITY"
+   },
+   {
+    "cyanometdb_id": "1894",
+    "name": "MC-LA",
+    "muru_population_hits": "V2-DEVELOPMENT-POPULATION|WUR-POS-IDENTITY|WUR-SEALED"
+   },
+   {
+    "cyanometdb_id": "1916",
+    "name": "MC-LY",
+    "muru_population_hits": "V2-DEVELOPMENT-POPULATION|WUR-POS-IDENTITY|WUR-SEALED"
+   },
+   {
+    "cyanometdb_id": "1694",
+    "name": "7-Deoxy-Cylindrospermopsin",
+    "muru_population_hits": "V2-DEVELOPMENT-POPULATION|WUR-POS-IDENTITY|WUR-SEALED"
+   }
+  ],
+  "in_study2": [],
+  "in_comparator": [],
+  "scaf_in_muru_registry": [
+   {
+    "cyanometdb_id": "861",
+    "name": "Nodularin-R",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC1=O"
+   },
+   {
+    "cyanometdb_id": "1213",
+    "name": "Gallinamide A",
+    "scaffold_group": "O=C1C=CCN1"
+   },
+   {
+    "cyanometdb_id": "1802",
+    "name": "MC-RR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1823",
+    "name": "MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1861",
+    "name": "[Dha7]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1879",
+    "name": "MC-HilR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1894",
+    "name": "MC-LA",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1916",
+    "name": "MC-LY",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)C(Cc2ccccc2)NC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1953",
+    "name": "[D-Asp3]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1962",
+    "name": "[D-Asp3,(E)-Dhb7]MC-RR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1972",
+    "name": "[D-Leu1]MC-LY",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)C(Cc2ccccc2)NC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "2066",
+    "name": "MC-RY",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)C(Cc2ccccc2)NC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "900",
+    "name": "Cylindrofridin C",
+    "scaffold_group": "c1ccc(CCCCCCCc2ccccc2)cc1"
+   },
+   {
+    "cyanometdb_id": "961",
+    "name": "Cylindrofridin B",
+    "scaffold_group": "c1ccc(CCCCCCCc2ccccc2)cc1"
+   },
+   {
+    "cyanometdb_id": "993",
+    "name": "Bartoloside F",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1027",
+    "name": "Bartoloside G",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1031",
+    "name": "Bartoloside I",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1079",
+    "name": "Bartoloside K",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1117",
+    "name": "Bartoloside J",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1118",
+    "name": "Bartoloside E",
+    "scaffold_group": "c1ccc(OC2CCCCO2)cc1"
+   },
+   {
+    "cyanometdb_id": "1481",
+    "name": "Hierridin B",
+    "scaffold_group": "c1ccccc1"
+   },
+   {
+    "cyanometdb_id": "1694",
+    "name": "7-Deoxy-Cylindrospermopsin",
+    "scaffold_group": "O=c1cc(CC2CC3CCCC4CN=C(N2)N43)[nH]c(=O)[nH]1"
+   },
+   {
+    "cyanometdb_id": "2515",
+    "name": "Monomethylaetokthonostatin",
+    "scaffold_group": "O=C(CCC1CCCN1)NCCc1ccccc1"
+   },
+   {
+    "cyanometdb_id": "897",
+    "name": "Microginin SD755",
+    "scaffold_group": "O=C(CCc1ccccc1)NCCc1ccccc1"
+   },
+   {
+    "cyanometdb_id": "947",
+    "name": "Nostoginin BN741",
+    "scaffold_group": "O=C(CCc1ccccc1)NCCc1ccccc1"
+   },
+   {
+    "cyanometdb_id": "948",
+    "name": "Microginin 757",
+    "scaffold_group": "O=C(CCc1ccccc1)NCCc1ccccc1"
+   },
+   {
+    "cyanometdb_id": "1275",
+    "name": "Oscillaginin A",
+    "scaffold_group": "c1ccccc1"
+   },
+   {
+    "cyanometdb_id": "1503",
+    "name": "Nostosin B",
+    "scaffold_group": "c1ccccc1"
+   },
+   {
+    "cyanometdb_id": "1877",
+    "name": "[D-MeO-Glu6]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1895",
+    "name": "[D-Asp3]MC-RY",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)C(Cc2ccccc2)NC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1950",
+    "name": "[D-Asp3,Dha7]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1997",
+    "name": "[D-Leu1]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "2036",
+    "name": "[D-Met(O)1]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1834",
+    "name": "[Leu1,D-Asp3]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   },
+   {
+    "cyanometdb_id": "1911",
+    "name": "[Leu1,Dha7]MC-LR",
+    "scaffold_group": "C=C1NC(=O)CCCNC(=O)CC(C=CC=CCCCc2ccccc2)NC(=O)CNC(=O)CCNC(=O)CNC(=O)CNC1=O"
+   }
+  ],
+  "scaf_in_study2": 0,
+  "scaf_in_comparator": 0,
+  "in_msnlib_9lib": [],
+  "same_formula_other_key_in_msg15": [
+   {
+    "cyanometdb_id": "1213",
+    "name": "Gallinamide A",
+    "formula_rdkit": "C31H52N4O7",
+    "level": "1",
+    "in_msg15_any_route": true,
+    "msg15_same_formula_keys": "ANWWJORIPQKJFW|ASRBKZHDORPEHO"
+   },
+   {
+    "cyanometdb_id": "1339",
+    "name": "Acutiphycin",
+    "formula_rdkit": "C27H44O7",
+    "level": "1",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "JQNVCUBPURTQPQ|LQGNCUXDDPRDJH|NKDFYOWSKOHCCO"
+   },
+   {
+    "cyanometdb_id": "1861",
+    "name": "[Dha7]MC-LR",
+    "formula_rdkit": "C48H72N10O12",
+    "level": "1",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "IYDKWWDUBYWQGF|VYEBKSHVYPDMQQ"
+   },
+   {
+    "cyanometdb_id": "1953",
+    "name": "[D-Asp3]MC-LR",
+    "formula_rdkit": "C48H72N10O12",
+    "level": "1",
+    "in_msg15_any_route": true,
+    "msg15_same_formula_keys": "IYDKWWDUBYWQGF|VYEBKSHVYPDMQQ"
+   },
+   {
+    "cyanometdb_id": "15",
+    "name": "Nocuolin A",
+    "formula_rdkit": "C16H30N2O3",
+    "level": "2a",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "ZEZKSHMMINHJOV"
+   },
+   {
+    "cyanometdb_id": "713",
+    "name": "Oscillamide Y",
+    "formula_rdkit": "C45H59N7O10",
+    "level": "2a",
+    "in_msg15_any_route": true,
+    "msg15_same_formula_keys": "HRGWILAIPXJBIB|KCAKUFQSCADGHZ"
+   },
+   {
+    "cyanometdb_id": "1332",
+    "name": "Muscoride A",
+    "formula_rdkit": "C28H40N4O5",
+    "level": "2b",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "DEUCVOIWOGPZGS"
+   },
+   {
+    "cyanometdb_id": "1835",
+    "name": "MC-FL",
+    "formula_rdkit": "C52H71N7O12",
+    "level": "2b",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "FEVBMCJUKWWWBT"
+   },
+   {
+    "cyanometdb_id": "1228",
+    "name": "Spumigin E",
+    "formula_rdkit": "C31H42N6O7",
+    "level": "3",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "VYCMAAOURFJIHD"
+   },
+   {
+    "cyanometdb_id": "1229",
+    "name": "Spumigin K",
+    "formula_rdkit": "C31H42N6O7",
+    "level": "3",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "VYCMAAOURFJIHD"
+   },
+   {
+    "cyanometdb_id": "1230",
+    "name": "Spumigin L",
+    "formula_rdkit": "C31H42N6O7",
+    "level": "3",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "VYCMAAOURFJIHD"
+   },
+   {
+    "cyanometdb_id": "509",
+    "name": "Micropeptin HH992",
+    "formula_rdkit": "C50H72N8O13",
+    "level": "3",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "UAVAEWGJORGZNS"
+   },
+   {
+    "cyanometdb_id": "510",
+    "name": "Micropeptin KB992",
+    "formula_rdkit": "C50H72N8O13",
+    "level": "3",
+    "in_msg15_any_route": false,
+    "msg15_same_formula_keys": "UAVAEWGJORGZNS"
+   }
+  ],
+  "hash_prev_massbank_rows": [
+   {
+    "cyanometdb_id": "861",
+    "name": "Nodularin-R",
+    "in_msg15_any_route": true,
+    "mh_theor": 825.4505165869999
+   },
+   {
+    "cyanometdb_id": "867",
+    "name": "Anabaenopeptin B",
+    "in_msg15_any_route": true,
+    "mh_theor": 837.4617499670002
+   },
+   {
+    "cyanometdb_id": "1466",
+    "name": "Aerucyclamide A",
+    "in_msg15_any_route": true,
+    "mh_theor": 535.215572035
+   },
+   {
+    "cyanometdb_id": "1802",
+    "name": "MC-RR",
+    "in_msg15_any_route": false,
+    "mh_theor": 1038.573091307
+   },
+   {
+    "cyanometdb_id": "1823",
+    "name": "MC-LR",
+    "in_msg15_any_route": true,
+    "mh_theor": 995.5560442750002
+   },
+   {
+    "cyanometdb_id": "1844",
+    "name": "MC-YR",
+    "in_msg15_any_route": false,
+    "mh_theor": 1045.535308831
+   },
+   {
+    "cyanometdb_id": "1894",
+    "name": "MC-LA",
+    "in_msg15_any_route": true,
+    "mh_theor": 910.4920470510002
+   },
+   {
+    "cyanometdb_id": "1916",
+    "name": "MC-LY",
+    "in_msg15_any_route": false,
+    "mh_theor": 1002.5182617990002
+   },
+   {
+    "cyanometdb_id": "1962",
+    "name": "[D-Asp3,(E)-Dhb7]MC-RR",
+    "in_msg15_any_route": false,
+    "mh_theor": 1024.5574412430003
+   },
+   {
+    "cyanometdb_id": "713",
+    "name": "Oscillamide Y",
+    "in_msg15_any_route": true,
+    "mh_theor": 858.439617555
+   },
+   {
+    "cyanometdb_id": "760",
+    "name": "Anabaenopeptin A",
+    "in_msg15_any_route": true,
+    "mh_theor": 844.4239674910001
+   }
+  ]
+ },
+ "identity_quality": {
+  "n_compound_rows": 164,
+  "n_smiles_missing": 2,
+  "n_muru_key_unformable": 2,
+  "n_s4_inchikey_bad_format": 11,
+  "s4_inchikey_bad_format_examples": [
+   {
+    "cyanometdb_id": "642",
+    "name": "Cyanopeptolin B",
+    "inchikey_s4": "KSVGOBQTQGOLQM-PLGRJYAQSA-N\u00a0"
+   },
+   {
+    "cyanometdb_id": "963",
+    "name": "Carbamidocyclophane E",
+    "inchikey_s4": "MMNoSSIKVRRNRZ-MJVHAFATSA-N"
+   },
+   {
+    "cyanometdb_id": "2342",
+    "name": "Insulapeptolide F",
+    "inchikey_s4": "YGYHKTCZYNoIBL-RAKGUDTISA-N"
+   },
+   {
+    "cyanometdb_id": "859",
+    "name": "Anabaenopeptin C",
+    "inchikey_s4": "VNoIUJQJSYNRHB-LJSCDKKUSA-N"
+   },
+   {
+    "cyanometdb_id": "1104",
+    "name": "Cryptophycin A",
+    "inchikey_s4": "PSNoPSMXOBPNNV-XUMGCJJFSA-N"
+   },
+   {
+    "cyanometdb_id": "1402",
+    "name": "Aerucyclamide D",
+    "inchikey_s4": "MLBROOJXUZKDHY-PKPICYNoSA-N"
+   },
+   {
+    "cyanometdb_id": "1471",
+    "name": "Microcyclamide 7806A",
+    "inchikey_s4": NaN
+   },
+   {
+    "cyanometdb_id": "1465",
+    "name": "Microcyclamide 7806B",
+    "inchikey_s4": NaN
+   },
+   {
+    "cyanometdb_id": "858",
+    "name": "Microginin KR767",
+    "inchikey_s4": "PUNoWWCAVNLVNA-VBBYNRSSSA-N"
+   },
+   {
+    "cyanometdb_id": "1834",
+    "name": "[Leu1,D-Asp3]MC-LR",
+    "inchikey_s4": "AVSMHCMQBTVLHC-IBQQIYNoSA-N"
+   },
+   {
+    "cyanometdb_id": "1911",
+    "name": "[Leu1,Dha7]MC-LR",
+    "inchikey_s4": "AVSMHCMQBTVLHC-IBQQIYNoSA-N"
+   }
+  ],
+  "n_rdkit_ik14_ne_s4_ik14": 2,
+  "rdkit_ik14_ne_s4_examples": [
+   {
+    "cyanometdb_id": "1471",
+    "name": "Microcyclamide 7806A",
+    "inchikey_s4": NaN,
+    "inchikey_rdkit_raw": NaN
+   },
+   {
+    "cyanometdb_id": "1465",
+    "name": "Microcyclamide 7806B",
+    "inchikey_s4": NaN,
+    "inchikey_rdkit_raw": NaN
+   }
+  ],
+  "n_formula_mismatch": 3,
+  "formula_mismatch_examples": [
+   {
+    "cyanometdb_id": "1275",
+    "name": "Oscillaginin A",
+    "formula": "C29H47ClO8N4",
+    "formula_rdkit": "C29H47ClN4O8"
+   },
+   {
+    "cyanometdb_id": "1471",
+    "name": "Microcyclamide 7806A",
+    "formula": "C24H34N6O6S",
+    "formula_rdkit": NaN
+   },
+   {
+    "cyanometdb_id": "1465",
+    "name": "Microcyclamide 7806B",
+    "formula": "C24H34N6O6S",
+    "formula_rdkit": NaN
+   }
+  ],
+  "n_record_ik14_not_matching_s4": 0,
+  "record_ik_mismatch_examples": [],
+  "mh_record_minus_theor_abs_da_quantiles": {
+   "0.5": 2.7017999883582888e-05,
+   "0.9": 4.530639940867331e-05,
+   "0.99": 4.884033981511493e-05,
+   "1": 4.996700022275036e-05
+  },
+  "n_mh_record_vs_theor_gt_0p01": 0,
+  "mh_record_vs_theor_gt_0p01_examples": [],
+  "heavy_atoms_quantiles": {
+   "0": 21.0,
+   "0.5": 61.0,
+   "0.9": 76.0,
+   "1": 122.0
+  },
+  "n_heavy_atoms_gt_160": 0,
+  "n_mh_theor_gt_glacier_upper_1500": 4
+ },
+ "msg15_nn_tanimoto": {
+  "n_msg_molecules_fp": 28929,
+  "B": {
+   "n": 122,
+   "q0": 0.26,
+   "q10": 0.384,
+   "q50": 0.66,
+   "q90": 0.957,
+   "q100": 1.0,
+   "n_ge_0.7": 55,
+   "n_ge_0.5": 85
+  },
+  "E": {
+   "n": 57,
+   "q0": 0.26,
+   "q10": 0.352,
+   "q50": 0.592,
+   "q90": 0.854,
+   "q100": 1.0,
+   "n_ge_0.7": 18,
+   "n_ge_0.5": 39
+  },
+  "G": {
+   "n": 13,
+   "q0": 0.347,
+   "q10": 0.378,
+   "q50": 0.545,
+   "q90": 0.78,
+   "q100": 0.857,
+   "n_ge_0.7": 4,
+   "n_ge_0.5": 7
+  }
+ },
+ "diversity": {
+  "E": {
+   "n": 57,
+   "butina_clusters_tanimoto_ge_0.6": 26,
+   "butina_clusters_tanimoto_ge_0.4": 16,
+   "n_generic_frameworks": 34,
+   "name_family_counts_INFERRED": {
+    "microginin": 8,
+    "cyanopeptolin": 6,
+    "nodulapeptin": 6,
+    "spumigin": 4,
+    "nostocyclopeptide": 3,
+    "anabaenopeptin": 3,
+    "brunsvicamide": 2,
+    "aeruginosin": 2,
+    "insulapeptolide": 2,
+    "namalide": 2,
+    "muscoride": 2,
+    "nostotrebin": 1,
+    "kasumigamide": 1,
+    "nostolactone": 1,
+    "anhydrocyanobacterin": 1,
+    "nocuolin": 1,
+    "pseudospumigin": 1,
+    "sphaerocyclamide": 1,
+    "scyptolin": 1,
+    "schizopeptin": 1,
+    "cyanostatin": 1,
+    "cryptophycin": 1,
+    "anabaenolysin": 1,
+    "micropeptin": 1,
+    "planktocyclin": 1,
+    "aerucyclamide": 1,
+    "nostosin": 1,
+    "mc-fl": 1
+   },
+   "n_name_families_INFERRED": 28,
+   "n_macrocycle_ring_ge12": 31
+  },
+  "G": {
+   "n": 13,
+   "butina_clusters_tanimoto_ge_0.6": 10,
+   "butina_clusters_tanimoto_ge_0.4": 8,
+   "n_generic_frameworks": 12,
+   "name_family_counts_INFERRED": {
+    "cyanopeptolin": 3,
+    "brunsvicamide": 2,
+    "insulapeptolide": 2,
+    "nostotrebin": 1,
+    "nostocyclopeptide": 1,
+    "kasumigamide": 1,
+    "aeruginosin": 1,
+    "nostolactone": 1,
+    "anhydrocyanobacterin": 1
+   },
+   "n_name_families_INFERRED": 9,
+   "n_macrocycle_ring_ge12": 8
+  },
+  "D": {
+   "n": 81,
+   "butina_clusters_tanimoto_ge_0.6": 31,
+   "butina_clusters_tanimoto_ge_0.4": 20,
+   "n_generic_frameworks": 45,
+   "name_family_counts_INFERRED": {
+    "cyanopeptolin": 9,
+    "microginin": 8,
+    "nodulapeptin": 6,
+    "insulapeptolide": 5,
+    "portoamide": 4,
+    "spumigin": 4,
+    "nostocyclopeptide": 3,
+    "anabaenopeptin": 3,
+    "brunsvicamide": 2,
+    "aeruginosin": 2,
+    "rivulariapeptolide": 2,
+    "scytocyclamide": 2,
+    "scyptolin": 2,
+    "namalide": 2,
+    "muscoride": 2,
+    "tutuilamide": 1,
+    "balticidin": 1,
+    "tychonamide": 1,
+    "nostotrebin": 1,
+    "kasumigamide": 1,
+    "mc-yr": 1,
+    "molassamide": 1,
+    "nostolactone": 1,
+    "anhydrocyanobacterin": 1,
+    "nocuolin": 1,
+    "pseudospumigin": 1,
+    "sphaerocyclamide": 1,
+    "schizopeptin": 1,
+    "cyanostatin": 1,
+    "cryptophycin": 1,
+    "anabaenolysin": 1,
+    "planktopeptin": 1,
+    "micropeptin": 1,
+    "oscillapeptin": 1,
+    "planktocyclin": 1,
+    "aerucyclamide": 1,
+    "nostosin": 1,
+    "mc-fr": 1,
+    "mc-fl": 1,
+    "mc-yl": 1
+   },
+   "n_name_families_INFERRED": 40,
+   "n_macrocycle_ring_ge12": 54
+  }
+ },
+ "ce_ladders_per_unit_mh": {
+  "15,20,25,30,40,50,60,70,80": 97,
+  "15,20,25,30,35,40,50,60,70": 11,
+  "15,20,25,30,40,50,60": 9,
+  "15,20,25,30,40,50,60,70": 3,
+  "15,20,25,30,40,50": 2,
+  "15,20,25,30,35,40,50,60,70,80": 2,
+  "15,20,25,30,35": 2,
+  "15,20,25,30,40": 1,
+  "15,20,30,40,50": 1,
+  "15,20,30,40": 1,
+  "15,20,25,30,35,40,50": 1
+ },
+ "n_units_mh": 130,
+ "n_units_mh_ge3nce": 130
+}

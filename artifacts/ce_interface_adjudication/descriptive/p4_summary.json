@@ -1,0 +1,287 @@
+{
+ "inputs": {
+  "identity_parquet": {
+   "path": "artifacts/comparator_feasibility/massspecgym15_identity.parquet",
+   "sha256": "88e2fd1d810e8f3c79d253c042110174ada1b1990d5a4e122a71097b8a975c48"
+  },
+  "metadata_parquet": {
+   "path": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2"
+  },
+  "mspred_labels_tsv": {
+   "path": "/Users/aryav/muru-comparators/repos/ms-pred/data/spec_datasets/msg/labels.tsv",
+   "sha256": "0b29f4b150fa043f2ea382df3d7a02ddfdf5dc9baee9790299b3890d3582f244",
+   "mspred_head": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+   "last_commit_touching_file": "648b061b1b9a1fa9f67f45fa77f0c289bce1b8ff Sun Oct 26 00:14:30 2025 -0400 massspecgym weights + retrieval metrics update (#30)"
+  }
+ },
+ "join": {
+  "identity_rows": 231104,
+  "metadata_rows": 231104,
+  "inner_join_rows": 231104,
+  "identifiers_only_in_identity": 0,
+  "identifiers_only_in_metadata": 0,
+  "row_order_identical": true,
+  "join_exact": true,
+  "null_counts": {
+   "precursor_mz": 0,
+   "parent_mass": 0,
+   "formula": 0,
+   "precursor_formula": 0,
+   "smiles": 0,
+   "inchikey": 0,
+   "collision_energy": 109358,
+   "instrument_type_NA": 5223,
+   "adduct_NA": 0
+  },
+  "joined_parquet_sha256": "2e07c2264bf242e05fe1c82be15fddefb3a405d05be419aa8a6437250c38890b"
+ },
+ "labels_vs_parquet": {
+  "labels_rows": 119029,
+  "labels_unique_spec": 119029,
+  "labels_columns": [
+   "Unnamed: 0",
+   "dataset",
+   "spec",
+   "ionization",
+   "formula",
+   "smiles",
+   "inchikey",
+   "instrument",
+   "collision_energies",
+   "precursor"
+  ],
+  "labels_unnamed0_equals_rownumber": false,
+  "labels_dataset_values": {
+   "MassSpecGym": 119029
+  },
+  "labels_ionization_values": {
+   "[M+H]+": 119029
+  },
+  "labels_instrument_values": {
+   "Orbitrap": 81323,
+   "QTOF": 37706
+  },
+  "labels_collision_energies_single_value_list_format": 119029,
+  "parquet_simulation_challenge_rows": 119029,
+  "parquet_simulation_challenge_ce_missing": 0,
+  "labels_spec_in_parquet": 119029,
+  "labels_spec_not_in_parquet": [],
+  "n_labels_spec_not_in_parquet": 0,
+  "n_labels_minus_sim": 0,
+  "n_sim_minus_labels": 0,
+  "n_labels_and_sim": 119029,
+  "labels_minus_sim_examples": [],
+  "sim_minus_labels_examples": [],
+  "sim_minus_labels_ce_missing": 0,
+  "labels_rows_whose_parquet_ce_missing": 0,
+  "precursor_exact_float_equal": 119029,
+  "precursor_label_string_equals_parquet_shortest_repr": 119029,
+  "precursor_abs_diff_le_1e-9": 119029,
+  "precursor_abs_diff_le_1e-4": 119029,
+  "precursor_mismatch_rows": 0,
+  "precursor_abs_diff_max": 0.0,
+  "ce_exact_float_equal": 93740,
+  "ce_mismatch_rows": 25289,
+  "ce_label_unparseable": 0,
+  "instrument_equal": 119029,
+  "adduct_equal": 119029,
+  "inchikey_equal": 119029,
+  "formula_equal": 119029,
+  "smiles_string_equal": 3397,
+  "smiles_rdkit_canonical_equal": 119029,
+  "smiles_rdkit_parse_failures": 0,
+  "ce_mismatch_rows_that_are_parquet_non_integer": 25289,
+  "parquet_non_integer_ce_rows_in_labels": 25289,
+  "labels_ce_equals_trunc_of_parquet_ce_all_rows": true,
+  "labels_ce_equals_python_round_of_parquet_ce_non_integer_rows": 13098,
+  "labels_ce_minus_parquet_ce_non_integer_rows_quantiles": {
+   "q0": -0.9997549999999933,
+   "q0.5": -0.5,
+   "q1": -0.00036500000000216914
+  },
+  "ce_mismatch_by_instrument": {
+   "Orbitrap": 23928,
+   "QTOF": 1361
+  },
+  "labels_fold_of_matched_rows": {
+   "train": 99341,
+   "test": 9954,
+   "val": 9734
+  },
+  "sim_subset_fold": {
+   "train": 99341,
+   "test": 9954,
+   "val": 9734
+  },
+  "mspred_msg_split_files_present_locally": [
+   "data/spec_datasets/msg/labels.tsv"
+  ],
+  "mismatch_rows_any_field": 25289,
+  "mismatch_counts_by_field": {
+   "precursor_mismatch": 0,
+   "ce_mismatch": 25289,
+   "instrument_mismatch": 0,
+   "adduct_mismatch": 0,
+   "inchikey_mismatch": 0,
+   "formula_mismatch": 0,
+   "smiles_canonical_mismatch": 0
+  }
+ },
+ "long_repr_ulp_check": {
+  "<NA>|k=5.0": 2,
+  "Orbitrap|k=4.0": 126,
+  "Orbitrap|k=5.0": 834,
+  "Orbitrap|k=6.0": 3119,
+  "Orbitrap|k=7.0": 80,
+  "Orbitrap|k=8.0": 100,
+  "Orbitrap|k=9.0": 115,
+  "Orbitrap|k=10.0": 2,
+  "Orbitrap|k=12.0": 1,
+  "Orbitrap|k=nan": 371,
+  "QTOF|k=1.0": 20,
+  "QTOF|k=2.0": 18,
+  "QTOF|k=7.0": 2
+ },
+ "long_repr_ulp_distance_rows": {
+  "ulps=1.0": 4346,
+  "ulps=2.0": 62,
+  "ulps=3.0": 11,
+  "ulps=nan": 371
+ },
+ "headline": {
+  "<NA>": {
+   "n_nonmissing": 39,
+   "n_integer": 30,
+   "n_non_integer": 9,
+   "decimals": {
+    "0": 30,
+    "4": 2,
+    "5": 3,
+    "6": 2,
+    "15": 2
+   },
+   "n_unique_values": 16,
+   "top10_values": {
+    "15": 11,
+    "25": 6,
+    "28": 6,
+    "6": 3,
+    "35": 2,
+    "29.37874": 1,
+    "34.4466": 1,
+    "19.56468": 1,
+    "15.157965": 1,
+    "8.7554": 1
+   },
+   "near_int_d2_all": 9,
+   "near_int_d1_all": 14,
+   "near_int_tight_all": 9,
+   "near_int_tight_non_integer": 9,
+   "near_int_tight_integer": 0,
+   "near_int_own_non_integer": 9,
+   "chance_own_expected_non_integer": 0.000511766599317785,
+   "non_integer_simulation_challenge": 0,
+   "near_int_d2_non_integer": 9,
+   "near_int_d2_integer": 0,
+   "chance_d2_expected_non_integer": 0.16779673596167957,
+   "chance_d2_expected_integer": 0.7163865300709163,
+   "ce_integer_in_msnlib_audit_set": 12
+  },
+  "Orbitrap": {
+   "n_nonmissing": 82998,
+   "n_integer": 58860,
+   "n_non_integer": 24138,
+   "decimals": {
+    "0": 58860,
+    "2": 3,
+    "3": 76,
+    "4": 489,
+    "5": 4468,
+    "6": 13532,
+    "7": 183,
+    "8": 254,
+    "9": 364,
+    "10": 9,
+    "11": 2,
+    "12": 10,
+    "13": 139,
+    "14": 1477,
+    "15": 3067,
+    "16": 65
+   },
+   "n_unique_values": 9999,
+   "top10_values": {
+    "60": 15272,
+    "20": 12571,
+    "30": 8572,
+    "45": 6513,
+    "15": 5638,
+    "75": 2226,
+    "35": 2167,
+    "90": 2106,
+    "55": 755,
+    "65": 619
+   },
+   "near_int_d2_all": 25095,
+   "near_int_d1_all": 33530,
+   "near_int_tight_all": 24109,
+   "near_int_tight_non_integer": 24104,
+   "near_int_tight_integer": 5,
+   "near_int_own_non_integer": 24104,
+   "chance_own_expected_non_integer": 0.40609343679719223,
+   "non_integer_simulation_challenge": 23928,
+   "near_int_d2_non_integer": 24106,
+   "near_int_d2_integer": 989,
+   "chance_d2_expected_non_integer": 471.4139852600982,
+   "chance_d2_expected_integer": 914.9627853183928,
+   "ce_integer_in_msnlib_audit_set": 50792
+  },
+  "QTOF": {
+   "n_nonmissing": 38709,
+   "n_integer": 37348,
+   "n_non_integer": 1361,
+   "decimals": {
+    "0": 37348,
+    "1": 847,
+    "2": 452,
+    "5": 9,
+    "6": 3,
+    "7": 10,
+    "14": 2,
+    "15": 38
+   },
+   "n_unique_values": 233,
+   "top10_values": {
+    "10": 7055,
+    "40": 6275,
+    "20": 5935,
+    "6": 4339,
+    "30": 4207,
+    "50": 3071,
+    "60": 743,
+    "70": 618,
+    "80": 580,
+    "35": 565
+   },
+   "near_int_d2_all": 917,
+   "near_int_d1_all": 7313,
+   "near_int_tight_all": 198,
+   "near_int_tight_non_integer": 8,
+   "near_int_tight_integer": 190,
+   "near_int_own_non_integer": 187,
+   "chance_own_expected_non_integer": 182.570677798626,
+   "non_integer_simulation_challenge": 1361,
+   "near_int_d2_non_integer": 30,
+   "near_int_d2_integer": 887,
+   "chance_d2_expected_non_integer": 26.95815916133961,
+   "chance_d2_expected_integer": 687.6164679756962,
+   "ce_integer_in_msnlib_audit_set": 11120
+  },
+  "ce_missing_by_instrument": {
+   "<NA>": 5184,
+   "Orbitrap": 89060,
+   "QTOF": 15114
+  }
+ }
+}

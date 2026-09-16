@@ -1,0 +1,63 @@
+{
+ "candidate": "C01 MassBank Europe Eawag EQ HCD NCE ladders first released after MassBank 2023.11 (releases 2024.06, 2024.11, 2025.10, plus unreleased dev PR #398)",
+ "task": "S1 metadata-only overlap and feasibility screen",
+ "date_utc": "2026-09-15",
+ "verdict": "SUITABLE_DESIGN_A",
+ "method": {
+  "record_universe": "git trees of MassBank/MassBank-data (blobless bare clone, dev=befc8a1e2f2aef899747797c081a5d80fab12fe7, tag 2025.10=fd8fb15e44035c53c9d937307c04ba62ebec606d) for Eawag/MSBNK-Eawag-EQ*.txt at tags 2023.09, 2023.11, 2024.06, 2024.11, 2025.05.1, 2025.10, 2026.03 and dev; 12,185 record paths, 5,051 first appearing after 2023.11",
+  "record_metadata": "GitHub code-search text-match fragments, header lines only; PK$ and every non-header line discarded in memory and never written (0 peak-like lines in the stored files). Index blob sha equals the dev tree blob for all 5,051 records; blob at tag 2025.10 equals blob at dev for all 4,381 tagged-release records, so the CE strings read are the 2025.10 content.",
+  "identity": "MURU parent_connectivity_key and scaffold_group_v2 recomputed with scripts/ce_interface_adjudication/scaffold_key.py (rdkit 2026.03.5); overlap tested on both the recorded InChIKey first block and the MURU parent key",
+  "tautomer_recheck": "step 4 adds a canonical-tautomer key and a formula-constrained heavy-atom skeleton key against MassSpecGym 1.5, the MURU development population, the PR #7 population and the comparator common population"
+ },
+ "counts": {
+  "records_first_released_after_2023_11": 5051,
+  "records_MH_positive_MS2_HCD_LC-ESI-QFT_single_nominal_percent": 3295,
+  "records_MminusH_negative": 1756,
+  "compounds_MH": 415,
+  "compounds_MH_with_at_least_3_NCE": 403,
+  "compounds_in_massspecgym15_any_route": 256,
+  "compounds_in_mspred_msg_simulation_labels": 237,
+  "compounds_in_muru_exposure_registry": 233,
+  "compounds_in_pr7_population": 0,
+  "compounds_in_comparator_common_population": 0,
+  "tiers_all_releases_including_dev_after_tautomer_recheck": {
+   "clean_compound_level": {"compounds": 111, "scaffold_groups": 76, "records": 897},
+   "clean_primary_scaffold_new_vs_dev_pop_pr7_comparator": {"compounds": 58, "scaffold_groups": 57, "records": 475},
+   "clean_conservative_scaffold_new_vs_full_registry": {"compounds": 44, "scaffold_groups": 44, "records": 361},
+   "clean_strict_scaffold_also_unseen_in_massspecgym": {"compounds": 41, "scaffold_groups": 41, "records": 339}
+  },
+  "tiers_tagged_releases_only_after_tautomer_recheck": {
+   "clean_compound_level": {"compounds": 86, "scaffold_groups": 59},
+   "clean_primary": {"compounds": 46, "scaffold_groups": 45},
+   "clean_conservative": {"compounds": 33, "scaffold_groups": 33},
+   "clean_strict": {"compounds": 31, "scaffold_groups": 31}
+  }
+ },
+ "criteria": {
+  "1_absent_from_MURU_development": "MET for the clean tiers. 233 of 403 candidate compounds are in the MURU exposure registry (110 in the 1,325-compound v2 development population); they are removed. Scaffold-group novelty is a separate tier: 243 of 403 share a development-population scaffold group and 334 share a registry scaffold group.",
+  "2_absent_from_PR7_confirmation_population": "MET. 0 of 403 compounds and 0 scaffold groups are in the 1,794-compound MSnLib confirmation study 2 population; no tautomer or skeleton hit either.",
+  "3_absent_from_comparator_benchmark_population": "MET. 0 of 403 compounds and 0 scaffold groups are in the 1,327-compound comparator common population; no tautomer or skeleton hit either.",
+  "4_absent_from_ICEBERG_GLACIER_training": "MET after exclusion, with one demonstrated tautomer leak removed. 256 of 403 compounds are in MassSpecGym 1.5 (all folds) by recorded or parent key, 237 in the ms-pred msg_simulation labels. One further compound (clethodim, new key PHXHZCIAPNNPTQ) is in MassSpecGym as the enol tautomer IOYNQIMAUDJVEI and is only caught by the canonical-tautomer key.",
+  "5_known_CE_semantics": "MET. Every one of the 5,051 records carries a single-valued AC$MASS_SPECTROMETRY: COLLISION_ENERGY of the form 'N % (nominal)'. The MassBank record format documentation gives '10% (nominal)' as the CE example, and the RMassBank configuration that generates Eawag records writes ce: '35 % (nominal)' for a scan commented 'CID 35% NCE', i.e. the quantity is the instrument normalized collision energy setting in percent. These records are not in MassSpecGym, so the MassSpecGym convention (NCE*precursor_mz/500 for %-strings) is a documented convention applied downstream, not a property of the source.",
+  "6_MH_positive_available": "MET. 3,295 [M+H]+ positive MS2 records; every screened compound is defined on [M+H]+ records.",
+  "7_fragmentation_instrument_compatibility": "MET. All 3,295 [M+H]+ records are FRAGMENTATION_MODE HCD, MS_TYPE MS2, AC$INSTRUMENT_TYPE LC-ESI-QFT on Orbitrap platforms (Exploris 240 under two spellings, Q Exactive Plus, Q Exactive), resolution 15,000 or 17,500. ms-pred maps QFT to the single Orbitrap token (instrument2onehot_pos in src/ms_pred/common/chem_utils.py:277-283); the ms-pred msg labels use only Orbitrap and QTOF. Not compatible and not present: QTOF, ion-trap CID (IT-FT), stepped or assisted multi-energy scans. Negative-mode records (1,756) are out of MURU scope.",
+  "8_multiple_energies_per_compound": "MET. 403 of 415 compounds have at least 3 distinct NCE values; the dominant ladder is 15,30,45,60,75,90,120,150,180 (67 of the 111 compound-level clean compounds). Within MURU's 15-90 window the median compound has 6 rungs; NCE 60 is present for 108 of 111, NCE 20 for only 5.",
+  "9_structural_diversity_after_exclusions": "58 compounds in 57 scaffold groups (42 Butina clusters at Morgan2 Tanimoto distance 0.6) at the primary tier; 44/44 conservative; 41/41 strict. All are authentic standard compounds (CONFIDENCE 'standard compound'), 0 non-CHNOPS-halogen elements, precursor m/z median 397, 18 at or above 500, max 784.5, all inside the MURU development [M+H]+ range 70.0-1,042.6.",
+  "10_license_and_access": "MET. Every clean compound's records carry LICENSE: CC BY-SA (an allowed MassBank value; COPYRIGHT (C) Eawag 2022-2026). Public access: GitHub MassBank/MassBank-data (default branch dev; the API reports no repository-level license file), released versions via Zenodo doi 10.5281/zenodo.3378723 and MassBank Europe. Share-alike applies to redistribution of derived record collections.",
+  "11_hidden_massspecgym_inclusion_plausibility": "PARTIAL. Release timing argues against it: the earliest of these records was merged to dev on 2024-06-04 (PR #258) and released 2024-06-05, after MassSpecGym's source download (notebook 1 says 13/05/2024, paper says 27/05/2024) of MassBank release 2023.11. But re-deposition of an older Eawag compound under a changed structural representation is real and was observed: 27 candidate compounds reuse an Eawag UCHEM id that already had pre-2023.11 records; 26 are already excluded as MassSpecGym compounds, and the 27th (UCHEM 3178) has pre-2023.11 records whose InChIKey is IOYNQIMAUDJVEI while the new records use PHXHZCIAPNNPTQ, the same substance in a different tautomeric form (Morgan Tanimoto between them is only 0.54). It is excluded here. After that exclusion no remaining clean compound shares an Eawag UCHEM id with a pre-2023.11 record. Residual, unresolvable with metadata only: Eawag spectra reaching MoNA or GNPS by another route, and re-representations that neither the canonical-tautomer key nor the formula-constrained skeleton key unifies."
+ },
+ "recommended_evaluation_set": {
+  "definition": "compounds with at least 3 distinct NCE values, [M+H]+, HCD, LC-ESI-QFT, first released after MassBank 2023.11; excluded if the compound key (recorded or MURU parent), its canonical tautomer key, or its formula-constrained skeleton key is in MassSpecGym 1.5 (any fold), the ms-pred msg_simulation labels, the MURU exposure registry, the PR #7 population or the comparator common population; and, at the primary tier, if its scaffold group is in the MURU development population, the PR #7 population or the comparator population",
+  "primary_tier": {"compounds": 58, "scaffold_groups": 57, "records": 475},
+  "tagged_releases_only": {"compounds": 46, "scaffold_groups": 45}
+ },
+ "artifacts": {
+  "record_metadata": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_record_metadata.csv.gz",
+  "compound_screen": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_compound_screen.csv",
+  "screen_summary": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_screen_summary.json",
+  "tautomer_recheck": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_tautomer_recheck.csv",
+  "tautomer_recheck_summary": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_tautomer_recheck.json",
+  "tree_blobs": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/eawag_eq_tree_blobs.csv",
+  "shared_uchem_ids": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_shared_uchem_id_pre_2023_11_records.csv"
+ }
+}

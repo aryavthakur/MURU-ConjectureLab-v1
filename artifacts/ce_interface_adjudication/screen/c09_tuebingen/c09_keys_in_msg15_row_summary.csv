@@ -1,0 +1,99 @@
+k,n_rows,first_identifier,instruments,adducts,folds,sim_rows,ce_nonnull_rows,tuebingen_name
+AJLFOPYRIVGYMJ,32,865,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,15,15,Compactin
+ATDWJOOPFDQZNK,12,168094,NA;Orbitrap;QTOF,[M+H]+,train,9,10,N-Acetyl-tyramine
+AUVVAXYIELKVAI,102,95632,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,29,29,Emetine
+BBMULGJBVDDDNI,24,185673,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,test,9,18,Lasalocid
+BJPYMDSMDBCKEP,4,196245,NA;Orbitrap;QTOF,[M+H]+,val,2,2,Chrysomycin B
+BTHUUTBVHUBHNR,2,189824,NA;Orbitrap,[M+H]+,test,0,0,Ferrirubin
+BWNCKEBBYADFPQ,5,86608,Orbitrap,[M+H]+,train,5,5,(R)-Semivioxanthin
+BYWWNDLILWPPJP,2,162717,NA;QTOF,[M+H]+,train,0,0,Albocycline
+CEIZFXOZIQNICU,14,566,NA;Orbitrap;QTOF,[M+H]+,train,12,12,Tenuazonic acid
+CKZNKYSWWCSICZ,4,160472,Orbitrap;QTOF,[M+Na]+,test,0,4,Sakyomicin A
+CPRXVUOMCYXPHA,1,163603,QTOF,[M+H]+,val,0,0,WS 5995C
+DGMPVYSXXIOGJY,35,1414,NA;Orbitrap;QTOF,[M+H]+,train,30,30,Fusaric acid
+DJZCTUVALDDONK,2,184869,NA;Orbitrap,[M+Na]+,val,0,0,Concanamycin A
+FBOZXECLQNJBKD,68,29257,NA;Orbitrap;QTOF,[M+H]+,train,59,59,Amethopterin
+FHIREUBIEIPPMC,46,193813,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,0,0,Strophanthin
+FJAQNRBDVKIIKK,1,399118,QTOF,[M+H]+,val,0,0,Chlorobiocin
+FPNKCZKRICBAKG,8,125,Orbitrap,[M+H]+,train,7,7,Rubrofusarin
+FUSNMLFNXJSCDI,45,53933,NA;Orbitrap;QTOF,[M+H]+,train,43,43,Naphthiomate T
+GHXZHWYUSAWISC,1,397609,QTOF,[M+H]+,train,0,0,Ikarugamycin
+GJSSYQDXZLZOLR,14,79,Orbitrap,[M+H]+,train,14,14,Fumigaclavine A
+GOLXRNDWAUTYKT,32,174016,NA;Orbitrap;QTOF,[M+H]+,train,10,10,Indole-3-propionic acid
+GQKXCBCSVYJUMI,7,158732,Orbitrap;QTOF,[M+H]+;[M+Na]+,train,6,7,Aureothin
+HBUNPJGMNVQSBX,2,188658,NA;Orbitrap,[M+H]+,test,0,0,Holomycin
+HIYAVKIYRIFSCZ,7,189698,Orbitrap;QTOF,[M+H]+;[M+Na]+,val,3,3,Calcimycin
+HIYSWASSDOXZLC,1,396673,QTOF,[M+H]+,train,0,0,Undecylprodigiosin HCl
+HMSYAPGFKGSXAJ,3,192388,Orbitrap,[M+H]+,val,3,3,Kirromycin
+HWMMWMJBUOCCFZ,2,193414,NA;QTOF,[M+H]+,train,0,0,Decarestrictine D
+HWSQVPGTQUYLEQ,10,586,Orbitrap,[M+H]+,test,10,10,Chaetoviridin A
+IAIWBAHUWORDTI,2,184886,NA;Orbitrap,[M+H]+,train,0,0,Thaxtomin C
+IYRMWMYZSQPJKC,77,64151,NA;Orbitrap;QTOF,[M+H]+,train,63,63,Kaempferol
+IZSWILLJDXDGDJ,2,168633,NA;QTOF,[M+H]+,train,0,0,Obscurolide A1
+JGQBYBXYRUCBQY,2,163010,NA;QTOF,[M+H]+,test,0,0,Cephalochromin
+JJOLHRYZQSDLSA,9,168738,NA;Orbitrap;QTOF,[M+H]+,train,5,5,Rabelomycin
+KALVKBCVJGXOKE,5,168130,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,3,3,Elmycin B
+KMZYINVXZDQCKC,6,86614,Orbitrap,[M+H]+,train,6,6,Trypacidin
+KQNZDYYTLMIZCT,13,86240,Orbitrap;QTOF,[M+H]+,train,9,9,(+)-Brefeldin A
+KSEBMYQBYZTDHS,86,115290,Orbitrap;QTOF,[M+H]+,train,37,37,Ferulic acid
+KUFRQPKVAWMTJO,3,223717,Orbitrap,[M+H]+,train,3,3,17-DMAG
+LCSDQFNUYFTXMT,41,615,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,4,4,Alternariol monomethyl ether
+LKLNNJGYAYDANM,1,196888,QTOF,[M+H]+,test,0,0,Fridamycin B
+LOVVVDDAKZKPHZ,2,196840,NA;QTOF,[M+H]+,test,0,0,Fridamycin D
+LREZRXWUEZCZRU,4,149192,NA;QTOF,[M+H]+,train,2,2,Reticulol
+MBBOMCVGYCRMEA,30,86061,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,7,7,Tryptophol
+MBMQEIFVQACCCH,51,12,NA;Orbitrap;QTOF,[M+H]+,train,45,45,Zearalenone
+MEBQXILRKZHVCX,13,69891,Orbitrap;QTOF,[M+H]+,train,12,12,Methidathion
+MHMRAFONCSQAIA,2,188656,NA;Orbitrap,[M+H]+,test,0,0,Thiolutin
+MHOOPNKRBMHHEC,6,85975,Orbitrap,[M+H]+,train,6,6,Terrein
+MIZMDSVSLSIMSC,31,239,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,13,20,Enniatin-B
+MJKDGCARCYPVQG,1,200468,QTOF,[M+H]+,test,0,0,Resistomycin
+MRWXACSTFXYYMV,8,144990,Orbitrap;QTOF,[M+H]+,train,6,6,Nebularine
+NGOLMNWQNHWEKU,5,161105,NA;QTOF,[M+H]+,train,3,3,Butyrolactone I
+NGSWKAQJJWESNS,59,64934,NA;Orbitrap;QTOF,[M+H]+,train,32,32,p-Coumaric acid
+NPQKQKITPJTEBK,1,396670,QTOF,[M+H]+,train,0,0,Germicidin
+NPWKEUKXVOMELT,4,199416,NA;QTOF,[M+H]+;[M+Na]+,train,0,0,Antibiotic PF 1052
+NQRGNSMJSDQOED,6,86590,Orbitrap,[M+H]+,train,6,6,Eremofortin A
+NTAHMPNXQOYXSX,5,190108,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,val,3,3,Goldinodox
+OTGHTIDLDTWPFJ,3,163385,Orbitrap,[M+H]+,test,3,3,Hexacyclinic acid
+OUMWCYMRLMEZJH,23,403,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,test,16,20,Chaetoglobosin A
+OXZGFGFICRZIFY,6,86326,Orbitrap,[M+H]+,train,6,6,Eremofortin B
+OYFVPOABQXXDNO,3,162753,Orbitrap,[M+H]+,train,3,3,Desferrioxamine Et1
+PBTVAODWGBKPII,2,198001,NA;QTOF,[M+H]+,test,0,0,Galtamycinon
+PFTAWBLQPZVEMU,427,62913,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,117,117,Catechin
+PONPPNYZKHNPKZ,4,250651,Orbitrap,[M+Na]+,test,0,0,Chartreusin
+QJJXYPPXXYFBGM,25,71118,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,val,18,23,FK-506
+QRDNJYNIEGRRKV,7,184896,NA;Orbitrap,[M+H]+,train,0,0,Thaxtomin A
+RBQNDQOKFICJGL,23,149226,Orbitrap;QTOF,[M+H]+,train,10,10,Pyrenophorol [Helmidiol]
+RDBIYWSVMRVKSG,21,71179,Orbitrap,[M+H]+,train,21,21,Dimetilan
+RIZAHVBYKWUPHQ,10,1665,Orbitrap,[M+H]+,test,10,10,Chaetoglobosin C
+SEOVTRFCIGRIMH,92,35507,NA;Orbitrap;QTOF,[M+H]+,train,37,37,Indole-3-acetic acid
+SHLJIZCPRXXHHZ,2,188858,NA;Orbitrap,[M+H]+,train,0,0,Violacein
+SLYDIPAXCVVRNY,14,86351,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,1,4,Pseurotin A
+SPWSUFUPTSJWNG,29,764,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,21,27,Roquefortine C
+STQGQHZAVUOBTE,20,142479,Orbitrap;QTOF,[M+H]+;[M+Na]+,val,12,12,Daunomycin
+SXOPCLUOUFQBJV,4,183507,Orbitrap;QTOF,[M+H]+,train,2,2,3-Methoxyanthranilic acid
+SXTGVXKFOVZYIK,16,152691,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,8,9,Desferrioxamine D2
+SZBDLUWYHDLLAG,1,396669,QTOF,[M+H]+,train,0,0,Germicidin B
+TURXCFUGBPBPRS,4,152430,NA;QTOF,[M+H]+,train,1,1,Curvulin
+TZBJGXHYKVUXJN,321,24469,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,93,93,Genistein
+UCVBEULMPJTLLH,1,397611,QTOF,[M+H]+,train,0,0,Aeruginoic acid
+UGEKKXLEYACFTD,2,185573,NA;Orbitrap,[M+H]+,train,0,0,Tetrangomycin
+UIFFUZWRFRDZJC,8,246719,Orbitrap,[M+H]+;[M+Na]+,train,0,0,Antimycin A
+UTSVPXMQSFGQTM,43,2032,Orbitrap;QTOF,[M+H]+,train,38,38,Sterigmatocystin
+UZQBOFAUUTZOQE,4,193794,NA;Orbitrap;QTOF,[M+H]+,val,2,2,Pikromycin
+VCBNPTWPJQLHQN,1,395974,QTOF,[M+Na]+,val,0,0,Enhydrin
+VSWWTKVILIZDGX,10,1472,NA;Orbitrap,[M+H]+,test,8,8,Aurofusarin
+VVRUNWFPOWIBDY,2,397684,QTOF,[M+H]+,train,0,0,5-Methoxysterigmatocystin
+WGPOPPKSQRZUTP,5,196057,NA;Orbitrap;QTOF,[M+H]+,train,3,3,Averantin
+WICHONPZVIYWIJ,3,86261,Orbitrap,[M+H]+,val,3,3,Xanthomegnin
+XDHNQDDQEHDUTM,2,192516,NA;QTOF,[M+Na]+,test,0,0,Bafilomycin A1
+XJSFLOJWULLJQS,21,54826,Orbitrap;QTOF,[M+H]+;[M+Na]+,train,17,17,"""Leukomycin A3, Josamycin"""
+XZLGWJORNHETKI,6,168749,NA;Orbitrap;QTOF,[M+H]+,train,2,2,MM 47755
+YEUGMACLLZSLDG,16,185137,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,3,4,Desferrioxamine-X1
+YJQPYGGHQPGBLI,19,18225,Orbitrap;QTOF,[M+H]+;[M+Na]+,train,11,11,Novobiocin
+YLCJNMGKCHGJRF,1,164862,Orbitrap,[M+Na]+,train,0,1,5-O-Methylsulochrin
+YZMCKZRAOLZXAZ,3,232089,Orbitrap,[M+H]+,train,3,3,Elkosin
+ZCOLJUOHXJRHDI,52,95791,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,10,11,Genistin
+ZQSIJRDFPHDXIC,273,31212,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,123,123,Daidzein
+ZRZWBWPDBOVIGQ,6,185245,NA;Orbitrap;QTOF,[M+H]+;[M+Na]+,train,2,2,Chetomin

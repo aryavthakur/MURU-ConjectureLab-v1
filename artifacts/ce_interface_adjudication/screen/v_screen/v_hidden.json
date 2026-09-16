@@ -1,0 +1,54 @@
+{
+ "msg_unique_smiles": 31602,
+ "msg_taut_keys": 28909,
+ "msg_skel_keys": 29396,
+ "extra_sizes": {
+  "muru_dev_pop": {
+   "n_smiles": 1325,
+   "taut": 1325,
+   "skel": 1317
+  },
+  "pr7": {
+   "n_smiles": 1794,
+   "taut": 1794,
+   "skel": 1794
+  },
+  "comparator": {
+   "n_smiles": 1327,
+   "taut": 1327,
+   "skel": 1327
+  }
+ },
+ "survivors_key_clean": 112,
+ "survivors_flagged_by_taut_or_skel": 1,
+ "flagged": [
+  {
+   "key": "PHXHZCIAPNNPTQ",
+   "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+   "taut_in_msg": true,
+   "skel_in_msg": true,
+   "taut_in_dev": false,
+   "skel_in_dev": false,
+   "taut_in_pr7": false,
+   "taut_in_cmp": false,
+   "msg_nn_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O",
+   "msg_same_formula_max_tanimoto": 0.5424
+  }
+ ],
+ "max_same_formula_tanimoto_over_survivors": 0.6154,
+ "n_survivors_with_same_formula_msg_structure": 51,
+ "n_survivors_tanimoto_ge_0.7": 0,
+ "n_survivors_tanimoto_ge_0.5": 3,
+ "survivors_in_msnlib9": 1,
+ "my_tiers_after_step4": {
+  "compound_level": 111,
+  "primary": 58,
+  "primary_groups": 57,
+  "conservative": 44,
+  "conservative_groups": 44,
+  "strict": 41,
+  "strict_groups": 41,
+  "msnlib9_in_primary": 0,
+  "msnlib9_in_conservative": 0
+ }
+}

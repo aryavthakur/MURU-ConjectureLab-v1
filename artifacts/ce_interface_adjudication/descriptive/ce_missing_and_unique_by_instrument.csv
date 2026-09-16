@@ -1,0 +1,4 @@
+instrument_type,n_rows,n_ce_missing,n_unique_ce
+<NA>,5223,5184,16
+Orbitrap,172058,89060,9999
+QTOF,53823,15114,233

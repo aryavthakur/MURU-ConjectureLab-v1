@@ -1,0 +1,27 @@
+AAFC 1 total 914 items 100 incomplete False
+AAFC 2 total 914 items 100 incomplete False
+error AAFC 3 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID E66A:33E661:426B021:DC5F7D3:6AA8BDA1 and timestamp 2026-09-15 03:38:09 UTC
+error Eawag 1 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID E844:2DD870:4529D33:E485FE9:6AA8BDB6 and timestamp 2026-09-15 03:38:30 UTC
+Eawag 2 total 22336 items 100 incomplete False
+Eawag 3 total 22336 items 100 incomplete False
+Eawag_Additional_Specs 1 total 936 items 100 incomplete False
+Eawag_Additional_Specs 2 total 936 items 100 incomplete False
+error Eawag_Additional_Specs 3 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID ED47:145155:45B6C48:E65A66B:6AA8BDE8 and timestamp 2026-09-15 03:39:21 UTC
+error HBM4EU 1 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID EF22:1A9BF9:41700E6:D8C6EFF:6AA8BDFD and timestamp 2026-09-15 03:39:41 UTC
+HBM4EU 2 total 3784 items 100 incomplete False
+HBM4EU 3 total 3784 items 100 incomplete False
+NaToxAq 1 total 3392 items 100 incomplete False
+NaToxAq 2 total 3392 items 100 incomplete False
+NaToxAq 3 total 3392 items 100 incomplete False
+error UFZ 1 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID F474:289CFD:4922AE:F3515F:6AA8BE37 and timestamp 2026-09-15 03:40:39 UTC. 
+error UFZ 2 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID F644:23A989:49BBF5:F4F611:6AA8BE4B and timestamp 2026-09-15 03:41:00 UTC. 
+UFZ 3 total 2968 items 100 incomplete False
+kept 1200
+--- supplementary run (missing pages) 2026-09-15T03:42:14Z
+error UFZ 1 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID FDAF:2DD870:4560CB3:E53CD73:6AA8BE96 and timestamp 2026-09-15 03:42:14 UTC
+UFZ 2 total 2968 items 100 incomplete False
+Eawag 1 total 22336 items 100 incomplete False
+AAFC 3 total 914 items 100 incomplete False
+Eawag_Additional_Specs 3 total 936 items 100 incomplete False
+error HBM4EU 1 gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID C6C0:1F994A:4E1B7B:1039E46:6AA8BED4 and timestamp 2026-09-15 03:43:16 UTC.
+kept 400

@@ -1,0 +1,132 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c06_pharmmet_b.py",
+ "rdkit": "2026.03.5",
+ "generated_utc": "2026-09-15T22:53:35.137196+00:00",
+ "suppl_table": {
+  "member": "mmc1.xlsx",
+  "rows": 12,
+  "columns": [
+   "Supplemental Table 1. Summary of drug classes of 1,114 therapeutic drugs in PharmMet DB",
+   "Unnamed: 1",
+   "Unnamed: 2",
+   "Unnamed: 3"
+  ],
+  "head": [
+   {
+    "Supplemental Table 1. Summary of drug classes of 1,114 therapeutic drugs in PharmMet DB": "Groups",
+    "Unnamed: 1": "Drug class (count)",
+    "Unnamed: 2": "Counts",
+    "Unnamed: 3": NaN
+   },
+   {
+    "Supplemental Table 1. Summary of drug classes of 1,114 therapeutic drugs in PharmMet DB": NaN,
+    "Unnamed: 1": NaN,
+    "Unnamed: 2": "Total",
+    "Unnamed: 3": "Percentage (%)"
+   },
+   {
+    "Supplemental Table 1. Summary of drug classes of 1,114 therapeutic drugs in PharmMet DB": "Antimicrobial",
+    "Unnamed: 1": "Antibiotic(83), Antibacterial(63), Antiviral(29), Anthelmintic(20), Antimalarial(14), Antiprotozoal(12), Antibacterial(5), Coccidiostat(5), Analgesic(2), Antiamebic(2), Antimicrobial(2), Ectoparasiticide(2), Amoebicide(1), Anthelmitic(1), Antiameobic(1), Anticholinergic(1), Antineoplastic(1), Antiparkinsonian(1), Antipneumocystic(1), Antiprotozoal As Aceturate(1), Antischistosomal(1), Antiseptic(1), Antiviral (Opthalmic)(1), B-Lactamase Inhibitor(1), Beta-Lactamase Inhibitor(1), Dopamine Agonist(1), Dopamine Receptor Agonist(1), Folate Metabolic Inhibitor(1), Mucolytic(1), Progestin(1), Prolactin Inhibitor(1), Schistosomicide(1)",
+    "Unnamed: 2": "256",
+    "Unnamed: 3": "23"
+   }
+  ],
+  "name_column": "Supplemental Table 1. Summary of drug classes of 1,114 therapeutic drugs in PharmMet DB",
+  "unique_names": 11,
+  "db_precursor_names_in_suppl": 0,
+  "n_suppl_names_not_in_db_precursor_block": 11,
+  "suppl_names_not_in_db_precursor_block": [
+   "anti-inflammatory and immunomodulatory",
+   "antimicrobial",
+   "cardiovascular",
+   "central nervous system",
+   "endocrine and metabolic",
+   "gastrointestinal",
+   "groups",
+   "hematological",
+   "musculoskeletal",
+   "others",
+   "respiratory"
+  ],
+  "n_suppl_names_with_deposited_files_by_name": 0
+ },
+ "missing_precursors": {
+  "n": 40,
+  "resolved": 39,
+  "unresolved_names": [
+   "Gallamine triethyl"
+  ],
+  "with_hilicpos_0hr_raw": 40,
+  "absent_from_msg15_both_routes": 12,
+  "also_absent_from_MURU_exposed_pops_PR7_comparator_keys_and_groups": 8,
+  "and_neutral_MH_in_100_1000_with_hilicpos_0hr_raw": 5,
+  "added_names": [
+   "Mechlorethamine",
+   "Phensuximide",
+   "Pipobroman",
+   "Prulifloxacin",
+   "Trichlormethine"
+  ],
+  "added_keys": [
+   "FDAYLTPAFBGXAB",
+   "HAWPXGHAZFHHAD",
+   "NJBFOOCLYDNZJN",
+   "PWNMXPDKBYZCOO",
+   "WLWFNJKHKGIJNW"
+  ],
+  "added_scaffold_groups": [
+   "C1CNCCN1",
+   "O=C1CC(c2ccccc2)C(=O)N1",
+   "O=c1occ(CN2CCN(c3ccc4c(=O)cc5n(c4c3)CS5)CC2)o1",
+   "__ACYCLIC__FDAYLTPAFBGXAB",
+   "__ACYCLIC__HAWPXGHAZFHHAD"
+  ],
+  "added_groups_already_present_in_db_precursor_block": [
+   "O=C1CC(c2ccccc2)C(=O)N1"
+  ],
+  "also_in_msnlib_9lib": 4,
+  "also_in_muru_full_registry": 4,
+  "all_names": [
+   "Benfotiamine",
+   "Bromhexine",
+   "Clidinium",
+   "Dipyrocetyl",
+   "Docosanol",
+   "Ergocalciferol",
+   "Furazolidone",
+   "Furosemide",
+   "Gallamine triethyl",
+   "Gemfibrozil",
+   "Gentamicin",
+   "Histamine",
+   "Hydrochlorothiazide",
+   "Hydrocortisone 21-hemisuccinate",
+   "Hydrocortisone acetate",
+   "Ibuprofen",
+   "Imipramine",
+   "Indomethacin",
+   "Isoconazole",
+   "Isoniazid",
+   "Isoproterenol",
+   "Isoxsuprine",
+   "Linagliptin",
+   "Mechlorethamine",
+   "Meclizine",
+   "Methylhomatropine",
+   "Nilvadipine",
+   "Nithiamide",
+   "Pentolinium",
+   "Perindopril",
+   "Phensuximide",
+   "Phenylalanine",
+   "Pipobroman",
+   "Prasterone acetate",
+   "Prulifloxacin",
+   "Ramipril",
+   "Semustine",
+   "Sitagliptin",
+   "Tizanidine",
+   "Trichlormethine"
+  ]
+ }
+}

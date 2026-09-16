@@ -1,0 +1,9 @@
+instrument_type,simulation_challenge,ce_missing,n_rows,n_unique_inchikey
+<NA>,False,False,39,35
+<NA>,False,True,5184,3891
+Orbitrap,False,False,1675,658
+Orbitrap,False,True,89060,9229
+Orbitrap,True,False,81323,15150
+QTOF,False,False,1003,431
+QTOF,False,True,15114,9595
+QTOF,True,False,37706,4274

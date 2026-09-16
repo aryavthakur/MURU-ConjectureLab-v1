@@ -1,0 +1,683 @@
+{
+ "task": "S10-C10-verify",
+ "written_utc": "2026-09-15T23:08:02.408589+00:00",
+ "rdkit": "2026.03.5",
+ "checks": {
+  "records_table": {
+   "file": "c10_records_identity.csv",
+   "sha256": "900e10adec548477518b8e85fb67200b1bd25effe0c430efcb85c9a159b5ff42",
+   "rows": 20658,
+   "distinct_accessions": 20658,
+   "ion_mode": {
+    "POSITIVE": 15495,
+    "NEGATIVE": 5163
+   },
+   "title_instrument_type": {
+    "LC-ESI-QTOF": 20658
+   },
+   "ce_unit": {
+    "V": 20658
+   },
+   "in_tree_2023_11": 19783,
+   "post_2023_11": 875,
+   "license": {
+    "https://www.govdata.de/dl-de/by-2-0": 20658
+   }
+  },
+  "title_ce_tail": {
+   "pattern_number_space_V": 20658,
+   "examples": [
+    "110 V",
+    "30 V",
+    "50 V",
+    "130 V",
+    "20 V"
+   ],
+   "distinct_units_in_tail": [
+    "V"
+   ]
+  },
+  "key_recomputation": {
+   "distinct_smiles": 1178,
+   "rows_key_agree_with_first_pass": 20658,
+   "rows_scaffold_agree_with_first_pass": 20658,
+   "rows": 20658,
+   "keys_recomputed_distinct": 1173,
+   "null_keys": 0
+  },
+  "positive_compounds": {
+   "keys": 1070,
+   "records": 15495,
+   "scaffold_groups": 525,
+   "keys_ge_2_ce": 1038,
+   "keys_ge_10_ce": 912,
+   "keys_full_15_point_ladder": 795,
+   "median_n_distinct_ce": 15.0,
+   "keys_parent_charge_nonzero": 116
+  },
+  "negative_mode": {
+   "records": 5163,
+   "keys": 410,
+   "keys_also_positive": 307
+  },
+  "exclusion_set_sizes": {
+   "msg15_all": 28929,
+   "msg15_parent_all": 28923,
+   "msg15_train": 22746,
+   "msg15_simchallenge_all": 16974,
+   "muru_registry": 31507,
+   "muru_exposed_union": 33301,
+   "pr7": 1794,
+   "comparator": 1327,
+   "msnlib_9lib": 53612,
+   "muru_exposed_populations": 1912
+  },
+  "exclusion_sg_set_sizes": {
+   "msg15": 16991,
+   "muru_registry": 18402,
+   "pr7": 1691,
+   "comparator": 1254
+  },
+  "overlap_positive": {
+   "positive_keys": 1070,
+   "in_msg15_any_route": 911,
+   "in_msg15_recorded_all": 910,
+   "in_msg15_train": 830,
+   "in_msg15_simulation_challenge": 901,
+   "in_muru_registry": 571,
+   "in_muru_exposed_populations": 366,
+   "in_muru_exposed_union": 571,
+   "in_pr7": 0,
+   "in_comparator": 0,
+   "in_msnlib_9lib": 410
+  },
+  "overlap_positive_scaffold": {
+   "positive_scaffold_groups": 525,
+   "sg_in_msg15": 441,
+   "sg_in_muru_registry": 370,
+   "sg_in_pr7": 0,
+   "sg_in_comparator": 0
+  },
+  "exclusion_cascade": [
+   {
+    "label": "V0 all positive-mode BAFG compounds",
+    "keys": 1070,
+    "scaffold_groups": 525,
+    "records": 15495,
+    "keys_ge_2_ce": 1038,
+    "keys_ge_10_ce": 912,
+    "singleton_scaffold_groups": 401
+   },
+   {
+    "label": "V1 charge-neutral parent",
+    "keys": 954,
+    "scaffold_groups": 466,
+    "records": 13720,
+    "keys_ge_2_ce": 922,
+    "keys_ge_10_ce": 803,
+    "singleton_scaffold_groups": 349
+   },
+   {
+    "label": "V2 = V1 minus MassSpecGym 1.5 (all folds, either key route)",
+    "keys": 43,
+    "scaffold_groups": 32,
+    "records": 590,
+    "keys_ge_2_ce": 38,
+    "keys_ge_10_ce": 34,
+    "singleton_scaffold_groups": 30
+   },
+   {
+    "label": "V3 = V2 minus MURU exposure registry / exposed union (criteria 1-3 by key)",
+    "keys": 41,
+    "scaffold_groups": 30,
+    "records": 558,
+    "keys_ge_2_ce": 36,
+    "keys_ge_10_ce": 32,
+    "singleton_scaffold_groups": 28
+   },
+   {
+    "label": "V4 = V3 minus MURU/PR7/comparator scaffold groups",
+    "keys": 18,
+    "scaffold_groups": 18,
+    "records": 262,
+    "keys_ge_2_ce": 17,
+    "keys_ge_10_ce": 14,
+    "singleton_scaffold_groups": 18
+   },
+   {
+    "label": "V5 = V4 minus every MassSpecGym 1.5 scaffold group (strict)",
+    "keys": 16,
+    "scaffold_groups": 16,
+    "records": 221,
+    "keys_ge_2_ce": 15,
+    "keys_ge_10_ce": 13,
+    "singleton_scaffold_groups": 16
+   },
+   {
+    "label": "V6 = V4 with >=2 CE and [M+H]+ in 70-1042.6",
+    "keys": 17,
+    "scaffold_groups": 17,
+    "records": 261,
+    "keys_ge_2_ce": 17,
+    "keys_ge_10_ce": 14,
+    "singleton_scaffold_groups": 17
+   },
+   {
+    "label": "V7 = V5 with >=2 CE and [M+H]+ in 70-1042.6",
+    "keys": 15,
+    "scaffold_groups": 15,
+    "records": 220,
+    "keys_ge_2_ce": 15,
+    "keys_ge_10_ce": 13,
+    "singleton_scaffold_groups": 15
+   }
+  ],
+  "v6_keys": [
+   "BPMVRAQIQQEBLN",
+   "HDFFVHSMHLDSLO",
+   "HKJKONMZMPUGHJ",
+   "ILLQTAPXYCRJRB",
+   "IOJWAAXMYYMGMG",
+   "IOQPZZOEVPZRBK",
+   "JEFHGYSGNIFAEY",
+   "LAPRIVJANDLWOK",
+   "NIONDZDPPYHYKY",
+   "OMJKFYKNWZZKTK",
+   "OQANPHBRHBJGNZ",
+   "RDLZJCXTAYHYHX",
+   "UBGDIDXCMKJWND",
+   "UKNHQPDCWMADJW",
+   "WVLBCYQITXONBZ",
+   "XXQVCGHGQCAKKA",
+   "ZSSWXNPRLJLCDU"
+  ],
+  "v6_scaffold_groups": [
+   "C=C1C(=O)CCCC1=O",
+   "C=C1C=[NH+]c2ccccc2N1",
+   "N=C1C=NC=N1",
+   "O=C1C=CC(=NNc2ccc(S(=O)(=O)Nc3ccccn3)cc2)C=C1",
+   "O=C1C=CC=CC1=C1Nc2ccccc2N1",
+   "O=C1c2ccccc2C(=O)c2c(Nc3ccccc3)cccc21",
+   "O=P(Cc1ccccc1)(Cc1ccccc1)Cc1ccccc1",
+   "O=[PH](OCc1ccccc1)OCc1ccccc1",
+   "O=c1cc[nH]c(CSc2nc3ccccc3[nH]2)c1",
+   "O=c1ncnc2n(C3CCCO3)[nH]cc1-2",
+   "__ACYCLIC__IOQPZZOEVPZRBK",
+   "__ACYCLIC__LAPRIVJANDLWOK",
+   "__ACYCLIC__NIONDZDPPYHYKY",
+   "__ACYCLIC__WVLBCYQITXONBZ",
+   "__ACYCLIC__ZSSWXNPRLJLCDU",
+   "c1c[nH]ccc1",
+   "c1ccc(N=Nc2ccc3ccc(N=Nc4ccccc4)cc3c2)cc1"
+  ],
+  "header_fields": {
+   "ce_pre2023_CSL231": {
+    "query": "COLLISION_ENERGY repo:MassBank/MassBank-data path:BAFG filename:MSBNK-BAFG-CSL231",
+    "url": "https://api.github.com/search/code?q=COLLISION_ENERGY%20repo%3AMassBank/MassBank-data%20path%3ABAFG%20filename%3AMSBNK-BAFG-CSL231&per_page=5",
+    "total_count": 17472,
+    "incomplete_results": false,
+    "hits": [
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311096.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 50",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311095.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 70",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311097.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 120",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311093.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 40",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311094.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 20",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     }
+    ],
+    "dropped_peak_lines": 0
+   },
+   "ce_post2023_CSL250": {
+    "query": "COLLISION_ENERGY repo:MassBank/MassBank-data path:BAFG filename:MSBNK-BAFG-CSL250",
+    "url": "https://api.github.com/search/code?q=COLLISION_ENERGY%20repo%3AMassBank/MassBank-data%20path%3ABAFG%20filename%3AMSBNK-BAFG-CSL250&per_page=5",
+    "total_count": 808,
+    "incomplete_results": false,
+    "hits": [
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL25011727834.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE NEGATIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 50",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL25011734176.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 140",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL25011727849.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 40",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL25011734053.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE NEGATIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 140",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL25011727830.txt",
+      "fragments": [
+       [
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE NEGATIVE",
+        "AC$MASS_SPECTROMETRY: COLLISION_ENERGY 10",
+        "AC$MASS_SPECTROMETRY: FRAGMENTATION_MODE CID",
+        "AC$MASS_SPECTROMETRY: IONIZATION ESI",
+        "AC$CHROMATOGRAPHY: COLUMN_NAME Zorbax Eclipse Plus C18 2.1 mm x 150 mm, 3.5 um, Agilent"
+       ]
+      ]
+     }
+    ],
+    "dropped_peak_lines": 0
+   },
+   "record_title": {
+    "query": "RECORD_TITLE repo:MassBank/MassBank-data path:BAFG",
+    "url": "https://api.github.com/search/code?q=RECORD_TITLE%20repo%3AMassBank/MassBank-data%20path%3ABAFG&per_page=5",
+    "total_count": 18400,
+    "incomplete_results": false,
+    "hits": [
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311096.txt",
+      "fragments": [
+       [
+        "ACCESSION: MSBNK-BAFG-CSL2311096",
+        "RECORD_TITLE: (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 50 V",
+        "DATE: 2025.01.17",
+        "AUTHORS: Ole Lessmann; Kevin S. Jewell; Bj\u00f6rn Ehlig; Arne Wick",
+        "LICENSE: dl-de/by-2-0",
+        "COPYRIGHT: Copyright 2025 Federal Institute of Hydrology, Koblenz, Germany",
+        "COMMENT: CONFIDENCE Reference Standard (Level 1)"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311095.txt",
+      "fragments": [
+       [
+        "ACCESSION: MSBNK-BAFG-CSL2311095",
+        "RECORD_TITLE: (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 70 V",
+        "DATE: 2025.01.17",
+        "AUTHORS: Ole Lessmann; Kevin S. Jewell; Bj\u00f6rn Ehlig; Arne Wick",
+        "LICENSE: dl-de/by-2-0",
+        "COPYRIGHT: Copyright 2025 Federal Institute of Hydrology, Koblenz, Germany",
+        "COMMENT: CONFIDENCE Reference Standard (Level 1)"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311097.txt",
+      "fragments": [
+       [
+        "ACCESSION: MSBNK-BAFG-CSL2311097",
+        "RECORD_TITLE: (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 120 V",
+        "DATE: 2025.01.17",
+        "AUTHORS: Ole Lessmann; Kevin S. Jewell; Bj\u00f6rn Ehlig; Arne Wick",
+        "LICENSE: dl-de/by-2-0",
+        "COPYRIGHT: Copyright 2025 Federal Institute of Hydrology, Koblenz, Germany",
+        "COMMENT: CONFIDENCE Reference Standard (Level 1)"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311093.txt",
+      "fragments": [
+       [
+        "ACCESSION: MSBNK-BAFG-CSL2311093",
+        "RECORD_TITLE: (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 40 V",
+        "DATE: 2025.01.17",
+        "AUTHORS: Ole Lessmann; Kevin S. Jewell; Bj\u00f6rn Ehlig; Arne Wick",
+        "LICENSE: dl-de/by-2-0",
+        "COPYRIGHT: Copyright 2025 Federal Institute of Hydrology, Koblenz, Germany",
+        "COMMENT: CONFIDENCE Reference Standard (Level 1)"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311094.txt",
+      "fragments": [
+       [
+        "ACCESSION: MSBNK-BAFG-CSL2311094",
+        "RECORD_TITLE: (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 20 V",
+        "DATE: 2025.01.17",
+        "AUTHORS: Ole Lessmann; Kevin S. Jewell; Bj\u00f6rn Ehlig; Arne Wick",
+        "LICENSE: dl-de/by-2-0",
+        "COPYRIGHT: Copyright 2025 Federal Institute of Hydrology, Koblenz, Germany",
+        "COMMENT: CONFIDENCE Reference Standard (Level 1)"
+       ]
+      ]
+     }
+    ],
+    "dropped_peak_lines": 0
+   },
+   "instrument_line": {
+    "query": "\"AC$INSTRUMENT:\" repo:MassBank/MassBank-data path:BAFG",
+    "url": "https://api.github.com/search/code?q=%22AC%24INSTRUMENT%3A%22%20repo%3AMassBank/MassBank-data%20path%3ABAFG&per_page=5",
+    "total_count": 18400,
+    "incomplete_results": false,
+    "hits": [
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311096.txt",
+      "fragments": [
+       [
+        "CH$LINK: CAS 114622-57-0",
+        "CH$LINK: INCHIKEY FFBIRENCNBBTSF-UHFFFAOYSA-O",
+        "CH$LINK: ChemOnt CHEMONTID:0000331; Organic compounds; Lipids and lipid-like molecules; Fatty Acyls; Fatty amides",
+        "AC$INSTRUMENT: TripleTOF 5600 SCIEX",
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311095.txt",
+      "fragments": [
+       [
+        "CH$LINK: CAS 114622-57-0",
+        "CH$LINK: INCHIKEY FFBIRENCNBBTSF-UHFFFAOYSA-O",
+        "CH$LINK: ChemOnt CHEMONTID:0000331; Organic compounds; Lipids and lipid-like molecules; Fatty Acyls; Fatty amides",
+        "AC$INSTRUMENT: TripleTOF 5600 SCIEX",
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311097.txt",
+      "fragments": [
+       [
+        "CH$LINK: CAS 114622-57-0",
+        "CH$LINK: INCHIKEY FFBIRENCNBBTSF-UHFFFAOYSA-O",
+        "CH$LINK: ChemOnt CHEMONTID:0000331; Organic compounds; Lipids and lipid-like molecules; Fatty Acyls; Fatty amides",
+        "AC$INSTRUMENT: TripleTOF 5600 SCIEX",
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311093.txt",
+      "fragments": [
+       [
+        "CH$LINK: CAS 114622-57-0",
+        "CH$LINK: INCHIKEY FFBIRENCNBBTSF-UHFFFAOYSA-O",
+        "CH$LINK: ChemOnt CHEMONTID:0000331; Organic compounds; Lipids and lipid-like molecules; Fatty Acyls; Fatty amides",
+        "AC$INSTRUMENT: TripleTOF 5600 SCIEX",
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE"
+       ]
+      ]
+     },
+     {
+      "path": "BAFG/MSBNK-BAFG-CSL2311094.txt",
+      "fragments": [
+       [
+        "CH$LINK: CAS 114622-57-0",
+        "CH$LINK: INCHIKEY FFBIRENCNBBTSF-UHFFFAOYSA-O",
+        "CH$LINK: ChemOnt CHEMONTID:0000331; Organic compounds; Lipids and lipid-like molecules; Fatty Acyls; Fatty amides",
+        "AC$INSTRUMENT: TripleTOF 5600 SCIEX",
+        "AC$INSTRUMENT_TYPE: LC-ESI-QTOF",
+        "AC$MASS_SPECTROMETRY: MS_TYPE MS2",
+        "AC$MASS_SPECTROMETRY: ION_MODE POSITIVE"
+       ]
+      ]
+     }
+    ],
+    "dropped_peak_lines": 0
+   },
+   "precursor_type": {
+    "query": "PRECURSOR_TYPE repo:MassBank/MassBank-data path:BAFG",
+    "error": "gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID F4CA:26D66C:14D6FDF:452ABCC:6AA9CFD5 and timestamp 2026-09-15 23:08:05 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service "
+   },
+   "license_line": {
+    "query": "\"COPYRIGHT\" repo:MassBank/MassBank-data path:BAFG",
+    "error": "gh: API rate limit exceeded for user ID 260334205. If you reach out to GitHub Support for help, please include the request ID F4CC:22087A:14FF825:4566BBA:6AA9CFD6 and timestamp 2026-09-15 23:08:06 UTC. For more on scraping GitHub and how it may affect your rights, please review our Terms of Service "
+   }
+  },
+  "jsonld_live_recheck": {
+   "cached_records": 20658,
+   "probes": [
+    {
+     "accession": "MSBNK-BAFG-CSL2311096",
+     "live_sha256": "bed345b7721a28b2b25c2b157bea501fcefddce5848a935342675de66d10432f",
+     "in_cached_aggregate": true,
+     "cached_body_equals_live": true,
+     "live_name_field": "(2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 50 V",
+     "live_datePublished": "2025-01-17",
+     "live_license": "https://www.govdata.de/dl-de/by-2-0",
+     "live_description": "This MassBank record with Accession MSBNK-BAFG-CSL2311096 contains the MS2 mass spectrum of (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium with the InChIkey FFBIRENCNBBTSF-UHFFFAOYSA-O."
+    },
+    {
+     "accession": "MSBNK-BAFG-CSL2500001",
+     "error": "HTTP Error 404: Not Found"
+    },
+    {
+     "accession": "MSBNK-BAFG-CSL2311091",
+     "live_sha256": "2d92af3dfb1623e2fb9358961175ccd24bcc40dbb19b5c1fbb3718f3b73061ee",
+     "in_cached_aggregate": true,
+     "cached_body_equals_live": true,
+     "live_name_field": "(2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium; LC-ESI-QTOF; MS2; 110 V",
+     "live_datePublished": "2025-01-17",
+     "live_license": "https://www.govdata.de/dl-de/by-2-0",
+     "live_description": "This MassBank record with Accession MSBNK-BAFG-CSL2311091 contains the MS2 mass spectrum of (2-dodecanoylamino-ethyl)-dimethyl-tetradecyl-ammonium with the InChIkey FFBIRENCNBBTSF-UHFFFAOYSA-O."
+    }
+   ]
+  },
+  "tag_provenance": {
+   "2023.11": {
+    "commit": "9dc52cb29b7ade23e81befc3ce9eb001477ce393",
+    "date": "2023-11-28T12:54:47Z",
+    "bafg_tree_sha": "f3f72e005f4073bc7bc0e5af7b706a2645adc7f9"
+   },
+   "2025.05.1": {
+    "commit": "13484d415d98f3e8517c34c1e3faa35917cc4d07",
+    "date": "2025-05-05T11:04:35Z",
+    "bafg_tree_sha": "c7fec6c42a9c347239dc6de879abfe5f2d71f537"
+   }
+  },
+  "refs_used_first_pass": {
+   "2023.06": {
+    "commit": "67b175097bdde764a7135066d28defbc6c6b3ca0",
+    "commit_date": "2023-06-07T12:58:58Z",
+    "root_tree": "082d1a33f76641e1296276d3c975eeedefa7f452",
+    "bafg_tree": null,
+    "same_listing_as": null
+   },
+   "2023.09": {
+    "commit": "9b1255e1cb8ad4d1900e00e0707dd60cc56ae2d4",
+    "commit_date": "2023-09-01T10:50:06Z",
+    "root_tree": "0ef936bb4faa3bb26db4df8f7ade9a5a0948ead4",
+    "bafg_tree": null,
+    "same_listing_as": null
+   },
+   "2023.11": {
+    "commit": "9dc52cb29b7ade23e81befc3ce9eb001477ce393",
+    "commit_date": "2023-11-28T12:54:47Z",
+    "root_tree": "5541fdef53737919249a1ca197600fb198be8ea9",
+    "bafg_tree": "f3f72e005f4073bc7bc0e5af7b706a2645adc7f9",
+    "n_entries": 19783
+   },
+   "2024.06": {
+    "commit": "03da35c2c73c4f136d964d57eea0c04427438006",
+    "commit_date": "2024-06-05T11:14:57Z",
+    "root_tree": "92e93d6020bd553a5b1a958387f8f2ce9a03e183",
+    "bafg_tree": "f3f72e005f4073bc7bc0e5af7b706a2645adc7f9",
+    "same_listing_as": "2023.11"
+   },
+   "2024.11": {
+    "commit": "ec314ffb2e5d4cdcffbecc8a2382129b1d481888",
+    "commit_date": "2024-11-26T08:14:59Z",
+    "root_tree": "cae95e6803be910c9f01f7847b98e154c2f78d21",
+    "bafg_tree": "f3f72e005f4073bc7bc0e5af7b706a2645adc7f9",
+    "same_listing_as": "2023.11"
+   },
+   "2025.05": {
+    "commit": "3336149a57b54ced724c976298dc524e3128592e",
+    "commit_date": "2025-04-29T12:13:14Z",
+    "root_tree": "48a4e5373413f946df573103b83e9f1066c9dcfb",
+    "bafg_tree": "12226fa92cf539dc8367c9d074f78e440c5793a2",
+    "n_entries": 20658
+   },
+   "2025.05.1": {
+    "commit": "13484d415d98f3e8517c34c1e3faa35917cc4d07",
+    "commit_date": "2025-05-05T11:04:35Z",
+    "root_tree": "6385d240fc0d8840dc22ec7d114c31aef685ea8d",
+    "bafg_tree": "c7fec6c42a9c347239dc6de879abfe5f2d71f537",
+    "n_entries": 20658
+   },
+   "2025.10": {
+    "commit": "fd8fb15e44035c53c9d937307c04ba62ebec606d",
+    "commit_date": "2025-10-24T08:57:19Z",
+    "root_tree": "0332839b153f8d587c4e140d1f9c6ea048ad56d1",
+    "bafg_tree": "c7fec6c42a9c347239dc6de879abfe5f2d71f537",
+    "same_listing_as": "2025.05.1"
+   },
+   "2026.03": {
+    "commit": "705afb7bccc3b2c42410a744eef73674716a60ef",
+    "commit_date": "2026-03-17T14:38:14Z",
+    "root_tree": "bf7f3fe1113e853519b5af953e99df7debc2636a",
+    "bafg_tree": "c7fec6c42a9c347239dc6de879abfe5f2d71f537",
+    "same_listing_as": "2025.05.1"
+   },
+   "dev": {
+    "commit": "befc8a1e2f2aef899747797c081a5d80fab12fe7",
+    "commit_date": "2026-08-07T08:48:56Z",
+    "root_tree": "49bae3db38fe7116aa73fd5c9904228e8b27c570",
+    "bafg_tree": "c7fec6c42a9c347239dc6de879abfe5f2d71f537",
+    "same_listing_as": "2025.05.1"
+   }
+  },
+  "msg_qtof": {
+   "msg_rows": 231104,
+   "qtof_rows": 53823,
+   "qtof_keys": 12120,
+   "qtof_rows_on_10_150_step10_grid": 31285,
+   "qtof_rows_ce_ge_110": 1849,
+   "qtof_keys_ce_ge_110": 458,
+   "qtof_keys_ce_ge_110_that_are_bafg_positive_keys": 456,
+   "qtof_ce_max": 150.0,
+   "bafg_positive_keys_in_msg_with_qtof_rows": 899
+  },
+  "msg_rows_for_bafg_keys": {
+   "rows": 33939,
+   "keys": 910,
+   "by_instrument": {
+    "Orbitrap": 18248,
+    "QTOF": 15436,
+    "nan": 255
+   },
+   "by_fold": {
+    "train": 30688,
+    "test": 1900,
+    "val": 1351
+   },
+   "by_adduct_top": {
+    "[M+H]+": 33006,
+    "[M+Na]+": 933
+   },
+   "simulation_challenge_rows": 28145
+  }
+ }
+}

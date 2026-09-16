@@ -1,0 +1,27 @@
+SpectrumID,Compound_Name,Adduct,Instrument,Ion_Mode,PI,Data_Collector,submit_user,create_time,library_membership,key,elixdb_compound_name,elixdb_adduct,in_msg15_any_route,excluded_key_level_conservative
+CCMSLIB00000081752,Alternariol,M+H,qTof,Positive,Norberto Lopes,Monica Pupo,rsilva,2014-05-27 12:26:35.0,GNPS-LIBRARY,CEBXXEKPIIDJHL,Alternariol,M+H,True,True
+CCMSLIB00000424790,Emodin,M+H,qTof,Positive,Norberto Lopes,Lucas Marques,10mauriz,2014-12-15 04:20:47.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00000478084,Ergosterol Peroxide_120246,M+H,qToF,Positive,Cichewicz,Luzzatto,tal_lk,2015-04-24 17:28:51.0,GNPS-LIBRARY,VXOZCESVZIRHCJ,Ergosterol peroxide,M+H,True,True
+CCMSLIB00000478418,Rheochrysidin_120098,M+H,qToF,Positive,Cichewicz,Luzzatto,tal_lk,2015-05-12 15:08:32.0,GNPS-LIBRARY,FFWOKTFYGVYKIR,Parietin,M+H,True,True
+CCMSLIB00000478422,Alternariol_120108,M+H,qToF,Positive,Cichewicz,Luzzatto,tal_lk,2015-05-12 15:08:32.0,GNPS-LIBRARY,CEBXXEKPIIDJHL,Alternariol,M+H,True,True
+CCMSLIB00000478425,Alternariol monomethyl ether_120111,M+H,qToF,Positive,Cichewicz,Luzzatto,tal_lk,2015-05-12 15:08:32.0,GNPS-LIBRARY,LCSDQFNUYFTXMT,Alternariol methyl ether,M-H,True,True
+CCMSLIB00004679278,Emodin,M-H,qTof,Negative,Sang Hyun Sung,Kyo BIn Kang,kbkang,2018-05-11 15:28:00.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00005724415,"1,8-dihydroxy-3-methoxy-6-methyl-9,10-dihydroanthracene-9,10-dione",M-H,Orbitrap,Negative,Wolfender,Luis Quiros-Guerrero,mpanitchpakdi,2020-11-03 21:52:23.0,GNPS-LIBRARY,FFWOKTFYGVYKIR,Parietin,M+H,True,True
+CCMSLIB00005724546,"1,8-dihydroxy-3-methoxy-6-methyl-9,10-dihydroanthracene-9,10-dione",M+H,Orbitrap,Positive,Wolfender,Luis Quiros-Guerrero,mpanitchpakdi,2020-11-03 21:52:23.0,GNPS-LIBRARY,FFWOKTFYGVYKIR,Parietin,M+H,True,True
+CCMSLIB00005778369,Emodin-8-O-glucoside,M-H,Orbitrap,Negative,JL Wolfender,individual data collecting,joelle79,2020-12-03 00:18:45.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00005885123,4-O-demethylbarbatic acid,M-H,qTof,Negative,Kyo Bin Kang,Sunmin Woo,kbkang,2021-03-22 03:04:16.0,GNPS-LIBRARY,COUKTHZXLGYKPK,4-O-Demethylbarbatic acid,M-H,False,False
+CCMSLIB00005885124,Proatranorin I,M-H,qTof,Negative,Kyo Bin Kang,Sunmin Woo,kbkang,2021-03-22 03:06:38.0,GNPS-LIBRARY,ODMVDRJFBPXTRQ,Methyl 4-O-demethylbarbatate,M+H,False,False
+CCMSLIB00005885126,Proatranorin III,M-H,qTof,Negative,Kyo Bin Kang,Sunmin Woo,kbkang,2021-03-22 03:09:57.0,GNPS-LIBRARY,OSOPPDZKOZTJJK,Norbaeomycesic acid,M-H,False,False
+CCMSLIB00006126873,Secalonic Acid D,M+H,qTof,Positive,Aldo Moreno Ulloa,amoreno,amoreno,2021-04-24 20:58:49.0,GNPS-LIBRARY,NFZJAYYORNVZNI,Ergochrome AB or Secalonic acid C,M+H,True,True
+CCMSLIB00006718034,Ursolic acid,M+H,qTof,Positive,Roger Linington,Trevor Clark,trevorclark,2021-11-03 14:32:07.0,GNPS-LIBRARY,WCGUUGGRBIKTOS,Ursolic acid,M-H,True,True
+CCMSLIB00008851495,Griseofulvin [M+H]+,M+H,Orbitrap,Positive,Daniel Petras,Stilianos Papadopoulos Lambidis,StelioPapaLa,2022-01-14 02:13:09.0,GNPS-LIBRARY,DDUHZTYCFQRHIY,(+)-Griseofulvin,M-H,True,True
+CCMSLIB00009919255,Atranorin,M+H,Orbitrap,Positive,Kellogg,Kellogg,kellogglab,2022-04-06 07:34:42.0,GNPS-LIBRARY,YLOYKYXNDHOHHT,Atranorin,M-H,True,True
+CCMSLIB00010012796,Emodin,M-H,qTof,Negative,Elnur GARAYEV,Stephane GREFF,stephane,2022-07-27 07:57:30.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00010012797,Emodin,M-H,qTof,Negative,Elnur GARAYEV,Stephane GREFF,stephane,2022-07-27 08:12:49.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00010012798,Emodin,M+H,qTof,Positive,Elnur GARAYEV,Stephane GREFF,stephane,2022-07-27 08:20:47.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00010012799,Emodin,M+H,qTof,Positive,Elnur GARAYEV,Stephane GREFF,stephane,2022-07-27 08:21:36.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00010127368,usnic acid,M+H,Orbitrap,Positive,Kellogg,Kellogg,kellogglab,2022-10-13 09:10:25.0,GNPS-LIBRARY,CUCUKLJLRRAKFN,Usnic acid,M-H,True,True
+CCMSLIB00011427585,3beta-Acetoxyfern-9(11)-ene-12-one,M+H,Orbitrap,Positive,Chooi,J Bracegirdle,joebracegirdle,2023-05-21 23:37:54.0,GNPS-LIBRARY,BPPPHUNQHQJHQW,3beta-Acetoxyfern-9(11)-ene-12-one,M+H,True,True
+CCMSLIB00013580736,Emodin,M+H,Orbitrap,Positive,Wolfender,Olivier Kirchhoffer,kirchhoo,2025-02-21 07:12:06.0,GNPS-LIBRARY,RHMXXJGYXNZAPX,Emodin,M-H,True,True
+CCMSLIB00018116026,Ergosterol,M+H,qTof,Positive,Neha Garg,Jiangpeiyun Jin,joy_jin,2026-08-03 08:07:12.0,GNPS-LIBRARY,DNVPQKQSNYMLRS,Ergosterol,M-H,True,True
+CCMSLIB00018116027,Ergosterol,M+H,qTof,Positive,Neha Garg,Jiangpeiyun Jin,joy_jin,2026-08-03 08:03:58.0,GNPS-LIBRARY,DNVPQKQSNYMLRS,Ergosterol,M-H,True,True
