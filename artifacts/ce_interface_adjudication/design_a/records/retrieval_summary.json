@@ -1,0 +1,13 @@
+{
+ "study_id": "muru-ce-interface-adjudication-design-a",
+ "utc_timestamp": "2026-09-16T23:52:47.922550Z",
+ "access_ref_commit": "ad7b30244c9831f338f2093242c93f9cc9fa3b80",
+ "freeze_ref_commit": "518190b46f4e17ab6dc8ccea308bf3aadb48c701",
+ "n_requested": 69,
+ "n_retrieved_ok": 69,
+ "n_failed": 0,
+ "all_blob_shas_verified": true,
+ "records_dir": "data/massbank/MassBank-data/Eawag",
+ "scope_statement": "Exactly the 69 frozen accessions were requested, each by its recorded git blob sha. No neighbouring record, alternate release, related compound or additional spectrum was fetched.",
+ "exposure_statement": "The Design A population is now EXPOSED permanently. It may never be reused as a blind or confirmatory population."
+}
