@@ -1,0 +1,8 @@
+{
+ "prereg_id": "muru-ce-interface-adjudication-design-a",
+ "note": "Digests read by 40_score_spectra.py and 50_analysis.py. The record_scores.csv digest does not exist at freeze time; the scoring step writes it into its sidecar at execution and it is merged here before the single analysis run. The analysis refuses if a required input has no recorded digest or does not match.",
+ "outputs_written": {
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391"
+ }
+}

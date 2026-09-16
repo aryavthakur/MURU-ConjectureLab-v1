@@ -1,0 +1,408 @@
+{
+ "K2_vs_K3": {
+  "cells_total": 66,
+  "cells_where_K2_equals_K3_exactly": 0,
+  "note": "K2 - K3 is the fractional part of K2; it is bounded in [0,1) by construction."
+ },
+ "abs_K1_K2_threshold_counts": {
+  "compounds_with_any_cell_below": {
+   "below_1": 0,
+   "below_2": 1,
+   "below_5": 4
+  },
+  "nce_30_cells": {
+   "below_1": 0,
+   "below_2": 1,
+   "below_5": 4,
+   "n_cells": 33
+  },
+  "nce_60_cells": {
+   "below_1": 0,
+   "below_2": 0,
+   "below_5": 1,
+   "n_cells": 33
+  },
+  "pooled_cells": {
+   "below_1": 0,
+   "below_2": 1,
+   "below_5": 5,
+   "n_cells": 66
+  }
+ },
+ "ce_encoding": {
+  "definition": "32 sin and 32 cos of c / 10000^(2i/64), i = 0..31 (Phase 0 provenance section 6)",
+  "dimensions": 64,
+  "self_check_against_phase0_section6": {
+   "d(0.5,0)": {
+    "agrees_to_2dp": true,
+    "computed": 0.7507708764687402,
+    "quoted_in_phase0_section6": 0.75
+   },
+   "d(1,0)": {
+    "agrees_to_2dp": true,
+    "computed": 1.471848048122478,
+    "quoted_in_phase0_section6": 1.47
+   },
+   "d(20,12)": {
+    "agrees_to_2dp": true,
+    "computed": 4.3786043566222075,
+    "quoted_in_phase0_section6": 4.38
+   },
+   "d(20,60)": {
+    "agrees_to_2dp": true,
+    "computed": 5.762384895902214,
+    "quoted_in_phase0_section6": 5.76
+   },
+   "d(300,0)": {
+    "agrees_to_2dp": true,
+    "computed": 6.73158928356267,
+    "quoted_in_phase0_section6": 6.73
+   },
+   "d(40,0)": {
+    "agrees_to_2dp": true,
+    "computed": 5.762384895902213,
+    "quoted_in_phase0_section6": 5.76
+   },
+   "d(5,0)": {
+    "agrees_to_2dp": true,
+    "computed": 4.122142450122356,
+    "quoted_in_phase0_section6": 4.12
+   }
+  }
+ },
+ "distributions": {
+  "nce_30": {
+   "abs_K1_K2": {
+    "max": 23.9976417079872,
+    "mean": 12.57412607012378,
+    "median": 11.846534600812795,
+    "min": 1.3558336720127997,
+    "n": 33,
+    "q05": 3.7223391962054424,
+    "q25": 6.403271588467199,
+    "q75": 17.07155480369279,
+    "q95": 23.1558833454432,
+    "sd": 6.438574326163657
+   },
+   "abs_K1_K3": {
+    "max": 24.0,
+    "mean": 12.757575757575758,
+    "median": 12.0,
+    "min": 1.0,
+    "n": 33,
+    "q05": 3.6,
+    "q25": 7.0,
+    "q75": 17.0,
+    "q95": 24.0,
+    "sd": 6.628679652796169
+   },
+   "abs_K2_K3": {
+    "max": 0.9871371292927975,
+    "mean": 0.46427168162855575,
+    "median": 0.4282773769727992,
+    "min": 0.002358292012799801,
+    "n": 33,
+    "q05": 0.046026713796799616,
+    "q25": 0.23330115441279986,
+    "q75": 0.6606624911327996,
+    "q95": 0.9735939673568003,
+    "sd": 0.30070773052151434
+   },
+   "d_K1_K2": {
+    "max": 5.336385297084322,
+    "mean": 4.577641822369454,
+    "median": 4.679749953507034,
+    "min": 1.9516140393617893,
+    "n": 33,
+    "q05": 3.900708601898778,
+    "q25": 4.120699749460711,
+    "q75": 4.954035373104843,
+    "q95": 5.2272929644723565,
+    "sd": 0.6260508330086606
+   },
+   "d_K1_K3": {
+    "max": 5.333144826503071,
+    "mean": 4.552796307690462,
+    "median": 4.654430094306775,
+    "min": 1.4718480481224783,
+    "n": 33,
+    "q05": 3.8423586768546936,
+    "q25": 4.179874054282097,
+    "q75": 4.955170627870246,
+    "q95": 5.153389814396079,
+    "sd": 0.691511421155389
+   },
+   "d_K2_K3": {
+    "max": 1.4539043230653392,
+    "mean": 0.6926477758777445,
+    "median": 0.644218693692556,
+    "min": 0.0035647554610599404,
+    "n": 33,
+    "q05": 0.06956822535471807,
+    "q25": 0.3521427325809708,
+    "q75": 0.9870948040988808,
+    "q95": 1.4349621896084386,
+    "sd": 0.4434405809170163
+   }
+  },
+  "nce_60": {
+   "abs_K1_K2": {
+    "max": 47.9952834159744,
+    "mean": 25.14825214024756,
+    "median": 23.69306920162559,
+    "min": 2.7116673440255994,
+    "n": 33,
+    "q05": 7.444678392410885,
+    "q25": 12.806543176934397,
+    "q75": 34.14310960738558,
+    "q95": 46.3117666908864,
+    "sd": 12.877148652327314
+   },
+   "abs_K1_K3": {
+    "max": 48.0,
+    "mean": 25.272727272727273,
+    "median": 23.0,
+    "min": 2.0,
+    "n": 33,
+    "q05": 7.800000000000001,
+    "q25": 13.0,
+    "q75": 34.0,
+    "q95": 47.0,
+    "sd": 13.077348563625023
+   },
+   "abs_K2_K3": {
+    "max": 0.9748669657855942,
+    "mean": 0.5043009390146874,
+    "median": 0.4666023088255997,
+    "min": 0.004716584025599602,
+    "n": 33,
+    "q05": 0.03895866120959895,
+    "q25": 0.24097262314560197,
+    "q75": 0.8099320374655967,
+    "q95": 0.9709366311935994,
+    "sd": 0.31691046226515546
+   },
+   "d_K1_K2": {
+    "max": 5.913522725975407,
+    "mean": 5.120232057022068,
+    "median": 5.2079258635340615,
+    "min": 3.3772162733194158,
+    "n": 33,
+    "q05": 4.293926182056966,
+    "q25": 4.677284484910144,
+    "q75": 5.534191531618248,
+    "q95": 5.810740605637584,
+    "sd": 0.5552494805223781
+   },
+   "d_K1_K3": {
+    "max": 5.913165915817168,
+    "mean": 5.134722418289875,
+    "median": 5.2990248865705025,
+    "min": 2.718874030134649,
+    "n": 33,
+    "q05": 4.394895431593674,
+    "q25": 4.68898273190977,
+    "q75": 5.4641481759575505,
+    "q95": 5.89726914872261,
+    "sd": 0.6311615953095008
+   },
+   "d_K2_K3": {
+    "max": 1.436752306892026,
+    "mean": 0.7511960997777706,
+    "median": 0.7012260034992289,
+    "min": 0.007129507749712964,
+    "n": 33,
+    "q05": 0.058884726491937954,
+    "q25": 0.363686693539475,
+    "q75": 1.2030630757119007,
+    "q95": 1.431250214909192,
+    "sd": 0.4668613981425181
+   }
+  },
+  "pooled": {
+   "abs_K1_K2": {
+    "max": 47.9952834159744,
+    "mean": 18.86118910518567,
+    "median": 16.735330032086395,
+    "min": 1.3558336720127997,
+    "n": 66,
+    "q05": 4.212012324513605,
+    "q25": 10.405370617126803,
+    "q75": 23.921498581396797,
+    "q95": 43.8179257339344,
+    "sd": 11.923880990953183
+   },
+   "abs_K1_K3": {
+    "max": 48.0,
+    "mean": 19.015151515151516,
+    "median": 16.5,
+    "min": 1.0,
+    "n": 66,
+    "q05": 4.25,
+    "q25": 11.0,
+    "q75": 24.0,
+    "q95": 44.25,
+    "sd": 12.06583533305433
+   },
+   "abs_K2_K3": {
+    "max": 0.9871371292927975,
+    "mean": 0.48428631032162156,
+    "median": 0.46439554290559926,
+    "min": 0.002358292012799801,
+    "n": 66,
+    "q05": 0.03575766901599886,
+    "q25": 0.2352190215960004,
+    "q75": 0.7070178084255971,
+    "q95": 0.9728835805055969,
+    "sd": 0.30719261817818827
+   },
+   "d_K1_K2": {
+    "max": 5.913522725975407,
+    "mean": 4.848936939695761,
+    "median": 4.93505713912737,
+    "min": 1.9516140393617893,
+    "n": 66,
+    "q05": 4.051197962997891,
+    "q25": 4.628050816493798,
+    "q75": 5.258208423819699,
+    "q95": 5.760096738200311,
+    "sd": 0.6476632658009265
+   },
+   "d_K1_K3": {
+    "max": 5.913165915817168,
+    "mean": 4.843759362990169,
+    "median": 4.940248077967426,
+    "min": 1.4718480481224783,
+    "n": 66,
+    "q05": 4.039450688442656,
+    "q25": 4.619428913326836,
+    "q75": 5.3098043322721225,
+    "q95": 5.780828311303207,
+    "sd": 0.7193717679035031
+   },
+   "d_K2_K3": {
+    "max": 1.4539043230653392,
+    "mean": 0.7219219378277575,
+    "median": 0.6979475521613817,
+    "min": 0.0035647554610599404,
+    "n": 66,
+    "q05": 0.054048118011861226,
+    "q25": 0.35502872282059683,
+    "q75": 1.0545660774271766,
+    "q95": 1.4339759604986049,
+    "sd": 0.45274771539953235
+   }
+  }
+ },
+ "frozen_semantics": {
+  "K1": "float(NCE)",
+  "K2": "float(NCE) * theoretical_mh / 500.0, IEEE-754 binary64, no rounding",
+  "K3": "math.floor(K2) as a float, floor toward negative infinity; K2 > 0 throughout",
+  "theoretical_mh_source": "design_a_compounds.csv, theoretical [M+H]+ of the representative structure"
+ },
+ "generated_by": "scripts/ce_interface_adjudication/design_a/20_separation_diagnostics.py",
+ "manifest_sha256": {
+  "inputs_read": {
+   "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc",
+   "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391"
+  },
+  "outputs_written": {
+   "artifacts/ce_interface_adjudication/design_a/diagnostics/README.md": "4e3d1c4dbb6c38cc6e78c95f9011e52cc74aacbedc33e617ae4ca3c31d113941",
+   "artifacts/ce_interface_adjudication/design_a/diagnostics/k_separation_per_compound.csv": "79fe1f143dbd1cc6d6f4d8754c2fdb974261b89834f74cb6b72b3ac938c3727e"
+  },
+  "script": "scripts/ce_interface_adjudication/design_a/20_separation_diagnostics.py",
+  "script_sha256": "6a095a9c2286b551a7b88dcd1755b927256c7ca39b604c37ff90565875998b07"
+ },
+ "mass_windows_around_mz_500": {
+  "within_10pct_of_500_(450.0_to_550.0)": {
+   "compound_ids": [
+    "SWZDQOUHBYYPJD"
+   ],
+   "fraction_of_population": 0.030303030303030304,
+   "n_compounds": 1,
+   "theoretical_mh": [
+    522.5972
+   ],
+   "window_da": [
+    450.0,
+    550.0
+   ]
+  },
+  "within_20pct_of_500_(400.0_to_600.0)": {
+   "compound_ids": [
+    "AGCUFKNHQDVTAD",
+    "HCILJBJJZALOAL",
+    "LOMZTTMTKSVHAG",
+    "OAIGZXXQYIJBLR",
+    "QSRJVOOOWGXUDY",
+    "SWZDQOUHBYYPJD",
+    "UJAWGGOCYUPCPS"
+   ],
+   "fraction_of_population": 0.21212121212121213,
+   "n_compounds": 7,
+   "theoretical_mh": [
+    400.9607,
+    406.2529,
+    432.2017,
+    522.5972,
+    553.4,
+    577.4059,
+    587.3578
+   ],
+   "window_da": [
+    400.0,
+    600.0
+   ]
+  },
+  "within_5pct_of_500_(475.0_to_525.0)": {
+   "compound_ids": [
+    "SWZDQOUHBYYPJD"
+   ],
+   "fraction_of_population": 0.030303030303030304,
+   "n_compounds": 1,
+   "theoretical_mh": [
+    522.5972
+   ],
+   "window_da": [
+    475.0,
+    525.0
+   ]
+  }
+ },
+ "null_region_450_to_550": {
+  "compound_ids": [
+   "SWZDQOUHBYYPJD"
+  ],
+  "fraction_of_population": 0.030303030303030304,
+  "n_compounds": 1,
+  "theoretical_mh": [
+   522.5972
+  ],
+  "window_da": [
+   450.0,
+   550.0
+  ]
+ },
+ "population": {
+  "compounds": 33,
+  "nce_cells": [
+   30.0,
+   60.0
+  ],
+  "scaffold_groups": 33,
+  "theoretical_mh": {
+   "max": 784.5259133948799,
+   "mean": 395.1115987342133,
+   "median": 333.07259621888,
+   "min": 100.03930486688,
+   "n": 33,
+   "q05": 114.06861090928,
+   "q25": 217.14343558688,
+   "q75": 587.35784502688,
+   "q95": 715.0482358940798,
+   "sd": 213.21704344035825
+  }
+ },
+ "status": "IDENTIFIABILITY DIAGNOSTIC ONLY. Never used to exclude a compound.",
+ "study": "MURU CE interface adjudication, Design A, separation diagnostics"
+}

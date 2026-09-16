@@ -1,5 +1,7 @@
 # MURU collision-energy interface adjudication: preregistration OUTLINE, DRAFT
 
+> **Superseded for Design A (2026-09-16).** The binding Design A protocol is `MURU_CE_INTERFACE_ADJUDICATION_DESIGN_A_PREREGISTRATION.md`, which is frozen. That protocol replaces this outline's calibration-and-evaluation split with a single paired within-compound adjudication, because no parameter is fitted. This outline is retained unchanged as history.
+
 > **DRAFT OUTLINE ONLY. NOT FROZEN. EXECUTION NOT AUTHORIZED.**
 > This is a skeleton for discussion, not a preregistration. No section is binding. Section 12 lists the decisions that must be made by the user before any part of this can be frozen, and several of them change the shape of the design rather than only its parameters.
 

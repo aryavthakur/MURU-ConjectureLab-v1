@@ -1,0 +1,80 @@
+{
+ "prereg_id": "muru-ce-interface-adjudication-design-a",
+ "freeze_ref": "refs/muru-freeze/muru-ce-interface-adjudication-design-a",
+ "statement": "Freeze manifest for the Design A collision-energy interface adjudication. No candidate spectrum has been accessed, no prediction has been generated and the analysis has never been run. Execution requires explicit authorization.",
+ "git_head_at_build": "f925bbfa60f7c39d3f38738b10264d5a5218adc7",
+ "git_branch": "claude/muru-ce-interface-adjudication",
+ "n_files": 29,
+ "files": {
+  "MURU_CE_INTERFACE_ADJUDICATION_DESIGN_A_PREREGISTRATION.md": "7665b572330d1dd06dc4f82c06f999b412c1bbdcb83325f6e9fcdbf67bc2353a",
+  "MURU_CE_INTERFACE_ADJUDICATION_PHASE0_PROVENANCE.md": "f440f3cdd8739892555c3b9b1ea0bd5d9445eca55ccf6332e988b3d1eda80ef2",
+  "MURU_CE_INTERFACE_ADJUDICATION_PHASE1_TO_3_DESIGN.md": "4ed055917c85dc92cff781864b065a1eb723e6e76de737e30d688d9d921178e4",
+  "MURU_CE_INTERFACE_ADJUDICATION_PREREGISTRATION_OUTLINE_DRAFT.md": "ebcd4d94598abe9118df2fec1d02fd896e1fce5f2310e3a4debb728e2fac7edc",
+  "artifacts/ce_interface_adjudication/design_a/diagnostics/README.md": "4e3d1c4dbb6c38cc6e78c95f9011e52cc74aacbedc33e617ae4ca3c31d113941",
+  "artifacts/ce_interface_adjudication/design_a/diagnostics/k_separation_per_compound.csv": "79fe1f143dbd1cc6d6f4d8754c2fdb974261b89834f74cb6b72b3ac938c3727e",
+  "artifacts/ce_interface_adjudication/design_a/diagnostics/k_separation_summary.json": "24e5930e1f44e2dd913d2229adc5a334f90070ba49f44af9b977a83086fba22e",
+  "artifacts/ce_interface_adjudication/design_a/notes/prediction_harness_provenance.md": "0d54d552ad5e2b16ee3759b06586095930ebfdf1a5a2a58540db7aefb677502c",
+  "artifacts/ce_interface_adjudication/design_a/notes/similarity_semantics.md": "dd5368a88a049f579301affb37580c8fabdd80ba1d55624747e26063a330ddf5",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_counts.json": "6be257cee4f9e85a85312d0a68eb4f9499985db47a1a8888699f578fc159cbdd",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_exclusion_ledger.csv": "7154e1536d9dbfd049f16bc1a57f29ff8224bd33b2571ad6cbc9d313d66b1f44",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_manifest_sha256.json": "836bea34ff40d5ee12c224ccf376b75afc1dd12e6f972031f9d5e8eafb1964da",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391",
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_compound_screen.csv": "683e35d5fe633daabf9ec335678accf9ed90acdf6d2ecb6badc942cce5af0d9e",
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_record_metadata.csv.gz": "31e16fc4a98c2f30551d700f517c2cefa8da466c51c445ed9f638c7635e0d592",
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_tautomer_recheck.csv": "2f284d0d316286d180a6ee886721dee5bf5142da127fd4988d4a99d3490dd4f8",
+  "scripts/ce_interface_adjudication/design_a/10_build_population.py": "e6121278c8554cce64103c76a3de2ee5187f11cc19e1e7208d424d2f0cd3b314",
+  "scripts/ce_interface_adjudication/design_a/20_separation_diagnostics.py": "6a095a9c2286b551a7b88dcd1755b927256c7ca39b604c37ff90565875998b07",
+  "scripts/ce_interface_adjudication/design_a/30_run_predictions.py": "461b18fbd2b10a10d1ac6d6097ea7bde258e3e0efdeba5a369469679c6270680",
+  "scripts/ce_interface_adjudication/design_a/40_score_spectra.py": "ec0100b5d93ffa2106460c1354a33cf302f00cea93efb92baaa70168a4824bbf",
+  "scripts/ce_interface_adjudication/design_a/50_analysis.py": "024b8bb03ff22f878e11d143f8365c836f058689a69ee79cdd9ea6fd6ee0e336",
+  "scripts/ce_interface_adjudication/design_a/90_build_freeze_manifest.py": "2816566f3820dfacd8c8952985ff0a86024cdc34b25e1554eb71620f2d6b23ee",
+  "scripts/ce_interface_adjudication/design_a/spectrum_similarity.py": "6f48cbc02f5958f284cc870c3dbb96e87abad27d817fc7b5dbc0e2282a092353",
+  "scripts/ce_interface_adjudication/design_a/tests/test_analysis.py": "2cd45640ef5defce46b97c7b80aa7edc11ce22a1053f8d32f03c907d59aaa503",
+  "scripts/ce_interface_adjudication/design_a/tests/test_prediction_harness.py": "de9e641a19725e963f4771d546c27b210f29b230a94a262435e83f89a5c99aad",
+  "scripts/ce_interface_adjudication/design_a/tests/test_score_spectra.py": "e03628d5f2076c40eed97c630d77fc55e9e86c977d0fcec5b11fc93d78c2eea5",
+  "scripts/ce_interface_adjudication/design_a/tests/test_spectrum_similarity.py": "f6fe097b04fd0784155ebc189713e145e8c40cc3bf91927525a4533999585d9f",
+  "scripts/ce_interface_adjudication/scaffold_key.py": "cd27cf3cf83143ae8d648ebc9b36a8e58ba31f12c9704c0b404839c0d7e701b6"
+ },
+ "frozen_mappings": {
+  "K1": "float(NCE)",
+  "K2": "float(NCE) * theoretical_mh / 500.0, IEEE-754 binary64, multiply then divide, no rounding",
+  "K3": "math.floor(K2) as a float, floor toward negative infinity"
+ },
+ "spectrum_similarity_frozen_config_sha256": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848",
+ "analysis_constants": {
+  "bootstrap_B": 10000,
+  "bootstrap_seed": 20260916,
+  "alpha": 0.05,
+  "n_contrasts": 3,
+  "adjusted_level": 0.9833333333333333,
+  "resampling_unit": "compound (molecule-level paired bootstrap)",
+  "resampling_unit_basis": "0 of 33 compounds share a scaffold group, below the frozen 0.10 threshold; decided from identities only, before any outcome exists",
+  "primary_metric": "untransformed full-spectrum cosine",
+  "robustness_metric": "jensen_shannon"
+ },
+ "models": {
+  "ms_pred_commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "checkpoints": {
+   "iceberg21_msg_simulation/gen/best.ckpt": {
+    "recorded_sha256": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+    "verified_on_disk": true
+   },
+   "iceberg21_msg_simulation/inten_contr/best.ckpt": {
+    "recorded_sha256": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+    "verified_on_disk": true
+   },
+   "glacier_msg/best.ckpt": {
+    "recorded_sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+    "verified_on_disk": true
+   }
+  },
+  "retraining_or_finetuning": "none",
+  "fiora": "does not participate",
+  "muru": "does not participate"
+ },
+ "execution_gates": {
+  "predictions_and_scoring": "MURU_CE_ADJUDICATION_EXECUTE=1 plus the freeze ref plus matching hashes",
+  "analysis": "MURU_CE_ADJUDICATION_ONE_LOOK=1 plus the freeze ref plus matching hashes plus a complete score table"
+ }
+}
