@@ -1,0 +1,578 @@
+{
+ "script": "scripts/ce_interface_adjudication/p5_01_build_exclusion_sets.py",
+ "rdkit": "2026.03.5",
+ "key_definition": "MURU parent_connectivity_key (src/muru/wur_v2/identity.py:45-50) unless a set says it holds a RECORDED first block",
+ "sets": {
+  "msg15_all": {
+   "file": "exclusion/msg15_keys_all.txt",
+   "n": 28929,
+   "sha256_sorted_newline_joined": "6670af45296479865c04283fcfa87919604d4bed6db8f7515daea311e5012f2c",
+   "file_sha256": "c5666b446c091bd878528100e4adcddc882d8d9b1149edc212477edd4683d832",
+   "n_rows": 231104,
+   "key_kind": "MassSpecGym recorded inchikey column (14-char first block as released)"
+  },
+  "msg15_simchallenge_all": {
+   "file": "exclusion/msg15_simchallenge_keys_all.txt",
+   "n": 16974,
+   "sha256_sorted_newline_joined": "67f307018a1374a81d6dc23a0e40b845d7376a92e90f98a4785db86d2c2e7d48",
+   "file_sha256": "2ea1f48d6133b172c40e0116fd3ac0c3bbee0fb368b401ae90814af215f8d358",
+   "n_rows": 119029
+  },
+  "msg15_train": {
+   "file": "exclusion/msg15_keys_train.txt",
+   "n": 22746,
+   "sha256_sorted_newline_joined": "d151be079f5d82a27c3d7b8fb7e483e6a9a8b2b5b89d580e1b59cc4e55ab728c",
+   "file_sha256": "4faa7937af5219bac10b0c7776a2c3d655b136f664af6d97ef995cb67ca8962b",
+   "n_rows": 194119,
+   "key_kind": "MassSpecGym recorded inchikey column (14-char first block as released)"
+  },
+  "msg15_simchallenge_train": {
+   "file": "exclusion/msg15_simchallenge_keys_train.txt",
+   "n": 12321,
+   "sha256_sorted_newline_joined": "38f7fe8c079497893abea34bf07162ad26cf8ab7e9b94086c9941429d5547b0e",
+   "file_sha256": "d4e6f3d6ada321f72c7ed436bbbebf9cd7326b1039fd1350e7ed213661453494",
+   "n_rows": 99341
+  },
+  "msg15_val": {
+   "file": "exclusion/msg15_keys_val.txt",
+   "n": 3185,
+   "sha256_sorted_newline_joined": "73dbe4ed246ef58ef87601e57d40ac405be5ace26e9ae4bd1bb61e6440960338",
+   "file_sha256": "5a13fe7980b91c1ef902393c4fdeb953cf8e960dcc65f750f5d4380136c37bdd",
+   "n_rows": 19429,
+   "key_kind": "MassSpecGym recorded inchikey column (14-char first block as released)"
+  },
+  "msg15_simchallenge_val": {
+   "file": "exclusion/msg15_simchallenge_keys_val.txt",
+   "n": 2334,
+   "sha256_sorted_newline_joined": "0c972e1e012e10aadea8be0108babb541f105b0de7e9e5a0ddf3b40ed37d90dc",
+   "file_sha256": "307bc3a62b850507c7412fbfcc53a8e003da6eaf92bcd0bd91ff1b9041c0c999",
+   "n_rows": 9734
+  },
+  "msg15_test": {
+   "file": "exclusion/msg15_keys_test.txt",
+   "n": 2998,
+   "sha256_sorted_newline_joined": "cb463f75de60a7e1a4d9d91ac819a3d83e978c926ef9c2ea6dcc1e66d6882983",
+   "file_sha256": "fb009e920557245fd192aa2aa7f0e9d43d60ddde4dd16548dd8883ddcdd8db23",
+   "n_rows": 17556,
+   "key_kind": "MassSpecGym recorded inchikey column (14-char first block as released)"
+  },
+  "msg15_simchallenge_test": {
+   "file": "exclusion/msg15_simchallenge_keys_test.txt",
+   "n": 2319,
+   "sha256_sorted_newline_joined": "68b2e22874c3b67420da2c75b79b3ebf61d8789fb98b9ba0df1f84c983824a7b",
+   "file_sha256": "0e11835add7b2e4b2616d478ee9db984e2843077a8b1ed2186bb1569f4a14d36",
+   "n_rows": 9954
+  },
+  "msg15_parent_all": {
+   "file": "exclusion/msg15_parent_keys_all.txt",
+   "n": 28923,
+   "sha256_sorted_newline_joined": "98d5f8231016c8feafc9c23c928b8f37b339c15f9bf4aec53d196aa37810be87",
+   "file_sha256": "c046057a0c3df6189d2a0e5c403d2fed26db16ac667b4f1da15e64fcdd48625e",
+   "n_rows_with_smiles": 231104
+  },
+  "msg15_parent_train": {
+   "file": "exclusion/msg15_parent_keys_train.txt",
+   "n": 22742,
+   "sha256_sorted_newline_joined": "a4758686d95b8762c3aed58ca8d39a5eafa96c0b7d055e3feaf8dd6646c82f80",
+   "file_sha256": "e4b3ff0ed63d0a23efffb9115055923dffd14abe716c98393f89e28bb559810c",
+   "n_rows_with_smiles": 194119
+  },
+  "msg15_parent_val": {
+   "file": "exclusion/msg15_parent_keys_val.txt",
+   "n": 3184,
+   "sha256_sorted_newline_joined": "7eaefcd497f59e5665b8c04e2e8dca4a8cd3ca5aa6c3a7bc66b6555ad5c0715f",
+   "file_sha256": "aeaa5e87848ad0c5aeda1765f22c94409b810f4f527f388381b4d5dc76ad52db",
+   "n_rows_with_smiles": 19429
+  },
+  "msg15_parent_test": {
+   "file": "exclusion/msg15_parent_keys_test.txt",
+   "n": 2997,
+   "sha256_sorted_newline_joined": "4fef007759730fe14082fec26aea3020858d033b1ed05cdd635cb71b47f2a030",
+   "file_sha256": "c36ffca00a917af4889512dd3568bf276b3b870610ee7a751cbac8bd446fb0e3",
+   "n_rows_with_smiles": 17556
+  },
+  "msg15_row_keys_parquet": {
+   "file": "exclusion/msg15_row_keys.parquet",
+   "file_sha256": "e2ead54c8af5c4dee1c75c4946bb3877b60179cde3760d1ecb5bec021d28ccdd"
+  },
+  "msg15_scaffold_groups_all": {
+   "file": "exclusion/msg15_scaffold_groups_all.txt",
+   "n": 16991,
+   "sha256_sorted_newline_joined": "19196f027c5f1e1a905c609cd885c3b591bb9f35f7cdee12d4cb389e9d7e76ef",
+   "file_sha256": "70b3140616ec932f69fb7403e04cb60fce1bb62ef956de704152c94041c899a7"
+  },
+  "muru_exposure_registry": {
+   "file": "exclusion/muru_exposure_registry_keys.txt",
+   "n": 31507,
+   "sha256_sorted_newline_joined": "bf103796a9415f8447cc3f27b0692ea57d8d9f2431427975842d19f84953b000",
+   "file_sha256": "372ff0323a92f7fda21fa38a35506b4ec968f90e4f9c3b12f73d240de990c47e"
+  },
+  "muru_exposure_registry_scaffold_groups": {
+   "file": "exclusion/muru_exposure_registry_scaffold_groups.txt",
+   "n": 18402,
+   "sha256_sorted_newline_joined": "261bb8dd96803dbaf61c1a326bb90ed69c97dae1fe90f0d4d7f0e376db521b31",
+   "file_sha256": "a0d782a17a287b106a151e8e8115efcc0d64dcac19f3e06ff00780159045e9cb"
+  },
+  "registry_pop_ENTACT-MIX-LISTS-499-503-505": {
+   "file": "exclusion/muru_exposure_registry_population_ENTACT-MIX-LISTS-499-503-505_keys.txt",
+   "n": 445,
+   "sha256_sorted_newline_joined": "81585c32ff634493fea4807a2b361a3a6905bf4d2a328f212855c8ca266e68a0",
+   "file_sha256": "c362d6036623c44d841e37d3be622c2b0f16e6ada868b15902ea29533f276bc3"
+  },
+  "registry_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET_keys.txt",
+   "n": 781,
+   "sha256_sorted_newline_joined": "f808cbda92a228094e7afbe7344967dd6622dd979adf25f5c35d914e8996f271",
+   "file_sha256": "56c0d5acd4e99c69a33343ba51891efd4654e34d7b89a5210d3645805b6612fa"
+  },
+  "registry_pop_LCSB-CONFIRMATION": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-CONFIRMATION_keys.txt",
+   "n": 110,
+   "sha256_sorted_newline_joined": "3f3d0b5835efc99e0f4be1232594db0373461ef05bdfd07d4e5514dade68c902",
+   "file_sha256": "56aac33790759c3100fb91d8dff1c1ec097a03b8e3d9e28e1ffee6866912fde4"
+  },
+  "registry_pop_LCSB-DEV": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-DEV_keys.txt",
+   "n": 439,
+   "sha256_sorted_newline_joined": "6bc8eeeb3d0c768cd9e346e34bc201d5bc87b0fe19dcd0599c150c712984c82c",
+   "file_sha256": "d18e13cb8b4d7a788565a25c583903f5d28f18c08787437e1c758fc3ff5bbf3d"
+  },
+  "registry_pop_LCSB-NEG": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-NEG_keys.txt",
+   "n": 379,
+   "sha256_sorted_newline_joined": "90b98e73599b3a19e7af76f93b6df1607545ec4c5bdb7f297f99affb1f426566",
+   "file_sha256": "25ef093a3fbdb5ec9bc91f00e03e36ed55abb20d630c1246fa1d37e96b2add93"
+  },
+  "registry_pop_LCSB-POS-V2-SPECTRA": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-POS-V2-SPECTRA_keys.txt",
+   "n": 478,
+   "sha256_sorted_newline_joined": "9dfa1e744fdeeae5515f61fa33514ff46c08d858b0328b80cc2dd572f91d2421",
+   "file_sha256": "ae5c0ab1ec52f785722c801327b26db5297724a72a743d22ab07fac68c23def1"
+  },
+  "registry_pop_LCSB-RAW-MIX-REPLICATE-SET-92": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-RAW-MIX-REPLICATE-SET-92_keys.txt",
+   "n": 92,
+   "sha256_sorted_newline_joined": "e2aa014bf7d68db3c3b2963f77d2c7d780a3dd51aabb8d2eda7776935b659941",
+   "file_sha256": "7c5d19c301d2d84c77633657b710bbdfd25478a478ae0e5c4b4b9c5cbd948d5a"
+  },
+  "registry_pop_LCSB-RAW-MIXES-499-503-505": {
+   "file": "exclusion/muru_exposure_registry_population_LCSB-RAW-MIXES-499-503-505_keys.txt",
+   "n": 39,
+   "sha256_sorted_newline_joined": "e6fb0b84cbc3e81b69af45e6f4d210e754e96f471de31869ab3df885df15e659",
+   "file_sha256": "bcb6b6b1e4caf7225ee9bcfd6ec4d6030ba5031a5876175862b7fe8050e48aa9"
+  },
+  "registry_pop_V2-DEVELOPMENT-POPULATION": {
+   "file": "exclusion/muru_exposure_registry_population_V2-DEVELOPMENT-POPULATION_keys.txt",
+   "n": 1325,
+   "sha256_sorted_newline_joined": "81eef787d7c9687b79060f3af7e95cfe2459c74eeb221d2d86264eacec8c0abd",
+   "file_sha256": "6b7405380ed8dbff91660660b2f018c36324a529ad90dab0ffe30e4cd8d67cca"
+  },
+  "registry_pop_WUR-DEV-ANALYSIS": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-DEV-ANALYSIS_keys.txt",
+   "n": 476,
+   "sha256_sorted_newline_joined": "6601a696ed89bbd80370ecc67bd252ff9a2fd47265c1f78c5f04626358f22b28",
+   "file_sha256": "3ed0971b9aceebf77dbbad0fb1ba547653099276dd9f12971fbfba4fa15d5517"
+  },
+  "registry_pop_WUR-DEV-HOLD": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-DEV-HOLD_keys.txt",
+   "n": 130,
+   "sha256_sorted_newline_joined": "3c45858224363e8ad132dbe46706311238db675e656a5a3bf5b2b6b1854edd94",
+   "file_sha256": "d0ce2d83c62b0717e4432b77acdf8602fe6c6997155ad644c3bc3f346cfde138"
+  },
+  "registry_pop_WUR-NEG-D6-EXCLUDED": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-NEG-D6-EXCLUDED_keys.txt",
+   "n": 32,
+   "sha256_sorted_newline_joined": "77705c526b0a257c2bf92b48662b38fb95b336eaa41a807566fb62bbf02b3ef9",
+   "file_sha256": "0bf0c4f6cbe290c3c6e0f14db22e34982e689410c6c44b5ac03537fcdd870f03"
+  },
+  "registry_pop_WUR-NEG-DEV": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-NEG-DEV_keys.txt",
+   "n": 209,
+   "sha256_sorted_newline_joined": "eb4c630d10b9feeb5fc24c88e53f09ec1b2e059e4d781d4f2b34acdaa42a83f9",
+   "file_sha256": "86f10fde65030768ab6a78b1ab6c46843e8f6b4eb90daaf1777bcf64867a06b6"
+  },
+  "registry_pop_WUR-POS-IDENTITY": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-POS-IDENTITY_keys.txt",
+   "n": 1010,
+   "sha256_sorted_newline_joined": "d72bcff4c9214d664c96dbf34987fae43aea699fad44fe1a2d387df4796f9a0c",
+   "file_sha256": "b8a25589e55674100c889781ce4c26e9646c363cd6540f78b75c9f66eebb49a1"
+  },
+  "registry_pop_WUR-SEALED": {
+   "file": "exclusion/muru_exposure_registry_population_WUR-SEALED_keys.txt",
+   "n": 404,
+   "sha256_sorted_newline_joined": "6ef8c685493068cc59b776ea852ec9e012c1216f3d92fac5137e1ffe446c2a52",
+   "file_sha256": "0dd575e864a2dbf212d32e3cc08550629640e746bdfc361bb48493a10a083f18"
+  },
+  "muru_exposure_registry_direct_reason": {
+   "file": "exclusion/muru_exposure_registry_keys_direct_reason.txt",
+   "n": 26005,
+   "sha256_sorted_newline_joined": "fea9bb41cd26d0cacbe5cf528034b1c981f07046d3773c0250a0b4de279b2376",
+   "file_sha256": "39eed2197b8484e190dcd62df4a07360a4acca3ab5d5d11e479e5176ca1f213f",
+   "note": "registry keys with at least one reason other than SCAFFOLD_GROUP_EXCLUDED (the rest are excluded only because their MSnLib census scaffold group was excluded)"
+  },
+  "registry_pop_MultiMS2-ANCHOR": {
+   "file": "exclusion/muru_exposure_registry_population_MultiMS2-ANCHOR_keys.txt",
+   "n": 106,
+   "sha256_sorted_newline_joined": "bea5578581536bb56017297f8ca6828d0168c85b790377e4889948eb6a20d479",
+   "file_sha256": "95e3fa6bab6a71014b4a63f41deb0857c55aca4181ac94955ccfabd4e0a84d85"
+  },
+  "msnlib_study2_population": {
+   "file": "exclusion/msnlib_study2_population_keys.txt",
+   "n": 1794,
+   "sha256_sorted_newline_joined": "58f180a0fd15096bd26b7d8deb998be39953c0dee19d2573ba7bfe3b03123be3",
+   "file_sha256": "c7e01de6a212bd832e69ebc853e26560e2fbf72b5916ee757a2df990711b1b81",
+   "note": "frozen validation population (freeze_manifest population_key_hash reproduced). The subset actually scored is only in the result directory, which is not read; the frozen superset is the conservative exclusion."
+  },
+  "msnlib_study2_population_scaffold_groups": {
+   "file": "exclusion/msnlib_study2_population_scaffold_groups.txt",
+   "n": 1691,
+   "sha256_sorted_newline_joined": "b5788cab23bacfc4fa89ca66d54f52b7b23436c3467c0744eeba5631cd52e681",
+   "file_sha256": "8c534e4ff4d465cdc2b1aa43c14c4e625b11bf0613e001986f6de9b4c87fc9bc"
+  },
+  "comparator_common_population": {
+   "file": "exclusion/comparator_common_population_keys.txt",
+   "n": 1327,
+   "sha256_sorted_newline_joined": "dbdba9ca7edd4c6532b1e88b556f6fadcb582dd14d5c50a78f05c5bf04a52514",
+   "file_sha256": "749f356a9a49bb00774c02367eea0ad632d4d9e53089787101aa72b372ba22df"
+  },
+  "comparator_common_population_scaffold_groups": {
+   "file": "exclusion/comparator_common_population_scaffold_groups.txt",
+   "n": 1254,
+   "sha256_sorted_newline_joined": "4c0b5ef2dedb0c71851dd7d9bd7071bb291b71b18abd001e87dd0c902d26fa9d",
+   "file_sha256": "df8d19f6de60ab934673f0ae808a407201a19b910a71637d7bb727043e5f62e9"
+  },
+  "msnlib_key_libraries_csv": {
+   "file": "exclusion/msnlib_key_libraries.csv",
+   "n": 53612,
+   "file_sha256": "198c9252049b75581cecb13af50015606ff4879de6070fcbe2b011dec98bb5f1"
+  },
+  "msnlib_v1_0_4lib": {
+   "file": "exclusion/msnlib_v1_0_4lib_keys.txt",
+   "n": 19219,
+   "sha256_sorted_newline_joined": "35071162715c30a99aa375961528180307ce36c311e751f364f100a954c81190",
+   "file_sha256": "ed054eefca07f2f1bba1cb74b72ec162b9790961217eaf96daa1b562ae0041fe",
+   "note": "union of recorded split_inchikey first blocks and MURU parent keys of plated rows in the 2025 MERLIN cleaned tables of MCEBIO, NIHNP, MCESCAF, OTAVAPEP; a proxy for the 2024 MSnLib v1.0 MGF compound set (not verified against v1.0 MGF headers)"
+  },
+  "msnlib_9lib": {
+   "file": "exclusion/msnlib_9lib_keys.txt",
+   "n": 53612,
+   "sha256_sorted_newline_joined": "1d9ce9ccdcc3f5c17c2ef6226addb583312ccb3e63ab83bbd35b51273332496f",
+   "file_sha256": "f214370492921286cec8d6904ca5cd72bab68f992437f3c7a45f1b545df3a161"
+  },
+  "multims2_reserved_validation_secondary": {
+   "file": "exclusion/multims2_reserved_validation_secondary_keys.txt",
+   "n": 1525,
+   "sha256_sorted_newline_joined": "da11b6c3b5988ed3c94d2b68c6f78315fbcb06d941ad45755faa4312d049fdd9",
+   "file_sha256": "6dc65b15983f67b10a85f901da8e01715e17f968f9b46c53f7d097186b216a2c",
+   "note": "not exposed; listed so a future study does not burn them silently"
+  },
+  "muru_exposed_union": {
+   "file": "exclusion/muru_exposed_union_keys.txt",
+   "n": 33301,
+   "sha256_sorted_newline_joined": "0624d2f343113ae319ca4ba317ba21dffdc256bb8f9d56f7fe12d878221276c4",
+   "file_sha256": "34198ebdaaa7d2b59636a236ce946770cfaad0494a849bbbb162f5792a552bd6"
+  }
+ },
+ "notes": [],
+ "msg_identity_parquet_sha256": "88e2fd1d810e8f3c79d253c042110174ada1b1990d5a4e122a71097b8a975c48",
+ "msg15_keys_in_more_than_one_fold": 0,
+ "msg_smiles_source": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet (P4 range read), sha256 40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2",
+ "msg15_recorded_vs_parent_key": {
+  "rows_with_smiles": 231104,
+  "rows_parent_key_unformable": 0,
+  "rows_recorded_ne_parent": 272,
+  "distinct_recorded_keys_ne_parent": 35,
+  "examples": [
+   [
+    "ASUOLLHGALPRFK",
+    "YFPJFKYCVYXDJK",
+    "O=[P+](c1ccccc1)c1ccccc1"
+   ],
+   [
+    "UZFMOKQJFYMBGY",
+    "CSGAUKGQUCHWDP",
+    "CC1(C)CC(O)CC(C)(C)N1O"
+   ],
+   [
+    "RYLNFGJYRKJXQE",
+    "QQSIRURWBGEHFS",
+    "CC(C)(C)[P+](=O)C(C)(C)C"
+   ],
+   [
+    "QYTDEUPAUMOIOP",
+    "VUZNLSBZRVZGIK",
+    "CC1(C)CCCC(C)(C)N1O"
+   ],
+   [
+    "DSTNUFDTTMKLQR",
+    "XIVOUNPJCNJBPR",
+    "Oc1cccc2nc3ccccc3cc12"
+   ],
+   [
+    "WXPNDRBBWZMPQG",
+    "KVWDHTXUZHCGIO",
+    "Cc1cc2c(s1)Nc1ccccc1N=C2N1CCN(C)CC1"
+   ],
+   [
+    "OWBBAPRUYLEWRR",
+    "VXIXUWQIVKSKSA",
+    "O=c1cc(O)c2ccccc2o1"
+   ],
+   [
+    "ZZWPMFROUHHAKY",
+    "LLHVQDWTNVJRDD",
+    "COc1cc(-c2oc3cc(=O)cc(O)c-3cc2O[C@@H]2O[C@H](CO)[C@H](O)[C@H](O)[C@H]2O)ccc1O"
+   ]
+  ]
+ },
+ "registry_per_reason_recount_matches_manifest": true,
+ "registry_covers": {
+  "study_id": "muru-v2-msnlib-confirmation-2.0",
+  "utc": "2026-09-13T23:48:22Z",
+  "rule": "a compound or scaffold group listed here may never enter an MSnLib confirmatory pool",
+  "exposed_populations": {
+   "ENTACT-MIX-LISTS-499-503-505": 445,
+   "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 781,
+   "LCSB-CONFIRMATION": 110,
+   "LCSB-DEV": 439,
+   "LCSB-NEG": 379,
+   "LCSB-POS-V2-SPECTRA": 478,
+   "LCSB-RAW-MIX-REPLICATE-SET-92": 92,
+   "LCSB-RAW-MIXES-499-503-505": 39,
+   "MultiMS2-ANCHOR": 106,
+   "V2-DEVELOPMENT-POPULATION": 1325,
+   "WUR-DEV-ANALYSIS": 476,
+   "WUR-DEV-HOLD": 130,
+   "WUR-NEG-D6-EXCLUDED": 32,
+   "WUR-NEG-DEV": 209,
+   "WUR-POS-IDENTITY": 1010,
+   "WUR-SEALED": 404
+  },
+  "other_reasons": {
+   "COPLATED_IN_DECODED_WELL": 4020,
+   "DECODED_SAME_PLATE_EXTENDED_ION_5PPM": 2770,
+   "DECODED_SAME_PLATE_ION_0p01": 4118,
+   "DECODED_SAME_WELL_ION_0p7": 1225,
+   "HEADER_READ_WELL_STUDY1": 23147,
+   "MSNLIB_ANCHOR_CENSUS_DESIGN": 402,
+   "MSNLIB_ANCHOR_CENSUS_DETECTED": 340,
+   "MSNLIB_ANCHOR_GATE_CALIBRATION": 328,
+   "MULTIMS2_ANCHOR_CALIBRATION": 106,
+   "ORPHAN_SPECTRUM_SAME_LIBRARY_OWNER_3PPM": 26,
+   "PRECAUTION_ORPHAN_OWNER": 1,
+   "PRECAUTION_PRINTED_HEADER_NEIGHBOURHOOD": 32,
+   "SAMPLE1_DRAW_GROUP": 2690,
+   "SCAFFOLD_GROUP_EXCLUDED": 23703,
+   "SURFACED_VALUE_ANY_LIBRARY_OWNER_5PPM": 19,
+   "SURFACED_VALUE_ATTRIBUTED_WELL": 20
+  },
+  "not_excluded_disclosures": {
+   "MultiMS2-VALIDATION and SECONDARY": "reserved, never decoded; not previously exposed, so not excluded (the census kept them in 12b)",
+   "prospective acquisition target lists": "design-only, never measured; not excluded",
+   "header-only reads": "EXCLUDED, not merely disclosed: every compound in the wells of the 2,811 locally extracted study-1 files (HEADER_READ_WELL_STUDY1), because full headers carry the outcome-adaptive Assisted collision energy and MS3+ precursor m/z (fragment masses)",
+   "co-isolation from earlier wells": "not excluded: compounds from earlier wells on a decoded plate whose ion falls inside a decoded spectrum's 1.2 m/z isolation window. The registry review measured no carryover presence for remaining-pool compounds (next-injection presence 2/431 one well back vs 3/497 one well forward) and no co-isolation-selected owner excess; disclosed residual",
+   "WUR negative-mode keys without SMILES": "excluded by exact key; scaffold groups cannot be computed (no SMILES in repo)"
+  }
+ },
+ "study2_sampled_groups_n": 2000,
+ "msnlib_design_identity_source": "cache /Users/aryav/muru-msnlib/cache/confirmation_v2/design_identity_673db151da69da9a.pkl (tag reproduced from MERLIN sha256, identity.py sha256 2ebe0de24e5e, rdkit 2026.03.5); spot-check 300/300 parent keys reproduced",
+ "msnlib_key_route_counts": {
+  "v1_0_parent_only": 2,
+  "v1_0_recorded_only": 2,
+  "per_library_keys": {
+   "ENAMDISC": 10240,
+   "ENAMMOL": 4351,
+   "MCEBIO": 9462,
+   "MCEDIV": 19892,
+   "MCEDRUG": 2126,
+   "MCESCAF": 4999,
+   "NIHNP": 3821,
+   "OTAVAPEP": 1293,
+   "TARGETMOL": 2093
+  }
+ },
+ "crosscheck_feasibility_audit_1794": {
+  "audit_in_msnlib_v1_0": 456,
+  "this_in_msnlib_v1_0": 456,
+  "audit_true_this_false": 0,
+  "audit_false_this_true": 0,
+  "audit_in_msg_any": 454,
+  "this_in_msg_any": 454,
+  "audit_in_msnlib_16984129": 1794
+ },
+ "pairwise_overlap_counts": {
+  "muru_exposure_registry": {
+   "muru_exposure_registry": 31507,
+   "muru_exposure_registry_direct_reason": 26005,
+   "msnlib_study2_population": 0,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 12638,
+   "msnlib_9lib": 30216,
+   "multims2_reserved": 425,
+   "msg15_all": 11110,
+   "msg15_train": 8311,
+   "msg15_val": 1417,
+   "msg15_test": 1382,
+   "msg15_parent_all": 11107
+  },
+  "muru_exposure_registry_direct_reason": {
+   "muru_exposure_registry": 26005,
+   "muru_exposure_registry_direct_reason": 26005,
+   "msnlib_study2_population": 0,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 10809,
+   "msnlib_9lib": 24714,
+   "multims2_reserved": 406,
+   "msg15_all": 9599,
+   "msg15_train": 7063,
+   "msg15_val": 1262,
+   "msg15_test": 1274,
+   "msg15_parent_all": 9595
+  },
+  "msnlib_study2_population": {
+   "muru_exposure_registry": 0,
+   "muru_exposure_registry_direct_reason": 0,
+   "msnlib_study2_population": 1794,
+   "comparator_common_population": 1327,
+   "msnlib_v1_0_4lib": 456,
+   "msnlib_9lib": 1794,
+   "multims2_reserved": 3,
+   "msg15_all": 454,
+   "msg15_train": 238,
+   "msg15_val": 120,
+   "msg15_test": 96,
+   "msg15_parent_all": 454
+  },
+  "comparator_common_population": {
+   "muru_exposure_registry": 0,
+   "muru_exposure_registry_direct_reason": 0,
+   "msnlib_study2_population": 1327,
+   "comparator_common_population": 1327,
+   "msnlib_v1_0_4lib": 0,
+   "msnlib_9lib": 1327,
+   "multims2_reserved": 0,
+   "msg15_all": 0,
+   "msg15_train": 0,
+   "msg15_val": 0,
+   "msg15_test": 0,
+   "msg15_parent_all": 0
+  },
+  "msnlib_v1_0_4lib": {
+   "muru_exposure_registry": 12638,
+   "muru_exposure_registry_direct_reason": 10809,
+   "msnlib_study2_population": 456,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 19219,
+   "msnlib_9lib": 19219,
+   "multims2_reserved": 471,
+   "msg15_all": 14744,
+   "msg15_train": 10308,
+   "msg15_val": 2241,
+   "msg15_test": 2195,
+   "msg15_parent_all": 14739
+  },
+  "msnlib_9lib": {
+   "muru_exposure_registry": 30216,
+   "muru_exposure_registry_direct_reason": 24714,
+   "msnlib_study2_population": 1794,
+   "comparator_common_population": 1327,
+   "msnlib_v1_0_4lib": 19219,
+   "msnlib_9lib": 53612,
+   "multims2_reserved": 489,
+   "msg15_all": 15518,
+   "msg15_train": 10991,
+   "msg15_val": 2290,
+   "msg15_test": 2237,
+   "msg15_parent_all": 15513
+  },
+  "multims2_reserved": {
+   "muru_exposure_registry": 425,
+   "muru_exposure_registry_direct_reason": 406,
+   "msnlib_study2_population": 3,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 471,
+   "msnlib_9lib": 489,
+   "multims2_reserved": 1525,
+   "msg15_all": 1424,
+   "msg15_train": 1193,
+   "msg15_val": 125,
+   "msg15_test": 106,
+   "msg15_parent_all": 1422
+  },
+  "msg15_all": {
+   "muru_exposure_registry": 11110,
+   "muru_exposure_registry_direct_reason": 9599,
+   "msnlib_study2_population": 454,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 14744,
+   "msnlib_9lib": 15518,
+   "multims2_reserved": 1424,
+   "msg15_all": 28929,
+   "msg15_train": 22746,
+   "msg15_val": 3185,
+   "msg15_test": 2998,
+   "msg15_parent_all": 28900
+  },
+  "msg15_train": {
+   "muru_exposure_registry": 8311,
+   "muru_exposure_registry_direct_reason": 7063,
+   "msnlib_study2_population": 238,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 10308,
+   "msnlib_9lib": 10991,
+   "multims2_reserved": 1193,
+   "msg15_all": 22746,
+   "msg15_train": 22746,
+   "msg15_val": 0,
+   "msg15_test": 0,
+   "msg15_parent_all": 22721
+  },
+  "msg15_val": {
+   "muru_exposure_registry": 1417,
+   "muru_exposure_registry_direct_reason": 1262,
+   "msnlib_study2_population": 120,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 2241,
+   "msnlib_9lib": 2290,
+   "multims2_reserved": 125,
+   "msg15_all": 3185,
+   "msg15_train": 0,
+   "msg15_val": 3185,
+   "msg15_test": 0,
+   "msg15_parent_all": 3183
+  },
+  "msg15_test": {
+   "muru_exposure_registry": 1382,
+   "muru_exposure_registry_direct_reason": 1274,
+   "msnlib_study2_population": 96,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 2195,
+   "msnlib_9lib": 2237,
+   "multims2_reserved": 106,
+   "msg15_all": 2998,
+   "msg15_train": 0,
+   "msg15_val": 0,
+   "msg15_test": 2998,
+   "msg15_parent_all": 2996
+  },
+  "msg15_parent_all": {
+   "muru_exposure_registry": 11107,
+   "muru_exposure_registry_direct_reason": 9595,
+   "msnlib_study2_population": 454,
+   "comparator_common_population": 0,
+   "msnlib_v1_0_4lib": 14739,
+   "msnlib_9lib": 15513,
+   "multims2_reserved": 1422,
+   "msg15_all": 28900,
+   "msg15_train": 22721,
+   "msg15_val": 3183,
+   "msg15_test": 2996,
+   "msg15_parent_all": 28923
+  }
+ },
+ "checks": {
+  "comparator_subset_of_study2": true,
+  "study2_disjoint_from_registry": true,
+  "study2_subset_of_msnlib_9lib": true
+ }
+}

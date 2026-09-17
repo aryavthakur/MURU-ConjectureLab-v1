@@ -1,0 +1,74 @@
+{
+ "candidate": "C09 GNPS TUEBINGEN-NATURAL-PRODUCT-COLLECTION (rank 9, EVAL conditional on CE recovery; merges D1 sub-item and D2)",
+ "task": "S9 metadata-only overlap and feasibility screen",
+ "date_utc": "2026-09-15",
+ "verdict": "UNSUITABLE",
+ "verdict_one_line": "The whole library was acquired at ONE stepped collision-energy setting (stepped CE 25/35/45, recorded as a single CE 35 on 100% of MS2 scans in both source datasets), so it offers one energy condition per compound and no CE variation at all; criteria 5, 7 and 8 fail and no access route can change that.",
+ "method": {
+  "record_universe": "GNPS LibraryServlet metadata listing for library TUEBINGEN-NATURAL-PRODUCT-COLLECTION (980 records, peaks_json null for every record, no peaks read), plus the two GNPS library upload tasks (status + params), the two MassIVE source datasets MSV000092049 (positive) and MSV000092050 (negative) via MassiveServlet/PROXI and the GNPS2 datasetcache file and uniquemri tables, plus MassSpecGym dataset-construction notebook 1 at 5a34ede (GitHub source).",
+  "identity": "MURU parent_connectivity_key and scaffold_group_v2 recomputed from the GNPS record SMILES/INCHI with scripts/ce_interface_adjudication/scaffold_key.py (rdkit 2026.03.5, the frozen version); overlap tested on both the recorded key route and the MURU parent key route.",
+  "energy_condition": "Every library source file name was matched to its MassIVE dataset entry and its GNPS2 per-file acquisition summary; Top_CEs, Top_CE_Counts and spectra_ms2 were compared file by file (script screen_c09_tuebingen_s9_verify.py, V1).",
+  "training_overlap": "MassSpecGym 1.5 all-fold key sets (P5 exclusion lists) AND, independently, the local ms-pred msg labels.tsv actually used to train the frozen ICEBERG/GLACIER msg checkpoints (119,029 rows, 16,974 unique InChIKey14).",
+  "reproduction": "screen_c09_tuebingen.py was re-run in this session and reproduced all three earlier outputs byte-identically (sha256 37782d9e... / 4281ed85... / e16389ce...)."
+ },
+ "counts": {
+  "library_records_total": 980,
+  "records_with_a_parseable_structure": 919,
+  "records_without_SMILES": 54,
+  "records_with_unparseable_structure": 7,
+  "unique_compounds_all_records": 340,
+  "unique_scaffold_groups_all_records": 264,
+  "adducts": {"M+H": 302, "M-H": 269, "M+Na": 236, "M+Cl-": 100, "M+FA-": 66, "M+NH4": 7},
+  "ion_mode": {"Positive": 544, "Negative": 436},
+  "MH_positive_task_records": 281,
+  "MH_positive_task_compounds": 273,
+  "MH_positive_task_scaffold_groups": 217,
+  "distinct_collision_energy_conditions_per_compound": 1,
+  "post_exclusion_pools_MH_positive": {
+   "B_key_exclusion_minimal": {"records": 183, "compounds": 178, "scaffold_groups": 147},
+   "C_key_exclusion_conservative_full_registry": {"records": 179, "compounds": 174, "scaffold_groups": 143},
+   "D_plus_scaffold_group_exclusion": {"records": 142, "compounds": 138, "scaffold_groups": 115},
+   "E_plus_MURU_precursor_range": {"records": 125, "compounds": 121, "scaffold_groups": 101},
+   "F_plus_precursor_consistency_and_uncharged_parent": {"records": 120, "compounds": 116, "scaffold_groups": 96},
+   "G_plus_no_known_in_pool_coisolation_conflict": {"records": 105, "compounds": 102, "scaffold_groups": 86}
+  }
+ },
+ "criteria": {
+  "1_absent_from_MURU_development": "PARTIAL, fully removable. 9 of the 273 [M+H]+ compounds are in the 1,325-compound v2 development population, 13 in the union of all 16 exposed populations, 53 in the full MURU exposure registry (45 with a direct non-scaffold reason). At scaffold-group level 40 of 273 share a development-population scaffold group and 103 share a registry scaffold group. After conservative key exclusion 174 compounds remain; after also excluding registry/dev/PR7/comparator scaffold groups, 138 compounds in 115 groups.",
+  "2_absent_from_PR7_confirmation_population": "PARTIAL, effectively MET. 1 of the 273 [M+H]+ compounds and 1 scaffold group are in the 1,794-compound MSnLib confirmation study 2 (PR #7) population; both are removed in every pool from B onward.",
+  "3_absent_from_comparator_benchmark_population": "MET. 0 of the 340 compounds and 0 of the 264 scaffold groups are in the 1,327-compound comparator common population (key-list sha256 dbdba9ca..., P5).",
+  "4_absent_from_ICEBERG_GLACIER_training": "PARTIAL, removable. 98 of 340 compounds (93 of the 273 [M+H]+ compounds) are in MassSpecGym 1.5 by recorded or MURU parent key (train 67, val 11, test 15 for the [M+H]+ subset); 65 of the 273 are in the ms-pred msg labels.tsv actually used by the frozen msg checkpoints, and that set agrees exactly with the MassSpecGym simulation-challenge key file. 2,496 MassSpecGym rows carry these keys. The spectra themselves are not in MassSpecGym (see criterion 11); the overlap is compound-level through other libraries and is removable, leaving 174 compounds.",
+  "5_known_CE_semantics": "NOT_MET. (a) The GNPS library record schema has no collision-energy field at all: all 32 fields of all 980 records were enumerated and none mentions energy or collision (confirms the D1 finding). (b) The only CE statement anywhere in the open metadata is the submitter's deposition comment on both source datasets, verbatim 'stepped CE (25, 35, 45)', with no unit; it appears in MassiveServlet massiveinformation, in the PROXI summary and in the submission params.xml (parameter dataset.comments). On a Q Exactive HF this is conventionally stepped NCE in percent, but that is INFERRED, not documented, and cannot be checked without reading an mzML header (a spectra file, outside the download policy). (c) The documented recovery route does exist but returns one number, not a ladder: GNPS's own pipeline reads cvParam MS:1000045 from the original upload file at the recorded scan (GNPS_ML_Processing/bin/GNPS2_Processor.py line 26 'collision_energy_id = MS:1000045' and lines 61-97 / 194-195 'Get Collision Energy From Original Upload File'), and every MS2 scan of every one of these files carries the single value 35. (d) Per-library processed CSV does not exist (HTTP 404); the all-library processed_gnps_data/gnps_cleaned.csv exists but is 471,257,140 bytes, above the ~50 MB metadata cap, and by the pipeline code above it could only contain that same single value. (e) A stepped spectrum is a composite of three energies summed into one scan, so even a recovered '35' does not name the energy deposited. UNRESOLVED sub-point, disclosed: the exact cvParam behind the GNPS2 Top_CEs column could not be read (Wang-Bioinformatics-Lab/PerScanSummarizer and PerScanSummarizer_Workflow both return HTTP 404); the value 35 being the centre of the declared 25/35/45 triple is the corroboration used instead.",
+  "6_MH_positive_available": "MET. 302 [M+H]+ records (301 in the positive upload task; 1 further [M+H]+ record is tagged Negative ion mode and belongs to the negative task, a disclosed identity defect), 544 positive-mode records overall, 273 unique [M+H]+ compounds, 217 scaffold groups.",
+  "7_fragmentation_instrument_compatibility": "PARTIAL. Compatible: the instrument is a Thermo Q Exactive HF (MassIVE dataset.instrument MS:1002523, GNPS2 MassAnalyzer 'orbitrap;quadrupole', Ionization 'electrospray inlet;electrospray ionization', classification DDA), i.e. beam-type HCD on an Orbitrap, which is the right family for MURU's fixed NCE 20 / NCE 60 Orbitrap deployment and maps to the single 'Orbitrap' token of ms-pred (instrument2onehot_pos, src/ms_pred/common/chem_utils.py:277-283; Orbitrap=0, QTOF=1, IT-FT=2, Unknown=3). Not compatible: the energy condition. MURU's external interface identifies fixed rungs inside a run of consecutive MS2 scans at one precursor and explicitly refuses outcome-adaptive scans (src/muru/wur_v2/external_msnlib.py:7-13 docstring, RUNGS=(20.0,60.0) at line 28), and its external energy map A0 takes a single nominal NCE (WUR_MAP at line 31, adapter_energy at lines 87-90). A stepped 25/35/45 composite is neither a fixed single-NCE scan nor a two-rung ladder, so no scan here can be mapped through that interface. Also out of scope: the 436 negative-mode records (MURU is positive-mode only) and the pooled-mixture acquisition (17 pools, 508 characterized natural products per the dataset title, 4 to 24 library compounds identified per pool file, DDA Top-5), which creates co-isolation risk: 46 of the 281 [M+H]+ records already have an in-library co-isolation conflict by MURU's own 0.7 m/z rule, and that is a lower bound because only in-library compounds could be checked.",
+  "8_multiple_energies_per_compound": "NOT_MET, decisive. All 17 positive-task and all 17 negative-task library source files were matched into MSV000092049 / MSV000092050 (17/17 and 17/17, no unmatched file). Every one of those files reports exactly one Top_CE value, 35.0, and Top_CE_Counts equals spectra_ms2 for every file, i.e. 87,464 of 87,464 matched positive MS2 scans and 52,769 of 52,769 matched negative MS2 scans were acquired at that single setting. Every compound therefore has exactly 1 energy condition. The 8 compounds with two [M+H]+ records are duplicates across pool files at the same setting, not a second energy.",
+  "9_structural_diversity_after_exclusions": "MET as a count, but it cannot rescue the candidate. After conservative key exclusion: 174 compounds in 143 scaffold groups; after scaffold-group exclusion too: 138 in 115; after the MURU precursor range and precursor-consistency filters: 116 compounds in 96 groups (82 of them singletons), every compound C/H/O-containing with N in 64, Cl in 4, S in 1, P in 1 and no other elements, theoretical [M+H]+ 185.1 to 916.5 m/z (median 439.7), heavy atoms 13 to 64 (median 31.5); dropping known in-pool co-isolation conflicts leaves 102 compounds in 86 groups. Chemistry is genuine microbial natural products (macrolides, anthracyclines, depsipeptides, ansamycins), largely singleton scaffolds. With one energy per compound this supports no CE calibration and no energy-resolved evaluation.",
+  "10_license_and_access": "MET. Source data: MassIVE MSV000092049 (positive) and MSV000092050 (negative), both public (massiveinformation private=false), DOIs 10.25345/C5J38KT5R and 10.25345/C5DB7W111, submission parameter default.license=on and the MassIVE dataset page states CC0 1.0 Universal. Library: openly downloadable from GNPS2 as .mgf/.msp/.json; the GNPS library documentation page states no explicit license (checked). Caveats: the MassIVE page labels the dataset 'Partial Public' and massiveinformation reports complete=false and has_access=false for an anonymous caller, while all 58 (POS) / 50 (NEG) files are listed and were processed by the GNPS2 cache; no publication is attached ('Dataset with no associated published manuscript'), so there is no paper describing the acquisition beyond the deposition comment.",
+  "11_hidden_massspecgym_inclusion_plausibility": "PARTIAL. Spectrum-level inclusion is ruled out as far as metadata can: TUEBINGEN-NATURAL-PRODUCT-COLLECTION is not among the 46 GNPS library MGFs listed in MassSpecGym dataset-construction notebook 1 (downloaded 13/05/2024), and the one aggregate-sounding library that is in that list, GNPS-LIBRARY, shares zero SpectrumIDs, zero upload tasks and zero source-file names with this library (16,158 records, library_membership 'GNPS-LIBRARY' for all). Timing gives no protection by itself: 973 of the 980 records were created 2023-09-18 and only 7 on 2025-01-24, so the library existed well before MassSpecGym's download and was simply not selected. Residual risk, compound-level and real: 93 of the 273 [M+H]+ compounds are already in MassSpecGym through other libraries (excluded here); of the 174 conservative-pool compounds, 75 share a parent formula with a MassSpecGym compound, 8 share formula AND scaffold group, and 10 appear by MURU parent key in GNPS-LIBRARY records created before 2024-05-13 (e.g. Abyssomicin C, Actinomycin D, Alamethicin) yet are absent from released MassSpecGym 1.5, i.e. they were inside MassSpecGym's download and dropped by its curation. Those 10 would be inside the training universe of any checkpoint trained on a less filtered snapshot, and the same-substance-different-representation route (as seen elsewhere in this study) is not excluded by key matching alone."
+ },
+ "blocking_findings": [
+  "One collision-energy condition for the entire library (stepped 25/35/45 reported as a single CE 35 on 100% of MS2 scans in both source datasets) - no energy ladder, no CE variation, criterion 8 fails outright.",
+  "The CE quantity is not documented anywhere at record level and the library schema has no CE field; the only statement is an unitless submitter comment, and the spectra are stepped composites so a single recovered number would not name the deposited energy either.",
+  "Stepped acquisition is outside MURU's fixed-rung NCE 20 / 60 external interface, which reads a single nominal NCE per scan and refuses outcome-adaptive scans."
+ ],
+ "non_blocking_findings": [
+  "Pooled-mixture DDA acquisition: 46 of 281 [M+H]+ records have an in-library co-isolation conflict under MURU's 0.7 m/z rule (lower bound).",
+  "34 of 919 structured records have a GNPS precursor m/z more than 0.01 Da from the theoretical adduct mass (11 of them [M+H]+), including gross errors such as Alazopeptin 396.163 vs 365.157.",
+  "One record (CCMSLIB00011906925, 'T4099-1a / SEK 15') is labelled Adduct M+H with Ion_Mode Negative inside the negative upload task.",
+  "54 records carry no SMILES and 7 more have unparseable structures (metal-chelate and thiopeptide SMILES).",
+  "18 [M+H]+ compounds fall outside the MURU development precursor range 70.0-1042.6 m/z (up to 2,164.96)."
+ ],
+ "what_would_change_the_verdict": "Nothing available through metadata or access. A second energy would have to be acquired; the deposited raw data contains one stepped method. If the Petras lab has an unpublished energy-resolved acquisition of the same collection, that would be a different dataset and would need its own screen.",
+ "artifacts": {
+  "screen_summary": "artifacts/ce_interface_adjudication/screen/c09_tuebingen/c09_screen_summary.json",
+  "records_identity_overlap": "artifacts/ce_interface_adjudication/screen/c09_tuebingen/c09_records_identity_overlap.csv",
+  "msg_row_summary": "artifacts/ce_interface_adjudication/screen/c09_tuebingen/c09_keys_in_msg15_row_summary.csv",
+  "s9_verification": "artifacts/ce_interface_adjudication/screen/c09_tuebingen/c09_s9_verification.json",
+  "downloads": "artifacts/ce_interface_adjudication/screen/c09_tuebingen/downloads/",
+  "scripts": [
+   "scripts/ce_interface_adjudication/screen_c09_tuebingen_fetch.py",
+   "scripts/ce_interface_adjudication/screen_c09_tuebingen.py",
+   "scripts/ce_interface_adjudication/screen_c09_tuebingen_s9_verify.py"
+  ]
+ }
+}

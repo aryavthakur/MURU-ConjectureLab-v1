@@ -1,0 +1,339 @@
+{
+ "inputs": {
+  "labels_tsv": {
+   "path": "/Users/aryav/muru-comparators/repos/ms-pred/data/spec_datasets/msg/labels.tsv",
+   "sha256": "0b29f4b150fa043f2ea382df3d7a02ddfdf5dc9baee9790299b3890d3582f244"
+  },
+  "msg15_identity_parquet": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/comparator_feasibility/massspecgym15_identity.parquet",
+   "sha256": "88e2fd1d810e8f3c79d253c042110174ada1b1990d5a4e122a71097b8a975c48"
+  },
+  "t1_hparams": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/comparator_benchmark/technical/t1/checkpoint_hyperparameters.jsonl",
+   "sha256": "f0ff1484ca5f79c7e07c9dccac96e8ee9ae934d743399270ed359e02296079e0"
+  }
+ },
+ "parser_probe": {
+  "get_collision_energy_lines": "chem_utils.py:740-755",
+  "collision_energy_to_float_lines": "chem_utils.py:780-784",
+  "get_collision_energy": {
+   "collision 30": "30",
+   "collision 27.75": "28",
+   "collision 32.5": "32",
+   "collision 30 eV": "30",
+   "collision 30 eV [imputed]": "30",
+   "collision 30%": "30",
+   "collision NCE 30": "30",
+   "collision nan": "nan",
+   "collision 20,30,40": "20",
+   "collision 1.5e1": "2",
+   "collision -5": "5",
+   "collision": "nan",
+   "MassSpecGymID0000001_collision 30.json": "30"
+  },
+  "collision_energy_to_float": {
+   "30": "30.0",
+   "30 eV": "30.0",
+   "27.75": "27.75",
+   "nan": "nan",
+   "20,30": "EXC ValueError",
+   "30%": "EXC ValueError"
+  },
+  "create_msg_simulation_dataset.format_collision_energy": {
+   "30.0": "['30']",
+   "32.5": "['32.5']",
+   "21.374848": "['21.3748']",
+   "27.75": "['27.75']",
+   "nan": null,
+   "'30 eV'": null,
+   "None": null
+  },
+  "massspec_init_rounding_f'{x:.0f}'": {
+   "27.5": "28",
+   "27.75": "28",
+   "28.5": "28",
+   "32.5": "32",
+   "21.374848": "21"
+  }
+ },
+ "committed_labels_vs_msg15": {
+  "labels_rows": 119029,
+  "labels_columns": [
+   "Unnamed: 0",
+   "dataset",
+   "spec",
+   "ionization",
+   "formula",
+   "smiles",
+   "inchikey",
+   "instrument",
+   "collision_energies",
+   "precursor"
+  ],
+  "labels_unique_specs": 119029,
+  "labels_instrument_counts": {
+   "Orbitrap": 81323,
+   "QTOF": 37706
+  },
+  "labels_adduct_counts": {
+   "[M+H]+": 119029
+  },
+  "labels_unique_ce_strings": 192,
+  "msg15_simulation_rows": 119029,
+  "msg15_simulation_ce_nan": 0,
+  "join_both": 119029,
+  "all_label_specs_are_sim_rows": true,
+  "same_spec_set_as_msg15_sim": true,
+  "inchikey_equal_frac": 1.0,
+  "instrument_equal_frac": 1.0,
+  "adduct_equal_frac": 1.0,
+  "label_ce_string_counts_containing": {
+   "eV": 0,
+   "imputed": 0,
+   "nan": 0,
+   "%": 0,
+   ",": 0,
+   ".": 0
+  },
+  "label_ce_equals_msg15_ce_frac": 0.7875559737542952,
+  "label_ce_equals_floor_msg15_ce_frac": 1.0,
+  "label_ce_equals_round_half_even_msg15_ce_frac": 0.8975795814465383,
+  "unnamed0_equals_msg15_row_position_frac": 1.0,
+  "msg15_sim_noninteger_ce_rows": 25289
+ },
+ "msg15_noninteger_ce_pattern": {
+  "noninteger_rows": 25289,
+  "by_instrument": {
+   "Orbitrap": 23928,
+   "QTOF": 1361
+  },
+  "implied_nce_within_0.01_of_integer": 23926,
+  "implied_nce_within_0.01_frac": 0.9461030487563763,
+  "top_implied_nce_values": {
+   "25.0": 2348,
+   "60.0": 2211,
+   "30.0": 2088,
+   "90.0": 2085,
+   "45.0": 1936,
+   "75.0": 1887,
+   "35.0": 1682,
+   "15.0": 1496,
+   "40.0": 988,
+   "50.0": 873,
+   "80.0": 780,
+   "70.0": 704
+  },
+  "integer_rows": 93740,
+  "integer_rows_implied_nce_near_integer_frac": 0.022135694474077233,
+  "instrument_x_is_integer_ce": {
+   "Orbitrap": {
+    "False": 23928,
+    "True": 57395
+   },
+   "QTOF": {
+    "False": 1361,
+    "True": 36345
+   }
+  }
+ },
+ "msg_simulation_label_keys": {
+  "label_examples_noninteger": [
+   "['19.1492']",
+   "['25.5323']",
+   "['41.49']",
+   "['9.57462']",
+   "['15.9577']"
+  ],
+  "per_fold": {
+   "train": {
+    "rows": 99341,
+    "label_key_ne_floor_key": 11163,
+    "kept_if_base_keys_are_floor": 88178,
+    "label_key_ne_round_key": 0
+   },
+   "val": {
+    "rows": 9734,
+    "label_key_ne_floor_key": 486,
+    "kept_if_base_keys_are_floor": 9248,
+    "label_key_ne_round_key": 0
+   },
+   "test": {
+    "rows": 9954,
+    "label_key_ne_floor_key": 542,
+    "kept_if_base_keys_are_floor": 9412,
+    "label_key_ne_round_key": 0
+   }
+  }
+ },
+ "step_arithmetic": {
+  "checkpoints": {
+   "/ckpt/glacier_msg/best.ckpt": {
+    "epoch": 23,
+    "global_step": 74352,
+    "global_step_over_epoch_plus_1": 3098.0
+   },
+   "/ckpt/iceberg21_msg_simulation/gen/best.ckpt": {
+    "epoch": 16,
+    "global_step": 52666,
+    "global_step_over_epoch_plus_1": 3098.0
+   },
+   "/ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt": {
+    "epoch": 5,
+    "global_step": 8268,
+    "global_step_over_epoch_plus_1": 1378.0
+   }
+  },
+  "msg15_sim_train_rows": 99341,
+  "one_gpu_bs32_steps_if_all_sim_train": 3105,
+  "n_range_for_3098_steps_one_gpu_bs32": [
+   99105,
+   99136
+  ],
+  "n_range_for_1378_steps_ddp2_bs32": [
+   88129,
+   88192
+  ],
+  "kept_train_if_floor_keyed_base": 88178,
+  "ddp2_bs32_steps_for_kept": 1378,
+  "ddp2_bs32_steps_if_no_ce_drop": 1553,
+  "one_gpu_bs32_steps_for_kept": 2756,
+  "msg15_all_train_rows": 194119,
+  "one_gpu_bs32_steps_if_all_msg_train": 6067,
+  "msg15_known_ce_train_rows": 101609,
+  "one_gpu_bs32_steps_if_known_ce_train": 3176
+ },
+ "checkpoint_strings": {
+  "iceberg21_msg_simulation/gen/best.ckpt": {
+   "result_path_strings": [
+    "results/iceberg_msg_simulation/split_rnd1/ckpt/gen/best.ckptr#",
+    "results/iceberg_msg_simulation/split_rnd1/ckpt/gen/last.ckptr3"
+   ]
+  },
+  "iceberg21_msg_simulation/inten_contr/best.ckpt": {
+   "result_path_strings": [
+    "results/iceberg_msg_simulation/split_rnd1/ckpt/inten_contr/best.ckptr",
+    "results/iceberg_msg_simulation/split_rnd1/ckpt/inten_contr/last.ckptr"
+   ]
+  },
+  "glacier_msg/best.ckpt": {
+   "result_path_strings": [
+    "results/joint_train_msg/split_rnd1/version_5/best.ckptr",
+    "results/joint_train_msg/split_rnd1/version_5r"
+   ]
+  }
+ },
+ "archive_entry_timestamps": {
+  "iceberg21_msg_simulation.zip": [
+   [
+    "/",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    0
+   ],
+   [
+    "gen/",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    0
+   ],
+   [
+    "inten_contr/",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    0
+   ],
+   [
+    "gen/best.ckpt",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    41561644
+   ],
+   [
+    "gen/hparams.yaml",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    360
+   ],
+   [
+    "inten_contr/best.ckpt",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    40604948
+   ],
+   [
+    "inten_contr/hparams.yaml",
+    [
+     2026,
+     7,
+     9,
+     2,
+     47,
+     16
+    ],
+    526
+   ]
+  ],
+  "glacier_msg.zip": [
+   [
+    "/",
+    [
+     2026,
+     6,
+     11,
+     15,
+     59,
+     38
+    ],
+    0
+   ],
+   [
+    "best.ckpt",
+    [
+     2026,
+     6,
+     12,
+     12,
+     34,
+     34
+    ],
+    181602423
+   ]
+  ]
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "c08_cmmc_reframe_records_identity.csv": {
+  "size": 1672263,
+  "sha256": "6f06986eb433bc5e66c562e38f9bc52c3b1e092bc0509487ed4abbe236171bef"
+ },
+ "c08_reframe_records_identity_overlap.csv": {
+  "size": 6574212,
+  "sha256": "e806e0afbcb8ccdffe1041ab578abd966ef48d5199befb89670a7fdc0fc4d633"
+ },
+ "screen_summary.json": {
+  "size": 43690,
+  "sha256": "526794d08b47370ef1e8b873693c1f476cc17b370636ddd0ff5750641c2e397d"
+ }
+}

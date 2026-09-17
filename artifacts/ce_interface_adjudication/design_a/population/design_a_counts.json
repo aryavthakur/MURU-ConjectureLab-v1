@@ -1,0 +1,572 @@
+{
+ "exclusion_ledger_summary": {
+  "by_first_failed_rule": {
+   "PASS": 69,
+   "R1": 1756,
+   "R4": 2480,
+   "R5": 79,
+   "R6": 2,
+   "R8": 664,
+   "R9": 1
+  },
+  "records_total": 5051
+ },
+ "final_primary": {
+  "compounds": 33,
+  "compounds_by_nce_cell": {
+   "30": 33,
+   "60": 33
+  },
+  "compounds_per_scaffold_group_distribution": {
+   "1": 33
+  },
+  "instrument_composition_compounds": {
+   "Exploris 240 Orbitrap Thermo Scientific": 21,
+   "Exploris 240 Thermo Scientific": 10,
+   "Q Exactive Plus": 2
+  },
+  "instrument_composition_records": {
+   "Exploris 240 Orbitrap Thermo Scientific": 44,
+   "Exploris 240 Thermo Scientific": 21,
+   "Q Exactive Plus": 4
+  },
+  "n_distinct_scaffold_groups": 33,
+  "n_singleton_scaffold_groups": 33,
+  "records": 69,
+  "records_by_nce_cell": {
+   "30": 34,
+   "60": 35
+  },
+  "records_per_compound_distribution": {
+   "2": 31,
+   "3": 1,
+   "4": 1
+  },
+  "release_composition_records": {
+   "2024.06": 12,
+   "2024.11": 25,
+   "2025.10": 32
+  },
+  "resolution_composition_records": {
+   "15000": 25,
+   "17500": 44
+  },
+  "scaffold_groups": 33,
+  "theoretical_mh_distribution": {
+   "max": 784.5259133948799,
+   "mean": 395.1115987342133,
+   "median": 333.07259621888,
+   "min": 100.03930486688,
+   "n": 33,
+   "q05": 114.06861090928,
+   "q25": 217.14343558688,
+   "q75": 587.35784502688,
+   "q95": 715.0482358940798,
+   "sd": 213.21704344035825
+  }
+ },
+ "frozen_rules": {
+  "accepted_instrument_types": [
+   "LC-ESI-QFT",
+   "LC-ESI-ITFT"
+  ],
+  "compound_identifier": "parent_connectivity_key (column parent_key), the MURU compound identifier, frozen as THE compound identifier. The deposited recorded InChIKey first block is carried alongside for traceability but is never the grouping key.",
+  "instrument_types_present_in_input": [
+   "LC-ESI-QFT"
+  ],
+  "justifications": {
+   "R2_instrument_type": "Orbitrap instrument-type strings accepted: LC-ESI-QFT and LC-ESI-ITFT. Only LC-ESI-QFT is present in C01 (5,051 of 5,051 records); LC-ESI-ITFT is accepted by the rule but contributes nothing here. QTOF is excluded by design constraint: MURU's claim scope is Orbitrap HCD fixed NCE, and the checkpoints' instrument vocabulary treats QTOF as a separate token.",
+   "R6_mh_error_threshold": "mh_error_da = deposited PRECURSOR_M/Z minus theoretical [M+H]+ of the MURU parent structure (screen_c01_eawag_eq.py lines 188 and 207). It is therefore a SIGNED quantity on the [M+H]+ axis only: every [M-H]- record shows about -2.0146 Da by construction, which is the adduct sign artifact and not a defect. R1 removes all 1,756 negative-mode records before R6 runs, so no artifact reaches the threshold. Within the 3,295 [M+H]+ records the distribution is bimodal with a six-order-of-magnitude gap: max |error| in the clean mode is 5.0e-5 Da (q99 4.98e-5), then nothing until 82.0127 Da (9 records of one compound). A threshold of 0.01 Da sits 200x above the clean maximum and 8,200x below the defect, and gives the same 9 records as 0.005 or 0.002 Da, so the result is insensitive to the exact choice inside the gap.",
+   "R7_precursor_bound": "Applied bound 995.556 (ICEBERG training-label maximum, Phase 1-3 design section 3.4). The MassSpecGym maximum 999.396 is the looser alternative and is reported but not applied, because the label table is what the frozen checkpoints were trained on. No C01 record is between the two bounds, so the choice removes nothing either way.",
+   "R8_tautomer_recheck": "The canonical-tautomer-key hidden-inclusion recheck is APPLIED as sub-rule R8m (it is what caught clethodim, PHXHZCIAPNNPTQ, at Morgan Tanimoto 0.54 to its MassSpecGym enol form IOYNQIMAUDJVEI). The formula-constrained heavy-atom SKELETON key from the same recheck table is computed and reported but NOT applied, because the task names only the tautomer route; it fires on no compound that the tautomer route does not already remove, so applying it would change nothing.",
+   "compound_identifier": "parent_connectivity_key (column parent_key), the MURU compound identifier, frozen as THE compound identifier. The deposited recorded InChIKey first block is carried alongside for traceability but is never the grouping key.",
+   "representative_structure": "One parent_connectivity_key can carry several deposited SMILES strings. Frozen rule: the representative structure is the LEXICOGRAPHICALLY SMALLEST RDKit canonical SMILES (Chem.MolToSmiles of Chem.MolFromSmiles of the deposited CH$SMILES) among the compound's records that survive the record-level rules R1 through R7. Ties are impossible because the candidate set is a set of strings."
+  },
+  "mh_error_tolerance_da": 0.01,
+  "mspred_max_atom_ct": 160,
+  "mspred_valid_elements": [
+   "As",
+   "B",
+   "Br",
+   "C",
+   "Cl",
+   "Co",
+   "F",
+   "Fe",
+   "H",
+   "I",
+   "K",
+   "N",
+   "Na",
+   "O",
+   "P",
+   "S",
+   "Se",
+   "Si"
+  ],
+  "nce_cells": [
+   30.0,
+   60.0
+  ],
+  "precursor_bound_alternative_not_applied": 999.396,
+  "precursor_bound_applied": 995.556,
+  "proton_mass": 1.00727646688,
+  "qtof_note": "QTOF is excluded by design constraint; none is present in C01.",
+  "representative_structure_rule": "One parent_connectivity_key can carry several deposited SMILES strings. Frozen rule: the representative structure is the LEXICOGRAPHICALLY SMALLEST RDKit canonical SMILES (Chem.MolToSmiles of Chem.MolFromSmiles of the deposited CH$SMILES) among the compound's records that survive the record-level rules R1 through R7. Ties are impossible because the candidate set is a set of strings.",
+  "tagged_releases": [
+   "2024.06",
+   "2024.11",
+   "2025.10"
+  ],
+  "theoretical_mh_method": "rdkit.Chem.Descriptors.ExactMolWt(parent_mol(representative_smiles)) + PROTON_MASS, where parent_mol = scaffold_key.parent_mol = LargestFragmentChooser(preferOrganic=True) then Uncharger"
+ },
+ "generated_by": "scripts/ce_interface_adjudication/design_a/10_build_population.py",
+ "r8_sub_rules_primary": [
+  {
+   "applied": true,
+   "column": "in_msg15_recorded_route",
+   "compounds_flagged": 256,
+   "compounds_newly_removed": 256,
+   "description": "compound key in MassSpecGym 1.5 by the recorded InChIKey route",
+   "sub_rule": "R8a"
+  },
+  {
+   "applied": true,
+   "column": "in_msg15_parent_route",
+   "compounds_flagged": 255,
+   "compounds_newly_removed": 0,
+   "description": "compound key in MassSpecGym 1.5 by the MURU parent key route",
+   "sub_rule": "R8b"
+  },
+  {
+   "applied": true,
+   "column": "in_mspred_msg_labels",
+   "compounds_flagged": 237,
+   "compounds_newly_removed": 0,
+   "description": "compound in the ms-pred msg_simulation labels",
+   "sub_rule": "R8c"
+  },
+  {
+   "applied": true,
+   "column": "in_muru_registry_keys",
+   "compounds_flagged": 229,
+   "compounds_newly_removed": 29,
+   "description": "compound in the MURU exposure registry",
+   "sub_rule": "R8d"
+  },
+  {
+   "applied": true,
+   "column": "in_muru_exposed_pop_keys",
+   "compounds_flagged": 133,
+   "compounds_newly_removed": 0,
+   "description": "compound in a MURU exposed population",
+   "sub_rule": "R8e"
+  },
+  {
+   "applied": true,
+   "column": "in_muru_dev_pop_keys",
+   "compounds_flagged": 103,
+   "compounds_newly_removed": 0,
+   "description": "compound in a MURU development population",
+   "sub_rule": "R8f"
+  },
+  {
+   "applied": true,
+   "column": "in_pr7_keys",
+   "compounds_flagged": 0,
+   "compounds_newly_removed": 0,
+   "description": "compound in the PR #7 confirmation population",
+   "sub_rule": "R8g"
+  },
+  {
+   "applied": true,
+   "column": "in_comparator_keys",
+   "compounds_flagged": 0,
+   "compounds_newly_removed": 0,
+   "description": "compound in the comparator benchmark population",
+   "sub_rule": "R8h"
+  },
+  {
+   "applied": true,
+   "column": "sg_in_muru_registry",
+   "compounds_flagged": 314,
+   "compounds_newly_removed": 54,
+   "description": "scaffold group guard: group in the MURU exposure registry",
+   "sub_rule": "R8i"
+  },
+  {
+   "applied": true,
+   "column": "sg_in_muru_dev_pop",
+   "compounds_flagged": 222,
+   "compounds_newly_removed": 0,
+   "description": "scaffold group guard: group in a MURU development population",
+   "sub_rule": "R8j"
+  },
+  {
+   "applied": true,
+   "column": "sg_in_pr7",
+   "compounds_flagged": 0,
+   "compounds_newly_removed": 0,
+   "description": "scaffold group guard: group in the PR #7 population",
+   "sub_rule": "R8k"
+  },
+  {
+   "applied": true,
+   "column": "sg_in_comparator",
+   "compounds_flagged": 0,
+   "compounds_newly_removed": 0,
+   "description": "scaffold group guard: group in the comparator population",
+   "sub_rule": "R8l"
+  },
+  {
+   "applied": true,
+   "column": "msg15_taut_key_hit|muru_dev_pop_taut_key_hit|pr7_taut_key_hit|comparator_taut_key_hit",
+   "compounds_flagged": 267,
+   "compounds_newly_removed": 1,
+   "description": "tautomer-key hidden-inclusion recheck (any of the four target populations)",
+   "sub_rule": "R8m"
+  },
+  {
+   "applied": false,
+   "column": "msg15_skel_key_hit|muru_dev_pop_skel_key_hit|pr7_skel_key_hit|comparator_skel_key_hit",
+   "compounds_flagged": 267,
+   "compounds_newly_removed": 0,
+   "description": "formula-constrained skeleton-key recheck, REPORTED BUT NOT APPLIED",
+   "sub_rule": "R8n-informational"
+  }
+ ],
+ "rdkit_version": "2026.03.5",
+ "rule_steps_primary": [
+  {
+   "compounds_surviving": 507,
+   "description": "input records (C01 Eawag EQ, first released after MassBank 2023.11)",
+   "records_surviving": 5051,
+   "rule": "R0",
+   "scaffold_groups_surviving": 324
+  },
+  {
+   "compounds_surviving": 415,
+   "description": "ion mode POSITIVE and precursor type exactly [M+H]+",
+   "records_surviving": 3295,
+   "rule": "R1",
+   "scaffold_groups_surviving": 263
+  },
+  {
+   "compounds_surviving": 415,
+   "description": "MS2, HCD, Orbitrap instrument type (LC-ESI-QFT or LC-ESI-ITFT)",
+   "records_surviving": 3295,
+   "rule": "R2",
+   "scaffold_groups_surviving": 263
+  },
+  {
+   "compounds_surviving": 415,
+   "description": "collision energy in single-value 'N % (nominal)' form and nce parses to a finite float",
+   "records_surviving": 3295,
+   "rule": "R3",
+   "scaffold_groups_surviving": 263
+  },
+  {
+   "compounds_surviving": 412,
+   "description": "nce exactly 30 or exactly 60",
+   "records_surviving": 815,
+   "rule": "R4",
+   "scaffold_groups_surviving": 260
+  },
+  {
+   "compounds_surviving": 374,
+   "description": "release provenance: first_ref in a post-2023.11 tagged release",
+   "records_surviving": 736,
+   "rule": "R5",
+   "scaffold_groups_surviving": 238
+  },
+  {
+   "compounds_surviving": 374,
+   "description": "structural integrity",
+   "records_surviving": 734,
+   "rule": "R6",
+   "scaffold_groups_surviving": 238
+  },
+  {
+   "compounds_surviving": 374,
+   "description": "model support (elements, heavy atoms, precursor bound)",
+   "records_surviving": 734,
+   "rule": "R7",
+   "scaffold_groups_surviving": 238
+  },
+  {
+   "compounds_surviving": 34,
+   "description": "compound-level identity exclusions",
+   "records_surviving": 70,
+   "rule": "R8",
+   "scaffold_groups_surviving": 34
+  },
+  {
+   "compounds_surviving": 33,
+   "description": "cell completeness: at least one record at NCE 30 and one at NCE 60",
+   "records_surviving": 69,
+   "rule": "R9",
+   "scaffold_groups_surviving": 33
+  }
+ ],
+ "secondary_dev_pr_figure_NOT_USED_BY_THE_PREREGISTRATION": {
+  "compounds": 44,
+  "compounds_added_vs_primary": [
+   "AVOCDJCZFLQTCS",
+   "BEQVQKJCLJBTKZ",
+   "DKVATWZCDNHYCW",
+   "DSRUAYIFDCHEEV",
+   "IDCPFAYURAQKDZ",
+   "INDOGKYZYLAGEM",
+   "MSJXTBMNRCTIDR",
+   "TZIPMEZQXPAKPK",
+   "UHCSCHGCOSOIRD",
+   "WQNQTJSLPDZSDK",
+   "XMRMVBVJGSKMEN"
+  ],
+  "compounds_lost_vs_primary": [],
+  "label": "Secondary, clearly labelled: the same cascade with R5 widened to admit the unreleased dev pull request. The preregistration does NOT use these numbers.",
+  "n_compounds_added_vs_primary": 11,
+  "records": 91,
+  "records_by_nce_cell": {
+   "30": 45,
+   "60": 46
+  },
+  "records_by_release": {
+   "2024.06": 12,
+   "2024.11": 25,
+   "2025.10": 32,
+   "dev": 22
+  },
+  "records_excluded_at_R5_as_dev_only": 79,
+  "rule_steps": [
+   {
+    "compounds_surviving": 507,
+    "description": "input records (C01 Eawag EQ, first released after MassBank 2023.11)",
+    "records_surviving": 5051,
+    "rule": "R0",
+    "scaffold_groups_surviving": 324
+   },
+   {
+    "compounds_surviving": 415,
+    "description": "ion mode POSITIVE and precursor type exactly [M+H]+",
+    "records_surviving": 3295,
+    "rule": "R1",
+    "scaffold_groups_surviving": 263
+   },
+   {
+    "compounds_surviving": 415,
+    "description": "MS2, HCD, Orbitrap instrument type (LC-ESI-QFT or LC-ESI-ITFT)",
+    "records_surviving": 3295,
+    "rule": "R2",
+    "scaffold_groups_surviving": 263
+   },
+   {
+    "compounds_surviving": 415,
+    "description": "collision energy in single-value 'N % (nominal)' form and nce parses to a finite float",
+    "records_surviving": 3295,
+    "rule": "R3",
+    "scaffold_groups_surviving": 263
+   },
+   {
+    "compounds_surviving": 412,
+    "description": "nce exactly 30 or exactly 60",
+    "records_surviving": 815,
+    "rule": "R4",
+    "scaffold_groups_surviving": 260
+   },
+   {
+    "compounds_surviving": 412,
+    "description": "release provenance: first_ref in a post-2023.11 tagged release",
+    "records_surviving": 815,
+    "rule": "R5",
+    "scaffold_groups_surviving": 260
+   },
+   {
+    "compounds_surviving": 412,
+    "description": "structural integrity",
+    "records_surviving": 813,
+    "rule": "R6",
+    "scaffold_groups_surviving": 260
+   },
+   {
+    "compounds_surviving": 412,
+    "description": "model support (elements, heavy atoms, precursor bound)",
+    "records_surviving": 813,
+    "rule": "R7",
+    "scaffold_groups_surviving": 260
+   },
+   {
+    "compounds_surviving": 45,
+    "description": "compound-level identity exclusions",
+    "records_surviving": 92,
+    "rule": "R8",
+    "scaffold_groups_surviving": 45
+   },
+   {
+    "compounds_surviving": 44,
+    "description": "cell completeness: at least one record at NCE 30 and one at NCE 60",
+    "records_surviving": 91,
+    "rule": "R9",
+    "scaffold_groups_surviving": 44
+   }
+  ],
+  "scaffold_groups": 44
+ },
+ "structure_integrity_and_identity_diagnostics": {
+  "abs_mh_error_da_all_MH_positive_input_records": {
+   "max": 82.01273036288,
+   "mean": 0.2240358467186903,
+   "median": 2.5597120014708707e-05,
+   "min": 1.4879958598612577e-08,
+   "n": 3295,
+   "q05": 2.5868799866657355e-06,
+   "q25": 1.3009999975110986e-05,
+   "q75": 3.888287994868733e-05,
+   "q95": 4.755887988494578e-05,
+   "sd": 4.281014150955216
+  },
+  "compound_keys_spanning_multiple_structures_in_eligible_set": [],
+  "compound_keys_spanning_multiple_structures_in_whole_input": [],
+  "deposited_precursor_minus_theoretical_mh_CHECK_ONLY_NOT_A_FILTER": {
+   "max": 4.784512003652708e-05,
+   "mean": 1.8610620583680482e-06,
+   "median": 9.369119993607455e-06,
+   "min": -4.502688000229682e-05,
+   "n": 69,
+   "q05": -4.261567995627047e-05,
+   "q25": -2.4714879941711843e-05,
+   "q75": 1.538912010801141e-05,
+   "q95": 4.495551999070811e-05,
+   "sd": 2.773137662365806e-05
+  },
+  "mh_error_da_negative_mode_input_records_ADDUCT_SIGN_ARTIFACT": {
+   "max": -2.014502930879985,
+   "mean": -2.014555136072466,
+   "median": -2.014553962880001,
+   "min": -2.0146025868799597,
+   "n": 1756,
+   "q05": -2.0145997168799994,
+   "q25": -2.0145841068799655,
+   "q75": -2.014531002879949,
+   "q95": -2.014510338880001,
+   "sd": 2.907498397955528e-05
+  },
+  "nce_values_excluded_at_R4": {
+   "120": 318,
+   "15": 419,
+   "150": 272,
+   "180": 241,
+   "20": 29,
+   "25": 30,
+   "40": 29,
+   "45": 377,
+   "50": 24,
+   "70": 20,
+   "75": 362,
+   "80": 17,
+   "90": 342
+  },
+  "nce_values_present_in_MH_positive_input": {
+   "120": 318,
+   "15": 419,
+   "150": 272,
+   "180": 241,
+   "20": 29,
+   "25": 30,
+   "30": 417,
+   "40": 29,
+   "45": 377,
+   "50": 24,
+   "60": 398,
+   "70": 20,
+   "75": 362,
+   "80": 17,
+   "90": 342
+  },
+  "records_failing_R6_on_mass": [
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190701",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190702",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190703",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190704",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190705",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190706",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190707",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190708",
+    "theoretical_mh": 268.10403036288
+   },
+   {
+    "compound_id": "YKBGVTZYEHREMT",
+    "deposited_precursor_mz": 186.0913,
+    "formula": "C10H13N5O4",
+    "mh_error_da": -82.01273036288,
+    "record_id": "MSBNK-Eawag-EQ01190709",
+    "theoretical_mh": 268.10403036288
+   }
+  ],
+  "scaffold_group_recomputation": {
+   "compounds_checked": 33,
+   "disagreements": [],
+   "parent_key_agreements_with_cached_column": 33,
+   "scaffold_group_agreements_with_cached_column": 33
+  },
+  "theoretical_mh_recomputation_vs_cached_mh_calc": {
+   "max_abs_delta_da": 4.547473508864641e-13,
+   "n_records_delta_gt_1e_6": 0
+  }
+ },
+ "study": "MURU CE interface adjudication, Design A, outcome-blind population build"
+}

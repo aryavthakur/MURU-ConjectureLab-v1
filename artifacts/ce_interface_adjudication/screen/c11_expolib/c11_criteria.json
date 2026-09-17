@@ -1,0 +1,600 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c11_expolib_criteria.py",
+ "generated_utc": "2026-09-15T23:12:52.019692+00:00",
+ "rdkit": "2026.03.5",
+ "candidate": "C11 ExpoLib 1.0 (Zenodo 20715576)",
+ "evidence": {
+  "zenodo": {
+   "record_id": 20715576,
+   "doi": "10.5281/zenodo.20715576",
+   "concept_doi": null,
+   "title": "ExpoLib1.0",
+   "publication_date": "2026-06-16",
+   "created": "2026-06-16T09:56:41.952394+00:00",
+   "modified": "2026-06-22T13:47:09.856126+00:00",
+   "license": {
+    "id": "cc-by-4.0"
+   },
+   "access_right": "open",
+   "n_files": 20,
+   "file_names": [
+    "ExpoLib1.0_ESI+.SDF",
+    "ExpoLib1.0_ESI+.json",
+    "ExpoLib1.0_ESI+.msp",
+    "ExpoLib1.0_ESI+_M+H-Only.SDF",
+    "ExpoLib1.0_ESI+_M+H-Only.json",
+    "ExpoLib1.0_ESI+_M+H-Only.msp",
+    "ExpoLib1.0_ESI-.SDF",
+    "ExpoLib1.0_ESI-.json",
+    "ExpoLib1.0_ESI-.msp",
+    "ExpoLib1.0_ESI-_M-H-Only.SDF",
+    "ExpoLib1.0_ESI-_M-H-Only.json",
+    "ExpoLib1.0_ESI-_M-H-Only.msp",
+    "Expolib_Logo.png",
+    "Library Overview - ESI+.xlsx",
+    "Library Overview - ESI-.xlsx",
+    "R Script - Lib Summary From .msp - #spectra,CE,adducts.Rmd",
+    "R-Script---Lib-Summary-From-.msp----spectra,CE,adducts.pdf",
+    "RawData_ESI+.tar",
+    "RawData_ESI-.tar",
+    "mzmine files.zip"
+   ],
+   "description_ce_sentence": "Fragmentation spectra were obtained by LC-MS and collision induced dissociation in data dependent acquisition mode under 13 different single collision energies with four additional collision energy spread experiments."
+  },
+  "zenodo_versions": [
+   {
+    "id": 18186811,
+    "doi": "10.5281/zenodo.18186811",
+    "publication_date": "2026-05-25",
+    "created": "2026-05-25T16:34:11.141154+00:00",
+    "license": "cc-by-4.0"
+   },
+   {
+    "id": 20389921,
+    "doi": "10.5281/zenodo.20389921",
+    "publication_date": "2026-05-26",
+    "created": "2026-05-26T05:20:09.625081+00:00",
+    "license": "cc-by-4.0"
+   },
+   {
+    "id": 20389986,
+    "doi": "10.5281/zenodo.20389986",
+    "publication_date": "2026-05-26",
+    "created": "2026-05-26T05:27:35.855968+00:00",
+    "license": "cc-by-4.0"
+   },
+   {
+    "id": 20390038,
+    "doi": "10.5281/zenodo.20390038",
+    "publication_date": "2026-05-26",
+    "created": "2026-05-26T05:30:29.578959+00:00",
+    "license": "cc-by-4.0"
+   },
+   {
+    "id": 20715576,
+    "doi": "10.5281/zenodo.20715576",
+    "publication_date": "2026-06-16",
+    "created": "2026-06-16T09:56:41.952394+00:00",
+    "license": "cc-by-4.0"
+   }
+  ],
+  "instrument_strings": {
+   "presets_INSTRUMENT_NAME": [
+    "SCIEX ZenoTOF 7600"
+   ],
+   "presets_INSTRUMENT": [
+    "qTof"
+   ],
+   "batch_pos_INSTRUMENT_NAME": [
+    "SCIEX ZenoTOF 7600"
+   ],
+   "batch_pos_INSTRUMENT": [
+    "qTof"
+   ]
+  },
+  "mzmine_imported_raw_files": {
+   "esi_pos_files": [
+    "250527_ExoMix_Cal100_CE20_POS.wiff",
+    "250527_ExoMix_Cal100_CE25_POS.wiff",
+    "250527_ExoMix_Cal100_CE30_POS.wiff",
+    "250527_ExoMix_Cal100_CE35_POS.wiff",
+    "250527_ExoMix_Cal100_CE40_POS.wiff",
+    "250527_ExoMix_Cal100_CE45_POS.wiff",
+    "250527_ExoMix_Cal100_CE50_POS.wiff",
+    "250527_ExoMix_Cal100_CE55_POS.wiff",
+    "250527_ExoMix_Cal100_CE60_POS.wiff",
+    "250527_ExoMix_Cal100_CE65_POS.wiff",
+    "250527_ExoMix_Cal100_CE70_POS.wiff",
+    "250527_ExoMix_Cal100_CES30-10_POS.wiff",
+    "250527_ExoMix_Cal100_CES30-20_POS.wiff",
+    "250527_ExoMix_Cal100_CES40-10_POS2.wiff",
+    "250527_ExoMix_Cal100_CES40-20_POS2.wiff"
+   ],
+   "esi_pos_single_ce": [
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70
+   ],
+   "esi_pos_ce_spread": [
+    "30+-10",
+    "30+-20",
+    "40+-10",
+    "40+-20"
+   ],
+   "esi_neg_n_files": 36,
+   "esi_neg_single_ce": [
+    20,
+    25,
+    30,
+    35,
+    40,
+    50,
+    60,
+    70
+   ],
+   "esi_neg_ce_spread": [
+    "40+-10"
+   ]
+  },
+  "si_s2": {
+   "sheet_names": [
+    "Content",
+    "S1 - Compound Info",
+    "S2 - Data Acquisition",
+    "S3 - mzmine settings",
+    "S4 - QA Report",
+    "S5 - Libraries overview - ESI+",
+    "S6 - Libraries overview - ESI-",
+    "S7 - Library Benchmarking ESI+",
+    "S8 - Library Benchmarking ESI-"
+   ],
+   "ces_definition_note": "Note: Data files containing \"CES\" in the name refer to data acquired using collision energy spread, with the following values representing the centered collision energy and the spread, respectively. Example: 250527_ExoMix_Cal100_CES30-10_POS represents the data file acquired under CES of 30 ± 10 V)",
+   "ms_method_ce_cells": [
+    "Declustering potential +/- (V) = 80/-80",
+    "Collision energy +/- (V) = 35/-35",
+    "Spray voltage +/- (V) = 5500/-4500",
+    "Collision energy spread (V) = 15",
+    "Declustering potential +/- (V) = 80/-80"
+   ],
+   "acquisition_pos_datafiles": [
+    "250527_ExoMix_Cal100_CE00_POS",
+    "250527_ExoMix_Cal100_CE10_POS",
+    "250527_ExoMix_Cal100_CE15_POS",
+    "250527_ExoMix_Cal100_CE20_POS",
+    "250527_ExoMix_Cal100_CE25_POS",
+    "250527_ExoMix_Cal100_CE30_POS",
+    "250527_ExoMix_Cal100_CE35_POS",
+    "250527_ExoMix_Cal100_CE40_POS",
+    "250527_ExoMix_Cal100_CE45_POS",
+    "250527_ExoMix_Cal100_CE50_POS",
+    "250527_ExoMix_Cal100_CE55_POS",
+    "250527_ExoMix_Cal100_CE60_POS",
+    "250527_ExoMix_Cal100_CE65_POS",
+    "250527_ExoMix_Cal100_CE70_POS",
+    "250527_ExoMix_Cal100_CES30-10_POS",
+    "250527_ExoMix_Cal100_CES30-20_POS",
+    "250527_ExoMix_Cal100_CES40-10_POS",
+    "250527_ExoMix_Cal100_CES40-20_POS",
+    "Note: Data files containing \"CES\" in the name refer to data acquired using collision energy spread, with the following values representing the centered collision energy and the spread, respectively. Example: 250527_ExoMix_Cal100_CES30-10_POS represents the data file acquired under CES of 30 ± 10 V)"
+   ],
+   "acquisition_pos_single_ce": [
+    0,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70
+   ],
+   "acquisition_pos_single_ce_nonzero_count": 13
+  }
+ },
+ "inputs": {
+  "c11_compounds_screen.csv": {
+   "sha256": "91f0fd3d67dc74a6b0f89dd5e7284eebeef6aa20425491ac6caa7fcb465a0d95",
+   "rows": 106
+  }
+ },
+ "pass1_vs_pass2_agreement": {
+  "parent_key": "106/106",
+  "scaffold_group": "106/106",
+  "n_mh_spectra": "106/106",
+  "in_muru_registry": "106/106",
+  "in_pr7": "106/106",
+  "in_comparator": "106/106",
+  "in_msg15": "106/106",
+  "group_in_msg15": "106/106"
+ },
+ "pass1_vs_pass2_disagreements": [],
+ "tautomer_recheck_populations": {
+  "msg15": {
+   "path": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "unique_smiles": 31602,
+   "structures_sharing_a_c11_formula": 463
+  },
+  "muru_dev_pop": {
+   "path": "artifacts/wur_v2/data/compounds.csv",
+   "column_read": "smiles",
+   "unique_smiles": 1325,
+   "sha256": "87d79ab7f9e02eb7c99c4ea9b7e12a87568d0b2c8c81c372b22d44bec862e34c",
+   "structures_sharing_a_c11_formula": 63
+  },
+  "pr7": {
+   "path": "artifacts/wur_v2_confirmation_v2/freeze/validation_population.csv",
+   "column_read": "smiles",
+   "unique_smiles": 1794,
+   "sha256": "37b573d38955629e6959f310f4a6c0de14e0dca47ab31695d4edab5485ca0e8d",
+   "structures_sharing_a_c11_formula": 2
+  },
+  "comparator": {
+   "path": "artifacts/comparator_benchmark/population/common_population.csv",
+   "column_read": "model_smiles",
+   "unique_smiles": 1327,
+   "sha256": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe",
+   "structures_sharing_a_c11_formula": 2
+  }
+ },
+ "tautomer_recheck": {
+  "n_compounds": 106,
+  "n_taut_key_differs_from_parent_key": 6,
+  "n_new_exclusions_any_population": 4,
+  "new_exclusions": [
+   {
+    "compound": "Aflatoxicol",
+    "parent_key": "WYIWLDSPNDMZIT",
+    "taut_key": "WYIWLDSPNDMZIT",
+    "populations": [
+     "msg15",
+     "muru_dev_pop"
+    ],
+    "matched_smiles": "COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)C1CCOC1O2;COc1cc2c(c3oc(=O)c4c(c13)CCC4=O)[C@@H]1CCO[C@@H]1O2"
+   },
+   {
+    "compound": "Citrinin",
+    "parent_key": "CBGDIJWINPWWJW",
+    "taut_key": "YEBAWWHAYLCCGQ",
+    "populations": [
+     "muru_dev_pop"
+    ],
+    "matched_smiles": "C[C@H]1OC=C2C(O)=C(C(O)=O)C(=O)C(C)=C2[C@@H]1C"
+   },
+   {
+    "compound": "Doxycycline",
+    "parent_key": "SGKRLCUYIXIAHR",
+    "taut_key": "VXVNYCRICCVPTD",
+    "populations": [
+     "muru_dev_pop"
+    ],
+    "matched_smiles": "[H][C@@]12[C@@H](C)C3=C(C(O)=CC=C3)C(=O)C1=C(O)[C@]1(O)C(=O)C(C(N)=O)=C(O)[C@@H](N(C)C)[C@]1([H])[C@H]2O"
+   },
+   {
+    "compound": "Zearalanone",
+    "parent_key": "APJDQUGPCJRQRJ",
+    "taut_key": "APJDQUGPCJRQRJ",
+    "populations": [
+     "muru_dev_pop"
+    ],
+    "matched_smiles": "CC1CCCC(O)CCC/C=C/c2cc(O)cc(O)c2C(=O)O1;CC1CCCC(O)CCCC=Cc2cc(O)cc(O)c2C(=O)O1;C[C@H]1CCC[C@@H](O)CC/C=C\\Cc2cc(O)cc(O)c2C(=O)O1"
+   }
+  ]
+ },
+ "tiers": {
+  "T0_all_mh_with_key": {
+   "n_compounds": 105,
+   "n_scaffold_groups": 74,
+   "n_with_ge11_mh_spectra": 91,
+   "n_with_ge5_mh_spectra": 103,
+   "compounds": [
+    "2-hydroxy-4-methoxybenzophenone",
+    "2-isopropyl-4-methyl-6-hydroxypyrimidine",
+    "3,5,6-trichloro-2-pyridinol",
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "4-methylbenzophenone",
+    "4-methylbenzylidene camphor",
+    "5-hydroxymethylfurfural",
+    "8-Prenylnaringenin",
+    "Acetaminophen",
+    "Acetamiprid",
+    "Aflatoxicol",
+    "Aflatoxin B1",
+    "Aflatoxin B2",
+    "Aflatoxin G1",
+    "Aflatoxin P1",
+    "Alternariol",
+    "Ampicillin",
+    "Aristolactam I",
+    "Atrazine",
+    "Azithromycin",
+    "Benzyl butyl phthalate",
+    "Bis(1,3-dichloro-2-propyl) phosphate",
+    "Cefaclor",
+    "Chalcone",
+    "Chlorpyrifos",
+    "Chrysin",
+    "Ciprofloxacin",
+    "Citrinin",
+    "Clarithromycin",
+    "Clorpyrifos-methyl",
+    "ColibactinProdrug (Myristoyl-asparagine)",
+    "Cotinine",
+    "Coumaphos",
+    "Daidzein",
+    "Daidzein glucuronide",
+    "Danofloxacin",
+    "Deoxynivalenol",
+    "Deoxynivalenol 3-glucuronide",
+    "Diazinon",
+    "Diethyl phthalate",
+    "Dimethyl phthalate",
+    "Doxycycline",
+    "Duloxetine",
+    "Enrofloxacin",
+    "Enterolactone",
+    "Erythromycin",
+    "Fenarimol",
+    "Fipronil",
+    "Florfenicol",
+    "Fluconazole",
+    "Formononetin",
+    "Fumonisin B1",
+    "Genistein",
+    "Glycitein",
+    "Imidacloprid",
+    "Isoxanthohumol",
+    "Jacobine",
+    "Jacobine-N-oxide",
+    "Kaempferol",
+    "Malathion",
+    "Matairesinol",
+    "Metribuzin",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-cyclohexyl phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "Mycophenolic acid",
+    "N,N-dimethylbenzamide",
+    "N-butylbenzenesulfonamide",
+    "Nivalenol",
+    "Norfloxacin",
+    "Ochratoxin A",
+    "Ochratoxin B",
+    "Ochratoxin alpha",
+    "Octyl methoxycinnamate",
+    "PhIP",
+    "Propiconazole",
+    "Riddelliine",
+    "Riddelliine-N-oxide",
+    "Roxithromycin",
+    "SN-38-glucuronide",
+    "Sterigmatocystin",
+    "Sulfadiazine",
+    "Sulfadimethoxine",
+    "Sulfamethazine",
+    "Sulfamethoxazole",
+    "T-2 toxin",
+    "Tebuconazole",
+    "Tilimycin",
+    "Tilivalline",
+    "Tramadol",
+    "Trans-3-hydroxycotinine",
+    "Tri-n-butyl phosphate",
+    "Triclocarban",
+    "Trimethoprim",
+    "Triphenyl phosphate",
+    "Tris(2-chlorethyl) phosphate",
+    "Tylosin",
+    "Venlafaxine",
+    "Zearalanone"
+   ]
+  },
+  "T1_minus_muru_registry_key": {
+   "n_compounds": 35,
+   "n_scaffold_groups": 27,
+   "n_with_ge11_mh_spectra": 25,
+   "n_with_ge5_mh_spectra": 34,
+   "compounds": [
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "4-methylbenzophenone",
+    "Aflatoxicol",
+    "Aflatoxin P1",
+    "Bis(1,3-dichloro-2-propyl) phosphate",
+    "Chalcone",
+    "Citrinin",
+    "Clorpyrifos-methyl",
+    "ColibactinProdrug (Myristoyl-asparagine)",
+    "Daidzein glucuronide",
+    "Deoxynivalenol 3-glucuronide",
+    "Genistein",
+    "Malathion",
+    "Matairesinol",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-cyclohexyl phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "N,N-dimethylbenzamide",
+    "Nivalenol",
+    "Ochratoxin B",
+    "Ochratoxin alpha",
+    "Riddelliine-N-oxide",
+    "SN-38-glucuronide",
+    "Tilimycin",
+    "Tilivalline",
+    "Tramadol",
+    "Trans-3-hydroxycotinine",
+    "Tri-n-butyl phosphate",
+    "Zearalanone"
+   ]
+  },
+  "T2_T1_minus_pr7_comparator_key": {
+   "n_compounds": 35,
+   "n_scaffold_groups": 27,
+   "n_with_ge11_mh_spectra": 25,
+   "n_with_ge5_mh_spectra": 34,
+   "compounds": [
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "4-methylbenzophenone",
+    "Aflatoxicol",
+    "Aflatoxin P1",
+    "Bis(1,3-dichloro-2-propyl) phosphate",
+    "Chalcone",
+    "Citrinin",
+    "Clorpyrifos-methyl",
+    "ColibactinProdrug (Myristoyl-asparagine)",
+    "Daidzein glucuronide",
+    "Deoxynivalenol 3-glucuronide",
+    "Genistein",
+    "Malathion",
+    "Matairesinol",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-cyclohexyl phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "N,N-dimethylbenzamide",
+    "Nivalenol",
+    "Ochratoxin B",
+    "Ochratoxin alpha",
+    "Riddelliine-N-oxide",
+    "SN-38-glucuronide",
+    "Tilimycin",
+    "Tilivalline",
+    "Tramadol",
+    "Trans-3-hydroxycotinine",
+    "Tri-n-butyl phosphate",
+    "Zearalanone"
+   ]
+  },
+  "T3_T2_minus_msg15_key": {
+   "n_compounds": 18,
+   "n_scaffold_groups": 11,
+   "n_with_ge11_mh_spectra": 13,
+   "n_with_ge5_mh_spectra": 17,
+   "compounds": [
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "Aflatoxicol",
+    "Aflatoxin P1",
+    "Daidzein glucuronide",
+    "Deoxynivalenol 3-glucuronide",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "N,N-dimethylbenzamide",
+    "Ochratoxin alpha",
+    "Riddelliine-N-oxide",
+    "SN-38-glucuronide",
+    "Tilimycin"
+   ]
+  },
+  "T4_T3_minus_all_scaffold_groups": {
+   "n_compounds": 4,
+   "n_scaffold_groups": 4,
+   "n_with_ge11_mh_spectra": 2,
+   "n_with_ge5_mh_spectra": 4,
+   "compounds": [
+    "Aflatoxicol",
+    "Deoxynivalenol 3-glucuronide",
+    "SN-38-glucuronide",
+    "Tilimycin"
+   ]
+  },
+  "T5_T3_minus_tautomer_skeleton_hits": {
+   "n_compounds": 17,
+   "n_scaffold_groups": 10,
+   "n_with_ge11_mh_spectra": 12,
+   "n_with_ge5_mh_spectra": 16,
+   "compounds": [
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "Aflatoxin P1",
+    "Daidzein glucuronide",
+    "Deoxynivalenol 3-glucuronide",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "N,N-dimethylbenzamide",
+    "Ochratoxin alpha",
+    "Riddelliine-N-oxide",
+    "SN-38-glucuronide",
+    "Tilimycin"
+   ]
+  },
+  "M_msg15_key_only": {
+   "n_compounds": 20,
+   "n_scaffold_groups": 13,
+   "n_with_ge11_mh_spectra": 15,
+   "n_with_ge5_mh_spectra": 19,
+   "compounds": [
+    "3,5,6-trichloro-2-pyridinol",
+    "3-benzylidenecamphor",
+    "4-hydroxybenzophenone",
+    "Aflatoxicol",
+    "Aflatoxin P1",
+    "Daidzein glucuronide",
+    "Deoxynivalenol 3-glucuronide",
+    "Mono-(2-ethyl-5-carboxypentyl) phthalate",
+    "Mono-(2-ethyl-5-oxohexyl) phthalate",
+    "Mono-(3-carboxypropyl) phthalate",
+    "Mono-[(2-carboxymethyl) hexyl] phthalate",
+    "Mono-hexyl phthalate",
+    "Mono-iso-nonyl phthalate",
+    "Mono-n-pentyl phthalate",
+    "N,N-dimethylbenzamide",
+    "Ochratoxin alpha",
+    "Riddelliine",
+    "Riddelliine-N-oxide",
+    "SN-38-glucuronide",
+    "Tilimycin"
+   ]
+  },
+  "M_msg15_key_and_scaffold": {
+   "n_compounds": 4,
+   "n_scaffold_groups": 4,
+   "n_with_ge11_mh_spectra": 2,
+   "n_with_ge5_mh_spectra": 4,
+   "compounds": [
+    "Aflatoxicol",
+    "Deoxynivalenol 3-glucuronide",
+    "SN-38-glucuronide",
+    "Tilimycin"
+   ]
+  }
+ }
+}

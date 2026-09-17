@@ -193,3 +193,14 @@ artifacts/ov_ckpt
 !artifacts/comparator_feasibility/**
 !artifacts/comparator_benchmark/
 !artifacts/comparator_benchmark/**
+
+# CE interface adjudication (outcome-blind study of the ICEBERG/GLACIER
+# collision-energy semantics): the provenance evidence, counts, screens, notes
+# and scripts are the record and are tracked. The raw third-party payloads they
+# were derived from are re-acquirable and are recorded with source URL, size and
+# sha256 in downloads_register.jsonl, so their bytes stay ignored.
+!artifacts/ce_interface_adjudication/
+!artifacts/ce_interface_adjudication/**
+artifacts/ce_interface_adjudication/screen/**/downloads/
+artifacts/ce_interface_adjudication/screen/**/downloads_s2/
+artifacts/ce_interface_adjudication/screen/**/downloads_failed_attempts/

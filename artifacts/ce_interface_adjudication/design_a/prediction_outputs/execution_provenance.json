@@ -1,0 +1,154 @@
+{
+ "study_id": "muru-ce-interface-adjudication-design-a",
+ "recorded_utc": "2026-09-16T23:59:12Z",
+ "freeze_ref": "refs/muru-freeze/muru-ce-interface-adjudication-design-a",
+ "freeze_ref_sha": "518190b46f4e17ab6dc8ccea308bf3aadb48c701",
+ "muru_repo": {
+  "git_head": "7b7ffcee4043dd40556aa4d1cb1ac5154b95baed",
+  "git_branch": "claude/muru-ce-interface-adjudication",
+  "git_status_porcelain": "?? artifacts/ce_interface_adjudication/design_a/prediction_outputs/"
+ },
+ "driver_platform": {
+  "python": "3.13.12",
+  "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+  "machine": "arm64"
+ },
+ "execution_platform": "Modal, Linux x86_64 (gVisor), CPU only; image `mspred_image` defined in scripts/comparator_benchmark/modal_app.py and reused unchanged",
+ "ms_pred": {
+  "repository": "https://github.com/coleygroup/ms-pred",
+  "commit_expected": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "commit_observed": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "commit_date_observed": "2026-09-04T01:12:22-04:00",
+  "install": "uv sync --extra cpu, UV_EXCLUDE_NEWER=2026-09-04T05:12:22Z"
+ },
+ "checkpoints": {
+  "iceberg_2_1_msg_simulation": {
+   "/ckpt/iceberg21_msg_simulation/gen/best.ckpt": {
+    "host_path": "/Users/aryav/muru-comparators/checkpoints/iceberg21_msg_simulation/gen/best.ckpt",
+    "sha256_expected": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+    "sha256_observed": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+    "bytes_expected": 41561644
+   },
+   "/ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt": {
+    "host_path": "/Users/aryav/muru-comparators/checkpoints/iceberg21_msg_simulation/inten_contr/best.ckpt",
+    "sha256_expected": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+    "sha256_observed": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+    "bytes_expected": 40604948
+   }
+  },
+  "glacier_msg": {
+   "/ckpt/glacier_msg/best.ckpt": {
+    "host_path": "/Users/aryav/muru-comparators/checkpoints/glacier_msg/best.ckpt",
+    "sha256_expected": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+    "sha256_observed": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+    "bytes_expected": 181602423
+   }
+  }
+ },
+ "environment": {
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD": "1"
+ },
+ "container_package_freeze": "aiohappyeyeballs==2.7.1\naiohttp==3.14.3\naiosignal==1.4.0\nannotated-types==0.8.0\nantlr4-python3-runtime==4.9.3\nappdirs==1.4.4\nasttokens==3.0.2\nasync-timeout==5.0.1\nattrs==26.1.0\nbeautifulsoup4==4.15.0\nbrain-isotopic-distribution==1.5.19\ncairocffi==1.7.1\ncairosvg==2.9.0\ncertifi==2026.7.22\ncffi==2.1.1\ncharset-normalizer==3.5.1\nchemparse==0.3.2\nclick==8.5.0\ncloudpickle==3.1.2\ncomm==0.2.3\ncontourpy==1.3.3\ncssselect2==0.10.1\ncycler==0.12.1\ncython==3.3.0\ndebugpy==1.8.21\ndecorator==5.3.1\ndefusedxml==0.7.1\ndgl==2.5.0\ndill==0.4.1\neasydict==1.13\neinops==0.8.2\nexecuting==2.2.1\nfilelock==3.32.5\nfonttools==4.64.0\nfrozenlist==1.8.0\nfsspec==2026.7.0\ngdown==6.1.0\nh5py==3.16.0\nidna==3.19\nipdb==0.13.13\nipykernel==7.3.0\nipython==9.17.1\nipython-pygments-lexers==1.1.1\njedi==0.20.0\njinja2==3.1.6\njoblib==1.6.0\njsonschema==4.26.0\njsonschema-specifications==2025.9.1\njupyter-client==8.10.0\njupyter-core==5.9.1\nkiwisolver==1.5.1\nlightgbm==4.7.0\nlightning-utilities==0.15.3\nlinsatnet==0.1.3\nllvmlite==0.49.0\nmarkupsafe==3.0.3\nmatplotlib==3.11.1\nmatplotlib-inline==0.2.2\nmpmath==1.3.0\n-e file:///opt/ms-pred\nmsbuddy==0.3.16\nmsgpack==1.2.2\nmultidict==6.7.1\nmultiprocess==0.70.19\nnarwhals==2.25.0\nnest-asyncio2==1.7.2\nnetworkx==3.6.1\nnumba==0.67.0\nnumpy==2.4.6\nomegaconf==2.3.1\npackaging==26.3\npandas==3.0.5\nparso==0.8.7\npathos==0.3.5\npexpect==4.9.0\npillow==12.3.0\nplatformdirs==4.11.7\npox==0.3.7\nppft==1.7.8\nprompt-toolkit==3.0.53\npropcache==0.5.2\nprotobuf==7.36.1\npsutil==7.2.2\nptyprocess==0.7.0\npubchempy==1.0.5\npure-eval==0.2.3\npyarrow==25.0.1\npycparser==3.0\npydantic==2.13.5\npydantic-core==2.46.5\npygments==2.21.0\npygmtools @ git+https://github.com/Thinklab-SJTU/pygmtools.git@5b7b3f84a34528e455a6df6404822c306aa45dc1\npyparsing==3.3.2\npysocks==1.7.1\npython-dateutil==2.9.0.post0\npytorch-lightning==2.6.5\npyyaml==6.0.3\npyzmq==27.2.0\nray==2.58.0\nrdkit==2025.3.6\nreferencing==0.37.0\nrequests==2.34.2\nrpds-py==2026.6.3\nscikit-learn==1.9.0\nscipy==1.17.1\nseaborn==0.13.2\nsix==1.17.0\nsoupsieve==2.9.2\nstack-data==0.6.3\nsympy==1.13.1\ntensorboardx==2.6.5\nthreadpoolctl==3.6.0\ntinycss2==1.5.1\ntorch==2.6.0+cpu\ntorch-geometric==2.8.0.post1\ntorch-scatter==2.1.2+pt26cpu\ntorch-sparse==0.6.18+pt26cpu\ntorchdata==0.9.0\ntorchmetrics==1.9.0\ntorchvision==0.21.0+cpu\ntornado==6.5.8\ntqdm==4.70.0\ntraitlets==5.16.1\ntyping-extensions==4.16.0\ntyping-inspection==0.4.4\nurllib3==2.7.0\nwcwidth==0.8.3\nwebencodings==0.6.1\nxxhash==4.0.1\nyarl==1.24.5\nPython 3.11.12\nLinux modal 4.19.0-gvisor #1 SMP Sun Jan 10 15:06:54 PST 2016 x86_64 GNU/Linux\n",
+ "reference_environment_freeze": {
+  "path": "artifacts/comparator_benchmark/technical/t1/mspred_env_freeze.txt",
+  "sha256": "a7ff2fcea09a4541748b85aae63bf13fc579fe8e7ed796251abc0d47f9782b78"
+ },
+ "input_manifest": {
+  "path": "artifacts/ce_interface_adjudication/design_a/prediction_inputs/prediction_input_manifest.json",
+  "sha256": "b986962a05fea8d1d633e68443fb9309fd75d82121405d29fb71aa209c9409a3",
+  "generator_sha256": "461b18fbd2b10a10d1ac6d6097ea7bde258e3e0efdeba5a369469679c6270680"
+ },
+ "mappings": {
+  "K1": "CE_input = float(NCE)",
+  "K2": "CE_input = float(NCE) * theoretical_mh / 500.0 (IEEE-754 binary64, no rounding)",
+  "K3": "CE_input = float(math.floor(K2)) (floor toward negative infinity)"
+ },
+ "commands": {
+  "iceberg_2_1_msg_simulation": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+  "glacier_msg": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json"
+ },
+ "runs": {
+  "glacier_msg__K1": {
+   "input_file": "glacier_msg__K1__in.tsv",
+   "input_sha256": "0cc0c69386580442c9dd0bb55f97ad381e84277c6207cadf81dc49d6f6946429",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "2397edbe6dacdf7da3a0b6eea2e889ec97a5cde5c2ef28c85b8888712237591b",
+    "out/preds.hdf5": "c9e5fc49e3dbe978f3eeba1be29cf4598ff06f408a57b88027ec7fdbd89e7dbc"
+   }
+  },
+  "glacier_msg__K2": {
+   "input_file": "glacier_msg__K2__in.tsv",
+   "input_sha256": "524aa931940eb0897a2fd3425a52b77a1f189454f62e41f29b4941918fe16314",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "a458b77d00518719d7cdb1dc9c0be706c05e4c08f13f0b84b618a4249135b0b9",
+    "out/preds.hdf5": "9bc605c68545f2cf947465e6e2f67d5828899abf0b796f7f52c53c9a5d178693"
+   }
+  },
+  "glacier_msg__K3": {
+   "input_file": "glacier_msg__K3__in.tsv",
+   "input_sha256": "0ee70fa4f90c051528b73788b302a27a9ff46503912d3dabc85e174f60ece75d",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "44f3c77cca5ff448b3e809f5c49cf2be973785c9ce71123f37ad0c5c579dfafa",
+    "out/preds.hdf5": "3ab6581234d58d301a44a636f0c35306ae6f1b912ce524319e1687889a70a978"
+   }
+  },
+  "iceberg_2_1_msg_simulation__K1": {
+   "input_file": "iceberg_2_1_msg_simulation__K1__in.tsv",
+   "input_sha256": "d9f2751526c822818aa72d13850eb22f2cd04c919201aaeac1a65b404be88f55",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "01bda1bcd903b6551a9b52fd5087e564f246d2fd0d9b0ce7e11345031d7cfdca",
+    "out/preds.hdf5": "277904850048607edf11325f635cc9fbddc3af3952db3cedb0b6653ede195e81"
+   }
+  },
+  "iceberg_2_1_msg_simulation__K2": {
+   "input_file": "iceberg_2_1_msg_simulation__K2__in.tsv",
+   "input_sha256": "295935711d9d1dc7da2f2061867f6b7eb8940a0f4b94a4afe9c0c2f367350373",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "215f673edb10f47cace9ebbe3ddf5b7d2663fa4e82882456bc0feb97b296b3d8",
+    "out/preds.hdf5": "668e9373bee2a3dd0d29c070aa6e39d3ca7d3e27130491e384ea038af18dcb7e"
+   }
+  },
+  "iceberg_2_1_msg_simulation__K3": {
+   "input_file": "iceberg_2_1_msg_simulation__K3__in.tsv",
+   "input_sha256": "ef6ab4a975a4b94b9a6246bd32486a95a860617ecfbd6befbbdf9e62a0b99fb5",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "platform": "Linux-4.19.0-gvisor-x86_64-with-glibc2.36",
+   "machine": "x86_64",
+   "output_sha256": {
+    "spectra.json": "5341672c476663d8bf0595243d186b0b72f883a69e2855ac181a6090669dc5d5",
+    "out/preds.hdf5": "41c2f13d6789cace6d64a44ef3918308d32c9e21a850652db0def5f1f6672b22"
+   }
+  }
+ },
+ "outputs": {
+  "glacier_msg__K1_preds.hdf5": "c9e5fc49e3dbe978f3eeba1be29cf4598ff06f408a57b88027ec7fdbd89e7dbc",
+  "glacier_msg__K1_spectra.json": "2397edbe6dacdf7da3a0b6eea2e889ec97a5cde5c2ef28c85b8888712237591b",
+  "glacier_msg__K2_preds.hdf5": "9bc605c68545f2cf947465e6e2f67d5828899abf0b796f7f52c53c9a5d178693",
+  "glacier_msg__K2_spectra.json": "a458b77d00518719d7cdb1dc9c0be706c05e4c08f13f0b84b618a4249135b0b9",
+  "glacier_msg__K3_preds.hdf5": "3ab6581234d58d301a44a636f0c35306ae6f1b912ce524319e1687889a70a978",
+  "glacier_msg__K3_spectra.json": "44f3c77cca5ff448b3e809f5c49cf2be973785c9ce71123f37ad0c5c579dfafa",
+  "iceberg_2_1_msg_simulation__K1_preds.hdf5": "277904850048607edf11325f635cc9fbddc3af3952db3cedb0b6653ede195e81",
+  "iceberg_2_1_msg_simulation__K1_spectra.json": "01bda1bcd903b6551a9b52fd5087e564f246d2fd0d9b0ce7e11345031d7cfdca",
+  "iceberg_2_1_msg_simulation__K2_preds.hdf5": "668e9373bee2a3dd0d29c070aa6e39d3ca7d3e27130491e384ea038af18dcb7e",
+  "iceberg_2_1_msg_simulation__K2_spectra.json": "215f673edb10f47cace9ebbe3ddf5b7d2663fa4e82882456bc0feb97b296b3d8",
+  "iceberg_2_1_msg_simulation__K3_preds.hdf5": "41c2f13d6789cace6d64a44ef3918308d32c9e21a850652db0def5f1f6672b22",
+  "iceberg_2_1_msg_simulation__K3_spectra.json": "5341672c476663d8bf0595243d186b0b72f883a69e2855ac181a6090669dc5d5"
+ }
+}

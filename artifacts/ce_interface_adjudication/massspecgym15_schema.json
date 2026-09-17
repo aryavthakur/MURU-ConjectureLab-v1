@@ -1,0 +1,125 @@
+{
+ "source_parquet_url": "https://us.aws.cdn.hf.co/xet-bridge-us/666a096ee0ecb2edac2cdc1f/ee13e2782fb48885165c32449fa550d8cc8cbb2076709e3cac4ba5f84c528d86",
+ "source_parquet_size_bytes": 133354917,
+ "convert_parquet_revision_sha": "0bced339751415306778d553dca97cfc2027ee86",
+ "same_file_as_identity_fetch": {
+  "size_equal": true,
+  "url_path_equal": true,
+  "convert_revision_equal": true,
+  "forbidden_intervals_equal": true
+ },
+ "num_rows": 231104,
+ "num_row_groups": 232,
+ "num_leaf_columns": 14,
+ "created_by": "parquet-cpp-arrow version 22.0.0",
+ "format_version": "2.6",
+ "arrow_fields": [
+  {
+   "name": "identifier",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "mzs",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "intensities",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "smiles",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "inchikey",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "formula",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "precursor_formula",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "parent_mass",
+   "type": "double",
+   "nullable": true
+  },
+  {
+   "name": "precursor_mz",
+   "type": "double",
+   "nullable": true
+  },
+  {
+   "name": "adduct",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "instrument_type",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "collision_energy",
+   "type": "double",
+   "nullable": true
+  },
+  {
+   "name": "fold",
+   "type": "string",
+   "nullable": true
+  },
+  {
+   "name": "simulation_challenge",
+   "type": "bool",
+   "nullable": true
+  }
+ ],
+ "parquet_leaf_columns": [
+  "identifier",
+  "mzs",
+  "intensities",
+  "smiles",
+  "inchikey",
+  "formula",
+  "precursor_formula",
+  "parent_mass",
+  "precursor_mz",
+  "adduct",
+  "instrument_type",
+  "collision_energy",
+  "fold",
+  "simulation_challenge"
+ ],
+ "compressed_bytes_per_leaf_column": {
+  "identifier": 1482337,
+  "mzs": 48770441,
+  "intensities": 77099852,
+  "smiles": 976559,
+  "inchikey": 617673,
+  "formula": 339249,
+  "precursor_formula": 416060,
+  "parent_mass": 526337,
+  "precursor_mz": 500754,
+  "adduct": 31100,
+  "instrument_type": 37005,
+  "collision_energy": 197539,
+  "fold": 31046,
+  "simulation_challenge": 21635
+ },
+ "key_value_metadata": {
+  "huggingface": "{\"info\": {\"features\": {\"identifier\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"mzs\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"intensities\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"smiles\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"inchikey\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"formula\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"precursor_formula\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"parent_mass\": {\"dtype\": \"float64\", \"_type\": \"Value\"}, \"precursor_mz\": {\"dtype\": \"float64\", \"_type\": \"Value\"}, \"adduct\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"instrument_type\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"collision_energy\": {\"dtype\": \"float64\", \"_type\": \"Value\"}, \"fold\": {\"dtype\": \"string\", \"_type\": \"Value\"}, \"simulation_challenge\": {\"dtype\": \"bool\", \"_type\": \"Value\"}}}}",
+  "ARROW:schema": "/////0gGAAAQAAAAAAAKAA4ABgAFAAgACgAAAAABBAAQAAAAAAAKAAwAAAAEAAgACgAAAEADAAAEAAAAAQAAAAwAAAAIAAwABAAIAAgAAAAUAwAABAAAAAUDAAB7ImluZm8iOiB7ImZlYXR1cmVzIjogeyJpZGVudGlmaWVyIjogeyJkdHlwZSI6ICJzdHJpbmciLCAiX3R5cGUiOiAiVmFsdWUifSwgIm16cyI6IHsiZHR5cGUiOiAic3RyaW5nIiwgIl90eXBlIjogIlZhbHVlIn0sICJpbnRlbnNpdGllcyI6IHsiZHR5cGUiOiAic3RyaW5nIiwgIl90eXBlIjogIlZhbHVlIn0sICJzbWlsZXMiOiB7ImR0eXBlIjogInN0cmluZyIsICJfdHlwZSI6ICJWYWx1ZSJ9LCAiaW5jaGlrZXkiOiB7ImR0eXBlIjogInN0cmluZyIsICJfdHlwZSI6ICJWYWx1ZSJ9LCAiZm9ybXVsYSI6IHsiZHR5cGUiOiAic3RyaW5nIiwgIl90eXBlIjogIlZhbHVlIn0sICJwcmVjdXJzb3JfZm9ybXVsYSI6IHsiZHR5cGUiOiAic3RyaW5nIiwgIl90eXBlIjogIlZhbHVlIn0sICJwYXJlbnRfbWFzcyI6IHsiZHR5cGUiOiAiZmxvYXQ2NCIsICJfdHlwZSI6ICJWYWx1ZSJ9LCAicHJlY3Vyc29yX216IjogeyJkdHlwZSI6ICJmbG9hdDY0IiwgIl90eXBlIjogIlZhbHVlIn0sICJhZGR1Y3QiOiB7ImR0eXBlIjogInN0cmluZyIsICJfdHlwZSI6ICJWYWx1ZSJ9LCAiaW5zdHJ1bWVudF90eXBlIjogeyJkdHlwZSI6ICJzdHJpbmciLCAiX3R5cGUiOiAiVmFsdWUifSwgImNvbGxpc2lvbl9lbmVyZ3kiOiB7ImR0eXBlIjogImZsb2F0NjQiLCAiX3R5cGUiOiAiVmFsdWUifSwgImZvbGQiOiB7ImR0eXBlIjogInN0cmluZyIsICJfdHlwZSI6ICJWYWx1ZSJ9LCAic2ltdWxhdGlvbl9jaGFsbGVuZ2UiOiB7ImR0eXBlIjogImJvb2wiLCAiX3R5cGUiOiAiVmFsdWUifX19fQAAAAsAAABodWdnaW5nZmFjZQAOAAAApAIAAGwCAAA8AgAAEAIAAOABAAC0AQAAfAEAAEABAAAIAQAA3AAAAKgAAABsAAAAQAAAAAQAAACk/f//AAABBhAAAAAoAAAABAAAAAAAAAAUAAAAc2ltdWxhdGlvbl9jaGFsbGVuZ2UAAAAAoP3//9z9//8AAAEFEAAAABgAAAAEAAAAAAAAAAQAAABmb2xkAAAAAMj9//8E/v//AAABAxAAAAAkAAAABAAAAAAAAAAQAAAAY29sbGlzaW9uX2VuZXJneQAAAABC////AAACADz+//8AAAEFEAAAACAAAAAEAAAAAAAAAA8AAABpbnN0cnVtZW50X3R5cGUAMP7//2z+//8AAAEFEAAAABgAAAAEAAAAAAAAAAYAAABhZGR1Y3QAAFj+//+U/v//AAABAxAAAAAgAAAABAAAAAAAAAAMAAAAcHJlY3Vyc29yX216AAAAAM7///8AAAIAyP7//wAAAQMQAAAAJAAAAAQAAAAAAAAACwAAAHBhcmVudF9tYXNzAAAABgAIAAYABgAAAAAAAgAA////AAABBRAAAAAkAAAABAAAAAAAAAARAAAAcHJlY3Vyc29yX2Zvcm11bGEAAAD4/v//NP///wAAAQUQAAAAGAAAAAQAAAAAAAAABwAAAGZvcm11bGEAIP///1z///8AAAEFEAAAABwAAAAEAAAAAAAAAAgAAABpbmNoaWtleQAAAABM////iP///wAAAQUQAAAAGAAAAAQAAAAAAAAABgAAAHNtaWxlcwAAdP///7D///8AAAEFEAAAABwAAAAEAAAAAAAAAAsAAABpbnRlbnNpdGllcwCg////3P///wAAAQUQAAAAFAAAAAQAAAAAAAAAAwAAAG16cwDE////EAAUAAgABgAHAAwAAAAQABAAAAAAAAEFEAAAACAAAAAEAAAAAAAAAAoAAABpZGVudGlmaWVyAAAEAAQABAAAAAAAAAA=",
+  "content_defined_chunking": "{\"min_chunk_size\": 262144, \"max_chunk_size\": 1048576, \"norm_level\": 0}"
+ }
+}

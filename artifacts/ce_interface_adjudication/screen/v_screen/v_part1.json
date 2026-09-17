@@ -1,0 +1,465 @@
+{
+ "exclusion_sets": {
+  "sizes": {
+   "msg15_keys_all": 28929,
+   "msg15_keys_train": 22746,
+   "msg15_keys_val": 3185,
+   "msg15_keys_test": 2998,
+   "msg15_parent_keys_all": 28923,
+   "msg15_simchallenge_keys_all": 16974,
+   "msg15_scaffold_groups_all": 16991,
+   "muru_exposure_registry_keys": 31507,
+   "muru_exposure_registry_scaffold_groups": 18402,
+   "muru_exposed_union_keys": 33301,
+   "muru_exposure_registry_population_V2-DEVELOPMENT-POPULATION_keys": 1325,
+   "msnlib_study2_population_keys": 1794,
+   "msnlib_study2_population_scaffold_groups": 1691,
+   "comparator_common_population_keys": 1327,
+   "comparator_common_population_scaffold_groups": 1254,
+   "msnlib_9lib_keys": 53612,
+   "msnlib_v1_0_4lib_keys": 19219
+  },
+  "msg15_union_both_routes": 28952,
+  "fold_disjoint": true,
+  "folds_cover_all": true,
+  "all_keys_14char": {
+   "msg15_keys_all": true,
+   "msg15_keys_train": true,
+   "msg15_keys_val": true,
+   "msg15_keys_test": true,
+   "msg15_parent_keys_all": true,
+   "msg15_simchallenge_keys_all": true,
+   "muru_exposure_registry_keys": true,
+   "muru_exposed_union_keys": true,
+   "muru_exposure_registry_population_V2-DEVELOPMENT-POPULATION_keys": true,
+   "msnlib_study2_population_keys": true,
+   "comparator_common_population_keys": true,
+   "msnlib_9lib_keys": true,
+   "msnlib_v1_0_4lib_keys": true
+  },
+  "comparator_subset_of_pr7": true,
+  "pr7_disjoint_from_registry": true,
+  "sha256": {
+   "msg15_keys_all": "c5666b446c091bd878528100e4adcddc882d8d9b1149edc212477edd4683d832",
+   "muru_exposure_registry_keys": "372ff0323a92f7fda21fa38a35506b4ec968f90e4f9c3b12f73d240de990c47e",
+   "msnlib_study2_population_keys": "c7e01de6a212bd832e69ebc853e26560e2fbf72b5916ee757a2df990711b1b81",
+   "comparator_common_population_keys": "749f356a9a49bb00774c02367eea0ad632d4d9e53089787101aa72b372ba22df"
+  }
+ },
+ "C01": {
+  "records_total": 5051,
+  "key_agrees_with_screen": 5051,
+  "sg_agrees_with_screen": 5051,
+  "key_null": 0,
+  "recorded14_equals_parent_key": 5051,
+  "records_MH_pos_MS2": 3295,
+  "records_by_precursor_type": {
+   "[M+H]+": 3295,
+   "[M-H]-": 1756
+  },
+  "records_MH_frag_mode": {
+   "HCD": 3295
+  },
+  "records_MH_instrument_type": {
+   "LC-ESI-QFT": 3295
+  },
+  "records_MH_instrument": {
+   "Exploris 240 Orbitrap Thermo Scientific": 1704,
+   "Exploris 240 Thermo Scientific": 872,
+   "Q Exactive Plus": 623,
+   "Q Exactive": 96
+  },
+  "records_MH_resolution": {
+   "17500": 1704,
+   "15000": 1591
+  },
+  "ce_string_forms_all": {
+   "N % (nominal)": 5051
+  },
+  "ce_raw_examples": [
+   "120 % (nominal)",
+   "15 % (nominal)",
+   "150 % (nominal)",
+   "180 % (nominal)",
+   "20 % (nominal)",
+   "25 % (nominal)",
+   "30 % (nominal)",
+   "40 % (nominal)",
+   "45 % (nominal)",
+   "50 % (nominal)",
+   "60 % (nominal)",
+   "70 % (nominal)"
+  ],
+  "ce_raw_nonstandard": [],
+  "records_MH_license": {
+   "CC BY-SA": 3253,
+   "NaN": 42
+  },
+  "records_MH_confidence": {
+   "standard compound": 3253,
+   "NaN": 42
+  },
+  "first_release_counts": {
+   "2024.11": 2058,
+   "2025.10": 1167,
+   "2024.06": 1156,
+   "dev": 670
+  },
+  "compounds_MH": 415,
+  "compounds_MH_ge3_nce": 403,
+  "cand_in_msg15": 256,
+  "cand_in_msg15_by_fold": {
+   "train": 220,
+   "": 147,
+   "val": 19,
+   "test": 17
+  },
+  "cand_in_registry": 233,
+  "cand_in_exposed_union": 233,
+  "cand_in_devpop": 110,
+  "cand_in_pr7": 0,
+  "cand_in_comparator": 0,
+  "cand_sg_in_devpop_or_pr7_or_cmp": 334,
+  "tautomer_csv_cols": [
+   "cmp_key",
+   "recorded_key14s",
+   "parent_keys",
+   "scaffold_groups",
+   "n_distinct_smiles",
+   "smiles",
+   "name",
+   "uchem_ids",
+   "first_release",
+   "releases",
+   "n_records",
+   "nce_ladder",
+   "n_nce",
+   "instruments",
+   "n_instruments",
+   "precursor_mz",
+   "mh_calc",
+   "heavy_atoms",
+   "elements",
+   "n_frag_raw",
+   "formula",
+   "confidence",
+   "publication",
+   "authors",
+   "license",
+   "any_smiles_ik_mismatch",
+   "max_abs_mh_error_da",
+   "scaffold_group",
+   "n_scaffold_groups_in_records",
+   "uchem_id_in_2023_11_tree",
+   "in_msg15_any_route",
+   "in_msg15_recorded_route",
+   "in_msg15_parent_route",
+   "in_msg15_simchallenge",
+   "in_mspred_msg_labels",
+   "in_muru_registry_keys",
+   "in_muru_exposed_pop_keys",
+   "in_muru_dev_pop_keys",
+   "in_pr7_keys",
+   "in_comparator_keys",
+   "in_msnlib_9lib_keys",
+   "in_msnlib_v1_4lib_keys",
+   "in_multims2_reserved",
+   "sg_in_muru_registry",
+   "sg_in_muru_dev_pop",
+   "sg_in_pr7",
+   "sg_in_comparator",
+   "sg_in_msg15",
+   "acyclic",
+   "msg15_nn_tanimoto",
+   "msg15_nn_smiles",
+   "msg15_same_formula_n_structures",
+   "msg15_same_formula_max_tanimoto",
+   "tagged_release",
+   "ge3_nce",
+   "clean_compound_level",
+   "clean_primary",
+   "clean_conservative",
+   "clean_strict_msg_scaffold",
+   "parent_key_recomputed",
+   "taut_key",
+   "skel_key",
+   "formula_calc",
+   "msg15_parent_key_hit",
+   "msg15_taut_key_hit",
+   "msg15_skel_key_hit",
+   "msg15_new_hit_smiles",
+   "muru_dev_pop_parent_key_hit",
+   "muru_dev_pop_taut_key_hit",
+   "muru_dev_pop_skel_key_hit",
+   "muru_dev_pop_new_hit_smiles",
+   "pr7_parent_key_hit",
+   "pr7_taut_key_hit",
+   "pr7_skel_key_hit",
+   "pr7_new_hit_smiles",
+   "comparator_parent_key_hit",
+   "comparator_taut_key_hit",
+   "comparator_skel_key_hit",
+   "comparator_new_hit_smiles"
+  ],
+  "tautomer_recheck_json": {
+   "comparator_structures_sharing_a_formula": 15,
+   "inputs": {
+    "comparator": {
+     "column_read": "model_smiles",
+     "path": "artifacts/comparator_benchmark/population/common_population.csv",
+     "rows": 1327,
+     "sha256": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe"
+    },
+    "msg_meta": {
+     "path": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+     "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2",
+     "unique_smiles": 31602
+    },
+    "muru_dev_pop": {
+     "column_read": "smiles",
+     "path": "artifacts/wur_v2/data/compounds.csv",
+     "rows": 1325,
+     "sha256": "87d79ab7f9e02eb7c99c4ea9b7e12a87568d0b2c8c81c372b22d44bec862e34c"
+    },
+    "pr7": {
+     "column_read": "smiles",
+     "path": "artifacts/wur_v2_confirmation_v2/freeze/validation_population.csv",
+     "rows": 1794,
+     "sha256": "37b573d38955629e6959f310f4a6c0de14e0dca47ab31695d4edab5485ca0e8d"
+    },
+    "screen": {
+     "path": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_compound_screen.csv",
+     "rows": 415,
+     "sha256": "683e35d5fe633daabf9ec335678accf9ed90acdf6d2ecb6badc942cce5af0d9e"
+    }
+   },
+   "msg15_structures_sharing_a_formula": 1011,
+   "muru_dev_pop_structures_sharing_a_formula": 152,
+   "n_taut_key_differs_from_parent_key": 12,
+   "parent_key_recomputed_equals_cmp_key": 415,
+   "pr7_structures_sharing_a_formula": 17,
+   "rdkit": "2026.03.5",
+   "tiers": {
+    "all_including_dev": {
+     "clean_compound_level": {
+      "n_compounds_after": 111,
+      "n_compounds_step3": 112,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 76,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_conservative": {
+      "n_compounds_after": 44,
+      "n_compounds_step3": 45,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 44,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_primary": {
+      "n_compounds_after": 58,
+      "n_compounds_step3": 59,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 57,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_strict_msg_scaffold": {
+      "n_compounds_after": 41,
+      "n_compounds_step3": 42,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 41,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     }
+    },
+    "tagged": {
+     "clean_compound_level": {
+      "n_compounds_after": 86,
+      "n_compounds_step3": 87,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 59,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_conservative": {
+      "n_compounds_after": 33,
+      "n_compounds_step3": 34,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 33,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_primary": {
+      "n_compounds_after": 46,
+      "n_compounds_step3": 47,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 45,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     },
+     "clean_strict_msg_scaffold": {
+      "n_compounds_after": 31,
+      "n_compounds_step3": 32,
+      "n_new_exclusions_tautomer_or_skeleton": 1,
+      "n_scaffold_groups_after": 31,
+      "new_exclusions": [
+       {
+        "cmp_key": "PHXHZCIAPNNPTQ",
+        "comparator": false,
+        "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+        "msg15": true,
+        "muru_dev_pop": false,
+        "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+        "pr7": false,
+        "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+       }
+      ]
+     }
+    }
+   }
+  },
+  "tier_key_clean_before_tautomer": 112,
+  "tier_primary_before_tautomer": 59,
+  "tier_conservative_before_tautomer": 45,
+  "tier_strict_before_tautomer": 42,
+  "tier_primary_groups": 58,
+  "tier_conservative_groups": 45,
+  "tier_strict_groups": 42,
+  "tier_key_clean_groups": 77,
+  "tier_key_clean_records": 906,
+  "tier_primary_records": 484,
+  "tier_conservative_records": 370,
+  "tagged_key_clean": 87,
+  "tagged_primary": 47,
+  "tagged_conservative": 34,
+  "tagged_strict": 32,
+  "nce_rungs_key_clean": {
+   "n": 112,
+   "has_nce20": 5,
+   "has_nce60": 109,
+   "has_nce30": 112,
+   "has_nce15": 111,
+   "median_rungs_in_15_90": 6.0,
+   "ladder_modes": {
+    "15,30,45,60,75,90,120,150,180": 68,
+    "15,30,45,60,75,90": 11,
+    "15,30,45,60,75,90,120,150": 9,
+    "15,30,45,60,75,90,120": 9,
+    "15,30,45,60,75": 5
+   }
+  },
+  "nce_rungs_primary": {
+   "n": 59,
+   "has_nce20": 2,
+   "has_nce60": 59,
+   "has_nce30": 59,
+   "has_nce15": 59,
+   "median_rungs_in_15_90": 6.0,
+   "ladder_modes": {
+    "15,30,45,60,75,90,120,150,180": 35,
+    "15,30,45,60,75,90": 6,
+    "15,30,45,60,75,90,120": 6,
+    "15,30,45,60,75,90,120,150": 5,
+    "15,30,45,60,75": 3
+   }
+  },
+  "nce_rungs_conservative": {
+   "n": 45,
+   "has_nce20": 2,
+   "has_nce60": 45,
+   "has_nce30": 45,
+   "has_nce15": 45,
+   "median_rungs_in_15_90": 6.0,
+   "ladder_modes": {
+    "15,30,45,60,75,90,120,150,180": 28,
+    "15,30,45,60,75,90": 5,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90,120": 3,
+    "15,30,45,60,75,90,120,150": 2
+   }
+  },
+  "primary_mh_mz_ge500": 18,
+  "conservative_mh_mz_ge500": 16,
+  "primary_mh_mz_range": [
+   100.03930486688,
+   784.5259133948799
+  ],
+  "primary_confidence": {
+   "standard compound": 59
+  },
+  "primary_instruments_multi": 0,
+  "compounds_with_multiple_scaffold_groups_in_records": 0
+ }
+}

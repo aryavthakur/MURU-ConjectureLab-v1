@@ -1,0 +1,116 @@
+{
+ "inst_TripleTOF_5600": {
+  "total_count": 11376,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "inst_TripleTOF_6600": {
+  "total_count": 6640,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "inst_X500R": {
+  "total_count": 291,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "inst_ZenoTOF": {
+  "total_count": 0,
+  "incomplete": false,
+  "hits_kept": 0,
+  "dropped_pk_lines": 0
+ },
+ "inst_QTRAP": {
+  "total_count": 0,
+  "incomplete": false,
+  "hits_kept": 0,
+  "dropped_pk_lines": 0
+ },
+ "inst_line": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 1000,
+  "dropped_pk_lines": 0
+ },
+ "frag_CID": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "frag_HCD": {
+  "total_count": 0,
+  "incomplete": false,
+  "hits_kept": 0,
+  "dropped_pk_lines": 0
+ },
+ "frag_any": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "ce_any": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "ce_spread": {
+  "total_count": 0,
+  "incomplete": false,
+  "hits_kept": 0,
+  "dropped_pk_lines": 0
+ },
+ "prec_any": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 1000,
+  "dropped_pk_lines": 2000
+ },
+ "prec_NH4": {
+  "total_count": 2,
+  "incomplete": false,
+  "hits_kept": 2,
+  "dropped_pk_lines": 4
+ },
+ "prec_Na": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 200,
+  "dropped_pk_lines": 2
+ },
+ "prec_K": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 100,
+  "dropped_pk_lines": 200
+ },
+ "prec_H2O": {
+  "total_count": 2,
+  "incomplete": false,
+  "hits_kept": 2,
+  "dropped_pk_lines": 4
+ },
+ "ion_pos": {
+  "total_count": 13856,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "ion_neg": {
+  "total_count": 4944,
+  "incomplete": false,
+  "hits_kept": 1,
+  "dropped_pk_lines": 0
+ },
+ "msdp_comment": {
+  "total_count": 18400,
+  "incomplete": false,
+  "hits_kept": 200,
+  "dropped_pk_lines": 600
+ }
+}

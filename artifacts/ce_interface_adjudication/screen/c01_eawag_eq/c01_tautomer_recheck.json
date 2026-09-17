@@ -1,0 +1,189 @@
+{
+ "comparator_structures_sharing_a_formula": 15,
+ "inputs": {
+  "comparator": {
+   "column_read": "model_smiles",
+   "path": "artifacts/comparator_benchmark/population/common_population.csv",
+   "rows": 1327,
+   "sha256": "5526441961102c41b128993b7e0af686e6bb63a10299e002cd230c2f0d0276fe"
+  },
+  "msg_meta": {
+   "path": "artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2",
+   "unique_smiles": 31602
+  },
+  "muru_dev_pop": {
+   "column_read": "smiles",
+   "path": "artifacts/wur_v2/data/compounds.csv",
+   "rows": 1325,
+   "sha256": "87d79ab7f9e02eb7c99c4ea9b7e12a87568d0b2c8c81c372b22d44bec862e34c"
+  },
+  "pr7": {
+   "column_read": "smiles",
+   "path": "artifacts/wur_v2_confirmation_v2/freeze/validation_population.csv",
+   "rows": 1794,
+   "sha256": "37b573d38955629e6959f310f4a6c0de14e0dca47ab31695d4edab5485ca0e8d"
+  },
+  "screen": {
+   "path": "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_compound_screen.csv",
+   "rows": 415,
+   "sha256": "683e35d5fe633daabf9ec335678accf9ed90acdf6d2ecb6badc942cce5af0d9e"
+  }
+ },
+ "msg15_structures_sharing_a_formula": 1011,
+ "muru_dev_pop_structures_sharing_a_formula": 152,
+ "n_taut_key_differs_from_parent_key": 12,
+ "parent_key_recomputed_equals_cmp_key": 415,
+ "pr7_structures_sharing_a_formula": 17,
+ "rdkit": "2026.03.5",
+ "tiers": {
+  "all_including_dev": {
+   "clean_compound_level": {
+    "n_compounds_after": 111,
+    "n_compounds_step3": 112,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 76,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_conservative": {
+    "n_compounds_after": 44,
+    "n_compounds_step3": 45,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 44,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_primary": {
+    "n_compounds_after": 58,
+    "n_compounds_step3": 59,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 57,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_strict_msg_scaffold": {
+    "n_compounds_after": 41,
+    "n_compounds_step3": 42,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 41,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   }
+  },
+  "tagged": {
+   "clean_compound_level": {
+    "n_compounds_after": 86,
+    "n_compounds_step3": 87,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 59,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_conservative": {
+    "n_compounds_after": 33,
+    "n_compounds_step3": 34,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 33,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_primary": {
+    "n_compounds_after": 46,
+    "n_compounds_step3": 47,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 45,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   },
+   "clean_strict_msg_scaffold": {
+    "n_compounds_after": 31,
+    "n_compounds_step3": 32,
+    "n_new_exclusions_tautomer_or_skeleton": 1,
+    "n_scaffold_groups_after": 31,
+    "new_exclusions": [
+     {
+      "cmp_key": "PHXHZCIAPNNPTQ",
+      "comparator": false,
+      "matched_smiles": "CC/C(=N/OC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOC/C=C/Cl)C1=C(O)CC(C2CCOCC2)CC1=O;CCC(=NOCC=CCl)C1=C(O)CC(C2CCOCC2)CC1=O",
+      "msg15": true,
+      "muru_dev_pop": false,
+      "name": "2-Cyclohexen-1-one, 2-(1-((((2E)-3-chloro-2-propenyl)oxy)imino)propyl)-3-hydroxy-5-(tetrahydro-2H-pyran-4-yl)-",
+      "pr7": false,
+      "smiles": "CCC(=C1C(=O)CC(CC1=O)C2CCOCC2)NOCC=CCl"
+     }
+    ]
+   }
+  }
+ }
+}

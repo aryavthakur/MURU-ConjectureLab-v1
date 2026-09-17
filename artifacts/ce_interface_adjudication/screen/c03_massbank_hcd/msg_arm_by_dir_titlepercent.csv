@@ -1,0 +1,11 @@
+dir,title_ce_has_percent,both_arms_present,key_not_in_msg_orbitrap_ce_rows,key_present_no_ce_match,percent_converted_only,raw_only
+AAFC,False,62,23,58,8,492
+Eawag,False,155,29,107,1,2855
+Eawag,True,1672,76,324,4174,60
+Eawag_Additional_Specs,False,48,0,18,0,485
+Eawag_Additional_Specs,True,1,3,2,87,0
+HBM4EU,False,48,0,0,3,0
+HBM4EU,True,343,85,77,1690,12
+NaToxAq,True,294,57,295,2970,44
+UFZ,False,155,0,26,1,442
+UFZ,True,445,13,253,1486,30

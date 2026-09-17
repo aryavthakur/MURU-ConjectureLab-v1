@@ -1,0 +1,1033 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_elixdb_lichen_criteria.py",
+ "generated_utc": "2026-09-15T22:54:28.231662+00:00",
+ "ce_semantics_evidence": {
+  "isa_investigation": [
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 1,
+    "field": "ONTOLOGY SOURCE REFERENCE",
+    "text": "ONTOLOGY SOURCE REFERENCE"
+   },
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 5,
+    "field": "Term Source Description",
+    "text": "National Cancer Institute Thesaurus"
+   },
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 46,
+    "field": "Study Design Type",
+    "text": "ultra-performance liquid chromatography-mass spectrometry"
+   },
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 76,
+    "field": "Study Protocol Description",
+    "text": "<p>The compounds were sourced from the collection of Jack Elix, containing over 50 years of natural isolates and semi-synthetic compounds derived from lichens. These compounds are currently hosted at the CANB herbarium (Canberra, Australia) and stored dry in glass containers at room temperature. Subsamples of each pure compound were taken with clean metal spatulas, transferred to Eppendorf tubes and weighed with an ABT-22-4M (Kern) precision balance for a target amount of 0.1-1 mg. For compounds with little material available, 50 \u00b5L of LCMS-grade MeOH were added to the glass container and 25 \u00b5l were pipetted back into an Eppendorf tube after mixing. Both the glass container and the Eppendorf"
+   },
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 76,
+    "field": "Study Protocol Description",
+    "text": "<p>A 1 \u00b5L sample was injected and analyzed using a Thermo Vanquish ultra-high performance liquid chromatography (UHPLC) system (Thermo Fisher Scientific, USA). The column used was an Agilent InfinityLab Poroshell C18 (100 x 2.1 mm, 2.7 \u00b5m particle size) with mobile phase A being 0.1% FA Milli-Q H2O and mobile phase B being 0.1% FA in ACN. Following 1 min at 5% B, a gradient from 5% B to 95% B from over 3 min was employed for elution, followed by 100% B for 2 min and then re-equilibration at 5% B for 4 mins, all with a flow rate of 0.3 mL/min. A blank MeOH sample was run at the beginning of every batch and every 10 samples otherwise.</p>"
+   },
+   {
+    "file": "downloads/MTBLS8109_i_Investigation.txt",
+    "line": 76,
+    "field": "Study Protocol Description",
+    "text": "<p>Samples were analyzed using a Thermo Orbitrap Exploris 120. Polarity switching was utilized for each run, collecting data in both positive and negative for the first scan event, followed by four data-dependent MS/MS scans of the four most intense ions in the previous scan. Ions were excluded following selection for the next 4 s. For all ions, merged spectra were generated from a combination of individual collision events at 10, 35 and 80 eV utilizing an isolation window of m/z&nbsp;1.4. Internal mass calibration used Thermo EASY-IC. A scan range of 140-2000 m/z was utilized with an orbitrap resolution of 60,000 for MS events and 15,000 for MS/MS events. The ESI capillary voltage was set at 3500 V with a vaporizer temp of 350 \u00b0C and a ion transfer tube temp of 325 \u00b0C.</p>"
+   }
+  ],
+  "isa_sample_columns_mentioning_energy": [
+   "Comment[Collision energy]"
+  ],
+  "isa_assay_columns_mentioning_energy": [],
+  "isa_sample_collision_energy_value_counts": {
+   "10, 35, 80": 534
+  },
+  "isa_sample_collision_energy_unit_column_present": false,
+  "isa_assay_all_columns": [
+   "Sample Name",
+   "Protocol REF",
+   "Parameter Value[Post Extraction]",
+   "Parameter Value[Derivatization]",
+   "Extract Name",
+   "Protocol REF.1",
+   "Parameter Value[Chromatography Instrument]",
+   "Term Source REF",
+   "Term Accession Number",
+   "Parameter Value[Autosampler model]",
+   "Parameter Value[Column model]",
+   "Parameter Value[Column type]",
+   "Parameter Value[Guard column]",
+   "Labeled Extract Name",
+   "Label",
+   "Term Source REF.1",
+   "Term Accession Number.1",
+   "Protocol REF.2",
+   "Parameter Value[Scan polarity]",
+   "Parameter Value[Scan m/z range]",
+   "Parameter Value[Instrument]",
+   "Term Source REF.2",
+   "Term Accession Number.2",
+   "Parameter Value[Ion source]",
+   "Term Source REF.3",
+   "Term Accession Number.3",
+   "Parameter Value[Mass analyzer]",
+   "Term Source REF.4",
+   "Term Accession Number.4",
+   "MS Assay Name",
+   "Raw Spectral Data File",
+   "Protocol REF.3",
+   "Normalization Name",
+   "Derived Spectral Data File",
+   "Protocol REF.4",
+   "Data Transformation Name",
+   "Metabolite Assignment File"
+  ],
+  "mhd_json_matches": [
+   {
+    "json_path": "$.cv_definitions[1].prefix",
+    "text": "http://semanticscience.org/resource/CHEMINF_"
+   },
+   {
+    "json_path": "$.graph.nodes[1095].description",
+    "text": "<p>A 1 \u00b5L sample was injected and analyzed using a Thermo Vanquish ultra-high performance liquid chromatography (UHPLC) system (Thermo Fisher Scientific, USA). The column used was an Agilent InfinityLab Poroshell C18 (100 x 2.1 mm, 2.7 \u00b5m particle size) with mobile phase A being 0.1% FA Milli-Q H2O and mobile phase B being 0.1% FA in ACN. Following 1 min at 5% B, a gradient from 5% B to 95% B from over 3 min was employed for elution, followed by 100% B for 2 min and then re-equilibration at 5% B for 4 mins, all with a flow rate of 0.3 mL/min. A blank MeOH sample was run at the beginning of every batch and every 10 samples otherwise.</p>"
+   },
+   {
+    "json_path": "$.graph.nodes[1098].description",
+    "text": "t MS/MS scans of the four most intense ions in the previous scan. Ions were excluded following selection for the next 4 s. For all ions, merged spectra were generated from a combination of individual collision events at 10, 35 and 80 eV utilizing an isolation window of m/z&nbsp;1.4. Internal mass calibration used Thermo EASY-IC. A scan range of 140-2000 m/z was utilized with an orbitrap resolution of 60,000 for MS events and 15,000 for MS/MS events. The ESI capillary voltage was set at 3500 V with a vaporizer temp of 350 \u00b0C and a ion transfer tube temp of 325 \u00b0C.</p>"
+   },
+   {
+    "json_path": "$.graph.nodes[1100].description",
+    "text": "<p>The compounds were sourced from the collection of Jack Elix, containing over 50 years of natural isolates and semi-synthetic compounds derived from lichens. These compounds are currently hosted at the CANB herbarium (Canberra, Australia) and stored dry in glass containers at room temperature. Subsamples of each pure compound were taken with clean metal spatulas, transferred to Eppendorf tubes and weighed with an ABT-22-4M (Kern) precision balance for a target amount of 0.1-1 mg. For compounds with little material available, 50 \u00b5L of LCMS-grade MeOH were added to the glass container and 25 \u00b5l were pipetted back into an Eppendorf tube after mixing. Both the glass container and the Eppendorf"
+   },
+   {
+    "json_path": "$.graph.nodes[3247].name",
+    "text": "pure substance"
+   },
+   {
+    "json_path": "$.graph.nodes[3248].name",
+    "text": "reference compound"
+   },
+   {
+    "json_path": "$.graph.nodes[3260].name",
+    "text": "ultra-performance liquid chromatography-mass spectrometry"
+   },
+   {
+    "json_path": "$.graph.nodes[3283].name",
+    "text": "reference compound"
+   },
+   {
+    "json_path": "$.graph.relationships[9].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[12].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[16].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[17].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[74].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[76].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[78].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[80].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[82].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[84].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[86].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[88].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[91].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[94].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[630].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[728].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[1167].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[1169].relationship_name",
+    "text": "instance-of"
+   },
+   {
+    "json_path": "$.graph.relationships[1177].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1180].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1183].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1188].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1191].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1728].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1731].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1732].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[1733].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[2809].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[2814].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[2817].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[2820].relationship_name",
+    "text": "has-instance"
+   },
+   {
+    "json_path": "$.graph.relationships[2823].relationship_name",
+    "text": "has-instance"
+   }
+  ],
+  "mhd_json_match_count": 44,
+  "mhd_licence_strings": [
+   "cv--x-mtbls-factor-type--c5e1302c-83af-51e4-8cc0-1035ec8eb8ec",
+   "https://www.ebi.ac.uk/about/terms-of-use/",
+   "mhd--derived-data-file--9dcc0fd1-80ba-594f-bda7-8570c7200680",
+   "mhd--derived-data-file--c3cc016d-8419-5855-a7ab-61e348afbf84",
+   "mhd--metabolite--119e673f-f021-51ce-b47e-b4366b1fccc0",
+   "mhd--metabolite--a9a7a008-6cc0-55a9-a2e1-93897f1aa823",
+   "mhd--sample--1b927eb1-dadc-5b57-9f37-f7e6cf75fcc0",
+   "mhd--sample--1b970feb-cc0b-5a85-bd3e-37ed744f82f0",
+   "mhd--sample--892eba06-3407-5d71-a627-019e790dacc0",
+   "mhd--sample--a882df22-f736-5b75-ad56-5cc0cb6fc94f",
+   "mhd--sample--dd0bdf5b-5cc0-5938-b861-8bcc3ad69a57",
+   "mhd--sample--e48904d2-b5fc-509e-a94f-50216ccc2cc0",
+   "mhd--sample-run--074bccc0-1da0-5a79-928f-dccae7cfa12c",
+   "mhd--sample-run--202cc0bd-ea69-5a87-a2b3-e9f96590da9c",
+   "mhd--sample-run--4dfc8e7f-24fd-5d47-a315-a21cc08af446",
+   "mhd--sample-run--cc0291f2-7b44-517c-b1d1-f9ea410ef593",
+   "mhd--supplementary-file--23dc1df0-e610-5409-8022-e9b8ec1cc07c",
+   "mhd--supplementary-file--5334768f-be1d-5ddd-88e9-cc04a00c304d",
+   "mhd--supplementary-file--7bcc0cf0-32bc-5a46-b445-fa9e334ad6d2",
+   "mhd--supplementary-file--7cc0cc5e-29a9-5c71-9c76-f0228456d695"
+  ]
+ },
+ "spectra_per_compound": {
+  "gnps_records": 534,
+  "gnps_distinct_source_files": 534,
+  "mtbls_FILES_mzXML": 534,
+  "mtbls_RAW_FILES_mzXML": 534,
+  "mtbls_DERIVED_FILES_mzXML": 534,
+  "namesets_identical": true,
+  "nameset_equals_gnps_source_files": true,
+  "mzxml_size_strings": {
+   "3.7K": 3,
+   "3.0K": 29,
+   "2.7K": 90,
+   "2.6K": 120,
+   "3.3K": 6,
+   "2.9K": 27,
+   "2.8K": 58,
+   "2.5K": 104,
+   "2.4K": 48,
+   "3.1K": 17,
+   "3.2K": 14,
+   "3.4K": 5,
+   "3.5K": 2,
+   "4.0K": 2,
+   "3.6K": 3,
+   "2.3K": 5,
+   "2.2K": 1
+  },
+  "assay_distinct_derived_files": 534,
+  "assay_raw_spectral_data_file_counts": {
+   "": 534
+  },
+  "gnps_records_per_source_file_max": 1
+ },
+ "massspecgym_gnps_libraries": {
+  "download_date_string": "13/05/2024",
+  "n_libraries": 46,
+  "contains_ELIXDB": false,
+  "lichen_related": [
+   "LDB_NEGATIVE",
+   "LDB_POSITIVE"
+  ],
+  "contains_GNPS_LIBRARY": true,
+  "libraries": [
+   "BERKELEY-LAB",
+   "BILELIB19",
+   "BIRMINGHAM-UHPLC-MS-NEG",
+   "BIRMINGHAM-UHPLC-MS-POS",
+   "BMDMS-NP",
+   "CASMI",
+   "DRUGS-OF-ABUSE-LIBRARY",
+   "ECG-ACYL-AMIDES-C4-C24-LIBRARY",
+   "ECG-ACYL-ESTERS-C4-C24-LIBRARY",
+   "GNPS-COLLECTIONS-MISC",
+   "GNPS-COLLECTIONS-PESTICIDES-NEGATIVE",
+   "GNPS-COLLECTIONS-PESTICIDES-POSITIVE",
+   "GNPS-D2-AMINO-LIPID-LIBRARY",
+   "GNPS-EMBL-MCF",
+   "GNPS-FAULKNERLEGACY",
+   "GNPS-IOBA-NHC",
+   "GNPS-LIBRARY",
+   "GNPS-MSMLS",
+   "GNPS-NIH-CLINICALCOLLECTION1",
+   "GNPS-NIH-CLINICALCOLLECTION2",
+   "GNPS-NIH-NATURALPRODUCTSLIBRARY",
+   "GNPS-NIH-NATURALPRODUCTSLIBRARY_ROUND2_NEGATIVE",
+   "GNPS-NIH-NATURALPRODUCTSLIBRARY_ROUND2_POSITIVE",
+   "GNPS-NIH-SMALLMOLECULEPHARMACOLOGICALLYACTIVE",
+   "GNPS-NIST14-MATCHES",
+   "GNPS-NUTRI-METAB-FEM-NEG",
+   "GNPS-NUTRI-METAB-FEM-POS",
+   "GNPS-PRESTWICKPHYTOCHEM",
+   "GNPS-SAM-SIK-KANG-LEGACY-LIBRARY",
+   "GNPS-SCIEX-LIBRARY",
+   "GNPS-SELLECKCHEM-FDA-PART1",
+   "GNPS-SELLECKCHEM-FDA-PART2",
+   "HCE-CELL-LYSATE-LIPIDS",
+   "HMDB",
+   "IQAMDB",
+   "LDB_NEGATIVE",
+   "LDB_POSITIVE",
+   "MIADB",
+   "MMV_NEGATIVE",
+   "MMV_POSITIVE",
+   "PNNL-LIPIDS-NEGATIVE",
+   "PNNL-LIPIDS-POSITIVE",
+   "PSU-MSMLS",
+   "RESPECT",
+   "SUMNER",
+   "UM-NPDC"
+  ]
+ },
+ "gnps_library_same_group_uploads": {
+  "n_records": 21,
+  "by_year": {
+   "2017": 9,
+   "2018": 1,
+   "2019": 5,
+   "2020": 5,
+   "2023": 1
+  },
+  "orbitrap_records": 1,
+  "records": [
+   {
+    "SpectrumID": "CCMSLIB00003060623",
+    "Compound_Name": "Amitryptiline",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:21:18.0",
+    "Precursor_MZ": "278.19",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Amitryptiline_278_+ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060624",
+    "Compound_Name": "Coumarin-314",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2018-07-29 15:41:10.0",
+    "Precursor_MZ": "314.139",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Coumarin-314_314_+ve_test_1.mgf;",
+    "key": "VMJKUPWQKZFFCX",
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060625",
+    "Compound_Name": "Sulfachloropyridazine",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:24:07.0",
+    "Precursor_MZ": "283.006",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfachloropyridazine_283_-ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060626",
+    "Compound_Name": "Sulfachloropyridazine",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:26:26.0",
+    "Precursor_MZ": "285.02",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfachloropyridazine_285_+ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060627",
+    "Compound_Name": "Sulfadimethoxine",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:27:51.0",
+    "Precursor_MZ": "309.067",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfadimethoxine_309_-ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060628",
+    "Compound_Name": "Sulfadimethoxine",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:28:43.0",
+    "Precursor_MZ": "311.081",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfadimethoxine_311_+ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060629",
+    "Compound_Name": "Sulfamethazine",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:30:00.0",
+    "Precursor_MZ": "277.077",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfamethazine_277_-ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060630",
+    "Compound_Name": "Sulfamethazine",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:30:54.0",
+    "Precursor_MZ": "279.091",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfamethazine_279_+ve_test.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060631",
+    "Compound_Name": "Sulfamethizole",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:32:19.0",
+    "Precursor_MZ": "269.018",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfamethazole_269_-ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00003060632",
+    "Compound_Name": "Sulfamethizole",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Keyzers",
+    "Data_Collector": "Bracegirdle",
+    "create_time": "2017-06-22 18:33:07.0",
+    "Precursor_MZ": "271.032",
+    "source_file": "f.joebracegirdle/Testmix - Uploads/Sulfamethazole_271_+ve_test_1.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436282",
+    "Compound_Name": "Lamellarin K-20-sulfate",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2019-07-18 18:48:45.0",
+    "Precursor_MZ": "610.103",
+    "source_file": "f.joebracegirdle/purecompounds/JB05_79G_0.1uL_negMSMS0008.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436283",
+    "Compound_Name": "Lamellarin E-20-sulfate",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2019-07-18 18:51:35.0",
+    "Precursor_MZ": "610.103",
+    "source_file": "f.joebracegirdle/purecompounds/JB05_80A_0.1uL_negMSMS0009.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436284",
+    "Compound_Name": "Lamellarin A3-20-sulfate",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2019-07-18 18:53:42.0",
+    "Precursor_MZ": "594.11",
+    "source_file": "f.joebracegirdle/purecompounds/JB05_56H_0.1uL_negMSMS0006.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436285",
+    "Compound_Name": "Lamellarin D-8-sulfate",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2019-07-18 18:54:57.0",
+    "Precursor_MZ": "578.078",
+    "source_file": "f.joebracegirdle/purecompounds/JB05_73A_0.1uL_negMSMS0007.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436286",
+    "Compound_Name": "Lamellarin B1-20-sulfate",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2019-07-18 18:56:06.0",
+    "Precursor_MZ": "592.092",
+    "source_file": "f.joebracegirdle/purecompounds/JB05_56F_0.1uL_negMSMS0004.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005724057",
+    "Compound_Name": "Nellielloside A",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2020-08-25 14:31:27.0",
+    "Precursor_MZ": "361.123",
+    "source_file": "f.joebracegirdle/Uploads/JB07_13A_1uL_posMSMS012.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005724058",
+    "Compound_Name": "Nellielloside B",
+    "Adduct": "M+H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Positive",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2020-08-25 14:32:48.0",
+    "Precursor_MZ": "362.111",
+    "source_file": "f.joebracegirdle/Uploads/JB07_08B_1uL_posMSMS010.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005724059",
+    "Compound_Name": "Rubrolide A",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2020-08-25 14:55:27.0",
+    "Precursor_MZ": "590.708",
+    "source_file": "f.joebracegirdle/Uploads/RubA_590_negMSMS_1uL_.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005724060",
+    "Compound_Name": "Rubrolide T",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2020-08-25 14:56:35.0",
+    "Precursor_MZ": "604.725",
+    "source_file": "f.joebracegirdle/Uploads/JB08_62A_negMSMS_10-20-30-40-50eV_1uL_rubA.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00005724061",
+    "Compound_Name": "Rubrolide U",
+    "Adduct": "M-H",
+    "Instrument": "qTof",
+    "Ion_Mode": "Negative",
+    "PI": "Rob Keyzers",
+    "Data_Collector": "Joe Bracegirdle",
+    "create_time": "2020-08-25 14:57:34.0",
+    "Precursor_MZ": "526.814",
+    "source_file": "f.joebracegirdle/Uploads/JB07_43A_negMSMS_10-20-30-40-50eV_1uL_rubA.mgf;",
+    "key": NaN,
+    "key_in_elixdb": false,
+    "elixdb_source_file_stem_match": false
+   },
+   {
+    "SpectrumID": "CCMSLIB00011427585",
+    "Compound_Name": "3beta-Acetoxyfern-9(11)-ene-12-one",
+    "Adduct": "M+H",
+    "Instrument": "Orbitrap",
+    "Ion_Mode": "Positive",
+    "PI": "Chooi",
+    "Data_Collector": "J Bracegirdle",
+    "create_time": "2023-05-21 23:37:54.0",
+    "Precursor_MZ": "483.383",
+    "source_file": "f.joebracegirdle/3 Scan[4644].mzXML;",
+    "key": "BPPPHUNQHQJHQW",
+    "key_in_elixdb": true,
+    "elixdb_source_file_stem_match": false
+   }
+  ]
+ },
+ "gnps_library_same_group_msg_matches": [
+  {
+   "gnps_spectrum_id": "CCMSLIB00003060624",
+   "gnps_compound": "Coumarin-314",
+   "gnps_adduct": "M+H",
+   "gnps_instrument": "qTof",
+   "gnps_create_time": "2018-07-29 15:41:10.0",
+   "gnps_precursor_mz": 314.139,
+   "key": "VMJKUPWQKZFFCX",
+   "msg_identifier": "MassSpecGymID0189797",
+   "msg_identifier_num": 189797,
+   "msg_precursor_mz": 314.139,
+   "msg_precursor_decimals": 3,
+   "msg_adduct": "[M+H]+",
+   "msg_instrument": NaN,
+   "msg_collision_energy": null,
+   "msg_fold": "train",
+   "msg_simulation_challenge": false,
+   "precursor_exact_3dp_match": true
+  },
+  {
+   "gnps_spectrum_id": "CCMSLIB00003060624",
+   "gnps_compound": "Coumarin-314",
+   "gnps_adduct": "M+H",
+   "gnps_instrument": "qTof",
+   "gnps_create_time": "2018-07-29 15:41:10.0",
+   "gnps_precursor_mz": 314.139,
+   "key": "VMJKUPWQKZFFCX",
+   "msg_identifier": "MassSpecGymID0189798",
+   "msg_identifier_num": 189798,
+   "msg_precursor_mz": 314.139,
+   "msg_precursor_decimals": 3,
+   "msg_adduct": "[M+H]+",
+   "msg_instrument": "QTOF",
+   "msg_collision_energy": null,
+   "msg_fold": "train",
+   "msg_simulation_challenge": false,
+   "precursor_exact_3dp_match": true
+  },
+  {
+   "gnps_spectrum_id": "CCMSLIB00011427585",
+   "gnps_compound": "3beta-Acetoxyfern-9(11)-ene-12-one",
+   "gnps_adduct": "M+H",
+   "gnps_instrument": "Orbitrap",
+   "gnps_create_time": "2023-05-21 23:37:54.0",
+   "gnps_precursor_mz": 483.383,
+   "key": "BPPPHUNQHQJHQW",
+   "msg_identifier": "MassSpecGymID0398009",
+   "msg_identifier_num": 398009,
+   "msg_precursor_mz": 483.383,
+   "msg_precursor_decimals": 3,
+   "msg_adduct": "[M+H]+",
+   "msg_instrument": "Orbitrap",
+   "msg_collision_energy": null,
+   "msg_fold": "train",
+   "msg_simulation_challenge": false,
+   "precursor_exact_3dp_match": true
+  }
+ ],
+ "ldb": {
+  "records": 1280,
+  "by_library": {
+   "LDB_POSITIVE": 700,
+   "LDB_NEGATIVE": 580
+  },
+  "instrument_counts": {
+   "qTof": 578,
+   "Orbitrap": 702
+  },
+  "adduct_counts": {
+   "M+H": 83,
+   "[M-H]": 268,
+   "[2M-2H+Na]": 101,
+   "[M-H+CH3OH]": 57,
+   "[M-H+HCOOH]": 36,
+   "[M-2H+K]": 3,
+   "[M+Cl]": 13,
+   "[2M-H]": 88,
+   "[M-H-H2O]": 9,
+   "[M-2H+Na]": 9,
+   "M-H": 214,
+   "[M+H]": 123,
+   "[M+Na]": 35,
+   "[M+NH4]": 58,
+   "[2M+Na]": 44,
+   "[M+Na+CH3CN]": 10,
+   "[2M+H]": 17,
+   "[2M+NH4]": 39,
+   "[M+K]": 7,
+   "[2M+K]": 2,
+   "[M+H+CH3OH]": 31,
+   "[M+H+C2H6OS]": 1,
+   "[M+H+CH3CN]": 8,
+   "[M+H+HCOOH]": 5,
+   "[2M+H+CH3CN]": 1,
+   "M+FA-H": 9,
+   "2M-H": 1,
+   "M+MeOH-H": 3,
+   "[2M-H+HCOOH]": 2,
+   "[2M-2H+K]": 3
+  },
+  "keys": 251,
+  "keys_in_msg15_any_route": 146,
+  "keys_in_msg15_simulation_challenge": 18,
+  "elixdb_keys_also_in_ldb": 126,
+  "elixdb_MH_keys_also_in_ldb": 26
+ },
+ "pools": [
+  {
+   "label": "Q1 all [M+H]+ records",
+   "records": 96,
+   "keys": 93,
+   "scaffold_groups": 33,
+   "singleton_scaffold_groups": 22,
+   "largest_scaffold_group_key_counts": [
+    22,
+    14,
+    12,
+    6,
+    3,
+    3
+   ],
+   "keys_also_in_ldb": 26,
+   "chemical_class": {
+    "Terpene": 4,
+    "Benzyldepside": 2,
+    "Depsidone": 15,
+    "Pyrone": 4,
+    "Xanthone": 22,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Pulvinic Acid Derivatives": 3,
+    "Dibenzofuran": 7,
+    "Biphenyl": 1,
+    "Quinone": 4,
+    "Paraconic acids": 2,
+    "Tridepside": 3,
+    "Didepside": 15,
+    "Bisxanthone": 3,
+    "Cleavage Products of Depsides and Depsidones": 3,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q2 [M+H]+ minus MSG1.5(all folds) + MURU exposed populations + dev + PR7 + comparator keys",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "singleton_scaffold_groups": 15,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2
+   ],
+   "keys_also_in_ldb": 10,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q3 = Q2 with the full MURU exposure registry (conservative)",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "singleton_scaffold_groups": 15,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2
+   ],
+   "keys_also_in_ldb": 10,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q4 [M+H]+ minus MSG1.5 SIMULATION-CHALLENGE keys only (the ICEBERG/GLACIER training universe) + MURU sets",
+   "records": 91,
+   "keys": 88,
+   "scaffold_groups": 33,
+   "singleton_scaffold_groups": 23,
+   "largest_scaffold_group_key_counts": [
+    22,
+    13,
+    12,
+    6,
+    2,
+    2
+   ],
+   "keys_also_in_ldb": 22,
+   "chemical_class": {
+    "Terpene": 4,
+    "Benzyldepside": 2,
+    "Depsidone": 15,
+    "Xanthone": 22,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Pulvinic Acid Derivatives": 3,
+    "Dibenzofuran": 7,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Paraconic acids": 2,
+    "Tridepside": 3,
+    "Didepside": 14,
+    "Bisxanthone": 3,
+    "Cleavage Products of Depsides and Depsidones": 2,
+    "Pyrone": 3,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q5 = Q3 and scaffold group not in MURU registry/dev/PR7/comparator",
+   "records": 17,
+   "keys": 16,
+   "scaffold_groups": 13,
+   "singleton_scaffold_groups": 10,
+   "largest_scaffold_group_key_counts": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    1
+   ],
+   "keys_also_in_ldb": 0,
+   "chemical_class": {
+    "Depsidone": 3,
+    "Diphenylether": 3,
+    "Terphenyl": 2,
+    "Quinone": 1,
+    "Tridepside": 2,
+    "Dibenzofuran": 1,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q6 = Q3 and scaffold group not in MSG1.5",
+   "records": 11,
+   "keys": 11,
+   "scaffold_groups": 9,
+   "singleton_scaffold_groups": 7,
+   "largest_scaffold_group_key_counts": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "keys_also_in_ldb": 0,
+   "chemical_class": {
+    "Terphenyl": 2,
+    "Quinone": 1,
+    "Depsidone": 1,
+    "Tridepside": 2,
+    "Dibenzofuran": 1,
+    "Bisxanthone": 1,
+    "Terpene": 1,
+    "Diphenylether": 1,
+    "Naphthopyrone": 1
+   }
+  },
+  {
+   "label": "Q7 = Q3 and key not in the GNPS LDB lichen library",
+   "records": 64,
+   "keys": 62,
+   "scaffold_groups": 24,
+   "singleton_scaffold_groups": 16,
+   "largest_scaffold_group_key_counts": [
+    13,
+    13,
+    7,
+    5,
+    2,
+    2
+   ],
+   "keys_also_in_ldb": 0,
+   "chemical_class": {
+    "Benzyldepside": 1,
+    "Depsidone": 10,
+    "Xanthone": 13,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   }
+  }
+ ]
+}

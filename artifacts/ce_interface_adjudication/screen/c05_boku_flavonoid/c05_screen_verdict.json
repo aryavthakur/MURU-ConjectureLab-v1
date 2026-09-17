@@ -1,0 +1,72 @@
+{
+ "task": "S5-C05",
+ "candidate": "C05 BOKU/Mendel/Masaryk in-house MS/MS library of flavonoids and prenylated flavonoids (Zenodo 16762591; Rypar et al., Metabolites 2025, 15, 616, PMC12471768)",
+ "written_utc": "2026-09-15",
+ "method": "metadata only; no spectra file read; no model run. Compound list = Table S1 of Supplementary Material File S3 (PMC12471768 zip, partial HTTP range reads). Exclusion sets and MURU key/scaffold definition from task P5.",
+ "inputs": {
+  "table_s1_csv": "artifacts/ce_interface_adjudication/screen/c05_boku_flavonoid/downloads/supp_S3_table_S1_raw.csv",
+  "table_s1_sha256": "7f0593b22f12bf8a66740dc444a50a291845e57eebda966979d0f0ac20a60c3e",
+  "screen_csv": "artifacts/ce_interface_adjudication/screen/c05_boku_flavonoid/c05_compounds_screen.csv",
+  "screen_summary": "artifacts/ce_interface_adjudication/screen/c05_boku_flavonoid/c05_screen_summary.json",
+  "exclusion_manifest_sha256": "4c3122a4e3dfe42068c0c1f4bd98bc04a439e7a0fb2041ef09bb2b8fc7655b58"
+ },
+ "reproduction": "screen_c05_boku_flavonoid.py re-run 2026-09-15 (rdkit 2026.03.5): c05_screen_summary.json byte-identical to the 2026-09-14 run.",
+ "population": {
+  "table_rows": 246,
+  "distinct_muru_parent_keys": 239,
+  "scaffold_groups": 67,
+  "prenylated_or_geranylated_keys": 64,
+  "noncommercial_isolated_rows": 59
+ },
+ "overlaps_distinct_keys": {
+  "massspecgym15_any_fold": 175,
+  "massspecgym15_by_fold": {
+   "train": 169,
+   "test": 5,
+   "val": 1
+  },
+  "massspecgym15_simulation_challenge": 133,
+  "muru_exposure_registry_full": 145,
+  "muru_exposed_population_union": 8,
+  "pr7_study2_population": 0,
+  "comparator_common_population": 0,
+  "msnlib_9lib": 162,
+  "msnlib_v1_0": 133,
+  "multims2_reserved": 9,
+  "prenylated_in_msg15_or_msnlib9": 22
+ },
+ "post_exclusion": {
+  "strict_C_keys": 17,
+  "strict_C_scaffold_groups": 12,
+  "strict_C_singleton_groups": 9,
+  "strict_C_prenylated": 15,
+  "strict_D_keys": 12,
+  "strict_D_scaffold_groups": 8,
+  "lenient_L2_keys": 64,
+  "lenient_L2_scaffold_groups": 25,
+  "lenient_L2_singleton_groups": 16,
+  "lenient_L2_prenylated": 43,
+  "lenient_L2_top3_group_share": 0.516
+ },
+ "criteria": {
+  "1_absent_from_muru_development": "PARTIAL",
+  "2_absent_from_pr7_confirmation_population": "MET",
+  "3_absent_from_comparator_benchmark_population": "MET",
+  "4_absent_from_iceberg_glacier_training_compound_level": "NOT_MET",
+  "5_known_ce_semantics": "PARTIAL",
+  "6_mh_positive_mode_available": "PARTIAL",
+  "7_compatible_fragmentation_instrument_metadata": "PARTIAL",
+  "8_multiple_energies_per_compound": "MET",
+  "9_structural_diversity_after_exclusions": "NOT_MET",
+  "10_license_and_access": "MET",
+  "11_hidden_massspecgym_inclusion_implausible": "MET"
+ },
+ "verdict": "PARTIAL_OR_SUPPORTING_ONLY",
+ "verdict_basis": "Design A is excluded by verified, size-based facts that no further access can change: after MURU/PR7/comparator key and scaffold exclusion plus MassSpecGym 1.5 key exclusion the set is 17 compounds in 12 Bemis-Murcko groups (lenient variant 64 in 25 groups, 51.6% of keys in 3 groups). Criteria 5, 6 and 7 remain conditional on per-spectrum metadata that exists only inside in-house_MSMS_library.mgf (18.8 MB spectra file, outside this study's download policy).",
+ "open_items": [
+  "K5 unresolved: the paper states HCD and CID energies 'in absolute values' (eV). Absolute HCD is vendor-supported on Tribrid 3.5 software, but the CID list includes 35, the canonical ion-trap normalized default, and the release note documents absolute/normalized for HCD only.",
+  "Zenodo names two instruments (Orbitrap IQ-X and Q Exactive HF); neither the paper's library section nor the metadata says which entries came from which instrument.",
+  "Per-compound adduct coverage ([M+H]+) is documented only as a general rule ('at least two adducts, most commonly protonated and deprotonated').",
+  "Authors report 47 of 64 prenylated compounds unique vs MSnLib, GNPS and MassSpecGym; this screen finds 42 of 64 absent from MassSpecGym 1.5 and the nine MSnLib libraries, i.e. more overlap, not less, despite covering fewer repositories."
+ ]
+}

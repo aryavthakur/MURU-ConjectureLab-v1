@@ -1,0 +1,49 @@
+{
+ "candidate": "C10 MassBank BAFG SCIEX TripleTOF CE ladders (rank 10, proposed as a SUPPORTING QTOF eV control)",
+ "task": "S10-C10",
+ "written_utc": "2026-09-15",
+ "verdict": "PARTIAL_OR_SUPPORTING_ONLY",
+ "verdict_note": "Not usable as independent evaluation data: criteria 1, 4, 7, 9 and 11 are NOT_MET. 85.1% of its positive-mode compounds are in MassSpecGym 1.5, and the row-level fingerprint (1,839 of 1,849 MassSpecGym QTOF rows above CE 100 carry a BAFG key, QTOF CE max exactly 150.0) indicates the spectra themselves are training data. It keeps real value in the role it was nominated for: a clean, well-documented raw-volt QTOF CE ladder whose values are known to enter MassSpecGym unconverted, which makes it a usable attribution control for what the checkpoints encode when a collision energy carries no percent sign. As evaluation material it fails twice over, on training contamination and on a post-exclusion pool of 17 compounds in 17 singleton scaffold groups.",
+ "status_by_criterion": {
+  "1": "NOT_MET",
+  "2": "MET",
+  "3": "MET",
+  "4": "NOT_MET",
+  "5": "MET",
+  "6": "MET",
+  "7": "NOT_MET",
+  "8": "MET",
+  "9": "NOT_MET",
+  "10": "MET",
+  "11": "NOT_MET"
+ },
+ "headline_counts": {
+  "records_total": 20658,
+  "records_positive": 15495,
+  "records_negative": 5163,
+  "compounds_total_all_modes": 1173,
+  "compounds_positive_mode": 1070,
+  "scaffold_groups_positive_mode": 525,
+  "compounds_after_all_exclusions": 17,
+  "scaffold_groups_after_all_exclusions": 17,
+  "compounds_after_all_exclusions_strict_msg_scaffold": 15,
+  "energies_per_compound_median": 15
+ },
+ "no_spectra_statement": "No MassBank record .txt blob, release asset, /records/{accession} response, MGF/MSP/mzML/HDF5 file, peak list, model output or MURU measurement was downloaded or read. The only peak-derived quantity anywhere in these artifacts is the integer PK$NUM_PEAK count, harvested from code-search header fragments with peak-looking lines dropped first.",
+ "artifacts": [
+  "s10_verification_record.json",
+  "s10_verification_part2.json",
+  "s10_peak_count_census.json",
+  "s10_peak_count_sample.csv",
+  "c10_criteria_evidence.json",
+  "c10_screen_summary.json (first pass)",
+  "c10_records_identity.csv (first pass)",
+  "c10_compounds_screen.csv (first pass)"
+ ],
+ "scripts": [
+  "scripts/ce_interface_adjudication/screen_c10_bafg_verify.py",
+  "scripts/ce_interface_adjudication/screen_c10_bafg_verify2.py",
+  "scripts/ce_interface_adjudication/screen_c10_bafg_verify3.py",
+  "scripts/ce_interface_adjudication/screen_c10_bafg.py (first pass)"
+ ]
+}

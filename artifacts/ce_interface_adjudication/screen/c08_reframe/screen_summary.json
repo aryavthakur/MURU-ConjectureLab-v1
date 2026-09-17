@@ -1,0 +1,1673 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c08_reframe.py",
+ "rdkit": "2026.03.5",
+ "frozen_rdkit": "2026.03.5",
+ "inputs": {
+  "CMMC-REFRAME-POSITIVE-LIBRARY.csv": {
+   "size": 49520118,
+   "sha256": "a9b3633b119c45051d76ebad1b1aab047612763ff3cba4210068b4001350a525"
+  },
+  "REFRAME-POSITIVE-LIBRARY.csv": {
+   "size": 46165951,
+   "sha256": "76a23b60fc309005f200c88deb241d5443cf98cffb56be674dd864cbd2902506"
+  },
+  "gnps2_datasetcache_filelist_MSV000093469.csv": {
+   "size": 334835,
+   "sha256": "3c7699b304ca480c908003be1d52fe4ab88b0ae9995ccc38b2875c510c7d5bdd"
+  },
+  "gnps2_external_gnpslibrary_listing.html": {
+   "size": 54540,
+   "sha256": "aadadeb2c290a3585bcbb2731e028a464692e1db5191150b93bf51ef559bf270"
+  },
+  "gnps_libraryservlet_REFRAME-POSITIVE-LIBRARY.json": {
+   "size": 10569824,
+   "sha256": "14081e6d69c085281325161a0658cf6a87f0abf0c8fd77dd39906d58a7d0be42"
+  },
+  "gnps_task_9f395de60cbd4d5ea29a925bd1178a95_params.xml": {
+   "size": 46037,
+   "sha256": "6da465d504b56cc0d983e277444ffb4fbb53b2ce068e3279e1b0b3f4c0d45f09"
+  },
+  "gnps_task_9f395de60cbd4d5ea29a925bd1178a95_status.json": {
+   "size": 287,
+   "sha256": "1fa31cb4b1570493e02ef202e6bc82f14817c55c14b7a0d4ee18eca29ee7d404"
+  },
+  "gnps_task_fae7b61cb8b643339ce577878ce2bdba_params.xml": {
+   "size": 46012,
+   "sha256": "fc8cb69f753b89ed591d178629644cb54dab35255d1cd775698818b3481327cf"
+  },
+  "gnps_task_fae7b61cb8b643339ce577878ce2bdba_status.json": {
+   "size": 250,
+   "sha256": "95b96db9c9f15b188729b91404bfb5ead65bea86c6b0c549dcfcfe23bfcb5757"
+  },
+  "massive_massiveinformation_MSV000093469.json": {
+   "size": 1158,
+   "sha256": "b513c1fe4291bc510a078f006ed33997408dff67603929f07a40279ca6446a75"
+  },
+  "massive_proxi_MSV000093469.json": {
+   "size": 2049,
+   "sha256": "c6511d22d92c675e443c81e8df909c3b7263bf81fc5402cb5bc5c81f8142df60"
+  }
+ },
+ "processed_csv_columns": [
+  "scan",
+  "spectrum_id",
+  "collision_energy",
+  "Adduct",
+  "Compound_Source",
+  "Compound_Name",
+  "Precursor_MZ",
+  "ExactMass",
+  "Charge",
+  "Ion_Mode",
+  "Smiles",
+  "INCHI",
+  "InChIKey_smiles",
+  "msManufacturer",
+  "msMassAnalyzer",
+  "msIonisation",
+  "msDissociationMethod",
+  "GNPS_library_membership",
+  "ppmBetweenExpAndThMass",
+  "classyfire_kingdom",
+  "classyfire_superclass",
+  "classyfire_class",
+  "classyfire_subclass",
+  "classyfire_direct_parent",
+  "np_classifier_nplikeness"
+ ],
+ "processed_csv_rows_by_membership": {
+  "REFRAME-POSITIVE-LIBRARY.csv": {
+   "MONA_ML_Export": 78806,
+   "REFRAME-POSITIVE-LIBRARY": 9618
+  },
+  "CMMC-REFRAME-POSITIVE-LIBRARY.csv": {
+   "MONA_ML_Export": 78806,
+   "CMMC-REFRAME-POSITIVE-LIBRARY": 17210
+  }
+ },
+ "mona_ml_export_rows_identical_across_the_two_csvs": true,
+ "reframe_csv_n_rows": 9618,
+ "reframe_csv_collision_energy_counts": {
+  "": 9618
+ },
+ "reframe_csv_msDissociationMethod_counts": {
+  "": 9618
+ },
+ "reframe_csv_msManufacturer_counts": {
+  "Thermo": 9618
+ },
+ "reframe_csv_msMassAnalyzer_counts": {
+  "orbitrap": 9618
+ },
+ "reframe_csv_msIonisation_counts": {
+  "ESI": 9618
+ },
+ "reframe_csv_Adduct_counts": {
+  "[M+H]1+": 8110,
+  "[M+Na]1+": 1008,
+  "[M+NH3+H]1+": 350,
+  "[M]1+": 149,
+  "[M+K]1+": 1
+ },
+ "reframe_csv_Charge_counts": {
+  "1.0": 9618
+ },
+ "reframe_csv_Ion_Mode_counts": {
+  "positive": 9618
+ },
+ "reframe_csv_Compound_Source_counts": {
+  "crude": 9618
+ },
+ "reframe_csv_collision_energy_nonempty": 0,
+ "reframe_csv_msDissociationMethod_nonempty": 0,
+ "reframe_csv_spectrum_id_min_max": [
+  "CCMSLIB00013568884",
+  "CCMSLIB00016153191"
+ ],
+ "cmmc_csv_n_rows": 17210,
+ "cmmc_csv_collision_energy_counts": {
+  "": 17210
+ },
+ "cmmc_csv_msDissociationMethod_counts": {
+  "": 17210
+ },
+ "cmmc_csv_msManufacturer_counts": {
+  "Thermo": 17210
+ },
+ "cmmc_csv_msMassAnalyzer_counts": {
+  "orbitrap": 17210
+ },
+ "cmmc_csv_msIonisation_counts": {
+  "ESI": 17210
+ },
+ "cmmc_csv_Adduct_counts": {
+  "[M+H]1+": 12304,
+  "[M+Na]1+": 2410,
+  "[M+NH3+H]1+": 800,
+  "[M-H2O+H]1+": 674,
+  "[M+K]1+": 223,
+  "[M-2H2O+H]1+": 177,
+  "[M-2H2O+NH3+H]1+": 171,
+  "[2M+H]1+": 163,
+  "[2M+Na]1+": 134,
+  "[2M+NH3+H]1+": 60,
+  "[2M-2H2O+H]1+": 37,
+  "[2M-H2O+H]1+": 36,
+  "[2M+K]1+": 21
+ },
+ "cmmc_csv_Charge_counts": {
+  "1.0": 17210
+ },
+ "cmmc_csv_Ion_Mode_counts": {
+  "positive": 17210
+ },
+ "cmmc_csv_Compound_Source_counts": {
+  "commercial": 17210
+ },
+ "cmmc_csv_collision_energy_nonempty": 0,
+ "cmmc_csv_msDissociationMethod_nonempty": 0,
+ "cmmc_csv_spectrum_id_min_max": [
+  "CCMSLIB00012246958",
+  "CCMSLIB00012273429"
+ ],
+ "servlet_n_records": 9620,
+ "servlet_peaks_json_nonnull": 0,
+ "servlet_Adduct_counts": {
+  "[M+H]+": 8261,
+  "[M+Na]+": 1008,
+  "[M+NH4]+": 350,
+  "[M+K]+": 1
+ },
+ "servlet_Instrument_counts": {
+  "Orbitrap": 9620
+ },
+ "servlet_Ion_Source_counts": {
+  "LC-ESI": 9620
+ },
+ "servlet_Compound_Source_counts": {
+  "Crude": 9620
+ },
+ "servlet_PI_counts": {
+  "Pieter Dorrestein": 9620
+ },
+ "servlet_Data_Collector_counts": {
+  "Nina Zhao": 9620
+ },
+ "servlet_submit_user_counts": {
+  "jzemlin": 9620
+ },
+ "servlet_create_time_counts": {
+  "2025-07-04 23:03:53.0": 9584,
+  "2024-11-22 15:17:39.0": 36
+ },
+ "servlet_task_counts": {
+  "9f395de60cbd4d5ea29a925bd1178a95": 9584,
+  "fae7b61cb8b643339ce577878ce2bdba": 36
+ },
+ "servlet_ms_level_counts": {
+  "2": 9620
+ },
+ "servlet_Library_Class_counts": {
+  "1": 9620
+ },
+ "servlet_Pubmed_ID_counts": {
+  "N/A": 9620
+ },
+ "servlet_CAS_Number_counts": {
+  "N/A": 9620
+ },
+ "servlet_spectrum_status_counts": {
+  "1": 9620
+ },
+ "servlet_fields": [
+  "Adduct",
+  "CAS_Number",
+  "Charge",
+  "Compound_Name",
+  "Compound_Source",
+  "Data_Collector",
+  "ExactMass",
+  "INCHI",
+  "INCHI_AUX",
+  "Instrument",
+  "Ion_Mode",
+  "Ion_Source",
+  "Library_Class",
+  "PI",
+  "Precursor_MZ",
+  "Pubmed_ID",
+  "Scan",
+  "Smiles",
+  "SpectrumID",
+  "create_time",
+  "library_membership",
+  "ms_level",
+  "scan",
+  "source_file",
+  "spectrum_id",
+  "spectrum_status",
+  "splash",
+  "submit_user",
+  "task",
+  "task_id",
+  "user_id"
+ ],
+ "servlet_fields_mentioning_energy": [],
+ "servlet_records_with_plate_well_source": 9620,
+ "servlet_non_well_source_files": {},
+ "servlet_distinct_wells": 249,
+ "servlet_plates": {
+  "P1": 3607,
+  "P2": 3578,
+  "P3": 2435
+ },
+ "servlet_name_with_isomer_annotation": 36,
+ "servlet_isomer_annotation_values": {
+  "('0', '0')": 36
+ },
+ "servlet_vs_csv_join": {
+  "both": 9618,
+  "left_only": 2
+ },
+ "servlet_vs_csv_adduct_pairs": {
+  "('[M+H]+', '[M+H]1+')": 8110,
+  "('[M+Na]+', '[M+Na]1+')": 1008,
+  "('[M+NH4]+', '[M+NH3+H]1+')": 350,
+  "('[M+H]+', '[M]1+')": 149,
+  "('[M+K]+', '[M+K]1+')": 1
+ },
+ "servlet_vs_csv_smiles_string_differs": 5639,
+ "servlet_only_ids": [
+  "CCMSLIB00016148882",
+  "CCMSLIB00016151656"
+ ],
+ "n_records": 9620,
+ "n_key_parsed": 9620,
+ "n_unique_keys_all": 7351,
+ "n_unique_scaffold_groups_all": 5230,
+ "parent_key_ne_csv_recorded_block1_records": 450,
+ "parent_key_ne_csv_recorded_block1_keys": 338,
+ "charged_raw_records": 496,
+ "charged_parent_records_net_charge_ne_0": 154,
+ "parent_with_any_formal_charge_records": 496,
+ "multicomponent_raw_records": 0,
+ "charged_parent_by_adduct": {
+  "[M]1+": 149,
+  "[M+Na]1+": 3,
+  "[M+H]1+": 2
+ },
+ "precursor_inconsistent_gt_0.01Da": 154,
+ "precursor_inconsistent_by_adduct_servlet_csv": {
+  "('[M+H]+', '[M]1+')": 149,
+  "('[M+Na]+', '[M+Na]1+')": 3,
+  "('[M+H]+', '[M+H]1+')": 2
+ },
+ "precursor_err_da_quantiles_all": [
+  -2.0147,
+  -1.0071,
+  -0.0005,
+  0.0,
+  0.0006,
+  0.0008,
+  0.0055
+ ],
+ "records_per_key_adduct_distribution": {
+  "1": 7496,
+  "2": 882,
+  "3": 86,
+  "4": 23,
+  "5": 2
+ },
+ "wells_per_key_adduct_distribution": {
+  "1": 7529,
+  "2": 855,
+  "3": 80,
+  "4": 23,
+  "5": 2
+ },
+ "mh_keys_with_multiple_records": 854,
+ "mh_keys_with_multiple_records_in_same_well": 29,
+ "same_key_adduct_well_scan_gap_distribution_top": {
+  "0": 33,
+  "51": 1,
+  "990": 1,
+  "60": 1,
+  "107": 1,
+  "68": 1,
+  "233": 1
+ },
+ "same_key_adduct_well_groups_with_multiple_scans": 38,
+ "annotated_keys_per_well_quantiles": [
+  5.0,
+  27.0,
+  34.0,
+  40.0,
+  44.0
+ ],
+ "annotated_keys_per_well_total": 8296,
+ "isolation_rule_note": "lower bound: only compounds that are themselves annotated in the library are known to be in a well; the plate map of all pooled compounds is not public metadata here",
+ "cmmc": {
+  "n_rows": 17210,
+  "keys": 7966,
+  "mh_keys": 7461,
+  "scaffold_groups": 5587,
+  "keys_shared_with_reframe": 6792,
+  "keys_only_cmmc": 1174,
+  "keys_only_reframe": 559,
+  "mh_keys_shared": 6702,
+  "mh_keys_only_cmmc": 759,
+  "mh_keys_only_reframe": 452,
+  "adduct_counts": {
+   "[M+H]1+": 12304,
+   "[M+Na]1+": 2410,
+   "[M+NH3+H]1+": 800,
+   "[M-H2O+H]1+": 674,
+   "[M+K]1+": 223,
+   "[M-2H2O+H]1+": 177,
+   "[M-2H2O+NH3+H]1+": 171,
+   "[2M+H]1+": 163,
+   "[2M+Na]1+": 134,
+   "[2M+NH3+H]1+": 60,
+   "[2M-2H2O+H]1+": 37,
+   "[2M-H2O+H]1+": 36,
+   "[2M+K]1+": 21
+  },
+  "note": "CMMC-REFRAME-POSITIVE-LIBRARY has no public LibraryServlet listing (HTTP 500) so source_file/task are unknown",
+  "shared_mh_precursor_abs_diff_quantiles": [
+   0.0,
+   0.001,
+   0.001,
+   0.01
+  ]
+ },
+ "exclusion_set_sizes": {
+  "msg15_recorded_all": 28929,
+  "msg15_parent_all": 28923,
+  "msg15_simchallenge_all": 16974,
+  "msg15_recorded_train": 22746,
+  "msg15_recorded_val": 3185,
+  "msg15_recorded_test": 2998,
+  "muru_registry_all": 31507,
+  "muru_registry_direct_reason": 26005,
+  "muru_exposed_union": 33301,
+  "pr7_study2_population": 1794,
+  "comparator_common_population": 1327,
+  "msnlib_9lib": 53612,
+  "msnlib_v1_0_4lib": 19219,
+  "multims2_reserved_validation_secondary": 1525,
+  "muru_exposed_populations_union": 1912,
+  "muru_dev_compounds_csv_keys": 1325,
+  "msg15_scaffold_groups": 16991,
+  "muru_registry_scaffold_groups": 18402,
+  "muru_dev_scaffold_groups": 765,
+  "pr7_scaffold_groups": 1691,
+  "comparator_scaffold_groups": 1254
+ },
+ "overlap_unique_keys_by_subset": {
+  "all": {
+   "records": 9620,
+   "keys": 7351,
+   "scaffold_groups": 5230,
+   "in_msg15_recorded_all__unique_keys": 2642,
+   "in_msg15_parent_all__unique_keys": 2643,
+   "in_msg15_simchallenge_all__unique_keys": 2484,
+   "in_msg15_recorded_train__unique_keys": 1863,
+   "in_msg15_recorded_val__unique_keys": 388,
+   "in_msg15_recorded_test__unique_keys": 391,
+   "in_muru_registry_all__unique_keys": 2287,
+   "in_muru_registry_direct_reason__unique_keys": 2206,
+   "in_muru_exposed_union__unique_keys": 2318,
+   "in_pr7_study2_population__unique_keys": 31,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 2611,
+   "in_msnlib_v1_0_4lib__unique_keys": 2535,
+   "in_multims2_reserved_validation_secondary__unique_keys": 374,
+   "in_muru_exposed_populations_union__unique_keys": 319,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 269,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 70,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 150,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 39,
+   "in_pop_LCSB-DEV__unique_keys": 98,
+   "in_pop_LCSB-NEG__unique_keys": 66,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 102,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 18,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 14,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 77,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 269,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 101,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 22,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 3,
+   "in_pop_WUR-NEG-DEV__unique_keys": 8,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 193,
+   "in_pop_WUR-SEALED__unique_keys": 70,
+   "sg_in_msg15_scaffold_groups__unique_keys": 4024,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 3762,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 1306,
+   "sg_in_pr7_scaffold_groups__unique_keys": 48,
+   "sg_in_comparator_scaffold_groups__unique_keys": 8,
+   "in_msg15_any_route__unique_keys": 2646
+  },
+  "servlet_[M+H]+": {
+   "records": 8261,
+   "keys": 7295,
+   "scaffold_groups": 5194,
+   "in_msg15_recorded_all__unique_keys": 2623,
+   "in_msg15_parent_all__unique_keys": 2624,
+   "in_msg15_simchallenge_all__unique_keys": 2468,
+   "in_msg15_recorded_train__unique_keys": 1851,
+   "in_msg15_recorded_val__unique_keys": 382,
+   "in_msg15_recorded_test__unique_keys": 390,
+   "in_muru_registry_all__unique_keys": 2265,
+   "in_muru_registry_direct_reason__unique_keys": 2184,
+   "in_muru_exposed_union__unique_keys": 2295,
+   "in_pr7_study2_population__unique_keys": 30,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 2585,
+   "in_msnlib_v1_0_4lib__unique_keys": 2510,
+   "in_multims2_reserved_validation_secondary__unique_keys": 374,
+   "in_muru_exposed_populations_union__unique_keys": 318,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 269,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 69,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 149,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 39,
+   "in_pop_LCSB-DEV__unique_keys": 98,
+   "in_pop_LCSB-NEG__unique_keys": 65,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 102,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 18,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 14,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 77,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 269,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 101,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 22,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 3,
+   "in_pop_WUR-NEG-DEV__unique_keys": 8,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 193,
+   "in_pop_WUR-SEALED__unique_keys": 70,
+   "sg_in_msg15_scaffold_groups__unique_keys": 3992,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 3726,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 1295,
+   "sg_in_pr7_scaffold_groups__unique_keys": 47,
+   "sg_in_comparator_scaffold_groups__unique_keys": 8,
+   "in_msg15_any_route__unique_keys": 2627
+  },
+  "csv_[M+H]1+": {
+   "records": 8110,
+   "keys": 7154,
+   "scaffold_groups": 5093,
+   "in_msg15_recorded_all__unique_keys": 2615,
+   "in_msg15_parent_all__unique_keys": 2616,
+   "in_msg15_simchallenge_all__unique_keys": 2463,
+   "in_msg15_recorded_train__unique_keys": 1843,
+   "in_msg15_recorded_val__unique_keys": 382,
+   "in_msg15_recorded_test__unique_keys": 390,
+   "in_muru_registry_all__unique_keys": 2220,
+   "in_muru_registry_direct_reason__unique_keys": 2140,
+   "in_muru_exposed_union__unique_keys": 2250,
+   "in_pr7_study2_population__unique_keys": 30,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 2528,
+   "in_msnlib_v1_0_4lib__unique_keys": 2455,
+   "in_multims2_reserved_validation_secondary__unique_keys": 372,
+   "in_muru_exposed_populations_union__unique_keys": 316,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 268,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 68,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 149,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 39,
+   "in_pop_LCSB-DEV__unique_keys": 98,
+   "in_pop_LCSB-NEG__unique_keys": 65,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 102,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 18,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 14,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 77,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 268,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 101,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 21,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 3,
+   "in_pop_WUR-NEG-DEV__unique_keys": 8,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 192,
+   "in_pop_WUR-SEALED__unique_keys": 70,
+   "sg_in_msg15_scaffold_groups__unique_keys": 3951,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 3658,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 1279,
+   "sg_in_pr7_scaffold_groups__unique_keys": 47,
+   "sg_in_comparator_scaffold_groups__unique_keys": 8,
+   "in_msg15_any_route__unique_keys": 2619
+  }
+ },
+ "msg_rows_matching_reframe_keys": {
+  "rows": 41922,
+  "keys": 2643,
+  "instrument_type": {
+   "Orbitrap": 29315,
+   "QTOF": 12089,
+   "NA": 518
+  },
+  "adduct": {
+   "[M+H]+": 38875,
+   "[M+Na]+": 3047
+  },
+  "fold_rows": {
+   "train": 35928,
+   "test": 3094,
+   "val": 2900
+  },
+  "simulation_challenge_rows": 29636,
+  "source_label_rows": {
+   "MassBank_or_MoNA": 22022,
+   "GNPS_or_MoNA_missing_ce": 9910,
+   "MSnLib_v1": 5535,
+   "MSnLib_v1_probable": 2679,
+   "GNPS": 1776
+  },
+  "keys_by_fold_set": {
+   "train": 1864,
+   "test": 391,
+   "val": 388
+  },
+  "keys_with_simulation_rows": 2485
+ },
+ "pools": [
+  {
+   "label": "P0 all REFRAME-POSITIVE records",
+   "records": 9620,
+   "keys": 7351,
+   "scaffold_groups": 5230,
+   "acyclic_keys": 105,
+   "largest_scaffold_group_key_counts": [
+    339,
+    53,
+    52,
+    39,
+    29,
+    29,
+    23,
+    23
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "O=C1C=C2CCC3C4CCCC4CCC3C2CC1",
+    "c1ccc(Cc2ccccc2)cc1"
+   ],
+   "singleton_scaffold_groups": 4493,
+   "precursor_mz_min_max": [
+    104.071,
+    1433.67
+   ],
+   "precursor_outside_70_1042.6_records": 15,
+   "precursor_inconsistent_gt_0.01Da_records": 154,
+   "charged_parent_keys": 141,
+   "coinjected_ion_within_0p7_lb_keys": 3544,
+   "coinjected_isomer_lb_keys": 8,
+   "keys_with_multiple_records": 1724,
+   "classyfire_superclass_records": {
+    "(blank)": 5746,
+    "Organoheterocyclic compounds": 1545,
+    "Benzenoids": 951,
+    "Organic acids and derivatives": 458,
+    "Lipids and lipid-like molecules": 224,
+    "Phenylpropanoids and polyketides": 191,
+    "Organic oxygen compounds": 175,
+    "Nucleosides, nucleotides, and analogues": 123,
+    "Alkaloids and derivatives": 107,
+    "Organic nitrogen compounds": 72,
+    "Organosulfur compounds": 12,
+    "Lignans, neolignans and related compounds": 7,
+    "Organic 1,3-dipolar compounds": 4,
+    "Hydrocarbon derivatives": 3,
+    "nan": 2
+   },
+   "elements_keys": {
+    "C": 7351,
+    "H": 7351,
+    "N": 6943,
+    "O": 6796,
+    "S": 1743,
+    "F": 1490,
+    "Cl": 1222,
+    "P": 122,
+    "Br": 94,
+    "I": 36,
+    "B": 11,
+    "As": 8,
+    "Si": 4,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P1 [M+H]+ (servlet and processed CSV agree), charge-neutral parent",
+   "records": 8108,
+   "keys": 7152,
+   "scaffold_groups": 5091,
+   "acyclic_keys": 90,
+   "largest_scaffold_group_key_counts": [
+    329,
+    52,
+    50,
+    39,
+    29,
+    25,
+    23,
+    23
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "O=c1ncccn1C1CCCO1",
+    "O=C1C=C2CCC3C4CCCC4CCC3C2CC1",
+    "c1ccncc1"
+   ],
+   "singleton_scaffold_groups": 4369,
+   "precursor_mz_min_max": [
+    104.071,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 12,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 3456,
+   "coinjected_isomer_lb_keys": 8,
+   "keys_with_multiple_records": 844,
+   "classyfire_superclass_records": {
+    "(blank)": 4799,
+    "Organoheterocyclic compounds": 1380,
+    "Benzenoids": 822,
+    "Organic acids and derivatives": 354,
+    "Lipids and lipid-like molecules": 180,
+    "Phenylpropanoids and polyketides": 163,
+    "Organic oxygen compounds": 143,
+    "Nucleosides, nucleotides, and analogues": 95,
+    "Alkaloids and derivatives": 88,
+    "Organic nitrogen compounds": 66,
+    "Organosulfur compounds": 10,
+    "Organic 1,3-dipolar compounds": 3,
+    "Lignans, neolignans and related compounds": 3,
+    "Hydrocarbon derivatives": 2
+   },
+   "elements_keys": {
+    "C": 7152,
+    "H": 7152,
+    "N": 6771,
+    "O": 6611,
+    "S": 1694,
+    "F": 1480,
+    "Cl": 1202,
+    "P": 113,
+    "Br": 93,
+    "I": 36,
+    "B": 11,
+    "As": 8,
+    "Si": 4,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P1b = P1 and key not in MassSpecGym 1.5 (either key route) only",
+   "records": 4999,
+   "keys": 4533,
+   "scaffold_groups": 3445,
+   "acyclic_keys": 47,
+   "largest_scaffold_group_key_counts": [
+    200,
+    35,
+    18,
+    17,
+    16,
+    16,
+    13,
+    12
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "c1ccc(Cc2ccccc2)cc1",
+    "c1ccncc1"
+   ],
+   "singleton_scaffold_groups": 3018,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 12,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 2173,
+   "coinjected_isomer_lb_keys": 4,
+   "keys_with_multiple_records": 425,
+   "classyfire_superclass_records": {
+    "(blank)": 4783,
+    "Organoheterocyclic compounds": 90,
+    "Benzenoids": 46,
+    "Organic acids and derivatives": 35,
+    "Lipids and lipid-like molecules": 10,
+    "Phenylpropanoids and polyketides": 9,
+    "Nucleosides, nucleotides, and analogues": 9,
+    "Organic oxygen compounds": 8,
+    "Organic nitrogen compounds": 5,
+    "Alkaloids and derivatives": 3,
+    "Organic 1,3-dipolar compounds": 1
+   },
+   "elements_keys": {
+    "C": 4533,
+    "H": 4533,
+    "N": 4352,
+    "O": 4204,
+    "S": 1127,
+    "F": 901,
+    "Cl": 775,
+    "P": 81,
+    "Br": 54,
+    "I": 18,
+    "B": 8,
+    "As": 7,
+    "Si": 3,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P2 = P1, key not in MSG1.5, MURU exposed populations, MURU dev, PR7, comparator",
+   "records": 4973,
+   "keys": 4509,
+   "scaffold_groups": 3435,
+   "acyclic_keys": 47,
+   "largest_scaffold_group_key_counts": [
+    195,
+    35,
+    17,
+    17,
+    16,
+    15,
+    13,
+    12
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "c1ccc(Cc2ccccc2)cc1",
+    "O=C1C=C2CCC3C4CCCC4CCC3C2CC1"
+   ],
+   "singleton_scaffold_groups": 3012,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 12,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 2158,
+   "coinjected_isomer_lb_keys": 4,
+   "keys_with_multiple_records": 423,
+   "classyfire_superclass_records": {
+    "(blank)": 4779,
+    "Organoheterocyclic compounds": 87,
+    "Benzenoids": 40,
+    "Organic acids and derivatives": 31,
+    "Phenylpropanoids and polyketides": 8,
+    "Lipids and lipid-like molecules": 8,
+    "Nucleosides, nucleotides, and analogues": 7,
+    "Organic oxygen compounds": 6,
+    "Organic nitrogen compounds": 4,
+    "Alkaloids and derivatives": 2,
+    "Organic 1,3-dipolar compounds": 1
+   },
+   "elements_keys": {
+    "C": 4509,
+    "H": 4509,
+    "N": 4332,
+    "O": 4181,
+    "S": 1121,
+    "F": 898,
+    "Cl": 773,
+    "P": 80,
+    "Br": 54,
+    "I": 18,
+    "B": 8,
+    "As": 5,
+    "Si": 3,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P3 = P2 and key not in the full MURU exposure registry (conservative)",
+   "records": 4791,
+   "keys": 4350,
+   "scaffold_groups": 3322,
+   "acyclic_keys": 41,
+   "largest_scaffold_group_key_counts": [
+    188,
+    34,
+    17,
+    17,
+    15,
+    15,
+    13,
+    12
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "c1ccc(Cc2ccccc2)cc1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "O=C1C=C2CCC3C4CCCC4CCC3C2CC1"
+   ],
+   "singleton_scaffold_groups": 2917,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 6,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 2079,
+   "coinjected_isomer_lb_keys": 4,
+   "keys_with_multiple_records": 404,
+   "classyfire_superclass_records": {
+    "(blank)": 4723,
+    "Organoheterocyclic compounds": 32,
+    "Benzenoids": 19,
+    "Organic acids and derivatives": 7,
+    "Organic oxygen compounds": 3,
+    "Lipids and lipid-like molecules": 2,
+    "Phenylpropanoids and polyketides": 2,
+    "Alkaloids and derivatives": 1,
+    "Organic nitrogen compounds": 1,
+    "Nucleosides, nucleotides, and analogues": 1
+   },
+   "elements_keys": {
+    "C": 4350,
+    "H": 4350,
+    "N": 4193,
+    "O": 4036,
+    "S": 1081,
+    "F": 868,
+    "Cl": 743,
+    "P": 77,
+    "Br": 51,
+    "I": 18,
+    "B": 8,
+    "As": 5,
+    "Si": 3,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P4 = P3 and key not in MSnLib 9-lib (FIORA proxy)",
+   "records": 4762,
+   "keys": 4323,
+   "scaffold_groups": 3304,
+   "acyclic_keys": 40,
+   "largest_scaffold_group_key_counts": [
+    186,
+    34,
+    17,
+    16,
+    15,
+    15,
+    13,
+    12
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "c1ccc(Cc2ccccc2)cc1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "O=C1C=C2CCC3C4CCCC4CCC3C2CC1"
+   ],
+   "singleton_scaffold_groups": 2902,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 6,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 2069,
+   "coinjected_isomer_lb_keys": 4,
+   "keys_with_multiple_records": 402,
+   "classyfire_superclass_records": {
+    "(blank)": 4711,
+    "Organoheterocyclic compounds": 26,
+    "Benzenoids": 12,
+    "Organic acids and derivatives": 6,
+    "Organic oxygen compounds": 3,
+    "Lipids and lipid-like molecules": 1,
+    "Phenylpropanoids and polyketides": 1,
+    "Alkaloids and derivatives": 1,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 4323,
+    "H": 4323,
+    "N": 4167,
+    "O": 4011,
+    "S": 1071,
+    "F": 864,
+    "Cl": 738,
+    "P": 77,
+    "Br": 50,
+    "I": 18,
+    "B": 8,
+    "As": 5,
+    "Si": 3,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P5 = P3 and scaffold group not in MURU registry/dev, PR7, comparator groups",
+   "records": 3387,
+   "keys": 3052,
+   "scaffold_groups": 2742,
+   "acyclic_keys": 41,
+   "largest_scaffold_group_key_counts": [
+    13,
+    11,
+    10,
+    7,
+    7,
+    7,
+    6,
+    6
+   ],
+   "largest_scaffold_groups": [
+    "O=S(=O)(Nc1ccccc1Oc1ccccc1)c1ccccc1",
+    "C=C1CCCC1n1cnc2c(=O)[nH]cnc21",
+    "O=C(NCCC=Cc1ccc(Nc2ncccn2)cc1)c1ccccc1",
+    "c1ncc2ccc(C3CCCO3)n2n1",
+    "O=C1CN2CCOC2(c2ccccc2)c2ccccc2N1"
+   ],
+   "singleton_scaffold_groups": 2528,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 3,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 1458,
+   "coinjected_isomer_lb_keys": 3,
+   "keys_with_multiple_records": 302,
+   "classyfire_superclass_records": {
+    "(blank)": 3356,
+    "Organoheterocyclic compounds": 20,
+    "Benzenoids": 6,
+    "Organic acids and derivatives": 2,
+    "Organic oxygen compounds": 2,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 3052,
+    "H": 3052,
+    "N": 2984,
+    "O": 2838,
+    "S": 792,
+    "F": 660,
+    "Cl": 525,
+    "P": 44,
+    "Br": 34,
+    "I": 8,
+    "B": 4,
+    "Se": 2,
+    "Si": 2,
+    "As": 1,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P6 = P5 and scaffold group not in any MSG1.5 scaffold group (strict)",
+   "records": 3241,
+   "keys": 2925,
+   "scaffold_groups": 2656,
+   "acyclic_keys": 41,
+   "largest_scaffold_group_key_counts": [
+    13,
+    10,
+    7,
+    7,
+    6,
+    6,
+    5,
+    5
+   ],
+   "largest_scaffold_groups": [
+    "O=S(=O)(Nc1ccccc1Oc1ccccc1)c1ccccc1",
+    "O=C(NCCC=Cc1ccc(Nc2ncccn2)cc1)c1ccccc1",
+    "O=C1CN2CCOC2(c2ccccc2)c2ccccc2N1",
+    "O=C(C=Cc1ccccc1)NCC1CN(c2ccc(N3CCOCC3)cc2)C(=O)O1",
+    "c1ccc(C2CC3CCC2C3)cc1"
+   ],
+   "singleton_scaffold_groups": 2465,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 3,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 1400,
+   "coinjected_isomer_lb_keys": 3,
+   "keys_with_multiple_records": 283,
+   "classyfire_superclass_records": {
+    "(blank)": 3213,
+    "Organoheterocyclic compounds": 17,
+    "Benzenoids": 6,
+    "Organic acids and derivatives": 2,
+    "Organic oxygen compounds": 2,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 2925,
+    "H": 2925,
+    "N": 2862,
+    "O": 2721,
+    "S": 782,
+    "F": 642,
+    "Cl": 510,
+    "P": 44,
+    "Br": 33,
+    "I": 6,
+    "B": 4,
+    "Se": 2,
+    "Si": 2,
+    "As": 1
+   }
+  },
+  {
+   "label": "P7 = P3 and not (same parent formula AND scaffold group as some MSG1.5 compound)",
+   "records": 4677,
+   "keys": 4242,
+   "scaffold_groups": 3312,
+   "acyclic_keys": 41,
+   "largest_scaffold_group_key_counts": [
+    130,
+    34,
+    15,
+    15,
+    13,
+    12,
+    11,
+    11
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=c1ncccn1C1CCCO1",
+    "c1ccc(Cc2ccccc2)cc1",
+    "O=C1C=CC2C(=C1)CCC1C3CCCC3CCC21",
+    "O=S(=O)(Nc1ccccc1Oc1ccccc1)c1ccccc1"
+   ],
+   "singleton_scaffold_groups": 2911,
+   "precursor_mz_min_max": [
+    105.048,
+    1411.68
+   ],
+   "precursor_outside_70_1042.6_records": 6,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 2033,
+   "coinjected_isomer_lb_keys": 4,
+   "keys_with_multiple_records": 398,
+   "classyfire_superclass_records": {
+    "(blank)": 4619,
+    "Organoheterocyclic compounds": 31,
+    "Benzenoids": 16,
+    "Organic acids and derivatives": 5,
+    "Organic oxygen compounds": 2,
+    "Phenylpropanoids and polyketides": 2,
+    "Lipids and lipid-like molecules": 1,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 4242,
+    "H": 4242,
+    "N": 4097,
+    "O": 3935,
+    "S": 1073,
+    "F": 862,
+    "Cl": 738,
+    "P": 77,
+    "Br": 51,
+    "I": 18,
+    "B": 8,
+    "As": 5,
+    "Si": 3,
+    "Se": 2,
+    "Al": 1
+   }
+  },
+  {
+   "label": "P8 = P5 and precursor in 70-1042.6, precursor consistent within 0.01 Da, no co-injected ion/isomer (lower bound)",
+   "records": 1858,
+   "keys": 1741,
+   "scaffold_groups": 1631,
+   "acyclic_keys": 33,
+   "largest_scaffold_group_key_counts": [
+    13,
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3
+   ],
+   "largest_scaffold_groups": [
+    "O=S(=O)(Nc1ccccc1Oc1ccccc1)c1ccccc1",
+    "O=C(NCCC=Cc1ccc(Nc2ncccn2)cc1)c1ccccc1",
+    "c1ncc2ccc(C3CCCO3)n2n1",
+    "c1ccc(C2CC3CCC2C3)cc1",
+    "O=C1CN2Cc3ccccc3NC2=N1"
+   ],
+   "singleton_scaffold_groups": 1546,
+   "precursor_mz_min_max": [
+    105.048,
+    1028.44
+   ],
+   "precursor_outside_70_1042.6_records": 0,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 0,
+   "coinjected_isomer_lb_keys": 0,
+   "keys_with_multiple_records": 110,
+   "classyfire_superclass_records": {
+    "(blank)": 1840,
+    "Organoheterocyclic compounds": 12,
+    "Benzenoids": 4,
+    "Organic acids and derivatives": 1,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 1741,
+    "H": 1741,
+    "N": 1708,
+    "O": 1620,
+    "S": 463,
+    "F": 372,
+    "Cl": 295,
+    "P": 31,
+    "Br": 23,
+    "I": 3,
+    "B": 3,
+    "Si": 2,
+    "As": 1,
+    "Al": 1,
+    "Se": 1
+   }
+  },
+  {
+   "label": "P9 = P6 with the P8 quality filters",
+   "records": 1774,
+   "keys": 1663,
+   "scaffold_groups": 1572,
+   "acyclic_keys": 33,
+   "largest_scaffold_group_key_counts": [
+    13,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "largest_scaffold_groups": [
+    "O=S(=O)(Nc1ccccc1Oc1ccccc1)c1ccccc1",
+    "O=C(NCCC=Cc1ccc(Nc2ncccn2)cc1)c1ccccc1",
+    "c1ccc(C2CC3CCC2C3)cc1",
+    "O=C(Cc1ccccc1)Nc1ccc2cnn(CCN3CCCC3)c2c1",
+    "O=C1CN2Cc3ccccc3NC2=N1"
+   ],
+   "singleton_scaffold_groups": 1501,
+   "precursor_mz_min_max": [
+    105.048,
+    1028.44
+   ],
+   "precursor_outside_70_1042.6_records": 0,
+   "precursor_inconsistent_gt_0.01Da_records": 0,
+   "charged_parent_keys": 0,
+   "coinjected_ion_within_0p7_lb_keys": 0,
+   "coinjected_isomer_lb_keys": 0,
+   "keys_with_multiple_records": 104,
+   "classyfire_superclass_records": {
+    "(blank)": 1756,
+    "Organoheterocyclic compounds": 12,
+    "Benzenoids": 4,
+    "Organic acids and derivatives": 1,
+    "Organic nitrogen compounds": 1
+   },
+   "elements_keys": {
+    "C": 1663,
+    "H": 1663,
+    "N": 1634,
+    "O": 1549,
+    "S": 458,
+    "F": 362,
+    "Cl": 283,
+    "P": 31,
+    "Br": 22,
+    "I": 3,
+    "B": 3,
+    "Si": 2,
+    "As": 1,
+    "Se": 1
+   }
+  }
+ ],
+ "cmmc_pools": {
+  "C1_mh_neutral_keys": 7461,
+  "C1_keys_in_msg15": 2539,
+  "C3_keys": 4733,
+  "C3_scaffold_groups": 3548,
+  "C5_keys": 3391,
+  "C5_scaffold_groups": 2954,
+  "C3_keys_not_in_reframe_P3": 607,
+  "C5_keys_not_in_reframe_P5": 491,
+  "union_P3_C3_keys": 4957,
+  "union_P5_C5_keys": 3543,
+  "union_P5_C5_scaffold_groups": 3201
+ },
+ "msg_reframe_keys_by_source_label_set": {
+  "MSnLib_v1": 1352,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1_probable;MassBank_or_MoNA": 424,
+  "GNPS;MSnLib_v1": 169,
+  "GNPS_or_MoNA_missing_ce;MassBank_or_MoNA": 150,
+  "GNPS": 118,
+  "MassBank_or_MoNA": 95,
+  "GNPS;GNPS_or_MoNA_missing_ce;MSnLib_v1_probable;MassBank_or_MoNA": 75,
+  "MSnLib_v1_probable;MassBank_or_MoNA": 75,
+  "GNPS_or_MoNA_missing_ce": 35,
+  "GNPS;GNPS_or_MoNA_missing_ce;MassBank_or_MoNA": 20,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1;MSnLib_v1_probable;MassBank_or_MoNA": 19,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1_probable": 18,
+  "MSnLib_v1;MassBank_or_MoNA": 12,
+  "GNPS;GNPS_or_MoNA_missing_ce;MSnLib_v1": 11,
+  "GNPS;MassBank_or_MoNA": 10,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1": 9,
+  "GNPS;GNPS_or_MoNA_missing_ce;MSnLib_v1;MSnLib_v1_probable;MassBank_or_MoNA": 7,
+  "GNPS;MSnLib_v1_probable;MassBank_or_MoNA": 6,
+  "GNPS;GNPS_or_MoNA_missing_ce;MSnLib_v1;MassBank_or_MoNA": 6,
+  "GNPS;MSnLib_v1;MassBank_or_MoNA": 6,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1;MassBank_or_MoNA": 6,
+  "MSnLib_v1;MSnLib_v1_probable;MassBank_or_MoNA": 6,
+  "MSnLib_v1_probable": 5,
+  "GNPS;GNPS_or_MoNA_missing_ce": 3,
+  "GNPS_or_MoNA_missing_ce;MSnLib_v1;MSnLib_v1_probable": 2,
+  "GNPS;GNPS_or_MoNA_missing_ce;MSnLib_v1_probable": 2,
+  "GNPS;MSnLib_v1;MSnLib_v1_probable;MassBank_or_MoNA": 1,
+  "MSnLib_v1;MSnLib_v1_probable": 1
+ },
+ "P3_records_formula_and_scaffold_in_msg": 114,
+ "P3_keys_formula_in_msg": 1613,
+ "provenance": {
+  "gnps_task_9f395de60cbd4d5ea29a925bd1178a95_status.json": {
+   "description": "20250704 Nina reframe positive gnps2 workflow isomer filtered final upload",
+   "workflow": "ADD-BATCH-ANNOTATED",
+   "status": "DONE",
+   "user": "jzemlin",
+   "createtime": "2025-07-04 23:03:53.0",
+   "protected": "false",
+   "files": [],
+   "workflow_version": "1.2.5"
+  },
+  "gnps_task_fae7b61cb8b643339ce577878ce2bdba_status.json": {
+   "description": "20241122 reframe temp upload pos_Nina",
+   "workflow": "ADD-BATCH-ANNOTATED",
+   "status": "DONE",
+   "user": "jzemlin",
+   "createtime": "2024-11-22 15:17:39.0",
+   "protected": "false",
+   "files": [],
+   "workflow_version": "1.2.5"
+  },
+  "gnps_task_9f395de60cbd4d5ea29a925bd1178a95_params.xml": {
+   "parameters_except_file_mapping": [
+    [
+     "annotation_table_on_server",
+     "f.Jzemlin/Nina/20250704_reframe/20250704_pos_all_library_isomer_filtered.tsv;"
+    ],
+    [
+     "desc",
+     "20250704 Nina reframe positive gnps2 workflow isomer filtered final upload"
+    ],
+    [
+     "email",
+     "jzemlin@ucsd.edu"
+    ],
+    [
+     "library_on_server",
+     "f.jzemlin/Library Stuff/blank.mgf;"
+    ],
+    [
+     "reanalyzed_datasets",
+     "MSV000093469"
+    ],
+    [
+     "spec_on_server",
+     "d.MSV000093469/peak/20230816_ReFrame_drug_lib_pos;"
+    ],
+    [
+     "task",
+     "9f395de60cbd4d5ea29a925bd1178a95"
+    ],
+    [
+     "user",
+     "jzemlin"
+    ],
+    [
+     "uuid",
+     "1E7E61FD-57CB-0001-4AAC-12A0D522A3A0"
+    ],
+    [
+     "workflow",
+     "ADD-BATCH-ANNOTATED"
+    ],
+    [
+     "workflow_version",
+     "1.2.5"
+    ]
+   ],
+   "n_upload_file_mapping": 307
+  },
+  "gnps_task_fae7b61cb8b643339ce577878ce2bdba_params.xml": {
+   "parameters_except_file_mapping": [
+    [
+     "annotation_table_on_server",
+     "f.zhaohaoq/20241122_reframe_temp_upload/reframe_pos_all_library_isobar_removed.tsv;"
+    ],
+    [
+     "desc",
+     "20241122 reframe temp upload pos_Nina"
+    ],
+    [
+     "email",
+     "jzemlin@ucsd.edu"
+    ],
+    [
+     "library_on_server",
+     "f.jzemlin/Library Stuff/blank.mgf;"
+    ],
+    [
+     "reanalyzed_datasets",
+     "MSV000093469"
+    ],
+    [
+     "spec_on_server",
+     "d.MSV000093469/peak/20230816_ReFrame_drug_lib_pos;"
+    ],
+    [
+     "task",
+     "fae7b61cb8b643339ce577878ce2bdba"
+    ],
+    [
+     "user",
+     "jzemlin"
+    ],
+    [
+     "uuid",
+     "1E6CFD4A-A30B-0001-DF2E-1460150555B0"
+    ],
+    [
+     "workflow",
+     "ADD-BATCH-ANNOTATED"
+    ],
+    [
+     "workflow_version",
+     "1.2.5"
+    ]
+   ],
+   "n_upload_file_mapping": 307
+  },
+  "massive_proxi": {
+   "summary": "MS/MS analysis of standards in ReFrame drug library. Positive and negative analysis have different file names.",
+   "instruments": [
+    {
+     "cvLabel": "MS",
+     "name": "Q Exactive",
+     "accession": "MS:1001911"
+    }
+   ],
+   "keywords": [
+    {
+     "cvLabel": "MS",
+     "name": "submitter keyword",
+     "accession": "MS:1001925",
+     "value": "ReFrame"
+    },
+    {
+     "cvLabel": "MS",
+     "name": "submitter keyword",
+     "accession": "MS:1001925",
+     "value": "drug"
+    },
+    {
+     "cvLabel": "MS",
+     "name": "submitter keyword",
+     "accession": "MS:1001925",
+     "value": "library"
+    }
+   ],
+   "species": [
+    [
+     {
+      "cvLabel": "MS",
+      "name": "taxonomy: common name",
+      "accession": "MS:1001468",
+      "value": "NA"
+     }
+    ]
+   ],
+   "datasetLink": [
+    {
+     "cvLabel": "MS",
+     "name": "MassIVE dataset URI",
+     "accession": "MS:1002488",
+     "value": "https://massive.ucsd.edu/ProteoSAFe/QueryMSV?id=MSV000093469"
+    },
+    {
+     "cvLabel": "MS",
+     "name": "Dataset FTP location",
+     "accession": "MS:1002852",
+     "value": "ftp://massive.ucsd.edu/v06/MSV000093469"
+    }
+   ],
+   "accession": [
+    {
+     "cvLabel": "MS",
+     "name": "MassIVE dataset identifier",
+     "accession": "MS:1002487",
+     "value": "MSV000093469"
+    }
+   ],
+   "title": "GNPS - 20231122 ReFrame drug reupload separate file name for pos and neg ionization",
+   "contacts": [
+    [
+     {
+      "cvLabel": "MS",
+      "name": "dataset submitter",
+      "accession": "MS:1002037"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact name",
+      "accession": "MS:1000586",
+      "value": "Haoqi Nina Zhao"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact email",
+      "accession": "MS:1000589",
+      "value": "haz072@health.ucsd.edu"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact affiliation",
+      "accession": "MS:1000590",
+      "value": "University of California San Diego"
+     }
+    ],
+    [
+     {
+      "cvLabel": "MS",
+      "name": "lab head",
+      "accession": "MS:1002332"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact name",
+      "accession": "MS:1000586",
+      "value": "Pieter C Dorrestein"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact email",
+      "accession": "MS:1000589",
+      "value": "pdorrestein@ucsd.edu"
+     },
+     {
+      "cvLabel": "MS",
+      "name": "contact affiliation",
+      "accession": "MS:1000590",
+      "value": "University of California at San Diego"
+     }
+    ]
+   ],
+   "publications": [
+    {
+     "cvLabel": "MS",
+     "name": "Dataset with no associated published manuscript",
+     "accession": "MS:1002853"
+    }
+   ],
+   "modifications": [
+    {
+     "cvLabel": "MS",
+     "name": "unknown modification",
+     "accession": "MS:1001460",
+     "value": "NA"
+    }
+   ]
+  },
+  "massive_information": {
+   "task": "ab8fae3917a7452da1a49ecee22ee592",
+   "title": "GNPS - 20231122 ReFrame drug reupload separate file name for pos and neg ionization",
+   "dataset_id": "MSV000093469",
+   "modifications": "NA",
+   "modification_unresolved": "NA",
+   "instrument": "Q Exactive",
+   "instrument_unresolved": "MS:1001911",
+   "species": "NA",
+   "species_unresolved": "NA",
+   "pi": [
+    {
+     "name": "Pieter C Dorrestein",
+     "email": "pdorrestein@ucsd.edu",
+     "institution": "University of California at San Diego",
+     "country": "USA"
+    }
+   ],
+   "description": "MS/MS analysis of standards in ReFrame drug library. Positive and negative analysis have different file names.",
+   "publications": [],
+   "pxaccession": "null",
+   "doi": "doi:10.25345/C5W08WS91",
+   "originallycomputable": "true",
+   "convertedandcomputable": "true",
+   "subscriptions": "1",
+   "filesize": "39.22 GB",
+   "private": "false",
+   "complete": "false",
+   "quant_analysis": "null",
+   "user": "zhaohaoq",
+   "has_access": "false",
+   "filecount": "1,311",
+   "keywords": "ReFrame | drug | library",
+   "ftp": "ftp://massive-ftp.ucsd.edu/v06/MSV000093469/",
+   "proteins": "0",
+   "peptides": "0",
+   "variants": "0",
+   "psms": "0",
+   "spectra": "1,257,527"
+  },
+  "msv000093469_filelist": {
+   "n_files": 1311,
+   "by_dir": {
+    "ccms_peak/20230821_ReFrame_drug_lib_neg": 350,
+    "peak/20230821_ReFrame_drug_lib_neg": 350,
+    "ccms_peak/20230816_ReFrame_drug_lib_pos": 305,
+    "peak/20230816_ReFrame_drug_lib_pos": 305,
+    "ccms_parameters": 1
+   },
+   "by_ext": {
+    "mzML": 1310,
+    "xml": 1
+   },
+   "non_mzml_files": [
+    "ccms_parameters/params.xml"
+   ],
+   "total_size_bytes": 42109156580
+  },
+  "gnps2_listing_reframe_entries": [
+   {
+    "browselink": "https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=GNPS-REFRAME-DRUG-CCS-LIBRARY",
+    "jsonlink": "/gnpslibrary/GNPS-REFRAME-DRUG-CCS-LIBRARY.json",
+    "library": "GNPS-REFRAME-DRUG-CCS-LIBRARY",
+    "libraryname": "GNPS-REFRAME-DRUG-CCS-LIBRARY",
+    "mgflink": "/gnpslibrary/GNPS-REFRAME-DRUG-CCS-LIBRARY.mgf",
+    "msplink": "/gnpslibrary/GNPS-REFRAME-DRUG-CCS-LIBRARY.msp",
+    "type": "GNPS"
+   },
+   {
+    "browselink": "https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=REFRAME-POSITIVE-LIBRARY",
+    "jsonlink": "/gnpslibrary/REFRAME-POSITIVE-LIBRARY.json",
+    "library": "REFRAME-POSITIVE-LIBRARY",
+    "libraryname": "REFRAME-POSITIVE-LIBRARY",
+    "mgflink": "/gnpslibrary/REFRAME-POSITIVE-LIBRARY.mgf",
+    "msplink": "/gnpslibrary/REFRAME-POSITIVE-LIBRARY.msp",
+    "type": "GNPS-PROPOGATED"
+   },
+   {
+    "browselink": "https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=REFRAME-NEGATIVE-LIBRARY",
+    "jsonlink": "/gnpslibrary/REFRAME-NEGATIVE-LIBRARY.json",
+    "library": "REFRAME-NEGATIVE-LIBRARY",
+    "libraryname": "REFRAME-NEGATIVE-LIBRARY",
+    "mgflink": "/gnpslibrary/REFRAME-NEGATIVE-LIBRARY.mgf",
+    "msplink": "/gnpslibrary/REFRAME-NEGATIVE-LIBRARY.msp",
+    "type": "GNPS-PROPOGATED"
+   },
+   {
+    "csvlink": "/processed_gnps_library/CMMC-REFRAME-NEGATIVE-LIBRARY.csv",
+    "jsonlink": "/processed_gnps_library/CMMC-REFRAME-NEGATIVE-LIBRARY.json",
+    "libraryname": "CMMC-REFRAME-NEGATIVE-LIBRARY",
+    "mgflink": "/processed_gnps_library/CMMC-REFRAME-NEGATIVE-LIBRARY.mgf",
+    "processingpipeline": "GNPS Cleaning"
+   },
+   {
+    "csvlink": "/processed_gnps_library/CMMC-REFRAME-POSITIVE-LIBRARY.csv",
+    "jsonlink": "/processed_gnps_library/CMMC-REFRAME-POSITIVE-LIBRARY.json",
+    "libraryname": "CMMC-REFRAME-POSITIVE-LIBRARY",
+    "mgflink": "/processed_gnps_library/CMMC-REFRAME-POSITIVE-LIBRARY.mgf",
+    "processingpipeline": "GNPS Cleaning"
+   },
+   {
+    "csvlink": "/processed_gnps_library/REFRAME-NEGATIVE-LIBRARY.csv",
+    "jsonlink": "/processed_gnps_library/REFRAME-NEGATIVE-LIBRARY.json",
+    "libraryname": "CMMC-REFRAME-NEGATIVE-LIBRARY",
+    "mgflink": "/processed_gnps_library/REFRAME-NEGATIVE-LIBRARY.mgf",
+    "processingpipeline": "GNPS Cleaning"
+   },
+   {
+    "csvlink": "/processed_gnps_library/REFRAME-POSITIVE-LIBRARY.csv",
+    "jsonlink": "/processed_gnps_library/REFRAME-POSITIVE-LIBRARY.json",
+    "libraryname": "CMMC-REFRAME-POSITIVE-LIBRARY",
+    "mgflink": "/processed_gnps_library/REFRAME-POSITIVE-LIBRARY.mgf",
+    "processingpipeline": "GNPS Cleaning"
+   }
+  ]
+ }
+}

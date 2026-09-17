@@ -1,0 +1,25 @@
+MURU CE interface adjudication, Design A (muru-ce-interface-adjudication-design-a)
+  primary metric            : cosine (untransformed full-spectrum)
+  resampling unit           : compound (molecule_level_paired)
+  unit justification        : 0 of 33 compounds (0.000000) share a scaffold group with at least one other compound in the population manifest; the frozen threshold for nontrivial scaffold clustering is 0.100000; the observed fraction is below the threshold, so scaffold clustering is trivial and the resampling unit is the molecule (molecule-level paired bootstrap).
+  bootstrap                 : B = 10000, seed = 20260916, adjusted level = 0.983333
+  population manifest       : 33 compounds
+  mechanically complete     : True (cells absent 0, cells emptied by record drops 0)
+  records dropped           : 0 of 414
+  compounds dropped         : 0 (identically for all three mappings)
+  compounds analysed        : 33 in 33 resampling units
+  composite scores          : S_K1 = 0.557070, S_K2 = 0.514752, S_K3 = 0.506737
+  D12 = S_K1 - S_K2     : point +0.042318  ci95 [-0.003235, +0.088835]  adj [-0.012660, +0.099083]
+  D13 = S_K1 - S_K3     : point +0.050333  ci95 [+0.001693, +0.099972]  adj [-0.007439, +0.109993]
+  D23 = S_K2 - S_K3     : point +0.008015  ci95 [-0.009910, +0.025627]  adj [-0.013378, +0.029884]
+  replicate weights sha256  : 0f824793ac296c6dae362436a04d03681e823110de05181fdcf4a7698aaee2d1 (identical for D12, D13 and D23)
+  MODEL ORDERING DISAGREEMENT: no
+    ICEBERG_2_1  ordering best to worst: K1 > K2 > K3
+    GLACIER      ordering best to worst: K1 > K2 > K3
+  per NCE cell K1           : NCE 30 = 0.589632, NCE 60 = 0.524508
+  per NCE cell K2           : NCE 30 = 0.551281, NCE 60 = 0.478223
+  per NCE cell K3           : NCE 30 = 0.563299, NCE 60 = 0.450175
+  Jensen-Shannon robustness : S_K1 = 0.557939, S_K2 = 0.510225, S_K3 = 0.504884 -> SUPPORTED (K1) (robustness only, cannot change the primary decision)
+  VERDICT                   : INTERFACE_UNRESOLVED
+    reason: adjusted interval for S_K1 - S_K2 is [-0.012659599304863147, 0.09908314462390323] and does not lie wholly above zero
+    reason: adjusted interval for S_K1 - S_K3 is [-0.00743888659650863, 0.10999341559752003] and does not lie wholly above zero

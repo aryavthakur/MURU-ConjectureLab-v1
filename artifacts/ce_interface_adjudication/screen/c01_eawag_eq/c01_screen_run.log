@@ -1,0 +1,4287 @@
+{
+ "all_including_dev": {
+  "clean_compound_level": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 78,
+   "by_first_release": {
+    "2024.06": 23,
+    "2024.11": 31,
+    "2025.10": 33,
+    "dev": 25
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     39,
+     32,
+     33
+    ],
+    "ge500": [
+     18,
+     17,
+     9
+    ],
+    "lt300": [
+     55,
+     33,
+     43
+    ]
+   },
+   "confidence": {
+    "standard compound": 112
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 81,
+    "Exploris 240 Thermo Scientific": 21,
+    "Exploris 240 Thermo Scientific;Q Exactive Plus": 1,
+    "Q Exactive": 1,
+    "Q Exactive Plus": 8
+   },
+   "largest_scaffold_group_size": 21,
+   "largest_scaffold_groups": {
+    "O=C(Nc1ccccc1)c1c[nH]c(-c2ccccc2)c1-c1ccccc1": 2,
+    "c1ccc(-n2nc3ccccc3n2)cc1": 5,
+    "c1ccc(Nc2ccccc2)cc1": 6,
+    "c1ccc(Nc2nccc(C3CC3)n2)cc1": 3,
+    "c1ccccc1": 21
+   },
+   "license": {
+    "CC BY-SA": 112
+   },
+   "msg15_nn_tanimoto_median": 0.548,
+   "n_acyclic_compounds": 18,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 112,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 3,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 1,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "3": 1,
+    "4": 3,
+    "5": 7,
+    "6": 11,
+    "7": 9,
+    "8": 12,
+    "9": 69
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 18,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 59,
+   "n_scaffold_groups": 77,
+   "n_spectra_records": 906,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 111,
+   "n_with_nce20": 5,
+   "n_with_nce60": 109,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 2,
+    "15,30,45,60": 2,
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75": 5,
+    "15,30,45,60,75,90": 11,
+    "15,30,45,60,75,90,120": 9,
+    "15,30,45,60,75,90,120,150": 9,
+    "15,30,45,60,75,90,120,150,180": 68
+   },
+   "precursor_mz_median": 303.7,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    153.3,
+    577.2
+   ],
+   "singleton_scaffold_groups": 69
+  },
+  "clean_conservative": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 30,
+   "by_first_release": {
+    "2024.06": 6,
+    "2024.11": 13,
+    "2025.10": 15,
+    "dev": 11
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     13,
+     13,
+     10
+    ],
+    "ge500": [
+     16,
+     16,
+     8
+    ],
+    "lt300": [
+     16,
+     16,
+     13
+    ]
+   },
+   "confidence": {
+    "standard compound": 45
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 32,
+    "Exploris 240 Thermo Scientific": 10,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "C(COCC1CO1)OCC1CO1": 1,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 45
+   },
+   "msg15_nn_tanimoto_median": 0.458,
+   "n_acyclic_compounds": 18,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 45,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 1,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "4": 1,
+    "5": 4,
+    "6": 5,
+    "7": 3,
+    "8": 3,
+    "9": 29
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 16,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 27,
+   "n_scaffold_groups": 45,
+   "n_spectra_records": 370,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 45,
+   "n_with_nce20": 2,
+   "n_with_nce60": 45,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,30,45,60": 1,
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 5,
+    "15,30,45,60,75,90,120": 3,
+    "15,30,45,60,75,90,120,150": 2,
+    "15,30,45,60,75,90,120,150,180": 28
+   },
+   "precursor_mz_median": 393.3,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    138.9,
+    668.7
+   ],
+   "singleton_scaffold_groups": 45
+  },
+  "clean_primary": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 42,
+   "by_first_release": {
+    "2024.06": 16,
+    "2024.11": 14,
+    "2025.10": 17,
+    "dev": 12
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     22,
+     22,
+     19
+    ],
+    "ge500": [
+     18,
+     17,
+     9
+    ],
+    "lt300": [
+     19,
+     19,
+     15
+    ]
+   },
+   "confidence": {
+    "standard compound": 59
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 45,
+    "Exploris 240 Thermo Scientific": 11,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 2,
+   "largest_scaffold_groups": {
+    "O=C(Nc1ccccc1)c1c[nH]c(-c2ccccc2)c1-c1ccccc1": 2,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 59
+   },
+   "msg15_nn_tanimoto_median": 0.541,
+   "n_acyclic_compounds": 18,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 59,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 2,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "4": 1,
+    "5": 4,
+    "6": 6,
+    "7": 6,
+    "8": 6,
+    "9": 36
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 18,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 40,
+   "n_scaffold_groups": 58,
+   "n_spectra_records": 484,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 59,
+   "n_with_nce20": 2,
+   "n_with_nce60": 59,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,30,45,60": 1,
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 6,
+    "15,30,45,60,75,90,120": 6,
+    "15,30,45,60,75,90,120,150": 5,
+    "15,30,45,60,75,90,120,150,180": 35
+   },
+   "precursor_mz_median": 393.3,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    165.5,
+    638.7
+   ],
+   "singleton_scaffold_groups": 57
+  },
+  "clean_strict_msg_scaffold": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 27,
+   "by_first_release": {
+    "2024.06": 5,
+    "2024.11": 13,
+    "2025.10": 14,
+    "dev": 10
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     13,
+     13,
+     10
+    ],
+    "ge500": [
+     15,
+     15,
+     7
+    ],
+    "lt300": [
+     14,
+     14,
+     11
+    ]
+   },
+   "confidence": {
+    "standard compound": 42
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 29,
+    "Exploris 240 Thermo Scientific": 10,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "C(COCC1CO1)OCC1CO1": 1,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 42
+   },
+   "msg15_nn_tanimoto_median": 0.438,
+   "n_acyclic_compounds": 18,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 42,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 1,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 4,
+    "6": 5,
+    "7": 3,
+    "8": 3,
+    "9": 27
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 15,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 24,
+   "n_scaffold_groups": 42,
+   "n_spectra_records": 348,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 42,
+   "n_with_nce20": 2,
+   "n_with_nce60": 42,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,20,25,30,40,50,60,70,80": 1,
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 5,
+    "15,30,45,60,75,90,120": 3,
+    "15,30,45,60,75,90,120,150": 2,
+    "15,30,45,60,75,90,120,150,180": 26
+   },
+   "precursor_mz_median": 397.1,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    130.8,
+    681.3
+   ],
+   "singleton_scaffold_groups": 42
+  },
+  "excluded_compound_level_union": 291,
+  "ge3_nce_compounds": 403,
+  "in_comparator_keys": 0,
+  "in_msg15_any_route": 256,
+  "in_msg15_parent_route": 255,
+  "in_msg15_recorded_route": 256,
+  "in_msg15_simchallenge": 237,
+  "in_msnlib_9lib_keys": 150,
+  "in_msnlib_v1_4lib_keys": 142,
+  "in_mspred_msg_labels": 237,
+  "in_multims2_reserved": 18,
+  "in_muru_dev_pop_keys": 110,
+  "in_muru_exposed_pop_keys": 140,
+  "in_muru_registry_keys": 233,
+  "in_pr7_keys": 0,
+  "recorded_key_only_clean_count_for_M_comparison": 112,
+  "sg_in_comparator": 0,
+  "sg_in_msg15": 345,
+  "sg_in_muru_dev_pop": 243,
+  "sg_in_muru_registry": 334,
+  "sg_in_pr7": 0
+ },
+ "ce_string_forms_all_records": {
+  "N % (nominal)": 5051
+ },
+ "ce_strings_other_examples": [],
+ "compounds": {
+  "MH_HCD_QFT_nominal_pct_all_compounds": 415,
+  "cmp_key_without_parent_key": 0,
+  "compounds_with_multiple_parent_keys": 0,
+  "compounds_with_multiple_recorded_key14": 0,
+  "compounds_with_multiple_scaffold_groups": 0,
+  "ge3_nce": 403
+ },
+ "d1_block_records_used_as_fallback": {
+  "massbank_blocks_eawag_new.json": 7424,
+  "massbank_blocks_pass2_eawag_new.json": 7424,
+  "massbank_blocks_pass3_eawag_new.json": 7424
+ },
+ "derived_exclusion_set_sizes": {
+  "dev_pop_keys_equal_registry_population_list": true,
+  "dev_pop_scaffold_groups_inside_registry_groups": 765,
+  "mspred_labels_parent": 16968,
+  "mspred_labels_recorded": 16974,
+  "muru_dev_pop_keys": 1325,
+  "muru_dev_pop_scaffold_groups": 765,
+  "muru_exposed_pop_keys": 1912
+ },
+ "dev_only_PR398": {
+  "clean_compound_level": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 15,
+   "by_first_release": {
+    "dev": 25
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     6,
+     6,
+     3
+    ],
+    "ge500": [
+     4,
+     4,
+     2
+    ],
+    "lt300": [
+     15,
+     11,
+     11
+    ]
+   },
+   "confidence": {
+    "standard compound": 25
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 35.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 25
+   },
+   "largest_scaffold_group_size": 4,
+   "largest_scaffold_groups": {
+    "O=[PH](c1ccccc1)c1ccccc1": 1,
+    "__ACYCLIC__AVOCDJCZFLQTCS": 1,
+    "c1ccc(-c2c[nH]c3ccccc23)cc1": 1,
+    "c1ccc(Nc2ncccn2)cc1": 2,
+    "c1ccccc1": 4
+   },
+   "license": {
+    "CC BY-SA": 25
+   },
+   "msg15_nn_tanimoto_median": 0.463,
+   "n_acyclic_compounds": 10,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 25,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 0,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 1,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "9": 21
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 4,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 11,
+   "n_scaffold_groups": 21,
+   "n_spectra_records": 215,
+   "n_uchem_id_in_2023_11_tree": 0,
+   "n_with_nce15_and_30": 24,
+   "n_with_nce20": 0,
+   "n_with_nce60": 25,
+   "nce_ladders": {
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75,90": 1,
+    "15,30,45,60,75,90,120": 1,
+    "15,30,45,60,75,90,120,150,180": 21,
+    "30,45,60,75,90,120,150,180": 1
+   },
+   "precursor_mz_median": 242.1,
+   "precursor_mz_min_max": [
+    105.0,
+    588.1
+   ],
+   "precursor_mz_q10_q90": [
+    153.1,
+    522.7
+   ],
+   "singleton_scaffold_groups": 19
+  },
+  "clean_conservative": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 5,
+   "by_first_release": {
+    "dev": 11
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     5,
+     5,
+     2
+    ],
+    "ge500": [
+     4,
+     4,
+     2
+    ],
+    "lt300": [
+     2,
+     2,
+     2
+    ]
+   },
+   "confidence": {
+    "standard compound": 11
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 35.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 11
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "O=[PH](c1ccccc1)c1ccccc1": 1,
+    "__ACYCLIC__AVOCDJCZFLQTCS": 1,
+    "__ACYCLIC__DKVATWZCDNHYCW": 1,
+    "__ACYCLIC__DSRUAYIFDCHEEV": 1,
+    "__ACYCLIC__IDCPFAYURAQKDZ": 1
+   },
+   "license": {
+    "CC BY-SA": 11
+   },
+   "msg15_nn_tanimoto_median": 0.353,
+   "n_acyclic_compounds": 10,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 11,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 0,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 1,
+    "7": 1,
+    "9": 9
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 4,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 1,
+   "n_scaffold_groups": 11,
+   "n_spectra_records": 93,
+   "n_uchem_id_in_2023_11_tree": 0,
+   "n_with_nce15_and_30": 11,
+   "n_with_nce20": 0,
+   "n_with_nce60": 11,
+   "nce_ladders": {
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75,90,120": 1,
+    "15,30,45,60,75,90,120,150,180": 9
+   },
+   "precursor_mz_median": 432.1,
+   "precursor_mz_min_max": [
+    105.0,
+    588.1
+   ],
+   "precursor_mz_q10_q90": [
+    219.1,
+    585.0
+   ],
+   "singleton_scaffold_groups": 11
+  },
+  "clean_primary": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 6,
+   "by_first_release": {
+    "dev": 12
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     6,
+     6,
+     3
+    ],
+    "ge500": [
+     4,
+     4,
+     2
+    ],
+    "lt300": [
+     2,
+     2,
+     2
+    ]
+   },
+   "confidence": {
+    "standard compound": 12
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 35.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 12
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "O=[PH](c1ccccc1)c1ccccc1": 1,
+    "__ACYCLIC__AVOCDJCZFLQTCS": 1,
+    "__ACYCLIC__DKVATWZCDNHYCW": 1,
+    "__ACYCLIC__DSRUAYIFDCHEEV": 1,
+    "c1ccc(-c2c[nH]c3ccccc23)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 12
+   },
+   "msg15_nn_tanimoto_median": 0.353,
+   "n_acyclic_compounds": 10,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 12,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 0,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 1,
+    "7": 1,
+    "9": 10
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 4,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 2,
+   "n_scaffold_groups": 12,
+   "n_spectra_records": 102,
+   "n_uchem_id_in_2023_11_tree": 0,
+   "n_with_nce15_and_30": 12,
+   "n_with_nce20": 0,
+   "n_with_nce60": 12,
+   "nce_ladders": {
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75,90,120": 1,
+    "15,30,45,60,75,90,120,150,180": 10
+   },
+   "precursor_mz_median": 429.1,
+   "precursor_mz_min_max": [
+    105.0,
+    588.1
+   ],
+   "precursor_mz_q10_q90": [
+    233.0,
+    579.5
+   ],
+   "singleton_scaffold_groups": 12
+  },
+  "clean_strict_msg_scaffold": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 4,
+   "by_first_release": {
+    "dev": 10
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     5,
+     5,
+     2
+    ],
+    "ge500": [
+     4,
+     4,
+     2
+    ],
+    "lt300": [
+     1,
+     1,
+     1
+    ]
+   },
+   "confidence": {
+    "standard compound": 10
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 35.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 10
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "__ACYCLIC__AVOCDJCZFLQTCS": 1,
+    "__ACYCLIC__DKVATWZCDNHYCW": 1,
+    "__ACYCLIC__DSRUAYIFDCHEEV": 1,
+    "__ACYCLIC__IDCPFAYURAQKDZ": 1,
+    "__ACYCLIC__INDOGKYZYLAGEM": 1
+   },
+   "license": {
+    "CC BY-SA": 10
+   },
+   "msg15_nn_tanimoto_median": 0.339,
+   "n_acyclic_compounds": 10,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 10,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 0,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 1,
+    "7": 1,
+    "9": 8
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 4,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 0,
+   "n_scaffold_groups": 10,
+   "n_spectra_records": 84,
+   "n_uchem_id_in_2023_11_tree": 0,
+   "n_with_nce15_and_30": 10,
+   "n_with_nce20": 0,
+   "n_with_nce60": 10,
+   "nce_ladders": {
+    "15,30,45,60,120": 1,
+    "15,30,45,60,75,90,120": 1,
+    "15,30,45,60,75,90,120,150,180": 8
+   },
+   "precursor_mz_median": 458.6,
+   "precursor_mz_min_max": [
+    105.0,
+    588.1
+   ],
+   "precursor_mz_q10_q90": [
+    332.7,
+    585.4
+   ],
+   "singleton_scaffold_groups": 10
+  },
+  "excluded_compound_level_union": 12,
+  "ge3_nce_compounds": 37,
+  "in_comparator_keys": 0,
+  "in_msg15_any_route": 6,
+  "in_msg15_parent_route": 6,
+  "in_msg15_recorded_route": 6,
+  "in_msg15_simchallenge": 6,
+  "in_msnlib_9lib_keys": 7,
+  "in_msnlib_v1_4lib_keys": 6,
+  "in_mspred_msg_labels": 6,
+  "in_multims2_reserved": 0,
+  "in_muru_dev_pop_keys": 7,
+  "in_muru_exposed_pop_keys": 8,
+  "in_muru_registry_keys": 9,
+  "in_pr7_keys": 0,
+  "recorded_key_only_clean_count_for_M_comparison": 25,
+  "sg_in_comparator": 0,
+  "sg_in_msg15": 23,
+  "sg_in_muru_dev_pop": 24,
+  "sg_in_muru_registry": 25,
+  "sg_in_pr7": 0
+ },
+ "harvest": {
+  "C": {
+   "any_incomplete_results": false,
+   "n_harvested": 4993,
+   "n_queries": 72,
+   "n_targets": 5051,
+   "retrieved_utc": "2026-09-15T04:10:38.115214+00:00"
+  },
+  "E": {
+   "any_incomplete_results": false,
+   "n_harvested": 765,
+   "n_queries": 43,
+   "n_targets": 765,
+   "retrieved_utc": "2026-09-15T04:24:16.557801+00:00"
+  },
+  "I": {
+   "any_incomplete_results": false,
+   "n_harvested": 765,
+   "n_queries": 44,
+   "n_targets": 765,
+   "retrieved_utc": "2026-09-15T04:53:20.372802+00:00"
+  },
+  "P": {
+   "any_incomplete_results": false,
+   "n_harvested": 765,
+   "n_queries": 44,
+   "n_targets": 765,
+   "retrieved_utc": "2026-09-15T04:38:55.946684+00:00"
+  },
+  "S": {
+   "any_incomplete_results": false,
+   "n_harvested": 5051,
+   "n_queries": 68,
+   "n_targets": 5051,
+   "retrieved_utc": "2026-09-15T03:48:57.738176+00:00"
+  }
+ },
+ "index_sha_equals_dev_blob": {
+  "True": 5051
+ },
+ "inputs": {
+  "codesearch_C": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/downloads/codesearch_C.json",
+   "sha256": "13688dd33bef3fce821f02aac947ea9105fef18a81bfe45472c6c014560b4550"
+  },
+  "codesearch_E": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/downloads/codesearch_E.json",
+   "sha256": "94c739f327e0bbb1806239ab0ddc76dcc9e325e9ea3915a006e5f6c679da174e"
+  },
+  "codesearch_I": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/downloads/codesearch_I.json",
+   "sha256": "22271e8285979f56aeb82b6ba9addaa90256e582f734076ca30ed1cc0c602149"
+  },
+  "codesearch_P": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/downloads/codesearch_P.json",
+   "sha256": "26f7ef56be64b727db443e898c3aca7e60d6e1d11d31c4ca88082efc71d24f0b"
+  },
+  "codesearch_S": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/downloads/codesearch_S.json",
+   "sha256": "0a2b474e01dc3b4c58abfb88ce126fc350a7b1a7dbd1088249b710e86db8f5bf"
+  },
+  "d1/massbank_blocks_eawag_new.json": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/inputs_d1/massbank_blocks_eawag_new.json",
+   "sha256": "e21961147324f817ca52b04c7ce84ed02bafd907d694c5d4b6a9fb59dcf7660f"
+  },
+  "d1/massbank_blocks_pass2_eawag_new.json": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/inputs_d1/massbank_blocks_pass2_eawag_new.json",
+   "sha256": "cd5323122b3048939253014ce2bdc01851f769003db1f182929bb473ac4d36e7"
+  },
+  "d1/massbank_blocks_pass3_eawag_new.json": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/inputs_d1/massbank_blocks_pass3_eawag_new.json",
+   "sha256": "059c6036264e0cefd67a0fb4d45b43f16077e54c00f59fb17de9a1dacd27d502"
+  },
+  "dev_compounds": {
+   "columns_read": [
+    "parent_key",
+    "smiles",
+    "scaffold_group"
+   ],
+   "key_and_group_recomputed_match": 1325,
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/wur_v2/data/compounds.csv",
+   "rows": 1325,
+   "sha256": "87d79ab7f9e02eb7c99c4ea9b7e12a87568d0b2c8c81c372b22d44bec862e34c"
+  },
+  "exclusion/comparator_common_population_keys.txt": {
+   "n": 1327,
+   "sha256": "749f356a9a49bb00774c02367eea0ad632d4d9e53089787101aa72b372ba22df"
+  },
+  "exclusion/comparator_common_population_scaffold_groups.txt": {
+   "n": 1254,
+   "sha256": "df8d19f6de60ab934673f0ae808a407201a19b910a71637d7bb727043e5f62e9"
+  },
+  "exclusion/msg15_keys_all.txt": {
+   "n": 28929,
+   "sha256": "c5666b446c091bd878528100e4adcddc882d8d9b1149edc212477edd4683d832"
+  },
+  "exclusion/msg15_parent_keys_all.txt": {
+   "n": 28923,
+   "sha256": "c046057a0c3df6189d2a0e5c403d2fed26db16ac667b4f1da15e64fcdd48625e"
+  },
+  "exclusion/msg15_scaffold_groups_all.txt": {
+   "n": 16991,
+   "sha256": "70b3140616ec932f69fb7403e04cb60fce1bb62ef956de704152c94041c899a7"
+  },
+  "exclusion/msg15_simchallenge_keys_all.txt": {
+   "n": 16974,
+   "sha256": "2ea1f48d6133b172c40e0116fd3ac0c3bbee0fb368b401ae90814af215f8d358"
+  },
+  "exclusion/msnlib_9lib_keys.txt": {
+   "n": 53612,
+   "sha256": "f214370492921286cec8d6904ca5cd72bab68f992437f3c7a45f1b545df3a161"
+  },
+  "exclusion/msnlib_study2_population_keys.txt": {
+   "n": 1794,
+   "sha256": "c7e01de6a212bd832e69ebc853e26560e2fbf72b5916ee757a2df990711b1b81"
+  },
+  "exclusion/msnlib_study2_population_scaffold_groups.txt": {
+   "n": 1691,
+   "sha256": "8c534e4ff4d465cdc2b1aa43c14c4e625b11bf0613e001986f6de9b4c87fc9bc"
+  },
+  "exclusion/msnlib_v1_0_4lib_keys.txt": {
+   "n": 19219,
+   "sha256": "ed054eefca07f2f1bba1cb74b72ec162b9790961217eaf96daa1b562ae0041fe"
+  },
+  "exclusion/multims2_reserved_validation_secondary_keys.txt": {
+   "n": 1525,
+   "sha256": "6dc65b15983f67b10a85f901da8e01715e17f968f9b46c53f7d097186b216a2c"
+  },
+  "exclusion/muru_exposure_registry_keys.txt": {
+   "n": 31507,
+   "sha256": "372ff0323a92f7fda21fa38a35506b4ec968f90e4f9c3b12f73d240de990c47e"
+  },
+  "exclusion/muru_exposure_registry_scaffold_groups.txt": {
+   "n": 18402,
+   "sha256": "a0d782a17a287b106a151e8e8115efcc0d64dcac19f3e06ff00780159045e9cb"
+  },
+  "msg_meta": {
+   "n_unique_parent_structures_fp": 31602,
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet",
+   "sha256": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2"
+  },
+  "mspred_labels": {
+   "path": "/Users/aryav/muru-comparators/repos/ms-pred/data/spec_datasets/msg/labels.tsv",
+   "rows": 119029,
+   "sha256": "0b29f4b150fa043f2ea382df3d7a02ddfdf5dc9baee9790299b3890d3582f244"
+  },
+  "registry/excluded_compounds.csv": {
+   "sha256": "f4fa8013457487d2fecad7d45e2dd60de9883bb9e63fbb55f7d1aef9800b1475"
+  },
+  "tree": {
+   "path": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/screen/c01_eawag_eq/eawag_eq_tree_blobs.csv",
+   "sha256": "70202c27479cd0fe22e7c451cba3320196ddaccb1870f2dd94646be71e6307ce"
+  }
+ },
+ "n_target_records": 5051,
+ "rdkit": "2026.03.5",
+ "record_filter_counts": {
+  "MH_by_first_ref": {
+   "2024.06": 644,
+   "2024.11": 1591,
+   "2025.10": 721,
+   "dev": 339
+  },
+  "MH_ce_form": {
+   "N % (nominal)": 3295
+  },
+  "MH_confidence": {
+   "nan": 42,
+   "standard compound": 3253
+  },
+  "MH_copyright": {
+   "Copyright (C) Eawag 2022": 255,
+   "Copyright (C) Eawag 2023": 664,
+   "Copyright (C) Eawag 2024": 1554,
+   "Copyright (C) Eawag 2025": 521,
+   "Copyright (C) Eawag 2026": 259,
+   "nan": 42
+  },
+  "MH_frag_mode": {
+   "HCD": 3295
+  },
+  "MH_instrument": {
+   "Exploris 240 Orbitrap Thermo Scientific": 1704,
+   "Exploris 240 Thermo Scientific": 872,
+   "Q Exactive": 96,
+   "Q Exactive Plus": 623
+  },
+  "MH_instrument_type": {
+   "LC-ESI-QFT": 3295
+  },
+  "MH_license": {
+   "CC BY-SA": 3253,
+   "nan": 42
+  },
+  "MH_mh_abs_error_gt_0p01": 9,
+  "MH_mh_error_missing": 0,
+  "MH_ms_type": {
+   "MS2": 3295
+  },
+  "MH_pos_MS2_HCD_QFT_single_nominal_pct": 3295,
+  "MH_records": 3295,
+  "MH_resolution": {
+   "15000": 1591,
+   "17500": 1704
+  },
+  "all_target_records": 5051,
+  "ion_mode_counts": {
+   "NEGATIVE": 1756,
+   "POSITIVE": 3295
+  },
+  "precursor_type_counts": {
+   "[M+H]+": 3295,
+   "[M-H]-": 1756
+  }
+ },
+ "records_found_by_pass": {
+  "C": 4993,
+  "E": 753,
+  "I": 753,
+  "P": 753,
+  "S": 5051
+ },
+ "records_found_in_no_pass": 0,
+ "records_missing_by_field": {
+  "ce": 0,
+  "confidence": 58,
+  "frag_mode": 0,
+  "inchi": 0,
+  "inchikey": 0,
+  "instrument": 0,
+  "instrument_type": 0,
+  "ion_mode": 0,
+  "license": 58,
+  "ms_type": 0,
+  "precursor_mz": 0,
+  "precursor_type": 0,
+  "smiles": 0
+ },
+ "records_missing_by_field_by_first_ref": {
+  "2024.06": {
+   "ce": 0,
+   "frag_mode": 0,
+   "instrument_type": 0,
+   "precursor_type": 0,
+   "smiles": 0
+  },
+  "2024.11": {
+   "ce": 0,
+   "frag_mode": 0,
+   "instrument_type": 0,
+   "precursor_type": 0,
+   "smiles": 0
+  },
+  "2025.10": {
+   "ce": 0,
+   "frag_mode": 0,
+   "instrument_type": 0,
+   "precursor_type": 0,
+   "smiles": 0
+  },
+  "dev": {
+   "ce": 0,
+   "frag_mode": 0,
+   "instrument_type": 0,
+   "precursor_type": 0,
+   "smiles": 0
+  }
+ },
+ "records_with_d1_fallback": 4298,
+ "shared_uchem_id_pre_2023_11_records": [
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371201.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371202.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371203.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371204.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371205.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371206.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371207.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371208.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DAWYIZBOUQIVNX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ371209.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3712
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365201.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365202.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365203.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365204.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365205.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365206.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365207.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365208.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DECIPOUIJURFOJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ365209.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3652
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309201.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309202.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309203.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309204.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309205.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "DMBHHRLKUKUOEG",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309206.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3092
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316701.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316702.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316703.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316704.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316705.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FOUWCSDKDDHKQP",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316706.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3167
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311901.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311902.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311903.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311904.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311905.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "FSCWZHGZWWDELK",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ311906.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3119
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370001.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370002.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370003.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370004.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370005.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370006.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370007.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370008.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HJJVPARKXDDIQD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370009.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3700
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358501.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358502.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358503.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358504.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358505.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358506.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358507.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358508.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358509.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358551.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358552.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358553.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358554.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358555.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358556.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358557.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358558.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "HPJKCIUCZWXJDR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ358559.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3585
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320801.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320802.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320803.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320804.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320805.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320806.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320807.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320808.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "JTZCTMAVMHRNTR",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320809.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3208
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013901.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013902.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013903.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013904.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013905.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KIEDNEWSYUYDSN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ013906.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 139
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363301.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363302.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363303.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363304.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363305.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363306.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363307.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363308.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363309.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363351.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363352.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363353.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363354.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363355.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363356.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363357.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363358.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "KTUFNOKKBVMGRW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ363359.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3633
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305101.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305102.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305103.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305104.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305105.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305106.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305151.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305152.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305153.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305154.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305155.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "LFULEKSKNZEWOE",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305156.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3051
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304701.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304702.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304703.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304704.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304705.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304706.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304751.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304752.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304753.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304754.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304755.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OEBRKCOSUFCWJD",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ304756.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3047
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306001.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306002.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306003.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306004.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306005.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "ONUFESLQCSAYKA",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ306006.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3060
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320901.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320902.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320903.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320904.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320905.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320906.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320907.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320908.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320909.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320951.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320952.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320953.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320954.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320955.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320956.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320957.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320958.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OORLZFUTLGXMEF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ320959.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3209
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316901.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316902.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316903.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316904.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316905.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OPGCOAPTHCZZIW",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ316906.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3169
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348801.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348802.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348803.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348804.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348805.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348806.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348807.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348808.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348809.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348851.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348852.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348853.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348854.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348855.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348856.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348857.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348858.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "OYIKARCXOQLFHF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ348859.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3488
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317501.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317502.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317503.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317504.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317505.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317506.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317551.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317552.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317553.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317554.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317555.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHNUZKMIPFFYSO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317556.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3175
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "15 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317801.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "30 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317802.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "45 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317803.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "60 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317804.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "75 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317805.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "90 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317806.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M+H]+",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "15 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317851.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "30 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317852.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "45 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317853.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "60 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317854.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "75 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317855.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PHXHZCIAPNNPTQ",
+   "old_ce": "90 (nominal)",
+   "old_file": "MSBNK-Eawag-EQ317856.txt",
+   "old_instrument": "Q Exactive Orbitrap Thermo Scientific",
+   "old_precursor_type": "[M-H]-",
+   "old_recorded_inchikey": "IOYNQIMAUDJVEI-BMVIKAAMSA-N",
+   "uchem_id": 3178
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279401.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279402.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279403.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279404.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279405.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279406.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279407.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279408.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279409.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279451.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279452.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279453.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279454.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279455.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279456.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279457.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279458.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "PSIFNNKUMBGKDQ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ279459.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 2794
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310201.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310202.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310203.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310204.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310205.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "QXJKBPAVAHBARF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ310206.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3102
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370901.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370902.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370903.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370904.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370905.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370906.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370907.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370908.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370909.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370951.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370952.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370953.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370954.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370955.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370956.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370957.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370958.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "RZILCCPWPBTYDO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ370959.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3709
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335501.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335502.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335503.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335504.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335505.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "UBUCNCOMADRQHX",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ335506.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3355
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309301.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309302.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309303.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309304.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309305.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VAIZTNZGPYBOGF",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ309306.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3093
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305701.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305702.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305703.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305704.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305705.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305706.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305751.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305752.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305753.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305754.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305755.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "VDLGAVXLJYLFDH",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305756.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3057
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312101.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312102.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312103.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312104.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312105.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312106.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312151.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312152.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312153.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312154.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312155.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XRECTZIEBJDKEO",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ312156.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3121
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317101.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317102.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317103.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317104.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317105.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "XWPZUHJBOLQNMN",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ317106.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3171
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "YIJZJEYQBAAWRJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305202.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3052
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "YIJZJEYQBAAWRJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305203.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3052
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "YIJZJEYQBAAWRJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305204.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3052
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "YIJZJEYQBAAWRJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305205.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3052
+  },
+  {
+   "blob_2023_11_equals_dev": false,
+   "cmp_key": "YIJZJEYQBAAWRJ",
+   "old_ce": null,
+   "old_file": "MSBNK-Eawag-EQ305206.txt",
+   "old_instrument": null,
+   "old_precursor_type": null,
+   "old_recorded_inchikey": null,
+   "uchem_id": 3052
+  }
+ ],
+ "structure_qc_records": {
+  "inchi_inchikey_equals_recorded": {
+   "True": 5051
+  },
+  "smiles_inchikey_equals_recorded": {
+   "True": 5051
+  },
+  "smiles_parse": 5051,
+  "with_inchikey": 5051,
+  "with_smiles": 5051
+ },
+ "tag_value_conflicts_within_record": {},
+ "tagged_2024.06_2024.11_2025.10": {
+  "clean_compound_level": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 64,
+   "by_first_release": {
+    "2024.06": 23,
+    "2024.11": 31,
+    "2025.10": 33
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     33,
+     26,
+     30
+    ],
+    "ge500": [
+     14,
+     13,
+     7
+    ],
+    "lt300": [
+     40,
+     25,
+     33
+    ]
+   },
+   "confidence": {
+    "standard compound": 87
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 56,
+    "Exploris 240 Thermo Scientific": 21,
+    "Exploris 240 Thermo Scientific;Q Exactive Plus": 1,
+    "Q Exactive": 1,
+    "Q Exactive Plus": 8
+   },
+   "largest_scaffold_group_size": 17,
+   "largest_scaffold_groups": {
+    "O=C(Nc1ccccc1)c1c[nH]c(-c2ccccc2)c1-c1ccccc1": 2,
+    "c1ccc(-n2nc3ccccc3n2)cc1": 5,
+    "c1ccc(Nc2ccccc2)cc1": 5,
+    "c1ccc(Oc2ccccc2)cc1": 2,
+    "c1ccccc1": 17
+   },
+   "license": {
+    "CC BY-SA": 87
+   },
+   "msg15_nn_tanimoto_median": 0.564,
+   "n_acyclic_compounds": 8,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 87,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 3,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 1,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "3": 1,
+    "4": 3,
+    "5": 6,
+    "6": 10,
+    "7": 8,
+    "8": 11,
+    "9": 48
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 14,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 52,
+   "n_scaffold_groups": 60,
+   "n_spectra_records": 691,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 87,
+   "n_with_nce20": 5,
+   "n_with_nce60": 84,
+   "nce_ladders": {
+    "15,20,25,30,40": 1,
+    "15,20,25,30,40,50,60,70": 2,
+    "15,30,45,60": 2,
+    "15,30,45,60,75": 5,
+    "15,30,45,60,75,90": 10,
+    "15,30,45,60,75,90,120": 8,
+    "15,30,45,60,75,90,120,150": 9,
+    "15,30,45,60,75,90,120,150,180": 47
+   },
+   "precursor_mz_median": 311.1,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    159.3,
+    581.4
+   ],
+   "singleton_scaffold_groups": 54
+  },
+  "clean_conservative": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 25,
+   "by_first_release": {
+    "2024.06": 6,
+    "2024.11": 13,
+    "2025.10": 15
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     8,
+     8,
+     8
+    ],
+    "ge500": [
+     12,
+     12,
+     6
+    ],
+    "lt300": [
+     14,
+     14,
+     11
+    ]
+   },
+   "confidence": {
+    "standard compound": 34
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 21,
+    "Exploris 240 Thermo Scientific": 10,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "C(COCC1CO1)OCC1CO1": 1,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 34
+   },
+   "msg15_nn_tanimoto_median": 0.52,
+   "n_acyclic_compounds": 8,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 34,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 1,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "4": 1,
+    "5": 3,
+    "6": 5,
+    "7": 2,
+    "8": 3,
+    "9": 20
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 12,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 26,
+   "n_scaffold_groups": 34,
+   "n_spectra_records": 277,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 34,
+   "n_with_nce20": 2,
+   "n_with_nce60": 34,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,20,25,30,40,50,60,70,80": 1,
+    "15,30,45,60": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 5,
+    "15,30,45,60,75,90,120": 2,
+    "15,30,45,60,75,90,120,150": 2,
+    "15,30,45,60,75,90,120,150,180": 19
+   },
+   "precursor_mz_median": 337.6,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    136.2,
+    689.6
+   ],
+   "singleton_scaffold_groups": 34
+  },
+  "clean_primary": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 36,
+   "by_first_release": {
+    "2024.06": 16,
+    "2024.11": 14,
+    "2025.10": 17
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     16,
+     16,
+     16
+    ],
+    "ge500": [
+     14,
+     13,
+     7
+    ],
+    "lt300": [
+     17,
+     17,
+     13
+    ]
+   },
+   "confidence": {
+    "standard compound": 47
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 33,
+    "Exploris 240 Thermo Scientific": 11,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 2,
+   "largest_scaffold_groups": {
+    "O=C(Nc1ccccc1)c1c[nH]c(-c2ccccc2)c1-c1ccccc1": 2,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 47
+   },
+   "msg15_nn_tanimoto_median": 0.568,
+   "n_acyclic_compounds": 8,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 47,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 2,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "4": 1,
+    "5": 3,
+    "6": 6,
+    "7": 5,
+    "8": 6,
+    "9": 26
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 14,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 38,
+   "n_scaffold_groups": 46,
+   "n_spectra_records": 382,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 47,
+   "n_with_nce20": 2,
+   "n_with_nce60": 47,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,20,25,30,40,50,60,70,80": 1,
+    "15,30,45,60": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 6,
+    "15,30,45,60,75,90,120": 5,
+    "15,30,45,60,75,90,120,150": 5,
+    "15,30,45,60,75,90,120,150,180": 25
+   },
+   "precursor_mz_median": 342.1,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    162.9,
+    660.3
+   ],
+   "singleton_scaffold_groups": 45
+  },
+  "clean_strict_msg_scaffold": {
+   "butina_clusters_morgan2_tanimoto_distance_0p6": 23,
+   "by_first_release": {
+    "2024.06": 5,
+    "2024.11": 13,
+    "2025.10": 14
+   },
+   "by_precursor_mz_band_compounds_scaffold_groups_clusters": {
+    "300_500": [
+     8,
+     8,
+     8
+    ],
+    "ge500": [
+     11,
+     11,
+     5
+    ],
+    "lt300": [
+     13,
+     13,
+     10
+    ]
+   },
+   "confidence": {
+    "standard compound": 32
+   },
+   "elements_non_CHNOPS_halogen": 0,
+   "heavy_atoms_max": 57.0,
+   "instruments": {
+    "Exploris 240 Orbitrap Thermo Scientific": 19,
+    "Exploris 240 Thermo Scientific": 10,
+    "Q Exactive Plus": 3
+   },
+   "largest_scaffold_group_size": 1,
+   "largest_scaffold_groups": {
+    "C(COCC1CO1)OCC1CO1": 1,
+    "__ACYCLIC__AGCUFKNHQDVTAD": 1,
+    "__ACYCLIC__ALBYIUDWACNRRB": 1,
+    "c1cc(Cc2cccc(C3CCCCC3)c2)cc(C2CCCCC2)c1": 1,
+    "c1ccc(OP2OCC3(CO2)COP(Oc2ccccc2)OC3)cc1": 1
+   },
+   "license": {
+    "CC BY-SA": 32
+   },
+   "msg15_nn_tanimoto_median": 0.485,
+   "n_acyclic_compounds": 8,
+   "n_any_smiles_inchikey_mismatch": 0,
+   "n_compounds": 32,
+   "n_heavy_atoms_gt_160": 0,
+   "n_max_abs_mh_error_gt_0p01": 0,
+   "n_msg15_nn_tanimoto_ge_0p9": 1,
+   "n_msg15_same_formula_tanimoto_ge_0p9": 0,
+   "n_multi_instrument": 0,
+   "n_multiple_smiles": 0,
+   "n_nce_distribution": {
+    "5": 3,
+    "6": 5,
+    "7": 2,
+    "8": 3,
+    "9": 19
+   },
+   "n_outside_muru_dev_mh_range_70_1042p6": 0,
+   "n_precursor_mz_ge_500": 11,
+   "n_precursor_mz_gt_1000": 0,
+   "n_ring_scaffold_groups": 24,
+   "n_scaffold_groups": 32,
+   "n_spectra_records": 264,
+   "n_uchem_id_in_2023_11_tree": 1,
+   "n_with_nce15_and_30": 32,
+   "n_with_nce20": 2,
+   "n_with_nce60": 32,
+   "nce_ladders": {
+    "15,20,25,30,40,50,60,70": 1,
+    "15,20,25,30,40,50,60,70,80": 1,
+    "15,30,45,60,75": 3,
+    "15,30,45,60,75,90": 5,
+    "15,30,45,60,75,90,120": 2,
+    "15,30,45,60,75,90,120,150": 2,
+    "15,30,45,60,75,90,120,150,180": 18
+   },
+   "precursor_mz_median": 337.6,
+   "precursor_mz_min_max": [
+    100.0,
+    784.5
+   ],
+   "precursor_mz_q10_q90": [
+    130.8,
+    690.7
+   ],
+   "singleton_scaffold_groups": 32
+  },
+  "excluded_compound_level_union": 279,
+  "ge3_nce_compounds": 366,
+  "in_comparator_keys": 0,
+  "in_msg15_any_route": 250,
+  "in_msg15_parent_route": 249,
+  "in_msg15_recorded_route": 250,
+  "in_msg15_simchallenge": 231,
+  "in_msnlib_9lib_keys": 143,
+  "in_msnlib_v1_4lib_keys": 136,
+  "in_mspred_msg_labels": 231,
+  "in_multims2_reserved": 18,
+  "in_muru_dev_pop_keys": 103,
+  "in_muru_exposed_pop_keys": 132,
+  "in_muru_registry_keys": 224,
+  "in_pr7_keys": 0,
+  "recorded_key_only_clean_count_for_M_comparison": 87,
+  "sg_in_comparator": 0,
+  "sg_in_msg15": 322,
+  "sg_in_muru_dev_pop": 219,
+  "sg_in_muru_registry": 309,
+  "sg_in_pr7": 0
+ },
+ "tagged_release_records": 4381,
+ "tagged_release_records_blob_2025_10_equals_dev": 4381,
+ "uchem_comment_equals_filename_id": {
+  "True": 4993,
+  "nan": 58
+ }
+}

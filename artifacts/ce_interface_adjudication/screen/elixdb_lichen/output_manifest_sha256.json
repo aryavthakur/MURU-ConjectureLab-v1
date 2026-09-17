@@ -1,0 +1,20 @@
+{
+ "elixdb_keys_in_msg15_row_summary.csv": "8a477de37ae8c14f8946b47480a4690d47087b15aa96f4a2b57db8daec8ac03a",
+ "elixdb_records_identity_overlap.csv": "eb793226ee643b601fab3a3eccba7b619f677ec2bc5a138f80b928de102a66b9",
+ "gnps_library_rows_sharing_elixdb_keys.csv": "c8a7d6885fce788e901a118ac172cd8002c00bfd99c3ea6832c57bcb9058daf1",
+ "screen_summary.json": "00707b9bcfa36eeaab7b4f39f1ecefceb96a57ad521c1b13cb3ae3d4c4ac125e",
+ "downloads/MTBLS8109.announcement.json": "38acd621bd880b5c88bce116ee9afba13d42b465c25561a903579ca39d5edb80",
+ "downloads/MTBLS8109_a_LC-MS_metabolite_profiling.txt": "bf9dba9c3e0085040e2c5d6f87dd36385f87a06f9867c4be020c3000c86f6fc5",
+ "downloads/MTBLS8109_ftp_FILES_DERIVED_FILES_listing.html": "4fd0a063444e8b96a1d946b7a02da3349321594a5e314b1dded4ba1f94f5fe66",
+ "downloads/MTBLS8109_ftp_FILES_RAW_FILES_listing.html": "2f43c9bef3158130c945c6d582177fb73ddcb098396a85d14ca612468a24dd44",
+ "downloads/MTBLS8109_ftp_FILES_listing.html": "73f9b9f691a6af97b3620bcb20f9e3d8494b2d36fbb356500366b7b482e6cf99",
+ "downloads/MTBLS8109_ftp_root_listing.html": "b00c459780ec8808a44bfe42faaa24074636d07da326e074175a1d68d96bda8d",
+ "downloads/MTBLS8109_i_Investigation.txt": "3fdb0b32004a616408ad0403b3c9c129db2d8c6da419d59371ef3a96b7a25d26",
+ "downloads/MTBLS8109_m_LC-MS_metabolite_profiling_v2_maf.tsv": "2d7c5b42f9b4d15dbbae45557b0cd85fa23f028f3313132f2946553b88074d02",
+ "downloads/MTBLS8109_s_MTBLS8109.txt": "dfee6f14dcc707eeb9333fcc7428d4d839360b7ddb677c557fd9805d58966110",
+ "downloads/MTBLS8109_ws_public_study.json": "0fa307a65cd0f98248738e05c3950914762f821411ff1ef0969f8f621ca8a426",
+ "downloads/PMC11814408_article.html": "0e2d8b160ff6e397d385438b50b4548b23cff856057b02bf253314bebbd7f335",
+ "downloads/PMC11814408_article_text_extracted.txt": "9c1a2eb982cdc8af36404bbe4da5505d65c3e4d7e4a180ea796ac10a0d36bc52",
+ "downloads/gnps_libraryservlet_ELIXDB-LICHEN-DATABASE.json": "402faa562ef71ba30052ac281ac5c75a56ead7810526897183d6b1110bfca5d3",
+ "downloads/gnps_libraryservlet_GNPS-LIBRARY.json": "8a57676c1f839c4f0b4529b452eec60dc80c6b4c922f345eb28875da725aa9f2"
+}

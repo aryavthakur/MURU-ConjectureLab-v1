@@ -1,0 +1,651 @@
+{
+ "prereg_id": "muru-ce-interface-adjudication-design-a",
+ "design": "Design A, CE interface adjudication (K1 against K2 against K3)",
+ "primary_metric": "cosine",
+ "robustness_metric": "js",
+ "reduction_order": [
+  "1: per (compound, model, mapping, nce), arithmetic mean over replicate records",
+  "2: per (compound, model, mapping), arithmetic mean over the two NCE cells, equal weight",
+  "3: per (compound, mapping), arithmetic mean of the ICEBERG_2_1 and GLACIER values"
+ ],
+ "bootstrap": {
+  "B": 10000,
+  "seed": 20260916,
+  "alpha": 0.05,
+  "n_contrasts": 3,
+  "adjusted_level": 0.9833333333333333,
+  "descriptive_level": 0.95,
+  "weights": "one multinomial weight vector per replicate, reused unchanged for D12, D13 and D23"
+ },
+ "resampling_unit_selection": {
+  "unit": "compound",
+  "bootstrap": "molecule_level_paired",
+  "scaffold_clustering_nontrivial": false,
+  "threshold": 0.1,
+  "threshold_constant": "SCAFFOLD_CLUSTERING_NONTRIVIAL_FRACTION",
+  "n_compounds_in_manifest": 33,
+  "n_scaffold_groups_in_manifest": 33,
+  "n_compounds_sharing_a_scaffold_group": 0,
+  "fraction_sharing_a_scaffold_group": 0.0,
+  "justification": "0 of 33 compounds (0.000000) share a scaffold group with at least one other compound in the population manifest; the frozen threshold for nontrivial scaffold clustering is 0.100000; the observed fraction is below the threshold, so scaffold clustering is trivial and the resampling unit is the molecule (molecule-level paired bootstrap).",
+  "evaluated_from": "population manifest identities only (compound_id, scaffold_group)"
+ },
+ "primary": {
+  "metric": "cosine",
+  "completeness_and_drops": {
+   "metric": "cosine",
+   "n_population_manifest": 33,
+   "n_records_submitted": 414,
+   "n_records_dropped": 0,
+   "n_records_kept": 414,
+   "n_expected_cells": 396,
+   "n_cells_absent_from_score_table": 0,
+   "n_cells_with_no_surviving_record": 0,
+   "mechanically_complete": true,
+   "n_compounds_dropped": 0,
+   "n_compounds_analysed": 33,
+   "n_compounds_outside_population_manifest": 0,
+   "compounds_outside_population_manifest": [],
+   "dropped_records": [],
+   "empty_cells": [],
+   "dropped_compounds": [],
+   "paired_invariant": "a dropped compound is dropped identically for all three mappings"
+  },
+  "n_compounds_analysed": 33,
+  "n_resampling_units_analysed": 33,
+  "composite_scores": {
+   "K1": 0.5570699531777477,
+   "K2": 0.5147518066700293,
+   "K3": 0.5067373024465093
+  },
+  "contrasts": {
+   "D12": {
+    "contrast": "S_K1 - S_K2",
+    "point_estimate": 0.042318146507718424,
+    "ci95_percentile_descriptive": [
+     -0.0032350865632111603,
+     0.08883511725534485
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     -0.012659599304863147,
+     0.09908314462390323
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   },
+   "D13": {
+    "contrast": "S_K1 - S_K3",
+    "point_estimate": 0.050332650731238444,
+    "ci95_percentile_descriptive": [
+     0.001693369832247982,
+     0.0999723406321809
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     -0.00743888659650863,
+     0.10999341559752003
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   },
+   "D23": {
+    "contrast": "S_K2 - S_K3",
+    "point_estimate": 0.008014504223520026,
+    "ci95_percentile_descriptive": [
+     -0.009909623476653301,
+     0.025626625080781788
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     -0.013377701526676146,
+     0.029884484152984645
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   }
+  },
+  "replicate_weights_sha256": "0f824793ac296c6dae362436a04d03681e823110de05181fdcf4a7698aaee2d1",
+  "replicate_weights_shared_across_contrasts": true,
+  "decision": {
+   "verdict": "INTERFACE_UNRESOLVED",
+   "supported_mapping": null,
+   "leader": "K1",
+   "tied_leaders": [
+    "K1"
+   ],
+   "criterion_a_unique_highest_score": true,
+   "criterion_b_all_adjusted_intervals_above_zero": false,
+   "advantage_intervals_adjusted": {
+    "K1_over_K2": {
+     "ci_bonferroni_adjusted": [
+      -0.012659599304863147,
+      0.09908314462390323
+     ],
+     "wholly_above_zero": false
+    },
+    "K1_over_K3": {
+     "ci_bonferroni_adjusted": [
+      -0.00743888659650863,
+      0.10999341559752003
+     ],
+     "wholly_above_zero": false
+    }
+   },
+   "composite_scores": {
+    "K1": 0.5570699531777477,
+    "K2": 0.5147518066700293,
+    "K3": 0.5067373024465093
+   },
+   "reasons": [
+    "adjusted interval for S_K1 - S_K2 is [-0.012659599304863147, 0.09908314462390323] and does not lie wholly above zero",
+    "adjusted interval for S_K1 - S_K3 is [-0.00743888659650863, 0.10999341559752003] and does not lie wholly above zero"
+   ]
+  },
+  "model_agreement": {
+   "per_model_mean_scores": {
+    "ICEBERG_2_1": {
+     "K1": 0.5621525705092999,
+     "K2": 0.48851114490703573,
+     "K3": 0.4858389090989533
+    },
+    "GLACIER": {
+     "K1": 0.5519873358461954,
+     "K2": 0.5409924684330227,
+     "K3": 0.5276356957940652
+    }
+   },
+   "orderings_best_to_worst": {
+    "ICEBERG_2_1": [
+     "K1",
+     "K2",
+     "K3"
+    ],
+    "GLACIER": [
+     "K1",
+     "K2",
+     "K3"
+    ]
+   },
+   "MODEL_ORDERING_DISAGREEMENT": false,
+   "note": "the two models order K1, K2 and K3 identically"
+  },
+  "per_model_contrasts_descriptive": {
+   "ICEBERG_2_1": {
+    "mean_scores": {
+     "K1": 0.5621525705092999,
+     "K2": 0.48851114490703573,
+     "K3": 0.4858389090989533
+    },
+    "contrasts": {
+     "D12": {
+      "contrast": "S_K1 - S_K2",
+      "point_estimate": 0.07364142560226421,
+      "ci95_percentile_descriptive": [
+       0.018235116439313314,
+       0.1323668275253392
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       0.006725586850739483,
+       0.14585808944373244
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D13": {
+      "contrast": "S_K1 - S_K3",
+      "point_estimate": 0.07631366141034666,
+      "ci95_percentile_descriptive": [
+       0.01636942794510131,
+       0.13882528237547534
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       0.005811006801987044,
+       0.15322403270262627
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D23": {
+      "contrast": "S_K2 - S_K3",
+      "point_estimate": 0.002672235808082467,
+      "ci95_percentile_descriptive": [
+       -0.01529987415776568,
+       0.020645107772696226
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.019130631039001558,
+       0.02512203760320113
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     }
+    },
+    "note": "descriptive only; never affects the primary verdict"
+   },
+   "GLACIER": {
+    "mean_scores": {
+     "K1": 0.5519873358461954,
+     "K2": 0.5409924684330228,
+     "K3": 0.5276356957940652
+    },
+    "contrasts": {
+     "D12": {
+      "contrast": "S_K1 - S_K2",
+      "point_estimate": 0.010994867413172647,
+      "ci95_percentile_descriptive": [
+       -0.05023886586643812,
+       0.07065248735557404
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.0631408555572898,
+       0.08227699944606993
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D13": {
+      "contrast": "S_K1 - S_K3",
+      "point_estimate": 0.02435164005213023,
+      "ci95_percentile_descriptive": [
+       -0.03863105283445278,
+       0.08866163111162445
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.05175732743209645,
+       0.10162840490710917
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D23": {
+      "contrast": "S_K2 - S_K3",
+      "point_estimate": 0.013356772638957572,
+      "ci95_percentile_descriptive": [
+       -0.01639619018287556,
+       0.04519889626649311
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.022500727210602943,
+       0.05370253549003661
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     }
+    },
+    "note": "descriptive only; never affects the primary verdict"
+   }
+  },
+  "per_nce_descriptive": {
+   "mapping_by_nce_equal_model_weight": {
+    "K1": {
+     "30": 0.5896321769527367,
+     "60": 0.5245077294027586
+    },
+    "K2": {
+     "30": 0.5512810410338321,
+     "60": 0.47822257230622645
+    },
+    "K3": {
+     "30": 0.563299167508568,
+     "60": 0.4501754373844505
+    }
+   },
+   "model_by_mapping_by_nce": {
+    "ICEBERG_2_1": {
+     "K1": {
+      "30": 0.5517846803959681,
+      "60": 0.5725204606226318
+     },
+     "K2": {
+      "30": 0.5024786570170563,
+      "60": 0.4745436327970152
+     },
+     "K3": {
+      "30": 0.5106120013205914,
+      "60": 0.46106581687731524
+     }
+    },
+    "GLACIER": {
+     "K1": {
+      "30": 0.6274796735095054,
+      "60": 0.47649499818288543
+     },
+     "K2": {
+      "30": 0.6000834250506079,
+      "60": 0.4819015118154376
+     },
+     "K3": {
+      "30": 0.6159863336965447,
+      "60": 0.4392850578915857
+     }
+    }
+   },
+   "note": "descriptive only; never affects the primary verdict"
+  }
+ },
+ "verdict": "INTERFACE_UNRESOLVED",
+ "supported_mapping": null,
+ "MODEL_ORDERING_DISAGREEMENT": false,
+ "robustness_jensen_shannon": {
+  "metric": "js",
+  "completeness_and_drops": {
+   "metric": "js",
+   "n_population_manifest": 33,
+   "n_records_submitted": 414,
+   "n_records_dropped": 0,
+   "n_records_kept": 414,
+   "n_expected_cells": 396,
+   "n_cells_absent_from_score_table": 0,
+   "n_cells_with_no_surviving_record": 0,
+   "mechanically_complete": true,
+   "n_compounds_dropped": 0,
+   "n_compounds_analysed": 33,
+   "n_compounds_outside_population_manifest": 0,
+   "compounds_outside_population_manifest": [],
+   "dropped_records": [],
+   "empty_cells": [],
+   "dropped_compounds": [],
+   "paired_invariant": "a dropped compound is dropped identically for all three mappings"
+  },
+  "n_compounds_analysed": 33,
+  "n_resampling_units_analysed": 33,
+  "composite_scores": {
+   "K1": 0.5579387841156952,
+   "K2": 0.5102249262866764,
+   "K3": 0.5048837082333187
+  },
+  "contrasts": {
+   "D12": {
+    "contrast": "S_K1 - S_K2",
+    "point_estimate": 0.047713857829018796,
+    "ci95_percentile_descriptive": [
+     0.0130984174709201,
+     0.08360349539569376
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     0.006401118245923772,
+     0.0917716544768064
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   },
+   "D13": {
+    "contrast": "S_K1 - S_K3",
+    "point_estimate": 0.053055075882376505,
+    "ci95_percentile_descriptive": [
+     0.01692011576667767,
+     0.09054184794614732
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     0.009875829819508054,
+     0.09906397009749057
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   },
+   "D23": {
+    "contrast": "S_K2 - S_K3",
+    "point_estimate": 0.005341218053357699,
+    "ci95_percentile_descriptive": [
+     -0.004809062854652224,
+     0.015281618410616857
+    ],
+    "ci_bonferroni_adjusted_primary": [
+     -0.007069608821150702,
+     0.017815648684519254
+    ],
+    "adjusted_level": 0.9833333333333333,
+    "n_boot": 10000,
+    "n_units": 33
+   }
+  },
+  "replicate_weights_sha256": "0f824793ac296c6dae362436a04d03681e823110de05181fdcf4a7698aaee2d1",
+  "replicate_weights_shared_across_contrasts": true,
+  "decision": {
+   "verdict": "SUPPORTED",
+   "supported_mapping": "K1",
+   "leader": "K1",
+   "tied_leaders": [
+    "K1"
+   ],
+   "criterion_a_unique_highest_score": true,
+   "criterion_b_all_adjusted_intervals_above_zero": true,
+   "advantage_intervals_adjusted": {
+    "K1_over_K2": {
+     "ci_bonferroni_adjusted": [
+      0.006401118245923772,
+      0.0917716544768064
+     ],
+     "wholly_above_zero": true
+    },
+    "K1_over_K3": {
+     "ci_bonferroni_adjusted": [
+      0.009875829819508054,
+      0.09906397009749057
+     ],
+     "wholly_above_zero": true
+    }
+   },
+   "composite_scores": {
+    "K1": 0.5579387841156952,
+    "K2": 0.5102249262866764,
+    "K3": 0.5048837082333187
+   },
+   "reasons": [
+    "both frozen criteria met"
+   ]
+  },
+  "model_agreement": {
+   "per_model_mean_scores": {
+    "ICEBERG_2_1": {
+     "K1": 0.5558945738559852,
+     "K2": 0.4909519852998294,
+     "K3": 0.48590095446678205
+    },
+    "GLACIER": {
+     "K1": 0.5599829943754052,
+     "K2": 0.5294978672735234,
+     "K3": 0.5238664619998554
+    }
+   },
+   "orderings_best_to_worst": {
+    "ICEBERG_2_1": [
+     "K1",
+     "K2",
+     "K3"
+    ],
+    "GLACIER": [
+     "K1",
+     "K2",
+     "K3"
+    ]
+   },
+   "MODEL_ORDERING_DISAGREEMENT": false,
+   "note": "the two models order K1, K2 and K3 identically"
+  },
+  "per_model_contrasts_descriptive": {
+   "ICEBERG_2_1": {
+    "mean_scores": {
+     "K1": 0.5558945738559852,
+     "K2": 0.4909519852998294,
+     "K3": 0.48590095446678205
+    },
+    "contrasts": {
+     "D12": {
+      "contrast": "S_K1 - S_K2",
+      "point_estimate": 0.06494258855615577,
+      "ci95_percentile_descriptive": [
+       0.024639458615928145,
+       0.10923909208606747
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       0.016833401498879304,
+       0.11897539462058837
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D13": {
+      "contrast": "S_K1 - S_K3",
+      "point_estimate": 0.06999361938920312,
+      "ci95_percentile_descriptive": [
+       0.027353248911199987,
+       0.11616164284774452
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       0.01958452096346152,
+       0.12637490059583176
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D23": {
+      "contrast": "S_K2 - S_K3",
+      "point_estimate": 0.005051030833047369,
+      "ci95_percentile_descriptive": [
+       -0.004452603269860182,
+       0.015155258414173112
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.006270340531098481,
+       0.017565829478322192
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     }
+    },
+    "note": "descriptive only; never affects the primary verdict"
+   },
+   "GLACIER": {
+    "mean_scores": {
+     "K1": 0.5599829943754053,
+     "K2": 0.5294978672735234,
+     "K3": 0.5238664619998553
+    },
+    "contrasts": {
+     "D12": {
+      "contrast": "S_K1 - S_K2",
+      "point_estimate": 0.030485127101881854,
+      "ci95_percentile_descriptive": [
+       -0.014227366933941402,
+       0.07557634717574441
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.023154513232984245,
+       0.08539657035877388
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D13": {
+      "contrast": "S_K1 - S_K3",
+      "point_estimate": 0.03611653237554988,
+      "ci95_percentile_descriptive": [
+       -0.008279427989358481,
+       0.08298374014411013
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.018032011557653903,
+       0.09329078701638042
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     },
+     "D23": {
+      "contrast": "S_K2 - S_K3",
+      "point_estimate": 0.005631405273668032,
+      "ci95_percentile_descriptive": [
+       -0.012018586942274798,
+       0.023761154613028978
+      ],
+      "ci_bonferroni_adjusted_primary": [
+       -0.01566430994474746,
+       0.027994083552911716
+      ],
+      "adjusted_level": 0.9833333333333333,
+      "n_boot": 10000,
+      "n_units": 33
+     }
+    },
+    "note": "descriptive only; never affects the primary verdict"
+   }
+  },
+  "per_nce_descriptive": {
+   "mapping_by_nce_equal_model_weight": {
+    "K1": {
+     "30": 0.5837425018035916,
+     "60": 0.532135066427799
+    },
+    "K2": {
+     "30": 0.5458809112076132,
+     "60": 0.4745689413657396
+    },
+    "K3": {
+     "30": 0.552440651584667,
+     "60": 0.4573267648819703
+    }
+   },
+   "model_by_mapping_by_nce": {
+    "ICEBERG_2_1": {
+     "K1": {
+      "30": 0.5551429560365032,
+      "60": 0.5566461916754673
+     },
+     "K2": {
+      "30": 0.501497153009655,
+      "60": 0.48040681759000375
+     },
+     "K3": {
+      "30": 0.5048502217907809,
+      "60": 0.4669516871427831
+     }
+    },
+    "GLACIER": {
+     "K1": {
+      "30": 0.6123420475706798,
+      "60": 0.5076239411801307
+     },
+     "K2": {
+      "30": 0.5902646694055713,
+      "60": 0.46873106514147544
+     },
+     "K3": {
+      "30": 0.6000310813785532,
+      "60": 0.4477018426211575
+     }
+    }
+   },
+   "note": "descriptive only; never affects the primary verdict"
+  },
+  "status": "robustness only; can never change the primary decision"
+ },
+ "governance": {
+  "prereg_id": "muru-ce-interface-adjudication-design-a",
+  "one_look_env": "MURU_CE_ADJUDICATION_ONE_LOOK",
+  "freeze_ref": "refs/muru-freeze/muru-ce-interface-adjudication-design-a",
+  "freeze_ref_commit": "518190b46f4e17ab6dc8ccea308bf3aadb48c701",
+  "input_manifest": "artifacts/ce_interface_adjudication/design_a/freeze/input_manifest.json",
+  "sha256_recorded": {
+   "artifacts/ce_interface_adjudication/design_a/scores/record_scores.csv": "51f318e964bcaddd842de0d04557ae86ef96949e7f56f92df89d93946911d70a",
+   "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc"
+  },
+  "sha256_observed": {
+   "artifacts/ce_interface_adjudication/design_a/scores/record_scores.csv": "51f318e964bcaddd842de0d04557ae86ef96949e7f56f92df89d93946911d70a",
+   "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc"
+  }
+ }
+}

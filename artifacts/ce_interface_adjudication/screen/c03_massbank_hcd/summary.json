@@ -1,0 +1,1522 @@
+{
+ "rdkit": "2026.03.5",
+ "inputs": {
+  "exclusion_manifest_sha256": "4c3122a4e3dfe42068c0c1f4bd98bc04a439e7a0fb2041ef09bb2b8fc7655b58",
+  "msg_joined_sha256": "2e07c2264bf242e05fe1c82be15fddefb3a405d05be419aa8a6437250c38890b",
+  "p3_attribution_sha256": "3eea7d3673d5eb029185c69456b20f98ccda61efa6f23ed9de460cc84b53cbd0"
+ },
+ "exclusion_set_sizes": {
+  "msg15_all_recorded": 28929,
+  "msg15_all_parent": 28923,
+  "msg15_train_recorded": 22746,
+  "msg15_val_recorded": 3185,
+  "msg15_test_recorded": 2998,
+  "msg15_simchallenge_all": 16974,
+  "muru_v2_development_population": 1325,
+  "muru_exposed_populations_union": 1912,
+  "muru_exposure_registry_full": 31507,
+  "pr7_msnlib_study2_population": 1794,
+  "comparator_common_population": 1327,
+  "msg15_scaffold_groups_all": 16991,
+  "muru_exposure_registry_scaffold_groups": 18402,
+  "pr7_scaffold_groups": 1691,
+  "comparator_scaffold_groups": 1254
+ },
+ "per_dir": [
+  {
+   "dir": "AAFC",
+   "records_2023_11": 950,
+   "records_blob_same_at_dev": 0,
+   "records_blob_changed_at_dev": 950,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 950,
+   "records_jsonld_200": 950,
+   "records_positive": 874,
+   "records_instrument_types": {
+    "LC-ESI-ITFT": 910,
+    "LC-APCI-ITFT": 40
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 643,
+    "[M+Na]+": 186,
+    "[M-H2O+H]+": 35,
+    "[M-2H2O+H]+": 5,
+    "[M+NH4]+": 5
+   },
+   "records_design_rows_any_structure": 623,
+   "records_design_rows_without_structure": 0,
+   "records_design_rows": 623,
+   "records_title_ce_percent": 0,
+   "records_title_ce_multi_number": 0,
+   "licenses": {
+    "https://creativecommons.org/licenses/by-sa/4.0": 950
+   },
+   "date_published_range": [
+    "2017-07-07",
+    "2017-07-07"
+   ],
+   "compounds_all_records": 145,
+   "compounds_design": 125,
+   "design_compounds_in_msg15_all_recorded": 123,
+   "design_compounds_in_msg15_all_parent": 123,
+   "design_compounds_in_msg15_train_recorded": 94,
+   "design_compounds_in_msg15_val_recorded": 16,
+   "design_compounds_in_msg15_test_recorded": 13,
+   "design_compounds_in_msg15_simchallenge_all": 122,
+   "design_compounds_in_muru_v2_development_population": 37,
+   "design_compounds_in_muru_exposed_populations_union": 38,
+   "design_compounds_in_muru_exposure_registry_full": 50,
+   "design_compounds_in_pr7_msnlib_study2_population": 0,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 123,
+   "design_compounds_after_key_exclusion": 2,
+   "design_scaffold_groups_after_key_exclusion": 1,
+   "design_compounds_after_key_and_scaffold_exclusion": 2,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 1,
+   "design_nce_values_per_compound_median": 5.0,
+   "design_nce_value_set": [
+    10.0,
+    20.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0,
+    55.0
+   ],
+   "all_compounds_after_key_exclusion": 14
+  },
+  {
+   "dir": "Eawag",
+   "records_2023_11": 13210,
+   "records_blob_same_at_dev": 0,
+   "records_blob_changed_at_dev": 13210,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 13210,
+   "records_jsonld_200": 13210,
+   "records_positive": 9459,
+   "records_instrument_types": {
+    "LC-ESI-QFT": 7134,
+    "LC-ESI-ITFT": 6076
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 9453,
+    "[M]+": 6
+   },
+   "records_design_rows_any_structure": 9453,
+   "records_design_rows_without_structure": 0,
+   "records_design_rows": 9453,
+   "records_title_ce_percent": 8673,
+   "records_title_ce_multi_number": 0,
+   "licenses": {
+    "https://creativecommons.org/licenses/by/4.0/": 10613,
+    "https://creativecommons.org/licenses/by-sa/4.0": 2597
+   },
+   "date_published_range": [
+    "2014-01-14",
+    "2023-08-10"
+   ],
+   "compounds_all_records": 1049,
+   "compounds_design": 967,
+   "design_compounds_in_msg15_all_recorded": 953,
+   "design_compounds_in_msg15_all_parent": 952,
+   "design_compounds_in_msg15_train_recorded": 842,
+   "design_compounds_in_msg15_val_recorded": 54,
+   "design_compounds_in_msg15_test_recorded": 57,
+   "design_compounds_in_msg15_simchallenge_all": 951,
+   "design_compounds_in_muru_v2_development_population": 384,
+   "design_compounds_in_muru_exposed_populations_union": 460,
+   "design_compounds_in_muru_exposure_registry_full": 621,
+   "design_compounds_in_pr7_msnlib_study2_population": 0,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 953,
+   "design_compounds_after_key_exclusion": 7,
+   "design_scaffold_groups_after_key_exclusion": 6,
+   "design_compounds_after_key_and_scaffold_exclusion": 2,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 2,
+   "design_nce_values_per_compound_median": 7.0,
+   "design_nce_value_set": [
+    15.0,
+    30.0,
+    35.0,
+    45.0,
+    60.0,
+    75.0,
+    90.0,
+    120.0,
+    150.0,
+    180.0
+   ],
+   "all_compounds_after_key_exclusion": 39
+  },
+  {
+   "dir": "Eawag_Additional_Specs",
+   "records_2023_11": 968,
+   "records_blob_same_at_dev": 228,
+   "records_blob_changed_at_dev": 740,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 968,
+   "records_jsonld_200": 968,
+   "records_positive": 855,
+   "records_instrument_types": {
+    "LC-ESI-QFT": 928,
+    "LC-ESI-ITFT": 40
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 855
+   },
+   "records_design_rows_any_structure": 855,
+   "records_design_rows_without_structure": 199,
+   "records_design_rows": 656,
+   "records_title_ce_percent": 189,
+   "records_title_ce_multi_number": 155,
+   "licenses": {
+    "https://creativecommons.org/licenses/by/4.0/": 779,
+    "https://creativecommons.org/licenses/by-sa/4.0": 189
+   },
+   "date_published_range": [
+    "2016-01-07",
+    "2020-12-17"
+   ],
+   "compounds_all_records": 423,
+   "compounds_design": 157,
+   "design_compounds_in_msg15_all_recorded": 154,
+   "design_compounds_in_msg15_all_parent": 154,
+   "design_compounds_in_msg15_train_recorded": 143,
+   "design_compounds_in_msg15_val_recorded": 6,
+   "design_compounds_in_msg15_test_recorded": 5,
+   "design_compounds_in_msg15_simchallenge_all": 154,
+   "design_compounds_in_muru_v2_development_population": 18,
+   "design_compounds_in_muru_exposed_populations_union": 20,
+   "design_compounds_in_muru_exposure_registry_full": 26,
+   "design_compounds_in_pr7_msnlib_study2_population": 0,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 154,
+   "design_compounds_after_key_exclusion": 3,
+   "design_scaffold_groups_after_key_exclusion": 2,
+   "design_compounds_after_key_and_scaffold_exclusion": 1,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 1,
+   "design_nce_values_per_compound_median": 4.0,
+   "design_nce_value_set": [
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0,
+    55.0,
+    60.0,
+    65.0,
+    70.0,
+    75.0,
+    80.0,
+    85.0,
+    90.0,
+    95.0,
+    120.0,
+    150.0,
+    160.0,
+    180.0
+   ],
+   "all_compounds_after_key_exclusion": 260
+  },
+  {
+   "dir": "HBM4EU",
+   "records_2023_11": 3204,
+   "records_blob_same_at_dev": 0,
+   "records_blob_changed_at_dev": 3204,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 3204,
+   "records_jsonld_200": 3204,
+   "records_positive": 2629,
+   "records_instrument_types": {
+    "LC-ESI-ITFT": 2444,
+    "LC-ESI-QFT": 461,
+    "LC-ESI-QTOF": 150,
+    "ESI-QTOF": 149
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 2629
+   },
+   "records_design_rows_any_structure": 2330,
+   "records_design_rows_without_structure": 72,
+   "records_design_rows": 2258,
+   "records_title_ce_percent": 2854,
+   "records_title_ce_multi_number": 0,
+   "licenses": {
+    "https://creativecommons.org/publicdomain/zero/1.0/": 3204
+   },
+   "date_published_range": [
+    "2018-09-08",
+    "2021-10-11"
+   ],
+   "compounds_all_records": 249,
+   "compounds_design": 150,
+   "design_compounds_in_msg15_all_recorded": 148,
+   "design_compounds_in_msg15_all_parent": 148,
+   "design_compounds_in_msg15_train_recorded": 132,
+   "design_compounds_in_msg15_val_recorded": 10,
+   "design_compounds_in_msg15_test_recorded": 6,
+   "design_compounds_in_msg15_simchallenge_all": 145,
+   "design_compounds_in_muru_v2_development_population": 28,
+   "design_compounds_in_muru_exposed_populations_union": 32,
+   "design_compounds_in_muru_exposure_registry_full": 52,
+   "design_compounds_in_pr7_msnlib_study2_population": 2,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 148,
+   "design_compounds_after_key_exclusion": 1,
+   "design_scaffold_groups_after_key_exclusion": 1,
+   "design_compounds_after_key_and_scaffold_exclusion": 0,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 0,
+   "design_nce_values_per_compound_median": 6.0,
+   "design_nce_value_set": [
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    42.0,
+    45.0,
+    50.0,
+    55.0,
+    60.0,
+    65.0,
+    70.0,
+    75.0,
+    80.0,
+    85.0,
+    90.0,
+    95.0,
+    100.0,
+    105.0,
+    110.0,
+    115.0,
+    120.0,
+    125.0,
+    130.0,
+    135.0,
+    140.0,
+    145.0,
+    150.0,
+    155.0,
+    160.0,
+    165.0,
+    170.0,
+    175.0,
+    180.0,
+    185.0
+   ],
+   "all_compounds_after_key_exclusion": 92
+  },
+  {
+   "dir": "NaToxAq",
+   "records_2023_11": 3756,
+   "records_blob_same_at_dev": 0,
+   "records_blob_changed_at_dev": 3756,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 3756,
+   "records_jsonld_200": 3756,
+   "records_positive": 3756,
+   "records_instrument_types": {
+    "LC-ESI-ITFT": 3756
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 3660,
+    "[M+Na]+": 96
+   },
+   "records_design_rows_any_structure": 3660,
+   "records_design_rows_without_structure": 0,
+   "records_design_rows": 3660,
+   "records_title_ce_percent": 3756,
+   "records_title_ce_multi_number": 0,
+   "licenses": {
+    "https://creativecommons.org/licenses/by/4.0/": 2239,
+    "https://creativecommons.org/publicdomain/zero/1.0/": 1517
+   },
+   "date_published_range": [
+    "2018-08-29",
+    "2020-02-22"
+   ],
+   "compounds_all_records": 125,
+   "compounds_design": 122,
+   "design_compounds_in_msg15_all_recorded": 121,
+   "design_compounds_in_msg15_all_parent": 120,
+   "design_compounds_in_msg15_train_recorded": 118,
+   "design_compounds_in_msg15_val_recorded": 1,
+   "design_compounds_in_msg15_test_recorded": 2,
+   "design_compounds_in_msg15_simchallenge_all": 120,
+   "design_compounds_in_muru_v2_development_population": 57,
+   "design_compounds_in_muru_exposed_populations_union": 60,
+   "design_compounds_in_muru_exposure_registry_full": 99,
+   "design_compounds_in_pr7_msnlib_study2_population": 0,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 121,
+   "design_compounds_after_key_exclusion": 0,
+   "design_scaffold_groups_after_key_exclusion": 0,
+   "design_compounds_after_key_and_scaffold_exclusion": 0,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 0,
+   "design_nce_values_per_compound_median": 20.0,
+   "design_nce_value_set": [
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0,
+    55.0,
+    60.0,
+    65.0,
+    70.0,
+    75.0,
+    80.0,
+    85.0,
+    90.0,
+    95.0,
+    100.0,
+    105.0,
+    110.0,
+    115.0,
+    120.0,
+    125.0,
+    130.0,
+    140.0,
+    150.0,
+    160.0,
+    170.0,
+    180.0
+   ],
+   "all_compounds_after_key_exclusion": 0
+  },
+  {
+   "dir": "UFZ",
+   "records_2023_11": 3261,
+   "records_blob_same_at_dev": 0,
+   "records_blob_changed_at_dev": 3261,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 3242,
+   "records_jsonld_200": 3242,
+   "records_positive": 3027,
+   "records_instrument_types": {
+    "LC-ESI-ITFT": 3101,
+    "APCI-ITFT": 62,
+    "ESI-ITFT": 45,
+    "LC-ESI-QFT": 34,
+    "NaN": 19
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 2851,
+    "[M+Na]+": 124,
+    "[M]+": 52
+   },
+   "records_design_rows_any_structure": 2812,
+   "records_design_rows_without_structure": 0,
+   "records_design_rows": 2812,
+   "records_title_ce_percent": 2418,
+   "records_title_ce_multi_number": 0,
+   "licenses": {
+    "https://creativecommons.org/publicdomain/zero/1.0/": 2259,
+    "https://creativecommons.org/licenses/by/4.0/": 983,
+    "NaN": 19
+   },
+   "date_published_range": [
+    "2014-06-24",
+    "2023-08-13"
+   ],
+   "compounds_all_records": 465,
+   "compounds_design": 434,
+   "design_compounds_in_msg15_all_recorded": 431,
+   "design_compounds_in_msg15_all_parent": 430,
+   "design_compounds_in_msg15_train_recorded": 403,
+   "design_compounds_in_msg15_val_recorded": 14,
+   "design_compounds_in_msg15_test_recorded": 14,
+   "design_compounds_in_msg15_simchallenge_all": 431,
+   "design_compounds_in_muru_v2_development_population": 202,
+   "design_compounds_in_muru_exposed_populations_union": 227,
+   "design_compounds_in_muru_exposure_registry_full": 299,
+   "design_compounds_in_pr7_msnlib_study2_population": 0,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 431,
+   "design_compounds_after_key_exclusion": 2,
+   "design_scaffold_groups_after_key_exclusion": 2,
+   "design_compounds_after_key_and_scaffold_exclusion": 0,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 0,
+   "design_nce_values_per_compound_median": 6.0,
+   "design_nce_value_set": [
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    45.0,
+    50.0,
+    55.0,
+    60.0,
+    61.67,
+    65.0,
+    70.0,
+    75.0,
+    80.0,
+    85.0,
+    90.0,
+    95.0,
+    100.0,
+    105.0,
+    110.0,
+    115.0,
+    120.0,
+    125.0
+   ],
+   "all_compounds_after_key_exclusion": 12
+  },
+  {
+   "dir": "ALL",
+   "records_2023_11": 25349,
+   "records_blob_same_at_dev": 228,
+   "records_blob_changed_at_dev": 25121,
+   "records_removed_at_dev": 0,
+   "records_in_current_api": 25330,
+   "records_jsonld_200": 25330,
+   "records_positive": 20600,
+   "records_instrument_types": {
+    "LC-ESI-ITFT": 16327,
+    "LC-ESI-QFT": 8557,
+    "LC-ESI-QTOF": 150,
+    "ESI-QTOF": 149,
+    "APCI-ITFT": 62,
+    "ESI-ITFT": 45,
+    "LC-APCI-ITFT": 40,
+    "NaN": 19
+   },
+   "records_adducts_positive": {
+    "[M+H]+": 20091,
+    "[M+Na]+": 406,
+    "[M]+": 58,
+    "[M-H2O+H]+": 35,
+    "[M-2H2O+H]+": 5,
+    "[M+NH4]+": 5
+   },
+   "records_design_rows_any_structure": 19733,
+   "records_design_rows_without_structure": 271,
+   "records_design_rows": 19462,
+   "records_title_ce_percent": 17890,
+   "records_title_ce_multi_number": 155,
+   "licenses": {
+    "https://creativecommons.org/licenses/by/4.0/": 14614,
+    "https://creativecommons.org/publicdomain/zero/1.0/": 6980,
+    "https://creativecommons.org/licenses/by-sa/4.0": 3736,
+    "NaN": 19
+   },
+   "date_published_range": [
+    "2014-01-14",
+    "2023-08-13"
+   ],
+   "compounds_all_records": 2121,
+   "compounds_design": 1639,
+   "design_compounds_in_msg15_all_recorded": 1615,
+   "design_compounds_in_msg15_all_parent": 1612,
+   "design_compounds_in_msg15_train_recorded": 1445,
+   "design_compounds_in_msg15_val_recorded": 88,
+   "design_compounds_in_msg15_test_recorded": 82,
+   "design_compounds_in_msg15_simchallenge_all": 1609,
+   "design_compounds_in_muru_v2_development_population": 539,
+   "design_compounds_in_muru_exposed_populations_union": 637,
+   "design_compounds_in_muru_exposure_registry_full": 911,
+   "design_compounds_in_pr7_msnlib_study2_population": 2,
+   "design_compounds_in_comparator_common_population": 0,
+   "design_compounds_in_msg15_any": 1615,
+   "design_compounds_after_key_exclusion": 15,
+   "design_scaffold_groups_after_key_exclusion": 11,
+   "design_compounds_after_key_and_scaffold_exclusion": 5,
+   "design_scaffold_groups_after_key_and_scaffold_exclusion": 4,
+   "design_nce_values_per_compound_median": 7.0,
+   "design_nce_value_set": [
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    35.0,
+    40.0,
+    42.0,
+    45.0,
+    50.0,
+    55.0,
+    60.0,
+    61.67,
+    65.0,
+    70.0,
+    75.0,
+    80.0,
+    85.0,
+    90.0,
+    95.0,
+    100.0,
+    105.0,
+    110.0,
+    115.0,
+    120.0,
+    125.0,
+    130.0,
+    135.0,
+    140.0,
+    145.0,
+    150.0,
+    155.0,
+    160.0,
+    165.0,
+    170.0,
+    175.0,
+    180.0,
+    185.0
+   ],
+   "all_compounds_after_key_exclusion": 416
+  }
+ ],
+ "added_after_2023_11": [
+  {
+   "dir": "AAFC",
+   "n_2023_11": 950,
+   "n_dev": 950,
+   "n_added_after_2023_11": 0,
+   "added_prefixes": {}
+  },
+  {
+   "dir": "Eawag",
+   "n_2023_11": 13210,
+   "n_dev": 21387,
+   "n_added_after_2023_11": 8177,
+   "added_prefixes": {
+    "MSBNK-EAWAG-EC": 1010,
+    "MSBNK-EAWAG-ED": 1536,
+    "MSBNK-Eawag-EQ": 5051,
+    "MSBNK-MLU-ED": 580
+   }
+  },
+  {
+   "dir": "Eawag_Additional_Specs",
+   "n_2023_11": 968,
+   "n_dev": 968,
+   "n_added_after_2023_11": 0,
+   "added_prefixes": {}
+  },
+  {
+   "dir": "HBM4EU",
+   "n_2023_11": 3204,
+   "n_dev": 3204,
+   "n_added_after_2023_11": 0,
+   "added_prefixes": {}
+  },
+  {
+   "dir": "NaToxAq",
+   "n_2023_11": 3756,
+   "n_dev": 3756,
+   "n_added_after_2023_11": 0,
+   "added_prefixes": {}
+  },
+  {
+   "dir": "UFZ",
+   "n_2023_11": 3261,
+   "n_dev": 3279,
+   "n_added_after_2023_11": 18,
+   "added_prefixes": {
+    "MSBNK-UFZ-UFZ": 18
+   }
+  }
+ ],
+ "msg_linkage_arm_by_dir": {
+  "AAFC|[M+H]+": {
+   "both_arms_present": 62,
+   "key_not_in_msg_orbitrap_ce_rows": 23,
+   "key_present_no_ce_match": 58,
+   "percent_converted_only": 8,
+   "raw_only": 492
+  },
+  "AAFC|[M+Na]+": {
+   "both_arms_present": 0,
+   "key_not_in_msg_orbitrap_ce_rows": 8,
+   "key_present_no_ce_match": 63,
+   "percent_converted_only": 0,
+   "raw_only": 115
+  },
+  "Eawag|[M+H]+": {
+   "both_arms_present": 1827,
+   "key_not_in_msg_orbitrap_ce_rows": 105,
+   "key_present_no_ce_match": 431,
+   "percent_converted_only": 4175,
+   "raw_only": 2915
+  },
+  "Eawag_Additional_Specs|[M+H]+": {
+   "both_arms_present": 49,
+   "key_not_in_msg_orbitrap_ce_rows": 3,
+   "key_present_no_ce_match": 20,
+   "percent_converted_only": 87,
+   "raw_only": 485
+  },
+  "HBM4EU|[M+H]+": {
+   "both_arms_present": 391,
+   "key_not_in_msg_orbitrap_ce_rows": 85,
+   "key_present_no_ce_match": 77,
+   "percent_converted_only": 1693,
+   "raw_only": 12
+  },
+  "NaToxAq|[M+H]+": {
+   "both_arms_present": 294,
+   "key_not_in_msg_orbitrap_ce_rows": 57,
+   "key_present_no_ce_match": 295,
+   "percent_converted_only": 2970,
+   "raw_only": 44
+  },
+  "NaToxAq|[M+Na]+": {
+   "both_arms_present": 0,
+   "key_not_in_msg_orbitrap_ce_rows": 0,
+   "key_present_no_ce_match": 28,
+   "percent_converted_only": 68,
+   "raw_only": 0
+  },
+  "UFZ|[M+H]+": {
+   "both_arms_present": 600,
+   "key_not_in_msg_orbitrap_ce_rows": 13,
+   "key_present_no_ce_match": 279,
+   "percent_converted_only": 1487,
+   "raw_only": 472
+  },
+  "UFZ|[M+Na]+": {
+   "both_arms_present": 2,
+   "key_not_in_msg_orbitrap_ce_rows": 28,
+   "key_present_no_ce_match": 25,
+   "percent_converted_only": 60,
+   "raw_only": 9
+  }
+ },
+ "msg_rows_linked_per_dir": {
+  "AAFC": {
+   "msg_rows_linked_converted_only": 8,
+   "msg_rows_linked_raw_only": 1238,
+   "converted_sim_rows": 8,
+   "raw_sim_rows": 1008,
+   "converted_folds": {
+    "train": 8
+   },
+   "raw_folds": {
+    "train": 914,
+    "val": 196,
+    "test": 128
+   },
+   "converted_ce_quantiles_eV_like": [
+    9.899,
+    21.278,
+    28.743
+   ],
+   "raw_ce_values_top": {
+    "30.0": 260,
+    "20.0": 225,
+    "10.0": 184,
+    "35.0": 183,
+    "50.0": 132,
+    "40.0": 124,
+    "55.0": 124,
+    "45.0": 6
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 8
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 1202,
+    "MSnLib_v1_probable": 29,
+    "MSnLib_v1": 7
+   }
+  },
+  "Eawag": {
+   "msg_rows_linked_converted_only": 7040,
+   "msg_rows_linked_raw_only": 6808,
+   "converted_sim_rows": 7040,
+   "raw_sim_rows": 6808,
+   "converted_folds": {
+    "train": 6145,
+    "test": 468,
+    "val": 427
+   },
+   "raw_folds": {
+    "train": 6226,
+    "test": 295,
+    "val": 287
+   },
+   "converted_ce_quantiles_eV_like": [
+    7.831,
+    28.987,
+    100.495
+   ],
+   "raw_ce_values_top": {
+    "15.0": 1134,
+    "45.0": 958,
+    "60.0": 944,
+    "75.0": 902,
+    "30.0": 873,
+    "90.0": 804,
+    "120.0": 395,
+    "150.0": 394,
+    "180.0": 392,
+    "35.0": 12
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 7040
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 5977,
+    "MSnLib_v1_probable": 799,
+    "MSnLib_v1": 32
+   }
+  },
+  "Eawag_Additional_Specs": {
+   "msg_rows_linked_converted_only": 157,
+   "msg_rows_linked_raw_only": 1015,
+   "converted_sim_rows": 157,
+   "raw_sim_rows": 1015,
+   "converted_folds": {
+    "train": 103,
+    "test": 37,
+    "val": 17
+   },
+   "raw_folds": {
+    "train": 959,
+    "val": 36,
+    "test": 20
+   },
+   "converted_ce_quantiles_eV_like": [
+    11.057,
+    44.539,
+    129.946
+   ],
+   "raw_ce_values_top": {
+    "15.0": 354,
+    "30.0": 138,
+    "60.0": 109,
+    "90.0": 84,
+    "75.0": 83,
+    "45.0": 83,
+    "20.0": 41,
+    "70.0": 30,
+    "50.0": 30,
+    "40.0": 28,
+    "10.0": 21,
+    "35.0": 8
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 157
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 1003,
+    "MSnLib_v1_probable": 12
+   }
+  },
+  "HBM4EU": {
+   "msg_rows_linked_converted_only": 2935,
+   "msg_rows_linked_raw_only": 21,
+   "converted_sim_rows": 2935,
+   "raw_sim_rows": 21,
+   "converted_folds": {
+    "train": 2872,
+    "val": 40,
+    "test": 23
+   },
+   "raw_folds": {
+    "train": 18,
+    "val": 2,
+    "test": 1
+   },
+   "converted_ce_quantiles_eV_like": [
+    7.533,
+    33.668,
+    91.461
+   ],
+   "raw_ce_values_top": {
+    "20.0": 7,
+    "30.0": 6,
+    "40.0": 4,
+    "15.0": 3,
+    "60.0": 1
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 2935
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 15,
+    "MSnLib_v1_probable": 5,
+    "MSnLib_v1": 1
+   }
+  },
+  "NaToxAq": {
+   "msg_rows_linked_converted_only": 5442,
+   "msg_rows_linked_raw_only": 58,
+   "converted_sim_rows": 5326,
+   "raw_sim_rows": 58,
+   "converted_folds": {
+    "train": 5368,
+    "test": 41,
+    "val": 33
+   },
+   "raw_folds": {
+    "train": 58
+   },
+   "converted_ce_quantiles_eV_like": [
+    9.966,
+    35.699,
+    75.087
+   ],
+   "raw_ce_values_top": {
+    "20.0": 19,
+    "15.0": 17,
+    "30.0": 11,
+    "35.0": 7,
+    "10.0": 2,
+    "65.0": 1,
+    "45.0": 1
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 5442
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 34,
+    "MSnLib_v1_probable": 23,
+    "MSnLib_v1": 1
+   }
+  },
+  "UFZ": {
+   "msg_rows_linked_converted_only": 2182,
+   "msg_rows_linked_raw_only": 1008,
+   "converted_sim_rows": 2101,
+   "raw_sim_rows": 991,
+   "converted_folds": {
+    "train": 2062,
+    "test": 78,
+    "val": 42
+   },
+   "raw_folds": {
+    "train": 943,
+    "val": 41,
+    "test": 24
+   },
+   "converted_ce_quantiles_eV_like": [
+    6.424,
+    25.602,
+    59.785
+   ],
+   "raw_ce_values_top": {
+    "55.0": 538,
+    "35.0": 276,
+    "80.0": 147,
+    "20.0": 15,
+    "30.0": 14,
+    "90.0": 12,
+    "60.0": 4,
+    "10.0": 2
+   },
+   "converted_source_labels": {
+    "MassBank_or_MoNA": 2182
+   },
+   "raw_source_labels": {
+    "MassBank_or_MoNA": 992,
+    "MSnLib_v1_probable": 14,
+    "MSnLib_v1": 2
+   }
+  }
+ },
+ "msg_arm_share_MH": {
+  "AAFC": {
+   "MH_records_tested": 643,
+   "arm_counts": {
+    "raw_only": 492,
+    "both_arms_present": 62,
+    "key_present_no_ce_match": 58,
+    "key_not_in_msg_orbitrap_ce_rows": 23,
+    "percent_converted_only": 8
+   },
+   "converted_share_of_resolvable": 0.016
+  },
+  "Eawag": {
+   "MH_records_tested": 9453,
+   "arm_counts": {
+    "percent_converted_only": 4175,
+    "raw_only": 2915,
+    "both_arms_present": 1827,
+    "key_present_no_ce_match": 431,
+    "key_not_in_msg_orbitrap_ce_rows": 105
+   },
+   "converted_share_of_resolvable": 0.5889
+  },
+  "Eawag_Additional_Specs": {
+   "MH_records_tested": 644,
+   "arm_counts": {
+    "raw_only": 485,
+    "percent_converted_only": 87,
+    "both_arms_present": 49,
+    "key_present_no_ce_match": 20,
+    "key_not_in_msg_orbitrap_ce_rows": 3
+   },
+   "converted_share_of_resolvable": 0.1521
+  },
+  "HBM4EU": {
+   "MH_records_tested": 2258,
+   "arm_counts": {
+    "percent_converted_only": 1693,
+    "both_arms_present": 391,
+    "key_not_in_msg_orbitrap_ce_rows": 85,
+    "key_present_no_ce_match": 77,
+    "raw_only": 12
+   },
+   "converted_share_of_resolvable": 0.993
+  },
+  "NaToxAq": {
+   "MH_records_tested": 3660,
+   "arm_counts": {
+    "percent_converted_only": 2970,
+    "key_present_no_ce_match": 295,
+    "both_arms_present": 294,
+    "key_not_in_msg_orbitrap_ce_rows": 57,
+    "raw_only": 44
+   },
+   "converted_share_of_resolvable": 0.9854
+  },
+  "UFZ": {
+   "MH_records_tested": 2851,
+   "arm_counts": {
+    "percent_converted_only": 1487,
+    "both_arms_present": 600,
+    "raw_only": 472,
+    "key_present_no_ce_match": 279,
+    "key_not_in_msg_orbitrap_ce_rows": 13
+   },
+   "converted_share_of_resolvable": 0.7591
+  }
+ },
+ "msg_rows_linked_union": {
+  "converted_only_rows": 16960,
+  "raw_only_rows": 9819,
+  "rows_in_both_sets": 0,
+  "converted_sim_rows": 16763,
+  "raw_sim_rows": 9572,
+  "converted_sim_rows_by_fold": {
+   "train": 15608,
+   "test": 601,
+   "val": 554
+  },
+  "raw_sim_rows_by_fold": {
+   "train": 8639,
+   "val": 499,
+   "test": 434
+  },
+  "converted_sim_rows_by_p3_source_label": {
+   "MassBank_or_MoNA": 16763
+  },
+  "raw_sim_rows_by_p3_source_label": {
+   "MassBank_or_MoNA": 8667,
+   "MSnLib_v1_probable": 862,
+   "MSnLib_v1": 43
+  },
+  "context_p3_massbank_or_mona_orbitrap_sim_rows": {
+   "converted_noninteger": 23894,
+   "raw_integer": 18380
+  }
+ },
+ "design_records_in_pr7_population": [
+  {
+   "dir": "HBM4EU",
+   "parent_key": "KSQNKZMAMGACTL",
+   "compound_name": "Cyclopeptin",
+   "n": 6
+  },
+  {
+   "dir": "HBM4EU",
+   "parent_key": "PZPPOCZWRGNKIR",
+   "compound_name": "Chaetocin",
+   "n": 6
+  }
+ ],
+ "design_compounds_nce20_nce60": {
+  "AAFC": {
+   "20_only": 117,
+   "60_only": 0,
+   "both": 0,
+   "neither": 8
+  },
+  "Eawag": {
+   "20_only": 0,
+   "60_only": 945,
+   "both": 0,
+   "neither": 22
+  },
+  "Eawag_Additional_Specs": {
+   "20_only": 13,
+   "60_only": 53,
+   "both": 10,
+   "neither": 81
+  },
+  "HBM4EU": {
+   "20_only": 3,
+   "60_only": 4,
+   "both": 110,
+   "neither": 33
+  },
+  "NaToxAq": {
+   "20_only": 10,
+   "60_only": 3,
+   "both": 105,
+   "neither": 4
+  },
+  "UFZ": {
+   "20_only": 68,
+   "60_only": 62,
+   "both": 165,
+   "neither": 139
+  }
+ },
+ "title_ce_forms_by_dir": {
+  "AAFC": {
+   "N": 950
+  },
+  "Eawag": {
+   "N%": 8673,
+   "N": 4537
+  },
+  "Eawag_Additional_Specs": {
+   "N": 574,
+   "N%": 189,
+   "N-N": 145,
+   "<none>": 50,
+   "(N-Nmz or N) NCE": 10
+  },
+  "HBM4EU": {
+   "N%": 2854,
+   "N eV": 150,
+   "NeV": 149,
+   "CEN": 51
+  },
+  "NaToxAq": {
+   "N%": 3756
+  },
+  "UFZ": {
+   "N%": 2418,
+   "N": 824,
+   "<none>": 19
+  }
+ },
+ "codesearch_head_sample": {
+  "AAFC": {
+   "distinct_files_sampled": 300,
+   "files_blob_identical_to_2023_11": 0,
+   "ce_string_forms": {
+    "N(NCE)": 300
+   },
+   "fragmentation_mode": {
+    "HCD": 300
+   },
+   "instrument": {}
+  },
+  "Eawag": {
+   "distinct_files_sampled": 270,
+   "files_blob_identical_to_2023_11": 0,
+   "ce_string_forms": {
+    "N % (nominal)": 232,
+    "N (nominal)": 38
+   },
+   "fragmentation_mode": {
+    "HCD": 263,
+    "CID": 7
+   },
+   "instrument": {}
+  },
+  "Eawag_Additional_Specs": {
+   "distinct_files_sampled": 300,
+   "files_blob_identical_to_2023_11": 74,
+   "ce_string_forms": {
+    "N (nominal)": 176,
+    "N, N, N, N, N or N (nominal)": 59,
+    "N % (nominal)": 48,
+    "N NCE": 8,
+    "scaled N (m/z=N) to N (m/z=N)": 6,
+    "N-Nmz or N (mz>N) nominal units": 1,
+    "N": 1,
+    "scaled by m/z": 1
+   },
+   "fragmentation_mode": {
+    "HCD": 300
+   },
+   "instrument": {}
+  },
+  "HBM4EU": {
+   "distinct_files_sampled": 200,
+   "files_blob_identical_to_2023_11": 0,
+   "ce_string_forms": {
+    "N% (nominal)": 106,
+    "N % (nominal)": 73,
+    "N eV": 17,
+    "CEN": 3,
+    "N% (nominal) with stepped collision energies N% and N%": 1
+   },
+   "fragmentation_mode": {
+    "HCD": 159,
+    "CID": 41
+   },
+   "instrument": {}
+  },
+  "NaToxAq": {
+   "distinct_files_sampled": 300,
+   "files_blob_identical_to_2023_11": 0,
+   "ce_string_forms": {
+    "N % (nominal)": 180,
+    "N% (nominal)": 120
+   },
+   "fragmentation_mode": {
+    "HCD": 229,
+    "CID": 71
+   },
+   "instrument": {}
+  },
+  "UFZ": {
+   "distinct_files_sampled": 200,
+   "files_blob_identical_to_2023_11": 0,
+   "ce_string_forms": {
+    "N % (nominal)": 188,
+    "N (nominal)": 12
+   },
+   "fragmentation_mode": {
+    "HCD": 192,
+    "CID": 8
+   },
+   "instrument": {}
+  }
+ },
+ "codesearch_head_percent_vs_msg_arm": {
+  "AAFC": {
+   "n_resolvable": 191,
+   "head_percent_and_converted": 0,
+   "head_nopercent_and_raw": 190,
+   "head_percent_but_raw": 0,
+   "head_nopercent_but_converted": 1,
+   "sampled_in_2023_11_tree": 300,
+   "sampled_not_in_2023_11_tree": 0,
+   "sampled_blob_identical": 0,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 300
+   },
+   "frag_mode_by_instrument_type": {
+    "LC-APCI-ITFT|HCD": 7,
+    "LC-ESI-ITFT|HCD": 293
+   }
+  },
+  "Eawag": {
+   "n_resolvable": 65,
+   "head_percent_and_converted": 43,
+   "head_nopercent_and_raw": 22,
+   "head_percent_but_raw": 0,
+   "head_nopercent_but_converted": 0,
+   "sampled_in_2023_11_tree": 112,
+   "sampled_not_in_2023_11_tree": 158,
+   "sampled_blob_identical": 0,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 105,
+    "CID": 7
+   },
+   "frag_mode_by_instrument_type": {
+    "LC-ESI-ITFT|CID": 7,
+    "LC-ESI-ITFT|HCD": 40,
+    "LC-ESI-QFT|HCD": 65
+   }
+  },
+  "Eawag_Additional_Specs": {
+   "n_resolvable": 178,
+   "head_percent_and_converted": 18,
+   "head_nopercent_and_raw": 160,
+   "head_percent_but_raw": 0,
+   "head_nopercent_but_converted": 0,
+   "sampled_in_2023_11_tree": 300,
+   "sampled_not_in_2023_11_tree": 0,
+   "sampled_blob_identical": 74,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 300
+   },
+   "frag_mode_by_instrument_type": {
+    "LC-ESI-ITFT|HCD": 11,
+    "LC-ESI-QFT|HCD": 289
+   }
+  },
+  "HBM4EU": {
+   "n_resolvable": 103,
+   "head_percent_and_converted": 102,
+   "head_nopercent_and_raw": 0,
+   "head_percent_but_raw": 1,
+   "head_nopercent_but_converted": 0,
+   "sampled_in_2023_11_tree": 200,
+   "sampled_not_in_2023_11_tree": 0,
+   "sampled_blob_identical": 0,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 159,
+    "CID": 41
+   },
+   "frag_mode_by_instrument_type": {
+    "ESI-QTOF|CID": 11,
+    "LC-ESI-ITFT|CID": 24,
+    "LC-ESI-ITFT|HCD": 130,
+    "LC-ESI-QFT|HCD": 29,
+    "LC-ESI-QTOF|CID": 6
+   }
+  },
+  "NaToxAq": {
+   "n_resolvable": 250,
+   "head_percent_and_converted": 248,
+   "head_nopercent_and_raw": 0,
+   "head_percent_but_raw": 2,
+   "head_nopercent_but_converted": 0,
+   "sampled_in_2023_11_tree": 300,
+   "sampled_not_in_2023_11_tree": 0,
+   "sampled_blob_identical": 0,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 229,
+    "CID": 71
+   },
+   "frag_mode_by_instrument_type": {
+    "LC-ESI-ITFT|CID": 71,
+    "LC-ESI-ITFT|HCD": 229
+   }
+  },
+  "UFZ": {
+   "n_resolvable": 127,
+   "head_percent_and_converted": 116,
+   "head_nopercent_and_raw": 8,
+   "head_percent_but_raw": 3,
+   "head_nopercent_but_converted": 0,
+   "sampled_in_2023_11_tree": 198,
+   "sampled_not_in_2023_11_tree": 2,
+   "sampled_blob_identical": 0,
+   "frag_mode_in_2023_11_sample": {
+    "HCD": 192,
+    "CID": 6
+   },
+   "frag_mode_by_instrument_type": {
+    "ESI-ITFT|CID": 1,
+    "LC-ESI-ITFT|CID": 5,
+    "LC-ESI-ITFT|HCD": 192
+   }
+  }
+ },
+ "commits_since_2023_11": {
+  "AAFC": [
+   [
+    "dbc9063",
+    "2025-10-27",
+    "Add chemont classification"
+   ],
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ]
+  ],
+  "Eawag": [
+   [
+    "c421681",
+    "2026-07-30",
+    "chore: PR with post-updated records (#399)"
+   ],
+   [
+    "d257cab",
+    "2026-07-30",
+    "Eawag spectra 2026 (#398)"
+   ],
+   [
+    "6275b60",
+    "2026-07-01",
+    "Add Classyfire classes"
+   ],
+   [
+    "06338d1",
+    "2026-02-04",
+    "chore: PR with post-updated records (#372)"
+   ],
+   [
+    "500fd21",
+    "2026-02-02",
+    "upload of CyanoMetDB_01 (#366)"
+   ],
+   [
+    "dbc9063",
+    "2025-10-27",
+    "Add chemont classification"
+   ],
+   [
+    "fd8fb15",
+    "2025-10-24",
+    "Merge files for release 2025.10 (#343)"
+   ],
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ],
+   [
+    "12b1ea6",
+    "2025-02-05",
+    "Change plain PubChem number to corresponding CID and fix some compound info, update legacy.blacklist"
+   ],
+   [
+    "4398ef3",
+    "2025-02-04",
+    "Change plain PubChem number to corresponding CID and fix some compound info"
+   ],
+   [
+    "90fdf6f",
+    "2025-02-04",
+    "Change PubChem SID to CID and fix compound info"
+   ],
+   [
+    "74f840a",
+    "2025-01-31",
+    "Fix CHEBI identifier"
+   ],
+   [
+    "6be0d51",
+    "2024-06-14",
+    "added eawag records"
+   ],
+   [
+    "58f4e12",
+    "2024-05-16",
+    "Adding Eawag PFAS spectra"
+   ],
+   [
+    "3f57a1f",
+    "2024-05-15",
+    "Adding Eawag spectra"
+   ],
+   [
+    "563cce0",
+    "2024-05-15",
+    "Adding Eawag spectra for Meyer et al. 2024"
+   ]
+  ],
+  "Eawag_Additional_Specs": [
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ],
+   [
+    "74f840a",
+    "2025-01-31",
+    "Fix CHEBI identifier"
+   ]
+  ],
+  "HBM4EU": [
+   [
+    "fd8fb15",
+    "2025-10-24",
+    "Merge files for release 2025.10 (#343)"
+   ],
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ],
+   [
+    "74f840a",
+    "2025-01-31",
+    "Fix CHEBI identifier"
+   ]
+  ],
+  "NaToxAq": [
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ],
+   [
+    "74f840a",
+    "2025-01-31",
+    "Fix CHEBI identifier"
+   ]
+  ],
+  "UFZ": [
+   [
+    "2d07d24",
+    "2026-05-07",
+    "Remove PUBLICATION: NA"
+   ],
+   [
+    "fd8fb15",
+    "2025-10-24",
+    "Merge files for release 2025.10 (#343)"
+   ],
+   [
+    "f224a5c",
+    "2025-05-02",
+    "fix: incorrect ChemOnt classifications"
+   ],
+   [
+    "2909674",
+    "2025-04-22",
+    "chore: added links to ChemOnt classification"
+   ],
+   [
+    "90fdf6f",
+    "2025-02-04",
+    "Change PubChem SID to CID and fix compound info"
+   ],
+   [
+    "74f840a",
+    "2025-01-31",
+    "Fix CHEBI identifier"
+   ]
+  ]
+ },
+ "design_compounds_not_in_msg_by_key": {
+  "n": 24,
+  "formula_also_in_msg": 12,
+  "n_scaffold_groups": 17
+ },
+ "design_compounds_after_all_key_exclusions": {
+  "n": 15,
+  "n_scaffold_groups": 11,
+  "n_not_in_any_exclusion_scaffold_set": 5,
+  "n_scaffold_groups_not_in_any_exclusion_scaffold_set": 4,
+  "n_with_msg_tautomer_equal_key": 4,
+  "n_MH_above_1000": 5
+ },
+ "n_records": 25349
+}

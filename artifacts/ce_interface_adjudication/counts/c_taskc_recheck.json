@@ -1,0 +1,235 @@
+{
+ "inputs": {
+  "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/comparator_feasibility/massspecgym15_identity.parquet": "88e2fd1d810e8f3c79d253c042110174ada1b1990d5a4e122a71097b8a975c48",
+  "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/massspecgym15_metadata_columns.parquet": "40d185c7d1fbb3c0023714b5c6d1cd02f179679213162cc03c086dd40504e1f2",
+  "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/p3_msg15_row_source_attribution.parquet": "3eea7d3673d5eb029185c69456b20f98ccda61efa6f23ed9de460cc84b53cbd0"
+ },
+ "C1_mbmona_integer_mult5": {
+  "claim_in_docs": "18,340 MassBank or MoNA integer Orbitrap rows on the {15,30,35,45,60,75,90,120,150,180} ladder",
+  "mbmona_orbitrap_integer_rows": 18365,
+  "subreason_mult5_rows_recomputed": 18340,
+  "of_which_on_the_named_10_value_ladder": 15791,
+  "off_ladder_multiples_of_5": 2549,
+  "off_ladder_value_counts": {
+   "5.0": 16,
+   "10.0": 233,
+   "20.0": 306,
+   "25.0": 43,
+   "40.0": 211,
+   "50.0": 175,
+   "55.0": 733,
+   "65.0": 415,
+   "70.0": 105,
+   "80.0": 308,
+   "85.0": 4
+  }
+ },
+ "C2_train_CAT4_by_source": {
+  "claim_in_docs": "Phase0 4.2B row G4 (MassBank or MoNA, Orbitrap) quotes 'Unresolved arm (n = 23,689)'",
+  "gen_train_CAT4_all_sources": 23689,
+  "gen_train_CAT4_by_subreason": {
+   "mbmona_integer_ce0": 3,
+   "mbmona_integer_mult5": 16431,
+   "mbmona_integer_other": 18,
+   "mbmona_nonint_not_mz_proportional": 12,
+   "msnlib_order_nonladder_or_anomalous": 6,
+   "msnlib_probable_integer_ladder": 7219
+  },
+  "gen_train_unresolved_mbmona_only": 16464,
+  "gen_train_unresolved_probable_msnlib": 7219,
+  "gen_train_unresolved_blockB_anomalous": 6
+ },
+ "C3_mbmona_unresolved_presented_values_gen_train": {
+  "n": 16464,
+  "n_distinct": 30,
+  "min": 0.0,
+  "max": 180.0,
+  "q05": 15.0,
+  "q50": 45.0,
+  "q95": 120.0
+ },
+ "C3_mbmona_unresolved_nonint_rows_gen_train": 12,
+ "C4_orbitrap_integer_ladder_bracket": {
+  "ladder_used": [
+   15.0,
+   20.0,
+   30.0,
+   45.0,
+   60.0,
+   75.0
+  ],
+  "orbitrap_integer_ladder_rows_T_sim": 49891,
+  "block_B_of_those": 30631,
+  "probable_of_those": 8393,
+  "mbmona_of_those": 10867
+ },
+ "C5_instrument_composition_T_sim": {
+  "Orbitrap": 81323,
+  "QTOF": 37706,
+  "other_or_missing": 0
+ },
+ "C6_orbitrap_train_composition": {
+  "orbitrap_rows": 64738,
+  "raw_nce": 19045,
+  "converted": 22004,
+  "unknown": 23689,
+  "pct_raw": 29.4,
+  "pct_conv": 34.0,
+  "pct_unknown": 36.6
+ },
+ "C6_orbitrap_val_composition": {
+  "orbitrap_rows": 8211,
+  "raw_nce": 5792,
+  "converted": 884,
+  "unknown": 1535,
+  "pct_raw": 70.5,
+  "pct_conv": 10.8,
+  "pct_unknown": 18.7
+ },
+ "C7_precursor_support": {
+  "msg15_all_rows_max_precursor_mz": 999.396,
+  "T_sim_max_precursor_mz": 995.556
+ },
+ "C01_screen_recheck": {
+  "ce_string_forms": {
+   "N % (nominal)": 5051
+  },
+  "distinct_nce_values_all_5051_records": {
+   "15.0": 682,
+   "20.0": 29,
+   "25.0": 30,
+   "30.0": 678,
+   "40.0": 29,
+   "45.0": 625,
+   "50.0": 24,
+   "60.0": 631,
+   "70.0": 20,
+   "75.0": 573,
+   "80.0": 17,
+   "90.0": 527,
+   "120.0": 465,
+   "150.0": 386,
+   "180.0": 335
+  },
+  "n_distinct_nce_values": 15,
+  "records_on_modal_9_value_ladder": 4902,
+  "records_off_modal_ladder": 149,
+  "tiers": {
+   "compound_level": {
+    "n_pre_tautomer": 112,
+    "butina_pre_tautomer": 78,
+    "n_post_tautomer": 111,
+    "butina_post_tautomer": 77,
+    "scaffold_groups_post_tautomer": 76,
+    "records_post_tautomer": 897,
+    "mh_ge_500_post_tautomer": 18,
+    "tagged_only_post_tautomer": {
+     "n": 86,
+     "scaffold_groups": 59
+    }
+   },
+   "primary": {
+    "n_pre_tautomer": 59,
+    "butina_pre_tautomer": 42,
+    "n_post_tautomer": 58,
+    "butina_post_tautomer": 41,
+    "scaffold_groups_post_tautomer": 57,
+    "records_post_tautomer": 475,
+    "mh_ge_500_post_tautomer": 18,
+    "tagged_only_post_tautomer": {
+     "n": 46,
+     "scaffold_groups": 45
+    }
+   },
+   "conservative": {
+    "n_pre_tautomer": 45,
+    "butina_pre_tautomer": 30,
+    "n_post_tautomer": 44,
+    "butina_post_tautomer": 29,
+    "scaffold_groups_post_tautomer": 44,
+    "records_post_tautomer": 361,
+    "mh_ge_500_post_tautomer": 16,
+    "tagged_only_post_tautomer": {
+     "n": 33,
+     "scaffold_groups": 33
+    }
+   },
+   "strict": {
+    "n_pre_tautomer": 42,
+    "butina_pre_tautomer": 27,
+    "n_post_tautomer": 41,
+    "butina_post_tautomer": 26,
+    "scaffold_groups_post_tautomer": 41,
+    "records_post_tautomer": 339,
+    "mh_ge_500_post_tautomer": 15,
+    "tagged_only_post_tautomer": {
+     "n": 31,
+     "scaffold_groups": 31
+    }
+   }
+  },
+  "nce_rung_availability": {
+   "primary": {
+    "n_compounds": 58,
+    "compounds_carrying_each_nce": {
+     "15.0": 58,
+     "20.0": 2,
+     "25.0": 2,
+     "30.0": 58,
+     "40.0": 2,
+     "45.0": 56,
+     "50.0": 2,
+     "60.0": 58,
+     "70.0": 2,
+     "75.0": 54,
+     "80.0": 1,
+     "90.0": 51,
+     "120.0": 46,
+     "150.0": 39,
+     "180.0": 34
+    },
+    "median_rungs_in_15_90": 6.0
+   },
+   "conservative": {
+    "n_compounds": 44,
+    "compounds_carrying_each_nce": {
+     "15.0": 44,
+     "20.0": 2,
+     "25.0": 2,
+     "30.0": 44,
+     "40.0": 2,
+     "45.0": 42,
+     "50.0": 2,
+     "60.0": 44,
+     "70.0": 2,
+     "75.0": 40,
+     "80.0": 1,
+     "90.0": 37,
+     "120.0": 33,
+     "150.0": 29,
+     "180.0": 27
+    },
+    "median_rungs_in_15_90": 6.0
+   }
+  },
+  "mh_records": 3295,
+  "mh_instrument_strings": {
+   "Exploris 240 Orbitrap Thermo Scientific": 1704,
+   "Exploris 240 Thermo Scientific": 872,
+   "Q Exactive Plus": 623,
+   "Q Exactive": 96
+  },
+  "mh_resolution": {
+   "17500": 1704,
+   "15000": 1591
+  },
+  "compounds_with_records_from_two_instruments": {
+   "all_415": 4,
+   "ge3_nce_403": 4,
+   "compound_level_clean": 1,
+   "primary": 0,
+   "conservative": 0,
+   "strict": 0
+  }
+ }
+}

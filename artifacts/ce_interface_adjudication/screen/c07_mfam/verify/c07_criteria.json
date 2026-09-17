@@ -1,0 +1,105 @@
+{
+ "agent": "S7",
+ "candidate": "C07 mFam consortium MassBank contribution, Orbitrap subset",
+ "verdict": "UNSUITABLE",
+ "verdict_rule": "SUITABLE_DESIGN_A requires criteria 1-6 MET; criteria 1, 4 and 5 are NOT_MET, and criterion 9 fails independently.",
+ "criteria": [
+  {
+   "n": 1,
+   "criterion": "Absent from MURU development (exposure registry, all populations)",
+   "status": "NOT_MET",
+   "evidence": "MURU exposure-registry overlap (parent_connectivity_key): 783/1848 of all mFam compounds; 368/695 of the Orbitrap+POS+[M+H]+ subset; 114/178 (64.0%) of the multi-energy subset. Not absent; removal is possible but costs most of the subset. Keys: artifacts/ce_interface_adjudication/exclusion/muru_exposure_registry_keys.txt (n=31,507)."
+  },
+  {
+   "n": 2,
+   "criterion": "Absent from the PR #7 (MSnLib confirmation study 2) population",
+   "status": "MET",
+   "evidence": "4/1848 of all mFam compounds intersect the PR #7 population; 1/695 of the Orbitrap+POS+[M+H]+ subset; 0/178 of the multi-energy subset. Set: exclusion/msnlib_study2_population_keys.txt. Caveat: the wider MSnLib 9-library key set overlaps heavily (952/1848 all, 137/178 multi-energy), so chemical-space novelty relative to MSnLib is NOT established, only PR #7 population membership."
+  },
+  {
+   "n": 3,
+   "criterion": "Absent from the comparator benchmark population",
+   "status": "MET",
+   "evidence": "0/1848 of all mFam compounds intersect exclusion/comparator_common_population_keys.txt; 0 in every subset (Orbitrap+POS+[M+H]+ and multi-energy). Exact zero at all three levels."
+  },
+  {
+   "n": 4,
+   "criterion": "Absent from ICEBERG/GLACIER training at compound level (MassSpecGym 1.5, all folds, InChIKey14)",
+   "status": "NOT_MET",
+   "evidence": "1069/1848 (57.8%) of all mFam compounds are in MassSpecGym 1.5 (train 1033, val 11, test 25); 500/695 (71.9%) of the Orbitrap+POS+[M+H]+ subset; 163/178 (91.6%) of the multi-energy subset. The one usable sub-collection is almost entirely inside the training corpus at compound level."
+  },
+  {
+   "n": 5,
+   "criterion": "Known CE semantics (exactly what quantity, documented where)",
+   "status": "NOT_MET",
+   "evidence": "MassBank spec makes COLLISION_ENERGY free text with no canonical quantity: the three worked examples are '20 kV', 'Ramp 10-50 kV' and '10% (nominal)' (downloads/github_docs/MassBank-web_Documentation_MassBankRecordFormat.md lines 792-803). Realized per-lab forms across 7,872 records: BARE_NUMBER 5641, NUMBER_WITH_UNIT 1159, MULTI_OR_RAMP 901, MODE_PREFIXED 50, OTHER 119, MISSING 2. Decisive point: the ONLY lab supplying >=3 energies per compound is MC20, and its CE is a bare unitless integer (ladder 10/20/30/40/60/100), verified in record headers ('AC$MASS_SPECTROMETRY: COLLISION_ENERGY 20' in MSBNK-mFam-MC20_000001, 'COLLISION_ENERGY 10' in MC20_001000). MC20 = Reinke/Boyce/Broadhurst, Edith Cowan University, on a Thermo Q-Exactive Focus. Neither the record, nor the mFam paper (PMC13328316, which says nothing about CE harmonisation or units), nor any located publication states whether that integer is NCE (%) or absolute eV. Other Orbitrap labs are each self-consistent but mutually incompatible: MC09 '15,30,45 (NCE)' (explicit NCE but a single STEPPED spectrum, not three energies), MC14 '50eV', MC19 '35eV'/'45eV', MC22 '30 eV', MC25 '0.3' (LTQ-Orbitrap XL normalised fraction, corroborated by the paper SI template row 'Collision energy 0.3' on an LTQ-Orbitrap XL), MC01 'CID 45'/'HCD 90'. Using a dataset whose CE unit is itself undetermined to adjudicate what CE quantity the checkpoints encode is circular."
+  },
+  {
+   "n": 6,
+   "criterion": "[M+H]+ positive mode available",
+   "status": "MET",
+   "evidence": "[M+H]+ is the most common adduct: 4108 of 7,872 records; positive-mode records 4642. Within the Orbitrap family, 1775 [M+H]+ records over 695 distinct compounds."
+  },
+  {
+   "n": 7,
+   "criterion": "Compatible fragmentation/instrument metadata (HCD beam-type Orbitrap preferred)",
+   "status": "NOT_MET",
+   "evidence": "Orbitrap-family records (MassBank analyzer tokens ITFT + QFT) = 3439/7,872; the remaining 4,433 are ESI-TOF/LC-ESI-QTOF/ESI-QTOF and are outright incompatible with an Orbitrap deployment. Three defects inside the Orbitrap part: (a) FRAGMENTATION_MODE is absent from the ENTIRE mFam collection (GitHub code search 'FRAGMENTATION_MODE repo:MassBank/MassBank-data path:mFam' returns total_count 0), so HCD vs CID is never declared; (b) MC01 mixes CID and HCD within one lab and uses APCI, not ESI; (c) the sole multi-energy lab MC20 declares 'AC$INSTRUMENT_TYPE: LC-ESI-ITFT' while 'AC$INSTRUMENT: Thermo Scientific Q-Exactive Focus' in 2,000/2,000 sampled headers (s7 and prior inst_MC20_pos/neg probes, unanimous) - a systematic mislabel, since a Q Exactive Focus is a quadrupole-Orbitrap (QFT, beam-type HCD), not an ion-trap-FT. Taken literally, LC-ESI-ITFT routes to the ms-pred token 'IT-FT' documented as 'Orbitrap CID' (/Users/aryav/muru-comparators/repos/ms-pred/src/ms_pred/common/chem_utils.py:280), whereas the hardware warrants 'Orbitrap' documented as 'Orbitrap HCD' (chem_utils.py:278). The instrument token for the only usable sub-collection is therefore undecidable from the record, which is disqualifying for MURU's fixed NCE20/NCE60 Orbitrap HCD deployment."
+  },
+  {
+   "n": 8,
+   "criterion": "Multiple energies per compound",
+   "status": "PARTIAL",
+   "evidence": "Only 178/695 (25.6%) of Orbitrap+POS+[M+H]+ compounds carry >=3 distinct single-valued CEs within one lab, and every one of them comes from a single lab: labs_supplying_ge3_energies = {'MC20': 178}. Distribution of max distinct CE per compound (Orbitrap+POS+[M+H]+): {'0': 70, '6': 176, '1': 446, '5': 2, '2': 1} - i.e. 446 compounds have exactly one energy and 176 have the full MC20 6-point ladder. MC09's '15,30,45 (NCE)' is one stepped spectrum, not three energies, so it does not count."
+  },
+  {
+   "n": 9,
+   "criterion": "Structural diversity and scaffold count after all exclusions",
+   "status": "NOT_MET",
+   "evidence": "Design-A target (Orbitrap + POSITIVE + [M+H]+ + >=3 energies), MURU scaffold_group_v2 definition: start 178 keys / 105 groups; after MURU registry 64; after PR #7 and comparator 64; after MassSpecGym 1.5 keys 13 keys / 9 groups; after scaffold-level novelty vs MURU 6; final 6 keys / 6 scaffold groups, of which 4 are '__ACYCLIC__' pseudo-groups (so 2 genuine ring scaffolds) and 0 groups hold >=2 compounds. Final 6 keys: DLFVBJFMPXGRIB, HNYOPLTXPVRDBG, JLGOGFIHBRJQHY, ULQWKETUACYZLI, VJSBNBBOSZJDKB, WSMYVTOQOOLQHP. Relaxing the multi-energy requirement to any Orbitrap+POS+[M+H]+ still yields only 103 keys / 61 groups; dropping the Orbitrap and adduct filters entirely gives 323 keys / 251 groups. A scaffold-split calibration plus a held-out evaluation is not supportable at 6 compounds / 2 real scaffolds."
+  },
+  {
+   "n": 10,
+   "criterion": "License and access",
+   "status": "MET",
+   "evidence": "Uniform CC BY 4.0: {'https://creativecommons.org/licenses/by/4.0/': 7872} over all 7,872 records (JSON-LD 'license' field; record headers carry 'LICENSE: CC BY'). Public, no registration: MassBank 2025.10 release (downloads/massbank_api/metadata.json version 2025.10, timestamp 2025-10-24T10:33:06Z, spectra_count 134,756). All 7,872 record metadata bodies fetched with HTTP 200 and 0 title-parse failures, so identities are obtainable from metadata alone - no spectra download is needed to screen this candidate."
+  },
+  {
+   "n": 11,
+   "criterion": "Release timing / deposition makes hidden MassSpecGym inclusion under a different identifier plausible",
+   "status": "MET",
+   "evidence": "PLAUSIBLE, and untestable from the release. mFam records were published to MassBank between 2023-01-17 and 2025-07-19 (23 of 25 labs in 2023), i.e. before MassSpecGym 1.5. MassSpecGym 1.5 carries a large MassBank-derived block (rows_by_label MassBank_or_MoNA = 84,298 of 231,104, p3_msg15_row_source_attribution_summary.json), and its identifiers are opaque re-numbered strings ('MassSpecGymID0000001' ... 'MassSpecGymID0414174'; 0 of 231,104 rows contain 'MSBNK' or 'mFam'), so source accessions are not recoverable and inclusion cannot be excluded by identifier. Counter-evidence specific to MC20: no MassSpecGym Orbitrap row has collision_energy == 100 (0 of 172,058; max Orbitrap CE 358.4, 2,017 rows > 90), and 0 MassSpecGym Orbitrap [M+H]+ compounds carry MC20's full 10/20/30/40/60/100 ladder, so MC20's own spectra are probably NOT in MassSpecGym even though 163/178 of its compounds appear there via other spectra. Spectrum-level duplication unlikely for MC20; compound-level leakage certain."
+  }
+ ],
+ "headline": {
+  "records": 7872,
+  "labs": 25,
+  "compounds_total_muru_key": 1848,
+  "scaffold_groups_total": 905,
+  "orbitrap_records": 3439,
+  "orbitrap_pos_mh_records": 1775,
+  "orbitrap_pos_mh_compounds": 695,
+  "multi_energy_compounds": 178,
+  "multi_energy_after_all_exclusions_keys": 6,
+  "multi_energy_after_all_exclusions_scaffolds": 6,
+  "multi_energy_after_all_exclusions_real_ring_scaffolds": 2
+ },
+ "data_quality_reconciliations": [
+  {
+   "observation": "905 record-level scaffold_group values vs 900 when collapsed to one per compound key",
+   "cause": "15 compound keys carry two different deposited SMILES tautomer/protomer forms, giving two Bemis-Murcko strings for the same key (creatinine N=C1NCC(=O)N1 vs O=C1CNC=N1; hypoxanthine; flavin mononucleotide; dGDP/IMP/dGMP purine nucleotides)",
+   "impact": "none on the verdict; the ladder uses one scaffold per key"
+  },
+  {
+   "observation": "18 records (8 keys) where the MURU parent_connectivity_key differs from the recorded InChIKey first block",
+   "cause": "MC02 sodium-salt lyso-phospholipids; MURU's LargestFragmentChooser + Uncharger strips the Na counter-ion by design",
+   "impact": "none; this is the intended MURU key definition"
+  },
+  {
+   "observation": "paper reports 2,126 unique metabolites, this screen counts 1,848 distinct MURU compound keys",
+   "cause": "the MURU key is the parent connectivity first block, which merges stereoisomers, salt forms and charge states that the paper counts separately",
+   "impact": "none; 1,848 is the correct denominator for MURU-key exclusion arithmetic"
+  }
+ ],
+ "verification_note": "Re-derived independently by screen_c07_mfam_verify.py from the raw JSON-LD harvest (sha256 90b468547410497c22946d1d95937f829ba24b810ede469459a0cf6e45133f58, 7,872 lines, all HTTP 200) without reading the prior run's c07_records.csv or c07_screen_summary.json. All headline counts reproduce the prior run exactly (1,848 keys; 3,439 Orbitrap records; 695 Orbitrap+POS+[M+H]+ compounds; 178 multi-energy; 6 after all exclusions)."
+}

@@ -1,0 +1,302 @@
+{
+ "precursor_type_sample": {
+  "positive_records_with_precursor_type_evidence": 549,
+  "positive_records_total": 15495,
+  "distribution": {
+   "[M+H]+": 385,
+   "[M]+": 157,
+   "[M+Na]+": 3,
+   "[M+NH4]+": 2,
+   "[M-H2O+H]+": 2
+  },
+  "keys_with_evidence": 369,
+  "keys_by_type": {
+   "[M+H]+": 321,
+   "[M]+": 42,
+   "[M+NH4]+": 2,
+   "[M+Na]+": 2,
+   "[M+H]+;[M-H2O+H]+": 1,
+   "[M-H2O+H]+": 1
+  },
+  "cross_tab_charge_vs_type": {
+   "charge=0 type=[M+H]+": 321,
+   "charge=0 type=[M+H]+;[M-H2O+H]+": 1,
+   "charge=0 type=[M+NH4]+": 2,
+   "charge=0 type=[M+Na]+": 2,
+   "charge=0 type=[M-H2O+H]+": 1,
+   "charge=0 type=[M]+": 1,
+   "charge=1 type=[M]+": 41
+  }
+ },
+ "positive_keys_by_parent_charge": {
+  "0": 954,
+  "1": 116
+ },
+ "msg_qtof_vs_bafg": {
+  "msg_qtof_rows": 53823,
+  "msg_qtof_rows_with_a_bafg_positive_key": 15436,
+  "msg_qtof_rows_on_ladder": 31285,
+  "msg_qtof_rows_on_ladder_with_bafg_key": 13265,
+  "msg_qtof_max_ce": 150.0,
+  "msg_orbitrap_max_ce": 358.40016,
+  "msg_qtof_rows_ce_gt_100": 1849,
+  "msg_qtof_rows_ce_gt_100_with_bafg_key": 1839
+ },
+ "per_key_row_count_comparison": {
+  "keys_compared": 887,
+  "keys_msg_rows_eq_bafg_records": 138,
+  "keys_msg_rows_ge_bafg_records": 447,
+  "median_ratio": 1.0,
+  "examples": [
+   {
+    "index": "AACVULYSNJAKEQ",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 13.0,
+    "ratio": 0.8125
+   },
+   {
+    "index": "AAEVYOVXGOFMJO",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 4.0,
+    "ratio": 0.25
+   },
+   {
+    "index": "AAKJLRGGTJKAMG",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 16.0,
+    "ratio": 1.0
+   },
+   {
+    "index": "AAOVKJBEBIDNHE",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 23.0,
+    "ratio": 1.4375
+   },
+   {
+    "index": "ABDMBNAKYBUEEX",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 10.0,
+    "ratio": 0.625
+   },
+   {
+    "index": "ACQVQJHUIZBTTB",
+    "bafg_records": 9.0,
+    "msg_qtof_rows": 2.0,
+    "ratio": 0.2222222222222222
+   },
+   {
+    "index": "ACTOXUHEUCPTEW",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 6.0,
+    "ratio": 0.375
+   },
+   {
+    "index": "ACWBQPMHZXGDFX",
+    "bafg_records": 16.0,
+    "msg_qtof_rows": 39.0,
+    "ratio": 2.4375
+   }
+  ]
+ },
+ "ce_value_set_fingerprint": {
+  "bafg_keys_with_exact_10_150_step10_ladder": 792,
+  "of_those_present_in_msg_qtof": 662,
+  "msg_qtof_ce_set_exactly_equals_the_ladder": 61,
+  "msg_qtof_ce_set_contains_the_whole_ladder": 163
+ },
+ "v6_pool_detail": [
+  {
+   "key": "BPMVRAQIQQEBLN",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Carbadox",
+   "formula": "C11H10N4O4",
+   "mh": 263.077481266812,
+   "in2023": true
+  },
+  {
+   "key": "HDFFVHSMHLDSLO",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Dibenzyl phosphate",
+   "formula": "C14H15O4P",
+   "mh": 279.07807205681206,
+   "in2023": true
+  },
+  {
+   "key": "HKJKONMZMPUGHJ",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Amido Black 10B",
+   "formula": "C22H16N6O9S2",
+   "mh": 573.0492945588119,
+   "in2023": false
+  },
+  {
+   "key": "ILLQTAPXYCRJRB",
+   "n_records": 32,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "4'-O-Demethyl pantoprazole sulfide",
+   "formula": "C15H13F2N3O3S",
+   "mh": 354.071845182812,
+   "in2023": false
+  },
+  {
+   "key": "IOJWAAXMYYMGMG",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "2-(2-Hydroxyphenyl)-1H-benzimidazole",
+   "formula": "C13H10N2O",
+   "mh": 211.086589406812,
+   "in2023": true
+  },
+  {
+   "key": "IOQPZZOEVPZRBK",
+   "n_records": 6,
+   "n_ce": 5,
+   "ce_min": 10.0,
+   "ce_max": 50.0,
+   "name": "Octylamine",
+   "formula": "C8H19N",
+   "mh": 130.15902607481198,
+   "in2023": true
+  },
+  {
+   "key": "JEFHGYSGNIFAEY",
+   "n_records": 11,
+   "n_ce": 10,
+   "ce_min": 10.0,
+   "ce_max": 100.0,
+   "name": "Sethoxydim",
+   "formula": "C17H29NO3S",
+   "mh": 328.194091254812,
+   "in2023": true
+  },
+  {
+   "key": "LAPRIVJANDLWOK",
+   "n_records": 23,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Laureth-5",
+   "formula": "C22H46O6",
+   "mh": 407.3367156588119,
+   "in2023": false
+  },
+  {
+   "key": "NIONDZDPPYHYKY",
+   "n_records": 15,
+   "n_ce": 14,
+   "ce_min": 10.0,
+   "ce_max": 140.0,
+   "name": "trans-2-Hexenoic acid",
+   "formula": "C6H10O2",
+   "mh": 115.075356026812,
+   "in2023": true
+  },
+  {
+   "key": "OMJKFYKNWZZKTK",
+   "n_records": 13,
+   "n_ce": 12,
+   "ce_min": 10.0,
+   "ce_max": 140.0,
+   "name": "Dacarbazine",
+   "formula": "C6H10N6O",
+   "mh": 183.09888540681197,
+   "in2023": true
+  },
+  {
+   "key": "OQANPHBRHBJGNZ",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Sulfasalazine",
+   "formula": "C18H14N4O5S",
+   "mh": 399.0757670148119,
+   "in2023": true
+  },
+  {
+   "key": "RDLZJCXTAYHYHX",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Tribenzylphosphine oxide",
+   "formula": "C21H21OP",
+   "mh": 321.140278388812,
+   "in2023": true
+  },
+  {
+   "key": "UBGDIDXCMKJWND",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Cetylpyridinium",
+   "formula": "C21H39N",
+   "mh": 306.315526714812,
+   "in2023": true
+  },
+  {
+   "key": "UKNHQPDCWMADJW",
+   "n_records": 9,
+   "n_ce": 8,
+   "ce_min": 10.0,
+   "ce_max": 80.0,
+   "name": "Allopurinol riboside",
+   "formula": "C10H12N4O5",
+   "mh": 269.08804595081205,
+   "in2023": true
+  },
+  {
+   "key": "WVLBCYQITXONBZ",
+   "n_records": 15,
+   "n_ce": 14,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Trimethyl phosphate",
+   "formula": "C3H9O4P",
+   "mh": 141.031121864812,
+   "in2023": true
+  },
+  {
+   "key": "XXQVCGHGQCAKKA",
+   "n_records": 9,
+   "n_ce": 8,
+   "ce_min": 10.0,
+   "ce_max": 80.0,
+   "name": "2-[(4-hydroxy-9,10-dioxoanthracen-1-yl)amino]-5-methylbenzenesulfonic acid",
+   "formula": "C21H15NO6S",
+   "mh": 410.06928466681194,
+   "in2023": false
+  },
+  {
+   "key": "ZSSWXNPRLJLCDU",
+   "n_records": 16,
+   "n_ce": 15,
+   "ce_min": 10.0,
+   "ce_max": 150.0,
+   "name": "Triethylphosphine oxide",
+   "formula": "C6H15OP",
+   "mh": 135.093328196812,
+   "in2023": true
+  }
+ ],
+ "v6_pool_totals": {
+  "keys": 17,
+  "records": 261,
+  "keys_with_full_15_point_ladder": 10,
+  "records_in_massbank_2023_11": 181
+ }
+}

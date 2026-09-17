@@ -1,0 +1,108 @@
+{
+ "study_id": "muru-ce-interface-adjudication-design-a",
+ "step": "40_score_spectra",
+ "governance": {
+  "study_id": "muru-ce-interface-adjudication-design-a",
+  "execute_env_var": "MURU_CE_ADJUDICATION_EXECUTE",
+  "freeze_ref": "refs/muru-freeze/muru-ce-interface-adjudication-design-a",
+  "freeze_ref_sha": "518190b46f4e17ab6dc8ccea308bf3aadb48c701",
+  "population": {
+   "path": "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv",
+   "sha256_recorded": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391",
+   "sha256_observed": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391"
+  },
+  "similarity_frozen_config_sha256": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848",
+  "similarity_frozen_config_sha256_pinned": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848"
+ },
+ "script": {
+  "path": "scripts/ce_interface_adjudication/design_a/40_score_spectra.py",
+  "sha256": "ec0100b5d93ffa2106460c1354a33cf302f00cea93efb92baaa70168a4824bbf"
+ },
+ "similarity_layer": {
+  "path": "scripts/ce_interface_adjudication/design_a/spectrum_similarity.py",
+  "sha256": "6f48cbc02f5958f284cc870c3dbb96e87abad27d817fc7b5dbc0e2282a092353",
+  "frozen_config_sha256": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848",
+  "frozen_config_sha256_pinned": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848",
+  "endpoints": [
+   "cosine_similarity_untransformed",
+   "jensen_shannon_similarity"
+  ],
+  "called_with": "frozen defaults only; no convention passed, allow_override never used"
+ },
+ "inputs": {
+  "population_records_csv": {
+   "path": "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv",
+   "sha256": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391"
+  },
+  "population_manifest": {
+   "path": "artifacts/ce_interface_adjudication/design_a/population/design_a_manifest_sha256.json",
+   "sha256": "836bea34ff40d5ee12c224ccf376b75afc1dd12e6f972031f9d5e8eafb1964da"
+  },
+  "records_dir": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/data/massbank/MassBank-data/Eawag",
+  "prediction_dumps": {
+   "dir": "/Users/aryav/Documents/MURU-ConjectureLab-v1/.claude/worktrees/muru-ce-interface-adjudication/artifacts/ce_interface_adjudication/design_a/prediction_outputs",
+   "sha256": {
+    "iceberg_2_1_msg_simulation__K1_spectra.json": "01bda1bcd903b6551a9b52fd5087e564f246d2fd0d9b0ce7e11345031d7cfdca",
+    "iceberg_2_1_msg_simulation__K2_spectra.json": "215f673edb10f47cace9ebbe3ddf5b7d2663fa4e82882456bc0feb97b296b3d8",
+    "iceberg_2_1_msg_simulation__K3_spectra.json": "5341672c476663d8bf0595243d186b0b72f883a69e2855ac181a6090669dc5d5",
+    "glacier_msg__K1_spectra.json": "2397edbe6dacdf7da3a0b6eea2e889ec97a5cde5c2ef28c85b8888712237591b",
+    "glacier_msg__K2_spectra.json": "a458b77d00518719d7cdb1dc9c0be706c05e4c08f13f0b84b618a4249135b0b9",
+    "glacier_msg__K3_spectra.json": "44f3c77cca5ff448b3e809f5c49cf2be973785c9ce71123f37ad0c5c579dfafa"
+   }
+  }
+ },
+ "outputs": {
+  "score_table": {
+   "path": "artifacts/ce_interface_adjudication/design_a/scores/record_scores.csv",
+   "sha256": "51f318e964bcaddd842de0d04557ae86ef96949e7f56f92df89d93946911d70a"
+  }
+ },
+ "schema": {
+  "columns": [
+   "record_id",
+   "compound_id",
+   "scaffold_group",
+   "nce",
+   "model",
+   "mapping",
+   "cosine",
+   "js",
+   "drop_reason"
+  ],
+  "row_key": "record_id = population record_id + '__' + model + '__' + mapping, unique per row as step 50 requires"
+ },
+ "conventions": {
+  "observed_intensity_column": "PK$PEAK column 1, the absolute intensity (m/z int. rel.int.)",
+  "observed_intensity_column_index": 1,
+  "scale_invariance": "both endpoints are scale invariant, so the absolute/relative choice cannot change any result",
+  "parent_mass_source": "population theoretical_mh (theoretical [M+H]+), never the record's deposited PRECURSOR_M/Z",
+  "prediction_inverse_transform": "applied to the prediction side only, exactly once, by the frozen similarity layer",
+  "spec_id_rule": "f'{compound_id}_NCE{nce}', with the dump's 'pred_' name prefix stripped",
+  "row_order": "population record_id ascending, then model, then mapping, in frozen order",
+  "float_format": "repr(float), the shortest round-tripping decimal; nothing is rounded"
+ },
+ "counts": {
+  "n_population_records": 69,
+  "n_models": 2,
+  "n_mappings": 3,
+  "n_rows": 414,
+  "n_rows_scored": 414,
+  "n_rows_dropped": 0
+ },
+ "drop_reason_counts": {
+  "unreadable_record": 0,
+  "missing_pk_peak_block": 0,
+  "malformed_peak_line": 0,
+  "zero_peaks_after_parsing": 0,
+  "missing_prediction": 0,
+  "empty_prediction": 0
+ },
+ "drop_reason_constants": [
+  "unreadable_record",
+  "missing_pk_peak_block",
+  "malformed_peak_line",
+  "zero_peaks_after_parsing",
+  "missing_prediction",
+  "empty_prediction"
+ ]
+}

@@ -1,0 +1,1100 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_elixdb_lichen.py",
+ "rdkit": "2026.03.5",
+ "frozen_rdkit": "2026.03.5",
+ "gnps_n_records": 534,
+ "gnps_peaks_json_nonnull": 0,
+ "gnps_Adduct_counts": {
+  "M+H": 96,
+  "M-H": 437,
+  "2M+H": 1
+ },
+ "gnps_Ion_Mode_counts": {
+  "Positive": 97,
+  "Negative": 437
+ },
+ "gnps_Instrument_counts": {
+  "Orbitrap": 534
+ },
+ "gnps_Ion_Source_counts": {
+  "LC-ESI": 534
+ },
+ "gnps_Charge_counts": {
+  "1": 96,
+  "-1": 437,
+  "2": 1
+ },
+ "gnps_ms_level_counts": {
+  "2": 534
+ },
+ "gnps_Library_Class_counts": {
+  "2": 534
+ },
+ "gnps_Compound_Source_counts": {
+  "Isolated": 534
+ },
+ "gnps_create_time_counts": {
+  "2024-08-14 09:17:24.0": 534
+ },
+ "gnps_library_membership_counts": {
+  "ELIXDB-LICHEN-DATABASE": 534
+ },
+ "gnps_Data_Collector_counts": {
+  "J Bracegirdle": 534
+ },
+ "gnps_PI_counts": {
+  "Chooi": 534
+ },
+ "gnps_fields": [
+  "Adduct",
+  "CAS_Number",
+  "Charge",
+  "Compound_Name",
+  "Compound_Source",
+  "Data_Collector",
+  "ExactMass",
+  "INCHI",
+  "INCHI_AUX",
+  "Instrument",
+  "Ion_Mode",
+  "Ion_Source",
+  "Library_Class",
+  "PI",
+  "Precursor_MZ",
+  "Pubmed_ID",
+  "Scan",
+  "Smiles",
+  "SpectrumID",
+  "create_time",
+  "library_membership",
+  "ms_level",
+  "scan",
+  "source_file",
+  "spectrum_id",
+  "spectrum_status",
+  "splash",
+  "submit_user",
+  "task",
+  "task_id",
+  "user_id"
+ ],
+ "gnps_inchi_nonempty": 1,
+ "gnps_fields_mentioning_energy": [],
+ "mtbls_s_collision_energy_counts": {
+  "10, 35, 80": 534
+ },
+ "mtbls_s_chemical_class_counts": {
+  "Didepside": 182,
+  "Paraconic acids": 13,
+  "Misc": 8,
+  "Xanthone": 56,
+  "Quinone": 21,
+  "Tridepside": 32,
+  "Terpene": 15,
+  "Depsidone": 121,
+  "Cleavage Products of Depsides and Depsidones": 6,
+  "Dibenzofuran": 23,
+  "Phthalide": 2,
+  "Benzyldepside": 5,
+  "Pyrone": 6,
+  "Tetradepside": 1,
+  "Acid": 6,
+  "Diphenylether": 11,
+  "Terphenyl": 2,
+  "Pulvinic Acid Derivatives": 10,
+  "Biphenyl": 1,
+  "Bisxanthone": 4,
+  "Naphthopyrone": 4,
+  "Chromone": 2,
+  "Epidithiopiperazine-2,5-dione": 3
+ },
+ "mtbls_a_Parameter Value[Scan polarity]_counts": {
+  "alternating": 534
+ },
+ "mtbls_a_Parameter Value[Scan m/z range]_counts": {
+  "100-1000": 534
+ },
+ "mtbls_a_Parameter Value[Instrument]_counts": {
+  "Thermo Scientific Orbitrap Exploris 120": 534
+ },
+ "mtbls_a_Parameter Value[Mass analyzer]_counts": {
+  "orbitrap": 534
+ },
+ "mtbls_a_Raw Spectral Data File_counts": {
+  "": 534
+ },
+ "mtbls_a_n_distinct_derived_files": 534,
+ "ftp_listing": {
+  "root": {
+   "n_entries": 9,
+   "by_extension": {
+    "DIR": 3,
+    "json": 2,
+    "txt": 3,
+    "tsv": 1
+   },
+   "entries_not_mzxml": [
+    [
+     "FILES/",
+     "2025-02-11 15:05",
+     "-"
+    ],
+    [
+     "HASHES/",
+     "2025-09-08 11:44",
+     "-"
+    ],
+    [
+     "METADATA_REVISIONS/",
+     "2025-09-08 11:43",
+     "-"
+    ],
+    [
+     "MTBLS8109.announcement.json",
+     "2026-06-16 20:32",
+     "592K"
+    ],
+    [
+     "MTBLS8109.mhd.json",
+     "2026-06-16 20:32",
+     "4.4M"
+    ],
+    [
+     "a_MTBLS8109_LC-MS___metabolite_profiling.txt",
+     "2024-09-05 11:22",
+     "365K"
+    ],
+    [
+     "i_Investigation.txt",
+     "2025-09-08 11:43",
+     "9.2K"
+    ],
+    [
+     "m_MTBLS8109_LC-MS___metabolite_profiling_v2_maf.tsv",
+     "2024-10-08 14:05",
+     "358K"
+    ],
+    [
+     "s_MTBLS8109.txt",
+     "2024-09-05 11:28",
+     "151K"
+    ]
+   ],
+   "mzxml_size_strings": {}
+  },
+  "FILES": {
+   "n_entries": 536,
+   "by_extension": {
+    "mzXML": 534,
+    "DIR": 2
+   },
+   "entries_not_mzxml": [
+    [
+     "DERIVED_FILES/",
+     "2024-04-24 21:31",
+     "-"
+    ],
+    [
+     "RAW_FILES/",
+     "2024-04-24 05:38",
+     "-"
+    ]
+   ],
+   "mzxml_size_strings": {
+    "3.7K": 3,
+    "3.0K": 29,
+    "2.7K": 90,
+    "2.6K": 120,
+    "3.3K": 6,
+    "2.9K": 27,
+    "2.8K": 58,
+    "2.5K": 104,
+    "2.4K": 48,
+    "3.1K": 17,
+    "3.2K": 14,
+    "3.4K": 5,
+    "3.5K": 2,
+    "4.0K": 2,
+    "3.6K": 3,
+    "2.3K": 5,
+    "2.2K": 1
+   }
+  },
+  "RAW_FILES": {
+   "n_entries": 534,
+   "by_extension": {
+    "mzXML": 534
+   },
+   "entries_not_mzxml": [],
+   "mzxml_size_strings": {
+    "3.7K": 3,
+    "3.0K": 29,
+    "2.7K": 90,
+    "2.6K": 120,
+    "3.3K": 6,
+    "2.9K": 27,
+    "2.8K": 58,
+    "2.5K": 104,
+    "2.4K": 48,
+    "3.1K": 17,
+    "3.2K": 14,
+    "3.4K": 5,
+    "3.5K": 2,
+    "4.0K": 2,
+    "3.6K": 3,
+    "2.3K": 5,
+    "2.2K": 1
+   }
+  },
+  "DERIVED_FILES": {
+   "n_entries": 534,
+   "by_extension": {
+    "mzXML": 534
+   },
+   "entries_not_mzxml": [],
+   "mzxml_size_strings": {
+    "3.7K": 3,
+    "3.0K": 29,
+    "2.7K": 90,
+    "2.6K": 120,
+    "3.3K": 6,
+    "2.9K": 27,
+    "2.8K": 58,
+    "2.5K": 104,
+    "2.4K": 48,
+    "3.1K": 17,
+    "3.2K": 14,
+    "3.4K": 5,
+    "3.5K": 2,
+    "4.0K": 2,
+    "3.6K": 3,
+    "2.3K": 5,
+    "2.2K": 1
+   }
+  }
+ },
+ "ftp_mzxml_namesets_identical_FILES_RAW_DERIVED": true,
+ "ftp_mzxml_nameset_equals_gnps_source_files": true,
+ "mtbls_announcement": {
+  "license": "https://www.ebi.ac.uk/about/terms-of-use/",
+  "submission_date": "2023-06-30T00:00:00",
+  "public_release_date": "2024-10-09T00:00:00",
+  "revision": 2,
+  "revision_datetime": "2025-09-08T00:00:00"
+ },
+ "mtbls_announcement_n_derived_data_files": 534,
+ "mtbls_announcement_n_supplementary_files": 1068,
+ "mtbls_ws": {
+  "studySize": 50552832,
+  "studyHumanReadable": "48.21MiB",
+  "revisionNumber": 2,
+  "revisionDatetime": "2025-09-08T11:43:33.710336"
+ },
+ "n_gnps_linked_to_mtbls_assay": 534,
+ "n_gnps_linked_to_maf": 534,
+ "gnps_vs_mtbls_adduct_disagreements": 0,
+ "n_key_parsed": 532,
+ "n_unique_keys_all": 518,
+ "n_unique_scaffold_groups_all": 71,
+ "n_key_maf_parsed": 532,
+ "gnps_vs_maf_key_disagreements": 1,
+ "gnps_vs_maf_key_disagreement_examples": [
+  {
+   "compound_name": "4-O-Demethylmicrophyllinic acid",
+   "key": "QRUYEWIRXSISNL",
+   "key_maf": "JVXSDJKOEJVCSL"
+  }
+ ],
+ "formula_maf_vs_rdkit_disagreements": 11,
+ "precursor_mz_inconsistent_gt_0.01Da": 6,
+ "precursor_mz_inconsistent_by_adduct": {
+  "M-H": 6
+ },
+ "precursor_mz_inconsistent_examples": [
+  {
+   "compound_name": "Alternariol methyl ether",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 271.019,
+   "theoretical_precursor_mz": 271.061197484,
+   "precursor_err_da": -0.0421974839999848
+  },
+  {
+   "compound_name": "Perlatolic acid",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 443.207,
+   "theoretical_precursor_mz": 401.05142064799986,
+   "precursor_err_da": 42.15557935200013
+  },
+  {
+   "compound_name": "(-)-allo-Pertusaric acid",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 365.233,
+   "theoretical_precursor_mz": 443.20752736399993,
+   "precursor_err_da": -77.97452736399993
+  },
+  {
+   "compound_name": "Stenosporic acid",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 415.176,
+   "theoretical_precursor_mz": 399.1813126159999,
+   "precursor_err_da": 15.994687384000088
+  },
+  {
+   "compound_name": "Stictic acid",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 385.056,
+   "theoretical_precursor_mz": 371.0408559639999,
+   "precursor_err_da": 14.015144036000095
+  },
+  {
+   "compound_name": "Succinprotocetraric acid",
+   "adduct": "M-H",
+   "precursor_mz_gnps": 473.072,
+   "theoretical_precursor_mz": 457.07763539599983,
+   "precursor_err_da": 15.994364604000168
+  }
+ ],
+ "precursor_err_da_quantiles_consistent": [
+  -0.0011,
+  -0.0009,
+  -0.0004,
+  0.0007,
+  0.001
+ ],
+ "exactmass_inconsistent_gt_0.01Da": 6,
+ "keys_with_multiple_records": 13,
+ "records_in_multi_record_keys": 27,
+ "charged_raw_smiles": 0,
+ "multicomponent_raw_smiles": 0,
+ "exclusion_set_sizes": {
+  "msg15_recorded_all": 28929,
+  "msg15_parent_all": 28923,
+  "msg15_simchallenge_all": 16974,
+  "msg15_recorded_train": 22746,
+  "msg15_recorded_val": 3185,
+  "msg15_recorded_test": 2998,
+  "muru_registry_all": 31507,
+  "muru_registry_direct_reason": 26005,
+  "muru_exposed_union": 33301,
+  "pr7_study2_population": 1794,
+  "comparator_common_population": 1327,
+  "msnlib_9lib": 53612,
+  "msnlib_v1_0_4lib": 19219,
+  "multims2_reserved_validation_secondary": 1525,
+  "muru_exposed_populations_union": 1912,
+  "muru_dev_compounds_csv_keys": 1325,
+  "msg15_scaffold_groups": 16991,
+  "muru_registry_scaffold_groups": 18402,
+  "muru_dev_scaffold_groups": 765,
+  "pr7_scaffold_groups": 1691,
+  "comparator_scaffold_groups": 1254
+ },
+ "muru_exposed_population_sizes": {
+  "ENTACT-MIX-LISTS-499-503-505": 445,
+  "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 781,
+  "LCSB-CONFIRMATION": 110,
+  "LCSB-DEV": 439,
+  "LCSB-NEG": 379,
+  "LCSB-POS-V2-SPECTRA": 478,
+  "LCSB-RAW-MIX-REPLICATE-SET-92": 92,
+  "LCSB-RAW-MIXES-499-503-505": 39,
+  "MultiMS2-ANCHOR": 106,
+  "V2-DEVELOPMENT-POPULATION": 1325,
+  "WUR-DEV-ANALYSIS": 476,
+  "WUR-DEV-HOLD": 130,
+  "WUR-NEG-D6-EXCLUDED": 32,
+  "WUR-NEG-DEV": 209,
+  "WUR-POS-IDENTITY": 1010,
+  "WUR-SEALED": 404
+ },
+ "overlap_unique_keys_by_subset": {
+  "all": {
+   "records": 532,
+   "keys": 518,
+   "scaffold_groups": 71,
+   "in_msg15_recorded_all__unique_keys": 86,
+   "in_msg15_parent_all__unique_keys": 86,
+   "in_msg15_simchallenge_all__unique_keys": 17,
+   "in_msg15_recorded_train__unique_keys": 81,
+   "in_msg15_recorded_val__unique_keys": 3,
+   "in_msg15_recorded_test__unique_keys": 2,
+   "in_muru_registry_all__unique_keys": 10,
+   "in_muru_registry_direct_reason__unique_keys": 8,
+   "in_muru_exposed_union__unique_keys": 10,
+   "in_pr7_study2_population__unique_keys": 0,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 18,
+   "in_msnlib_v1_0_4lib__unique_keys": 12,
+   "in_multims2_reserved_validation_secondary__unique_keys": 0,
+   "in_muru_exposed_populations_union__unique_keys": 6,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 3,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 1,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 0,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 0,
+   "in_pop_LCSB-DEV__unique_keys": 0,
+   "in_pop_LCSB-NEG__unique_keys": 0,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 0,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 3,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 0,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 1,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 2,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 3,
+   "in_pop_WUR-SEALED__unique_keys": 2,
+   "sg_in_msg15_scaffold_groups__unique_keys": 484,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 415,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 92,
+   "sg_in_pr7_scaffold_groups__unique_keys": 28,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 86
+  },
+  "M+H": {
+   "records": 96,
+   "keys": 93,
+   "scaffold_groups": 33,
+   "in_msg15_recorded_all__unique_keys": 21,
+   "in_msg15_parent_all__unique_keys": 21,
+   "in_msg15_simchallenge_all__unique_keys": 4,
+   "in_msg15_recorded_train__unique_keys": 20,
+   "in_msg15_recorded_val__unique_keys": 1,
+   "in_msg15_recorded_test__unique_keys": 0,
+   "in_muru_registry_all__unique_keys": 3,
+   "in_muru_registry_direct_reason__unique_keys": 3,
+   "in_muru_exposed_union__unique_keys": 3,
+   "in_pr7_study2_population__unique_keys": 0,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 6,
+   "in_msnlib_v1_0_4lib__unique_keys": 4,
+   "in_multims2_reserved_validation_secondary__unique_keys": 0,
+   "in_muru_exposed_populations_union__unique_keys": 3,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 1,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 1,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 0,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 0,
+   "in_pop_LCSB-DEV__unique_keys": 0,
+   "in_pop_LCSB-NEG__unique_keys": 0,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 0,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 1,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 0,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 0,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 1,
+   "in_pop_WUR-SEALED__unique_keys": 1,
+   "sg_in_msg15_scaffold_groups__unique_keys": 82,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 69,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 35,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 21
+  },
+  "M-H": {
+   "records": 435,
+   "keys": 427,
+   "scaffold_groups": 59,
+   "in_msg15_recorded_all__unique_keys": 66,
+   "in_msg15_parent_all__unique_keys": 66,
+   "in_msg15_simchallenge_all__unique_keys": 13,
+   "in_msg15_recorded_train__unique_keys": 62,
+   "in_msg15_recorded_val__unique_keys": 2,
+   "in_msg15_recorded_test__unique_keys": 2,
+   "in_muru_registry_all__unique_keys": 7,
+   "in_muru_registry_direct_reason__unique_keys": 5,
+   "in_muru_exposed_union__unique_keys": 7,
+   "in_pr7_study2_population__unique_keys": 0,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 12,
+   "in_msnlib_v1_0_4lib__unique_keys": 8,
+   "in_multims2_reserved_validation_secondary__unique_keys": 0,
+   "in_muru_exposed_populations_union__unique_keys": 3,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 2,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 0,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 0,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 0,
+   "in_pop_LCSB-DEV__unique_keys": 0,
+   "in_pop_LCSB-NEG__unique_keys": 0,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 0,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 2,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 0,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 1,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 2,
+   "in_pop_WUR-SEALED__unique_keys": 1,
+   "sg_in_msg15_scaffold_groups__unique_keys": 404,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 347,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 57,
+   "sg_in_pr7_scaffold_groups__unique_keys": 27,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 66
+  },
+  "positive_mode": {
+   "records": 97,
+   "keys": 94,
+   "scaffold_groups": 34,
+   "in_msg15_recorded_all__unique_keys": 22,
+   "in_msg15_parent_all__unique_keys": 22,
+   "in_msg15_simchallenge_all__unique_keys": 4,
+   "in_msg15_recorded_train__unique_keys": 21,
+   "in_msg15_recorded_val__unique_keys": 1,
+   "in_msg15_recorded_test__unique_keys": 0,
+   "in_muru_registry_all__unique_keys": 3,
+   "in_muru_registry_direct_reason__unique_keys": 3,
+   "in_muru_exposed_union__unique_keys": 3,
+   "in_pr7_study2_population__unique_keys": 0,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 6,
+   "in_msnlib_v1_0_4lib__unique_keys": 4,
+   "in_multims2_reserved_validation_secondary__unique_keys": 0,
+   "in_muru_exposed_populations_union__unique_keys": 3,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 1,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 1,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 0,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 0,
+   "in_pop_LCSB-DEV__unique_keys": 0,
+   "in_pop_LCSB-NEG__unique_keys": 0,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 0,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 1,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 0,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 0,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 1,
+   "in_pop_WUR-SEALED__unique_keys": 1,
+   "sg_in_msg15_scaffold_groups__unique_keys": 83,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 69,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 35,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 22
+  }
+ },
+ "msg_rows_matching_elixdb_keys": {
+  "rows": 631,
+  "keys": 86,
+  "instrument_type": {
+   "Orbitrap": 479,
+   "NA": 84,
+   "QTOF": 68
+  },
+  "adduct": {
+   "[M+H]+": 430,
+   "[M+Na]+": 201
+  },
+  "fold": {
+   "train": 598,
+   "test": 19,
+   "val": 14
+  },
+  "simulation_challenge_rows": 103,
+  "ce_nonnull_rows": 106,
+  "in_msnlib_v1_compound_rows": 388
+ },
+ "msg_overlap_keys_instrument_pattern": {
+  "NA;Orbitrap": 48,
+  "NA;Orbitrap;QTOF": 16,
+  "Orbitrap": 13,
+  "QTOF": 4,
+  "NA;QTOF": 4,
+  "NA": 1
+ },
+ "msg_overlap_keys_with_simulation_rows": 17,
+ "pools": [
+  {
+   "label": "P0 all records",
+   "records": 532,
+   "keys": 518,
+   "scaffold_groups": 71,
+   "acyclic_records": 6,
+   "largest_scaffold_group_key_counts": [
+    180,
+    87,
+    55,
+    28,
+    22,
+    16,
+    12,
+    7
+   ],
+   "singleton_scaffold_groups": 39,
+   "precursor_mz_min_max": [
+    179.035,
+    773.614
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 6,
+   "chemical_class": {
+    "Terpene": 15,
+    "Depsidone": 120,
+    "Tridepside": 32,
+    "Benzyldepside": 5,
+    "Pyrone": 6,
+    "Didepside": 182,
+    "Tetradepside": 1,
+    "Xanthone": 55,
+    "Dibenzofuran": 23,
+    "Quinone": 21,
+    "Acid": 6,
+    "Diphenylether": 11,
+    "Terphenyl": 2,
+    "Pulvinic Acid Derivatives": 10,
+    "Paraconic acids": 13,
+    "Biphenyl": 1,
+    "Phthalide": 2,
+    "Bisxanthone": 4,
+    "Cleavage Products of Depsides and Depsidones": 6,
+    "Naphthopyrone": 4,
+    "Misc": 8,
+    "Chromone": 2,
+    "Epidithiopiperazine-2,5-dione": 3
+   },
+   "elements_records": {
+    "C": 532,
+    "H": 532,
+    "O": 532,
+    "Cl": 121,
+    "N": 5,
+    "S": 3
+   }
+  },
+  {
+   "label": "P1 [M+H]+ records",
+   "records": 96,
+   "keys": 93,
+   "scaffold_groups": 33,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    22,
+    14,
+    12,
+    6,
+    3,
+    3,
+    3,
+    2
+   ],
+   "singleton_scaffold_groups": 22,
+   "precursor_mz_min_max": [
+    197.081,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Terpene": 4,
+    "Benzyldepside": 2,
+    "Depsidone": 15,
+    "Pyrone": 4,
+    "Xanthone": 22,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Pulvinic Acid Derivatives": 3,
+    "Dibenzofuran": 7,
+    "Biphenyl": 1,
+    "Quinone": 4,
+    "Paraconic acids": 2,
+    "Tridepside": 3,
+    "Didepside": 15,
+    "Bisxanthone": 3,
+    "Cleavage Products of Depsides and Depsidones": 3,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 96,
+    "H": 96,
+    "O": 96,
+    "Cl": 27,
+    "N": 1
+   }
+  },
+  {
+   "label": "P2 [M+H]+, key not in MSG1.5 (either route), MURU exposed populations, MURU dev, PR7, comparator",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2,
+    2,
+    2
+   ],
+   "singleton_scaffold_groups": 15,
+   "precursor_mz_min_max": [
+    287.092,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 74,
+    "H": 74,
+    "O": 74,
+    "Cl": 25
+   }
+  },
+  {
+   "label": "P3 [M+H]+, key-level exclusion incl. full MURU registry (conservative)",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2,
+    2,
+    2
+   ],
+   "singleton_scaffold_groups": 15,
+   "precursor_mz_min_max": [
+    287.092,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 74,
+    "H": 74,
+    "O": 74,
+    "Cl": 25
+   }
+  },
+  {
+   "label": "P4 = P3 and key not in MSnLib 9-lib (FIORA proxy)",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2,
+    2,
+    2
+   ],
+   "singleton_scaffold_groups": 15,
+   "precursor_mz_min_max": [
+    287.092,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 74,
+    "H": 74,
+    "O": 74,
+    "Cl": 25
+   }
+  },
+  {
+   "label": "P5 = P3 and scaffold group not in MURU registry/dev, PR7, comparator groups",
+   "records": 17,
+   "keys": 16,
+   "scaffold_groups": 13,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "singleton_scaffold_groups": 10,
+   "precursor_mz_min_max": [
+    321.061,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Depsidone": 3,
+    "Diphenylether": 3,
+    "Terphenyl": 2,
+    "Quinone": 1,
+    "Tridepside": 2,
+    "Dibenzofuran": 1,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 17,
+    "H": 17,
+    "O": 17,
+    "Cl": 2
+   }
+  },
+  {
+   "label": "P6 = P5 and scaffold group not in MSG1.5 scaffold groups (strict)",
+   "records": 11,
+   "keys": 11,
+   "scaffold_groups": 9,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "singleton_scaffold_groups": 7,
+   "precursor_mz_min_max": [
+    321.061,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Terphenyl": 2,
+    "Quinone": 1,
+    "Depsidone": 1,
+    "Tridepside": 2,
+    "Dibenzofuran": 1,
+    "Bisxanthone": 1,
+    "Terpene": 1,
+    "Diphenylether": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 11,
+    "H": 11,
+    "O": 11
+   }
+  },
+  {
+   "label": "P7 = P3 and not (same parent formula AND same scaffold group as some MSG1.5 compound)",
+   "records": 58,
+   "keys": 57,
+   "scaffold_groups": 24,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    15,
+    7,
+    6,
+    4,
+    2,
+    2,
+    2,
+    2
+   ],
+   "singleton_scaffold_groups": 15,
+   "precursor_mz_min_max": [
+    287.092,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 9,
+    "Xanthone": 15,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 5,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 7,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 58,
+    "H": 58,
+    "O": 58,
+    "Cl": 20
+   }
+  },
+  {
+   "label": "P8 = P3 and GNPS precursor consistent with SMILES within 0.01 Da",
+   "records": 74,
+   "keys": 72,
+   "scaffold_groups": 24,
+   "acyclic_records": 0,
+   "largest_scaffold_group_key_counts": [
+    21,
+    13,
+    8,
+    5,
+    2,
+    2,
+    2,
+    2
+   ],
+   "singleton_scaffold_groups": 15,
+   "precursor_mz_min_max": [
+    287.092,
+    681.182
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "chemical_class": {
+    "Benzyldepside": 2,
+    "Depsidone": 11,
+    "Xanthone": 21,
+    "Diphenylether": 4,
+    "Terphenyl": 2,
+    "Dibenzofuran": 6,
+    "Biphenyl": 1,
+    "Quinone": 2,
+    "Tridepside": 3,
+    "Paraconic acids": 1,
+    "Didepside": 14,
+    "Terpene": 2,
+    "Bisxanthone": 1,
+    "Pyrone": 2,
+    "Misc": 1,
+    "Naphthopyrone": 1
+   },
+   "elements_records": {
+    "C": 74,
+    "H": 74,
+    "O": 74,
+    "Cl": 25
+   }
+  },
+  {
+   "label": "N1 [M-H]- records, key-level exclusion (outside MURU domain)",
+   "records": 366,
+   "keys": 361,
+   "scaffold_groups": 40,
+   "acyclic_records": 1,
+   "largest_scaffold_group_key_counts": [
+    153,
+    62,
+    30,
+    26,
+    20,
+    9,
+    7,
+    5
+   ],
+   "singleton_scaffold_groups": 20,
+   "precursor_mz_min_max": [
+    179.035,
+    645.161
+   ],
+   "mh_precursor_outside_70_1042.6": 0,
+   "precursor_inconsistent_gt_0.01Da": 5,
+   "chemical_class": {
+    "Depsidone": 88,
+    "Tridepside": 28,
+    "Didepside": 154,
+    "Tetradepside": 1,
+    "Xanthone": 30,
+    "Dibenzofuran": 13,
+    "Benzyldepside": 3,
+    "Quinone": 12,
+    "Diphenylether": 7,
+    "Paraconic acids": 4,
+    "Terpene": 7,
+    "Phthalide": 2,
+    "Naphthopyrone": 2,
+    "Misc": 5,
+    "Pyrone": 1,
+    "Pulvinic Acid Derivatives": 4,
+    "Cleavage Products of Depsides and Depsidones": 1,
+    "Acid": 1,
+    "Epidithiopiperazine-2,5-dione": 3
+   },
+   "elements_records": {
+    "C": 366,
+    "H": 366,
+    "O": 366,
+    "Cl": 87,
+    "N": 4,
+    "S": 3
+   }
+  }
+ ],
+ "P3_formula_and_scaffold_in_msg": 16
+}

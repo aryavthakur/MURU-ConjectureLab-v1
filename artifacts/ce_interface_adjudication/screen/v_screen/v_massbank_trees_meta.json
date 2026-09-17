@@ -1,0 +1,18 @@
+{
+ "2023.11": {
+  "commit": "9dc52cb29b7ade23e81befc3ce9eb001477ce393",
+  "eawag_tree": "ffe3d9df7c266b6329d4447dd63bb6f693e0381a",
+  "n_files": 13210,
+  "truncated": false,
+  "n_EQ": 7134,
+  "top_dirs": []
+ },
+ "2025.10": {
+  "commit": "fd8fb15e44035c53c9d937307c04ba62ebec606d",
+  "eawag_tree": "b69327f0fef2a18cf60cb6e13cf62e2024f0f933",
+  "n_files": 17591,
+  "truncated": false,
+  "n_EQ": 11515,
+  "top_dirs": []
+ }
+}

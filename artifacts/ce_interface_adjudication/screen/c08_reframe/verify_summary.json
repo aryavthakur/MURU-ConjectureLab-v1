@@ -1,0 +1,177 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c08_reframe_verify.py",
+ "rdkit": "2026.03.5",
+ "frozen_rdkit": "2026.03.5",
+ "processed_csv_verification": {
+  "REFRAME-POSITIVE-LIBRARY.csv": {
+   "sha256": "76a23b60fc309005f200c88deb241d5443cf98cffb56be674dd864cbd2902506",
+   "bytes": 46165951,
+   "total_rows": 88424,
+   "rows_by_membership": {
+    "MONA_ML_Export": 78806,
+    "REFRAME-POSITIVE-LIBRARY": 9618
+   },
+   "collision_energy_nonblank_by_membership": {
+    "REFRAME-POSITIVE-LIBRARY": 0,
+    "MONA_ML_Export": 77123
+   },
+   "own_rows": 9618,
+   "own_collision_energy_nonblank": 0,
+   "own_msDissociationMethod_nonblank": 0,
+   "own_msManufacturer": {
+    "Thermo": 9618
+   },
+   "own_msMassAnalyzer": {
+    "orbitrap": 9618
+   },
+   "own_adducts": {
+    "[M+H]1+": 8110,
+    "[M+Na]1+": 1008,
+    "[M+NH3+H]1+": 350,
+    "[M+K]1+": 1,
+    "[M]1+": 149
+   }
+  },
+  "CMMC-REFRAME-POSITIVE-LIBRARY.csv": {
+   "sha256": "a9b3633b119c45051d76ebad1b1aab047612763ff3cba4210068b4001350a525",
+   "bytes": 49520118,
+   "total_rows": 96016,
+   "rows_by_membership": {
+    "CMMC-REFRAME-POSITIVE-LIBRARY": 17210,
+    "MONA_ML_Export": 78806
+   },
+   "collision_energy_nonblank_by_membership": {
+    "CMMC-REFRAME-POSITIVE-LIBRARY": 0,
+    "MONA_ML_Export": 77123
+   },
+   "own_rows": 17210,
+   "own_collision_energy_nonblank": 0,
+   "own_msDissociationMethod_nonblank": 0,
+   "own_msManufacturer": {
+    "Thermo": 17210
+   },
+   "own_msMassAnalyzer": {
+    "orbitrap": 17210
+   },
+   "own_adducts": {
+    "[M+H]1+": 12304,
+    "[M+Na]1+": 2410,
+    "[M-2H2O+H]1+": 177,
+    "[M-H2O+H]1+": 674,
+    "[M+NH3+H]1+": 800,
+    "[M-2H2O+NH3+H]1+": 171,
+    "[M+K]1+": 223,
+    "[2M+H]1+": 163,
+    "[2M+Na]1+": 134,
+    "[2M+K]1+": 21,
+    "[2M-2H2O+H]1+": 37,
+    "[2M+NH3+H]1+": 60,
+    "[2M-H2O+H]1+": 36
+   }
+  }
+ },
+ "raw_file_collision_energy_metadata": {
+  "source_url": "https://datasetcache.gnps2.org/datasette/database/uniquemri.csv?dataset__exact=MSV000093469&_size=max",
+  "sha256": "b4f8d78059901b63a34f1e776c681ccec9e3f2abf37961bba8aeea5802f01bdd",
+  "rows": 1310,
+  "note": "the `peak/` rows carry the computed per-file summary; the duplicate `ccms_peak/` rows are blank. Top_CEs / Top_CE_Counts are the distinct collision-energy values recorded in the mzML and their scan counts, produced by the (non-public) PerScanSummarizer_Workflow consumed at GNPS_DatasetCache/tasks_compute.py:355-356.",
+  "pos_files": 305,
+  "neg_files": 350,
+  "pos_Top_CEs": {
+   "37": 305
+  },
+  "neg_Top_CEs": {
+   "37": 349,
+   "-1": 1
+  },
+  "pos_MassAnalyzer": {
+   "orbitrap;quadrupole": 305
+  },
+  "pos_Ionization": {
+   "electrospray inlet;electrospray ionization": 305
+  },
+  "pos_classification": {
+   "DDA": 305
+  },
+  "pos_ms2_total": 771634,
+  "pos_ms2_covered_by_top_ce": 771634,
+  "pos_files_where_Top_CE_Counts_ne_spectra_ms2": [],
+  "pos_RT_Range_in_Min": {
+   "15.0": 305
+  },
+  "single_collision_energy_for_every_positive_ms2_scan": true
+ },
+ "identity_csv": {
+  "sha256": "e806e0afbcb8ccdffe1041ab578abd966ef48d5199befb89670a7fdc0fc4d633",
+  "records": 9620
+ },
+ "exclusion_set_sizes": {
+  "msg15_all_either_route": 28952,
+  "msg15_recorded_all": 28929,
+  "msg15_train": 22746,
+  "msg15_val": 3185,
+  "msg15_test": 2998,
+  "muru_registry": 31507,
+  "muru_exposed_union": 33301,
+  "pr7": 1794,
+  "comparator": 1327,
+  "msnlib_9lib": 53612,
+  "msg15_sg": 16991,
+  "muru_registry_sg": 18402,
+  "pr7_sg": 1691,
+  "comparator_sg": 1254
+ },
+ "independent_overlap_all_records": {
+  "records": 9620,
+  "unique_keys": 7351,
+  "unique_scaffold_groups": 5230,
+  "keys_in_msg15_all_either_route": 2643,
+  "keys_in_msg15_recorded_all": 2642,
+  "keys_in_msg15_train": 1863,
+  "keys_in_msg15_val": 388,
+  "keys_in_msg15_test": 391,
+  "keys_in_muru_registry": 2287,
+  "keys_in_muru_exposed_union": 2318,
+  "keys_in_pr7": 31,
+  "keys_in_comparator": 0,
+  "keys_in_msnlib_9lib": 2611
+ },
+ "independent_pools": {
+  "V1 [M+H]+ charge-neutral parent": {
+   "records": 8108,
+   "keys": 7152,
+   "scaffold_groups": 5091,
+   "singleton_scaffold_groups": 4364
+  },
+  "V1b minus MassSpecGym 1.5 (all folds, either key route)": {
+   "records": 5002,
+   "keys": 4536,
+   "scaffold_groups": 3448,
+   "singleton_scaffold_groups": 3019
+  },
+  "V3 minus MURU registry/exposed union, PR#7, comparator": {
+   "records": 4794,
+   "keys": 4353,
+   "scaffold_groups": 3325,
+   "singleton_scaffold_groups": 2919
+  },
+  "V5 = V3 minus MURU/PR7/comparator scaffold groups": {
+   "records": 3390,
+   "keys": 3055,
+   "scaffold_groups": 2745,
+   "singleton_scaffold_groups": 2530
+  },
+  "V8 = V5 with precursor-range / precursor-consistency / no-co-injected-ion filters": {
+   "records": 1858,
+   "keys": 1741,
+   "scaffold_groups": 1631,
+   "singleton_scaffold_groups": 1545
+  }
+ },
+ "identity_recomputation_sample": {
+  "n": 400,
+  "key_match": 400,
+  "scaffold_group_match": 400,
+  "mismatches": []
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "inputs_read": {
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_compound_screen.csv": "683e35d5fe633daabf9ec335678accf9ed90acdf6d2ecb6badc942cce5af0d9e",
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_record_metadata.csv.gz": "31e16fc4a98c2f30551d700f517c2cefa8da466c51c445ed9f638c7635e0d592",
+  "artifacts/ce_interface_adjudication/screen/c01_eawag_eq/c01_tautomer_recheck.csv": "2f284d0d316286d180a6ee886721dee5bf5142da127fd4988d4a99d3490dd4f8"
+ },
+ "outputs_written": {
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_counts.json": "6be257cee4f9e85a85312d0a68eb4f9499985db47a1a8888699f578fc159cbdd",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_exclusion_ledger.csv": "7154e1536d9dbfd049f16bc1a57f29ff8224bd33b2571ad6cbc9d313d66b1f44",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_records.csv": "b71aa58f72aeee48badcc313c02207a8f8851874b4a21bc8d3d63754b4b10391"
+ },
+ "script": "scripts/ce_interface_adjudication/design_a/10_build_population.py",
+ "script_sha256": "e6121278c8554cce64103c76a3de2ee5187f11cc19e1e7208d424d2f0cd3b314"
+}

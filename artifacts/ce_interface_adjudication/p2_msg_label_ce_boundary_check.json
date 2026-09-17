@@ -1,0 +1,35 @@
+{
+ "labels_rows": 119029,
+ "labels_matched_in_msg15": 119029,
+ "labels_ionization_counts": {
+  "[M+H]+": 119029
+ },
+ "labels_instrument_counts": {
+  "Orbitrap": 81323,
+  "QTOF": 37706
+ },
+ "labels_instrument_equals_msg_instrument_type": true,
+ "labels_ce_equals_msg_ce_exact": 93742,
+ "labels_ce_equals_round_msg_ce": 106838,
+ "labels_ce_equals_floor_msg_ce": 119029,
+ "labels_ce_all_integer": true,
+ "msg_ce_nonint_rows": 25274,
+ "msg_ce_nonint_by_instrument": {
+  "Orbitrap": 23913,
+  "QTOF": 1361
+ },
+ "msg_ce_nonint_implied_nce_within_0.05_of_5_step": 0.9456753976418454,
+ "ce_range_labels": [
+  0.0,
+  358.0
+ ],
+ "ce_quantiles_labels": {
+  "0.01": 6.0,
+  "0.5": 30.0,
+  "0.99": 150.0
+ },
+ "precursor_range_labels": [
+  60.081045906016,
+  995.556
+ ]
+}

@@ -1,0 +1,415 @@
+checkpoint,split_scope,split_role,source_library,instrument,raw_nce,nce_times_mz_over_500,other_conversion,unknown_ambiguous,native_ev_not_nce,excluded_or_missing,total_rows,resolved_by_code_provenance,resolved_by_numeric_test,resolved_by_instrument_semantics,unresolved,s1_raw_nce_if_msnlib_probable_accepted,presented_value_rounding
+iceberg21_msg_simulation_gen,train,gradient_updates,ALL,ALL,19045,21982,22,23689,34603,0,99341,19045,22004,34603,23689,26264,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,ALL,Orbitrap,19045,21982,22,23689,0,0,64738,19045,22004,0,23689,26264,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,ALL,QTOF,0,0,0,0,34603,0,34603,0,0,34603,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:MCEBIO,ALL,9717,0,0,0,0,0,9717,9717,0,0,0,9717,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:MCEBIO,Orbitrap,9717,0,0,0,0,0,9717,9717,0,0,0,9717,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:MCESCAF,ALL,6321,0,0,0,0,0,6321,6321,0,0,0,6321,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:MCESCAF,Orbitrap,6321,0,0,0,0,0,6321,6321,0,0,0,6321,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:NIHNP,ALL,162,0,0,0,0,0,162,162,0,0,0,162,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:NIHNP,Orbitrap,162,0,0,0,0,0,162,162,0,0,0,162,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,ALL,2649,0,0,0,0,0,2649,2649,0,0,0,2649,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,Orbitrap,2649,0,0,0,0,0,2649,2649,0,0,0,2649,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,114,0,0,0,0,0,114,114,0,0,0,114,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,114,0,0,0,0,0,114,114,0,0,0,114,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,43,0,0,0,3,0,46,43,0,3,0,43,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,43,0,0,0,0,0,43,43,0,0,0,43,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,12,0,0,0,0,0,12,12,0,0,0,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,12,0,0,0,0,0,12,12,0,0,0,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:unmatched,ALL,17,0,0,6,0,0,23,17,0,0,6,17,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0:unmatched,Orbitrap,17,0,0,6,0,0,23,17,0,0,6,17,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,3589,0,0,3589,0,0,0,3589,3589,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,3589,0,0,3589,0,0,0,3589,3589,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,9,0,0,9,0,0,0,9,9,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,9,0,0,9,0,0,0,9,9,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,2856,0,0,2856,0,0,0,2856,2856,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,2856,0,0,2856,0,0,0,2856,2856,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,99,0,0,99,0,0,0,99,99,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,99,0,0,99,0,0,0,99,99,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,654,0,0,654,0,0,0,654,654,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,654,0,0,654,0,0,0,654,654,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MassBank_or_MoNA,ALL,0,21982,22,16464,34600,0,73068,0,22004,34600,16464,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MassBank_or_MoNA,Orbitrap,0,21982,22,16464,0,0,38468,0,22004,0,16464,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,train,gradient_updates,MassBank_or_MoNA,QTOF,0,0,0,0,34600,0,34600,0,0,34600,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,ALL,ALL,5792,884,0,1535,1523,0,9734,5792,884,1523,1535,6348,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,ALL,Orbitrap,5792,884,0,1535,0,0,8211,5792,884,0,1535,6348,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,ALL,QTOF,0,0,0,0,1523,0,1523,0,0,1523,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,ALL,2882,0,0,0,0,0,2882,2882,0,0,0,2882,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,Orbitrap,2882,0,0,0,0,0,2882,2882,0,0,0,2882,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,ALL,2546,0,0,0,0,0,2546,2546,0,0,0,2546,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,Orbitrap,2546,0,0,0,0,0,2546,2546,0,0,0,2546,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,ALL,31,0,0,0,0,0,31,31,0,0,0,31,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,Orbitrap,31,0,0,0,0,0,31,31,0,0,0,31,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,ALL,301,0,0,0,0,0,301,301,0,0,0,301,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,Orbitrap,301,0,0,0,0,0,301,301,0,0,0,301,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,22,0,0,0,0,0,22,22,0,0,0,22,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,22,0,0,0,0,0,22,22,0,0,0,22,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,4,0,0,0,0,0,4,4,0,0,0,4,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,4,0,0,0,0,0,4,4,0,0,0,4,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,273,0,0,273,0,0,0,273,273,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,273,0,0,273,0,0,0,273,273,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,246,0,0,246,0,0,0,246,246,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,246,0,0,246,0,0,0,246,246,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,17,0,0,17,0,0,0,17,17,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,17,0,0,17,0,0,0,17,17,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,20,0,0,20,0,0,0,20,20,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,20,0,0,20,0,0,0,20,20,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,ALL,0,884,0,979,1523,0,3386,0,884,1523,979,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,Orbitrap,0,884,0,979,0,0,1863,0,884,0,979,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,QTOF,0,0,0,0,1523,0,1523,0,0,1523,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,ALL,ALL,5794,1028,0,1552,1580,0,9954,5794,1028,1580,1552,6412,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,ALL,Orbitrap,5794,1028,0,1552,0,0,8374,5794,1028,0,1552,6412,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,ALL,QTOF,0,0,0,0,1580,0,1580,0,0,1580,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,ALL,2938,0,0,0,0,0,2938,2938,0,0,0,2938,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,Orbitrap,2938,0,0,0,0,0,2938,2938,0,0,0,2938,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,ALL,2604,0,0,0,0,0,2604,2604,0,0,0,2604,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,Orbitrap,2604,0,0,0,0,0,2604,2604,0,0,0,2604,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,ALL,44,0,0,0,0,0,44,44,0,0,0,44,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,Orbitrap,44,0,0,0,0,0,44,44,0,0,0,44,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,ALL,145,0,0,0,0,0,145,145,0,0,0,145,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,Orbitrap,145,0,0,0,0,0,145,145,0,0,0,145,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,45,0,0,0,0,0,45,45,0,0,0,45,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,45,0,0,0,0,0,45,45,0,0,0,45,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,9,0,0,0,0,0,9,9,0,0,0,9,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,9,0,0,0,0,0,9,9,0,0,0,9,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,287,0,0,287,0,0,0,287,287,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,287,0,0,287,0,0,0,287,287,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,3,0,0,3,0,0,0,3,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,3,0,0,3,0,0,0,3,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,291,0,0,291,0,0,0,291,291,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,291,0,0,291,0,0,0,291,291,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,5,0,0,5,0,0,0,5,5,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,5,0,0,5,0,0,0,5,5,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,32,0,0,32,0,0,0,32,32,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,32,0,0,32,0,0,0,32,32,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MassBank_or_MoNA,ALL,0,1028,0,934,1580,0,3542,0,1028,1580,934,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MassBank_or_MoNA,Orbitrap,0,1028,0,934,0,0,1962,0,1028,0,934,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,test,not_used_for_fitting,MassBank_or_MoNA,QTOF,0,0,0,0,1580,0,1580,0,0,1580,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,ALL,ALL,30631,23894,22,26776,37706,0,119029,30631,23916,37706,26776,39024,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,ALL,Orbitrap,30631,23894,22,26776,0,0,81323,30631,23916,0,26776,39024,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,ALL,QTOF,0,0,0,0,37706,0,37706,0,0,37706,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:MCEBIO,ALL,15537,0,0,0,0,0,15537,15537,0,0,0,15537,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:MCEBIO,Orbitrap,15537,0,0,0,0,0,15537,15537,0,0,0,15537,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:MCESCAF,ALL,11471,0,0,0,0,0,11471,11471,0,0,0,11471,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:MCESCAF,Orbitrap,11471,0,0,0,0,0,11471,11471,0,0,0,11471,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:NIHNP,ALL,237,0,0,0,0,0,237,237,0,0,0,237,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:NIHNP,Orbitrap,237,0,0,0,0,0,237,237,0,0,0,237,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:OTAVAPEP,ALL,3095,0,0,0,0,0,3095,3095,0,0,0,3095,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:OTAVAPEP,Orbitrap,3095,0,0,0,0,0,3095,3095,0,0,0,3095,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,181,0,0,0,0,0,181,181,0,0,0,181,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,181,0,0,0,0,0,181,181,0,0,0,181,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,56,0,0,0,3,0,59,56,0,3,0,56,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,56,0,0,0,0,0,56,56,0,0,0,56,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,15,0,0,0,0,0,15,15,0,0,0,15,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,15,0,0,0,0,0,15,15,0,0,0,15,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:unmatched,ALL,29,0,0,6,0,0,35,29,0,0,6,29,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0:unmatched,Orbitrap,29,0,0,6,0,0,35,29,0,0,6,29,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,4149,0,0,4149,0,0,0,4149,4149,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,4149,0,0,4149,0,0,0,4149,4149,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,3393,0,0,3393,0,0,0,3393,3393,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,3393,0,0,3393,0,0,0,3393,3393,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,121,0,0,121,0,0,0,121,121,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,121,0,0,121,0,0,0,121,121,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,706,0,0,706,0,0,0,706,706,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,706,0,0,706,0,0,0,706,706,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MassBank_or_MoNA,ALL,0,23894,22,18377,37703,0,79996,0,23916,37703,18377,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MassBank_or_MoNA,Orbitrap,0,23894,22,18377,0,0,42293,0,23916,0,18377,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_gen,all,all_splits,MassBank_or_MoNA,QTOF,0,0,0,0,37703,0,37703,0,0,37703,0,0,floor (INFERRED int-truncated spectrum-header CE keys)
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,ALL,ALL,19045,11213,14,23689,34217,11163,99341,19045,11227,34217,23689,26264,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,ALL,Orbitrap,19045,11213,14,23689,0,10777,64738,19045,11227,0,23689,26264,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,ALL,QTOF,0,0,0,0,34217,386,34603,0,0,34217,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:MCEBIO,ALL,9717,0,0,0,0,0,9717,9717,0,0,0,9717,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:MCEBIO,Orbitrap,9717,0,0,0,0,0,9717,9717,0,0,0,9717,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:MCESCAF,ALL,6321,0,0,0,0,0,6321,6321,0,0,0,6321,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:MCESCAF,Orbitrap,6321,0,0,0,0,0,6321,6321,0,0,0,6321,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:NIHNP,ALL,162,0,0,0,0,0,162,162,0,0,0,162,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:NIHNP,Orbitrap,162,0,0,0,0,0,162,162,0,0,0,162,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,ALL,2649,0,0,0,0,0,2649,2649,0,0,0,2649,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,Orbitrap,2649,0,0,0,0,0,2649,2649,0,0,0,2649,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,114,0,0,0,0,0,114,114,0,0,0,114,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,114,0,0,0,0,0,114,114,0,0,0,114,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,43,0,0,0,3,0,46,43,0,3,0,43,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,43,0,0,0,0,0,43,43,0,0,0,43,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,12,0,0,0,0,0,12,12,0,0,0,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,12,0,0,0,0,0,12,12,0,0,0,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:unmatched,ALL,17,0,0,6,0,0,23,17,0,0,6,17,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0:unmatched,Orbitrap,17,0,0,6,0,0,23,17,0,0,6,17,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,3589,0,0,3589,0,0,0,3589,3589,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,3589,0,0,3589,0,0,0,3589,3589,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,9,0,0,9,0,0,0,9,9,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,9,0,0,9,0,0,0,9,9,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,2856,0,0,2856,0,0,0,2856,2856,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,2856,0,0,2856,0,0,0,2856,2856,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,99,0,0,99,0,0,0,99,99,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,99,0,0,99,0,0,0,99,99,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,654,0,0,654,0,0,0,654,654,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,654,0,0,654,0,0,0,654,654,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MassBank_or_MoNA,ALL,0,11213,14,16464,34214,11163,73068,0,11227,34214,16464,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MassBank_or_MoNA,Orbitrap,0,11213,14,16464,0,10777,38468,0,11227,0,16464,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,train,gradient_updates,MassBank_or_MoNA,QTOF,0,0,0,0,34214,386,34600,0,0,34214,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,ALL,ALL,5792,420,0,1535,1501,486,9734,5792,420,1501,1535,6348,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,ALL,Orbitrap,5792,420,0,1535,0,464,8211,5792,420,0,1535,6348,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,ALL,QTOF,0,0,0,0,1501,22,1523,0,0,1501,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,ALL,2882,0,0,0,0,0,2882,2882,0,0,0,2882,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,Orbitrap,2882,0,0,0,0,0,2882,2882,0,0,0,2882,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,ALL,2546,0,0,0,0,0,2546,2546,0,0,0,2546,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,Orbitrap,2546,0,0,0,0,0,2546,2546,0,0,0,2546,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,ALL,31,0,0,0,0,0,31,31,0,0,0,31,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,Orbitrap,31,0,0,0,0,0,31,31,0,0,0,31,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,ALL,301,0,0,0,0,0,301,301,0,0,0,301,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,Orbitrap,301,0,0,0,0,0,301,301,0,0,0,301,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,22,0,0,0,0,0,22,22,0,0,0,22,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,22,0,0,0,0,0,22,22,0,0,0,22,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,4,0,0,0,0,0,4,4,0,0,0,4,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,4,0,0,0,0,0,4,4,0,0,0,4,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,273,0,0,273,0,0,0,273,273,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,273,0,0,273,0,0,0,273,273,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,246,0,0,246,0,0,0,246,246,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,246,0,0,246,0,0,0,246,246,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,17,0,0,17,0,0,0,17,17,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,17,0,0,17,0,0,0,17,17,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,20,0,0,20,0,0,0,20,20,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,20,0,0,20,0,0,0,20,20,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,ALL,0,420,0,979,1501,486,3386,0,420,1501,979,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,Orbitrap,0,420,0,979,0,464,1863,0,420,0,979,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,QTOF,0,0,0,0,1501,22,1523,0,0,1501,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,ALL,ALL,5794,502,0,1552,1564,542,9954,5794,502,1564,1552,6412,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,ALL,Orbitrap,5794,502,0,1552,0,526,8374,5794,502,0,1552,6412,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,ALL,QTOF,0,0,0,0,1564,16,1580,0,0,1564,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,ALL,2938,0,0,0,0,0,2938,2938,0,0,0,2938,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,Orbitrap,2938,0,0,0,0,0,2938,2938,0,0,0,2938,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,ALL,2604,0,0,0,0,0,2604,2604,0,0,0,2604,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,Orbitrap,2604,0,0,0,0,0,2604,2604,0,0,0,2604,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,ALL,44,0,0,0,0,0,44,44,0,0,0,44,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,Orbitrap,44,0,0,0,0,0,44,44,0,0,0,44,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,ALL,145,0,0,0,0,0,145,145,0,0,0,145,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,Orbitrap,145,0,0,0,0,0,145,145,0,0,0,145,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,45,0,0,0,0,0,45,45,0,0,0,45,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,45,0,0,0,0,0,45,45,0,0,0,45,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,9,0,0,0,0,0,9,9,0,0,0,9,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,9,0,0,0,0,0,9,9,0,0,0,9,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,287,0,0,287,0,0,0,287,287,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,287,0,0,287,0,0,0,287,287,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,3,0,0,3,0,0,0,3,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,3,0,0,3,0,0,0,3,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,291,0,0,291,0,0,0,291,291,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,291,0,0,291,0,0,0,291,291,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,5,0,0,5,0,0,0,5,5,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,5,0,0,5,0,0,0,5,5,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,32,0,0,32,0,0,0,32,32,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,32,0,0,32,0,0,0,32,32,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MassBank_or_MoNA,ALL,0,502,0,934,1564,542,3542,0,502,1564,934,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MassBank_or_MoNA,Orbitrap,0,502,0,934,0,526,1962,0,502,0,934,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,test,not_used_for_fitting,MassBank_or_MoNA,QTOF,0,0,0,0,1564,16,1580,0,0,1564,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,ALL,ALL,30631,12135,14,26776,37282,12191,119029,30631,12149,37282,26776,39024,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,ALL,Orbitrap,30631,12135,14,26776,0,11767,81323,30631,12149,0,26776,39024,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,ALL,QTOF,0,0,0,0,37282,424,37706,0,0,37282,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:MCEBIO,ALL,15537,0,0,0,0,0,15537,15537,0,0,0,15537,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:MCEBIO,Orbitrap,15537,0,0,0,0,0,15537,15537,0,0,0,15537,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:MCESCAF,ALL,11471,0,0,0,0,0,11471,11471,0,0,0,11471,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:MCESCAF,Orbitrap,11471,0,0,0,0,0,11471,11471,0,0,0,11471,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:NIHNP,ALL,237,0,0,0,0,0,237,237,0,0,0,237,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:NIHNP,Orbitrap,237,0,0,0,0,0,237,237,0,0,0,237,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:OTAVAPEP,ALL,3095,0,0,0,0,0,3095,3095,0,0,0,3095,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:OTAVAPEP,Orbitrap,3095,0,0,0,0,0,3095,3095,0,0,0,3095,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,181,0,0,0,0,0,181,181,0,0,0,181,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,181,0,0,0,0,0,181,181,0,0,0,181,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,56,0,0,0,3,0,59,56,0,3,0,56,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,56,0,0,0,0,0,56,56,0,0,0,56,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,15,0,0,0,0,0,15,15,0,0,0,15,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,15,0,0,0,0,0,15,15,0,0,0,15,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:unmatched,ALL,29,0,0,6,0,0,35,29,0,0,6,29,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0:unmatched,Orbitrap,29,0,0,6,0,0,35,29,0,0,6,29,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,4149,0,0,4149,0,0,0,4149,4149,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,4149,0,0,4149,0,0,0,4149,4149,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,3393,0,0,3393,0,0,0,3393,3393,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,3393,0,0,3393,0,0,0,3393,3393,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,121,0,0,121,0,0,0,121,121,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,121,0,0,121,0,0,0,121,121,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,706,0,0,706,0,0,0,706,706,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,706,0,0,706,0,0,0,706,706,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MassBank_or_MoNA,ALL,0,12135,14,18377,37279,12191,79996,0,12149,37279,18377,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MassBank_or_MoNA,Orbitrap,0,12135,14,18377,0,11767,42293,0,12149,0,18377,0,round-half-even of the :g label; equals floor on retained rows
+iceberg21_msg_simulation_inten_contr,all,all_splits,MassBank_or_MoNA,QTOF,0,0,0,0,37279,424,37703,0,0,37279,0,0,round-half-even of the :g label; equals floor on retained rows
+glacier_msg,train,gradient_updates,ALL,ALL,19045,21982,22,23689,34603,0,99341,19045,22004,34603,23689,26264,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,ALL,Orbitrap,19045,21982,22,23689,0,0,64738,19045,22004,0,23689,26264,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,ALL,QTOF,0,0,0,0,34603,0,34603,0,0,34603,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:MCEBIO,ALL,9717,0,0,0,0,0,9717,9717,0,0,0,9717,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:MCEBIO,Orbitrap,9717,0,0,0,0,0,9717,9717,0,0,0,9717,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:MCESCAF,ALL,6321,0,0,0,0,0,6321,6321,0,0,0,6321,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:MCESCAF,Orbitrap,6321,0,0,0,0,0,6321,6321,0,0,0,6321,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:NIHNP,ALL,162,0,0,0,0,0,162,162,0,0,0,162,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:NIHNP,Orbitrap,162,0,0,0,0,0,162,162,0,0,0,162,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,ALL,2649,0,0,0,0,0,2649,2649,0,0,0,2649,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:OTAVAPEP,Orbitrap,2649,0,0,0,0,0,2649,2649,0,0,0,2649,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,114,0,0,0,0,0,114,114,0,0,0,114,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,114,0,0,0,0,0,114,114,0,0,0,114,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,43,0,0,0,3,0,46,43,0,3,0,43,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,43,0,0,0,0,0,43,43,0,0,0,43,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,12,0,0,0,0,0,12,12,0,0,0,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,12,0,0,0,0,0,12,12,0,0,0,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:unmatched,ALL,17,0,0,6,0,0,23,17,0,0,6,17,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0:unmatched,Orbitrap,17,0,0,6,0,0,23,17,0,0,6,17,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,3589,0,0,3589,0,0,0,3589,3589,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,3589,0,0,3589,0,0,0,3589,3589,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,9,0,0,9,0,0,0,9,9,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,9,0,0,9,0,0,0,9,9,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,2856,0,0,2856,0,0,0,2856,2856,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,2856,0,0,2856,0,0,0,2856,2856,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,99,0,0,99,0,0,0,99,99,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,99,0,0,99,0,0,0,99,99,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,654,0,0,654,0,0,0,654,654,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,654,0,0,654,0,0,0,654,654,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MassBank_or_MoNA,ALL,0,21982,22,16464,34600,0,73068,0,22004,34600,16464,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MassBank_or_MoNA,Orbitrap,0,21982,22,16464,0,0,38468,0,22004,0,16464,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,train,gradient_updates,MassBank_or_MoNA,QTOF,0,0,0,0,34600,0,34600,0,0,34600,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,ALL,ALL,5792,884,0,1535,1523,0,9734,5792,884,1523,1535,6348,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,ALL,Orbitrap,5792,884,0,1535,0,0,8211,5792,884,0,1535,6348,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,ALL,QTOF,0,0,0,0,1523,0,1523,0,0,1523,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,ALL,2882,0,0,0,0,0,2882,2882,0,0,0,2882,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCEBIO,Orbitrap,2882,0,0,0,0,0,2882,2882,0,0,0,2882,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,ALL,2546,0,0,0,0,0,2546,2546,0,0,0,2546,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:MCESCAF,Orbitrap,2546,0,0,0,0,0,2546,2546,0,0,0,2546,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,ALL,31,0,0,0,0,0,31,31,0,0,0,31,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:NIHNP,Orbitrap,31,0,0,0,0,0,31,31,0,0,0,31,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,ALL,301,0,0,0,0,0,301,301,0,0,0,301,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:OTAVAPEP,Orbitrap,301,0,0,0,0,0,301,301,0,0,0,301,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,22,0,0,0,0,0,22,22,0,0,0,22,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,22,0,0,0,0,0,22,22,0,0,0,22,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,4,0,0,0,0,0,4,4,0,0,0,4,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,4,0,0,0,0,0,4,4,0,0,0,4,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,273,0,0,273,0,0,0,273,273,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,273,0,0,273,0,0,0,273,273,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,246,0,0,246,0,0,0,246,246,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,246,0,0,246,0,0,0,246,246,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,17,0,0,17,0,0,0,17,17,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,17,0,0,17,0,0,0,17,17,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,20,0,0,20,0,0,0,20,20,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,20,0,0,20,0,0,0,20,20,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,ALL,0,884,0,979,1523,0,3386,0,884,1523,979,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,Orbitrap,0,884,0,979,0,0,1863,0,884,0,979,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,val,early_stopping_and_best_checkpoint_selection,MassBank_or_MoNA,QTOF,0,0,0,0,1523,0,1523,0,0,1523,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,ALL,ALL,5794,1028,0,1552,1580,0,9954,5794,1028,1580,1552,6412,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,ALL,Orbitrap,5794,1028,0,1552,0,0,8374,5794,1028,0,1552,6412,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,ALL,QTOF,0,0,0,0,1580,0,1580,0,0,1580,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,ALL,2938,0,0,0,0,0,2938,2938,0,0,0,2938,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:MCEBIO,Orbitrap,2938,0,0,0,0,0,2938,2938,0,0,0,2938,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,ALL,2604,0,0,0,0,0,2604,2604,0,0,0,2604,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:MCESCAF,Orbitrap,2604,0,0,0,0,0,2604,2604,0,0,0,2604,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,ALL,44,0,0,0,0,0,44,44,0,0,0,44,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:NIHNP,Orbitrap,44,0,0,0,0,0,44,44,0,0,0,44,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,ALL,145,0,0,0,0,0,145,145,0,0,0,145,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:OTAVAPEP,Orbitrap,145,0,0,0,0,0,145,145,0,0,0,145,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,45,0,0,0,0,0,45,45,0,0,0,45,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,45,0,0,0,0,0,45,45,0,0,0,45,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,9,0,0,0,0,0,9,9,0,0,0,9,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,9,0,0,0,0,0,9,9,0,0,0,9,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:unmatched,ALL,6,0,0,0,0,0,6,6,0,0,0,6,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0:unmatched,Orbitrap,6,0,0,0,0,0,6,6,0,0,0,6,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,287,0,0,287,0,0,0,287,287,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,287,0,0,287,0,0,0,287,287,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,3,0,0,3,0,0,0,3,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,3,0,0,3,0,0,0,3,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,291,0,0,291,0,0,0,291,291,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,291,0,0,291,0,0,0,291,291,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,5,0,0,5,0,0,0,5,5,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,5,0,0,5,0,0,0,5,5,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,32,0,0,32,0,0,0,32,32,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,32,0,0,32,0,0,0,32,32,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MassBank_or_MoNA,ALL,0,1028,0,934,1580,0,3542,0,1028,1580,934,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MassBank_or_MoNA,Orbitrap,0,1028,0,934,0,0,1962,0,1028,0,934,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,test,not_used_for_fitting,MassBank_or_MoNA,QTOF,0,0,0,0,1580,0,1580,0,0,1580,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,ALL,ALL,30631,23894,22,26776,37706,0,119029,30631,23916,37706,26776,39024,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,ALL,Orbitrap,30631,23894,22,26776,0,0,81323,30631,23916,0,26776,39024,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,ALL,QTOF,0,0,0,0,37706,0,37706,0,0,37706,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:MCEBIO,ALL,15537,0,0,0,0,0,15537,15537,0,0,0,15537,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:MCEBIO,Orbitrap,15537,0,0,0,0,0,15537,15537,0,0,0,15537,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:MCESCAF,ALL,11471,0,0,0,0,0,11471,11471,0,0,0,11471,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:MCESCAF,Orbitrap,11471,0,0,0,0,0,11471,11471,0,0,0,11471,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:NIHNP,ALL,237,0,0,0,0,0,237,237,0,0,0,237,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:NIHNP,Orbitrap,237,0,0,0,0,0,237,237,0,0,0,237,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:OTAVAPEP,ALL,3095,0,0,0,0,0,3095,3095,0,0,0,3095,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:OTAVAPEP,Orbitrap,3095,0,0,0,0,0,3095,3095,0,0,0,3095,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),ALL,181,0,0,0,0,0,181,181,0,0,0,181,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;MCESCAF),Orbitrap,181,0,0,0,0,0,181,181,0,0,0,181,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),ALL,56,0,0,0,3,0,59,56,0,3,0,56,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),Orbitrap,56,0,0,0,0,0,56,56,0,0,0,56,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;NIHNP),QTOF,0,0,0,0,3,0,3,0,0,3,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),ALL,7,0,0,0,0,0,7,7,0,0,0,7,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCEBIO;OTAVAPEP),Orbitrap,7,0,0,0,0,0,7,7,0,0,0,7,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),ALL,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;NIHNP),Orbitrap,3,0,0,0,0,0,3,3,0,0,0,3,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),ALL,15,0,0,0,0,0,15,15,0,0,0,15,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:multiple(MCESCAF;OTAVAPEP),Orbitrap,15,0,0,0,0,0,15,15,0,0,0,15,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:unmatched,ALL,29,0,0,6,0,0,35,29,0,0,6,29,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0:unmatched,Orbitrap,29,0,0,6,0,0,35,29,0,0,6,29,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:MCEBIO,ALL,0,0,0,4149,0,0,4149,0,0,0,4149,4149,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:MCEBIO,Orbitrap,0,0,0,4149,0,0,4149,0,0,0,4149,4149,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:MCESCAF,ALL,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:MCESCAF,Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:NIHNP,ALL,0,0,0,3393,0,0,3393,0,0,0,3393,3393,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:NIHNP,Orbitrap,0,0,0,3393,0,0,3393,0,0,0,3393,3393,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),ALL,0,0,0,121,0,0,121,0,0,0,121,121,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF),Orbitrap,0,0,0,121,0,0,121,0,0,0,121,121,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),ALL,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;MCESCAF;NIHNP),Orbitrap,0,0,0,12,0,0,12,0,0,0,12,12,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),ALL,0,0,0,706,0,0,706,0,0,0,706,706,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MSnLib_v1.0_probable:multiple(MCEBIO;NIHNP),Orbitrap,0,0,0,706,0,0,706,0,0,0,706,706,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MassBank_or_MoNA,ALL,0,23894,22,18377,37703,0,79996,0,23916,37703,18377,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MassBank_or_MoNA,Orbitrap,0,23894,22,18377,0,0,42293,0,23916,0,18377,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"
+glacier_msg,all,all_splits,MassBank_or_MoNA,QTOF,0,0,0,0,37703,0,37703,0,0,37703,0,0,"UNRESOLVED; primary H_floor floor, sensitivity H_raw unrounded float32"

@@ -1,0 +1,1303 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c09_tuebingen.py",
+ "rdkit": "2026.03.5",
+ "frozen_rdkit": "2026.03.5",
+ "n_records": 980,
+ "fields": [
+  "Adduct",
+  "CAS_Number",
+  "Charge",
+  "Compound_Name",
+  "Compound_Source",
+  "Data_Collector",
+  "ExactMass",
+  "INCHI",
+  "INCHI_AUX",
+  "Instrument",
+  "Ion_Mode",
+  "Ion_Source",
+  "Library_Class",
+  "PI",
+  "Precursor_MZ",
+  "Pubmed_ID",
+  "Scan",
+  "Smiles",
+  "SpectrumID",
+  "create_time",
+  "library_membership",
+  "ms_level",
+  "scan",
+  "source_file",
+  "source_file_clean",
+  "spectrum_id",
+  "spectrum_status",
+  "splash",
+  "submit_user",
+  "task",
+  "task_id",
+  "user_id"
+ ],
+ "fields_mentioning_energy_or_collision": [],
+ "counts_Adduct": {
+  "M+H": 302,
+  "M-H": 269,
+  "M+Na": 236,
+  "M+Cl-": 100,
+  "M+FA-": 66,
+  "M+NH4": 7
+ },
+ "counts_Ion_Mode": {
+  "Positive": 544,
+  "Negative": 436
+ },
+ "counts_Instrument": {
+  "Orbitrap": 980
+ },
+ "counts_Ion_Source": {
+  "ESI": 980
+ },
+ "counts_Charge": {
+  "1": 544,
+  "-1": 436
+ },
+ "counts_ms_level": {
+  "2": 980
+ },
+ "counts_Library_Class": {
+  "1": 980
+ },
+ "counts_Compound_Source": {
+  "Isolated": 980
+ },
+ "counts_PI": {
+  "Daniel Petras": 980
+ },
+ "counts_Data_Collector": {
+  "\"Giovanni Andrea Vitale, Christian Geibel\"": 491,
+  "\"Christian Geibel, Giovanni Andrea Vitale\"": 489
+ },
+ "counts_submit_user": {
+  "jzemlin": 980
+ },
+ "counts_task": {
+  "1db473eaf4234c7fa41c7a125dff002b": 544,
+  "24fdc39c38e843f8911db0ee97a1e637": 436
+ },
+ "counts_library_membership": {
+  "TUEBINGEN-NATURAL-PRODUCT-COLLECTION": 980
+ },
+ "counts_spectrum_status": {
+  "1": 980
+ },
+ "counts_Pubmed_ID": {
+  "N/A": 980
+ },
+ "counts_CAS_Number": {
+  "N/A": 980
+ },
+ "counts_create_time_date": {
+  "2023-09-18": 973,
+  "2025-01-24": 7
+ },
+ "smiles_missing_records": 54,
+ "inchi_present_records": 7,
+ "upload_tasks": {
+  "1db473eaf4234c7fa41c7a125dff002b": {
+   "description": "Tuebingen_NP-Library_POS_fixed_userdata_fixed_masses",
+   "workflow": "ADD-BATCH-ANNOTATED",
+   "createtime": "2023-09-18 11:43:18.0",
+   "user": "jzemlin",
+   "n_spectrum_files": 17,
+   "spec_dir": "d.daniel/20230912_Tuebingen_NP-LIB/POS;",
+   "annotation_table": "f.daniel/Library_Generation/FIXED_Masses/230907_GNPS_Tuebingen_Natural_product_Library_POS_fixe_masses.tsv;",
+   "file_basenames": [
+    "Box1_Pool_20230522181537.mzML",
+    "Box2_Pool.mzML",
+    "Box3_Pool_20230522184923.mzML",
+    "Box4_Pool_20230522190616.mzML",
+    "Box5_Pool_20230522192307.mzML",
+    "Box6_Pool.mzML",
+    "Box7_Pool.mzML",
+    "Pool10_20230523034639.mzML",
+    "Pool1_20230523005745.mzML",
+    "Pool2_20230523011440.mzML",
+    "Pool3_20230523013131.mzML",
+    "Pool4_20230523014825.mzML",
+    "Pool5_20230523020517.mzML",
+    "Pool6_20230523023903.mzML",
+    "Pool7_20230523025557.mzML",
+    "Pool8_20230523031251.mzML",
+    "Pool9_20230523032945.mzML"
+   ]
+  },
+  "24fdc39c38e843f8911db0ee97a1e637": {
+   "description": "Tuebingen_NP-Library_NEG_userdata_fixed_fixed_masses",
+   "workflow": "ADD-BATCH-ANNOTATED",
+   "createtime": "2023-09-18 11:43:29.0",
+   "user": "jzemlin",
+   "n_spectrum_files": 17,
+   "spec_dir": "d.daniel/20230912_Tuebingen_NP-LIB/NEG;",
+   "annotation_table": "f.daniel/Library_Generation/FIXED_Masses/230831_GNPS_Tuebingen_Natural_product_Library_Negative_fixed_masses.tsv;",
+   "file_basenames": [
+    "Box1_Pool_20230522181537_20230524143104.mzML",
+    "Box2_Pool_20230524144758.mzML",
+    "Box3_Pool_20230522184923_20230524150452.mzML",
+    "Box4_Pool_20230522190616_20230524152144.mzML",
+    "Box5_Pool_20230522192307_20230524153837.mzML",
+    "Box6_Pool_20230524161222.mzML",
+    "Box7_Pool_20230524162915.mzML",
+    "Pool10_20230523075759.mzML",
+    "Pool1_20230523050905.mzML",
+    "Pool2_20230523052559.mzML",
+    "Pool3_20230523054253.mzML",
+    "Pool4_20230523055945.mzML",
+    "Pool5_20230523061637.mzML",
+    "Pool6_20230523065023.mzML",
+    "Pool7_20230523070717.mzML",
+    "Pool8_20230523072411.mzML",
+    "Pool9_20230523074105.mzML"
+   ]
+  }
+ },
+ "polarity_inconsistent_records": [
+  {
+   "SpectrumID": "CCMSLIB00011906925",
+   "Compound_Name": "T4099-1a / SEK 15",
+   "Adduct": "M+H",
+   "Ion_Mode": "Negative",
+   "task_polarity": "Negative",
+   "source_file": " Pool5_20230523061637.mzML",
+   "scan": "2876",
+   "create_time": "2025-01-24 04:47:39.0"
+  }
+ ],
+ "records_source_file_not_in_task_file_list": 0,
+ "massive_acquisition": {
+  "MSV000092049": {
+   "title": "17 Pools containing 508 characterized Natural Products from different sources_Positive mode",
+   "instrument": "Q Exactive HF",
+   "description": "Analzyed by Giovanni Andrea Vitale and Christian Geibel from Petras Lab.\nmode= positive\nstepped CE (25, 35, 45)\nRes MS1= 30K,  MS2=15k\nFragment= Top 5 ions",
+   "doi": "doi:10.25345/C5J38KT5R",
+   "filesize": "7.83 GB",
+   "filecount": "58",
+   "private": "false",
+   "publications": [],
+   "user": "GiovanniAndreaVitale",
+   "uniquemri_files_with_ms2": 19,
+   "uniquemri_Top_CEs_counts": {
+    "35.0": 19
+   },
+   "uniquemri_all_ms2_at_top_ce": true,
+   "uniquemri_MassAnalyzer": {
+    "orbitrap;quadrupole": 19
+   },
+   "uniquemri_classification": {
+    "DDA": 19
+   },
+   "uniquemri_RT_Range_in_Min": {
+    "16.0": 19
+   },
+   "uniquemri_ms2_total": 93551,
+   "library_task_files_found_in_dataset": "17/17"
+  },
+  "MSV000092050": {
+   "title": "17 Pools containing 508 characterized Natural Products from different sources_Negative mode",
+   "instrument": "Q Exactive HF",
+   "description": "Analzyed by Giovanni Andrea Vitale and Christian Geibel from Petras Lab.\nmode= negative\nstepped CE (25, 35, 45)\nRes MS1= 30K, MS2=15k\nFragment= Top 5 ions",
+   "doi": "doi:10.25345/C5DB7W111",
+   "filesize": "8.05 GB",
+   "filecount": "50",
+   "private": "false",
+   "publications": [],
+   "user": "GiovanniAndreaVitale",
+   "uniquemri_files_with_ms2": 19,
+   "uniquemri_Top_CEs_counts": {
+    "35.0": 19
+   },
+   "uniquemri_all_ms2_at_top_ce": true,
+   "uniquemri_MassAnalyzer": {
+    "orbitrap;quadrupole": 19
+   },
+   "uniquemri_classification": {
+    "DDA": 19
+   },
+   "uniquemri_RT_Range_in_Min": {
+    "16.0": 19
+   },
+   "uniquemri_ms2_total": 57406,
+   "library_task_files_found_in_dataset": "17/17"
+  }
+ },
+ "msg_gnps_libraries_n": 46,
+ "msg_gnps_libraries_contains_tuebingen": false,
+ "msg_gnps_libraries_contains_GNPS-LIBRARY": true,
+ "records_with_key": 919,
+ "records_by_structure_route": {
+  "gnps_smiles": 926,
+  "no_structure": 54
+ },
+ "records_structure_unparsed": [
+  {
+   "compound_name": "Ferrirhodin",
+   "smiles_used": "O=C1NC2C(=O)NC3C(=O)NC(C(=O)NC(C(=O)NC(C(=O)NC1)CO)CO)CCCN4[O-][Fe+3]56(O=C(C=C(C)CCO)N([O-]5)CCC2)(O=C4C=C(C)CCO)O=C(C=C(C)CCO)N([O-]6)CCC3"
+  },
+  {
+   "compound_name": "Berninamycin-D",
+   "smiles_used": "O=C(NC(C(NC(C1=NC(C(NC(C(NC(C2=NC(C3=C4C=CC(C(N)=O)=N3)=CO2)=C)=O )=C)=O)=C(O1)C)=C)=O)C(C)(O)C)C(NC(C5=C(OC(/C(NC(C(NC(C6= CSC4=N6)=O)C(O)C)=O)=C\\C)=N5)C)=O)=C"
+  },
+  {
+   "compound_name": "Ferrirhodin",
+   "smiles_used": "O=C1NC2C(=O)NC3C(=O)NC(C(=O)NC(C(=O)NC(C(=O)NC1)CO)CO)CCCN4[O-][Fe+3]56(O=C(C=C(C)CCO)N([O-]5)CCC2)(O=C4C=C(C)CCO)O=C(C=C(C)CCO)N([O-]6)CCC3"
+  },
+  {
+   "compound_name": "Berninamycin-D",
+   "smiles_used": "O=C(NC(C(NC(C1=NC(C(NC(C(NC(C2=NC(C3=C4C=CC(C(N)=O)=N3)=CO2)=C)=O )=C)=O)=C(O1)C)=C)=O)C(C)(O)C)C(NC(C5=C(OC(/C(NC(C(NC(C6= CSC4=N6)=O)C(O)C)=O)=C\\C)=N5)C)=O)=C"
+  },
+  {
+   "compound_name": "Ferrirhodin",
+   "smiles_used": "O=C1NC2C(=O)NC3C(=O)NC(C(=O)NC(C(=O)NC(C(=O)NC1)CO)CO)CCCN4[O-][Fe+3]56(O=C(C=C(C)CCO)N([O-]5)CCC2)(O=C4C=C(C)CCO)O=C(C=C(C)CCO)N([O-]6)CCC3"
+  },
+  {
+   "compound_name": "Berninamycin-D",
+   "smiles_used": "O=C(NC(C(NC(C1=NC(C(NC(C(NC(C2=NC(C3=C4C=CC(C(N)=O)=N3)=CO2)=C)=O )=C)=O)=C(O1)C)=C)=O)C(C)(O)C)C(NC(C5=C(OC(/C(NC(C(NC(C6= CSC4=N6)=O)C(O)C)=O)=C\\C)=N5)C)=O)=C"
+  },
+  {
+   "compound_name": "Ferrirhodin",
+   "smiles_used": "O=C1NC2C(=O)NC3C(=O)NC(C(=O)NC(C(=O)NC(C(=O)NC1)CO)CO)CCCN4[O-][Fe+3]56(O=C(C=C(C)CCO)N([O-]5)CCC2)(O=C4C=C(C)CCO)O=C(C=C(C)CCO)N([O-]6)CCC3"
+  }
+ ],
+ "unique_keys_all": 340,
+ "unique_scaffold_groups_all": 264,
+ "precursor_inconsistent_gt_0.01Da": 34,
+ "precursor_inconsistent_by_adduct": {
+  "M+H": 11,
+  "M+Na": 8,
+  "M-H": 8,
+  "M+Cl-": 4,
+  "M+FA-": 3
+ },
+ "precursor_inconsistent_examples": [
+  {
+   "compound_name": "Cinerubin-B",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 828.344,
+   "theoretical_mz": 826.3281,
+   "precursor_err_da": 2.0159
+  },
+  {
+   "compound_name": "Alazopeptin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 396.163,
+   "theoretical_mz": 365.1568,
+   "precursor_err_da": 31.0062
+  },
+  {
+   "compound_name": "Ferrichrysin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 801.259,
+   "theoretical_mz": 748.3472,
+   "precursor_err_da": 52.9118
+  },
+  {
+   "compound_name": "Strophanthin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 585.291,
+   "theoretical_mz": 711.3586,
+   "precursor_err_da": -126.0676
+  },
+  {
+   "compound_name": "\"gamma-Naphthocyclinone, y-Naphthocyclinone\"",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 675.171,
+   "theoretical_mz": 673.1916,
+   "precursor_err_da": 1.9794
+  },
+  {
+   "compound_name": "Ferrirubin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 1011.38,
+   "theoretical_mz": 958.4728,
+   "precursor_err_da": 52.9072
+  },
+  {
+   "compound_name": "Streptovaricin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 828.344,
+   "theoretical_mz": 770.3382,
+   "precursor_err_da": 58.0058
+  },
+  {
+   "compound_name": "Germicidin B",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 197.117,
+   "theoretical_mz": 183.1016,
+   "precursor_err_da": 14.0154
+  },
+  {
+   "compound_name": "Germicidin",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 183.102,
+   "theoretical_mz": 197.1172,
+   "precursor_err_da": -14.0152
+  },
+  {
+   "compound_name": "Thiotetronic acid",
+   "adduct": "M+H",
+   "precursor_mz_gnps": 268.1,
+   "theoretical_mz": 117.0005,
+   "precursor_err_da": 151.0995
+  },
+  {
+   "compound_name": "epsilon-Rhodomycin",
+   "adduct": "M+Na",
+   "precursor_mz_gnps": 451.1,
+   "theoretical_mz": 608.2102,
+   "precursor_err_da": -157.1102
+  },
+  {
+   "compound_name": "Ferrichrysin",
+   "adduct": "M+Na",
+   "precursor_mz_gnps": 823.241,
+   "theoretical_mz": 770.3291,
+   "precursor_err_da": 52.9119
+  },
+  {
+   "compound_name": "Strophanthin",
+   "adduct": "M+Na",
+   "precursor_mz_gnps": 607.273,
+   "theoretical_mz": 733.3406,
+   "precursor_err_da": -126.0676
+  },
+  {
+   "compound_name": "\"gamma-Naphthocyclinone, y-Naphthocyclinone\"",
+   "adduct": "M+Na",
+   "precursor_mz_gnps": 697.153,
+   "theoretical_mz": 695.1735,
+   "precursor_err_da": 1.9795
+  },
+  {
+   "compound_name": "Ferrirubin",
+   "adduct": "M+Na",
+   "precursor_mz_gnps": 1033.37,
+   "theoretical_mz": 980.4547,
+   "precursor_err_da": 52.9153
+  }
+ ],
+ "precursor_err_da_quantiles_consistent": [
+  -0.0094,
+  -0.00134,
+  -0.0001,
+  0.00096,
+  0.005
+ ],
+ "charged_parent_records": 0,
+ "multicomponent_raw_records": 5,
+ "compound_names_with_multiple_keys": 0,
+ "keys_with_multiple_compound_names": 3,
+ "keys_with_multiple_compound_names_examples": [
+  {
+   "key": "JSVPJXYQXDNLRD",
+   "names": [
+    "Aurantimycin A",
+    "Aurantimycin-A"
+   ]
+  },
+  {
+   "key": "TWWQHCKLTXDWBD",
+   "names": [
+    "Manumycin",
+    "Manumycin A"
+   ]
+  },
+  {
+   "key": "WWUVMHRJRCRFSL",
+   "names": [
+    "Ansatrienin A",
+    "Ansatrienine A"
+   ]
+  }
+ ],
+ "mh_records_positive_task": 301,
+ "mh_records_per_key_distribution": {
+  "1": 265,
+  "2": 8
+ },
+ "mh_keys_with_records_from_multiple_files": 8,
+ "mh_records_per_file_scan_max": 1,
+ "positive_adduct_records_per_key_distribution": {
+  "1": 107,
+  "2": 188,
+  "4": 4,
+  "3": 4
+ },
+ "pool_library_keys_per_positive_file": {
+  "14": 1,
+  "23": 2,
+  "22": 3,
+  "21": 3,
+  "8": 1,
+  "4": 1,
+  "20": 1,
+  "18": 1,
+  "24": 1,
+  "19": 1,
+  "17": 1,
+  "15": 1
+ },
+ "mh_records_with_library_coisolation_conflict": 46,
+ "exclusion_set_sizes": {
+  "msg15_recorded_all": 28929,
+  "msg15_parent_all": 28923,
+  "msg15_simchallenge_all": 16974,
+  "msg15_recorded_train": 22746,
+  "msg15_recorded_val": 3185,
+  "msg15_recorded_test": 2998,
+  "muru_registry_all": 31507,
+  "muru_registry_direct_reason": 26005,
+  "muru_exposed_union": 33301,
+  "pr7_study2_population": 1794,
+  "comparator_common_population": 1327,
+  "msnlib_9lib": 53612,
+  "msnlib_v1_0_4lib": 19219,
+  "multims2_reserved_validation_secondary": 1525,
+  "muru_exposed_populations_union": 1912,
+  "muru_dev_compounds_csv_keys": 1325,
+  "msg15_scaffold_groups": 16991,
+  "muru_registry_scaffold_groups": 18402,
+  "muru_dev_scaffold_groups": 765,
+  "pr7_scaffold_groups": 1691,
+  "comparator_scaffold_groups": 1254
+ },
+ "overlap_unique_keys_by_subset": {
+  "all": {
+   "records": 919,
+   "keys": 340,
+   "scaffold_groups": 264,
+   "in_msg15_recorded_all__unique_keys": 98,
+   "in_msg15_parent_all__unique_keys": 98,
+   "in_msg15_simchallenge_all__unique_keys": 66,
+   "in_msg15_recorded_train__unique_keys": 69,
+   "in_msg15_recorded_val__unique_keys": 12,
+   "in_msg15_recorded_test__unique_keys": 17,
+   "in_muru_registry_all__unique_keys": 58,
+   "in_muru_registry_direct_reason__unique_keys": 49,
+   "in_muru_exposed_union__unique_keys": 59,
+   "in_pr7_study2_population__unique_keys": 1,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 76,
+   "in_msnlib_v1_0_4lib__unique_keys": 72,
+   "in_multims2_reserved_validation_secondary__unique_keys": 2,
+   "in_muru_exposed_populations_union__unique_keys": 13,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 9,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 2,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 5,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 1,
+   "in_pop_LCSB-DEV__unique_keys": 1,
+   "in_pop_LCSB-NEG__unique_keys": 3,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 1,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 9,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 3,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 1,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 8,
+   "in_pop_WUR-SEALED__unique_keys": 4,
+   "sg_in_msg15_scaffold_groups__unique_keys": 163,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 123,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 48,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 98
+  },
+  "M+H_positive_task": {
+   "records": 281,
+   "keys": 273,
+   "scaffold_groups": 217,
+   "in_msg15_recorded_all__unique_keys": 93,
+   "in_msg15_parent_all__unique_keys": 93,
+   "in_msg15_simchallenge_all__unique_keys": 65,
+   "in_msg15_recorded_train__unique_keys": 67,
+   "in_msg15_recorded_val__unique_keys": 11,
+   "in_msg15_recorded_test__unique_keys": 15,
+   "in_muru_registry_all__unique_keys": 53,
+   "in_muru_registry_direct_reason__unique_keys": 45,
+   "in_muru_exposed_union__unique_keys": 54,
+   "in_pr7_study2_population__unique_keys": 1,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 67,
+   "in_msnlib_v1_0_4lib__unique_keys": 64,
+   "in_multims2_reserved_validation_secondary__unique_keys": 2,
+   "in_muru_exposed_populations_union__unique_keys": 13,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 9,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 2,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 5,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 1,
+   "in_pop_LCSB-DEV__unique_keys": 1,
+   "in_pop_LCSB-NEG__unique_keys": 3,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 1,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 9,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 3,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 1,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 8,
+   "in_pop_WUR-SEALED__unique_keys": 4,
+   "sg_in_msg15_scaffold_groups__unique_keys": 140,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 103,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 40,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 93
+  },
+  "positive_task": {
+   "records": 511,
+   "keys": 303,
+   "scaffold_groups": 241,
+   "in_msg15_recorded_all__unique_keys": 95,
+   "in_msg15_parent_all__unique_keys": 95,
+   "in_msg15_simchallenge_all__unique_keys": 65,
+   "in_msg15_recorded_train__unique_keys": 67,
+   "in_msg15_recorded_val__unique_keys": 12,
+   "in_msg15_recorded_test__unique_keys": 16,
+   "in_muru_registry_all__unique_keys": 56,
+   "in_muru_registry_direct_reason__unique_keys": 47,
+   "in_muru_exposed_union__unique_keys": 57,
+   "in_pr7_study2_population__unique_keys": 1,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 73,
+   "in_msnlib_v1_0_4lib__unique_keys": 69,
+   "in_multims2_reserved_validation_secondary__unique_keys": 2,
+   "in_muru_exposed_populations_union__unique_keys": 13,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 9,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 2,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 5,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 1,
+   "in_pop_LCSB-DEV__unique_keys": 1,
+   "in_pop_LCSB-NEG__unique_keys": 3,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 1,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 9,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 3,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 1,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 8,
+   "in_pop_WUR-SEALED__unique_keys": 4,
+   "sg_in_msg15_scaffold_groups__unique_keys": 150,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 112,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 40,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 95
+  },
+  "negative_task": {
+   "records": 408,
+   "keys": 262,
+   "scaffold_groups": 210,
+   "in_msg15_recorded_all__unique_keys": 70,
+   "in_msg15_parent_all__unique_keys": 70,
+   "in_msg15_simchallenge_all__unique_keys": 45,
+   "in_msg15_recorded_train__unique_keys": 45,
+   "in_msg15_recorded_val__unique_keys": 10,
+   "in_msg15_recorded_test__unique_keys": 15,
+   "in_muru_registry_all__unique_keys": 42,
+   "in_muru_registry_direct_reason__unique_keys": 36,
+   "in_muru_exposed_union__unique_keys": 43,
+   "in_pr7_study2_population__unique_keys": 1,
+   "in_comparator_common_population__unique_keys": 0,
+   "in_msnlib_9lib__unique_keys": 58,
+   "in_msnlib_v1_0_4lib__unique_keys": 54,
+   "in_multims2_reserved_validation_secondary__unique_keys": 2,
+   "in_muru_exposed_populations_union__unique_keys": 8,
+   "in_muru_dev_compounds_csv_keys__unique_keys": 5,
+   "in_pop_ENTACT-MIX-LISTS-499-503-505__unique_keys": 1,
+   "in_pop_LCSB-ALL-MASSBANK-V1-EXPOSURE-SET__unique_keys": 4,
+   "in_pop_LCSB-CONFIRMATION__unique_keys": 0,
+   "in_pop_LCSB-DEV__unique_keys": 1,
+   "in_pop_LCSB-NEG__unique_keys": 3,
+   "in_pop_LCSB-POS-V2-SPECTRA__unique_keys": 1,
+   "in_pop_LCSB-RAW-MIX-REPLICATE-SET-92__unique_keys": 0,
+   "in_pop_LCSB-RAW-MIXES-499-503-505__unique_keys": 0,
+   "in_pop_MultiMS2-ANCHOR__unique_keys": 1,
+   "in_pop_V2-DEVELOPMENT-POPULATION__unique_keys": 5,
+   "in_pop_WUR-DEV-ANALYSIS__unique_keys": 2,
+   "in_pop_WUR-DEV-HOLD__unique_keys": 0,
+   "in_pop_WUR-NEG-D6-EXCLUDED__unique_keys": 0,
+   "in_pop_WUR-NEG-DEV__unique_keys": 1,
+   "in_pop_WUR-POS-IDENTITY__unique_keys": 4,
+   "in_pop_WUR-SEALED__unique_keys": 2,
+   "sg_in_msg15_scaffold_groups__unique_keys": 120,
+   "sg_in_muru_registry_scaffold_groups__unique_keys": 87,
+   "sg_in_muru_dev_scaffold_groups__unique_keys": 30,
+   "sg_in_pr7_scaffold_groups__unique_keys": 1,
+   "sg_in_comparator_scaffold_groups__unique_keys": 0,
+   "in_msg15_any_route__unique_keys": 70
+  }
+ },
+ "msg_rows_matching_keys": {
+  "rows": 2496,
+  "keys": 98,
+  "mh_positive_keys_in_msg": 93,
+  "instrument_type": {
+   "Orbitrap": 1687,
+   "NA": 92,
+   "QTOF": 717
+  },
+  "adduct": {
+   "[M+H]+": 2114,
+   "[M+Na]+": 382
+  },
+  "fold_rows": {
+   "train": 2316,
+   "test": 104,
+   "val": 76
+  },
+  "fold_keys": {
+   "train": 69,
+   "val": 12,
+   "test": 17
+  },
+  "simulation_challenge_rows": 1135,
+  "simulation_challenge_keys": 66,
+  "ce_nonnull_rows": 1179,
+  "first_appearance_region_keys": {
+   "A_lt190000_MassBank_MoNA_mixed": 73,
+   "B_190000_239028_MSnLib_dense_or_mixed": 15,
+   "C_ge239029_GNPS_first": 10
+  },
+  "keys_only_ce_missing_orbitrap_rows": 2
+ },
+ "gnps_library_crosscheck": {
+  "gnps_library_records_current_listing": 16158,
+  "records_with_tuebingen_source_file_names": 0,
+  "records_PI_Petras_or_collector_Vitale_Geibel": 75,
+  "records_PI_Petras_or_collector_Vitale_Geibel_before_msg_download": 58,
+  "petras_records_sharing_tuebingen_keys": 1,
+  "tuebingen_keys_in_gnps_library_pre_2024-05-13_records": 53,
+  "tuebingen_mh_keys_in_gnps_library_pre_2024-05-13_records": 48
+ },
+ "pools": [
+  {
+   "label": "P0 all records with a structure key",
+   "records": 919,
+   "keys": 340,
+   "scaffold_groups": 264,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    13,
+    6,
+    6,
+    4,
+    4,
+    3,
+    3,
+    3
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C1c2ccccc2C(=O)c2c1ccc1c2C(=O)CCC1",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "c1ccc2[nH]ccc2c1"
+   ],
+   "singleton_scaffold_groups": 219,
+   "precursor_mz_min_max": [
+    153.019,
+    2186.94
+   ],
+   "precursor_inconsistent_gt_0.01Da": 34,
+   "records_with_library_coisolation_conflict": 46,
+   "elements_keys": {
+    "C": 340,
+    "H": 340,
+    "N": 176,
+    "O": 340,
+    "S": 16,
+    "Cl": 15,
+    "P": 2
+   }
+  },
+  {
+   "label": "P1 [M+H]+ records from the positive-mode upload task",
+   "records": 281,
+   "keys": 273,
+   "scaffold_groups": 217,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    9,
+    6,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=C1c2ccccc2C(=O)c2c1ccc1c2C(=O)CCC1",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "c1ccc2[nH]ccc2c1"
+   ],
+   "singleton_scaffold_groups": 182,
+   "precursor_mz_min_max": [
+    155.07,
+    2164.96
+   ],
+   "precursor_inconsistent_gt_0.01Da": 10,
+   "records_with_library_coisolation_conflict": 46,
+   "elements_keys": {
+    "C": 273,
+    "H": 273,
+    "N": 150,
+    "O": 273,
+    "S": 14,
+    "Cl": 9,
+    "P": 2
+   }
+  },
+  {
+   "label": "P2 = P1, key not in MSG1.5 (either route), MURU exposed populations, MURU dev, PR7, comparator",
+   "records": 183,
+   "keys": 178,
+   "scaffold_groups": 147,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "O=C1C=CC=CCCCCCCCCCCCC2CCCC(CCCCCCCCC=CC=CCCO1)O2"
+   ],
+   "singleton_scaffold_groups": 126,
+   "precursor_mz_min_max": [
+    156.077,
+    2164.96
+   ],
+   "precursor_inconsistent_gt_0.01Da": 6,
+   "records_with_library_coisolation_conflict": 24,
+   "elements_keys": {
+    "C": 178,
+    "H": 178,
+    "N": 103,
+    "O": 178,
+    "Cl": 7,
+    "P": 1,
+    "S": 7
+   }
+  },
+  {
+   "label": "P3 = P1, conservative key exclusion incl. full MURU registry",
+   "records": 179,
+   "keys": 174,
+   "scaffold_groups": 143,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "c1ccccc1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1c2ccccc2C(=O)c2c1ccc1c2C(=O)CCC1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1"
+   ],
+   "singleton_scaffold_groups": 122,
+   "precursor_mz_min_max": [
+    156.077,
+    2164.96
+   ],
+   "precursor_inconsistent_gt_0.01Da": 6,
+   "records_with_library_coisolation_conflict": 23,
+   "elements_keys": {
+    "C": 174,
+    "H": 174,
+    "N": 100,
+    "O": 174,
+    "Cl": 7,
+    "P": 1,
+    "S": 7
+   }
+  },
+  {
+   "label": "P4 = P3 and scaffold group not in MURU registry/dev, PR7, comparator groups",
+   "records": 142,
+   "keys": 138,
+   "scaffold_groups": 115,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C1C=CC=CCCCCCCCCCCCC2CCCC(CCCCCCCCC=CC=CCCO1)O2",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1"
+   ],
+   "singleton_scaffold_groups": 99,
+   "precursor_mz_min_max": [
+    185.081,
+    2164.96
+   ],
+   "precursor_inconsistent_gt_0.01Da": 5,
+   "records_with_library_coisolation_conflict": 15,
+   "elements_keys": {
+    "C": 138,
+    "H": 138,
+    "N": 84,
+    "O": 138,
+    "Cl": 6,
+    "P": 1,
+    "S": 6
+   }
+  },
+  {
+   "label": "P5 = P4 and scaffold group not in MSG1.5 (strict)",
+   "records": 133,
+   "keys": 129,
+   "scaffold_groups": 107,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1C=CC=CCCCCCCCCCCCC2CCCC(CCCCCCCCC=CC=CCCO1)O2"
+   ],
+   "singleton_scaffold_groups": 92,
+   "precursor_mz_min_max": [
+    185.081,
+    2164.96
+   ],
+   "precursor_inconsistent_gt_0.01Da": 5,
+   "records_with_library_coisolation_conflict": 14,
+   "elements_keys": {
+    "C": 129,
+    "H": 129,
+    "N": 78,
+    "O": 129,
+    "Cl": 4,
+    "P": 1,
+    "S": 6
+   }
+  },
+  {
+   "label": "P6 = P4 and [M+H]+ within MURU development range 70.0-1042.6",
+   "records": 125,
+   "keys": 121,
+   "scaffold_groups": 101,
+   "acyclic_keys": 1,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "C1=CCC2OCOC2=C1"
+   ],
+   "singleton_scaffold_groups": 87,
+   "precursor_mz_min_max": [
+    185.081,
+    916.526
+   ],
+   "precursor_inconsistent_gt_0.01Da": 5,
+   "records_with_library_coisolation_conflict": 15,
+   "elements_keys": {
+    "C": 121,
+    "H": 121,
+    "N": 67,
+    "O": 121,
+    "Cl": 4,
+    "P": 1,
+    "S": 2
+   }
+  },
+  {
+   "label": "P7 = P6 and GNPS precursor within 0.01 Da of SMILES [M+H]+ and uncharged parent",
+   "records": 120,
+   "keys": 116,
+   "scaffold_groups": 96,
+   "acyclic_keys": 0,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "O=C1C=CC2OC2C(COC2CCCCO2)COC(=O)C=CCC(OC2CCCCO2)CCC1"
+   ],
+   "singleton_scaffold_groups": 82,
+   "precursor_mz_min_max": [
+    185.081,
+    916.526
+   ],
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "records_with_library_coisolation_conflict": 15,
+   "elements_keys": {
+    "C": 116,
+    "H": 116,
+    "N": 64,
+    "O": 116,
+    "Cl": 4,
+    "P": 1,
+    "S": 1
+   }
+  },
+  {
+   "label": "P8 = P7 and key not in MSnLib 9-lib (FIORA proxy)",
+   "records": 120,
+   "keys": 116,
+   "scaffold_groups": 96,
+   "acyclic_keys": 0,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "O=C1C=CC2OC2C(COC2CCCCO2)COC(=O)C=CCC(OC2CCCCO2)CCC1"
+   ],
+   "singleton_scaffold_groups": 82,
+   "precursor_mz_min_max": [
+    185.081,
+    916.526
+   ],
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "records_with_library_coisolation_conflict": 15,
+   "elements_keys": {
+    "C": 116,
+    "H": 116,
+    "N": 64,
+    "O": 116,
+    "Cl": 4,
+    "P": 1,
+    "S": 1
+   }
+  },
+  {
+   "label": "P9 = P7 and not (same parent formula AND scaffold group as some MSG1.5 compound)",
+   "records": 120,
+   "keys": 116,
+   "scaffold_groups": 96,
+   "acyclic_keys": 0,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "O=C1C=CC2OC2C(COC2CCCCO2)COC(=O)C=CCC(OC2CCCCO2)CCC1"
+   ],
+   "singleton_scaffold_groups": 82,
+   "precursor_mz_min_max": [
+    185.081,
+    916.526
+   ],
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "records_with_library_coisolation_conflict": 15,
+   "elements_keys": {
+    "C": 116,
+    "H": 116,
+    "N": 64,
+    "O": 116,
+    "Cl": 4,
+    "P": 1,
+    "S": 1
+   }
+  },
+  {
+   "label": "P10 = P7 and no known in-pool co-isolation conflict (lower bound)",
+   "records": 105,
+   "keys": 102,
+   "scaffold_groups": 86,
+   "acyclic_keys": 0,
+   "largest_scaffold_group_key_counts": [
+    4,
+    4,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2
+   ],
+   "largest_scaffold_groups": [
+    "O=C1c2ccccc2C(=O)c2cc3ccccc3cc21",
+    "O=C(CCCc1ccccn1)NCC1CCC(n2ccc(=O)[nH]c2=O)O1",
+    "C=C1CC2C=CCCCCC=CCC23C(=O)NC(Cc2ccccc2)C3C1",
+    "O=C1CNC(=O)Cc2cccc(c2)-c2cccc(c2)CCN1",
+    "O=C1C2=C(C(=O)c3ccccc31)C1C=CCCC1CO2"
+   ],
+   "singleton_scaffold_groups": 76,
+   "precursor_mz_min_max": [
+    185.081,
+    916.526
+   ],
+   "precursor_inconsistent_gt_0.01Da": 0,
+   "records_with_library_coisolation_conflict": 0,
+   "elements_keys": {
+    "C": 102,
+    "H": 102,
+    "N": 55,
+    "O": 102,
+    "Cl": 4,
+    "P": 1,
+    "S": 1
+   }
+  }
+ ],
+ "P1_mh_outside_70_1042.6": 18,
+ "hidden_inclusion_proxies": {
+  "P3_keys": 174,
+  "P3_keys_parent_formula_in_msg15": 75,
+  "P3_keys_formula_and_scaffold_in_msg15": 8,
+  "P3_keys_in_gnps_library_records_created_before_msg_download": 10,
+  "P3_keys_in_gnps_library_pre_download_examples": [
+   "Abyssomicin C atrop",
+   "Actinomycin D",
+   "Alamethicin",
+   "Arylomycin A2",
+   "Arylomycin A4",
+   "Chaetoglobosin F",
+   "Echinomycin",
+   "Factumycin",
+   "Ferrichrysin",
+   "Nargenicin A1"
+  ],
+  "P7_keys": 116,
+  "P7_keys_parent_formula_in_msg15": 53,
+  "P7_keys_in_gnps_library_records_created_before_msg_download": 6,
+  "P7_records_created_2025": 2,
+  "P7_mh_mz_quantiles": [
+   185.08,
+   324.58,
+   439.65,
+   582.42,
+   916.53
+  ],
+  "P7_heavy_atom_quantiles": [
+   13.0,
+   24.0,
+   31.5,
+   42.0,
+   64.0
+  ],
+  "gnps_library_pre_download_records_for_P3_keys": [
+   {
+    "SpectrumID": "CCMSLIB00000006865",
+    "Compound_Name": "Abyssomicin C",
+    "PI": "Dorrestein",
+    "Data_Collector": "X Liu",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2015-04-28 11:17:32.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000006870",
+    "Compound_Name": "Actinomycin D",
+    "PI": "Dorrestein",
+    "Data_Collector": "L Sanchez",
+    "Instrument": "Hybrid FT",
+    "Adduct": "M+2H",
+    "create_time": "2019-07-23 10:41:33.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000006871",
+    "Compound_Name": "Actinomycin D",
+    "PI": "Dorrestein",
+    "Data_Collector": "L Sanchez",
+    "Instrument": "Hybrid FT",
+    "Adduct": "M+H",
+    "create_time": "2019-07-23 10:41:33.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000075066",
+    "Compound_Name": "Arylomycin A4",
+    "PI": "Dorrestein",
+    "Data_Collector": "Peng",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2019-06-22 15:08:03.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000075067",
+    "Compound_Name": "Arylomycin A2",
+    "PI": "Dorrestein",
+    "Data_Collector": "Peng",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2019-06-22 15:05:23.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000223878",
+    "Compound_Name": "Echinomycin",
+    "PI": "Linington",
+    "Data_Collector": "K Kurita",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2019-07-23 10:41:52.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00000223879",
+    "Compound_Name": "Actinomycin D",
+    "PI": "Linington",
+    "Data_Collector": "K Kurita",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2019-07-23 10:41:52.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00005435775",
+    "Compound_Name": "Alamethicin",
+    "PI": "Dorrestein",
+    "Data_Collector": "amcaraballor",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2019-04-25 18:21:11.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00005435776",
+    "Compound_Name": "Alamethicin",
+    "PI": "Dorrestein",
+    "Data_Collector": "amcaraballor",
+    "Instrument": "qTof",
+    "Adduct": "M+2H",
+    "create_time": "2019-04-25 18:57:27.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00005436132",
+    "Compound_Name": "Ferrichrysin [M-H2+Fe]",
+    "PI": "Rene Boiteau",
+    "Data_Collector": "Rene Boiteau",
+    "Instrument": "Hybrid FT",
+    "Adduct": "M+H",
+    "create_time": "2019-07-11 15:23:17.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00005716823",
+    "Compound_Name": "Nargenicin A1",
+    "PI": "Sacha Pidot",
+    "Data_Collector": "Nick Tobias",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2020-02-24 20:49:07.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00006718016",
+    "Compound_Name": "Actinomycin D",
+    "PI": "Roger Linington",
+    "Data_Collector": "Trevor Clark",
+    "Instrument": "qTof",
+    "Adduct": "M+H",
+    "create_time": "2021-11-03 13:32:26.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00011428629",
+    "Compound_Name": "chaetoglobosin F",
+    "PI": "Houwen Lin",
+    "Data_Collector": "Lei Feng",
+    "Instrument": "Orbitrap",
+    "Adduct": "M+H",
+    "create_time": "2023-06-08 19:31:05.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00012194754",
+    "Compound_Name": "Factumycin",
+    "PI": "Dr. Elizabeth Parkinson ",
+    "Data_Collector": "Dr. Bruce Cooper",
+    "Instrument": "qTof",
+    "Adduct": "M+Na",
+    "create_time": "2024-04-03 12:52:04.0"
+   },
+   {
+    "SpectrumID": "CCMSLIB00012194758",
+    "Compound_Name": "Factumycin",
+    "PI": "Dr. Elizabeth Parkinson ",
+    "Data_Collector": "Dr. Bruce Cooper",
+    "Instrument": "qTof",
+    "Adduct": "M+H-3H2O",
+    "create_time": "2024-04-03 13:36:50.0"
+   }
+  ]
+ }
+}

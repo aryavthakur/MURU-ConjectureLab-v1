@@ -1,0 +1,6 @@
+HTTP/2 200 
+content-type: application/json; charset=UTF-8
+vary: Origin
+date: Tue, 15 Sep 2026 02:01:59 GMT
+strict-transport-security: max-age=15768000
+

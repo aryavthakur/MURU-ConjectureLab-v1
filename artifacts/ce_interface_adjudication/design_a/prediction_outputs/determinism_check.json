@@ -1,0 +1,66 @@
+{
+ "check": "byte_determinism_two_independent_runs",
+ "all_identical": true,
+ "files": [
+  {
+   "file": "glacier_msg__K1_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "c9e5fc49e3dbe978"
+  },
+  {
+   "file": "glacier_msg__K1_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "2397edbe6dacdf7d"
+  },
+  {
+   "file": "glacier_msg__K2_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "9bc605c68545f2cf"
+  },
+  {
+   "file": "glacier_msg__K2_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "a458b77d00518719"
+  },
+  {
+   "file": "glacier_msg__K3_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "3ab6581234d58d30"
+  },
+  {
+   "file": "glacier_msg__K3_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "44f3c77cca5ff448"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K1_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "277904850048607e"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K1_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "01bda1bcd903b655"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K2_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "668e9373bee2a3dd"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K2_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "215f673edb10f47c"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K3_preds.hdf5",
+   "status": "identical",
+   "sha256_prefix": "41c2f13d6789cace"
+  },
+  {
+   "file": "iceberg_2_1_msg_simulation__K3_spectra.json",
+   "status": "identical",
+   "sha256_prefix": "5341672c476663d8"
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+cs_dir,head_ce_form,head_frag_mode,arm,n
+AAFC,N(NCE),HCD,both_arms_present,14
+AAFC,N(NCE),HCD,key_not_in_msg_orbitrap_ce_rows,6
+AAFC,N(NCE),HCD,key_present_no_ce_match,45
+AAFC,N(NCE),HCD,percent_converted_only,1
+AAFC,N(NCE),HCD,raw_only,190
+AAFC,N(NCE),HCD,,44
+Eawag,N % (nominal),CID,both_arms_present,1
+Eawag,N % (nominal),CID,percent_converted_only,3
+Eawag,N % (nominal),CID,,3
+Eawag,N % (nominal),HCD,both_arms_present,9
+Eawag,N % (nominal),HCD,key_present_no_ce_match,2
+Eawag,N % (nominal),HCD,percent_converted_only,40
+Eawag,N % (nominal),HCD,,16
+Eawag,N (nominal),HCD,both_arms_present,1
+Eawag,N (nominal),HCD,key_present_no_ce_match,1
+Eawag,N (nominal),HCD,raw_only,22
+Eawag,N (nominal),HCD,,14
+Eawag_Additional_Specs,N,HCD,,1
+Eawag_Additional_Specs,N % (nominal),HCD,key_not_in_msg_orbitrap_ce_rows,1
+Eawag_Additional_Specs,N % (nominal),HCD,key_present_no_ce_match,1
+Eawag_Additional_Specs,N % (nominal),HCD,percent_converted_only,18
+Eawag_Additional_Specs,N % (nominal),HCD,,28
+Eawag_Additional_Specs,N (nominal),HCD,both_arms_present,3
+Eawag_Additional_Specs,N (nominal),HCD,key_present_no_ce_match,5
+Eawag_Additional_Specs,N (nominal),HCD,raw_only,110
+Eawag_Additional_Specs,N (nominal),HCD,,58
+Eawag_Additional_Specs,N NCE,HCD,,8
+Eawag_Additional_Specs,"N, N, N, N, N or N (nominal)",HCD,both_arms_present,9
+Eawag_Additional_Specs,"N, N, N, N, N or N (nominal)",HCD,raw_only,50
+Eawag_Additional_Specs,N-Nmz or N (mz>N) nominal units,HCD,,1
+Eawag_Additional_Specs,scaled N (m/z=N) to N (m/z=N),HCD,,6
+Eawag_Additional_Specs,scaled by m/z,HCD,,1
+HBM4EU,CEN,HCD,both_arms_present,3
+HBM4EU,N % (nominal),HCD,both_arms_present,8
+HBM4EU,N % (nominal),HCD,key_not_in_msg_orbitrap_ce_rows,2
+HBM4EU,N % (nominal),HCD,key_present_no_ce_match,4
+HBM4EU,N % (nominal),HCD,percent_converted_only,18
+HBM4EU,N % (nominal),HCD,raw_only,1
+HBM4EU,N % (nominal),HCD,,40
+HBM4EU,N eV,CID,,17
+HBM4EU,N% (nominal),CID,both_arms_present,4
+HBM4EU,N% (nominal),CID,key_not_in_msg_orbitrap_ce_rows,1
+HBM4EU,N% (nominal),CID,percent_converted_only,19
+HBM4EU,N% (nominal),HCD,both_arms_present,9
+HBM4EU,N% (nominal),HCD,key_not_in_msg_orbitrap_ce_rows,2
+HBM4EU,N% (nominal),HCD,percent_converted_only,65
+HBM4EU,N% (nominal),HCD,,6
+HBM4EU,N% (nominal) with stepped collision energies N% and N%,HCD,,1
+NaToxAq,N % (nominal),CID,both_arms_present,3
+NaToxAq,N % (nominal),CID,key_not_in_msg_orbitrap_ce_rows,1
+NaToxAq,N % (nominal),CID,key_present_no_ce_match,5
+NaToxAq,N % (nominal),CID,percent_converted_only,62
+NaToxAq,N % (nominal),HCD,both_arms_present,6
+NaToxAq,N % (nominal),HCD,key_not_in_msg_orbitrap_ce_rows,2
+NaToxAq,N % (nominal),HCD,key_present_no_ce_match,11
+NaToxAq,N % (nominal),HCD,percent_converted_only,89
+NaToxAq,N % (nominal),HCD,raw_only,1
+NaToxAq,N% (nominal),HCD,both_arms_present,9
+NaToxAq,N% (nominal),HCD,key_present_no_ce_match,13
+NaToxAq,N% (nominal),HCD,percent_converted_only,97
+NaToxAq,N% (nominal),HCD,raw_only,1
+UFZ,N % (nominal),CID,key_present_no_ce_match,1
+UFZ,N % (nominal),CID,,1
+UFZ,N % (nominal),HCD,both_arms_present,40
+UFZ,N % (nominal),HCD,key_present_no_ce_match,25
+UFZ,N % (nominal),HCD,percent_converted_only,116
+UFZ,N % (nominal),HCD,raw_only,3
+UFZ,N (nominal),CID,both_arms_present,1
+UFZ,N (nominal),CID,raw_only,2
+UFZ,N (nominal),CID,,1
+UFZ,N (nominal),HCD,both_arms_present,2
+UFZ,N (nominal),HCD,raw_only,6

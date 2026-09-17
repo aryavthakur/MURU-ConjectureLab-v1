@@ -1,0 +1,778 @@
+{
+ "script": "scripts/ce_interface_adjudication/screen_c07_mfam.py",
+ "rdkit": "2026.03.5",
+ "frozen_rdkit": "2026.03.5",
+ "inputs": {
+  "jsonld_gz_sha256": "90b468547410497c22946d1d95937f829ba24b810ede469459a0cf6e45133f58",
+  "partition_files": 11,
+  "codesearch_files": {
+   "ce_MC01.json": "62773686143fe63e77d7d63679d2c7ef8df07619c61ce81e0d125ba6da36cab1",
+   "ce_MC06.json": "2117b781ae5973acb84048705327fe54488e2fe3ba2243c3ddea95e0f817f317",
+   "ce_MC09.json": "51c3bab99bf45e719108e8f2f0f1db5cf854bbb6cd96384ecf69fb2a268f2fc8",
+   "ce_MC14.json": "32aa8d111614057fa92e3f2807698ed8990baef0b072b7223e6e787cf83df6a7",
+   "ce_MC16.json": "a7a905f6002ca9ae68baff90abbcf885028be6fd9583fe37d4882b4558bd49c0",
+   "ce_MC18.json": "0c7a5be1819402e1c4367462caeff64f7ed56f3ae37c0eac8698845911f635f2",
+   "ce_MC19.json": "4dfd4a328d3b76c6d022dfb02920d3e4a11857bef2bde148eedb76e4d46429f1",
+   "ce_MC22.json": "6b9ff4f7ee95c8942e69ef07089165a3f56045bdf9099d47705f3ec840d1cbe5",
+   "ce_MC25.json": "1d5f51fa8a02004965e4faf8bc46b4e9ae5befe9f6e7b3f6b17d5af8c13ea7d5",
+   "fragmode_all.json": "7390e77e85abdd01f4baf5604936fa8b8f358cd088cf38b6b55db8c123c0f79f",
+   "inst_MC01.json": "7871ba3acecd6d5877f36064fc32cf173651f495959cb796fae857e1c5c1a5da",
+   "inst_MC06.json": "fbd37dc570fb57c036c4e28cfd1eb4bd5c7af023c02f8f1ae1cf5a2e8f1e3b2d",
+   "inst_MC09.json": "a7e20c563e342412f65c718f7e03f504cf3fe5d14c8fc8d5a4314faac7c054eb",
+   "inst_MC14.json": "27ac7717ae3aaa40e0d9a49a7d30e3924969dd21e1e7afee79a8713438f06ad6",
+   "inst_MC15.json": "0d9b41d24e3e664dba821c83d2f30a829e4e761131e91a28e403e7db64f75c07",
+   "inst_MC16.json": "eb372ccd2c3bd4162748f72abdaf9f849c70306aa6b96f4f0d01dd2de72a32c0",
+   "inst_MC18.json": "6d4b94f077aefc26a6f0f829b4f53e2b65fa4a251dd0cf2d0be2a794741956e2",
+   "inst_MC19.json": "3d1a7fe9ec4b927090c8fbfbb761cd020a029ed2eb353f495edf4daf4f2023ad",
+   "inst_MC20_neg.json": "2efd2a67d5fc27bce65e95163f78b82780966fc17a36b22cadcb5926d022cd89",
+   "inst_MC20_pos.json": "c12362a25d5fd4e7a344e6b0bcc0a8053ee9e6c53b8d6c114a2423fa67fa7731",
+   "inst_MC22.json": "ccf0d8537b2ada1ee6093669cb70cbf70717361dea669657ef418e97a38fff2f",
+   "inst_MC25.json": "214f88619766ec40e0ab414858704973cbb51b3fc15c4080b583892c43e57c5f",
+   "probe_MC01_000001.json": "e2fb2ee0e56a0b3e9e6c3d51f04aff03b021821fd0bd493a0850dbb33989f6a6",
+   "probe_MC15_ce_prefix.json": "cb065078586c323c51740db5cdfd49a0dcf75fa8c76bc1374c42a32e081b6161",
+   "probe_MC20_000001_ce.json": "46eebb6514903a54f61f5783d01004ccf9b832e3cc605b028564ffe98161f6d3",
+   "probe_MC20_000001_focused.json": "88ebb11b588c3da9c8be4fc8b35de014bd77fdf40611c3c76506fbbd6e4381cf",
+   "probe_MC20_000001_fragmode.json": "86355223ca4a98a8b6a8a9da3ec84adcdfadd1cc0814eb408baea1ea4a79a4bb",
+   "probe_MC20_000001_inst.json": "2fef6aa5a77e9ab1dc750937746c935eadfc1cc6828a531d5940816bd0c48fd7"
+  },
+  "fig3_table_sha256": "c76d81c1c58cac98e5c922079ef30ed5890feb984af92a0b5c60ba3a29c07081",
+  "exclusion_manifest_sha256": "4c3122a4e3dfe42068c0c1f4bd98bc04a439e7a0fb2041ef09bb2b8fc7655b58"
+ },
+ "browse_counts": {
+  "contributor": {
+   "mFam": 7872
+  },
+  "instrument_type": {
+   "APCI-ITFT": 116,
+   "ESI-QTOF": 85,
+   "ESI-TOF": 1094,
+   "LC-ESI-ITFT": 2634,
+   "LC-ESI-QFT": 689,
+   "LC-ESI-QTOF": 3254
+  },
+  "ms_type": {
+   "MS2": 7872
+  },
+  "ion_mode": {
+   "NEGATIVE": 3226,
+   "POSITIVE": 4646
+  }
+ },
+ "n_records_partition": 7872,
+ "n_records_jsonld": 7872,
+ "jsonld_status": {
+  "200": 7872
+ },
+ "title_parse_failures": 0,
+ "title_itype_vs_partition_disagree": 0,
+ "n_key_formed_records": 7872,
+ "n_distinct_keys_all": 1848,
+ "n_scaffold_groups_all": 905,
+ "key_vs_recorded_inchikey_block": {
+  "True": 7854,
+  "False": 18
+ },
+ "key_vs_inchi_block": {
+  "True": 7854,
+  "False": 18
+ },
+ "fig3_key_agrees": {
+  "True": 7872
+ },
+ "codesearch_hits_per_file": {
+  "ce_MC01.json": 116,
+  "ce_MC06.json": 48,
+  "ce_MC09.json": 230,
+  "ce_MC14.json": 93,
+  "ce_MC16.json": 14,
+  "ce_MC18.json": 16,
+  "ce_MC19.json": 218,
+  "ce_MC22.json": 415,
+  "ce_MC25.json": 161,
+  "fragmode_all.json": 0,
+  "inst_MC01.json": 116,
+  "inst_MC06.json": 48,
+  "inst_MC09.json": 230,
+  "inst_MC14.json": 93,
+  "inst_MC15.json": 23,
+  "inst_MC16.json": 14,
+  "inst_MC18.json": 16,
+  "inst_MC19.json": 218,
+  "inst_MC20_neg.json": 1000,
+  "inst_MC20_pos.json": 1000,
+  "inst_MC22.json": 415,
+  "inst_MC25.json": 161,
+  "probe_MC01_000001.json": 1,
+  "probe_MC15_ce_prefix.json": 23,
+  "probe_MC20_000001_ce.json": 1,
+  "probe_MC20_000001_focused.json": 1,
+  "probe_MC20_000001_fragmode.json": 0,
+  "probe_MC20_000001_inst.json": 1
+ },
+ "codesearch_ce_line_vs_title": {
+  "True": 1335,
+  "None": 6537
+ },
+ "codesearch_fragmentation_mode_values": {},
+ "date_published_by_lab": {
+  "MC01": [
+   "2023-01-17",
+   "2023-01-17"
+  ],
+  "MC02": [
+   "2023-03-06",
+   "2023-03-06"
+  ],
+  "MC03": [
+   "2025-07-06",
+   "2025-07-19"
+  ],
+  "MC04": [
+   "2023-02-07",
+   "2023-02-07"
+  ],
+  "MC05": [
+   "2023-02-07",
+   "2023-02-07"
+  ],
+  "MC06": [
+   "2023-02-07",
+   "2023-02-08"
+  ],
+  "MC07": [
+   "2023-02-08",
+   "2023-02-10"
+  ],
+  "MC08": [
+   "2023-02-08",
+   "2023-02-08"
+  ],
+  "MC09": [
+   "2023-02-20",
+   "2023-02-21"
+  ],
+  "MC10": [
+   "2023-02-06",
+   "2023-02-07"
+  ],
+  "MC11": [
+   "2023-04-05",
+   "2023-04-05"
+  ],
+  "MC12": [
+   "2023-02-03",
+   "2023-02-03"
+  ],
+  "MC13": [
+   "2023-02-04",
+   "2023-02-04"
+  ],
+  "MC14": [
+   "2023-02-05",
+   "2023-02-05"
+  ],
+  "MC15": [
+   "2023-02-05",
+   "2023-02-05"
+  ],
+  "MC16": [
+   "2023-04-03",
+   "2023-04-03"
+  ],
+  "MC17": [
+   "2023-02-06",
+   "2023-02-06"
+  ],
+  "MC18": [
+   "2023-02-16",
+   "2023-02-16"
+  ],
+  "MC19": [
+   "2025-07-06",
+   "2025-07-06"
+  ],
+  "MC20": [
+   "2023-03-07",
+   "2023-03-09"
+  ],
+  "MC21": [
+   "2023-01-31",
+   "2023-04-03"
+  ],
+  "MC22": [
+   "2023-04-05",
+   "2023-04-05"
+  ],
+  "MC23": [
+   "2023-02-21",
+   "2025-03-24"
+  ],
+  "MC24": [
+   "2023-02-08",
+   "2023-02-08"
+  ],
+  "MC25": [
+   "2023-03-30",
+   "2023-03-31"
+  ]
+ },
+ "licenses": {
+  "https://creativecommons.org/licenses/by/4.0/": 7872
+ },
+ "orbitrap_type_records": 3439,
+ "orbitrap_pos_records": 1886,
+ "orbitrap_pos_mh_records": 1775,
+ "orbitrap_pos_mh_esi_records": 1717,
+ "orbitrap_pos_mh_keys": 695,
+ "orbitrap_pos_mh_by_lab_records": {
+  "MC01": 58,
+  "MC09": 27,
+  "MC14": 93,
+  "MC15": 18,
+  "MC19": 152,
+  "MC20": 1079,
+  "MC22": 283,
+  "MC25": 65
+ },
+ "orbitrap_pos_mh_max_distinct_single_numeric_ce_within_lab_hist": {
+  "1": 494,
+  "6": 176,
+  "0": 21,
+  "5": 2,
+  "2": 2
+ },
+ "orbitrap_pos_mh_max_distinct_ce_strings_within_lab_hist": {
+  "1": 515,
+  "6": 176,
+  "5": 2,
+  "2": 2
+ },
+ "all_mfam_records_pos_mh_max_distinct_ce_per_key_lab_hist": {
+  "1": 1141,
+  "2": 529,
+  "6": 176,
+  "5": 28,
+  "4": 15,
+  "3": 120
+ },
+ "ladder_all_mfam_compounds": {
+  "all": {
+   "keys": 1848,
+   "scaffold_groups": 900,
+   "acyclic_groups": 388,
+   "groups_with_ge2_keys": 180
+  },
+  "A_keys_not_in_registry_pr7_cmp": {
+   "keys": 1061,
+   "scaffold_groups": 578,
+   "acyclic_groups": 239,
+   "groups_with_ge2_keys": 110
+  },
+  "B_A_and_not_in_msg15": {
+   "keys": 680,
+   "scaffold_groups": 355,
+   "acyclic_groups": 101,
+   "groups_with_ge2_keys": 88
+  },
+  "C_B_and_scaffold_not_in_registry_pr7_cmp": {
+   "keys": 349,
+   "scaffold_groups": 267,
+   "acyclic_groups": 101,
+   "groups_with_ge2_keys": 39
+  },
+  "D_C_and_scaffold_not_in_msg15": {
+   "keys": 323,
+   "scaffold_groups": 251,
+   "acyclic_groups": 101,
+   "groups_with_ge2_keys": 33
+  },
+  "L1_keys_not_in_exposed_pop_union_pr7_cmp": {
+   "keys": 1725,
+   "scaffold_groups": 846,
+   "acyclic_groups": 377,
+   "groups_with_ge2_keys": 168
+  },
+  "L2_L1_and_not_in_msg15": {
+   "keys": 768,
+   "scaffold_groups": 403,
+   "acyclic_groups": 126,
+   "groups_with_ge2_keys": 93
+  },
+  "L3_L2_and_scaffold_not_in_pr7_cmp": {
+   "keys": 765,
+   "scaffold_groups": 401,
+   "acyclic_groups": 126,
+   "groups_with_ge2_keys": 92
+  },
+  "overlap_keys": {
+   "muru_registry_full": 783,
+   "muru_registry_direct_reason": 711,
+   "muru_exposed_population_union": 119,
+   "muru_exposed_populations_hit": {
+    "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 59,
+    "LCSB-CONFIRMATION": 12,
+    "LCSB-DEV": 26,
+    "LCSB-POS-V2-SPECTRA": 31,
+    "V2-DEVELOPMENT-POPULATION": 72,
+    "WUR-DEV-ANALYSIS": 23,
+    "WUR-POS-IDENTITY": 51,
+    "WUR-SEALED": 26,
+    "LCSB-NEG": 29,
+    "WUR-NEG-D6-EXCLUDED": 2,
+    "ENTACT-MIX-LISTS-499-503-505": 32,
+    "LCSB-RAW-MIX-REPLICATE-SET-92": 8,
+    "LCSB-RAW-MIXES-499-503-505": 6,
+    "MultiMS2-ANCHOR": 13,
+    "WUR-NEG-DEV": 8,
+    "WUR-DEV-HOLD": 2
+   },
+   "pr7_study2": 4,
+   "comparator_common": 0,
+   "msg15_any": 1069,
+   "msg15_by_fold": {
+    "train": 1033,
+    "val": 11,
+    "test": 25
+   },
+   "msg15_simchallenge": 820,
+   "msnlib_9lib": 952,
+   "msnlib_v1_0": 796,
+   "multims2_reserved": 31
+  },
+  "B_hidden_identity_proxy": {
+   "B_keys_msg15_same_formula": 374,
+   "B_keys_msg15_same_formula_and_scaffold": 78
+  }
+ },
+ "ladder_orbitrap_pos_mh_compounds": {
+  "all": {
+   "keys": 695,
+   "scaffold_groups": 347,
+   "acyclic_groups": 130,
+   "groups_with_ge2_keys": 73
+  },
+  "A_keys_not_in_registry_pr7_cmp": {
+   "keys": 326,
+   "scaffold_groups": 178,
+   "acyclic_groups": 50,
+   "groups_with_ge2_keys": 37
+  },
+  "B_A_and_not_in_msg15": {
+   "keys": 178,
+   "scaffold_groups": 91,
+   "acyclic_groups": 7,
+   "groups_with_ge2_keys": 29
+  },
+  "C_B_and_scaffold_not_in_registry_pr7_cmp": {
+   "keys": 112,
+   "scaffold_groups": 66,
+   "acyclic_groups": 7,
+   "groups_with_ge2_keys": 17
+  },
+  "D_C_and_scaffold_not_in_msg15": {
+   "keys": 103,
+   "scaffold_groups": 61,
+   "acyclic_groups": 7,
+   "groups_with_ge2_keys": 15
+  },
+  "L1_keys_not_in_exposed_pop_union_pr7_cmp": {
+   "keys": 638,
+   "scaffold_groups": 324,
+   "acyclic_groups": 127,
+   "groups_with_ge2_keys": 69
+  },
+  "L2_L1_and_not_in_msg15": {
+   "keys": 191,
+   "scaffold_groups": 100,
+   "acyclic_groups": 13,
+   "groups_with_ge2_keys": 30
+  },
+  "L3_L2_and_scaffold_not_in_pr7_cmp": {
+   "keys": 191,
+   "scaffold_groups": 100,
+   "acyclic_groups": 13,
+   "groups_with_ge2_keys": 30
+  },
+  "overlap_keys": {
+   "muru_registry_full": 368,
+   "muru_registry_direct_reason": 335,
+   "muru_exposed_population_union": 56,
+   "muru_exposed_populations_hit": {
+    "ENTACT-MIX-LISTS-499-503-505": 19,
+    "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 31,
+    "LCSB-CONFIRMATION": 6,
+    "V2-DEVELOPMENT-POPULATION": 37,
+    "WUR-POS-IDENTITY": 23,
+    "WUR-SEALED": 15,
+    "LCSB-RAW-MIX-REPLICATE-SET-92": 4,
+    "LCSB-DEV": 15,
+    "LCSB-POS-V2-SPECTRA": 19,
+    "WUR-DEV-ANALYSIS": 8,
+    "MultiMS2-ANCHOR": 10,
+    "LCSB-NEG": 15,
+    "LCSB-RAW-MIXES-499-503-505": 3,
+    "WUR-NEG-DEV": 2
+   },
+   "pr7_study2": 1,
+   "comparator_common": 0,
+   "msg15_any": 500,
+   "msg15_by_fold": {
+    "train": 492,
+    "val": 4,
+    "test": 4
+   },
+   "msg15_simchallenge": 441,
+   "msnlib_9lib": 441,
+   "msnlib_v1_0": 381,
+   "multims2_reserved": 18
+  },
+  "B_hidden_identity_proxy": {
+   "B_keys_msg15_same_formula": 114,
+   "B_keys_msg15_same_formula_and_scaffold": 19
+  }
+ },
+ "ladder_orbitrap_pos_mh_ge3_single_numeric_ce_within_lab": {
+  "all": {
+   "keys": 178,
+   "scaffold_groups": 105,
+   "acyclic_groups": 65,
+   "groups_with_ge2_keys": 13
+  },
+  "A_keys_not_in_registry_pr7_cmp": {
+   "keys": 64,
+   "scaffold_groups": 41,
+   "acyclic_groups": 28,
+   "groups_with_ge2_keys": 6
+  },
+  "B_A_and_not_in_msg15": {
+   "keys": 13,
+   "scaffold_groups": 9,
+   "acyclic_groups": 4,
+   "groups_with_ge2_keys": 2
+  },
+  "C_B_and_scaffold_not_in_registry_pr7_cmp": {
+   "keys": 6,
+   "scaffold_groups": 6,
+   "acyclic_groups": 4,
+   "groups_with_ge2_keys": 0
+  },
+  "D_C_and_scaffold_not_in_msg15": {
+   "keys": 6,
+   "scaffold_groups": 6,
+   "acyclic_groups": 4,
+   "groups_with_ge2_keys": 0
+  },
+  "L1_keys_not_in_exposed_pop_union_pr7_cmp": {
+   "keys": 155,
+   "scaffold_groups": 95,
+   "acyclic_groups": 64,
+   "groups_with_ge2_keys": 11
+  },
+  "L2_L1_and_not_in_msg15": {
+   "keys": 15,
+   "scaffold_groups": 11,
+   "acyclic_groups": 6,
+   "groups_with_ge2_keys": 2
+  },
+  "L3_L2_and_scaffold_not_in_pr7_cmp": {
+   "keys": 15,
+   "scaffold_groups": 11,
+   "acyclic_groups": 6,
+   "groups_with_ge2_keys": 2
+  },
+  "overlap_keys": {
+   "muru_registry_full": 114,
+   "muru_registry_direct_reason": 110,
+   "muru_exposed_population_union": 23,
+   "muru_exposed_populations_hit": {
+    "ENTACT-MIX-LISTS-499-503-505": 7,
+    "LCSB-RAW-MIX-REPLICATE-SET-92": 1,
+    "LCSB-ALL-MASSBANK-V1-EXPOSURE-SET": 14,
+    "LCSB-DEV": 8,
+    "LCSB-POS-V2-SPECTRA": 10,
+    "MultiMS2-ANCHOR": 6,
+    "V2-DEVELOPMENT-POPULATION": 16,
+    "WUR-POS-IDENTITY": 8,
+    "WUR-SEALED": 8,
+    "LCSB-NEG": 7,
+    "LCSB-CONFIRMATION": 2
+   },
+   "pr7_study2": 0,
+   "comparator_common": 0,
+   "msg15_any": 163,
+   "msg15_by_fold": {
+    "train": 162,
+    "test": 1
+   },
+   "msg15_simchallenge": 153,
+   "msnlib_9lib": 137,
+   "msnlib_v1_0": 124,
+   "multims2_reserved": 6
+  },
+  "B_hidden_identity_proxy": {
+   "B_keys_msg15_same_formula": 7,
+   "B_keys_msg15_same_formula_and_scaffold": 2
+  }
+ },
+ "multi_energy_subset_detail": {
+  "instrument_models": {
+   "Thermo Scientific Q-Exactive Focus": 50,
+   "NOT_FETCHED;Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 27,
+   "Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 53,
+   "NOT_FETCHED;Thermo Scientific Q-Exactive Focus": 33,
+   "LTQ Orbitrap XL, Thermo Scientfic; Dionex Ultimate 300;Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 6,
+   "LTQ Orbitrap XL, Thermo Scientfic; Dionex Ultimate 300;NOT_FETCHED;Thermo Scientific Q-Exactive Focus": 3,
+   "LTQ Orbitrap XL, Thermo Scientfic; Dionex Ultimate 300;NOT_FETCHED;Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 2,
+   "LTQ-Orbitrap XL hybrid mass spectrometer (Thermo Scientific);QE Focus, Thermo Scientfic; UPLC I-Class, Waters;Thermo Scientific Q-Exactive Focus": 1,
+   "LTQ Orbitrap XL, Thermo Scientfic; Dionex Ultimate 300;LTQ-Orbitrap XL hybrid mass spectrometer (Thermo Scientific);Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 1,
+   "LTQ-Orbitrap XL hybrid mass spectrometer (Thermo Scientific);NOT_FETCHED;Q-Exactive Orbitrap, Thermo Scientfic; Ultimate 3000 HPLC, Thermo Scientfic;Thermo Scientific Q-Exactive Focus": 1,
+   "LTQ-Orbitrap XL hybrid mass spectrometer (Thermo Scientific);Thermo Scientific Q-Exactive Focus": 1
+  },
+  "ce_strings_by_lab_examples": {
+   "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}": 82,
+   "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"]}": 79,
+   "{\"MC19\": [\"45eV\"], \"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"]}": 7,
+   "{\"MC19\": [\"45eV\"], \"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}": 3,
+   "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"60\"]}": 1,
+   "{\"MC09\": [\"15,30,45 (NCE)\"], \"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC25\": [\"0.3\"]}": 1,
+   "{\"MC19\": [\"35eV\", \"45eV\"], \"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"], \"MC25\": [\"0.3\"]}": 1,
+   "{\"MC20\": [\"10\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"]}": 1,
+   "{\"MC19\": [\"35eV\"], \"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"]}": 1,
+   "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC22\": [\"30eV\"], \"MC25\": [\"0.3\"]}": 1,
+   "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"], \"MC25\": [\"0.3\"]}": 1
+  },
+  "C_pass": [
+   {
+    "key": "DLFVBJFMPXGRIB",
+    "name": "Acetamide",
+    "scaffold_group": "__ACYCLIC__DLFVBJFMPXGRIB",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}",
+    "msg15_keys_same_formula": 0,
+    "msg15_keys_same_formula_and_scaffold": 0
+   },
+   {
+    "key": "HNYOPLTXPVRDBG",
+    "name": "Barbituric acid",
+    "scaffold_group": "O=C1N=CCC=N1",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}",
+    "msg15_keys_same_formula": 0,
+    "msg15_keys_same_formula_and_scaffold": 0
+   },
+   {
+    "key": "JLGOGFIHBRJQHY",
+    "name": "Oxytetracycline",
+    "scaffold_group": "O=C1C=CCC2CC3Cc4ccccc4C=C3C(=O)C12",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"60\"]}",
+    "msg15_keys_same_formula": 1,
+    "msg15_keys_same_formula_and_scaffold": 0
+   },
+   {
+    "key": "ULQWKETUACYZLI",
+    "name": "Dihomo-gamma-Linolenoyl ethanolamide",
+    "scaffold_group": "__ACYCLIC__ULQWKETUACYZLI",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}",
+    "msg15_keys_same_formula": 0,
+    "msg15_keys_same_formula_and_scaffold": 0
+   },
+   {
+    "key": "VJSBNBBOSZJDKB",
+    "name": "Cer(d18:1/24:1(15Z))",
+    "scaffold_group": "__ACYCLIC__VJSBNBBOSZJDKB",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}",
+    "msg15_keys_same_formula": 1,
+    "msg15_keys_same_formula_and_scaffold": 0
+   },
+   {
+    "key": "WSMYVTOQOOLQHP",
+    "name": "Malondialdehyde",
+    "scaffold_group": "__ACYCLIC__WSMYVTOQOOLQHP",
+    "labs": "MC20",
+    "ce_strings_by_lab": "{\"MC20\": [\"10\", \"100\", \"20\", \"30\", \"40\", \"60\"]}",
+    "msg15_keys_same_formula": 1,
+    "msg15_keys_same_formula_and_scaffold": 0
+   }
+  ],
+  "L2_pass": [
+   {
+    "key": "DLFVBJFMPXGRIB",
+    "name": "Acetamide",
+    "scaffold_group": "__ACYCLIC__DLFVBJFMPXGRIB",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   },
+   {
+    "key": "HNYOPLTXPVRDBG",
+    "name": "Barbituric acid",
+    "scaffold_group": "O=C1N=CCC=N1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   },
+   {
+    "key": "HUEBIMLTDXKIPR",
+    "name": "Methyl heptadecanoate",
+    "scaffold_group": "__ACYCLIC__HUEBIMLTDXKIPR",
+    "labs": "MC20",
+    "in_muru_registry": true,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "JLGOGFIHBRJQHY",
+    "name": "Oxytetracycline",
+    "scaffold_group": "O=C1C=CCC2CC3Cc4ccccc4C=C3C(=O)C12",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   },
+   {
+    "key": "JWJCTZKFYGDABJ",
+    "name": "Metanephrine",
+    "scaffold_group": "c1ccccc1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "LTYOQGRJFJAKNA",
+    "name": "Malonyl-CoA",
+    "scaffold_group": "c1ncc2ncn(C3CCCO3)c2n1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "MZFOKIKEPGUZEN",
+    "name": "Methylmalonyl-CoA",
+    "scaffold_group": "c1ncc2ncn(C3CCCO3)c2n1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "QAQREVBBADEHPA",
+    "name": "Propionyl-CoA",
+    "scaffold_group": "c1ncc2ncn(C3CCCO3)c2n1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "QJPWUUJVYOJNMH",
+    "name": "L-Homoserine lactone",
+    "scaffold_group": "O=C1CCCO1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "QPJVMBTYPHYUOC",
+    "name": "Methyl benzoate",
+    "scaffold_group": "c1ccccc1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "QQBPLXNESPTPNU",
+    "name": "N-Oleoyldopamine",
+    "scaffold_group": "c1ccccc1",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "UFULAYFCSOUIOV",
+    "name": "Cysteamine",
+    "scaffold_group": "__ACYCLIC__UFULAYFCSOUIOV",
+    "labs": "MC20",
+    "in_muru_registry": true,
+    "scaffold_in_muru_registry": true
+   },
+   {
+    "key": "ULQWKETUACYZLI",
+    "name": "Dihomo-gamma-Linolenoyl ethanolamide",
+    "scaffold_group": "__ACYCLIC__ULQWKETUACYZLI",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   },
+   {
+    "key": "VJSBNBBOSZJDKB",
+    "name": "Cer(d18:1/24:1(15Z))",
+    "scaffold_group": "__ACYCLIC__VJSBNBBOSZJDKB",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   },
+   {
+    "key": "WSMYVTOQOOLQHP",
+    "name": "Malondialdehyde",
+    "scaffold_group": "__ACYCLIC__WSMYVTOQOOLQHP",
+    "labs": "MC20",
+    "in_muru_registry": false,
+    "scaffold_in_muru_registry": false
+   }
+  ],
+  "labs_supplying_ge3_energies": {
+   "MC20": 178
+  },
+  "labs_co_occurring_any": {
+   "MC20": 178,
+   "MC22": 90,
+   "MC19": 12,
+   "MC09": 1,
+   "MC25": 4
+  }
+ },
+ "msg15_signature_check_multi_energy_ladder": {
+  "ladder_values": [
+   10.0,
+   20.0,
+   30.0,
+   40.0,
+   60.0,
+   100.0
+  ],
+  "msg15_orbitrap_rows_ce_gt_90": 2017,
+  "msg15_orbitrap_ce_max": 358.40016,
+  "msg15_orbitrap_mh_keys_with_full_ladder": 0,
+  "of_which_multi_energy_mfam_keys": 0,
+  "msg15_orbitrap_mh_rows_ce_100": 0,
+  "msg15_orbitrap_any_adduct_rows_ce_100": 0,
+  "multi_energy_mfam_keys_in_msg15_with_orbitrap_mh_rows": 135,
+  "multi_energy_mfam_keys_in_msg15_orbitrap_mh_ce_hist_top": {
+   "35.0": 174,
+   "60.0": 140,
+   "20.0": 121,
+   "30.0": 120,
+   "45.0": 107,
+   "15.0": 105,
+   "90.0": 58,
+   "75.0": 45,
+   "55.0": 39,
+   "10.0": 33,
+   "40.0": 32,
+   "70.0": 28,
+   "50.0": 27,
+   "65.0": 25,
+   "25.0": 21
+  }
+ },
+ "orbitrap_pos_mh_pass_C_by_lab": {
+  "MC01": 32,
+  "MC14": 59,
+  "MC19": 4,
+  "MC22": 4,
+  "MC20": 6,
+  "MC09": 5,
+  "MC15": 1,
+  "MC25": 1
+ },
+ "orbitrap_pos_mh_pass_C_mh_dev_range_neutral_single": 109
+}
