@@ -1,0 +1,796 @@
+{
+ "training_numeric_ce": {
+  "q01": 6.0,
+  "q05": 7.6035300900000005,
+  "q95": 90.0,
+  "q99": 150.0,
+  "min": 0.0,
+  "max": 358.40016
+ },
+ "training_rows_per_window": {
+  "L": 46985,
+  "N": 2611,
+  "H": 2385
+ },
+ "n_training_rows": 119029,
+ "grids": {
+  "G6_15_90": {
+   "per_mapping": {
+    "K1": {
+     "ce_min": 15.0,
+     "ce_max": 90.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "frac_outside_min_max": 0.0
+    },
+    "K2": {
+     "ce_min": 3.9,
+     "ce_max": 162.0,
+     "frac_above_q95": 0.18,
+     "frac_above_q99": 0.0186,
+     "frac_outside_min_max": 0.0
+    }
+   },
+   "cells": [
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 13863,
+     "support_rows_at_ce_max": 13863
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 8719,
+     "support_rows_at_ce_max": 8719
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 7721,
+     "support_rows_at_ce_max": 7721
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 4221,
+     "support_rows_at_ce_max": 4221
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 2188,
+     "support_rows_at_ce_max": 2188
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 90,
+     "ce_min": 90.0,
+     "ce_max": 90.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 1463,
+     "support_rows_at_ce_max": 1463
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 924,
+     "support_rows_at_ce_max": 924
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 440,
+     "support_rows_at_ce_max": 440
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 366,
+     "support_rows_at_ce_max": 366
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 655,
+     "support_rows_at_ce_max": 655
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 44,
+     "support_rows_at_ce_max": 44
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 90,
+     "ce_min": 90.0,
+     "ce_max": 90.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 28,
+     "support_rows_at_ce_max": 28
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 677,
+     "support_rows_at_ce_max": 677
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 313,
+     "support_rows_at_ce_max": 313
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 366,
+     "support_rows_at_ce_max": 366
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 329,
+     "support_rows_at_ce_max": 329
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 83,
+     "support_rows_at_ce_max": 83
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 90,
+     "ce_min": 90.0,
+     "ce_max": 90.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 50,
+     "support_rows_at_ce_max": 50
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 15,
+     "ce_min": 3.9,
+     "ce_max": 9.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 8439,
+     "support_rows_at_ce_max": 8225
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 30,
+     "ce_min": 7.8,
+     "ce_max": 18.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 18352,
+     "support_rows_at_ce_max": 10548
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 45,
+     "ce_min": 11.7,
+     "ce_max": 27.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 23586,
+     "support_rows_at_ce_max": 7539
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 60,
+     "ce_min": 15.6,
+     "ce_max": 36.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 25308,
+     "support_rows_at_ce_max": 6895
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 75,
+     "ce_min": 19.5,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 28104,
+     "support_rows_at_ce_max": 7721
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 90,
+     "ce_min": 23.4,
+     "ce_max": 54.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 25600,
+     "support_rows_at_ce_max": 2500
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 15,
+     "ce_min": 14.55,
+     "ce_max": 15.45,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 926,
+     "support_rows_at_ce_max": 818
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 30,
+     "ce_min": 29.1,
+     "ce_max": 30.9,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 452,
+     "support_rows_at_ce_max": 426
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 45,
+     "ce_min": 43.65,
+     "ce_max": 46.35,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 371,
+     "support_rows_at_ce_max": 252
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 60,
+     "ce_min": 58.2,
+     "ce_max": 61.8,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 655,
+     "support_rows_at_ce_max": 644
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 75,
+     "ce_min": 72.75,
+     "ce_max": 77.25,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 44,
+     "support_rows_at_ce_max": 33
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 90,
+     "ce_min": 87.3,
+     "ce_max": 92.7,
+     "frac_above_q95": 0.492,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 28,
+     "support_rows_at_ce_max": 28
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 15,
+     "ce_min": 21.0,
+     "ce_max": 27.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 643,
+     "support_rows_at_ce_max": 283
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 30,
+     "ce_min": 42.0,
+     "ce_max": 54.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 449,
+     "support_rows_at_ce_max": 174
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 45,
+     "ce_min": 63.0,
+     "ce_max": 81.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 414,
+     "support_rows_at_ce_max": 21
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 60,
+     "ce_min": 84.0,
+     "ce_max": 108.0,
+     "frac_above_q95": 0.748,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 127,
+     "support_rows_at_ce_max": 31
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 75,
+     "ce_min": 105.0,
+     "ce_max": 135.0,
+     "frac_above_q95": 1.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 135,
+     "support_rows_at_ce_max": 29
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 90,
+     "ce_min": 126.0,
+     "ce_max": 162.0,
+     "frac_above_q95": 1.0,
+     "frac_above_q99": 0.334,
+     "support_rows_in_window": 94,
+     "support_rows_at_ce_max": 0
+    }
+   ],
+   "divergent_abs_K1_minus_K2": {
+    "min": 6.0,
+    "max": 72.0,
+    "frac_within_0p5_of_near_alias": 0.0508
+   },
+   "null_abs_K1_minus_K2_max": 2.7
+  },
+  "G5_15_75": {
+   "per_mapping": {
+    "K1": {
+     "ce_min": 15.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "frac_outside_min_max": 0.0
+    },
+    "K2": {
+     "ce_min": 3.9,
+     "ce_max": 135.0,
+     "frac_above_q95": 0.1165,
+     "frac_above_q99": 0.0,
+     "frac_outside_min_max": 0.0
+    }
+   },
+   "cells": [
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 13863,
+     "support_rows_at_ce_max": 13863
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 8719,
+     "support_rows_at_ce_max": 8719
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 7721,
+     "support_rows_at_ce_max": 7721
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 4221,
+     "support_rows_at_ce_max": 4221
+    },
+    {
+     "mapping": "K1",
+     "stratum": "L",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 2188,
+     "support_rows_at_ce_max": 2188
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 924,
+     "support_rows_at_ce_max": 924
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 440,
+     "support_rows_at_ce_max": 440
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 366,
+     "support_rows_at_ce_max": 366
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 655,
+     "support_rows_at_ce_max": 655
+    },
+    {
+     "mapping": "K1",
+     "stratum": "N",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 44,
+     "support_rows_at_ce_max": 44
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 15,
+     "ce_min": 15.0,
+     "ce_max": 15.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 677,
+     "support_rows_at_ce_max": 677
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 30,
+     "ce_min": 30.0,
+     "ce_max": 30.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 313,
+     "support_rows_at_ce_max": 313
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 45,
+     "ce_min": 45.0,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 366,
+     "support_rows_at_ce_max": 366
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 60,
+     "ce_min": 60.0,
+     "ce_max": 60.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 329,
+     "support_rows_at_ce_max": 329
+    },
+    {
+     "mapping": "K1",
+     "stratum": "H",
+     "nce": 75,
+     "ce_min": 75.0,
+     "ce_max": 75.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 83,
+     "support_rows_at_ce_max": 83
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 15,
+     "ce_min": 3.9,
+     "ce_max": 9.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 8439,
+     "support_rows_at_ce_max": 8225
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 30,
+     "ce_min": 7.8,
+     "ce_max": 18.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 18352,
+     "support_rows_at_ce_max": 10548
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 45,
+     "ce_min": 11.7,
+     "ce_max": 27.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 23586,
+     "support_rows_at_ce_max": 7539
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 60,
+     "ce_min": 15.6,
+     "ce_max": 36.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 25308,
+     "support_rows_at_ce_max": 6895
+    },
+    {
+     "mapping": "K2",
+     "stratum": "L",
+     "nce": 75,
+     "ce_min": 19.5,
+     "ce_max": 45.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 28104,
+     "support_rows_at_ce_max": 7721
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 15,
+     "ce_min": 14.55,
+     "ce_max": 15.45,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 926,
+     "support_rows_at_ce_max": 818
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 30,
+     "ce_min": 29.1,
+     "ce_max": 30.9,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 452,
+     "support_rows_at_ce_max": 426
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 45,
+     "ce_min": 43.65,
+     "ce_max": 46.35,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 371,
+     "support_rows_at_ce_max": 252
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 60,
+     "ce_min": 58.2,
+     "ce_max": 61.8,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 655,
+     "support_rows_at_ce_max": 644
+    },
+    {
+     "mapping": "K2",
+     "stratum": "N",
+     "nce": 75,
+     "ce_min": 72.75,
+     "ce_max": 77.25,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 44,
+     "support_rows_at_ce_max": 33
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 15,
+     "ce_min": 21.0,
+     "ce_max": 27.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 643,
+     "support_rows_at_ce_max": 283
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 30,
+     "ce_min": 42.0,
+     "ce_max": 54.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 449,
+     "support_rows_at_ce_max": 174
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 45,
+     "ce_min": 63.0,
+     "ce_max": 81.0,
+     "frac_above_q95": 0.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 414,
+     "support_rows_at_ce_max": 21
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 60,
+     "ce_min": 84.0,
+     "ce_max": 108.0,
+     "frac_above_q95": 0.748,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 127,
+     "support_rows_at_ce_max": 31
+    },
+    {
+     "mapping": "K2",
+     "stratum": "H",
+     "nce": 75,
+     "ce_min": 105.0,
+     "ce_max": 135.0,
+     "frac_above_q95": 1.0,
+     "frac_above_q99": 0.0,
+     "support_rows_in_window": 135,
+     "support_rows_at_ce_max": 29
+    }
+   ],
+   "divergent_abs_K1_minus_K2": {
+    "min": 6.0,
+    "max": 60.0,
+    "frac_within_0p5_of_near_alias": 0.0609
+   },
+   "null_abs_K1_minus_K2_max": 2.25
+  }
+ }
+}
