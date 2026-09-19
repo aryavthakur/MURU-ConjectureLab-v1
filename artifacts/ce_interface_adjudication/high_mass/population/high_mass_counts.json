@@ -1,0 +1,438 @@
+{
+ "rdkit": "2026.03.5",
+ "steps": [
+  {
+   "rule": "H0",
+   "description": "C02 record files in MassBank tag 2026.03 (EAWAG-EC, EAWAG-ED, MLU-ED)",
+   "records": 3126
+  },
+  {
+   "rule": "H1",
+   "description": "precursor type [M+H]+ (positive mode) in field and title",
+   "records": 1888
+  },
+  {
+   "rule": "H2",
+   "description": "MS2 on an Orbitrap instrument type (LC-ESI-QFT or LC-ESI-ITFT)",
+   "records": 1888
+  },
+  {
+   "rule": "H3",
+   "description": "FRAGMENTATION_MODE HCD stated explicitly in the header",
+   "records": 1888
+  },
+  {
+   "rule": "H4",
+   "description": "single explicit 'N % (nominal)' COLLISION_ENERGY equal to the title CE",
+   "records": 1888
+  },
+  {
+   "rule": "H5",
+   "description": "header evidence taken from the pinned MassBank 2026.03 blob",
+   "records": 1773
+  },
+  {
+   "rule": "H6",
+   "description": "record maps to exactly one Table S4 structure",
+   "records": 1506
+  },
+  {
+   "rule": "H7",
+   "description": "structural integrity (precursor within 0.01 Da of theoretical [M+H]+, InChIKey block agrees)",
+   "records": 1506
+  },
+  {
+   "rule": "H8",
+   "description": "model support (ms-pred elements, heavy atoms <= 160, [M+H]+ <= 995.556)",
+   "records": 1117
+  },
+  {
+   "rule": "H9",
+   "description": "identity exclusions (MassSpecGym 1.5, ms-pred labels, MURU registry/exposed/dev, PR #7, PR #8, Design A)",
+   "records": 767
+  },
+  {
+   "rule": "H10",
+   "description": "identity tier in PRIMARY_TIERS",
+   "records": 767
+  },
+  {
+   "rule": "H11",
+   "description": "frozen NCE grid [15, 20, 25, 30, 40, 50, 60]: record NCE in grid, compound complete",
+   "records": 588
+  },
+  {
+   "rule": "H12",
+   "description": "one compound per scaffold group (best tier, then smallest key)",
+   "records": 364
+  }
+ ],
+ "h9_identity_subrules": [
+  {
+   "sub_rule": "key:msg15_recorded",
+   "flagged": 12,
+   "newly_removed": 12
+  },
+  {
+   "sub_rule": "key:msg15_parent",
+   "flagged": 12,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:mspred_labels",
+   "flagged": 6,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:muru_registry",
+   "flagged": 3,
+   "newly_removed": 1
+  },
+  {
+   "sub_rule": "key:muru_exposed_union",
+   "flagged": 3,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:muru_dev_pop",
+   "flagged": 3,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:pr7",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:pr8_comparator",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "key:design_a",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "tautomer:msg15",
+   "flagged": 12,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "tautomer:muru_dev_pop",
+   "flagged": 3,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "tautomer:pr7",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "tautomer:pr8_comparator",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "tautomer:design_a",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "scaffold:sg_muru_registry",
+   "flagged": 19,
+   "newly_removed": 14
+  },
+  {
+   "sub_rule": "scaffold:sg_muru_dev_pop",
+   "flagged": 10,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "scaffold:sg_pr7",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "scaffold:sg_pr8_comparator",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "scaffold:sg_design_a",
+   "flagged": 0,
+   "newly_removed": 0
+  },
+  {
+   "sub_rule": "skeleton (REPORTED, NOT APPLIED, as Design A)",
+   "flagged": 13,
+   "newly_removed_if_applied": 0
+  }
+ ],
+ "frozen": {
+  "primary_tiers": [
+   "T1_level1",
+   "T2_level2a",
+   "T3_level2b_3"
+  ],
+  "grid_rule_retention": 0.95,
+  "nce_grid": [
+   15,
+   20,
+   25,
+   30,
+   40,
+   50,
+   60
+  ],
+  "precursor_bound": 995.556,
+  "mh_error_tol_da": 0.01,
+  "representative_rule": "best tier (1 < 2a < 2b/3), then lexicographically smallest parent key"
+ },
+ "grid_candidates_top": [
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 9,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60,
+    70
+   ],
+   "k": 8,
+   "compounds": 47,
+   "groups": 31
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    40,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    25,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    20,
+    25,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80
+   ],
+   "k": 8,
+   "compounds": 43,
+   "groups": 28
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    60
+   ],
+   "k": 7,
+   "compounds": 49,
+   "groups": 32
+  },
+  {
+   "grid": [
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    70
+   ],
+   "k": 7,
+   "compounds": 47,
+   "groups": 31
+  }
+ ],
+ "final": {
+  "compounds": 32,
+  "scaffold_groups": 32,
+  "records": 364,
+  "mh_min": 299.23291928687996,
+  "mh_median": 774.8624493288801,
+  "mh_max": 991.5135107668804,
+  "n_mh_above_500": 29,
+  "n_mh_450_550": 1,
+  "tier_counts": {
+   "T3_level2b_3": 14,
+   "T1_level1": 12,
+   "T2_level2a": 6
+  },
+  "level_by_purity": {
+   "Bioreagent": {
+    "1": 1,
+    "2a": 0,
+    "2b": 1
+   },
+   "bioreagent": {
+    "1": 0,
+    "2a": 0,
+    "2b": 1
+   },
+   "crude extract": {
+    "1": 7,
+    "2a": 5,
+    "2b": 12
+   },
+   "reference material": {
+    "1": 4,
+    "2a": 1,
+    "2b": 0
+   }
+  },
+  "contributor_arms": {
+   "EAWAG-EC+EAWAG-ED": 19,
+   "MLU-ED": 10,
+   "EAWAG-ED": 2,
+   "EAWAG-EC+EAWAG-ED+MLU-ED": 1
+  },
+  "records_by_series_instrument": [
+   {
+    "series": "MSBNK-EAWAG-EC",
+    "instrument": "Exploris 240 Thermo Scientific",
+    "n": 135
+   },
+   {
+    "series": "MSBNK-EAWAG-ED",
+    "instrument": "Exploris 240 Thermo Scientific",
+    "n": 154
+   },
+   {
+    "series": "MSBNK-MLU-ED",
+    "instrument": "QExactive Plus",
+    "n": 75
+   }
+  ],
+  "records_per_compound_cell": {
+   "2": 130,
+   "1": 89,
+   "3": 5
+  }
+ }
+}
