@@ -1,0 +1,12 @@
+{
+ "study_id": "muru-ce-interface-high-mass-replication",
+ "utc": "2026-09-19T18:30:16.631323+00:00",
+ "freeze_ref_commit": "376ab65f2ebce3b9f4b70ee82dafe30a72a82094",
+ "access_ref_commit": "4d3df86866e0ba0a5f4a72132a15d6ce9e4b05a4",
+ "n_requested": 364,
+ "n_ok": 364,
+ "n_failed": 0,
+ "all_blob_shas_verified": true,
+ "scope": "exactly the frozen accessions, each by its pinned 2026.03 blob sha; nothing else fetched",
+ "exposure": "the C02 high-mass population is now EXPOSED permanently"
+}
