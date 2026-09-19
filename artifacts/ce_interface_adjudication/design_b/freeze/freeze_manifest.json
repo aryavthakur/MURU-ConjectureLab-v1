@@ -1,0 +1,139 @@
+{
+ "study_id": "muru-ce-interface-adjudication-design-b",
+ "freeze_ref": "refs/muru-freeze/muru-ce-interface-adjudication-design-b",
+ "statement": "Design B freeze. No Design B MS/MS spectrum has been acquired or read, no compound has been ordered or verified, and no prediction has been generated for any candidate.",
+ "git_head_at_build": "fa536bb4d9653e0468f22ee79ec45b99cd2cab87",
+ "governing_plan_commit": "f7825e2",
+ "sourcing_commit": "fa536bb",
+ "sourcing_frame": {
+  "path": "artifacts/ce_interface_adjudication/design_b/sourcing/eligible_universe.csv",
+  "sha256": "5a99c75ffbc29ccec6178a2686f3608f4f4bc354ab4399acbfab67efe2b2b4bd",
+  "rdkit": "2026.03.5"
+ },
+ "ordering_algorithm": "sha256(study_id|frame_sha256|stratum|parent_key) hex ascending within stratum; walk strata N,H,L; one compound per scaffold group across strata; 66 per stratum",
+ "procurement_skip_reasons": {
+  "NO_SUPPLY": "no current MCE, TargetMol or Selleck listing can supply the compound",
+  "PURITY_LT_95": "vendor cannot provide purity >= 95%",
+  "IDENTITY_MISMATCH": "supplied material does not match the frozen structure or identity",
+  "INSUFFICIENT_QUANTITY": "insufficient material for the planned acquisition plus one re-injection",
+  "SCAFFOLD_ALREADY_ACCEPTED": "scaffold group already accepted under the fixed cross-stratum rule"
+ },
+ "models": {
+  "ms_pred_commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "checkpoints": {
+   "iceberg21_msg_simulation/gen/best.ckpt": {
+    "sha256": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+    "verified_on_disk": true
+   },
+   "iceberg21_msg_simulation/inten_contr/best.ckpt": {
+    "sha256": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+    "verified_on_disk": true
+   },
+   "glacier_msg/best.ckpt": {
+    "sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+    "verified_on_disk": true
+   }
+  }
+ },
+ "mappings": {
+  "K1": "float(NCE)",
+  "K2": "float(NCE) * theoretical_mh / 500.0",
+  "K3": "floor(K2), descriptive"
+ },
+ "endpoint": {
+  "primary": "untransformed full-spectrum cosine",
+  "robustness": "jensen_shannon",
+  "similarity_frozen_config_sha256": "655436863b02262585609d5582f43a73a0f51f84d04d0bba0da9c2b3db252848"
+ },
+ "acquisition": {
+  "strata": {
+   "L": [
+    130.0,
+    300.0
+   ],
+   "N": [
+    485.0,
+    515.0
+   ],
+   "H": [
+    700.0,
+    900.0
+   ]
+  },
+  "nce_grid": [
+   15,
+   30,
+   45,
+   60,
+   75
+  ],
+  "isolation_width_mz": 1.0,
+  "ms2_first_mass_mz": 50,
+  "ms2_resolution": "instrument 15,000 at m/z 200 setting or nearest, one for all",
+  "one_compound_per_injection": true,
+  "reinjection": "once, doubled gradient",
+  "extraction": {
+   "xic_ppm": 5.0,
+   "apex_fraction": 0.5,
+   "purity_min": 0.8,
+   "purity_half_width_mz": 0.5,
+   "min_qualifying_scans": 3,
+   "combination": "concatenate centroid peaks of qualifying scans"
+  }
+ },
+ "analysis": {
+  "reduction": "d_i = mean over 5 NCE x 2 models of cos(K1)-cos(K2)",
+  "primary": "D_div = (mean_L + mean_H)/2",
+  "bootstrap_B": 10000,
+  "bootstrap_seed": 20260919,
+  "alpha_two_sided": 0.05,
+  "identifying": "fixed sequence; I = D_div - mean_N, two-sided 95%; sign(I)=sign(D_div); sign(mean_L)=sign(mean_H)=sign(D_div)",
+  "verdicts": [
+   "K1/K2 SUPPORTED AND IDENTIFIED",
+   "K1/K2 FAVOURED, NOT IDENTIFIED",
+   "INTERFACE UNRESOLVED"
+  ],
+  "descriptive_only": [
+   "K3",
+   "JS",
+   "per model",
+   "per NCE",
+   "per stratum",
+   "q95 support sensitivity",
+   "reproducibility QC"
+  ]
+ },
+ "power": "about 90% at a true divergent effect of 0.0385-0.040; not designed to resolve substantially smaller effects",
+ "n_files": 29,
+ "files": {
+  "MURU_CE_INTERFACE_ADJUDICATION_DESIGN_B_PREREGISTRATION.md": "2ca93e385aa908c6d3d208ffce10cdc8a24552502bb1f22e6c4dcc47efeed51d",
+  "MURU_CE_INTERFACE_ADJUDICATION_DESIGN_B_PLAN.md": "b1f81b64eb4d3dd05e89108ffae4a3cbf224df8e6de8bb6ffa3ed381968ca50f",
+  "MURU_CE_INTERFACE_ADJUDICATION_DESIGN_B_SOURCING_SCREEN.md": "66a9176633210638bdfb0053417d66e2fb002557db3c3005e030fdc94e533df9",
+  "artifacts/ce_interface_adjudication/design_b/sourcing/eligible_universe.csv": "5a99c75ffbc29ccec6178a2686f3608f4f4bc354ab4399acbfab67efe2b2b4bd",
+  "artifacts/ce_interface_adjudication/design_b/sourcing/candidate_ledger_in_windows.csv.gz": "e8c1bbe6b539d72a06046a158527e193f26e528c56473194911663741e5e545d",
+  "artifacts/ce_interface_adjudication/design_b/sourcing/sourcing_screen_summary.json": "b063a31cde80f316234a59e52f9fc5e852e0e3bb2415eaf195b20d10a8c0fd9c",
+  "artifacts/ce_interface_adjudication/design_b/sourcing/vendor_spot_check.csv": "9b78885bde146b8fe074fbaccdae056433225824026bbf3a15b454bfac84870d",
+  "artifacts/ce_interface_adjudication/design_b/grid_support_audit.json": "c932713d298a863a2623499a32e3938d25ef6c14546b6c05261084ed5b357831",
+  "artifacts/ce_interface_adjudication/design_b/procurement/ordered_queues.csv": "d88377e2f0d9d8571724141851fb1472620110246667979f293d9883862c513b",
+  "artifacts/ce_interface_adjudication/exclusion/msg15_keys_all.txt": "c5666b446c091bd878528100e4adcddc882d8d9b1149edc212477edd4683d832",
+  "artifacts/ce_interface_adjudication/exclusion/msg15_parent_keys_all.txt": "c046057a0c3df6189d2a0e5c403d2fed26db16ac667b4f1da15e64fcdd48625e",
+  "artifacts/ce_interface_adjudication/exclusion/comparator_common_population_keys.txt": "749f356a9a49bb00774c02367eea0ad632d4d9e53089787101aa72b372ba22df",
+  "artifacts/ce_interface_adjudication/design_a/population/design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc",
+  "scripts/ce_interface_adjudication/scaffold_key.py": "cd27cf3cf83143ae8d648ebc9b36a8e58ba31f12c9704c0b404839c0d7e701b6",
+  "scripts/ce_interface_adjudication/design_a/spectrum_similarity.py": "6f48cbc02f5958f284cc870c3dbb96e87abad27d817fc7b5dbc0e2282a092353",
+  "scripts/ce_interface_adjudication/design_a/30_run_predictions.py": "461b18fbd2b10a10d1ac6d6097ea7bde258e3e0efdeba5a369469679c6270680",
+  "scripts/ce_interface_adjudication/design_a/40_score_spectra.py": "ec0100b5d93ffa2106460c1354a33cf302f00cea93efb92baaa70168a4824bbf",
+  "scripts/ce_interface_adjudication/design_b/01_grid_support_audit.py": "bf755431f6befccd4d63abf2201f73fa9fe87fa44c166f1a5b072b0c70926404",
+  "scripts/ce_interface_adjudication/design_b/10_fetch_catalogues.py": "df24ac981b661416e3b805953a562b3a7ca7e31a757e71589355f3bcf25471b8",
+  "scripts/ce_interface_adjudication/design_b/20_sourcing_screen.py": "d6691b125e03cb304f85851b482528a36aae14589c029475eb44d1dc71de5055",
+  "scripts/ce_interface_adjudication/design_b/30_build_queues.py": "722ecc67da02bf75550a8a13bf891577b8c116a1873c2779d061671474235542",
+  "scripts/ce_interface_adjudication/design_b/35_procurement_walk.py": "2e76ccb8d3981bed80297fc3349758ccf6771503b84858344eec11dcb743b40e",
+  "scripts/ce_interface_adjudication/design_b/40_extract_spectra.py": "fac22e3ecb2180308df553785fbaa1cc70a927764e3623090875eb912b6d2510",
+  "scripts/ce_interface_adjudication/design_b/45_run_predictions.py": "c20b36b4ef491948e1ed8d6d444c28cd60cc53959aaf70b5f1201cf680ce94d8",
+  "scripts/ce_interface_adjudication/design_b/50_score_spectra.py": "ece67b10c77b16cc2f60b965630414ee76a0b55d572d340b1a01085019628939",
+  "scripts/ce_interface_adjudication/design_b/60_analysis.py": "5ca8b9d80108eb867f3fddceb39c181d29d5f4e47542427ac861051e637c9878",
+  "scripts/ce_interface_adjudication/design_b/90_build_freeze_manifest.py": "fe5daf8984d6aaa89438d319e3996f90bb546f3ed682b9bace0de7e76a39b1b0",
+  "scripts/ce_interface_adjudication/design_b/design_b_constants.py": "4a6a6712fc940e805e1a3e05d8c834a30003a2bbf72da9934ebf8352193cbbc7",
+  "scripts/ce_interface_adjudication/design_b/tests/test_design_b.py": "dcb1ef3f3f18aec59eef127e71ba2ce2aa322985811ba5e96973e389a4da81ec"
+ }
+}
