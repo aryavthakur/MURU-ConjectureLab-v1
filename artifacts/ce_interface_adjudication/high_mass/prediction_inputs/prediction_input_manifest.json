@@ -1,0 +1,168 @@
+{
+ "study_id": "muru-ce-interface-high-mass-replication",
+ "freeze_ref": "refs/muru-freeze/muru-ce-interface-high-mass-replication",
+ "artifact": "prediction inputs for the CE interface adjudication, Design A step 30",
+ "generator": {
+  "path": "scripts/ce_interface_adjudication/design_a/30_run_predictions.py",
+  "sha256": "461b18fbd2b10a10d1ac6d6097ea7bde258e3e0efdeba5a369469679c6270680"
+ },
+ "inherited_from": {
+  "harness": "scripts/comparator_benchmark/run_predictions.py",
+  "container_env": "scripts/comparator_benchmark/modal_app.py",
+  "provenance_record": "artifacts/comparator_benchmark/technical/t1/t1_provenance.json",
+  "notes": "artifacts/ce_interface_adjudication/design_a/notes/prediction_harness_provenance.md"
+ },
+ "population": {
+  "compounds_csv": "artifacts/ce_interface_adjudication/high_mass/population/high_mass_compounds.csv",
+  "compounds_csv_sha256": "50ef6d706557793c4b4f335603229da95a18d32b583bfa4017b44a877062dca9",
+  "n_compounds": 32,
+  "fold_filter": "all",
+  "nce_rungs": [
+   15,
+   20,
+   25,
+   30,
+   40,
+   50,
+   60
+  ],
+  "n_cells_per_model_mapping": 224,
+  "records_csv": {
+   "path": "artifacts/ce_interface_adjudication/high_mass/population/high_mass_records.csv",
+   "sha256": "4e0ad64c33fe5d111ce8a7009551b4339e380853c36257eaba6013a206fcd4b7",
+   "n_rows": 364,
+   "observed_nce_values": [
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    40.0,
+    50.0,
+    60.0
+   ],
+   "observed_instruments": [
+    "Exploris 240 Thermo Scientific",
+    "QExactive Plus"
+   ]
+  }
+ },
+ "mappings": {
+  "K1": "CE_input = float(NCE)",
+  "K2": "CE_input = float(NCE) * theoretical_mh / 500.0 (IEEE-754 binary64, no rounding)",
+  "K3": "CE_input = float(math.floor(K2)) (floor toward negative infinity)"
+ },
+ "fixed_tokens": {
+  "ionization": "[M+H]+",
+  "instrument": "Orbitrap",
+  "collision_energies_format": "str([repr(float(ce))]), e.g. \"['19.9998']\""
+ },
+ "seeded_run": {
+  "wrapper": "scripts/comparator_benchmark/container/seeded_run.py",
+  "wrapper_sha256": "581f3eff3292a6168ef364a3f0c826cce32621d6f5adbf144e6c4044923bda86",
+  "seed": 42
+ },
+ "hdf5_dump": {
+  "parser": "scripts/comparator_benchmark/container/mspred_h5_to_json.py",
+  "parser_sha256": "aab52b9112de665352b1d17bdd7312d22bde8874bb2f9ed7574ff17096c74dc8",
+  "appended_command": " && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json"
+ },
+ "ms_pred": {
+  "repository": "https://github.com/coleygroup/ms-pred",
+  "commit": "ed8311f22958cb37f055b663b5f56c5c77a2ee33",
+  "local_clone": "/Users/aryav/muru-comparators/repos/ms-pred"
+ },
+ "environment": {
+  "OMP_NUM_THREADS": "1",
+  "MKL_NUM_THREADS": "1",
+  "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD": "1"
+ },
+ "models": {
+  "iceberg_2_1_msg_simulation": {
+   "display_name": "ICEBERG 2.1 msg_simulation",
+   "entry_script": "src/ms_pred/iceberg/predict_smis.py",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "emit_precursor_column": true,
+   "checkpoints": {
+    "/ckpt/iceberg21_msg_simulation/gen/best.ckpt": {
+     "host_path": "/Users/aryav/muru-comparators/checkpoints/iceberg21_msg_simulation/gen/best.ckpt",
+     "sha256": "1eda5f3d9cda8345a93c0c480c3c848de840a611017a3f1641007fec1afb7a70",
+     "bytes": 41561644
+    },
+    "/ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt": {
+     "host_path": "/Users/aryav/muru-comparators/checkpoints/iceberg21_msg_simulation/inten_contr/best.ckpt",
+     "sha256": "e074c0392638a71589e68d80acfd9ad53ae0587c523249cfa90e04ee50ee4f58",
+     "bytes": 40604948
+    }
+   }
+  },
+  "glacier_msg": {
+   "display_name": "GLACIER MassSpecGym",
+   "entry_script": "src/ms_pred/glacier/predict_smis_joint.py",
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "emit_precursor_column": false,
+   "checkpoints": {
+    "/ckpt/glacier_msg/best.ckpt": {
+     "host_path": "/Users/aryav/muru-comparators/checkpoints/glacier_msg/best.ckpt",
+     "sha256": "5a47cecca707d3abd5a49c7dbac99d100aa2a586d5d4f848f1e8e35140d7db11",
+     "bytes": 181602423
+    }
+   }
+  }
+ },
+ "files": {
+  "glacier_msg__K1__in.tsv": {
+   "model": "glacier_msg",
+   "mapping": "K1",
+   "sha256": "ae3594cf22a949be3148eba2f1a7965aed308724f09ca0f268ad0e2b4e222896",
+   "bytes": 36810,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  },
+  "glacier_msg__K2__in.tsv": {
+   "model": "glacier_msg",
+   "mapping": "K2",
+   "sha256": "c07703640e90cb67c9fdf89b62ab455db35d613a7d1a5dc6e4a612d92a3b6dbd",
+   "bytes": 39702,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  },
+  "glacier_msg__K3__in.tsv": {
+   "model": "glacier_msg",
+   "mapping": "K3",
+   "sha256": "1adff9adbfa6116a6396dd9d5cbe51310ad7fbe7b06aa6312955e90b3106a634",
+   "bytes": 36819,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/glacier/predict_smis_joint.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --num-cpu-workers 0 --checkpoint /ckpt/glacier_msg/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  },
+  "iceberg_2_1_msg_simulation__K1__in.tsv": {
+   "model": "iceberg_2_1_msg_simulation",
+   "mapping": "K1",
+   "sha256": "df6f4b6d2d94862d21f2675bbd5704498ca309e1754af3c5915abf84d829b88a",
+   "bytes": 40740,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  },
+  "iceberg_2_1_msg_simulation__K2__in.tsv": {
+   "model": "iceberg_2_1_msg_simulation",
+   "mapping": "K2",
+   "sha256": "ddc8d102e4e51cdf92a1f5557a20ef459476370613c8c0e01ad278a550be09fa",
+   "bytes": 43632,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  },
+  "iceberg_2_1_msg_simulation__K3__in.tsv": {
+   "model": "iceberg_2_1_msg_simulation",
+   "mapping": "K3",
+   "sha256": "78cc45976737fad7a4671f4da1cc25e956cbe1858b46699accb6dbeb94fb1cf1",
+   "bytes": 40749,
+   "n_rows": 224,
+   "command": "/opt/ms-pred/.venv/bin/python $WORK/seeded_run.py 42 src/ms_pred/iceberg/predict_smis.py --dataset-labels $WORK/in.tsv --sparse-out --sparse-k 100 --max-nodes 100 --threshold 0.0 --num-cpu-workers 0 --gen-checkpoint /ckpt/iceberg21_msg_simulation/gen/best.ckpt --inten-checkpoint /ckpt/iceberg21_msg_simulation/inten_contr/best.ckpt --save-dir $WORK/out --out-name preds.hdf5 && /opt/ms-pred/.venv/bin/python $WORK/parse.py $WORK/out/preds.hdf5 $WORK/spectra.json",
+   "uploaded_as": "in.tsv"
+  }
+ }
+}
