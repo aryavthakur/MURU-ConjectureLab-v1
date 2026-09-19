@@ -114,6 +114,8 @@ def analyse(scores: pd.DataFrame, B: int = C.BOOT_B, seed: int = C.BOOT_SEED) ->
 
 
 def main() -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     if os.environ.get(ONE_LOOK_ENV) != "1":
         raise SystemExit(f"refusing: {ONE_LOOK_ENV}=1 required; the analysis runs exactly once")
     for ref in (C.FREEZE_REF, C.PROCUREMENT_REF, C.SPECTRA_REF, C.PREDICTIONS_REF):

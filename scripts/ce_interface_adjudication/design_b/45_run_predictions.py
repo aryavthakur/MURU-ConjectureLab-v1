@@ -59,6 +59,8 @@ def write_population(A) -> Path:
 
 
 def main(argv=None) -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     import argparse  # noqa: PLC0415
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=["emit-inputs", "execute"])

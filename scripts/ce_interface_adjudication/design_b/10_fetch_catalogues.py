@@ -59,6 +59,8 @@ def register(name, url, path):
 
 
 def main():
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     rows = []
     for src in SOURCES:
         tag = src.split()[0].lower()

@@ -143,6 +143,8 @@ def reverify(man: pd.DataFrame) -> dict:
 
 
 def main() -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     qpath = P / "ordered_queues.csv"
     queues = pd.read_csv(qpath)
     decisions = load_log(P / "verification_log.csv")

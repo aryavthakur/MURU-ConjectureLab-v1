@@ -47,6 +47,8 @@ def sha(p: Path) -> str:
 
 
 def main() -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     files = {f: sha(ROOT / f) for f in FILES}
     assert files[C.FRAME_REL] == C.FRAME_SHA256
     ck = Path.home() / "muru-comparators/checkpoints"

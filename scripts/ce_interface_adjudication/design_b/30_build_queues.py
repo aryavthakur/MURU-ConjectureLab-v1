@@ -32,6 +32,8 @@ def build(frame: pd.DataFrame, frame_sha: str = C.FRAME_SHA256) -> pd.DataFrame:
 
 
 def main() -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     path = ROOT / C.FRAME_REL
     got = hashlib.sha256(path.read_bytes()).hexdigest()
     if got != C.FRAME_SHA256:

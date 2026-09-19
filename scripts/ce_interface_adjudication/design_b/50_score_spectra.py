@@ -64,6 +64,8 @@ def score(S, pop: pd.DataFrame, observed: dict, dumps: dict) -> list:
 
 
 def main() -> int:
+    import _scope_gate  # project-scope closure 2026-09-19: Design B cancelled, never executes
+    _scope_gate.refuse()
     for ref in (C.FREEZE_REF, C.PROCUREMENT_REF, C.SPECTRA_REF, C.PREDICTIONS_REF):
         if not subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--verify", "--quiet", ref], capture_output=True, text=True).stdout.strip():
             raise SystemExit(f"refusing: {ref} does not resolve")
