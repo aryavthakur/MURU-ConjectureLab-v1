@@ -1,0 +1,31 @@
+stratum,catalogue_id,listing_status,smallest_list_pack,list_price_usd,stated_purity
+L,HY-100513A,listed; price block not parsed,,,
+L,HY-W556301,quote only,50 mg,,
+L,HY-170054,no match in live catalogue,,,
+L,HY-N9274,list price,5 mg,191,
+L,HY-152505,quote only,50 mg,,
+L,HY-121620,list price,100 mg,25,99.26%
+L,HY-49601,list price,5 mg,35,
+L,HY-164477,quote only,50 mg,,
+L,HY-13218,list price,5 mg,50,98.70%
+L,HY-W098556,list price,500 mg,35,
+N,HY-125068,quote only,50 mg,,
+N,HY-U00394,quote only,50 mg,,
+N,HY-172125,quote only,50 mg,,
+N,HY-140500,list price,25 mg,35,>=98.0%
+N,HY-160199,quote only,50 mg,,
+N,HY-160008,list price,1 mg,600,
+N,HY-156429,list price,1 mg,455,99.69%
+N,HY-W013714,list price,5 g,25,
+N,HY-D0552,quote only,50 mg,,
+N,HY-103459,quote only,50 mg,,
+H,HY-126479,list price,1 mg,565,
+H,HY-112661,list price,1 mg,646,
+H,HY-101076,quote only,5 mg,,
+H,HY-145239,list price,5 mg,620,99.52%
+H,HY-139407,list price,500 ug (ethanol solution),233,
+H,HY-141002,list price,50 mg,195,>=98.0%
+H,HY-126640,quote only,50 mg,,
+H,HY-154441,quote only,50 mg,,
+H,HY-154485,list price shown but quote required,5 mg,150,
+H,HY-D1188,quote only,50 mg,,

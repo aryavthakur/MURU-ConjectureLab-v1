@@ -1,0 +1,97 @@
+{
+ "study": "muru-ce-interface-adjudication-design-b-sourcing-screen",
+ "generated_utc": "2026-09-19T00:20:35Z",
+ "catalogues": [
+  "MedChemexpress MCE",
+  "TargetMol",
+  "Selleck Chemicals"
+ ],
+ "provenance": "PubChem PUG REST vendor deposits (substance/sourceall/<source>/sids; sid xrefs RegistryID; standardized CIDs; CID properties). Retrieval recorded in downloads_register.jsonl.",
+ "counts": {
+  "raw_listings_screened": 234602,
+  "raw_listings_by_source": {
+   "MedChemexpress MCE": 116896,
+   "TargetMol": 101909,
+   "Selleck Chemicals": 15797
+  },
+  "listings_with_structure": 192856,
+  "S1_unique_chemicals_after_vendor_dedup": 96591
+ },
+ "chemical_level_cascade_remaining": {
+  "S2_in_a_mass_window": 35181,
+  "S3_single_covalent_unit": 32714,
+  "S4_no_permanent_charge": 32309,
+  "S5_no_isotope_label": 31343,
+  "S6_model_input_limits": 31325,
+  "S7a_absent_from_msg15_by_key": 26801,
+  "S7b_absent_from_msg15_by_tautomer": 26758,
+  "S8_absent_from_design_a": 26755,
+  "S9_absent_from_pr8": 26746,
+  "S10_purity_ge_95_where_stated": 26746
+ },
+ "per_stratum": {
+  "L": {
+   "in_window": 25342,
+   "after_S3": 23557,
+   "after_S4": 23429,
+   "after_S5": 22580,
+   "after_S6": 22566,
+   "after_S7a": 19094,
+   "after_S7b": 19056,
+   "after_S8": 19053,
+   "after_S9": 19046,
+   "eligible_chemicals": 19046,
+   "distinct_scaffold_groups": 7871
+  },
+  "N": {
+   "in_window": 4370,
+   "after_S3": 4160,
+   "after_S4": 4108,
+   "after_S5": 4021,
+   "after_S6": 4019,
+   "after_S7a": 3460,
+   "after_S7b": 3456,
+   "after_S8": 3456,
+   "after_S9": 3454,
+   "eligible_chemicals": 3454,
+   "distinct_scaffold_groups": 2772
+  },
+  "H": {
+   "in_window": 5469,
+   "after_S3": 4997,
+   "after_S4": 4772,
+   "after_S5": 4742,
+   "after_S6": 4740,
+   "after_S7a": 4247,
+   "after_S7b": 4246,
+   "after_S8": 4246,
+   "after_S9": 4246,
+   "eligible_chemicals": 4246,
+   "distinct_scaffold_groups": 2899
+  }
+ },
+ "usable_after_one_per_scaffold_group_across_design": {
+  "N": 2772,
+  "H": 2803,
+  "L": 7727
+ },
+ "N_eff_LH": 8227.46,
+ "go_rule": {
+  "N_eff>=120": true,
+  "nL>=50": true,
+  "nH>=50": true,
+  "nN>=60": true
+ },
+ "procurement_66_66_66_possible": true,
+ "purity_and_stock": "not present in PubChem vendor deposits; no purity exclusion applied (rule S10 applies only where purity is stated); see spot check",
+ "exclusion_sets_sha256": {
+  "msg15_keys_all.txt": "c5666b446c091bd878528100e4adcddc882d8d9b1149edc212477edd4683d832",
+  "msg15_parent_keys_all.txt": "c046057a0c3df6189d2a0e5c403d2fed26db16ac667b4f1da15e64fcdd48625e",
+  "comparator_common_population_keys.txt": "749f356a9a49bb00774c02367eea0ad632d4d9e53089787101aa72b372ba22df",
+  "mspred_labels.tsv": "0b29f4b150fa043f2ea382df3d7a02ddfdf5dc9baee9790299b3890d3582f244",
+  "design_a_compounds.csv": "050e5186972c52b94f5e8a96041d70a96ca6fd2ffa12d1ac5d6d5d91846cc4fc"
+ },
+ "eligible_universe_sha256": "5a99c75ffbc29ccec6178a2686f3608f4f4bc354ab4399acbfab67efe2b2b4bd",
+ "candidate_ledger_sha256": "e8c1bbe6b539d72a06046a158527e193f26e528c56473194911663741e5e545d",
+ "rdkit": "2026.03.5"
+}

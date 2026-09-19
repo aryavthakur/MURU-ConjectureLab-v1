@@ -204,3 +204,4 @@ artifacts/ov_ckpt
 artifacts/ce_interface_adjudication/screen/**/downloads/
 artifacts/ce_interface_adjudication/screen/**/downloads_s2/
 artifacts/ce_interface_adjudication/screen/**/downloads_failed_attempts/
+artifacts/ce_interface_adjudication/design_b/sourcing/downloads/
