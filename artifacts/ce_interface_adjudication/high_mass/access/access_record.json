@@ -1,0 +1,16 @@
+{
+ "study_id": "muru-ce-interface-high-mass-replication",
+ "utc": "2026-09-19T18:27:51.087150+00:00",
+ "freeze_ref_commit": "376ab65f2ebce3b9f4b70ee82dafe30a72a82094",
+ "state_before_access": {
+  "c02_peak_lists_read": 0,
+  "record_files_downloaded": 0,
+  "predictions_generated": 0,
+  "scores_computed": 0,
+  "analysis_runs": 0
+ },
+ "about_to_access": "exactly the 364 frozen C02 record files in population/high_mass_records.csv, each by its pinned MassBank 2026.03 git blob sha",
+ "population_records_sha256": "4e0ad64c33fe5d111ce8a7009551b4339e380853c36257eaba6013a206fcd4b7",
+ "freeze_manifest_sha256": "32d51b0e03066be41cfc13e07e2499c8041f49ec3afd52813ec9a7df1390d58d",
+ "exposure": "after retrieval the C02 high-mass population is EXPOSED permanently"
+}
