@@ -1,0 +1,14 @@
+{
+  "n_measured_compounds": 1794,
+  "n_excluded_unsupported": 5,
+  "n_scored": 1789,
+  "n_scaffold_groups_scored": 1687,
+  "candidate_P1": 0.12961151072591617,
+  "reference_P1": 0.13352761116871245,
+  "ratio": 0.9706719800607511,
+  "ci": [
+    0.9523611879747089,
+    0.9892672061846276
+  ],
+  "decision": "MODEST EXTERNAL CONFIRMATION"
+}
