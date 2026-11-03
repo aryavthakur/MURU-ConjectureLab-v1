@@ -1,0 +1,15 @@
+Phase 4 document/figure environment snapshot
+Date: 2026-11-02
+Platform: macOS-27.0-arm64-arm-64bit-Mach-O
+Python: 3.13.12 (conda build; /opt/miniconda3/bin/python3.13)
+NumPy: 2.5.2
+pandas: 3.0.5
+SciPy: 1.18.0
+scikit-learn: 1.9.0
+RDKit: 2026.03.5
+Matplotlib: 3.11.1
+python-docx: installed in the Phase 4 authoring environment
+LibreOffice: LibreOffice 26.2.5.2 cd7284b4cbbfeb507e630c1aac019f4157393acb
+Poppler: pdfinfo/pdftoppm available
+
+The Phase 3 reviewer archive verifier uses its own pinned environment requirements and checks versions. System Python 3.11 did not meet that archive's dependencies; the documented Python 3.13.12 environment passed. Phase 4 figure/docx build dependencies are not a substitute for the reviewer archive environment.

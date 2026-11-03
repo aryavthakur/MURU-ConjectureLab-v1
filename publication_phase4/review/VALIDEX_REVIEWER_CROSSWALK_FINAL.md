@@ -1,0 +1,26 @@
+# Validex reviewer-control crosswalk (20 controls)
+
+Source: recovered Phase 2 `VALIDEX_REVIEWER_CROSSWALK_FINAL.csv` (20 rows: M1–M13, R1–R4, m1–m3). This CSV was a contemporaneous objection summary; the original reviewer decision letter itself was not recovered here, so wording is not represented as verbatim reviewer quotation. “Resolved” refers only to the MURU analogue described below.
+
+| ID | Original concern summary | MURU Phase 4 disposition | Remaining human/evidence requirement |
+|---|---|---|---|
+| M1 (mandatory) | case-level disagreements and author adjudication | Not resolved; not applicable to the scalar metric as no adjudication ledger exists. Disclose that this is not a case-level study. | Human project-owner confirmation of contribution and scope. |
+| M2 (mandatory) | reviewer package and freeze inventory | Partially resolved: archive inventories, checksums, metrics, derived inputs and rights boundary documented; raw WUR and raw MSnLib files/weights not supplied. | Human review of data rights and source availability. |
+| M3 (mandatory) | held-out independence/timeline/seed/template/duplicate audit | Partially resolved: one exposed sample was excluded; replacement draw/outcome-free selection and recorded key/scaffold exclusions are described. No claim of zero analogue similarity or complete absence of unrecorded exposure. | Human confirmation of exposure registry completeness. |
+| M4 (mandatory) | own benchmark cannot establish real-world accuracy | Resolved by reframing: one external MSnLib scalar-endpoint evaluation; not real-world/general accuracy. | No human approval changes the evidence boundary. |
+| M5 (mandatory) | benchmark composition/strata/confusion counts | Resolved for this endpoint: flow counts and novelty strata included; confusion counts are not applicable to continuous μ regression. | Human review of population provenance. |
+| M6 (mandatory) | reproducible external-corpus screen | Partially resolved: fresh extraction reproduces frozen output statistics; raw WUR/raw MSnLib parsing and model training are not reproduced. | Human review of rights and access. |
+| M7 (mandatory) | AI-assisted screening disclosure | Resolved for internal draft: AI assistance is recorded; future journal policy requires a separate assessment. | Author to confirm any future submission declaration. |
+| M8 (mandatory) | threshold rationale/sensitivity | Resolved: 5% ratio threshold and +0.03 upper-CI adverse-tail override are stated; both passed/failed outcomes are retained accurately. | No threshold changes without a new prospective protocol. |
+| M9 (mandatory) | FDR ordering/statistical justification | Partially resolved: no primary FDR endpoint; multi-family selection is disclosed. Historical max-T interval remains unreproduced. | Human review of the development-selection interpretation. |
+| M10 (mandatory) | endpoint scope and repeat execution | Resolved for the frozen statistical estimand: reproduced from measured μ and frozen predictions; no raw-signal repeat. | Human review of endpoint scope. |
+| M11 (mandatory) | peer-reviewed primary references | Substantially resolved: 27-item source audit with peer-review status and claim limits; literature completeness still merits human review. | Human scientific literature review. |
+| M12 (mandatory) | missing literature and sufficient foundation | Partially resolved: focused primary literature supports the stated framing; not exhaustive of all MS/MS research. | Human subject-matter review. |
+| M13 (mandatory) | citation-by-claim audit | Substantially resolved: 67 manuscript paragraph/caption claim-citation mappings and central claim audit. | Human scientific author review. |
+| R1 (recommended) | ablation vs simpler alternatives | Unresolved as causal isolation: no matched-feature ablation. Manuscript explicitly avoids attributing the gain to Morgan fingerprints alone. | Future matched-feature prospective study. |
+| R2 (recommended) | XLSX-specific correctness vs ingestion | Not applicable: primary output is CSV/JSON; Phase 4 reproduces the relevant verifier. Historical unrelated suite failures are disclosed. | Human software review if ingest formats change. |
+| R3 (recommended) | omitted challenge results | Partially resolved: tail, novelty, CE ambiguity and comparator sensitivity retained; cannot reconstruct all historical unreported experiments. | Human review of completeness of research history. |
+| R4 (recommended) | figure denominators and endpoint separation | Resolved for Phase 4 figures: data-driven scripts, denominators, captions and SVG/PDF/PNG outputs; visual inspection recorded. | Final author acceptance of presentation. |
+| m1 (minor) | pre-registered wording | Resolved in wording: frozen protocol/decision rule is described; no claim of public preregistration. | Human author confirms historical protocol status. |
+| m2 (minor) | v1 reserve outside v2 wording | Resolved: v2 frozen release is distinguished from historical Stage 3 context and v1 repository history. | Human review of version naming. |
+| m3 (minor) | figure labels/high-resolution export | Resolved for technical export: all five figures exported in vector and high-resolution raster formats and visually checked. | Human final layout approval. |

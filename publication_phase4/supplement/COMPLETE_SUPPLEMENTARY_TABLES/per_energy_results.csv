@@ -1,0 +1,3 @@
+energy,n,candidate_rmse,reference_rmse,source
+20.0,1789,0.16437621418246282,0.16735661493670015,external_analysis.json
+60.0,1789,0.08110947932485868,0.08747004816378458,external_analysis.json

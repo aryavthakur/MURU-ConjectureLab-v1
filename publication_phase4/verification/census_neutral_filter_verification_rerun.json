@@ -1,0 +1,32 @@
+{
+  "verification_status": "PASS",
+  "scope": "four recorded census frames only",
+  "source_input_hashes": {
+    "population_sha256": "b526ca0b9b93c7dc39f8b463d2b77f40541b44b0b301e7e3bdacebfc52737aca"
+  },
+  "frames": [
+    {
+      "frame": "step 10b",
+      "n": 39238,
+      "membership_symmetric_difference": 0
+    },
+    {
+      "frame": "step 12b",
+      "n": 47742,
+      "membership_symmetric_difference": 0
+    },
+    {
+      "frame": "step 10b",
+      "n": 32154,
+      "membership_symmetric_difference": 0
+    },
+    {
+      "frame": "step 12b",
+      "n": 39236,
+      "membership_symmetric_difference": 0
+    }
+  ],
+  "limitations": [
+    "does not establish impact on unrecorded intermediate or downstream uses"
+  ]
+}

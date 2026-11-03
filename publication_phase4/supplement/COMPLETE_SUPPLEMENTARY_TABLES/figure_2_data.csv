@@ -1,0 +1,11 @@
+metric,value,source
+P1_candidate,0.12961151072591617,external_analysis.json
+P1_reference,0.13352761116871245,external_analysis.json
+ratio,0.9706719800607511,external_analysis.json
+ratio_ci_low,0.9523611879747089,external_analysis.json
+ratio_ci_high,0.9892672061846276,external_analysis.json
+n_measured,1794.0,external_analysis.json
+n_excluded,5.0,external_analysis.json
+n_scored,1789.0,external_analysis.json
+n_scaffolds,1687.0,external_analysis.json
+development_ratio,0.8885712889390591,artifacts/wur_v2_confirmation/repro_check_p1.json; point estimate only; max-T interval unreproduced

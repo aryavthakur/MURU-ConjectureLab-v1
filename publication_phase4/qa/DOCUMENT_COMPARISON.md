@@ -1,0 +1,5 @@
+# Document comparison
+
+`MURU_PHASE4_MANUSCRIPT_FINAL.docx` and `MURU_PHASE4_STANDARD_CITATIONS.docx` are generated from the identical canonical Markdown source with the same standard numbered superscript citation mode; their content and page images match. `MURU_PHASE4_ONLINE_CITATIONS.docx` is generated from that same source by expanding each numeric citation to its referenced full citation inline. It preserves the manuscript claims, figures, tables and reference list; only citation presentation differs. The online variant is 18 pages because expanded inline citations increase flow. All three documents contain the same title, abstract, sections, figures, tables, numerical result anchors, limitations and declarations.
+
+Final render page counts: master 14, standard citations 14, online citations 18. SHA-256 comparison of each of the 14 rendered master and standard-citation page PNGs returned identical hashes. The standard-citation and master DOCX files are byte-identical from the same generator inputs.
