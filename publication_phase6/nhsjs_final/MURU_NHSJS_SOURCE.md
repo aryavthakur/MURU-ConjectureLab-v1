@@ -180,12 +180,12 @@ On the frozen MSnLib population and numerical adapter, MURU-WUR-v2 achieved a lo
 
 **Code availability.** Analysis source is present in the repository. Phase 3 figure and table generation scripts are included in this package. The release branch remains the source of frozen scientific results; this publication branch adds documentation and reproducibility outputs.
 
-**Competing interests.** The author’s competing-interest declaration remains to be confirmed.
+**Competing interests.** The author declares no competing interests.
 
 **Ethical considerations.** No human participants or animals were involved; no institutional review approval was applicable to the computational reanalysis described here.
 
 
-**AI-assisted research and drafting.** AI tools assisted with repository inspection, analysis-code authoring, figure and table generation, literature discovery, and drafting and editing of this internal manuscript and Supporting Information. Frozen experimental outcomes were not altered. This manuscript has not been submitted to a journal.
+**AI-assisted research and drafting.** AI tools assisted with repository and literature research, analysis-code authoring and testing, figure and table generation, manuscript drafting and editing, and document production. The frozen experimental outcomes were not altered. This internal manuscript has not been submitted to a journal.
 
 ## References
 
