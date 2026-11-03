@@ -1,0 +1,10 @@
+# Energy-processing chain reconstructed from source
+
+1. **Development labels.** WUR source acquisition context describes an Orbitrap IQ-X normalized HCD ladder and stepped collision-energy ladder. The exported generic MassBank collision-energy value is numeric; the parser preserves a missing unit and the NCE interpretation is attached from publication/acquisition context.
+2. **Frozen external selection.** `src/muru/wur_v2/external_msnlib.py::fixed_rung_scans` selects numeric header values 20 or 60. It does not determine eV versus NCE.
+3. **External source files.** The frozen allowlist identifies the exact Zenodo v5 ZIP member hashes and spectrum IDs. Phase 6 verifies those members against the allowlist and reads PSI-MS terms from selected scans. See the generated lineage CSV after the full validator succeeds.
+4. **Measured endpoint.** Frozen measured μ is read from project results; Phase 6 does not recalculate μ or change its denominator, peak-processing, or replicate rules.
+5. **Model adapter.** `adapter_energy` maps numeric external rung `c` to model coordinate `E=(c-a)/b`, with frozen `a=-5.95552603907965`, `b=0.8618030610784555`. This is not an eV-to-NCE conversion.
+6. **Scoring.** The frozen predictions are compared to frozen measured μ under the primary P1 and whole-scaffold bootstrap. No Phase 6 energy retuning is performed.
+
+A search of the evaluated mzML ZIPs found no native method files. A separate public RAW-archive audit found 161 `.meth` containers across four families; their parsed type is `Vanquish_H` `SeparationMethod`, with no explicit ID-X, NCE, or collision-energy setting and no run-level linkage. A full-file SHA-1 match links one MCEBIO RAW file to its mzML sourceFile record; source-wide identity remains incomplete. The original ID-X Xcalibur method is not in hand. The converted mzML term provides direct evidence of the exported unit annotation, but does not authenticate native acquisition settings or physical comparability to the WUR IQ-X coordinate.

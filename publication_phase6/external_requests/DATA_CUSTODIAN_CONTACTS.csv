@@ -1,0 +1,3 @@
+name,role,public_route,source,verified_scope,contact_status
+Tomas Pluskal,Zenodo contact person and corresponding author,tomas.pluskal@uochb.cas.cz,https://pubmed.ncbi.nlm.nih.gov/40954295/; https://zenodo.org/records/15683784,MSnLib data provenance and acquisition-method clarification,DRAFT ONLY - not contacted
+Corinna Brungs,MSnLib data collector and article author,Zenodo record author/contact route,https://zenodo.org/records/15683784,Source archive and conversion provenance; no direct email included because not separately verified,DRAFT ONLY - not contacted

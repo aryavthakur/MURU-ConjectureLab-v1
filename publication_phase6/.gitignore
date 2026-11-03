@@ -1,0 +1,8 @@
+# Local QA renders; source DOCX and final PDFs are retained.
+**/render/
+# Full internal/external archives are delivered separately, not committed to the public repository.
+/release/PHASE6_COMPLETE_PACKAGE.zip
+/release/EXTERNAL_REVIEW_PACKAGE.zip
+# Compound-level outputs have unresolved derivative redistribution rights.
+/supplement/tables/external_compound_errors.csv
+/supplement/tables/figure_3_compound_errors.csv

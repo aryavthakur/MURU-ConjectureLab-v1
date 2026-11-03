@@ -1,0 +1,4 @@
+contrast,estimate,low,high,source
+S_K1 - S_K2,0.042318146507718424,-0.012659599304863147,0.09908314462390323,ce_interface_adjudication/design_a/result/analysis.json
+S_K1 - S_K3,0.050332650731238444,-0.00743888659650863,0.10999341559752003,ce_interface_adjudication/design_a/result/analysis.json
+S_K2 - S_K3,0.008014504223520026,-0.013377701526676146,0.029884484152984645,ce_interface_adjudication/design_a/result/analysis.json

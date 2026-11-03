@@ -1,0 +1,5 @@
+# Contribution evidence and owner confirmation
+
+The repository identifies Aryav Thakur as the project owner and lead developer, and the internal manuscript currently lists him as author. The owner expressly authorized AI-assisted research, coding, statistical checks, figure/table production, and manuscript drafting in this conversation. Repository history and the AI-assistance logs document project development. These facts support project ownership and the existence of substantial computational and manuscript contributions; they do not independently verify the owner's detailed contribution taxonomy, affiliation, funding, competing-interest statement, or all third-party rights.
+
+The author-confirmation form asks the owner to confirm exact author name, affiliations, design/software/analysis/writing contributions, acknowledgments, funding, competing interests, data/code ownership, licensing, and AI-use declarations before any external circulation or publication. No coauthor, institutional approval, funding source, or human expert approval has been invented.
