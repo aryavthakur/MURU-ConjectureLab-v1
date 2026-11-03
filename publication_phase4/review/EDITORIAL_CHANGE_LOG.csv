@@ -1,0 +1,9 @@
+date,location,change,scientific_semantics_check,source
+2026-11-02,Title/Abstract,Changed “independent confirmation” framing to external evaluation and specified failed .95 criterion.,"Model, population, values and limitations preserved; sample wording narrowed.",Frozen protocol and measured_mu outputs
+2026-11-02,Methods 2.3,Clarified MassBank precursor denominator versus structure-derived MSnLib [M+H]+; no equality assumption.,Same μ equation and observed outcomes; endpoint implementation difference disclosed.,src/muru/wur_v2/spectra.py; scripts/wur_v2_confirmation_v2/10_one_look.py
+2026-11-02,Methods 2.5–2.7,"Added intercept, asymmetric scaling, bootstrap conditionality, and complete decision rule.","Frozen candidate, primary metric and interval unchanged.",src/muru/wur_v2/models.py; frozen analysis script
+2026-11-02,Results 3.7 / Discussion,Corrected comparator metric to common μ and model-specific energy input conventions.,Comparator P1 values unchanged; spectral-fidelity claims removed.,scripts/comparator_benchmark/analysis.py and frozen output
+2026-11-02,Discussion,Replaced stale “Phase 2 unavailable” wording with recovered-report / unrecovered-calculation distinction.,Historical interval retained but excluded as independently verified inference.,Recovered Phase2 DEVELOPMENT_CI_PROVENANCE.md
+2026-11-02,Discussion/figure captions,Narrowed independence and physical-transfer language.,Sample history and main external result unchanged; generalization claim reduced.,Exposure registry and energy adjudication
+2026-11-02,References,Added verified original ICEBERG article and remapped numeric citations.,No claims added beyond method context; 27 references resolve.,DOI 10.1021/acs.analchem.3c04654
+2026-11-02,Supporting Information,"Expanded source-linked population, model, metric, comparator, census and reproduction records.",Frozen results preserved; derived tables trace to source CSV/JSON.,Phase4 generation scripts and complete source tables

@@ -1,0 +1,5 @@
+# Final Development Confidence-Interval Review
+
+The release and recovered Phase 2 statistical review report the historical ten-arm max-T interval [0.860, 0.918]. Phase 2 provenance records could be recovered from an older local audit worktree, resolving Phase 3’s broad statement that the audit materials themselves were unavailable. The original max-T implementation, exact seed, serialized resamples, and candidate-selection ledger remain unrecovered, so the reported interval cannot be independently reproduced. The Phase 2 record also reports a different conditional interval [0.8650671579, 0.9105586626], which is not a substitute for the original simultaneous interval and is not elevated to independently reproduced evidence.
+
+The manuscript reports development point estimates only as frozen selection-history context and identifies [0.860, 0.918] as historical/unreproduced. It does not use it as a verified confidence interval. The external scaffold-bootstrap interval is a separate calculation and does not repair this development provenance gap. No new max-T interval was invented.

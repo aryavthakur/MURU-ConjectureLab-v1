@@ -1,0 +1,18 @@
+claim_id,claim_or_topic,reference_ids,evidence_type,allowed_interpretation,limitation
+L1,CID produces product ions through energy-dependent gas-phase fragmentation processes,1,review,Background chemistry and nontrivial fragmentation pathways,Not direct empirical evidence for the present compounds
+L2,Thermo NCE is normalized and approximate relative to eV at a reference ion,2;21,manufacturer docs,NCE and absolute eV should not be treated as universal synonyms,Does not calibrate the MURU affine map
+L3,"MassBank/LCSB provides curated, versioned open MS data and a multi-energy source collection",15;16,peer-reviewed resource papers,Dataset lineage and reproducible data sourcing context,Does not validate study results
+L4,"Computational MS/MS includes probabilistic, graph-based and learned models",3;4;5;6;7,primary research,General method landscape,"Task, training data and endpoints differ"
+L5,Morgan/ECFP represents iterative local atom environments,8,primary method paper,Representation background,MURU uses specified RDKit count parameters
+L6,Bemis-Murcko frameworks group compounds by ring/linker frameworks,9,primary method paper,Scaffold group definition context,Scaffold split is not equivalent to maximum chemical distance
+L7,Tanimoto is a common fingerprint similarity measure,10,method paper,Similarity metric rationale,Count variant implementation must be specified
+L8,MURU candidate achieves frozen external P1 ratio and CI,12;13,project frozen protocol/output plus independent rerun,Exact reproduction from frozen measured-μ outputs,No raw mzML reparse; not a peer-reviewed external study
+L9,External tail-risk advantage was not demonstrated,12;13,project result and bootstrap,AF interval includes zero and upper-tail point estimates are close,Does not prove equivalence
+L10,Most structurally novel quartile has ratio above one,12;13,project result,Descriptive adverse subgroup point estimate,No quartile-specific CI
+L11,Full-spectrum comparator ranking depends on CE input convention,22;23,project benchmark/result,Conditional result under tested conventions,"Not convention-independent, full-spectrum target differs"
+L12,"Development max-T interval [0.860,0.918] is a historical claim not reproduced in Phase 3",11;18;24;25,project records,Provenance note only,Missing original draw/code from accessible package
+L13,NCE/eV physical interface is unresolved by Design A,23;21,independent project result and manufacturer documentation,Do not assert a correct conversion,Small independent study and no null stratum
+L14,A 3D neural model can use collision-energy metadata,,peer-reviewed primary article,Existing CE-dependent prediction context,Does not validate MURU modeling approach
+L25,GLACIER reframes fragment prediction as graph object detection,26,preprint,Recent model-design context only,Unreviewed preprint; different evaluation target and conventions
+L17,Bootstrap resampling can estimate uncertainty from sampled observations,17,peer-reviewed statistical methods paper,General bootstrap framework for uncertainty estimates,Does not determine the MURU resampling unit; scaffold groups are chosen from study design
+L27,ICEBERG uses autoregressive neural networks to generate fragmentation graphs.,7,peer-reviewed primary research,Method context for a graph-based learned fragmentation system.,Not a direct comparator result for the MURU μ endpoint.
