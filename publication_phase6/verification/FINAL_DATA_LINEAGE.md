@@ -1,0 +1,9 @@
+# Final data-lineage verification
+
+The frozen study code defines nine MSnLib source ZIP families. Their source ZIP identifiers, Zenodo v5 records, allowlisted member counts, source-file metadata, and selected scan-row counts are in `metadata/MSNLIB_NINE_SOURCE_INVENTORY.csv`. The byte-range extractor verified 1,428 exact mzML members against frozen SHA-256 entries and ZIP CRCs and found 6,004 selected scan IDs. Selected records were checked for MS2 level, precursor m/z, HCD activation, collision-energy CV term/unit/value, and sourceFile metadata.
+
+The original external measurements and frozen predictions map to the derived μ table and model outputs at the Phase 5 base commit. Those rows were not altered in Phase 6. `metadata/SOURCE_TO_EVALUATION_LINEAGE.csv` provides source ZIP, source member hash, source RAW name/checksum fields, spectrum ID, rung, and the selected population key. A phase6 extension records whether a normalized MassIVE filename candidate exists and whether the exact MassIVE file hash was independently verified.
+
+MassIVE listing comparison produced 835/1,428 filename candidates, which are not accepted as identities. One MCEBIO RAW payload was streamed and fully hashed. Its byte count and SHA-1 match the mzML sourceFile checksum exactly; that mzML source member is in the allowlist and contributes selected rows. No broader identity inference is made. A separate filename-associated Zenodo object mismatched and is treated as a distinct repository object.
+
+The link from this one RAW file to a particular native Xcalibur MS method, the conversion configuration, and instrument CE mode remains absent. For all other files, exact RAW identity is not established by the Phase 6 MassIVE search. The full source-to-measured-μ chain remains incomplete at raw spectrum processing because Phase 6 did not reprocess raw spectra.

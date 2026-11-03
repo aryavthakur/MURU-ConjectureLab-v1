@@ -1,0 +1,8 @@
+zip_key,record_doi,zenodo_file_size,central_directory_entries,raw_entries,method_file_entries,instrument_export_entries,other_extensions,inspection
+20220601_mce_bioactive_positive.zip,10.5281/zenodo.13785391,23573940980,1293,1149,67,0,.bat:2; .meth:67; .mzml:6; .raw:1149; .sld:67; <none>:2,remote ZIP central directory only; no RAW or other member payload downloaded
+20231124_otavapep_positive.zip,10.5281/zenodo.13785391,2277105114,189,180,0,0,.bat:1; .raw:180; .sld:7; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded
+20231123_mce_scaffold_positive.zip,10.5281/zenodo.13785391,6990072985,648,634,1,0,.bat:2; .meth:1; .raw:634; .sld:10; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded
+20230404_pluskal_nih_positive.zip,10.5281/zenodo.13785391,9109334057,631,535,54,1,.7z:1; .bat:1; .csv:1; .meth:54; .raw:535; .sld:38; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded
+20240405_pluskal_enammol_MSn_positive.zip,10.5281/zenodo.13785391,10465496930,588,579,0,2,.bat:1; .csv:2; .raw:579; .sld:5; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded
+20240408_pluskal_mcedrug_MSn_positive.zip,10.5281/zenodo.13785391,4899908728,399,339,39,1,.bat:1; .csv:1; .meth:39; .raw:339; .sld:18; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded
+20240502_pluskal_enamdisc_MSn_positive.zip,10.5281/zenodo.13785391,20621515178,1328,1292,0,1,.bat:1; .csv:1; .raw:1292; .sld:33; <none>:1,remote ZIP central directory only; no RAW or other member payload downloaded

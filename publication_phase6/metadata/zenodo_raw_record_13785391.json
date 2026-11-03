@@ -1,0 +1,170 @@
+{
+  "created": "2024-10-08T15:06:01.676090+00:00",
+  "modified": "2025-01-24T15:11:20.279467+00:00",
+  "id": 13785391,
+  "conceptrecid": "10966404",
+  "doi": "10.5281/zenodo.13785391",
+  "conceptdoi": "10.5281/zenodo.10966404",
+  "doi_url": "https://doi.org/10.5281/zenodo.13785391",
+  "metadata": {
+    "title": "MsnLib multi-stage fragmentation mass spectral libraries - raw positive",
+    "doi": "10.5281/zenodo.13785391",
+    "publication_date": "2024-04-12",
+    "description": "<p>The data for <a href=\"https://doi.org/10.26434/chemrxiv-2024-l1tqh-v2\">MSnLib</a> are divided into several Zenodo records due to size constraints.&nbsp;</p>\n<p>raw positive: <a href=\"https://doi.org/10.5281/zenodo.10966404\">10966404</a><br>raw negative: <a href=\"https://doi.org/10.5281/zenodo.10967081\">10967081</a><br>mzml positive and negative: <a href=\"https://doi.org/10.5281/zenodo.10966280\">10966280</a><br>spectral libraries: <a href=\"https://doi.org/10.5281/zenodo.11163380\">11163380</a></p>\n<p>This record includes zipped files containing the raw positive data, acquired using a flow injection method on an Orbitrap ID-X instrument, for all compound libraries.</p>\n<p>7 Compound Libraries:</p>\n<ul>\n<li>Short Name: Full name, Provider (Catalog number), total compounds (not all detected during library building)</li>\n<li>mce_bioactive: Bioactive Compound Library, MedChemExpress (HY-L001), 10,315 compounds</li>\n<li>mce_scaffold: 5k Scaffold Library, MedChemExpress, (HY-L902), 4998 compounds</li>\n<li>nih: NIH NPAC ACONN collection of NP, NIH/NCATS, 3988 compounds</li>\n<li>otavapep: Alpha-helix Peptiomimetic Library, OTAVAchemicals (a-helix-Peptido), 1298 compounds</li>\n<li>enamdisc: Discovery Diversity Set -10, Enamine (DDS-10), 10,240 compounds</li>\n<li>enammol: Carboxylic Acid Fragment Library + Random, Enamine and Molport, 4378 compounds</li>\n<li>mcedrug: FDA-Approved Drug Library, MedChemExpress (HY-L022), 2610 compounds</li>\n</ul>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Brungs, Corinna",
+        "affiliation": "Czech Academy of Sciences, Institute of Organic Chemistry and Biochemistry",
+        "orcid": "0000-0002-2571-5235"
+      },
+      {
+        "name": "Schmid, Robin",
+        "affiliation": "Czech Academy of Sciences, Institute of Organic Chemistry and Biochemistry"
+      },
+      {
+        "name": "Pluskal, Tomas",
+        "affiliation": "Czech Academy of Sciences, Institute of Organic Chemistry and Biochemistry"
+      }
+    ],
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "relations": {
+      "version": [
+        {
+          "index": 1,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "10966404"
+          }
+        }
+      ]
+    }
+  },
+  "title": "MsnLib multi-stage fragmentation mass spectral libraries - raw positive",
+  "links": {
+    "self": "https://zenodo.org/api/records/13785391",
+    "self_html": "https://zenodo.org/records/13785391",
+    "preview_html": "https://zenodo.org/records/13785391?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.13785391",
+    "self_doi": "https://doi.org/10.5281/zenodo.13785391",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.13785391",
+    "reserve_doi": "https://zenodo.org/api/records/13785391/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/10966404",
+    "parent_html": "https://zenodo.org/records/10966404",
+    "parent_doi": "https://doi.org/10.5281/zenodo.10966404",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.10966404",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:13785391/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:13785391/sequence/default",
+    "files": "https://zenodo.org/api/records/13785391/files",
+    "media_files": "https://zenodo.org/api/records/13785391/media-files",
+    "latest": "https://zenodo.org/api/records/13785391/versions/latest",
+    "latest_html": "https://zenodo.org/records/13785391/latest",
+    "versions": "https://zenodo.org/api/records/13785391/versions",
+    "draft": "https://zenodo.org/api/records/13785391/draft",
+    "access_links": "https://zenodo.org/api/records/13785391/access/links",
+    "access_grants": "https://zenodo.org/api/records/13785391/access/grants",
+    "access_users": "https://zenodo.org/api/records/13785391/access/users",
+    "access_request": "https://zenodo.org/api/records/13785391/access/request",
+    "access": "https://zenodo.org/api/records/13785391/access",
+    "communities": "https://zenodo.org/api/records/13785391/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/13785391/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/13785391/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/13785391/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/13785391/quota-increase",
+    "requests": "https://zenodo.org/api/records/13785391/requests"
+  },
+  "updated": "2025-01-24T15:11:20.279467+00:00",
+  "recid": "13785391",
+  "revision": 8,
+  "files": [
+    {
+      "id": "2a9de414-2d00-4a03-956a-5bf85bcf49d2",
+      "key": "20220601_mce_bioactive_positive.zip",
+      "size": 23573940980,
+      "checksum": "md5:4f588dd56309110aafdf94a4d83c4c32",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20220601_mce_bioactive_positive.zip/content"
+      }
+    },
+    {
+      "id": "68724c4f-f9b4-4ef0-8034-7b97c979eb04",
+      "key": "20231124_otavapep_positive.zip",
+      "size": 2277105114,
+      "checksum": "md5:9f0dac1ea02ee0184bd3e4bc4ac8fd9c",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20231124_otavapep_positive.zip/content"
+      }
+    },
+    {
+      "id": "eddf3e07-399f-45f4-a388-45e0a72d077d",
+      "key": "20231123_mce_scaffold_positive.zip",
+      "size": 6990072985,
+      "checksum": "md5:a8d5cddaa9794b2e99be0a6e6a01d1b9",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20231123_mce_scaffold_positive.zip/content"
+      }
+    },
+    {
+      "id": "3e1cd6dc-892c-4f13-907c-127cdb4e946b",
+      "key": "20230404_pluskal_nih_positive.zip",
+      "size": 9109334057,
+      "checksum": "md5:7996a92aff243b255f18e40ec2ff09a8",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20230404_pluskal_nih_positive.zip/content"
+      }
+    },
+    {
+      "id": "e3f7c17d-5b9e-4d80-8ed0-ea1ba1366e2a",
+      "key": "20240405_pluskal_enammol_MSn_positive.zip",
+      "size": 10465496930,
+      "checksum": "md5:6ce822d34f708382dbe32b4098f3b5c0",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20240405_pluskal_enammol_MSn_positive.zip/content"
+      }
+    },
+    {
+      "id": "222168f4-eaa7-438b-907b-1aecb2581607",
+      "key": "20240408_pluskal_mcedrug_MSn_positive.zip",
+      "size": 4899908728,
+      "checksum": "md5:dde7736be4c17ed2da30f8a66717a1f7",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20240408_pluskal_mcedrug_MSn_positive.zip/content"
+      }
+    },
+    {
+      "id": "8d591e6e-e421-4f00-b437-26c3cc16716e",
+      "key": "20240502_pluskal_enamdisc_MSn_positive.zip",
+      "size": 20621515178,
+      "checksum": "md5:320f32fc714e8e3bb93cc5ef5aba310f",
+      "links": {
+        "self": "https://zenodo.org/api/records/13785391/files/20240502_pluskal_enamdisc_MSn_positive.zip/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "448308"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 753,
+    "unique_downloads": 665,
+    "views": 870,
+    "unique_views": 773,
+    "version_downloads": 665,
+    "version_unique_downloads": 579,
+    "version_unique_views": 592,
+    "version_views": 669
+  },
+  "state": "done",
+  "submitted": true
+}

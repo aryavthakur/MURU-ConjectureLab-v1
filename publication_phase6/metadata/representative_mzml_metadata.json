@@ -1,0 +1,784 @@
+[
+  {
+    "source_zip": "20220601_mzml_mce_bioactive_positive.zip",
+    "source_zip_sha256_frozen": "e9e8375159f3d516335ea4d09d77bb5f9c28c33ff1661209fedcfe983d32ee07",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/20220601_mzml_mce_bioactive_positive.zip/content",
+    "remote_zip_bytes": 2824678246,
+    "member": "20220613_100AGC_60000Res_pluskal_mce_1D1_A11_id.mzML",
+    "allowlist_sha256": "c0fd76b23ab7cc4bfdae8dfca2552a9a6f38e021c5a4f991a5c9e76264736298",
+    "member_sha256_verified": "c0fd76b23ab7cc4bfdae8dfca2552a9a6f38e021c5a4f991a5c9e76264736298",
+    "selected_sample_id": "pluskal_mce_1D1_A11_id",
+    "n_selected_scan_rows_for_member": 8,
+    "member_compressed_bytes": 2562860,
+    "member_uncompressed_bytes": 10148196,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/20220601_mzml_mce_bioactive_positive.zip/20220613_100AGC_60000Res_pluskal_mce_1D1_A11_id.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.22166",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20220613_100AGC_60000Res_pluskal_mce_1D1_A11.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "7f5c039487a4949d0be8b32644d1dea0817d8481"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 781,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 781
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 388,
+        "2": 75,
+        "3": 309,
+        "4": 315,
+        "5": 82
+      },
+      "collision_energy_values": {
+        "20.0": 233,
+        "30.0": 10,
+        "60.0": 275,
+        "40.0": 249,
+        "45.0": 10,
+        "15.0": 4
+      },
+      "spectrum_count": 1169
+    }
+  },
+  {
+    "source_zip": "20230404_mzml_pluskal_nih_positive.zip",
+    "source_zip_sha256_frozen": "10c812cb5aba807a88b9188ebc248c6a1e2946e68d1033f6ac493edf755950eb",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/20230404_mzml_pluskal_nih_positive.zip/content",
+    "remote_zip_bytes": 1082596118,
+    "member": "20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_01P_A8_id_positive.mzML",
+    "allowlist_sha256": "5c28fc8fa607f677c6847cda680fbbfb2cbd00c133827d22f4386b91bd7dad77",
+    "member_sha256_verified": "5c28fc8fa607f677c6847cda680fbbfb2cbd00c133827d22f4386b91bd7dad77",
+    "selected_sample_id": "pluskal_nih_01P_A8_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 1633169,
+    "member_uncompressed_bytes": 6704778,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/20230404_mzml_pluskal_nih_positive.zip/20230404_mzml_pluskal_nih_positive/20230404_pluskal_nih_01P_A8_id_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.23094",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20230404_pluskal_nih_01P_A8_id_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "0e0c60246c979cfe7c72113e80cc59f82868551a"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 495,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 495
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 418,
+        "2": 81,
+        "3": 288,
+        "4": 120,
+        "5": 6
+      },
+      "collision_energy_values": {
+        "20.0": 163,
+        "15.0": 18,
+        "60.0": 167,
+        "40.0": 139,
+        "45.0": 4,
+        "30.0": 4
+      },
+      "spectrum_count": 913
+    }
+  },
+  {
+    "source_zip": "20231123_mzml_mce_scaffold_positive.zip",
+    "source_zip_sha256_frozen": "1eb31622f10bfa644a1300591187cbe76bbf69cf5682526b5ae58d953c225bdc",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/20231123_mzml_mce_scaffold_positive.zip/content",
+    "remote_zip_bytes": 957253214,
+    "member": "20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5000_A12_id_MSn_positive.mzML",
+    "allowlist_sha256": "a95574f47a104548a68c3bd26d8da658f12bec606e8519811b92b5c76df5350c",
+    "member_sha256_verified": "a95574f47a104548a68c3bd26d8da658f12bec606e8519811b92b5c76df5350c",
+    "selected_sample_id": "pluskal_nencka_mce_5000_A12_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 1001106,
+    "member_uncompressed_bytes": 7411535,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/20231123_mzml_mce_scaffold_positive.zip/20231123_mzml_mce_scaffold_positive/20231123_pluskal_nencka_mce_5000_A12_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.23326",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20231123_pluskal_nencka_mce_5000_A12_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "fc14f41493b2f3476e8cddcfb86947e99c64e7a9"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 821,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 821
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 121,
+        "2": 111,
+        "3": 346,
+        "4": 312,
+        "5": 52
+      },
+      "collision_energy_values": {
+        "20.0": 261,
+        "15.0": 12,
+        "30.0": 14,
+        "40.0": 245,
+        "60.0": 279,
+        "45.0": 10
+      },
+      "spectrum_count": 942
+    }
+  },
+  {
+    "source_zip": "20231124_mzml_otavapep_positive.zip",
+    "source_zip_sha256_frozen": "1a2c978eb9b7bce9e98396ea901db55af82e2f08a206922fac1d68aa6b41e6ff",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/20231124_mzml_otavapep_positive.zip/content",
+    "remote_zip_bytes": 277249971,
+    "member": "20231124_mzml_otavapep_positive/20231124_pluskal_iocb_peptide_Peptide01_A13_id_MSn_positive.mzML",
+    "allowlist_sha256": "9efa02796995ba38206e656371149d663e7cc7478763e3ce7411b5b2d3b2979e",
+    "member_sha256_verified": "9efa02796995ba38206e656371149d663e7cc7478763e3ce7411b5b2d3b2979e",
+    "selected_sample_id": "pluskal_iocb_peptide_Peptide01_A13_id",
+    "n_selected_scan_rows_for_member": 2,
+    "member_compressed_bytes": 1685521,
+    "member_uncompressed_bytes": 7327400,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/20231124_mzml_otavapep_positive.zip/20231124_mzml_otavapep_positive/20231124_pluskal_iocb_peptide_Peptide01_A13_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.23326",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20231124_pluskal_iocb_peptide_Peptide01_A13_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "f89fcf6a4e04887dfd91443ea91fc97df2e8d6ee"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 606,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 606
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 289,
+        "2": 80,
+        "3": 274,
+        "4": 234,
+        "5": 18
+      },
+      "collision_energy_values": {
+        "20.0": 198,
+        "30.0": 11,
+        "60.0": 202,
+        "15.0": 17,
+        "40.0": 178
+      },
+      "spectrum_count": 895
+    }
+  },
+  {
+    "source_zip": "mzml_20240405_pluskal_enammol_MSn_positive.zip",
+    "source_zip_sha256_frozen": "22194df47e151d38c2ba1eb71a20faa90f794aca417d263d999e20643cebc863",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/mzml_20240405_pluskal_enammol_MSn_positive.zip/content",
+    "remote_zip_bytes": 1364509390,
+    "member": "mzml_20240405_pluskal_enammol_MSn_positive/20240405_pluskal_enammol_5002_B16_id_MSn_positive.mzML",
+    "allowlist_sha256": "e0e9ec38fcff3c39ef0596a8fc686166753d80b9c5e99d43a1f60f8917935c34",
+    "member_sha256_verified": "e0e9ec38fcff3c39ef0596a8fc686166753d80b9c5e99d43a1f60f8917935c34",
+    "selected_sample_id": "pluskal_enammol_5002_B16_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 1927964,
+    "member_uncompressed_bytes": 7968491,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/mzml_20240405_pluskal_enammol_MSn_positive.zip/mzml_20240405_pluskal_enammol_MSn_positive/20240405_pluskal_enammol_5002_B16_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.24100",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20240405_pluskal_enamine_5002_B16_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "1179569a1163c95ac191803feb1c39adc7eb28a8"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 627,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 627
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 315,
+        "2": 66,
+        "3": 267,
+        "4": 276,
+        "5": 18
+      },
+      "collision_energy_values": {
+        "20.0": 203,
+        "45.0": 8,
+        "60.0": 215,
+        "40.0": 190,
+        "30.0": 8,
+        "15.0": 2,
+        "75.0": 1
+      },
+      "spectrum_count": 942
+    }
+  },
+  {
+    "source_zip": "mzml_20240408_pluskal_mcedrug_MSn_positive.zip",
+    "source_zip_sha256_frozen": "87b9264664a118c734a6bbde320a4f4bf655ab7d2c915df55ed025ba6cdd1279",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/mzml_20240408_pluskal_mcedrug_MSn_positive.zip/content",
+    "remote_zip_bytes": 661569255,
+    "member": "mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D7_id_MSn_positive.mzML",
+    "allowlist_sha256": "c48b23044744f0c4ac94081f71bd7e1c7939c935b69ccafced170b8a86f280d7",
+    "member_sha256_verified": "c48b23044744f0c4ac94081f71bd7e1c7939c935b69ccafced170b8a86f280d7",
+    "selected_sample_id": "pluskal_fda_drugs_5005_D7_id",
+    "n_selected_scan_rows_for_member": 2,
+    "member_compressed_bytes": 1768357,
+    "member_uncompressed_bytes": 7428746,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/mzml_20240408_pluskal_mcedrug_MSn_positive.zip/mzml_20240408_pluskal_mcedrug_MSn_positive/20240408_pluskal_fda_drugs_5005_D7_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.24100",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20240408_pluskal_fda_drugs_5005_D7_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "ff466992c2180165ace6bfd0fb6d6969b47ff1b6"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 639,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 639
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 220,
+        "2": 72,
+        "3": 300,
+        "4": 267
+      },
+      "collision_energy_values": {
+        "20.0": 214,
+        "30.0": 11,
+        "60.0": 213,
+        "40.0": 189,
+        "45.0": 5,
+        "15.0": 7
+      },
+      "spectrum_count": 859
+    }
+  },
+  {
+    "source_zip": "mzml_20240502_pluskal_enamdisc_MSn_positive.zip",
+    "source_zip_sha256_frozen": "a1da7a147025130a6c839eabb7396c4a089c79b35266359fffcaae9ef3c98d47",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/mzml_20240502_pluskal_enamdisc_MSn_positive.zip/content",
+    "remote_zip_bytes": 2724409468,
+    "member": "mzml_20240502_pluskal_enamdisc_MSn_positive/20240502_pluskal_enamine_5007_A12_id_MSn_positive.mzML",
+    "allowlist_sha256": "7f083ac23f9a8290bea6fefa0add5d453448eee79ec36c726021f3b3338451d4",
+    "member_sha256_verified": "7f083ac23f9a8290bea6fefa0add5d453448eee79ec36c726021f3b3338451d4",
+    "selected_sample_id": "pluskal_enamine_5007_A12_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 2003274,
+    "member_uncompressed_bytes": 8110636,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/mzml_20240502_pluskal_enamdisc_MSn_positive.zip/mzml_20240502_pluskal_enamdisc_MSn_positive/20240502_pluskal_enamine_5007_A12_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.24130",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20240502_pluskal_enamine_5007_A12_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "e88d9410b0e496aaab5f789227041ab2d9c2b0d3"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 643,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 643
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 325,
+        "2": 81,
+        "3": 301,
+        "4": 249,
+        "5": 12
+      },
+      "collision_energy_values": {
+        "20.0": 211,
+        "45.0": 5,
+        "60.0": 217,
+        "40.0": 189,
+        "15.0": 8,
+        "30.0": 13
+      },
+      "spectrum_count": 968
+    }
+  },
+  {
+    "source_zip": "mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip",
+    "source_zip_sha256_frozen": "89ad88f74096a59bb64ca14979eada2e35bd9c2c6eaf98c692690eea8005ab24",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip/content",
+    "remote_zip_bytes": 3148142909,
+    "member": "mzml/20241113_pluskal_mcediv_20k_5011_A16_id_MSn_positive.mzML",
+    "allowlist_sha256": "d137a7dcade60d09140f2338c95facd13437b5d58ebd75b6ca4b8fac05cc42fd",
+    "member_sha256_verified": "d137a7dcade60d09140f2338c95facd13437b5d58ebd75b6ca4b8fac05cc42fd",
+    "selected_sample_id": "pluskal_mcediv_20k_5011_A16_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 1621728,
+    "member_uncompressed_bytes": 8252296,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/mzml_20241113_pluskal_mcediv_20k_MSn_positive.zip/mzml/20241113_pluskal_mcediv_20k_5011_A16_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.25042",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20241113_pluskal_mcediv_20k_5011_A16_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "a58a756d159bcf4ed72fe2ec80c9d595bb0302a4"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 752,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 752
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 241,
+        "2": 75,
+        "3": 313,
+        "4": 342,
+        "5": 22
+      },
+      "collision_energy_values": {
+        "20.0": 244,
+        "45.0": 7,
+        "60.0": 254,
+        "40.0": 229,
+        "30.0": 10,
+        "15.0": 8
+      },
+      "spectrum_count": 993
+    }
+  },
+  {
+    "source_zip": "mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip",
+    "source_zip_sha256_frozen": "007173324b055ac6f66a273450f10e7f095baa8b6a6710dbc4f607b868553e4f",
+    "zenodo_record": 15683784,
+    "zenodo_file_url": "https://zenodo.org/api/records/15683784/files/mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip/content",
+    "remote_zip_bytes": 555117470,
+    "member": "mzml/20241120_pluskal_targetmol_hts_np_5017_A10_id_MSn_positive.mzML",
+    "allowlist_sha256": "a2daa4584d4bf588f8260aa56c9f7520214b1d0d243a1862b67e80fb02196929",
+    "member_sha256_verified": "a2daa4584d4bf588f8260aa56c9f7520214b1d0d243a1862b67e80fb02196929",
+    "selected_sample_id": "pluskal_targetmol_hts_np_5017_A10_id",
+    "n_selected_scan_rows_for_member": 4,
+    "member_compressed_bytes": 2349970,
+    "member_uncompressed_bytes": 8064011,
+    "extracted_cache_path": "/tmp/muru_phase6_cache/mzml_20241120_pluskal_targetmolnphts_MSn_positive.zip/mzml/20241120_pluskal_targetmol_hts_np_5017_A10_id_MSn_positive.mzML",
+    "mzml_metadata": {
+      "instrument_models": [],
+      "software": [
+        {
+          "id": "Xcalibur",
+          "version": "3.5.3881.18",
+          "terms": [
+            {
+              "accession": "MS:1000532",
+              "name": "Xcalibur",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "id": "pwiz",
+          "version": "3.0.25042",
+          "terms": [
+            {
+              "accession": "MS:1000615",
+              "name": "ProteoWizard software",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "source_files": [
+        {
+          "id": "RAW1",
+          "name": "20241120_pluskal_targetmol_hts_np_5017_A10_id_MSn_positive.raw",
+          "location": "file:///",
+          "params": [
+            {
+              "accession": "MS:1000768",
+              "name": "Thermo nativeID format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000563",
+              "name": "Thermo RAW format",
+              "value": ""
+            },
+            {
+              "accession": "MS:1000569",
+              "name": "SHA-1",
+              "value": "fe6c11e1c4298d0ab7155f3efe9c9fc52fb3fb6f"
+            }
+          ]
+        }
+      ],
+      "activation_terms": {
+        "MS:1000422|beam-type collision-induced dissociation|None|None": 544,
+        "MS:1000045|collision energy|UO:0000266|electronvolt": 544
+      },
+      "unit_terms": {},
+      "ms_levels": {
+        "1": 380,
+        "2": 84,
+        "3": 279,
+        "4": 159,
+        "5": 22
+      },
+      "collision_energy_values": {
+        "20.0": 174,
+        "15.0": 17,
+        "60.0": 186,
+        "40.0": 157,
+        "45.0": 5,
+        "30.0": 5
+      },
+      "spectrum_count": 924
+    }
+  }
+]
