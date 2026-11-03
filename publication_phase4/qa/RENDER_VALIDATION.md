@@ -10,6 +10,6 @@ Render command pattern:
 PYTHONPATH=/tmp/muru-phase4-python-deps python3.13 /Users/aryav/.codex/plugins/cache/openai-primary-runtime/documents/26.1026.10807/skills/documents/render_docx.py INPUT.docx --output_dir OUTPUT_DIR
 ```
 
-The intermediate render PNGs/PDFs are retained for audit in `qa/rendered/`.
+The final render PDFs are retained for audit in `qa/rendered/`. Page PNGs were used for visual inspection and then removed as temporary QA intermediates; the completed visual review is recorded above.
 
 Visual inspection covered all 14 master pages, all 18 online-citation pages, all 5 Supporting Information pages, and the 14 standard-citation pages (the latter were pixel-identical to the master). Figure 5 and its caption now begin together on page 10; page 9 retains the preceding comparator text and Figure 3 without overlap. Inline citation references in the online version contain no raw Markdown backtick characters.

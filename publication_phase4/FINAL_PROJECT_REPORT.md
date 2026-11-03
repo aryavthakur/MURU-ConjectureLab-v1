@@ -19,3 +19,8 @@ The candidate/reference external P1 ratio is 0.9706719801, with 95% whole-scaffo
 ## Review and release
 
 Three simulated adversarial reviews and two substantive revision cycles are documented. They are not human peer review. The final branch and draft PR status are reported after the Phase 4 commit/push step; no journal submission or merge is authorized or performed.
+
+
+## Repository status
+
+Phase 4 is on branch `publication/phase4-final-review-2026-11-02`, with draft PR #11 targeting Phase 3. Existing PR #10 and the frozen release branch are preserved. No journal submission or merge has been made.
