@@ -1,0 +1,19 @@
+manuscript_location,claim_text_or_topic,citation_ids,evidence_location,audit_status
+Introduction §1,CID and collision-induced fragmentation provide structural information and depend on conditions,1,Johnson and Carlson 2015 DOI source,verified
+Introduction §1,NCE and absolute CE have distinct settings and approximate reference-ion relation,2;21,Thermo Q Exactive HF and Exploris manuals,verified
+Introduction §1,Full-spectrum computational methods include CFM-ID and graph-based learned predictors,3;4;5;6;7,Primary articles and identified preprint,verified
+Introduction §1,Collision-energy metadata have been used by a 3D neural spectrum predictor,,Bioinformatics 2023 DOI record,verified
+Introduction §1,Morgan/ECFP encodes local atom environments,8,Rogers and Hahn 2010,verified
+Introduction §1,Scaffold-aware split and similarity are related but distinct notions,9;10,Bemis-Murcko and Tanimoto references,verified
+Methods §2.2,WUR development and external source lineage,11;12;15;16,Frozen project protocol and MassBank sources,verified
+Methods §2.2,Bemis-Murcko scaffold grouping,9;11;18,Original framework paper and MURU protocol,verified
+Methods §2.4,Morgan count feature parameters,8;19,Algorithm paper and RDKit documentation,verified
+Methods §2.5,Ridge predictor and pipeline provenance,11;18;20,"Frozen model JSON, project protocol, regression text",verified
+Methods §2.6,Thermo normalized collision energy semantics,2;21,Manufacturer manuals,verified
+Methods §2.7,"Primary endpoint, bootstrap and decision threshold",12;13,Frozen protocol and executable analysis code,verified
+Methods §2.8 / Results §3.7,Public comparator values and raw-NCE diagnostic,22;23,Frozen comparator record/result,verified
+Methods §2.9 / Results §3.8,Reproducibility status and software environment,11;13;24,"Frozen output, script, reproducibility records",verified
+Discussion,Prior sample exposure and current single-use status,12;14,Freeze disclosure and exposure registry,verified
+Discussion,Development interval is not independently reproduced,11;18;24;25,"Release, review and reproducibility records; audit artifact absent",verified limitation
+Discussion §4,GLACIER uses graph object detection for fragment prediction,26,arXiv:2606.29161,verified as preprint; not peer reviewed
+Methods §2.2,Bootstrap as a general uncertainty estimation framework,17,Efron and Tibshirani 1986 DOI source,verified
