@@ -5,3 +5,5 @@ Verified live state before Phase 5 edits: PR #10 (Phase 3 branch to frozen relea
 Preferred review order: review/accept PR #10 into the frozen release, then PR #11 into the Phase 3 head after #10 advances, then Phase 5 into the Phase 4 head after #11 advances; alternatively maintain the stack and rebase target refs through a regular merge commit after approval. Never merge these automatically. Do not force-push prior branches or change frozen history. PR #12 should target Phase 4 and link #11 and #10 as prerequisites. Keep it draft until project-owner review and data-rights decisions are complete.
 
 Only Phase 5 project-authored docs, scripts, aggregate tables and figures should be pushed. The Phase 4 reviewer archive contains record-level derivatives/model artifacts; it is retained locally and not newly included in the external reviewer ZIP pending rights clearance. The external package is a prepared, unsent reviewer bundle, not public release authorization.
+
+Phase 5 draft PR #12: https://github.com/aryavthakur/MURU-ConjectureLab-v1/pull/12. Prerequisite stack: Phase 4 PR #11 and Phase 3 PR #10.
