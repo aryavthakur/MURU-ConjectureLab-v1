@@ -1,0 +1,3 @@
+# Final manuscript check
+
+Canonical source: `manuscript/MURU_PHASE5_MANUSCRIPT_SOURCE.md`. Abstract: 236 whitespace-delimited words (242 lexical tokens under the checker regex). Main PDF: 14 pages. Standard citation PDF: 14 pages; online citation PDF: 19 pages. References: 29. Main scientific figures: 5; main tables: 0 (the manuscript uses figures and prose for numerical results; the 6-page supplement contains 8 formatted tables plus machine-readable tables). Frozen external findings retained exactly. The abstract and Discussion explicitly state the failed practical criterion, adverse least-similar quartile, no demonstrated tail benefit, and physical energy uncertainty.

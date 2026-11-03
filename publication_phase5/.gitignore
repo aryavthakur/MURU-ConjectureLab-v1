@@ -1,0 +1,6 @@
+# Prepared locally for project-owner delivery; do not push archives with unresolved source-data rights.
+release/*.zip
+release/FINAL_FILE_MANIFEST.csv
+release/FINAL_SHA256SUMS.txt
+supplement/tables/external_compound_errors.csv
+supplement/tables/figure_3_compound_errors.csv
