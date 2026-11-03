@@ -1,0 +1,16 @@
+metric,value,definition
+Population compounds,1794.0,count
+Measured compounds,1794.0,count
+Unsupported exclusions,5.0,count
+Scored compounds,1789.0,count
+Scaffold groups,1687.0,count
+Candidate P1,0.12961151072591617,pooled two-rung RMSE
+Reference P1,0.13352761116871245,pooled two-rung RMSE
+P1 ratio,0.9706719800607511,candidate/reference
+P1 ratio 95% CI lower,0.9523611879747089,scaffold bootstrap
+P1 ratio 95% CI upper,0.9892672061846276,scaffold bootstrap
+Relative P1 reduction,0.02932801993924894,1 - ratio
+AF candidate,0.11850195640022358,fraction RMSE > 0.20
+AF reference,0.11794298490776971,fraction RMSE > 0.20
+CVaR95 candidate,0.2656786395430649,mean worst 5% compound RMSE
+CVaR95 reference,0.26486349681378135,mean worst 5% compound RMSE

@@ -1,0 +1,3 @@
+# Final document render check
+
+All DOCX files were rendered through LibreOffice and the Documents skill `render_docx.py`; PDF page images and contact sheets were examined. Main manuscript: 14 pages, no blank pages, figures/captions present, body is legible at page scale. Standard citation: 14 pages. Online citation: 19 pages. Supporting Information: 6 pages, tables and text fit. External review summary: 2 pages; analytical chemistry packet: 4; statistical packet: 2; reproduction packet: 5; feedback form: 2. The documents use Times New Roman; review packet body is 11 pt for concise reviewer documents.

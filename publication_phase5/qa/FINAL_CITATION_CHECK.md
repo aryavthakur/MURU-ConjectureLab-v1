@@ -1,0 +1,3 @@
+# Citation validation
+
+The manuscript has 29 numbered references; all IDs 1–29 are present. The Phase 4 audit's 27 entries were retained and two primary sources were added for the energy-interface claims. Brungs et al. (2025; DOI 10.1038/s41592-025-02813-0) was checked against publisher/Crossref metadata and the article's acquisition description. Padilla-González et al. (2025; DOI 10.1021/acs.analchem.5c03020) was checked against ACS/PMC metadata and acquisition Methods; it is explicitly used only as WFSR/IQ-X context, not source-specific proof for the MURU archives. Internal claims cite frozen protocols/code. Existing source audit status for other 27 references carried forward; citation checker validates in-text mappings.

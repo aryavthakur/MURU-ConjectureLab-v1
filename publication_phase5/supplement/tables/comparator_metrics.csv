@@ -1,0 +1,4 @@
+model,n_compounds,n_scaffold_groups,P1,MURU_over_comparator_ratio,ratio_95CI_low,ratio_95CI_high,raw_NCE_ratio_if_available,energy_condition,interpretation
+FIORA-OS v0.1.0,1327,1254,0.2045525290943879,0.6185250283998006,0.5933494474687819,0.6456243794291179,,model-specific primary,Derived μ endpoint; conditional on model-specific CE input
+ICEBERG 2.1,1327,1254,0.16207661122657088,0.7806237921058868,0.7479332158402354,0.8145964933189334,1.0762936320378258,model-specific primary,Derived μ endpoint; conditional on model-specific CE input
+GLACIER,1327,1254,0.13838647907427712,0.9142573733626744,0.8729690416726522,0.9584434375450926,1.2382555205557522,model-specific primary,Derived μ endpoint; conditional on model-specific CE input
